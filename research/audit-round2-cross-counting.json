@@ -1,0 +1,2199 @@
+{
+  "schema_version": 1,
+  "audit_round": 2,
+  "reviewer": "lean_kernel",
+  "date": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "input_dossier": "research/audit-round1-counting-quantum.json",
+  "input_dossier_sha256": "e15649a2e5f290991e1722848ef910b48ff01d5ccc4cfaa5c693b20193a0b624",
+  "original_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "inspected_working_dataset_sha256": "03a20575c82bab512158a0bb0bb7766c4066b5c8ecc645c012d16053ad1714e2",
+  "snapshot_notice": "The parent is integrating other audit deltas concurrently; this report binds the input dossier and listed source files, not a later release matrix.",
+  "scope": [
+    "AWPP",
+    "BQP",
+    "CeqP",
+    "FewP",
+    "LWPP",
+    "PP",
+    "QCMA",
+    "QMA",
+    "SPP",
+    "UP",
+    "WPP",
+    "coQMA",
+    "coUP",
+    "parityP"
+  ],
+  "summary": {
+    "proposed_rules_reviewed": 21,
+    "original_holds_reviewed": 2,
+    "accepted_proposed_rules": 21,
+    "holds_discharged_by_explicit_derivation": 2,
+    "rejected_rules": 0,
+    "unresolved_holds": 0,
+    "preferred_integration_rules": 22,
+    "normalizations": [
+      "Strengthen CeqP⊆AWPP and CeqP⊆WPP conclusions to include PP and parityP.",
+      "Combine CeqP⊆parityP PP/PH consequences into one rule.",
+      "Remove reflexive parityP⊆parityP from PP⊆parityP rule.",
+      "Replace LWPP closure citation-only locator by original FFK printed p.19.",
+      "Add parityP⊆PP to the discharged CeqP⊆QMA rule using the same exact-count test sum."
+    ]
+  },
+  "sources": [
+    {
+      "id": "auditCQ-FFK94",
+      "title": "Gap-definable Counting Classes",
+      "authors": "Stephen Fenner, Lance Fortnow, Stuart Kurtz",
+      "year": 1994,
+      "url": "https://cse.sc.edu/~fenner/papers/gaps.pdf",
+      "locator": "Sections 3–5, especially Theorem 5.5; original PDF extraction is degraded",
+      "notes": "Original source for GapP classes, FewP inclusion and lowness. Corroborated with KST1992 and STT2005, which explicitly identify the inherited theorem.",
+      "round2_access": "Primary author manuscript downloaded and visually read at printed pp.17–19: Corollary5.8; Definition5.13 and subsequent LWPP lowness/Turing-closure discussion."
+    },
+    {
+      "id": "auditCQ-FFKL02",
+      "title": "An Oracle Builder’s Toolkit",
+      "authors": "Stephen Fenner, Lance Fortnow, Stuart Kurtz, Lide Li",
+      "year": 2002,
+      "url": "https://lance.fortnow.com/papers/files/obt.pdf",
+      "locator": "Definition 2.2, Definition 2.3; Definition 6.1, Lemma 6.3 and Corollary 6.4, printed pp.25–26",
+      "notes": "Exact normalized GapP definition of AWPP and equivalence with an FP normalizer; BPP and WPP inclusions.",
+      "round2_access": "primary text independently reopened; theorem locators verified"
+    },
+    {
+      "id": "auditCQ-KST92",
+      "title": "Graph Isomorphism is Low for PP",
+      "authors": "Johannes Köbler, Uwe Schöning, Jacobo Torán",
+      "year": 1992,
+      "url": "https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.inst.190/Mitarbeiter/toran/gi-low.pdf",
+      "locator": "Section 2.2, printed p.8, Theorem 2.9 and paragraph after Definition 2.10",
+      "quote": "SPP = {L | Gap-P^L = Gap-P}.",
+      "notes": "Explicitly recalls FFK Theorem5.5; SPP is self-low and LWPP is low for PP and CeqP. Positive FP convention converts to nonzero signed FP by multiplying numerator and normalizer.",
+      "round2_access": "primary text independently reopened; theorem locators verified"
+    },
+    {
+      "id": "auditCQ-OH91",
+      "title": "A Complexity Theory for Feasible Closure Properties",
+      "authors": "Mitsunori Ogiwara, Lane Hemachandra",
+      "year": 1991,
+      "publication_date": "1991-03",
+      "url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=7017&itemId=4661",
+      "locator": "Propositions 2.6(5), 2.7(2–3), printed pp.7–8; Theorem 3.2 and first proof bullet, pp.10–11",
+      "quote": "(3), (4), and C=P = UP are equivalent.",
+      "notes": "Primary technical report; journal version JCSS46(3),1993. Theorem3.2(3) is PP=UP; (4) also equates PH, CH, CeqP, PP and parityP with UP. Prop2.7(2): PP⊆C=·CeqP. Prop2.7(3): parityP^parityP=P^parityP=parityP.",
+      "round2_access": "primary text independently reopened; theorem locators verified"
+    },
+    {
+      "id": "auditCQ-STT05",
+      "title": "Quantum and Classical Complexity Classes: Separations, Collapses, and Closure Properties",
+      "authors": "Holger Spakowski, Mayur Thakur, Rahul Tripathi",
+      "year": 2005,
+      "publication_date": "2005-07-01",
+      "url": "https://doi.org/10.1016/j.ic.2004.10.009",
+      "primary_manuscript_url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=464&itemId=374",
+      "locator": "Theorem5.1 (PH⊆UP^CeqP), Theorem5.4(a), Theorem5.6(a,b), Theorem5.9; journal pp.24–28. Introduction attributes SPP^LWPP=LWPP to FFK94.",
+      "quote": "Theorem 5.4 (a) UP^AWPP ⊆ AWPP.",
+      "notes": "Primary manuscript OCR is corrupt; exact statements verified also in indexed full journal PDF: https://citeseerx.ist.psu.edu/document?doi=d52acf5cae7e117a88744fa578719a97afc7e26d&repid=rep1&type=pdf . WPP truth-table closure; UP^WPP⊆coCeqP. Oracle failures are not ordinary separations.",
+      "round2_access": "Primary manuscript downloaded and visually read at printed pp.3,22–24; PDF text font mapping is corrupted. Journal metadata independently confirms July 2005; manuscript locators differ from journal pagination."
+    },
+    {
+      "id": "auditCQ-Vya03",
+      "title": "QMA=PP implies that PP contains PH",
+      "authors": "Mikhail Vyalyi",
+      "year": 2003,
+      "publication_date": "2003-04-08",
+      "url": "https://eccc.weizmann.ac.il/report/2003/021/download/",
+      "locator": "Theorem1 pp.5–6; Theorem2 pp.7–8; Corollaries1–2 p.8",
+      "quote": "If QMA = PP then QMA = PP ⊇ PH.",
+      "notes": "Corollary2 assumes coCeqP=PP. A stronger CeqP⊆QMA premise is not a stated theorem and is held for independent derivation review.",
+      "round2_access": "primary text independently reopened; theorem locators verified"
+    },
+    {
+      "id": "auditCQ-MW05",
+      "title": "Quantum Arthur–Merlin Games",
+      "authors": "Chris Marriott, John Watrous",
+      "year": 2005,
+      "url": "https://arxiv.org/pdf/cs/0506068",
+      "locator": "Definition of QMA; Theorem3.3 amplification, Theorem3.4 and Remark3.5, pp.13–14",
+      "quote": "QMA ⊆ PP.",
+      "notes": "Also QMA⊆A0PP. Bounded-error total languages are obtained by requiring the verifier gap on every input.",
+      "round2_access": "primary text independently reopened; theorem locators verified"
+    },
+    {
+      "id": "auditCQ-FR99",
+      "title": "Complexity Limitations on Quantum Computation",
+      "authors": "Lance Fortnow, John Rogers",
+      "year": 1999,
+      "url": "https://lance.fortnow.com/papers/files/quantum.pdf",
+      "locator": "Definition2.1 and following paragraph, p.3; Theorem3.1, Theorem3.3, Corollaries3.4–3.5, pp.5–7",
+      "quote": "BQP machines can simulate deterministic Turing machines and other BQP machines as subroutines",
+      "notes": "BQP⊆AWPP and AWPP is PP-low. The subroutine paragraph cites Bernstein–Vazirani1997. Classical adaptive-query simulation needs only amplification and polynomial composition.",
+      "round2_access": "primary text independently reopened; theorem locators verified"
+    },
+    {
+      "id": "auditCQ-BV97",
+      "title": "Quantum Complexity Theory",
+      "authors": "Ethan Bernstein, Umesh Vazirani",
+      "year": 1997,
+      "publication_date": "1997-10",
+      "url": "https://web.cs.miami.edu/home/burt/learning/csc595.251/Bernstein-Vazirani-QTM.pdf",
+      "locator": "Sections4–7 composition/simulation, Section8.1 amplification and inclusion bounds, Section8.3 quantum oracles",
+      "notes": "Primary journal paper at an academic mirror; verifies finite precision, machine/circuit robustness, and efficient composition.",
+      "round2_access": "Composition result used via Fortnow–Rogers explicit primary statement; full BV proof not reread in this round."
+    },
+    {
+      "id": "auditCQ-Toda91",
+      "title": "PP is as Hard as the Polynomial-Time Hierarchy",
+      "authors": "Seinosuke Toda",
+      "year": 1991,
+      "publication_date": "1991-10",
+      "url": "https://epubs.siam.org/doi/10.1137/0220053",
+      "locator": "Abstract and main theorem, SIAM J.Comput.20(5),865–877",
+      "quote": "PH is included in BP · ⊕P.",
+      "notes": "Also PH⊆P^PP. BP denotes bounded-error randomized reduction, not an assertion PH⊆parityP or PH⊆PP.",
+      "round2_access": "Publisher abstract directly states PH⊆P^PP and PH⊆BP·parityP. Strong one-#P-query version read in STT Theorem5.1 proof and Vyalyi Theorem2 proof."
+    },
+    {
+      "id": "auditCQ-SizeSPP03",
+      "title": "The Size of SPP",
+      "year": 2003,
+      "url": "https://eccc.weizmann.ac.il/report/2003/063/download",
+      "locator": "Theorem2.1 p.2; paragraph before Corollary5.3 pp.5–6",
+      "quote": "NP ⊆ SPP if and only if Δ₂P ⊆ SPP.",
+      "notes": "The subsequent PH⊆SPP equivalence explicitly adds the hypothesis that NP has nonzero p-measure. Do not discard that premise.",
+      "authors": "John M. Hitchcock",
+      "round2_access": "primary text independently reopened; theorem locators verified"
+    },
+    {
+      "id": "auditCQ-Ivanashev26",
+      "title": "Low Sets and Closure Properties of Counting Function Classes",
+      "authors": "Yaroslav Ivanashev",
+      "year": 2026,
+      "publication_date": "2026-08-02",
+      "url": "https://arxiv.org/abs/2507.04110v5",
+      "full_text_url": "https://arxiv.org/html/2507.04110v5",
+      "locator": "Definitions2.1–2.2, Proposition2.3; proof of Theorem2.4; Theorem3.2",
+      "notes": "v5 is before cutoff. Mostly new function-class results; its recalled CeqP=coNP collapse matches the older derived rule below. No new ordinary roster status confirmed.",
+      "round2_access": "Version5 header and Theorem2.4 proof directly inspected: August2,2026. Corroborates an older collapse; none of the normalized rules depends on this preprint alone."
+    }
+  ],
+  "rule_reviews": [
+    {
+      "id": "auditCQ-pp-qma-ph-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03"
+      ],
+      "locator": "Corollary1",
+      "justification": "QMA⊆PP is baseline, so the premise is QMA=PP.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "corollary_application",
+      "verified_locator": "Vyalyi Corollary 1, printed p.8; Marriott–Watrous Theorem 3.4, printed p.13.",
+      "independent_check": "Baseline QMA⊆PP turns PP⊆QMA into equality. No relativization or promise-oracle substitution.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-pp-ceqp-ph-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "CeqP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03"
+      ],
+      "locator": "Corollary2",
+      "justification": "CeqP⊆PP and PP is self-complementary; PP⊆CeqP makes coCeqP=PP.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "corollary_application",
+      "verified_locator": "Vyalyi Corollary 2, printed p.8; FFKL Definition 2.3.",
+      "independent_check": "Use CeqP⊆PP to obtain equality. PP complement closure then gives coCeqP=PP, exactly the corollary premise.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-awpp-ph-awpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorems5.1,5.4(a)",
+      "justification": "PH⊆UP^CeqP⊆UP^AWPP⊆AWPP.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "derived_strengthening",
+      "verified_locator": "STT Theorems 5.1 and 5.4(a), printed pp.22–24.",
+      "independent_check": "Only oracle class CeqP is replaced by AWPP. UP^AWPP⊆AWPP is an unconditional theorem. Exact-count construction D1 also gives PP and parityP endpoints.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "AWPP"
+        }
+      ],
+      "strengthening_derivation": "D1",
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-wpp-ph-wpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorems5.1,5.6(b)",
+      "justification": "PH⊆UP^CeqP⊆UP^WPP⊆coCeqP; premise and WPP⊆CeqP plus complement closure identify coCeqP=WPP.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "derived_strengthening",
+      "verified_locator": "STT Theorems 5.1 and 5.6(b), printed pp.22,24; FFK Definition 5.13, pp.18–19.",
+      "independent_check": "WPP⊆CeqP and the premise identify WPP=CeqP. Complement closure gives coCeqP=WPP. Therefore UP^CeqP⊆UP^WPP⊆coCeqP=WPP. D1 adds PP and parityP. No claim P^WPP=WPP is needed.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "WPP"
+        }
+      ],
+      "strengthening_derivation": "D1",
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-up-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "UP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "UP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91"
+      ],
+      "locator": "Theorem3.2, first proof bullet",
+      "justification": "UP⊆CeqP makes the premise equality. The stated equivalence collapses PH, CH, PP and parityP to UP.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "stated_equivalence",
+      "verified_locator": "Ogiwara–Hemachandra Theorem 3.2(3–4), printed pp.10–11, first proof bullet.",
+      "independent_check": "UP⊆CeqP is baseline. The hypothesis makes CeqP=UP, explicitly one of the equivalent conditions used by the proof. The PP, PH and parityP conclusions are all stated in condition (4).",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "UP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-lwpp-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "auditCQ-KST92",
+        "auditCQ-STT05",
+        "auditCQ-Toda91",
+        "auditCQ-FFK94"
+      ],
+      "locator": "OH Proposition2.7(2); KST p.8; STT introduction",
+      "justification": "PP⊆C=·CeqP⊆CeqP^CeqP⊆CeqP^LWPP=CeqP⊆LWPP. Both PH and parityP lie in P^PP⊆P^LWPP=LWPP. This is a derivation, not a verbatim named theorem.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "composed_operators_and_lowness",
+      "verified_locator": "OH Proposition 2.6(6),2.7(2), printed p.7; FFK discussion after Definition 5.13, printed p.19; KST p.8.",
+      "independent_check": "C=·CeqP⊆CeqP^CeqP is unconditional operator-to-oracle simulation. The hypothesis replaces only the oracle, giving CeqP^LWPP=CeqP by established LWPP lowness for CeqP. Hence PP⊆LWPP. P^LWPP=LWPP then transports PH and parityP from P^PP. The argument does not use the unproved LWPP^LWPP=LWPP.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-parity-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "auditCQ-Toda91",
+        "auditCQ-STT05"
+      ],
+      "locator": "OH Proposition2.7(2–3)",
+      "justification": "Suspected rule, not admitted: replacing CeqP^CeqP by parityP^parityP would relativize the hypothesis. Need an explicit closure-of-exact-counting argument; no such primary theorem verified in this pass.",
+      "original_status": "hold_derivation_review",
+      "verdict": "accept",
+      "review_kind": "newly_discharged_hold",
+      "verified_locator": "STT Theorem 5.1 proof, printed p.22; OH Proposition 2.7(3), printed pp.7–8.",
+      "independent_check": "Discharged by D1: PP⊆UP^CeqP. Replace the oracle by parityP, then use the unconditional relativizing UP⊆parityP and parityP^parityP=parityP. This avoids relativizing the hypothesis CeqP⊆parityP.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "strengthening_derivation": "D1",
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-conp-ph-sigma2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05",
+        "auditCQ-Ivanashev26"
+      ],
+      "locator": "STT Theorem5.1; Ivanashev Theorem2.4 proof",
+      "justification": "PH⊆UP^CeqP⊆UP^coNP⊆NP^NP=Sigma2P.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "STT Theorem 5.1, printed p.22; Ivanashev v5 Theorem 2.4 proof, item (4).",
+      "independent_check": "PH⊆UP^CeqP⊆UP^coNP⊆NP^coNP=NP^NP=Sigma2P. Complementing each query swaps coNP and NP; no NP=coNP assumption. The 2026 source is corroboration, not necessary to admission.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Sigma2P"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-np-spp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-SizeSPP03",
+        "auditCQ-FFK94"
+      ],
+      "locator": "Paragraph before Corollary5.3",
+      "justification": "Delta2P=P^NP⊆P^SPP=SPP. Only the oracle is replaced; no relativization of the premise.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "FFK Corollary 5.8, printed p.17; Hitchcock paragraph before Corollary 5.3, printed p.5.",
+      "independent_check": "Delta2P=P^NP⊆P^SPP=SPP. The latter equality is unconditional closure under polynomial-time Turing reductions. No measure hypothesis needed for Delta2P; PH would need an additional argument.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "SPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-np-lwpp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05",
+        "auditCQ-FFK94"
+      ],
+      "locator": "Introduction: SPP^LWPP=LWPP (FFK94)",
+      "justification": "Delta2P=P^NP⊆P^LWPP=LWPP. Only the oracle is replaced; no relativization of the premise.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "FFK discussion after Definition 5.13, printed p.19; independently confirmed STT introduction p.3.",
+      "independent_check": "Delta2P=P^NP⊆P^LWPP=LWPP. FFK explicitly states SPP^LWPP=LWPP and therefore Turing closure. Do not replace this by LWPP self-lowness.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "LWPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-np-awpp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorem5.4(a)",
+      "justification": "Delta2P=P^NP⊆P^AWPP=AWPP. Only the oracle is replaced; no relativization of the premise.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "STT Theorem 5.4(a), printed p.22.",
+      "independent_check": "P^AWPP⊆UP^AWPP⊆AWPP and reverse containment uses one oracle query. Replace NP only in oracle position.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "AWPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-np-bqp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "locator": "FR paragraph after Definition2.1",
+      "justification": "Delta2P=P^NP⊆P^BQP=BQP. Only the oracle is replaced; no relativization of the premise.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "amplified_subroutine_composition",
+      "verified_locator": "Fortnow–Rogers paragraph following Definition 2.1, printed p.3; Bernstein–Vazirani composition theorem cited there.",
+      "independent_check": "Classical adaptive oracle calls can each be simulated with error at most 1/(100q(n)); a union bound across q(n) queries gives bounded error. No coherent oracle theorem is required for P^BQP⊆BQP. Total-language correctness on every query is essential.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "BQP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-np-parityp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91"
+      ],
+      "locator": "Proposition2.7(3)",
+      "justification": "Delta2P=P^NP⊆P^parityP=parityP. Only the oracle is replaced; no relativization of the premise.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "OH Proposition 2.7(3), printed pp.7–8.",
+      "independent_check": "Delta2P=P^NP⊆P^parityP=parityP. Only the oracle changes.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "parityP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-np-wpp-theta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorem5.6(a)",
+      "justification": "Theta2P=P_parallel^NP⊆P_parallel^WPP=WPP.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "truth_table_substitution",
+      "verified_locator": "STT Theorem 5.6(a), printed pp.24–25.",
+      "independent_check": "Theta2P=P_parallel^NP. The query list is unchanged when the same total NP oracle is regarded as a WPP language. WPP truth-table closure suffices; unrestricted Turing closure is not asserted.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "WPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-parity-bpp-ph-bpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91"
+      ],
+      "locator": "PH⊆BP·parityP",
+      "justification": "Compose the randomized reduction with amplified BPP answers; total-language gap holds on every generated query.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "randomized_operator_composition",
+      "verified_locator": "Toda 1991 publisher abstract, explicit PH⊆BP·parityP; ordinary BPP error amplification.",
+      "independent_check": "First amplify the outer BP reduction to error≤1/12 using parityP closure under deterministic oracle reductions; then answer its total parity language by BPP with error≤1/12. The resulting success gap is at least 5/6 versus 1/6, hence BPP.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-parity-bqp-ph-bqp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "locator": "Toda main theorem; FR Definition2.1 discussion",
+      "justification": "Compose the randomized reduction with amplified quantum computation for its total parityP target.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "randomized_operator_composition",
+      "verified_locator": "Toda 1991 publisher abstract; Fortnow–Rogers paragraph after Definition 2.1, printed p.3.",
+      "independent_check": "As in the BPP case, amplify the outer BP reduction and the BQP decision subroutine before composition. Classical randomness is available in BQP; the target parity language is total.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-pp-awpp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-STT05"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^AWPP=AWPP. The two consequences may overlap other proposed rules.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "Toda PH⊆P^PP; OH Proposition 2.6(5), p.7; STT Theorem 5.4(a), p.22.",
+      "independent_check": "Both target languages lie in P^PP, replace PP by AWPP, and use P^AWPP=AWPP.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "AWPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-pp-bqp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^BQP=BQP. The two consequences may overlap other proposed rules.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "Toda PH⊆P^PP; OH Proposition 2.6(5), p.7; Fortnow–Rogers Definition 2.1 discussion, p.3.",
+      "independent_check": "Both target languages lie in P^PP. Replace the PP oracle and use amplified classical adaptive BQP subroutine simulation.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BQP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-pp-parityp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-OH91"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^parityP=parityP. The two consequences may overlap other proposed rules.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "accept_with_cleanup",
+      "verified_locator": "Toda PH⊆P^PP; OH Proposition 2.7(3), pp.7–8.",
+      "independent_check": "P^PP⊆P^parityP=parityP. Remove the second submitted conclusion parityP⊆parityP: it is reflexive and contributes no consequence.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-pp-spp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-SizeSPP03",
+        "auditCQ-FFK94"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^SPP=SPP. The two consequences may overlap other proposed rules.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "Toda PH⊆P^PP; OH Proposition 2.6(5), p.7; FFK Corollary 5.8, p.17.",
+      "independent_check": "PH and parityP lie in P^PP. Replace the oracle by SPP and invoke P^SPP=SPP.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "SPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-pp-lwpp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-STT05",
+        "auditCQ-FFK94"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^LWPP=LWPP. The two consequences may overlap other proposed rules.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "Toda PH⊆P^PP; OH Proposition 2.6(5), p.7; FFK discussion after Definition 5.13, p.19.",
+      "independent_check": "PH and parityP lie in P^PP. Replace the oracle by LWPP and invoke P^LWPP=LWPP, not LWPP^LWPP=LWPP.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-qma-ph-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03",
+        "auditCQ-MW05",
+        "auditCQ-Toda91"
+      ],
+      "locator": "Theorem2 proof, pp.7–8",
+      "justification": "Possible strengthening: the proof appears to need an A0PP test only for an exact #P-value predicate, a CeqP language. Must independently check amplification, nonnegative gap and aggregate wrong-guess error before adoption.",
+      "original_status": "hold_derivation_review",
+      "verdict": "accept",
+      "review_kind": "newly_discharged_hold",
+      "verified_locator": "Vyalyi Theorem 1, Lemma 3 and Theorem 2 proof, printed pp.4–8; Marriott–Watrous Remark 3.5, p.14.",
+      "independent_check": "Discharged by D2, which only needs the exact-count language in A0PP. CeqP⊆QMA and QMA⊆A0PP supply that. Common encoded query length makes the amplified threshold independent of the guessed count. Nonnegative gaps prevent cancellations and a polynomially large exponent defeats all wrong guesses. The same D2 argument applies to parityP, which directly belongs to P^#P[1], so parityP⊆PP is also a valid strengthened endpoint.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "PP"
+        }
+      ],
+      "strengthening_derivation": "D2",
+      "integration_action": "include_normalized"
+    },
+    {
+      "id": "auditCQ-ceqp-parity-ph-parity",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05",
+        "auditCQ-OH91"
+      ],
+      "locator": "STT Theorem5.1; OH Proposition2.7(3)",
+      "justification": "PH⊆UP^CeqP⊆UP^parityP⊆parityP^parityP=parityP. UP⊆parityP relativizes unconditionally; the hypothetical CeqP inclusion only replaces the oracle.",
+      "original_status": "proposed_for_cross_review",
+      "verdict": "accept",
+      "review_kind": "oracle_substitution",
+      "verified_locator": "STT Theorem 5.1, printed p.22; OH Proposition 2.7(3), pp.7–8.",
+      "independent_check": "PH⊆UP^CeqP⊆UP^parityP⊆parityP^parityP=parityP. UP⊆parityP is unconditional and relativizes; the hypothetical inclusion only replaces the oracle. Included in the normalized strengthened held rule, so omit this duplicate from preferred integration.",
+      "cutoff_check": "all mathematical inputs predate 2026-09-01",
+      "normalized_conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "integration_action": "omit_duplicate"
+    }
+  ],
+  "preferred_rules": [
+    {
+      "id": "auditCQ-pp-qma-ph-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03"
+      ],
+      "justification": "Baseline QMA⊆PP turns PP⊆QMA into equality. No relativization or promise-oracle substitution.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-pp-ceqp-ph-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "CeqP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03"
+      ],
+      "justification": "Use CeqP⊆PP to obtain equality. PP complement closure then gives coCeqP=PP, exactly the corollary premise.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-ceqp-awpp-ph-awpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "justification": "Only oracle class CeqP is replaced by AWPP. UP^AWPP⊆AWPP is an unconditional theorem. Exact-count construction D1 also gives PP and parityP endpoints.",
+      "derivation_id": "D1"
+    },
+    {
+      "id": "auditCQ-ceqp-wpp-ph-wpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "justification": "WPP⊆CeqP and the premise identify WPP=CeqP. Complement closure gives coCeqP=WPP. Therefore UP^CeqP⊆UP^WPP⊆coCeqP=WPP. D1 adds PP and parityP. No claim P^WPP=WPP is needed.",
+      "derivation_id": "D1"
+    },
+    {
+      "id": "auditCQ-ceqp-up-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "UP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "UP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91"
+      ],
+      "justification": "UP⊆CeqP is baseline. The hypothesis makes CeqP=UP, explicitly one of the equivalent conditions used by the proof. The PP, PH and parityP conclusions are all stated in condition (4).",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-ceqp-lwpp-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "auditCQ-KST92",
+        "auditCQ-STT05",
+        "auditCQ-Toda91",
+        "auditCQ-FFK94"
+      ],
+      "justification": "C=·CeqP⊆CeqP^CeqP is unconditional operator-to-oracle simulation. The hypothesis replaces only the oracle, giving CeqP^LWPP=CeqP by established LWPP lowness for CeqP. Hence PP⊆LWPP. P^LWPP=LWPP then transports PH and parityP from P^PP. The argument does not use the unproved LWPP^LWPP=LWPP.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-ceqp-parity-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "auditCQ-Toda91",
+        "auditCQ-STT05"
+      ],
+      "justification": "Discharged by D1: PP⊆UP^CeqP. Replace the oracle by parityP, then use the unconditional relativizing UP⊆parityP and parityP^parityP=parityP. This avoids relativizing the hypothesis CeqP⊆parityP.",
+      "derivation_id": "D1"
+    },
+    {
+      "id": "auditCQ-ceqp-conp-ph-sigma2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05",
+        "auditCQ-Ivanashev26"
+      ],
+      "justification": "PH⊆UP^CeqP⊆UP^coNP⊆NP^coNP=NP^NP=Sigma2P. Complementing each query swaps coNP and NP; no NP=coNP assumption. The 2026 source is corroboration, not necessary to admission.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-np-spp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-SizeSPP03",
+        "auditCQ-FFK94"
+      ],
+      "justification": "Delta2P=P^NP⊆P^SPP=SPP. The latter equality is unconditional closure under polynomial-time Turing reductions. No measure hypothesis needed for Delta2P; PH would need an additional argument.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-np-lwpp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05",
+        "auditCQ-FFK94"
+      ],
+      "justification": "Delta2P=P^NP⊆P^LWPP=LWPP. FFK explicitly states SPP^LWPP=LWPP and therefore Turing closure. Do not replace this by LWPP self-lowness.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-np-awpp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "justification": "P^AWPP⊆UP^AWPP⊆AWPP and reverse containment uses one oracle query. Replace NP only in oracle position.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-np-bqp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "justification": "Classical adaptive oracle calls can each be simulated with error at most 1/(100q(n)); a union bound across q(n) queries gives bounded error. No coherent oracle theorem is required for P^BQP⊆BQP. Total-language correctness on every query is essential.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-np-parityp-delta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91"
+      ],
+      "justification": "Delta2P=P^NP⊆P^parityP=parityP. Only the oracle changes.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-np-wpp-theta2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "justification": "Theta2P=P_parallel^NP. The query list is unchanged when the same total NP oracle is regarded as a WPP language. WPP truth-table closure suffices; unrestricted Turing closure is not asserted.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-parity-bpp-ph-bpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91"
+      ],
+      "justification": "First amplify the outer BP reduction to error≤1/12 using parityP closure under deterministic oracle reductions; then answer its total parity language by BPP with error≤1/12. The resulting success gap is at least 5/6 versus 1/6, hence BPP.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-parity-bqp-ph-bqp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "justification": "As in the BPP case, amplify the outer BP reduction and the BQP decision subroutine before composition. Classical randomness is available in BQP; the target parity language is total.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-pp-awpp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-STT05"
+      ],
+      "justification": "Both target languages lie in P^PP, replace PP by AWPP, and use P^AWPP=AWPP.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-pp-bqp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "justification": "Both target languages lie in P^PP. Replace the PP oracle and use amplified classical adaptive BQP subroutine simulation.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-pp-parityp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-OH91"
+      ],
+      "justification": "P^PP⊆P^parityP=parityP. Remove the second submitted conclusion parityP⊆parityP: it is reflexive and contributes no consequence.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-pp-spp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-SizeSPP03",
+        "auditCQ-FFK94"
+      ],
+      "justification": "PH and parityP lie in P^PP. Replace the oracle by SPP and invoke P^SPP=SPP.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-pp-lwpp-oracle-consequences",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-STT05",
+        "auditCQ-FFK94"
+      ],
+      "justification": "PH and parityP lie in P^PP. Replace the oracle by LWPP and invoke P^LWPP=LWPP, not LWPP^LWPP=LWPP.",
+      "derivation_id": null
+    },
+    {
+      "id": "auditCQ-ceqp-qma-ph-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03",
+        "auditCQ-MW05",
+        "auditCQ-Toda91"
+      ],
+      "justification": "Discharged by D2, which only needs the exact-count language in A0PP. CeqP⊆QMA and QMA⊆A0PP supply that. Common encoded query length makes the amplified threshold independent of the guessed count. Nonnegative gaps prevent cancellations and a polynomially large exponent defeats all wrong guesses. Apply the same argument to parityP∈P^#P[1] for the second endpoint.",
+      "derivation_id": "D2"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "D1",
+      "title": "Exact-count certificate simulation",
+      "claim": "P^#P[1] ⊆ UP^CeqP, hence PH ∪ PP ∪ parityP ⊆ UP^CeqP",
+      "status": "independently_reconstructed_argument_from_primary_proof",
+      "steps": [
+        "Fix a total language accepted by deterministic polynomial-time computation using one value of a #P function f. Incorporate its deterministic query map into F(x)=f(q(x)); composition with a polynomial-time map preserves #P. The deterministic post-query acceptance test is a polynomial-time Boolean function b(x,j). A no-query computation can be represented by a dummy count.",
+        "Choose an explicit polynomial w(n) with 0≤F(x)<2^w(n). Use exactly w(n) nondeterministic bits, so every j in [0,2^w(n)) is guessed once, including zero. This strict upper bound avoids the endpoint bug from trying to encode 2^w with w bits.",
+        "Define A as well-formed pairs (x,j), with j exactly w(|x|) bits, satisfying F(x)=value(j). This is a total CeqP language: on valid pairs use GapP difference F(x)−value(j), and on invalid encodings use the constant nonzero gap 1.",
+        "Guess j, query A, and accept iff the answer is yes and b(x,j)=1. Only the unique correct j can survive, so the machine is unambiguous relative to this actual oracle on every input. It need not be unambiguous relative to arbitrary other oracles; STT Definition 5.2 explicitly uses the actual oracle.",
+        "PH⊆P^#P[1] is the strong Toda theorem used in STT Theorem 5.1. PP and parityP belong to P^#P[1] directly by comparing, or taking parity of, a single accepting-path count.",
+        "Under CeqP⊆parityP, replace the oracle in this same machine. UP^parityP⊆parityP^parityP=parityP follows from unconditional relativizing unambiguous-to-parity simulation and parity self-lowness. No relativization of the hypothesis occurs.",
+        "Under CeqP⊆AWPP, apply UP^AWPP⊆AWPP. Under CeqP⊆WPP, use UP^WPP⊆coCeqP and WPP=CeqP=coCeqP, where the final equality follows from WPP complement closure. These yield PH, PP and parityP in the indicated target."
+      ],
+      "primary_anchor_ids": [
+        "auditCQ-STT05",
+        "auditCQ-OH91",
+        "auditCQ-Toda91"
+      ],
+      "not_claimed": "The source theorem states the PH endpoint; the PP/parityP extension is the explicit construction above."
+    },
+    {
+      "id": "D2",
+      "title": "CeqP inside QMA suffices for the Vyalyi PH collapse",
+      "claim": "CeqP⊆QMA ⇒ PH∪parityP⊆PP",
+      "status": "independently_reconstructed_argument_from_primary_proof",
+      "steps": [
+        "For L∈PH use D1 to obtain F∈#P, polynomial count width w(n), and a deterministic acceptance predicate b(x,j). Define the total CeqP exact-count language A from D1.",
+        "Choose an injective polynomial-time pair encoding whose length ℓ(n) depends only on n and w(n), and satisfies ℓ(n)≥w(n). For example, encode x by prefixing its length in unary with a delimiter, then x and the fixed-width j. All guesses for a fixed x have exactly the same encoded length. Invalid encodings are no-instances of A.",
+        "The premise gives A∈QMA. Vyalyi Theorem 1 (also Marriott–Watrous Remark 3.5) gives A∈A0PP. Vyalyi Lemma 3 supplies a GapP function h0 and a polynomial p such that on a query z of length m, yes implies h0(z)>2^p(m), while no implies 0≤h0(z)<2^(p(m)−1). The nonnegative condition applies to every no-query string.",
+        "Set k(m)=m+2, h(z)=h0(z)^k(m), and S(m)=2^(p(m)k(m)). Polynomial products preserve GapP. Yes queries satisfy h>S(m), and no queries satisfy 0≤h<2^−k(m)S(m). All thresholds for guesses on x equal S(ℓ(|x|)).",
+        "Let H(x)=sum over all w(|x|)-bit j of b(x,j)·h(encode(x,j)). The predicate b and encoding are polynomial-time; GapP is closed under this exponentially many terms sum and polynomial-time selection. Therefore H∈GapP.",
+        "If x∈L, its unique correct count has b=1 and contributes more than S; every other contribution is nonnegative, so H>S. If x∉L, the correct count has b=0. Every included term is a wrong count, hence H<2^w ·2^−(ℓ+2)S≤S/4. The explicit FP function S(ℓ(n)) has polynomially many bits.",
+        "Thus H(x)−S(ℓ(|x|)) is a GapP function positive exactly on L, proving L∈PP. The proof never requires PP⊆A0PP, QMA complement closure, or the hypothetical inclusion relative to an oracle.",
+        "Exactly the same construction applies when L∈parityP, since one #P value determines its answer by a parity test. Thus the consequence also includes parityP⊆PP; no additional theorem or oracle assumption is required."
+      ],
+      "primary_anchor_ids": [
+        "auditCQ-Vya03",
+        "auditCQ-MW05",
+        "auditCQ-Toda91"
+      ],
+      "not_claimed": "Vyalyi Corollary 1 states the stronger premise QMA=PP. This weaker-premise implication is an explicit adaptation of the proof, not a direct quotation of that corollary."
+    }
+  ],
+  "seed_reviews": [
+    {
+      "id": "classical-inclusion-P-UP",
+      "claim": {
+        "relation": "inclusion",
+        "left": "P",
+        "right": "UP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "AB2007"
+      ]
+    },
+    {
+      "id": "classical-inclusion-UP-FewP",
+      "claim": {
+        "relation": "inclusion",
+        "left": "UP",
+        "right": "FewP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "AB2007"
+      ]
+    },
+    {
+      "id": "classical-inclusion-FewP-NP",
+      "claim": {
+        "relation": "inclusion",
+        "left": "FewP",
+        "right": "NP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "AB2007"
+      ]
+    },
+    {
+      "id": "classical-inclusion-coUP-coNP",
+      "claim": {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "coNP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "AB2007"
+      ]
+    },
+    {
+      "id": "classical-inclusion-Theta2P-PP",
+      "claim": {
+        "relation": "inclusion",
+        "left": "Theta2P",
+        "right": "PP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "BHW1989"
+      ]
+    },
+    {
+      "id": "q-bpp-bqp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "BPP",
+        "right": "BQP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-watrous08"
+      ]
+    },
+    {
+      "id": "q-bqp-awpp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "BQP",
+        "right": "AWPP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-fr98"
+      ]
+    },
+    {
+      "id": "q-awpp-pp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "AWPP",
+        "right": "PP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-fr98",
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-bqp-qcma",
+      "claim": {
+        "relation": "inclusion",
+        "left": "BQP",
+        "right": "QCMA"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-watrous08"
+      ]
+    },
+    {
+      "id": "q-ma-qcma",
+      "claim": {
+        "relation": "inclusion",
+        "left": "MA",
+        "right": "QCMA"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-watrous08"
+      ]
+    },
+    {
+      "id": "q-qcma-qma",
+      "claim": {
+        "relation": "inclusion",
+        "left": "QCMA",
+        "right": "QMA"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-watrous08"
+      ]
+    },
+    {
+      "id": "q-qma-pp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "QMA",
+        "right": "PP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-mw05"
+      ]
+    },
+    {
+      "id": "q-fewp-spp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "FewP",
+        "right": "SPP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffk94",
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-spp-lwpp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "SPP",
+        "right": "LWPP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-lwpp-wpp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "LWPP",
+        "right": "WPP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-wpp-ceqp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "WPP",
+        "right": "CeqP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-wpp-awpp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "WPP",
+        "right": "AWPP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-ceqp-pp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "CeqP",
+        "right": "PP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-conp-ceqp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "coNP",
+        "right": "CeqP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-spp-parityp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "SPP",
+        "right": "parityP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-parityp-pspace",
+      "claim": {
+        "relation": "inclusion",
+        "left": "parityP",
+        "right": "PSPACE"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-ffkl02"
+      ]
+    },
+    {
+      "id": "q-pp-pspace",
+      "claim": {
+        "relation": "inclusion",
+        "left": "PP",
+        "right": "PSPACE"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-fr98"
+      ]
+    },
+    {
+      "id": "q-sbp-pp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "SBP",
+        "right": "PP"
+      },
+      "verdict": "accept",
+      "check_scope": "conventions_and_theorem_statement_not_full_reproof",
+      "source_ids": [
+        "q-bgm03"
+      ]
+    }
+  ],
+  "semantics_review": [
+    {
+      "area": "Counting path semantics",
+      "files": [
+        "lean/InclusionBench/Machines.lean",
+        "lean/InclusionBench/Counting.lean"
+      ],
+      "finding": "no_class_changing_mismatch_found",
+      "details": "Finite transition lists preserve branch multiplicities. Halted accepting leaves count once, and all surviving branches must halt at the polynomial horizon. Arbitrary polynomial-bounded time-bound functions do not introduce advice because a single finite machine halts and its final count is stable."
+    },
+    {
+      "area": "UP/FewP/SPP/CeqP/PP/parityP",
+      "finding": "no_class_changing_mismatch_found",
+      "details": "Global bounds on accepting counts give total UP/FewP. GapP is a difference of actual #P functions. SPP is exactly 0/1, CeqP tests zero, PP tests positive, parityP tests odd. Switching signed GapP to #P for parity uses subtraction=addition mod2. Strict-negative PP conventions can be met by 2g−1."
+    },
+    {
+      "area": "AWPP",
+      "finding": "no_class_changing_mismatch_found",
+      "details": "Quantifies over every explicit natural-coefficient error polynomial and uses a power-of-two polynomial normalizer. Numerators are nonnegative and globally bounded by that denominator, exactly matching FFKL Definition6.1. Larger natural-coefficient polynomials dominate conventional polynomial error requests."
+    },
+    {
+      "area": "WPP/LWPP",
+      "finding": "no_class_changing_mismatch_found",
+      "details": "The normalizer is computed by a total concrete FP transducer; LWPP sees only unary input length. Signed nonzero normalizers agree with FFK Definition5.13; positive-normalizer conventions follow by multiplying gap and normalizer by f, giving f²>0. Complement uses f−g. No arbitrary input advice is hidden in FP."
+    },
+    {
+      "area": "Quantum uniformity and witnesses",
+      "finding": "no_class_changing_mismatch_found",
+      "details": "A concrete polynomial-time transducer generates injectively encoded circuits from unary length. H,T,X,CNOT have explicit standard amplitudes and CNOT controls differ from targets. All input/witness/ancilla registers are disjoint. QMA quantifies over normalized pure witnesses and imposes soundness on every such witness; mixed states give convex combinations and no advantage. QCMA-to-QMA uses dephasing by copying the witness into fresh ancillas, compatible with the unitary-only circuit model."
+    },
+    {
+      "area": "Total languages and complements",
+      "finding": "no_class_changing_mismatch_found",
+      "details": "Every binary input is yes or no, so oracle/subroutine substitutions apply on all queries. coQMA/coUP are defined complements, not self-complement claims. QMA self-complement and CeqP self-complement are not baseline facts. BQP complement closure follows by output X; PP via1−2g; SPP/WPP/LWPP/AWPP/parityP have the expected gap transforms."
+    },
+    {
+      "area": "Formal boundary",
+      "finding": "not_a_Lean_proof_of_model_equivalence",
+      "details": "General normalization preservation, amplification, textbook equivalence, and all deep literature theorems remain explicit trusted mathematical assumptions under the user waiver. This audit checks scope and definitions; it does not reclassify unchecked baseline axioms as Lean proofs."
+    }
+  ],
+  "inspected_file_sha256": {
+    "lean/InclusionBench/Machines.lean": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d",
+    "lean/InclusionBench/Counting.lean": "8552ddcbc10177f70f8315efdede3bdff38958056c72b0f40545912f9e1eb5aa",
+    "lean/InclusionBench/Transducers.lean": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+    "quantum/InclusionQuantum/Quantum.lean": "969015d3c3e948e8c78abb2629ac19ad711f1c596a3ce55f7a083d2466ad11f1",
+    "quantum/InclusionQuantum/Complete.lean": "698636f4719e690b14b838c43e673c581cef1968ca6810ba13b1ed91a6938b25",
+    "data/classes.json": "cbbecfb324d1315fad12dd6c9abc556146ee458e8c9894bc9f68537add02da6a",
+    "data/knowledge.json": "d0293ecaddd109aeabcf51f66e46cf237c7a3206d1367fcebee8a5fe431943df"
+  },
+  "remaining_risk": {
+    "scope": "possible transfer, statement or implementation mistakes in this review; excludes future flaws in currently accepted proofs",
+    "new_unconditional_pair_fact_claimed": false,
+    "expected_global_incorrect_pairs_below_two_established": false,
+    "risk_groups": [
+      {
+        "id": "exact_count_derived_rules",
+        "probability_range_subjective": [
+          0.002,
+          0.02
+        ],
+        "rationale": "Common query lengths, unique fixed-width representation, nonnegative gaps and wrong-guess error are explicit. The two discharged holds and AWPP/WPP strengthenings still merit a second independent derivation review; errors would be correlated.",
+        "affected_rule_ids": [
+          "auditCQ-ceqp-parity-counting-collapse",
+          "auditCQ-ceqp-qma-ph-pp",
+          "auditCQ-ceqp-awpp-ph-awpp",
+          "auditCQ-ceqp-wpp-ph-wpp"
+        ]
+      },
+      {
+        "id": "oracle_lowness_transfer",
+        "probability_range_subjective": [
+          0.001,
+          0.01
+        ],
+        "rationale": "Original FFK and STT printed statements were read. The key fragile distinction, P^LWPP=LWPP versus LWPP^LWPP, is explicitly maintained; WPP is used only with truth-table or stated UP closure.",
+        "potential_fanout": "Potentially many conditional scoring consequences, not independent per-pair errors."
+      },
+      {
+        "id": "named_model_bridge",
+        "probability_range_subjective": [
+          0.003,
+          0.03
+        ],
+        "rationale": "Finite-control/counting/normalizer/quantum interfaces were inspected independently without a counterexample. Equivalence theorems and quantum amplification are not kernel checked, and their shared role prevents treating the per-class checks as independent."
+      }
+    ],
+    "probability_warning": "These are conservative judgment ranges for prioritizing another reviewer, not calibrated statistical bounds and not a proof that the global stopping criterion is met.",
+    "next_checks": [
+      "Have the other counting/quantum reviewer independently reconstruct D1 and D2.",
+      "Replay normalized rules and contrapositives against the current dataset; then run complete SAT consistency/forced-literal audit.",
+      "Do not infer known noninclusions from oracle separations, full Turing closure for WPP, or PH⊆SPP from NP⊆SPP without an additional premise."
+    ]
+  },
+  "closure_replay": {
+    "dataset_sha256": "03a20575c82bab512158a0bb0bb7766c4066b5c8ecc645c012d16053ad1714e2",
+    "rule_conclusion_count_added": 36,
+    "status": "consistent",
+    "new_baseline_atoms": [],
+    "baseline_counts_before": {
+      "inclusion": 709,
+      "separation": 413
+    },
+    "baseline_counts_after": {
+      "inclusion": 709,
+      "separation": 413
+    },
+    "limitation": "This is ordinary structural/Horn closure and contraposition, not the parent full SAT forced-literal audit."
+  }
+}

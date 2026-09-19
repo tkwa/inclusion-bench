@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "method": "Complete propositional entailment in the encoded finite cited theory",
+  "solver": {
+    "package": "python-sat",
+    "version": "1.9.dev15",
+    "backend": "Glucose4"
+  },
+  "variable_count": 2500,
+  "clause_count": 121386,
+  "cnf_sha256": "10a22195b3749ff418b44aeb996d9f1c76e75b3b2dcc3e387eeb067ad0ec2f24",
+  "hypotheses_tested": 2772,
+  "findings": [
+    {
+      "relation": "separation",
+      "left": "NE",
+      "right": "coNP"
+    },
+    {
+      "relation": "separation",
+      "left": "NE",
+      "right": "coRP"
+    },
+    {
+      "relation": "separation",
+      "left": "NE",
+      "right": "coUP"
+    },
+    {
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "coNP"
+    },
+    {
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "coRP"
+    },
+    {
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "coUP"
+    }
+  ],
+  "limitations": "A SAT model is not a model of complexity theory or ZFC. This detects consequences only of the encoded cited facts, complements, transitivity and registered rules. Solver output is discovery evidence; no classification is changed automatically."
+}

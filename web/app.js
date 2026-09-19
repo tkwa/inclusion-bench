@@ -69,6 +69,11 @@
     const status = record?.status || record?.relation || "unreviewed";
     return Object.hasOwn(statusLabels, status) ? status : "unreviewed";
   }
+  function pairStatusLabel(record) {
+    if (record.history_status === "open_at_cutoff" || record.status === "open_at_cutoff") return "Audited open at cutoff";
+    if (record.history_status === "known_at_cutoff") return "Known at cutoff · correction recorded";
+    return statusLabels[normalizedStatus(record)];
+  }
   function displayPair(left, right) {
     const hypothetical = state.overlay && state.scenarioResolutions.get(key(left, right));
     if (hypothetical) return { ...hypothetical, status: hypothetical.relation, hypothetical: true };
@@ -127,6 +132,16 @@
     const candidateCount = d.candidate_task_count ?? ((counts.unreviewed ?? d.pairs.filter((p) => p.status === "unreviewed").length) + (counts.open_at_cutoff || 0));
     $("unreviewed-count").textContent = number(candidateCount);
     document.querySelector(".stat-pending .stat-label").textContent = "candidate questions";
+    if (d.historical_review?.all_candidates_reviewed) {
+      $("unreviewed-count").textContent = number(d.historical_review.reviewed_open_count);
+      document.querySelector(".stat-pending .stat-label").textContent = "audited open questions";
+      document.querySelector('#status-filter option[value="unreviewed"]').textContent = "Audited open questions";
+      const openLegend = document.querySelector(".matrix-legend .swatch-unreviewed").parentElement;
+      openLegend.replaceChildren(element("i", "swatch swatch-unreviewed"), document.createTextNode("Audited open"));
+      document.querySelector(".draft-banner p").replaceChildren(
+        element("strong", "", "The cutoff audit is recorded."),
+        document.createTextNode(" Start a model run on the audited questions. New proofs and run integrity are reviewed before publication; historical decisions remain revisable."));
+    }
     $("dataset-hash").textContent = d.dataset_sha256 || "Not provided";
     const repo = safeLink(d.repository_url || d.repo_url || d.repository || "");
     if (repo && (d.repository_url || d.repo_url || d.repository)) {
@@ -257,7 +272,7 @@
         button.classList.toggle("hypothetical", !!pair.hypothetical);
         button.tabIndex = selected || (!selectedIsVisible && row === 0 && col === 0) ? 0 : -1;
         button.setAttribute("aria-pressed", String(selected));
-        const description = `${a.label} contained in ${b.label}: ${pair.hypothetical ? "hypothetical " + (status === "separation" ? "noninclusion" : status) : statusLabels[status]}`;
+        const description = `${a.label} contained in ${b.label}: ${pair.hypothetical ? "hypothetical " + (status === "separation" ? "noninclusion" : status) : pairStatusLabel(pair)}`;
         button.setAttribute("aria-label", description);
         button.title = description;
         td.append(button);
@@ -290,7 +305,7 @@
     const pair = displayPair(left, right);
     const status = normalizedStatus(pair);
     $("pair-title").replaceChildren(document.createTextNode(label(left)), element("span", "", "⊆"), document.createTextNode(label(right)));
-    const badge = element("span", `relation-badge ${status} ${pair.hypothetical ? "hypothetical" : ""}`, pair.hypothetical ? `Hypothetical ${status === "separation" ? "noninclusion" : status}` : pair.status === "open_at_cutoff" ? "Certified open at cutoff" : statusLabels[status]);
+    const badge = element("span", `relation-badge ${status} ${pair.hypothetical ? "hypothetical" : ""}`, pair.hypothetical ? `Hypothetical ${status === "separation" ? "noninclusion" : status}` : pairStatusLabel(pair));
     $("pair-status").replaceChildren(badge);
     const explanations = {
       inclusion: "Every language in the row class is also in the column class, according to the recorded baseline.",
@@ -298,7 +313,7 @@
       unreviewed: "This is a runnable candidate question: the frozen baseline has no resolution in this direction. Its cutoff history must be checked before it earns a positive point.",
       independence: "The recorded result establishes independence of this inclusion from the specified formal theory. Consult its certificate for the exact metatheoretic assumptions.",
     };
-    $("pair-explanation").textContent = pair.hypothetical ? "This relation follows in the selected scoring example. No AI run has been credited with proving its assumptions." : pair.status === "open_at_cutoff" ? "Historical review certifies this question as open at the cutoff. An accepted model proof can resolve it for one point." : explanations[status];
+    $("pair-explanation").textContent = pair.hypothetical ? "This relation follows in the selected scoring example. No AI run has been credited with proving its assumptions." : pair.history_status === "known_at_cutoff" ? "A historical correction records that this question was already settled at the cutoff. It earns no point." : pair.history_status === "open_at_cutoff" || pair.status === "open_at_cutoff" ? "The recorded literature audit treats this question as open at the cutoff. An accepted model proof can earn one point. This is a revisable historical judgment, not a proof that the literature is complete." : explanations[status];
     const definitions = $("pair-definitions");
     definitions.replaceChildren();
     for (const id of [...new Set([left, right])]) {
@@ -320,10 +335,10 @@
       evidence.append(element("h4", "", "Recorded sources"));
       sourceLinks(evidence, pair.source_ids);
     } else {
-      evidence.append(element("p", "", status === "unreviewed" ? "No resolution certificate is recorded for this pair." : "This dataset supplies the status without a pair-level derivation. The registry below lists the available sources."));
-      const a = element("a", "proof-source", "Browse the source registry ↓");
-      a.href = "#method";
-      a.addEventListener("click", () => document.querySelector(".sources-details").open = true);
+      evidence.append(element("p", "", pair.history_status ? "The historical decision is recorded separately from mathematical resolution proofs." : status === "unreviewed" ? "No resolution certificate is recorded for this pair." : "This dataset supplies the status without a pair-level derivation. The registry below lists the available sources."));
+      const a = element("a", "proof-source", pair.history_status ? "Read the cutoff audit ↗" : "Browse the source registry ↓");
+      a.href = pair.history_status ? safeLink(state.data.historical_review?.report_url) || "#method" : "#method";
+      if (!pair.history_status) a.addEventListener("click", () => document.querySelector(".sources-details").open = true);
       evidence.append(a);
     }
   }

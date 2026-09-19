@@ -1,0 +1,6157 @@
+{
+  "schema_version": 1,
+  "audit_round": 1,
+  "recorded_at": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "reviewer": {
+    "identity": "Codex collaborating agent /root/classical_literature",
+    "review_type": "AI-assisted primary-literature, semantics and closure audit",
+    "human_expert_certification": false
+  },
+  "dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "baseline_graph_sha256": "f54353c2a2dc1a159c57f7fedb10880d808200d2bad4bdcde8c666dffbfc9f37",
+  "classes_sha256": "54a298e5a1f27b2395bcbad3b3c049952424d0639f5da1045f9fc3cb0eb1f048",
+  "knowledge_sha256": "4691c2fbfbec8c0100de50fa5a37111a8eb23677247f872f0d54800e4f157e54",
+  "scope": [
+    "P",
+    "NP",
+    "coNP",
+    "RP",
+    "coRP",
+    "ZPP",
+    "BPP",
+    "SBP",
+    "MA",
+    "coMA",
+    "AM",
+    "coAM",
+    "SZK",
+    "NPcapcoNP",
+    "Sigma2P",
+    "Pi2P",
+    "Delta2P",
+    "Theta2P",
+    "PH"
+  ],
+  "scope_pair_count": 1539,
+  "scope_pair_counts": {
+    "unreviewed": 952,
+    "separation": 164,
+    "inclusion": 423
+  },
+  "summary": {
+    "wrong_seed_facts_confirmed": 0,
+    "new_missing_known_pair_labels": 8,
+    "new_labels_within_assigned_scope": 6,
+    "minimal_new_seeds_needed": 1,
+    "conditional_rules_proposed": 2,
+    "full_main_class_entries_screened": 19,
+    "family_groups_screened": 39,
+    "individually_certified_open_pairs": 0,
+    "numeric_expected_remaining_error_bound_supported": false,
+    "canonical_baseline_edits_made": false
+  },
+  "sources": [
+    {
+      "id": "auditCL-BFS09",
+      "title": "Unconditional Lower Bounds Against Advice",
+      "authors": "Harry Buhrman, Lance Fortnow, Rahul Santhanam",
+      "year": 2009,
+      "url": "https://eccc.weizmann.ac.il/report/2009/064/download/",
+      "locator": "Theorem 6, printed p.5; Section 2 defines the fixed query bound.",
+      "inspection_notes": "Original full paper inspected. The fixed exponent in the lower bound must not be replaced with an arbitrary polynomial union.",
+      "publication_date": "2009-08-05"
+    },
+    {
+      "id": "auditCL-FLZ10",
+      "title": "Separating NE from some nonuniform nondeterministic complexity classes",
+      "authors": "Bin Fu, Angsheng Li, Liyu Zhang",
+      "year": 2010,
+      "url": "https://faculty.utrgv.edu/liyu.zhang/blz10-sepNE-joco.pdf",
+      "locator": "Introduction, PDF p.1; historical attribution to Fu, Li and Zhong for NE versus subpolynomial NP queries.",
+      "inspection_notes": "Author-hosted journal manuscript, DOI 10.1007/s10878-010-9327-5. Historical corroboration only; the new seed uses BFS09 plus explicit polynomial padding."
+    },
+    {
+      "id": "auditCL-Vol20",
+      "title": "The Untold Story of SBP",
+      "authors": "Ilya Volkovich",
+      "year": 2020,
+      "url": "https://eccc.weizmann.ac.il/report/2018/088/revision/1/download",
+      "locator": "Theorem 1 and the following paragraph, printed p.2; Section 1.1.2 discusses SZK.",
+      "inspection_notes": "Original revised full paper inspected. The stated FewP special case proves the proposed conditional rule. Its promise-SBP results are not an unconditional SZK inclusion.",
+      "publication_date": "2020-06-17"
+    },
+    {
+      "id": "auditCL-CR06",
+      "title": "Oblivious Symmetric Alternation",
+      "authors": "Venkatesan T. Chakaravarthy, Sambuddha Roy",
+      "year": 2006,
+      "url": "https://citeseerx.ist.psu.edu/document?doi=a30f7791418e769d6d763e8d78029eca86734039&repid=rep1&type=pdf",
+      "locator": "Theorem 5.1 of the indexed manuscript; STACS 2006, pp.230–241, DOI 10.1007/11672142_18.",
+      "inspection_notes": "Search-indexed original manuscript theorem inspected; direct PDF retrieval failed. The theorem is independently stated in full-text GLV24, and an elementary advice-circuit derivation is supplied."
+    },
+    {
+      "id": "auditCL-GLV24",
+      "title": "Oblivious Classes Revisited: Lower Bounds and Hierarchies",
+      "authors": "Karthik Gajulapalli, Zeyong Li, Ilya Volkovich",
+      "year": 2024,
+      "url": "https://eccc.weizmann.ac.il/report/2024/049/download/",
+      "locator": "Section 1.1.2, printed p.2 (O2P subset P/poly); Section 1.2, printed p.4 (NP circuits imply PH=O2P).",
+      "inspection_notes": "Original full paper inspected. Also illustrates why lower bounds against each fixed n^k do not imply a lower bound against P/poly.",
+      "publication_date": "2024-03-10"
+    },
+    {
+      "id": "auditCL-BGM03",
+      "title": "Small Bounded-Error Computations and Completeness",
+      "authors": "Elmar Böhler, Christian Glaßer, Daniel Meister",
+      "year": 2003,
+      "url": "https://eccc.weizmann.ac.il/report/2003/069/download/",
+      "locator": "Abstract, Sections 1 and 2.9; MA subset SBP subset AM and PP.",
+      "inspection_notes": "Original paper inspected. WAPP and BPPpath are auxiliary classes, not WPP or AWPP. Oracle statements were not imported as ordinary separations.",
+      "publication_date": "2003-08-13"
+    },
+    {
+      "id": "auditCL-AKKT20",
+      "title": "Quantum Lower Bounds for Approximate Counting via Laurent Polynomials",
+      "authors": "Scott Aaronson, Robin Kothari, William Kretschmer, Justin Thaler",
+      "year": 2020,
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2020.7",
+      "locator": "Introduction and Corollary 20.",
+      "inspection_notes": "Primary paper used to distinguish the oracle SBP versus QMA lower bound from an ordinary class separation; arXiv precursor 1904.08914, 2019-04-18.",
+      "publication_date": "2020-07-17"
+    },
+    {
+      "id": "auditCL-BCHTV16",
+      "title": "On the Power of Statistical Zero Knowledge",
+      "authors": "Adam Bouland, Lijie Chen, Dhiraj Holden, Justin Thaler, Prashant Nalini Vasudevan",
+      "year": 2016,
+      "url": "https://arxiv.org/abs/1609.02888",
+      "locator": "Abstract and main oracle separation; FOCS 2017 version.",
+      "inspection_notes": "The SZK versus UPP/PP separation is relativized. It supplies no unconditional negative label for this benchmark.",
+      "publication_date": "2016-09-09"
+    },
+    {
+      "id": "auditCL-DGPV20",
+      "title": "Perfect Zero Knowledge: New Upperbounds and Relativized Separations",
+      "authors": "Peter Dixon, Sutanu Gayen, A. Pavan, N. V. Vinodchandran",
+      "year": 2020,
+      "url": "https://eprint.iacr.org/2020/768.pdf",
+      "locator": "Abstract and main results.",
+      "inspection_notes": "Original primary full paper inspected. NIPZK subset coSBP and oracle PZK separations concern different classes or relativization; no roster pair follows directly."
+    },
+    {
+      "id": "auditCL-Vol26",
+      "title": "Yet Another Proof that BPP is in PH",
+      "authors": "Ilya Volkovich",
+      "year": 2026,
+      "url": "https://eccc.weizmann.ac.il/report/2026/004/download",
+      "locator": "Theorems 3.4, 3.6, 3.7 and 3.8.",
+      "inspection_notes": "Full paper inspected. BPP and MA in ZPP^NP retain outer randomness, even when only two NP queries occur; they do not imply BPP or MA in Theta2P.",
+      "publication_date": "2026-01-16"
+    },
+    {
+      "id": "auditCL-AHT22",
+      "title": "Kolmogorov Complexity Characterizes Statistical Zero Knowledge",
+      "authors": "Eric Allender, Shuichi Hirahara, Harsha Tirumala",
+      "year": 2022,
+      "url": "https://eccc.weizmann.ac.il/report/2022/127/revision/1/download/",
+      "locator": "Main characterization; ITCS 2023 and journal DOI 10.1145/3795688 (2026-05-07).",
+      "inspection_notes": "New characterization of SZK through Kolmogorov complexity, not a newly resolved roster comparison."
+    },
+    {
+      "id": "auditCL-CJSW24",
+      "title": "Constructive Separations and Their Consequences",
+      "authors": "Lijie Chen, Ce Jin, Rahul Santhanam, Ryan Williams",
+      "year": 2024,
+      "url": "https://theoretics.episciences.org/12881/pdf",
+      "locator": "Abstract and Theorem 1.2.",
+      "inspection_notes": "Explicit examples of major unresolved class separations; the theorem quantifies conditionally over other pairs and must not be read as claiming that all listed pairs are open.",
+      "publication_date": "2024-02-15"
+    },
+    {
+      "id": "auditCL-Ver95",
+      "title": "Oracle separation of complexity classes and lower bounds for perceptrons solving separation problems",
+      "authors": "Nikolay Vereshchagin",
+      "year": 1995,
+      "url": "https://www.mathnet.ru/links/6d502303129aca4665b4fd349273182c/im50_eng.pdf",
+      "locator": "Abstract and oracle separation AM intersect coAM versus PP.",
+      "inspection_notes": "Primary full paper. DOI 10.1070/IM1995v059n06ABEH000050. Oracle statement only."
+    },
+    {
+      "id": "auditCL-HV25",
+      "title": "Upper and Lower Bounds for the Linear Ordering Principle",
+      "authors": "Edward A. Hirsch, Ilya Volkovich",
+      "year": 2025,
+      "url": "https://eccc.weizmann.ac.il/report/2025/142/",
+      "locator": "Main upper bounds and Karp–Lipton consequence; STACS 2026 version.",
+      "inspection_notes": "P^prMA and P^prSBP contain promise oracles. The corresponding L2P results do not directly produce a missing ordinary roster pair.",
+      "publication_date": "2025-10-07"
+    }
+  ],
+  "existing_source_ids_reused": [
+    "AB2007",
+    "SFM1978"
+  ],
+  "proposed_facts": [
+    {
+      "id": "auditCL-separation-NE-Theta2P",
+      "relation": "separation",
+      "left": "NE",
+      "right": "Theta2P",
+      "source_ids": [
+        "auditCL-BFS09",
+        "AB2007"
+      ],
+      "justification": "BFS09 Theorem6 with c=1 implies NEXP is not contained in Theta2P. If NE were contained in Theta2P, pad any NEXP language with exponent k to an injectively encoded length p(n)=(n+2)^k. The padded language is in NE. A polynomial-time Theta2P decider for it composes with padding in polynomial time and uses O(log p(n))=O(log n) NP queries. Hence NEXP would be contained in Theta2P, a contradiction. Ignore the allowed advice in BFS09; do not replace the fixed query exponent by an arbitrary union."
+    },
+    {
+      "id": "auditCL-separation-NE-coNP-independent",
+      "relation": "separation",
+      "left": "NE",
+      "right": "coNP",
+      "source_ids": [
+        "SFM1978",
+        "AB2007"
+      ],
+      "justification": "Independent redundant derivation: NP subset NE subset coNP would imply NP subset coNP and, by complement, coNP subset NP. Thus NE subset NP, contrary to the nondeterministic time hierarchy. This checks six consequences without relying on the sharper query lower bound."
+    }
+  ],
+  "derived_new_pair_labels": [
+    {
+      "relation": "separation",
+      "left": "NE",
+      "right": "Theta2P"
+    },
+    {
+      "relation": "separation",
+      "left": "NE",
+      "right": "coNP"
+    },
+    {
+      "relation": "separation",
+      "left": "NE",
+      "right": "coRP"
+    },
+    {
+      "relation": "separation",
+      "left": "NE",
+      "right": "coUP"
+    },
+    {
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "Theta2P"
+    },
+    {
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "coNP"
+    },
+    {
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "coRP"
+    },
+    {
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "coUP"
+    }
+  ],
+  "proposed_rules": [
+    {
+      "id": "auditCL-FewP-implies-AM-SBP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "FewP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "SBP"
+        }
+      ],
+      "source_ids": [
+        "auditCL-Vol20"
+      ],
+      "justification": "Theorem1 and its explicit FewP special case give AM=SBP if 3-SAT is in FewP. NP subset FewP supplies that hypothesis. The reverse inclusion SBP subset AM is already known; the UP premise is subsumed by UP subset FewP."
+    },
+    {
+      "id": "auditCL-NP-circuits-implies-PH-circuits",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "auditCL-CR06",
+        "auditCL-GLV24"
+      ],
+      "justification": "Chakaravarthy–Roy give PH=O2P under NP subset P/poly; O2P subset P/poly by hardwiring the lengthwise winning witnesses. Independent elementary derivation: the premise gives NP/poly=P/poly; at each fixed PH level, hardwire polynomial-size circuits for the NP oracle at all polynomially many possible query lengths, obtaining NP/poly=P/poly. The polynomial degree may depend on the language/level."
+    }
+  ],
+  "closure_check": {
+    "method": "Benchmark.closure with one temporary NE-not-subset-Theta2P assumption on the bound dataset; compare exact Atom keys",
+    "result": "Eight new separation labels, no new inclusion and no contradiction",
+    "baseline_before": {
+      "inclusion": 709,
+      "separation": 405,
+      "independence": 0,
+      "unreviewed": 1386
+    },
+    "baseline_after_if_seed_accepted": {
+      "inclusion": 709,
+      "separation": 413,
+      "independence": 0,
+      "unreviewed": 1378
+    },
+    "both_proposed_conditional_conclusions_already_derived_under_their_premise": false
+  },
+  "entry_census": [
+    {
+      "class_id": "P",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_P_p.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "All roster inclusions in the entry are already present; NC is uniform while NC1 in this benchmark is nonuniform. Strictness P versus NP or PSPACE remains unproved.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 8,
+        "inclusion": 41
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE"
+      ]
+    },
+    {
+      "class_id": "NP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_N_np.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Standard containments and existing collapse rules present. Problem-specific protocols and fixed-degree circuit lower bounds do not settle extra NP pairs.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 31,
+        "inclusion": 18
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "coMA",
+        "coAM",
+        "coQMA",
+        "BQP",
+        "SZK",
+        "NPcapcoNP",
+        "Ppoly",
+        "E"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "coUP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "E"
+      ]
+    },
+    {
+      "class_id": "coNP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_C_conp.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Complement consequences and PSPACE upper bound present. The complexity of an interactive prover is not an algorithm placing coNP in the prover class.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 34,
+        "inclusion": 15
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "FewP",
+        "SPP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "AM",
+        "QCMA",
+        "QMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "RP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_R_rp.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "One-sided error inclusion into NP and BPP present. Measure hypotheses and oracle statements do not settle ordinary pairs.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 22,
+        "inclusion": 27
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "coRP",
+        "ZPP",
+        "UP",
+        "coUP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "parityP",
+        "LWPP",
+        "WPP",
+        "NPcapcoNP",
+        "E"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "E"
+      ]
+    },
+    {
+      "class_id": "coRP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_C_corp.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Complement of RP; no additional unconditional roster relation in the entry.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 22,
+        "inclusion": 27
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "ZPP",
+        "UP",
+        "coUP",
+        "NP",
+        "FewP",
+        "SPP",
+        "parityP",
+        "LWPP",
+        "WPP",
+        "NPcapcoNP",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "ZPP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_Z_zpp.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "RP intersect coRP and existing upper bounds present. Oracle equalities with EXP are not ordinary equalities or separations.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 17,
+        "inclusion": 32
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "parityP",
+        "LWPP",
+        "WPP",
+        "E"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "E"
+      ]
+    },
+    {
+      "class_id": "BPP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_B_bpp.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Existing Sigma2P/Pi2P and advice bounds present. ZPP^NP is outside the roster; the NP subset BPP collapse is already encoded. E not subset P/poly alone is weaker than exponential circuit hardness needed by standard derandomization theorems.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 27,
+        "inclusion": 22
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "parityP",
+        "LWPP",
+        "WPP",
+        "NPcapcoNP",
+        "Delta2P",
+        "Theta2P",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "SBP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_S_sbp.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "MA subset SBP subset AM and PP present. WAPP and BPPpath are not the similarly named roster counting classes. Volkovich FewP conditional supplies a new rule.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 39,
+        "inclusion": 10
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "coUP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "MA",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_M_ma.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "NP/BPP lower and AM/QMA/Sigma2P/Pi2P upper bounds present. Total BPP=P does not automatically derandomize every promised verifier slice into NP. MA/1 fixed-size or arithmetic lower bounds do not imply MA not subset P/poly.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 35,
+        "inclusion": 14
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "coMA",
+        "coAM",
+        "coQMA",
+        "BQP",
+        "SZK",
+        "NPcapcoNP",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "coUP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "coMA",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_C_coma.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Complement entry; consequences already present and subject to the same total-language convention as MA.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 38,
+        "inclusion": 11
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "AM",
+        "QCMA",
+        "QMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "AM",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_A_am.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "NP/BPP lower and Pi2P/NPpoly upper bounds present. SZK inclusion is present. Oracle AM versus PP separations do not become ordinary noninclusions.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 41,
+        "inclusion": 8
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "coUP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "coAM",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_C_coam.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Complement entry; no additional unconditional roster relation found.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 42,
+        "inclusion": 7
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "SZK",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_S_szk.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Complement closure and AM/coAM bounds present. Statistical Difference characterization matches the intended total-language model. Oracle SZK versus PP, or graph-isomorphism examples, do not resolve new roster pairs.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 38,
+        "inclusion": 11
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "NPcapcoNP",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "NPcapcoNP",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_N_npiconp.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Intersection and deterministic oracle-lowness characterizations contain no additional roster inclusion. The intersection is not a claim that NP equals coNP.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 25,
+        "inclusion": 24
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "BQP",
+        "SZK",
+        "Ppoly",
+        "E"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "E"
+      ]
+    },
+    {
+      "class_id": "Sigma2P",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_S_sigma2p.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Hierarchy relations present. Kannan lower bounds against each fixed n^k do not prove Sigma2P not subset P/poly.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 43,
+        "inclusion": 6
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "Pi2P",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_P_pi2p.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Complement and hierarchy relations present; fixed-degree circuit lower bounds have the same quantifier restriction as for Sigma2P.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 43,
+        "inclusion": 6
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    },
+    {
+      "class_id": "Delta2P",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_D_delta2p.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "P^NP alias read as well. Oracle separations and promise/randomized oracle extensions do not establish ordinary comparisons with BPP or PP.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 41,
+        "inclusion": 8
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Theta2P",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ],
+      "additional_alias_urls": [
+        "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_P_pnp.html"
+      ]
+    },
+    {
+      "class_id": "Theta2P",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_T_theta2p.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "P^NP[log] alias read in full. Parallel NP query equivalence and PP inclusion present. The missing NE/NEXP lower bound was found through the primary query/advice literature, not this entry.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 39,
+        "inclusion": 10
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ],
+      "additional_alias_urls": [
+        "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_P_pnplog.html"
+      ]
+    },
+    {
+      "class_id": "PH",
+      "discovery_url": "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_P_ph.html",
+      "canonical_site_access": "complexityzoo.net returned HTTP 403; public per-entry mirror used only for discovery",
+      "inspection": "Entire main Class Description entry read through the Linked From boundary; backlinks excluded",
+      "checked_on": "2026-09-19",
+      "new_unconditional_inclusions_found": 0,
+      "interpretation": "Union is over fixed finite hierarchy levels. PH subset P^PP does not imply PH subset PP. Random-oracle hierarchy results are not ordinary strictness theorems.",
+      "baseline_outgoing_counts": {
+        "separation": 1,
+        "unreviewed": 44,
+        "inclusion": 5
+      },
+      "unresolved_outgoing": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "Ppoly",
+        "NPpoly",
+        "E",
+        "NE"
+      ],
+      "unresolved_incoming_from_outside_scope": [
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ]
+    }
+  ],
+  "neighbor_discovery_entries": [
+    "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_S_s2p.html",
+    "https://satoshihada.github.io/complexity-zoo/ComplexityZoo_O_o2p.html"
+  ],
+  "pair_families": {
+    "basic_and_randomness": [
+      "P",
+      "NP",
+      "coNP",
+      "NPcapcoNP",
+      "RP",
+      "coRP",
+      "ZPP",
+      "BPP"
+    ],
+    "proof_systems": [
+      "SBP",
+      "MA",
+      "coMA",
+      "AM",
+      "coAM",
+      "SZK"
+    ],
+    "hierarchy": [
+      "Sigma2P",
+      "Pi2P",
+      "Delta2P",
+      "Theta2P",
+      "PH"
+    ],
+    "small_uniform": [
+      "L",
+      "NL",
+      "LogCFL",
+      "NC",
+      "SC"
+    ],
+    "nonuniform": [
+      "AC0",
+      "ACC0",
+      "TC0",
+      "NC1",
+      "Ppoly",
+      "NPpoly"
+    ],
+    "counting": [
+      "UP",
+      "coUP",
+      "FewP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "LWPP",
+      "WPP"
+    ],
+    "quantum": [
+      "BQP",
+      "QCMA",
+      "QMA",
+      "coQMA"
+    ],
+    "large_uniform": [
+      "PSPACE",
+      "EXP",
+      "NEXP",
+      "EXPSPACE",
+      "E",
+      "NE"
+    ]
+  },
+  "reviewed_pair_groups": [
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "basic_and_randomness",
+      "pair_count": 64,
+      "baseline_counts": {
+        "inclusion": 27,
+        "unreviewed": 37
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "NP",
+          "right": "P"
+        },
+        {
+          "left": "NP",
+          "right": "coNP"
+        },
+        {
+          "left": "NP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "NP",
+          "right": "RP"
+        },
+        {
+          "left": "NP",
+          "right": "coRP"
+        },
+        {
+          "left": "NP",
+          "right": "ZPP"
+        },
+        {
+          "left": "NP",
+          "right": "BPP"
+        },
+        {
+          "left": "coNP",
+          "right": "P"
+        },
+        {
+          "left": "coNP",
+          "right": "NP"
+        },
+        {
+          "left": "coNP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "coNP",
+          "right": "RP"
+        },
+        {
+          "left": "coNP",
+          "right": "coRP"
+        },
+        {
+          "left": "coNP",
+          "right": "ZPP"
+        },
+        {
+          "left": "coNP",
+          "right": "BPP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "P"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "RP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "coRP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "ZPP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "BPP"
+        },
+        {
+          "left": "RP",
+          "right": "P"
+        },
+        {
+          "left": "RP",
+          "right": "coNP"
+        },
+        {
+          "left": "RP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "RP",
+          "right": "coRP"
+        },
+        {
+          "left": "RP",
+          "right": "ZPP"
+        },
+        {
+          "left": "coRP",
+          "right": "P"
+        },
+        {
+          "left": "coRP",
+          "right": "NP"
+        },
+        {
+          "left": "coRP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "coRP",
+          "right": "RP"
+        },
+        {
+          "left": "coRP",
+          "right": "ZPP"
+        },
+        {
+          "left": "ZPP",
+          "right": "P"
+        },
+        {
+          "left": "BPP",
+          "right": "P"
+        },
+        {
+          "left": "BPP",
+          "right": "NP"
+        },
+        {
+          "left": "BPP",
+          "right": "coNP"
+        },
+        {
+          "left": "BPP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "BPP",
+          "right": "RP"
+        },
+        {
+          "left": "BPP",
+          "right": "coRP"
+        },
+        {
+          "left": "BPP",
+          "right": "ZPP"
+        }
+      ]
+    },
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "proof_systems",
+      "pair_count": 48,
+      "baseline_counts": {
+        "inclusion": 40,
+        "unreviewed": 8
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "NP",
+          "right": "coMA"
+        },
+        {
+          "left": "NP",
+          "right": "coAM"
+        },
+        {
+          "left": "NP",
+          "right": "SZK"
+        },
+        {
+          "left": "coNP",
+          "right": "SBP"
+        },
+        {
+          "left": "coNP",
+          "right": "MA"
+        },
+        {
+          "left": "coNP",
+          "right": "AM"
+        },
+        {
+          "left": "coNP",
+          "right": "SZK"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "SZK"
+        }
+      ]
+    },
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "hierarchy",
+      "pair_count": 40,
+      "baseline_counts": {
+        "inclusion": 38,
+        "unreviewed": 2
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "BPP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "BPP",
+          "right": "Theta2P"
+        }
+      ]
+    },
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "small_uniform",
+      "pair_count": 40,
+      "baseline_counts": {
+        "unreviewed": 40
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "P",
+          "right": "L"
+        },
+        {
+          "left": "P",
+          "right": "NL"
+        },
+        {
+          "left": "P",
+          "right": "LogCFL"
+        },
+        {
+          "left": "P",
+          "right": "NC"
+        },
+        {
+          "left": "P",
+          "right": "SC"
+        },
+        {
+          "left": "NP",
+          "right": "L"
+        },
+        {
+          "left": "NP",
+          "right": "NL"
+        },
+        {
+          "left": "NP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "NP",
+          "right": "NC"
+        },
+        {
+          "left": "NP",
+          "right": "SC"
+        },
+        {
+          "left": "coNP",
+          "right": "L"
+        },
+        {
+          "left": "coNP",
+          "right": "NL"
+        },
+        {
+          "left": "coNP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "coNP",
+          "right": "NC"
+        },
+        {
+          "left": "coNP",
+          "right": "SC"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "L"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "NL"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "NC"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "SC"
+        },
+        {
+          "left": "RP",
+          "right": "L"
+        },
+        {
+          "left": "RP",
+          "right": "NL"
+        },
+        {
+          "left": "RP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "RP",
+          "right": "NC"
+        },
+        {
+          "left": "RP",
+          "right": "SC"
+        },
+        {
+          "left": "coRP",
+          "right": "L"
+        },
+        {
+          "left": "coRP",
+          "right": "NL"
+        },
+        {
+          "left": "coRP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "coRP",
+          "right": "NC"
+        },
+        {
+          "left": "coRP",
+          "right": "SC"
+        },
+        {
+          "left": "ZPP",
+          "right": "L"
+        },
+        {
+          "left": "ZPP",
+          "right": "NL"
+        },
+        {
+          "left": "ZPP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "ZPP",
+          "right": "NC"
+        },
+        {
+          "left": "ZPP",
+          "right": "SC"
+        },
+        {
+          "left": "BPP",
+          "right": "L"
+        },
+        {
+          "left": "BPP",
+          "right": "NL"
+        },
+        {
+          "left": "BPP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "BPP",
+          "right": "NC"
+        },
+        {
+          "left": "BPP",
+          "right": "SC"
+        }
+      ]
+    },
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "nonuniform",
+      "pair_count": 48,
+      "baseline_counts": {
+        "separation": 8,
+        "unreviewed": 28,
+        "inclusion": 12
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "P",
+          "right": "ACC0"
+        },
+        {
+          "left": "P",
+          "right": "TC0"
+        },
+        {
+          "left": "P",
+          "right": "NC1"
+        },
+        {
+          "left": "NP",
+          "right": "ACC0"
+        },
+        {
+          "left": "NP",
+          "right": "TC0"
+        },
+        {
+          "left": "NP",
+          "right": "NC1"
+        },
+        {
+          "left": "NP",
+          "right": "Ppoly"
+        },
+        {
+          "left": "coNP",
+          "right": "ACC0"
+        },
+        {
+          "left": "coNP",
+          "right": "TC0"
+        },
+        {
+          "left": "coNP",
+          "right": "NC1"
+        },
+        {
+          "left": "coNP",
+          "right": "Ppoly"
+        },
+        {
+          "left": "coNP",
+          "right": "NPpoly"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "ACC0"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "TC0"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "NC1"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "Ppoly"
+        },
+        {
+          "left": "RP",
+          "right": "ACC0"
+        },
+        {
+          "left": "RP",
+          "right": "TC0"
+        },
+        {
+          "left": "RP",
+          "right": "NC1"
+        },
+        {
+          "left": "coRP",
+          "right": "ACC0"
+        },
+        {
+          "left": "coRP",
+          "right": "TC0"
+        },
+        {
+          "left": "coRP",
+          "right": "NC1"
+        },
+        {
+          "left": "ZPP",
+          "right": "ACC0"
+        },
+        {
+          "left": "ZPP",
+          "right": "TC0"
+        },
+        {
+          "left": "ZPP",
+          "right": "NC1"
+        },
+        {
+          "left": "BPP",
+          "right": "ACC0"
+        },
+        {
+          "left": "BPP",
+          "right": "TC0"
+        },
+        {
+          "left": "BPP",
+          "right": "NC1"
+        }
+      ]
+    },
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "counting",
+      "pair_count": 80,
+      "baseline_counts": {
+        "inclusion": 25,
+        "unreviewed": 55
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "NP",
+          "right": "UP"
+        },
+        {
+          "left": "NP",
+          "right": "coUP"
+        },
+        {
+          "left": "NP",
+          "right": "FewP"
+        },
+        {
+          "left": "NP",
+          "right": "SPP"
+        },
+        {
+          "left": "NP",
+          "right": "CeqP"
+        },
+        {
+          "left": "NP",
+          "right": "parityP"
+        },
+        {
+          "left": "NP",
+          "right": "AWPP"
+        },
+        {
+          "left": "NP",
+          "right": "LWPP"
+        },
+        {
+          "left": "NP",
+          "right": "WPP"
+        },
+        {
+          "left": "coNP",
+          "right": "UP"
+        },
+        {
+          "left": "coNP",
+          "right": "coUP"
+        },
+        {
+          "left": "coNP",
+          "right": "FewP"
+        },
+        {
+          "left": "coNP",
+          "right": "SPP"
+        },
+        {
+          "left": "coNP",
+          "right": "parityP"
+        },
+        {
+          "left": "coNP",
+          "right": "AWPP"
+        },
+        {
+          "left": "coNP",
+          "right": "LWPP"
+        },
+        {
+          "left": "coNP",
+          "right": "WPP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "UP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "coUP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "FewP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "SPP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "parityP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "AWPP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "LWPP"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "WPP"
+        },
+        {
+          "left": "RP",
+          "right": "UP"
+        },
+        {
+          "left": "RP",
+          "right": "coUP"
+        },
+        {
+          "left": "RP",
+          "right": "FewP"
+        },
+        {
+          "left": "RP",
+          "right": "SPP"
+        },
+        {
+          "left": "RP",
+          "right": "CeqP"
+        },
+        {
+          "left": "RP",
+          "right": "parityP"
+        },
+        {
+          "left": "RP",
+          "right": "LWPP"
+        },
+        {
+          "left": "RP",
+          "right": "WPP"
+        },
+        {
+          "left": "coRP",
+          "right": "UP"
+        },
+        {
+          "left": "coRP",
+          "right": "coUP"
+        },
+        {
+          "left": "coRP",
+          "right": "FewP"
+        },
+        {
+          "left": "coRP",
+          "right": "SPP"
+        },
+        {
+          "left": "coRP",
+          "right": "parityP"
+        },
+        {
+          "left": "coRP",
+          "right": "LWPP"
+        },
+        {
+          "left": "coRP",
+          "right": "WPP"
+        },
+        {
+          "left": "ZPP",
+          "right": "UP"
+        },
+        {
+          "left": "ZPP",
+          "right": "coUP"
+        },
+        {
+          "left": "ZPP",
+          "right": "FewP"
+        },
+        {
+          "left": "ZPP",
+          "right": "SPP"
+        },
+        {
+          "left": "ZPP",
+          "right": "parityP"
+        },
+        {
+          "left": "ZPP",
+          "right": "LWPP"
+        },
+        {
+          "left": "ZPP",
+          "right": "WPP"
+        },
+        {
+          "left": "BPP",
+          "right": "UP"
+        },
+        {
+          "left": "BPP",
+          "right": "coUP"
+        },
+        {
+          "left": "BPP",
+          "right": "FewP"
+        },
+        {
+          "left": "BPP",
+          "right": "SPP"
+        },
+        {
+          "left": "BPP",
+          "right": "CeqP"
+        },
+        {
+          "left": "BPP",
+          "right": "parityP"
+        },
+        {
+          "left": "BPP",
+          "right": "LWPP"
+        },
+        {
+          "left": "BPP",
+          "right": "WPP"
+        }
+      ]
+    },
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "quantum",
+      "pair_count": 32,
+      "baseline_counts": {
+        "inclusion": 26,
+        "unreviewed": 6
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "NP",
+          "right": "BQP"
+        },
+        {
+          "left": "NP",
+          "right": "coQMA"
+        },
+        {
+          "left": "coNP",
+          "right": "BQP"
+        },
+        {
+          "left": "coNP",
+          "right": "QCMA"
+        },
+        {
+          "left": "coNP",
+          "right": "QMA"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "BQP"
+        }
+      ]
+    },
+    {
+      "left_family": "basic_and_randomness",
+      "right_family": "large_uniform",
+      "pair_count": 48,
+      "baseline_counts": {
+        "inclusion": 38,
+        "unreviewed": 10
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "NP",
+          "right": "E"
+        },
+        {
+          "left": "coNP",
+          "right": "E"
+        },
+        {
+          "left": "coNP",
+          "right": "NE"
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "E"
+        },
+        {
+          "left": "RP",
+          "right": "E"
+        },
+        {
+          "left": "coRP",
+          "right": "E"
+        },
+        {
+          "left": "coRP",
+          "right": "NE"
+        },
+        {
+          "left": "ZPP",
+          "right": "E"
+        },
+        {
+          "left": "BPP",
+          "right": "E"
+        },
+        {
+          "left": "BPP",
+          "right": "NE"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "basic_and_randomness",
+      "pair_count": 48,
+      "baseline_counts": {
+        "unreviewed": 48
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "P"
+        },
+        {
+          "left": "SBP",
+          "right": "NP"
+        },
+        {
+          "left": "SBP",
+          "right": "coNP"
+        },
+        {
+          "left": "SBP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "SBP",
+          "right": "RP"
+        },
+        {
+          "left": "SBP",
+          "right": "coRP"
+        },
+        {
+          "left": "SBP",
+          "right": "ZPP"
+        },
+        {
+          "left": "SBP",
+          "right": "BPP"
+        },
+        {
+          "left": "MA",
+          "right": "P"
+        },
+        {
+          "left": "MA",
+          "right": "NP"
+        },
+        {
+          "left": "MA",
+          "right": "coNP"
+        },
+        {
+          "left": "MA",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "MA",
+          "right": "RP"
+        },
+        {
+          "left": "MA",
+          "right": "coRP"
+        },
+        {
+          "left": "MA",
+          "right": "ZPP"
+        },
+        {
+          "left": "MA",
+          "right": "BPP"
+        },
+        {
+          "left": "coMA",
+          "right": "P"
+        },
+        {
+          "left": "coMA",
+          "right": "NP"
+        },
+        {
+          "left": "coMA",
+          "right": "coNP"
+        },
+        {
+          "left": "coMA",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "coMA",
+          "right": "RP"
+        },
+        {
+          "left": "coMA",
+          "right": "coRP"
+        },
+        {
+          "left": "coMA",
+          "right": "ZPP"
+        },
+        {
+          "left": "coMA",
+          "right": "BPP"
+        },
+        {
+          "left": "AM",
+          "right": "P"
+        },
+        {
+          "left": "AM",
+          "right": "NP"
+        },
+        {
+          "left": "AM",
+          "right": "coNP"
+        },
+        {
+          "left": "AM",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "AM",
+          "right": "RP"
+        },
+        {
+          "left": "AM",
+          "right": "coRP"
+        },
+        {
+          "left": "AM",
+          "right": "ZPP"
+        },
+        {
+          "left": "AM",
+          "right": "BPP"
+        },
+        {
+          "left": "coAM",
+          "right": "P"
+        },
+        {
+          "left": "coAM",
+          "right": "NP"
+        },
+        {
+          "left": "coAM",
+          "right": "coNP"
+        },
+        {
+          "left": "coAM",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "coAM",
+          "right": "RP"
+        },
+        {
+          "left": "coAM",
+          "right": "coRP"
+        },
+        {
+          "left": "coAM",
+          "right": "ZPP"
+        },
+        {
+          "left": "coAM",
+          "right": "BPP"
+        },
+        {
+          "left": "SZK",
+          "right": "P"
+        },
+        {
+          "left": "SZK",
+          "right": "NP"
+        },
+        {
+          "left": "SZK",
+          "right": "coNP"
+        },
+        {
+          "left": "SZK",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "SZK",
+          "right": "RP"
+        },
+        {
+          "left": "SZK",
+          "right": "coRP"
+        },
+        {
+          "left": "SZK",
+          "right": "ZPP"
+        },
+        {
+          "left": "SZK",
+          "right": "BPP"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "proof_systems",
+      "pair_count": 36,
+      "baseline_counts": {
+        "inclusion": 12,
+        "unreviewed": 24
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "MA"
+        },
+        {
+          "left": "SBP",
+          "right": "coMA"
+        },
+        {
+          "left": "SBP",
+          "right": "coAM"
+        },
+        {
+          "left": "SBP",
+          "right": "SZK"
+        },
+        {
+          "left": "MA",
+          "right": "coMA"
+        },
+        {
+          "left": "MA",
+          "right": "coAM"
+        },
+        {
+          "left": "MA",
+          "right": "SZK"
+        },
+        {
+          "left": "coMA",
+          "right": "SBP"
+        },
+        {
+          "left": "coMA",
+          "right": "MA"
+        },
+        {
+          "left": "coMA",
+          "right": "AM"
+        },
+        {
+          "left": "coMA",
+          "right": "SZK"
+        },
+        {
+          "left": "AM",
+          "right": "SBP"
+        },
+        {
+          "left": "AM",
+          "right": "MA"
+        },
+        {
+          "left": "AM",
+          "right": "coMA"
+        },
+        {
+          "left": "AM",
+          "right": "coAM"
+        },
+        {
+          "left": "AM",
+          "right": "SZK"
+        },
+        {
+          "left": "coAM",
+          "right": "SBP"
+        },
+        {
+          "left": "coAM",
+          "right": "MA"
+        },
+        {
+          "left": "coAM",
+          "right": "coMA"
+        },
+        {
+          "left": "coAM",
+          "right": "AM"
+        },
+        {
+          "left": "coAM",
+          "right": "SZK"
+        },
+        {
+          "left": "SZK",
+          "right": "SBP"
+        },
+        {
+          "left": "SZK",
+          "right": "MA"
+        },
+        {
+          "left": "SZK",
+          "right": "coMA"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "hierarchy",
+      "pair_count": 30,
+      "baseline_counts": {
+        "unreviewed": 15,
+        "inclusion": 15
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "SBP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "SBP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "MA",
+          "right": "Delta2P"
+        },
+        {
+          "left": "MA",
+          "right": "Theta2P"
+        },
+        {
+          "left": "coMA",
+          "right": "Delta2P"
+        },
+        {
+          "left": "coMA",
+          "right": "Theta2P"
+        },
+        {
+          "left": "AM",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "AM",
+          "right": "Delta2P"
+        },
+        {
+          "left": "AM",
+          "right": "Theta2P"
+        },
+        {
+          "left": "coAM",
+          "right": "Pi2P"
+        },
+        {
+          "left": "coAM",
+          "right": "Delta2P"
+        },
+        {
+          "left": "coAM",
+          "right": "Theta2P"
+        },
+        {
+          "left": "SZK",
+          "right": "Delta2P"
+        },
+        {
+          "left": "SZK",
+          "right": "Theta2P"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "small_uniform",
+      "pair_count": 30,
+      "baseline_counts": {
+        "unreviewed": 30
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "L"
+        },
+        {
+          "left": "SBP",
+          "right": "NL"
+        },
+        {
+          "left": "SBP",
+          "right": "LogCFL"
+        },
+        {
+          "left": "SBP",
+          "right": "NC"
+        },
+        {
+          "left": "SBP",
+          "right": "SC"
+        },
+        {
+          "left": "MA",
+          "right": "L"
+        },
+        {
+          "left": "MA",
+          "right": "NL"
+        },
+        {
+          "left": "MA",
+          "right": "LogCFL"
+        },
+        {
+          "left": "MA",
+          "right": "NC"
+        },
+        {
+          "left": "MA",
+          "right": "SC"
+        },
+        {
+          "left": "coMA",
+          "right": "L"
+        },
+        {
+          "left": "coMA",
+          "right": "NL"
+        },
+        {
+          "left": "coMA",
+          "right": "LogCFL"
+        },
+        {
+          "left": "coMA",
+          "right": "NC"
+        },
+        {
+          "left": "coMA",
+          "right": "SC"
+        },
+        {
+          "left": "AM",
+          "right": "L"
+        },
+        {
+          "left": "AM",
+          "right": "NL"
+        },
+        {
+          "left": "AM",
+          "right": "LogCFL"
+        },
+        {
+          "left": "AM",
+          "right": "NC"
+        },
+        {
+          "left": "AM",
+          "right": "SC"
+        },
+        {
+          "left": "coAM",
+          "right": "L"
+        },
+        {
+          "left": "coAM",
+          "right": "NL"
+        },
+        {
+          "left": "coAM",
+          "right": "LogCFL"
+        },
+        {
+          "left": "coAM",
+          "right": "NC"
+        },
+        {
+          "left": "coAM",
+          "right": "SC"
+        },
+        {
+          "left": "SZK",
+          "right": "L"
+        },
+        {
+          "left": "SZK",
+          "right": "NL"
+        },
+        {
+          "left": "SZK",
+          "right": "LogCFL"
+        },
+        {
+          "left": "SZK",
+          "right": "NC"
+        },
+        {
+          "left": "SZK",
+          "right": "SC"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "nonuniform",
+      "pair_count": 36,
+      "baseline_counts": {
+        "separation": 6,
+        "unreviewed": 26,
+        "inclusion": 4
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "ACC0"
+        },
+        {
+          "left": "SBP",
+          "right": "TC0"
+        },
+        {
+          "left": "SBP",
+          "right": "NC1"
+        },
+        {
+          "left": "SBP",
+          "right": "Ppoly"
+        },
+        {
+          "left": "MA",
+          "right": "ACC0"
+        },
+        {
+          "left": "MA",
+          "right": "TC0"
+        },
+        {
+          "left": "MA",
+          "right": "NC1"
+        },
+        {
+          "left": "MA",
+          "right": "Ppoly"
+        },
+        {
+          "left": "coMA",
+          "right": "ACC0"
+        },
+        {
+          "left": "coMA",
+          "right": "TC0"
+        },
+        {
+          "left": "coMA",
+          "right": "NC1"
+        },
+        {
+          "left": "coMA",
+          "right": "Ppoly"
+        },
+        {
+          "left": "coMA",
+          "right": "NPpoly"
+        },
+        {
+          "left": "AM",
+          "right": "ACC0"
+        },
+        {
+          "left": "AM",
+          "right": "TC0"
+        },
+        {
+          "left": "AM",
+          "right": "NC1"
+        },
+        {
+          "left": "AM",
+          "right": "Ppoly"
+        },
+        {
+          "left": "coAM",
+          "right": "ACC0"
+        },
+        {
+          "left": "coAM",
+          "right": "TC0"
+        },
+        {
+          "left": "coAM",
+          "right": "NC1"
+        },
+        {
+          "left": "coAM",
+          "right": "Ppoly"
+        },
+        {
+          "left": "coAM",
+          "right": "NPpoly"
+        },
+        {
+          "left": "SZK",
+          "right": "ACC0"
+        },
+        {
+          "left": "SZK",
+          "right": "TC0"
+        },
+        {
+          "left": "SZK",
+          "right": "NC1"
+        },
+        {
+          "left": "SZK",
+          "right": "Ppoly"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "counting",
+      "pair_count": 60,
+      "baseline_counts": {
+        "unreviewed": 57,
+        "inclusion": 3
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "UP"
+        },
+        {
+          "left": "SBP",
+          "right": "coUP"
+        },
+        {
+          "left": "SBP",
+          "right": "FewP"
+        },
+        {
+          "left": "SBP",
+          "right": "SPP"
+        },
+        {
+          "left": "SBP",
+          "right": "CeqP"
+        },
+        {
+          "left": "SBP",
+          "right": "parityP"
+        },
+        {
+          "left": "SBP",
+          "right": "AWPP"
+        },
+        {
+          "left": "SBP",
+          "right": "LWPP"
+        },
+        {
+          "left": "SBP",
+          "right": "WPP"
+        },
+        {
+          "left": "MA",
+          "right": "UP"
+        },
+        {
+          "left": "MA",
+          "right": "coUP"
+        },
+        {
+          "left": "MA",
+          "right": "FewP"
+        },
+        {
+          "left": "MA",
+          "right": "SPP"
+        },
+        {
+          "left": "MA",
+          "right": "CeqP"
+        },
+        {
+          "left": "MA",
+          "right": "parityP"
+        },
+        {
+          "left": "MA",
+          "right": "AWPP"
+        },
+        {
+          "left": "MA",
+          "right": "LWPP"
+        },
+        {
+          "left": "MA",
+          "right": "WPP"
+        },
+        {
+          "left": "coMA",
+          "right": "UP"
+        },
+        {
+          "left": "coMA",
+          "right": "coUP"
+        },
+        {
+          "left": "coMA",
+          "right": "FewP"
+        },
+        {
+          "left": "coMA",
+          "right": "SPP"
+        },
+        {
+          "left": "coMA",
+          "right": "CeqP"
+        },
+        {
+          "left": "coMA",
+          "right": "parityP"
+        },
+        {
+          "left": "coMA",
+          "right": "AWPP"
+        },
+        {
+          "left": "coMA",
+          "right": "LWPP"
+        },
+        {
+          "left": "coMA",
+          "right": "WPP"
+        },
+        {
+          "left": "AM",
+          "right": "UP"
+        },
+        {
+          "left": "AM",
+          "right": "coUP"
+        },
+        {
+          "left": "AM",
+          "right": "FewP"
+        },
+        {
+          "left": "AM",
+          "right": "SPP"
+        },
+        {
+          "left": "AM",
+          "right": "CeqP"
+        },
+        {
+          "left": "AM",
+          "right": "PP"
+        },
+        {
+          "left": "AM",
+          "right": "parityP"
+        },
+        {
+          "left": "AM",
+          "right": "AWPP"
+        },
+        {
+          "left": "AM",
+          "right": "LWPP"
+        },
+        {
+          "left": "AM",
+          "right": "WPP"
+        },
+        {
+          "left": "coAM",
+          "right": "UP"
+        },
+        {
+          "left": "coAM",
+          "right": "coUP"
+        },
+        {
+          "left": "coAM",
+          "right": "FewP"
+        },
+        {
+          "left": "coAM",
+          "right": "SPP"
+        },
+        {
+          "left": "coAM",
+          "right": "CeqP"
+        },
+        {
+          "left": "coAM",
+          "right": "PP"
+        },
+        {
+          "left": "coAM",
+          "right": "parityP"
+        },
+        {
+          "left": "coAM",
+          "right": "AWPP"
+        },
+        {
+          "left": "coAM",
+          "right": "LWPP"
+        },
+        {
+          "left": "coAM",
+          "right": "WPP"
+        },
+        {
+          "left": "SZK",
+          "right": "UP"
+        },
+        {
+          "left": "SZK",
+          "right": "coUP"
+        },
+        {
+          "left": "SZK",
+          "right": "FewP"
+        },
+        {
+          "left": "SZK",
+          "right": "SPP"
+        },
+        {
+          "left": "SZK",
+          "right": "CeqP"
+        },
+        {
+          "left": "SZK",
+          "right": "PP"
+        },
+        {
+          "left": "SZK",
+          "right": "parityP"
+        },
+        {
+          "left": "SZK",
+          "right": "AWPP"
+        },
+        {
+          "left": "SZK",
+          "right": "LWPP"
+        },
+        {
+          "left": "SZK",
+          "right": "WPP"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "quantum",
+      "pair_count": 24,
+      "baseline_counts": {
+        "unreviewed": 21,
+        "inclusion": 3
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "BQP"
+        },
+        {
+          "left": "SBP",
+          "right": "QCMA"
+        },
+        {
+          "left": "SBP",
+          "right": "QMA"
+        },
+        {
+          "left": "SBP",
+          "right": "coQMA"
+        },
+        {
+          "left": "MA",
+          "right": "BQP"
+        },
+        {
+          "left": "MA",
+          "right": "coQMA"
+        },
+        {
+          "left": "coMA",
+          "right": "BQP"
+        },
+        {
+          "left": "coMA",
+          "right": "QCMA"
+        },
+        {
+          "left": "coMA",
+          "right": "QMA"
+        },
+        {
+          "left": "AM",
+          "right": "BQP"
+        },
+        {
+          "left": "AM",
+          "right": "QCMA"
+        },
+        {
+          "left": "AM",
+          "right": "QMA"
+        },
+        {
+          "left": "AM",
+          "right": "coQMA"
+        },
+        {
+          "left": "coAM",
+          "right": "BQP"
+        },
+        {
+          "left": "coAM",
+          "right": "QCMA"
+        },
+        {
+          "left": "coAM",
+          "right": "QMA"
+        },
+        {
+          "left": "coAM",
+          "right": "coQMA"
+        },
+        {
+          "left": "SZK",
+          "right": "BQP"
+        },
+        {
+          "left": "SZK",
+          "right": "QCMA"
+        },
+        {
+          "left": "SZK",
+          "right": "QMA"
+        },
+        {
+          "left": "SZK",
+          "right": "coQMA"
+        }
+      ]
+    },
+    {
+      "left_family": "proof_systems",
+      "right_family": "large_uniform",
+      "pair_count": 36,
+      "baseline_counts": {
+        "inclusion": 24,
+        "unreviewed": 12
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SBP",
+          "right": "E"
+        },
+        {
+          "left": "SBP",
+          "right": "NE"
+        },
+        {
+          "left": "MA",
+          "right": "E"
+        },
+        {
+          "left": "MA",
+          "right": "NE"
+        },
+        {
+          "left": "coMA",
+          "right": "E"
+        },
+        {
+          "left": "coMA",
+          "right": "NE"
+        },
+        {
+          "left": "AM",
+          "right": "E"
+        },
+        {
+          "left": "AM",
+          "right": "NE"
+        },
+        {
+          "left": "coAM",
+          "right": "E"
+        },
+        {
+          "left": "coAM",
+          "right": "NE"
+        },
+        {
+          "left": "SZK",
+          "right": "E"
+        },
+        {
+          "left": "SZK",
+          "right": "NE"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "basic_and_randomness",
+      "pair_count": 40,
+      "baseline_counts": {
+        "unreviewed": 40
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "P"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "NP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "coNP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "RP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "coRP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "ZPP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "BPP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "P"
+        },
+        {
+          "left": "Pi2P",
+          "right": "NP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "coNP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "RP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "coRP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "ZPP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "BPP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "P"
+        },
+        {
+          "left": "Delta2P",
+          "right": "NP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "coNP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "RP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "coRP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "ZPP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "BPP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "P"
+        },
+        {
+          "left": "Theta2P",
+          "right": "NP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "coNP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "RP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "coRP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "ZPP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "BPP"
+        },
+        {
+          "left": "PH",
+          "right": "P"
+        },
+        {
+          "left": "PH",
+          "right": "NP"
+        },
+        {
+          "left": "PH",
+          "right": "coNP"
+        },
+        {
+          "left": "PH",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "PH",
+          "right": "RP"
+        },
+        {
+          "left": "PH",
+          "right": "coRP"
+        },
+        {
+          "left": "PH",
+          "right": "ZPP"
+        },
+        {
+          "left": "PH",
+          "right": "BPP"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "proof_systems",
+      "pair_count": 30,
+      "baseline_counts": {
+        "unreviewed": 30
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "SBP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "MA"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "coMA"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "AM"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "coAM"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "SZK"
+        },
+        {
+          "left": "Pi2P",
+          "right": "SBP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "MA"
+        },
+        {
+          "left": "Pi2P",
+          "right": "coMA"
+        },
+        {
+          "left": "Pi2P",
+          "right": "AM"
+        },
+        {
+          "left": "Pi2P",
+          "right": "coAM"
+        },
+        {
+          "left": "Pi2P",
+          "right": "SZK"
+        },
+        {
+          "left": "Delta2P",
+          "right": "SBP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "MA"
+        },
+        {
+          "left": "Delta2P",
+          "right": "coMA"
+        },
+        {
+          "left": "Delta2P",
+          "right": "AM"
+        },
+        {
+          "left": "Delta2P",
+          "right": "coAM"
+        },
+        {
+          "left": "Delta2P",
+          "right": "SZK"
+        },
+        {
+          "left": "Theta2P",
+          "right": "SBP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "MA"
+        },
+        {
+          "left": "Theta2P",
+          "right": "coMA"
+        },
+        {
+          "left": "Theta2P",
+          "right": "AM"
+        },
+        {
+          "left": "Theta2P",
+          "right": "coAM"
+        },
+        {
+          "left": "Theta2P",
+          "right": "SZK"
+        },
+        {
+          "left": "PH",
+          "right": "SBP"
+        },
+        {
+          "left": "PH",
+          "right": "MA"
+        },
+        {
+          "left": "PH",
+          "right": "coMA"
+        },
+        {
+          "left": "PH",
+          "right": "AM"
+        },
+        {
+          "left": "PH",
+          "right": "coAM"
+        },
+        {
+          "left": "PH",
+          "right": "SZK"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "hierarchy",
+      "pair_count": 25,
+      "baseline_counts": {
+        "inclusion": 14,
+        "unreviewed": 11
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "Pi2P"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "Delta2P"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "Theta2P"
+        },
+        {
+          "left": "Pi2P",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "Pi2P",
+          "right": "Delta2P"
+        },
+        {
+          "left": "Pi2P",
+          "right": "Theta2P"
+        },
+        {
+          "left": "Delta2P",
+          "right": "Theta2P"
+        },
+        {
+          "left": "PH",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "PH",
+          "right": "Pi2P"
+        },
+        {
+          "left": "PH",
+          "right": "Delta2P"
+        },
+        {
+          "left": "PH",
+          "right": "Theta2P"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "small_uniform",
+      "pair_count": 25,
+      "baseline_counts": {
+        "unreviewed": 25
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "L"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "NL"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "LogCFL"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "NC"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "SC"
+        },
+        {
+          "left": "Pi2P",
+          "right": "L"
+        },
+        {
+          "left": "Pi2P",
+          "right": "NL"
+        },
+        {
+          "left": "Pi2P",
+          "right": "LogCFL"
+        },
+        {
+          "left": "Pi2P",
+          "right": "NC"
+        },
+        {
+          "left": "Pi2P",
+          "right": "SC"
+        },
+        {
+          "left": "Delta2P",
+          "right": "L"
+        },
+        {
+          "left": "Delta2P",
+          "right": "NL"
+        },
+        {
+          "left": "Delta2P",
+          "right": "LogCFL"
+        },
+        {
+          "left": "Delta2P",
+          "right": "NC"
+        },
+        {
+          "left": "Delta2P",
+          "right": "SC"
+        },
+        {
+          "left": "Theta2P",
+          "right": "L"
+        },
+        {
+          "left": "Theta2P",
+          "right": "NL"
+        },
+        {
+          "left": "Theta2P",
+          "right": "LogCFL"
+        },
+        {
+          "left": "Theta2P",
+          "right": "NC"
+        },
+        {
+          "left": "Theta2P",
+          "right": "SC"
+        },
+        {
+          "left": "PH",
+          "right": "L"
+        },
+        {
+          "left": "PH",
+          "right": "NL"
+        },
+        {
+          "left": "PH",
+          "right": "LogCFL"
+        },
+        {
+          "left": "PH",
+          "right": "NC"
+        },
+        {
+          "left": "PH",
+          "right": "SC"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "nonuniform",
+      "pair_count": 30,
+      "baseline_counts": {
+        "separation": 5,
+        "unreviewed": 25
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "ACC0"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "TC0"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "NC1"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "Ppoly"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "NPpoly"
+        },
+        {
+          "left": "Pi2P",
+          "right": "ACC0"
+        },
+        {
+          "left": "Pi2P",
+          "right": "TC0"
+        },
+        {
+          "left": "Pi2P",
+          "right": "NC1"
+        },
+        {
+          "left": "Pi2P",
+          "right": "Ppoly"
+        },
+        {
+          "left": "Pi2P",
+          "right": "NPpoly"
+        },
+        {
+          "left": "Delta2P",
+          "right": "ACC0"
+        },
+        {
+          "left": "Delta2P",
+          "right": "TC0"
+        },
+        {
+          "left": "Delta2P",
+          "right": "NC1"
+        },
+        {
+          "left": "Delta2P",
+          "right": "Ppoly"
+        },
+        {
+          "left": "Delta2P",
+          "right": "NPpoly"
+        },
+        {
+          "left": "Theta2P",
+          "right": "ACC0"
+        },
+        {
+          "left": "Theta2P",
+          "right": "TC0"
+        },
+        {
+          "left": "Theta2P",
+          "right": "NC1"
+        },
+        {
+          "left": "Theta2P",
+          "right": "Ppoly"
+        },
+        {
+          "left": "Theta2P",
+          "right": "NPpoly"
+        },
+        {
+          "left": "PH",
+          "right": "ACC0"
+        },
+        {
+          "left": "PH",
+          "right": "TC0"
+        },
+        {
+          "left": "PH",
+          "right": "NC1"
+        },
+        {
+          "left": "PH",
+          "right": "Ppoly"
+        },
+        {
+          "left": "PH",
+          "right": "NPpoly"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "counting",
+      "pair_count": 50,
+      "baseline_counts": {
+        "unreviewed": 49,
+        "inclusion": 1
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "UP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "coUP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "FewP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "SPP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "CeqP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "PP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "parityP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "AWPP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "LWPP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "WPP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "UP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "coUP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "FewP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "SPP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "CeqP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "PP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "parityP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "AWPP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "LWPP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "WPP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "UP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "coUP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "FewP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "SPP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "CeqP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "PP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "parityP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "AWPP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "LWPP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "WPP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "UP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "coUP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "FewP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "SPP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "CeqP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "parityP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "AWPP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "LWPP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "WPP"
+        },
+        {
+          "left": "PH",
+          "right": "UP"
+        },
+        {
+          "left": "PH",
+          "right": "coUP"
+        },
+        {
+          "left": "PH",
+          "right": "FewP"
+        },
+        {
+          "left": "PH",
+          "right": "SPP"
+        },
+        {
+          "left": "PH",
+          "right": "CeqP"
+        },
+        {
+          "left": "PH",
+          "right": "PP"
+        },
+        {
+          "left": "PH",
+          "right": "parityP"
+        },
+        {
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "left": "PH",
+          "right": "WPP"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "quantum",
+      "pair_count": 20,
+      "baseline_counts": {
+        "unreviewed": 20
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "BQP"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "QCMA"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "QMA"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "coQMA"
+        },
+        {
+          "left": "Pi2P",
+          "right": "BQP"
+        },
+        {
+          "left": "Pi2P",
+          "right": "QCMA"
+        },
+        {
+          "left": "Pi2P",
+          "right": "QMA"
+        },
+        {
+          "left": "Pi2P",
+          "right": "coQMA"
+        },
+        {
+          "left": "Delta2P",
+          "right": "BQP"
+        },
+        {
+          "left": "Delta2P",
+          "right": "QCMA"
+        },
+        {
+          "left": "Delta2P",
+          "right": "QMA"
+        },
+        {
+          "left": "Delta2P",
+          "right": "coQMA"
+        },
+        {
+          "left": "Theta2P",
+          "right": "BQP"
+        },
+        {
+          "left": "Theta2P",
+          "right": "QCMA"
+        },
+        {
+          "left": "Theta2P",
+          "right": "QMA"
+        },
+        {
+          "left": "Theta2P",
+          "right": "coQMA"
+        },
+        {
+          "left": "PH",
+          "right": "BQP"
+        },
+        {
+          "left": "PH",
+          "right": "QCMA"
+        },
+        {
+          "left": "PH",
+          "right": "QMA"
+        },
+        {
+          "left": "PH",
+          "right": "coQMA"
+        }
+      ]
+    },
+    {
+      "left_family": "hierarchy",
+      "right_family": "large_uniform",
+      "pair_count": 30,
+      "baseline_counts": {
+        "inclusion": 20,
+        "unreviewed": 10
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "Sigma2P",
+          "right": "E"
+        },
+        {
+          "left": "Sigma2P",
+          "right": "NE"
+        },
+        {
+          "left": "Pi2P",
+          "right": "E"
+        },
+        {
+          "left": "Pi2P",
+          "right": "NE"
+        },
+        {
+          "left": "Delta2P",
+          "right": "E"
+        },
+        {
+          "left": "Delta2P",
+          "right": "NE"
+        },
+        {
+          "left": "Theta2P",
+          "right": "E"
+        },
+        {
+          "left": "Theta2P",
+          "right": "NE"
+        },
+        {
+          "left": "PH",
+          "right": "E"
+        },
+        {
+          "left": "PH",
+          "right": "NE"
+        }
+      ]
+    },
+    {
+      "left_family": "small_uniform",
+      "right_family": "basic_and_randomness",
+      "pair_count": 40,
+      "baseline_counts": {
+        "inclusion": 40
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": []
+    },
+    {
+      "left_family": "small_uniform",
+      "right_family": "proof_systems",
+      "pair_count": 30,
+      "baseline_counts": {
+        "inclusion": 30
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": []
+    },
+    {
+      "left_family": "small_uniform",
+      "right_family": "hierarchy",
+      "pair_count": 25,
+      "baseline_counts": {
+        "inclusion": 25
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": []
+    },
+    {
+      "left_family": "nonuniform",
+      "right_family": "basic_and_randomness",
+      "pair_count": 48,
+      "baseline_counts": {
+        "separation": 48
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": []
+    },
+    {
+      "left_family": "nonuniform",
+      "right_family": "proof_systems",
+      "pair_count": 36,
+      "baseline_counts": {
+        "separation": 36
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": []
+    },
+    {
+      "left_family": "nonuniform",
+      "right_family": "hierarchy",
+      "pair_count": 30,
+      "baseline_counts": {
+        "separation": 30
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": []
+    },
+    {
+      "left_family": "counting",
+      "right_family": "basic_and_randomness",
+      "pair_count": 80,
+      "baseline_counts": {
+        "unreviewed": 77,
+        "inclusion": 3
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "UP",
+          "right": "P"
+        },
+        {
+          "left": "UP",
+          "right": "coNP"
+        },
+        {
+          "left": "UP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "UP",
+          "right": "RP"
+        },
+        {
+          "left": "UP",
+          "right": "coRP"
+        },
+        {
+          "left": "UP",
+          "right": "ZPP"
+        },
+        {
+          "left": "UP",
+          "right": "BPP"
+        },
+        {
+          "left": "coUP",
+          "right": "P"
+        },
+        {
+          "left": "coUP",
+          "right": "NP"
+        },
+        {
+          "left": "coUP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "coUP",
+          "right": "RP"
+        },
+        {
+          "left": "coUP",
+          "right": "coRP"
+        },
+        {
+          "left": "coUP",
+          "right": "ZPP"
+        },
+        {
+          "left": "coUP",
+          "right": "BPP"
+        },
+        {
+          "left": "FewP",
+          "right": "P"
+        },
+        {
+          "left": "FewP",
+          "right": "coNP"
+        },
+        {
+          "left": "FewP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "FewP",
+          "right": "RP"
+        },
+        {
+          "left": "FewP",
+          "right": "coRP"
+        },
+        {
+          "left": "FewP",
+          "right": "ZPP"
+        },
+        {
+          "left": "FewP",
+          "right": "BPP"
+        },
+        {
+          "left": "SPP",
+          "right": "P"
+        },
+        {
+          "left": "SPP",
+          "right": "NP"
+        },
+        {
+          "left": "SPP",
+          "right": "coNP"
+        },
+        {
+          "left": "SPP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "SPP",
+          "right": "RP"
+        },
+        {
+          "left": "SPP",
+          "right": "coRP"
+        },
+        {
+          "left": "SPP",
+          "right": "ZPP"
+        },
+        {
+          "left": "SPP",
+          "right": "BPP"
+        },
+        {
+          "left": "CeqP",
+          "right": "P"
+        },
+        {
+          "left": "CeqP",
+          "right": "NP"
+        },
+        {
+          "left": "CeqP",
+          "right": "coNP"
+        },
+        {
+          "left": "CeqP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "CeqP",
+          "right": "RP"
+        },
+        {
+          "left": "CeqP",
+          "right": "coRP"
+        },
+        {
+          "left": "CeqP",
+          "right": "ZPP"
+        },
+        {
+          "left": "CeqP",
+          "right": "BPP"
+        },
+        {
+          "left": "PP",
+          "right": "P"
+        },
+        {
+          "left": "PP",
+          "right": "NP"
+        },
+        {
+          "left": "PP",
+          "right": "coNP"
+        },
+        {
+          "left": "PP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "PP",
+          "right": "RP"
+        },
+        {
+          "left": "PP",
+          "right": "coRP"
+        },
+        {
+          "left": "PP",
+          "right": "ZPP"
+        },
+        {
+          "left": "PP",
+          "right": "BPP"
+        },
+        {
+          "left": "parityP",
+          "right": "P"
+        },
+        {
+          "left": "parityP",
+          "right": "NP"
+        },
+        {
+          "left": "parityP",
+          "right": "coNP"
+        },
+        {
+          "left": "parityP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "parityP",
+          "right": "RP"
+        },
+        {
+          "left": "parityP",
+          "right": "coRP"
+        },
+        {
+          "left": "parityP",
+          "right": "ZPP"
+        },
+        {
+          "left": "parityP",
+          "right": "BPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "P"
+        },
+        {
+          "left": "AWPP",
+          "right": "NP"
+        },
+        {
+          "left": "AWPP",
+          "right": "coNP"
+        },
+        {
+          "left": "AWPP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "AWPP",
+          "right": "RP"
+        },
+        {
+          "left": "AWPP",
+          "right": "coRP"
+        },
+        {
+          "left": "AWPP",
+          "right": "ZPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "BPP"
+        },
+        {
+          "left": "LWPP",
+          "right": "P"
+        },
+        {
+          "left": "LWPP",
+          "right": "NP"
+        },
+        {
+          "left": "LWPP",
+          "right": "coNP"
+        },
+        {
+          "left": "LWPP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "LWPP",
+          "right": "RP"
+        },
+        {
+          "left": "LWPP",
+          "right": "coRP"
+        },
+        {
+          "left": "LWPP",
+          "right": "ZPP"
+        },
+        {
+          "left": "LWPP",
+          "right": "BPP"
+        },
+        {
+          "left": "WPP",
+          "right": "P"
+        },
+        {
+          "left": "WPP",
+          "right": "NP"
+        },
+        {
+          "left": "WPP",
+          "right": "coNP"
+        },
+        {
+          "left": "WPP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "WPP",
+          "right": "RP"
+        },
+        {
+          "left": "WPP",
+          "right": "coRP"
+        },
+        {
+          "left": "WPP",
+          "right": "ZPP"
+        },
+        {
+          "left": "WPP",
+          "right": "BPP"
+        }
+      ]
+    },
+    {
+      "left_family": "counting",
+      "right_family": "proof_systems",
+      "pair_count": 60,
+      "baseline_counts": {
+        "inclusion": 8,
+        "unreviewed": 52
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "UP",
+          "right": "coMA"
+        },
+        {
+          "left": "UP",
+          "right": "coAM"
+        },
+        {
+          "left": "UP",
+          "right": "SZK"
+        },
+        {
+          "left": "coUP",
+          "right": "SBP"
+        },
+        {
+          "left": "coUP",
+          "right": "MA"
+        },
+        {
+          "left": "coUP",
+          "right": "AM"
+        },
+        {
+          "left": "coUP",
+          "right": "SZK"
+        },
+        {
+          "left": "FewP",
+          "right": "coMA"
+        },
+        {
+          "left": "FewP",
+          "right": "coAM"
+        },
+        {
+          "left": "FewP",
+          "right": "SZK"
+        },
+        {
+          "left": "SPP",
+          "right": "SBP"
+        },
+        {
+          "left": "SPP",
+          "right": "MA"
+        },
+        {
+          "left": "SPP",
+          "right": "coMA"
+        },
+        {
+          "left": "SPP",
+          "right": "AM"
+        },
+        {
+          "left": "SPP",
+          "right": "coAM"
+        },
+        {
+          "left": "SPP",
+          "right": "SZK"
+        },
+        {
+          "left": "CeqP",
+          "right": "SBP"
+        },
+        {
+          "left": "CeqP",
+          "right": "MA"
+        },
+        {
+          "left": "CeqP",
+          "right": "coMA"
+        },
+        {
+          "left": "CeqP",
+          "right": "AM"
+        },
+        {
+          "left": "CeqP",
+          "right": "coAM"
+        },
+        {
+          "left": "CeqP",
+          "right": "SZK"
+        },
+        {
+          "left": "PP",
+          "right": "SBP"
+        },
+        {
+          "left": "PP",
+          "right": "MA"
+        },
+        {
+          "left": "PP",
+          "right": "coMA"
+        },
+        {
+          "left": "PP",
+          "right": "AM"
+        },
+        {
+          "left": "PP",
+          "right": "coAM"
+        },
+        {
+          "left": "PP",
+          "right": "SZK"
+        },
+        {
+          "left": "parityP",
+          "right": "SBP"
+        },
+        {
+          "left": "parityP",
+          "right": "MA"
+        },
+        {
+          "left": "parityP",
+          "right": "coMA"
+        },
+        {
+          "left": "parityP",
+          "right": "AM"
+        },
+        {
+          "left": "parityP",
+          "right": "coAM"
+        },
+        {
+          "left": "parityP",
+          "right": "SZK"
+        },
+        {
+          "left": "AWPP",
+          "right": "SBP"
+        },
+        {
+          "left": "AWPP",
+          "right": "MA"
+        },
+        {
+          "left": "AWPP",
+          "right": "coMA"
+        },
+        {
+          "left": "AWPP",
+          "right": "AM"
+        },
+        {
+          "left": "AWPP",
+          "right": "coAM"
+        },
+        {
+          "left": "AWPP",
+          "right": "SZK"
+        },
+        {
+          "left": "LWPP",
+          "right": "SBP"
+        },
+        {
+          "left": "LWPP",
+          "right": "MA"
+        },
+        {
+          "left": "LWPP",
+          "right": "coMA"
+        },
+        {
+          "left": "LWPP",
+          "right": "AM"
+        },
+        {
+          "left": "LWPP",
+          "right": "coAM"
+        },
+        {
+          "left": "LWPP",
+          "right": "SZK"
+        },
+        {
+          "left": "WPP",
+          "right": "SBP"
+        },
+        {
+          "left": "WPP",
+          "right": "MA"
+        },
+        {
+          "left": "WPP",
+          "right": "coMA"
+        },
+        {
+          "left": "WPP",
+          "right": "AM"
+        },
+        {
+          "left": "WPP",
+          "right": "coAM"
+        },
+        {
+          "left": "WPP",
+          "right": "SZK"
+        }
+      ]
+    },
+    {
+      "left_family": "counting",
+      "right_family": "hierarchy",
+      "pair_count": 50,
+      "baseline_counts": {
+        "inclusion": 15,
+        "unreviewed": 35
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "SPP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "SPP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "SPP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "SPP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "SPP",
+          "right": "PH"
+        },
+        {
+          "left": "CeqP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "CeqP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "CeqP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "CeqP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "CeqP",
+          "right": "PH"
+        },
+        {
+          "left": "PP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "PP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "PP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "PP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "PP",
+          "right": "PH"
+        },
+        {
+          "left": "parityP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "parityP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "parityP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "parityP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "parityP",
+          "right": "PH"
+        },
+        {
+          "left": "AWPP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "AWPP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "AWPP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "AWPP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "AWPP",
+          "right": "PH"
+        },
+        {
+          "left": "LWPP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "LWPP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "LWPP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "LWPP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "LWPP",
+          "right": "PH"
+        },
+        {
+          "left": "WPP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "WPP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "WPP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "WPP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "WPP",
+          "right": "PH"
+        }
+      ]
+    },
+    {
+      "left_family": "quantum",
+      "right_family": "basic_and_randomness",
+      "pair_count": 32,
+      "baseline_counts": {
+        "unreviewed": 32
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "BQP",
+          "right": "P"
+        },
+        {
+          "left": "BQP",
+          "right": "NP"
+        },
+        {
+          "left": "BQP",
+          "right": "coNP"
+        },
+        {
+          "left": "BQP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "BQP",
+          "right": "RP"
+        },
+        {
+          "left": "BQP",
+          "right": "coRP"
+        },
+        {
+          "left": "BQP",
+          "right": "ZPP"
+        },
+        {
+          "left": "BQP",
+          "right": "BPP"
+        },
+        {
+          "left": "QCMA",
+          "right": "P"
+        },
+        {
+          "left": "QCMA",
+          "right": "NP"
+        },
+        {
+          "left": "QCMA",
+          "right": "coNP"
+        },
+        {
+          "left": "QCMA",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "QCMA",
+          "right": "RP"
+        },
+        {
+          "left": "QCMA",
+          "right": "coRP"
+        },
+        {
+          "left": "QCMA",
+          "right": "ZPP"
+        },
+        {
+          "left": "QCMA",
+          "right": "BPP"
+        },
+        {
+          "left": "QMA",
+          "right": "P"
+        },
+        {
+          "left": "QMA",
+          "right": "NP"
+        },
+        {
+          "left": "QMA",
+          "right": "coNP"
+        },
+        {
+          "left": "QMA",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "QMA",
+          "right": "RP"
+        },
+        {
+          "left": "QMA",
+          "right": "coRP"
+        },
+        {
+          "left": "QMA",
+          "right": "ZPP"
+        },
+        {
+          "left": "QMA",
+          "right": "BPP"
+        },
+        {
+          "left": "coQMA",
+          "right": "P"
+        },
+        {
+          "left": "coQMA",
+          "right": "NP"
+        },
+        {
+          "left": "coQMA",
+          "right": "coNP"
+        },
+        {
+          "left": "coQMA",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "coQMA",
+          "right": "RP"
+        },
+        {
+          "left": "coQMA",
+          "right": "coRP"
+        },
+        {
+          "left": "coQMA",
+          "right": "ZPP"
+        },
+        {
+          "left": "coQMA",
+          "right": "BPP"
+        }
+      ]
+    },
+    {
+      "left_family": "quantum",
+      "right_family": "proof_systems",
+      "pair_count": 24,
+      "baseline_counts": {
+        "unreviewed": 24
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "BQP",
+          "right": "SBP"
+        },
+        {
+          "left": "BQP",
+          "right": "MA"
+        },
+        {
+          "left": "BQP",
+          "right": "coMA"
+        },
+        {
+          "left": "BQP",
+          "right": "AM"
+        },
+        {
+          "left": "BQP",
+          "right": "coAM"
+        },
+        {
+          "left": "BQP",
+          "right": "SZK"
+        },
+        {
+          "left": "QCMA",
+          "right": "SBP"
+        },
+        {
+          "left": "QCMA",
+          "right": "MA"
+        },
+        {
+          "left": "QCMA",
+          "right": "coMA"
+        },
+        {
+          "left": "QCMA",
+          "right": "AM"
+        },
+        {
+          "left": "QCMA",
+          "right": "coAM"
+        },
+        {
+          "left": "QCMA",
+          "right": "SZK"
+        },
+        {
+          "left": "QMA",
+          "right": "SBP"
+        },
+        {
+          "left": "QMA",
+          "right": "MA"
+        },
+        {
+          "left": "QMA",
+          "right": "coMA"
+        },
+        {
+          "left": "QMA",
+          "right": "AM"
+        },
+        {
+          "left": "QMA",
+          "right": "coAM"
+        },
+        {
+          "left": "QMA",
+          "right": "SZK"
+        },
+        {
+          "left": "coQMA",
+          "right": "SBP"
+        },
+        {
+          "left": "coQMA",
+          "right": "MA"
+        },
+        {
+          "left": "coQMA",
+          "right": "coMA"
+        },
+        {
+          "left": "coQMA",
+          "right": "AM"
+        },
+        {
+          "left": "coQMA",
+          "right": "coAM"
+        },
+        {
+          "left": "coQMA",
+          "right": "SZK"
+        }
+      ]
+    },
+    {
+      "left_family": "quantum",
+      "right_family": "hierarchy",
+      "pair_count": 20,
+      "baseline_counts": {
+        "unreviewed": 20
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "BQP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "BQP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "BQP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "BQP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "BQP",
+          "right": "PH"
+        },
+        {
+          "left": "QCMA",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "QCMA",
+          "right": "Pi2P"
+        },
+        {
+          "left": "QCMA",
+          "right": "Delta2P"
+        },
+        {
+          "left": "QCMA",
+          "right": "Theta2P"
+        },
+        {
+          "left": "QCMA",
+          "right": "PH"
+        },
+        {
+          "left": "QMA",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "QMA",
+          "right": "Pi2P"
+        },
+        {
+          "left": "QMA",
+          "right": "Delta2P"
+        },
+        {
+          "left": "QMA",
+          "right": "Theta2P"
+        },
+        {
+          "left": "QMA",
+          "right": "PH"
+        },
+        {
+          "left": "coQMA",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "coQMA",
+          "right": "Pi2P"
+        },
+        {
+          "left": "coQMA",
+          "right": "Delta2P"
+        },
+        {
+          "left": "coQMA",
+          "right": "Theta2P"
+        },
+        {
+          "left": "coQMA",
+          "right": "PH"
+        }
+      ]
+    },
+    {
+      "left_family": "large_uniform",
+      "right_family": "basic_and_randomness",
+      "pair_count": 48,
+      "baseline_counts": {
+        "unreviewed": 28,
+        "separation": 20
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "PSPACE",
+          "right": "P"
+        },
+        {
+          "left": "PSPACE",
+          "right": "NP"
+        },
+        {
+          "left": "PSPACE",
+          "right": "coNP"
+        },
+        {
+          "left": "PSPACE",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "PSPACE",
+          "right": "RP"
+        },
+        {
+          "left": "PSPACE",
+          "right": "coRP"
+        },
+        {
+          "left": "PSPACE",
+          "right": "ZPP"
+        },
+        {
+          "left": "PSPACE",
+          "right": "BPP"
+        },
+        {
+          "left": "EXP",
+          "right": "NP"
+        },
+        {
+          "left": "EXP",
+          "right": "coNP"
+        },
+        {
+          "left": "EXP",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "EXP",
+          "right": "RP"
+        },
+        {
+          "left": "EXP",
+          "right": "coRP"
+        },
+        {
+          "left": "EXP",
+          "right": "ZPP"
+        },
+        {
+          "left": "EXP",
+          "right": "BPP"
+        },
+        {
+          "left": "NEXP",
+          "right": "coNP"
+        },
+        {
+          "left": "NEXP",
+          "right": "coRP"
+        },
+        {
+          "left": "NEXP",
+          "right": "BPP"
+        },
+        {
+          "left": "E",
+          "right": "NP"
+        },
+        {
+          "left": "E",
+          "right": "coNP"
+        },
+        {
+          "left": "E",
+          "right": "NPcapcoNP"
+        },
+        {
+          "left": "E",
+          "right": "RP"
+        },
+        {
+          "left": "E",
+          "right": "coRP"
+        },
+        {
+          "left": "E",
+          "right": "ZPP"
+        },
+        {
+          "left": "E",
+          "right": "BPP"
+        },
+        {
+          "left": "NE",
+          "right": "coNP"
+        },
+        {
+          "left": "NE",
+          "right": "coRP"
+        },
+        {
+          "left": "NE",
+          "right": "BPP"
+        }
+      ]
+    },
+    {
+      "left_family": "large_uniform",
+      "right_family": "proof_systems",
+      "pair_count": 36,
+      "baseline_counts": {
+        "unreviewed": 30,
+        "separation": 6
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "PSPACE",
+          "right": "SBP"
+        },
+        {
+          "left": "PSPACE",
+          "right": "MA"
+        },
+        {
+          "left": "PSPACE",
+          "right": "coMA"
+        },
+        {
+          "left": "PSPACE",
+          "right": "AM"
+        },
+        {
+          "left": "PSPACE",
+          "right": "coAM"
+        },
+        {
+          "left": "PSPACE",
+          "right": "SZK"
+        },
+        {
+          "left": "EXP",
+          "right": "SBP"
+        },
+        {
+          "left": "EXP",
+          "right": "MA"
+        },
+        {
+          "left": "EXP",
+          "right": "coMA"
+        },
+        {
+          "left": "EXP",
+          "right": "AM"
+        },
+        {
+          "left": "EXP",
+          "right": "coAM"
+        },
+        {
+          "left": "EXP",
+          "right": "SZK"
+        },
+        {
+          "left": "NEXP",
+          "right": "SBP"
+        },
+        {
+          "left": "NEXP",
+          "right": "MA"
+        },
+        {
+          "left": "NEXP",
+          "right": "coMA"
+        },
+        {
+          "left": "NEXP",
+          "right": "AM"
+        },
+        {
+          "left": "NEXP",
+          "right": "coAM"
+        },
+        {
+          "left": "NEXP",
+          "right": "SZK"
+        },
+        {
+          "left": "E",
+          "right": "SBP"
+        },
+        {
+          "left": "E",
+          "right": "MA"
+        },
+        {
+          "left": "E",
+          "right": "coMA"
+        },
+        {
+          "left": "E",
+          "right": "AM"
+        },
+        {
+          "left": "E",
+          "right": "coAM"
+        },
+        {
+          "left": "E",
+          "right": "SZK"
+        },
+        {
+          "left": "NE",
+          "right": "SBP"
+        },
+        {
+          "left": "NE",
+          "right": "MA"
+        },
+        {
+          "left": "NE",
+          "right": "coMA"
+        },
+        {
+          "left": "NE",
+          "right": "AM"
+        },
+        {
+          "left": "NE",
+          "right": "coAM"
+        },
+        {
+          "left": "NE",
+          "right": "SZK"
+        }
+      ]
+    },
+    {
+      "left_family": "large_uniform",
+      "right_family": "hierarchy",
+      "pair_count": 30,
+      "baseline_counts": {
+        "unreviewed": 25,
+        "separation": 5
+      },
+      "review_type": "Semantic and cited-closure screen plus relevant full class-entry census; not individual proof of openness",
+      "unresolved_pairs": [
+        {
+          "left": "PSPACE",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "PSPACE",
+          "right": "Pi2P"
+        },
+        {
+          "left": "PSPACE",
+          "right": "Delta2P"
+        },
+        {
+          "left": "PSPACE",
+          "right": "Theta2P"
+        },
+        {
+          "left": "PSPACE",
+          "right": "PH"
+        },
+        {
+          "left": "EXP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "EXP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "EXP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "EXP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "EXP",
+          "right": "PH"
+        },
+        {
+          "left": "NEXP",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "NEXP",
+          "right": "Pi2P"
+        },
+        {
+          "left": "NEXP",
+          "right": "Delta2P"
+        },
+        {
+          "left": "NEXP",
+          "right": "Theta2P"
+        },
+        {
+          "left": "NEXP",
+          "right": "PH"
+        },
+        {
+          "left": "E",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "E",
+          "right": "Pi2P"
+        },
+        {
+          "left": "E",
+          "right": "Delta2P"
+        },
+        {
+          "left": "E",
+          "right": "Theta2P"
+        },
+        {
+          "left": "E",
+          "right": "PH"
+        },
+        {
+          "left": "NE",
+          "right": "Sigma2P"
+        },
+        {
+          "left": "NE",
+          "right": "Pi2P"
+        },
+        {
+          "left": "NE",
+          "right": "Delta2P"
+        },
+        {
+          "left": "NE",
+          "right": "Theta2P"
+        },
+        {
+          "left": "NE",
+          "right": "PH"
+        }
+      ]
+    }
+  ],
+  "operational_semantics_review": [
+    {
+      "file": "lean/InclusionBench/Randomized.lean",
+      "inspection": "Complete module read",
+      "finding": "Fair binary transitions and terminal padding; all paths halt within a polynomial bound. An arbitrary polynomially bounded runtime budget does not create advice when it only chooses additional terminal padding."
+    },
+    {
+      "file": "lean/InclusionBench/ProofSystems.lean",
+      "inspection": "Complete module read",
+      "finding": "Concrete deterministic verifiers; finite-polynomial witness and coin lengths; MA witness before coins and AM counts coins admitting a witness. Advice in NPpoly is intentionally arbitrary by input length. All inputs satisfy the total-language gap."
+    },
+    {
+      "file": "lean/InclusionBench/Oracles.lean",
+      "inspection": "Complete module read",
+      "finding": "Concrete oracle tapes and counts; Theta2P bounds NP calls by c times (log2(n+1)+1); PH union uses a fixed finite level per language."
+    },
+    {
+      "file": "lean/InclusionBench/Statistical.lean",
+      "inspection": "Complete module read",
+      "finding": "Concrete uniform samplers retain output multiplicities and compare statistical distance by exact integer cross-multiplication. The far/close thresholds implement the standard total Statistical Difference characterization; equivalence to every textbook model remains unproved."
+    }
+  ],
+  "padding_cross_review": {
+    "approved_targets": [
+      "P",
+      "NP",
+      "coNP",
+      "RP",
+      "coRP",
+      "ZPP",
+      "BPP",
+      "SBP",
+      "MA",
+      "coMA",
+      "AM",
+      "coAM",
+      "SZK",
+      "NPcapcoNP",
+      "Sigma2P",
+      "Pi2P",
+      "Delta2P",
+      "Theta2P",
+      "PH"
+    ],
+    "rules": [
+      "E subset C implies EXP subset C",
+      "NE subset C implies NEXP subset C"
+    ],
+    "method": "For each fixed language exponent use explicit injective polynomial padding of length (n+2)^k, then closure under deterministic polynomial-time many-one preimages. Polynomial witnesses and randomness, finite PH level, and logarithmic NP-query count are preserved. Zero-error expected-time/truncated-Las-Vegas equivalence is standard but not proved here.",
+    "restriction": "This does not approve padding that preserves a fixed n^c resource bound with the same c. Quantum, circuit, and counting targets belong to other reviewers."
+  },
+  "query_themes": [
+    "Full Complexity Zoo entries and aliases for every scoped class; current mirror used as discovery only.",
+    "NE/NEXP versus coNP, bounded NP queries, P^NP_parallel, Theta2P; Fu–Li–Zhong, Mocas and advice lower bounds.",
+    "SBP/MA/AM inclusions and collapses; FewP derandomization; oblivious alternation and NP circuit hypotheses.",
+    "SZK versus PP, SBP, BQP, QMA; statistical/perfect/noninteractive and promise variants.",
+    "Recent 2024–2026 ECCC/arXiv/proceedings results on BPP, MA, AM, PH, SZK and lower bounds; selected primary follow-up, not exhaustive proceedings indexing."
+  ],
+  "held_or_rejected_transfers": [
+    {
+      "claim": "SZK subset SBP, or SZK not subset PP/QMA",
+      "disposition": "Not established. Polarized promise problems and oracle/query separations do not settle total unrelativized classes.",
+      "source_ids": [
+        "auditCL-Vol20",
+        "auditCL-BCHTV16",
+        "auditCL-DGPV20"
+      ]
+    },
+    {
+      "claim": "SBP not subset QMA; AM not subset PP",
+      "disposition": "Relevant primary lower bounds are oracle statements; no ordinary separation imported.",
+      "source_ids": [
+        "auditCL-AKKT20",
+        "auditCL-Ver95"
+      ]
+    },
+    {
+      "claim": "BPP or MA subset Theta2P from two-query ZPP^NP simulation",
+      "disposition": "Invalid transfer: the outer ZPP randomness remains.",
+      "source_ids": [
+        "auditCL-Vol26"
+      ]
+    },
+    {
+      "claim": "Sigma2P or MA not subset Ppoly from every-fixed-degree lower bounds",
+      "disposition": "Invalid quantifier change; advice and arithmetic-circuit variants also require separate interpretation.",
+      "source_ids": [
+        "auditCL-GLV24"
+      ]
+    },
+    {
+      "claim": "BPP=P implies MA=NP",
+      "disposition": "Not licensed by total BPP=P alone: the verifier slices may be promise problems. No new rule imported.",
+      "source_ids": [
+        "auditCL-BGM03"
+      ]
+    },
+    {
+      "claim": "New promise-relativization consequences in September 2026",
+      "disposition": "arXiv:2609.07945 was first public 2026-09-07, after the cutoff; excluded.",
+      "url": "https://arxiv.org/abs/2609.07945"
+    },
+    {
+      "claim": "2026 QSZK or algebraic-independence results change a roster pair",
+      "disposition": "The inspected abstracts concern a different quantum space class or a particular problem; no transfer established.",
+      "urls": [
+        "https://arxiv.org/abs/2512.11597",
+        "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ICALP.2026.93"
+      ]
+    }
+  ],
+  "unresolved_risk_estimate": {
+    "unit": "Incorrect ordered-pair labels in this scope after the eight corrections; excludes future-discovered flaws in currently accepted proofs",
+    "status": "Subjective sensitivity elicitation, not a calibrated posterior or a certified upper bound",
+    "probability_interpretation": "Chance at least one still-missed pre-cutoff issue of the stated type affects this scope, conditional on this limited pass. Fanout is a conditional expected affected-pair count, not an observed maximum. Ranges are judgment inputs for cross-review; no independence assumption is made.",
+    "clusters": [
+      {
+        "id": "older-query-and-separation-literature",
+        "probability_range": [
+          0.1,
+          0.35
+        ],
+        "conditional_expected_pair_fanout_range": [
+          1,
+          6
+        ],
+        "expected_pair_contribution_range": [
+          0.1,
+          2.1
+        ],
+        "grounds": "One omitted theorem in this pass changed eight labels. Standard inclusion diagrams and all nineteen entries did not expose the query-bound separation, so a full-entry census is weak evidence against another such omission."
+      },
+      {
+        "id": "randomness-proof-counting-adjacency",
+        "probability_range": [
+          0.03,
+          0.15
+        ],
+        "conditional_expected_pair_fanout_range": [
+          2,
+          10
+        ],
+        "expected_pair_contribution_range": [
+          0.06,
+          1.5
+        ],
+        "grounds": "Primary SBP/SZK and oblivious-alternation papers plus the full entries supplied no other unconditional edge, but promise and operator variants are numerous; another edge could propagate to several supersets."
+      },
+      {
+        "id": "misinterpretation-of-an-existing-statement",
+        "probability_range": [
+          0.005,
+          0.03
+        ],
+        "conditional_expected_pair_fanout_range": [
+          10,
+          40
+        ],
+        "expected_pair_contribution_range": [
+          0.05,
+          1.2
+        ],
+        "grounds": "All four relevant concrete modules were read, and obvious promise/advice/quantifier traps were checked. The ordinary class-model equivalence proofs remain absent; a shared semantic mismatch could affect many pairs. This excludes a later-discovered flaw in an accepted mathematical proof."
+      },
+      {
+        "id": "recent-precutoff-omission",
+        "probability_range": [
+          0.01,
+          0.05
+        ],
+        "conditional_expected_pair_fanout_range": [
+          2,
+          20
+        ],
+        "expected_pair_contribution_range": [
+          0.02,
+          1.0
+        ],
+        "grounds": "Selective ECCC, arXiv, journal and 2026 proceedings follow-up found no relevant new pair theorem; it was not a complete publication census. A broad collapse or simulation would have correlated effects."
+      }
+    ],
+    "sum_of_cluster_contribution_endpoints": [
+      0.23,
+      5.8
+    ],
+    "aggregation_warning": "Clusters can overlap, so this is conservative sensitivity accounting rather than an exact expectation interval. Other agents overlap this pair scope; their estimates must not simply be added. The low endpoint does not establish the user stopping rule.",
+    "global_fewer_than_two_established": false
+  },
+  "next_pass_requests": [
+    "Independent reproduction of the NE/Theta2P padding derivation and all eight propagated labels, using the primary fixed-query theorem.",
+    "Cross-review the two new conditional rules and existing total-language MA/BPP rules for hidden promise assumptions.",
+    "Second reviewer to inspect the source interpretations and exact operational definitions; do not treat repeated AI agreement as independent expert evidence.",
+    "Concentrate remaining historical search on bounded-query exponential separations and auxiliary oblivious/lowness classes, where ordinary class diagrams omit information."
+  ],
+  "limitations": [
+    "No individual unreviewed pair is certified open by this audit.",
+    "The source search and complete class-entry screens are not an exhaustive literature corpus search.",
+    "Known baseline proofs are trusted cited inputs; this report neither formalizes nor re-proves all of them.",
+    "Current web pages have no cutoff authority; each imported result requires its primary pre-cutoff source.",
+    "Source inspection limits and coarse publication dates are stated separately.",
+    "The numeric risk inputs are provisional and need challenge in a distinct review pass."
+  ]
+}

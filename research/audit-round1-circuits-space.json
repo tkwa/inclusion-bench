@@ -1,0 +1,3669 @@
+{
+  "schema_version": 1,
+  "audit": "round1-circuits-space",
+  "reviewed_at": "2026-09-19",
+  "cutoff": "2026-09-01",
+  "baseline_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "status": "independent-first-round-complete-awaiting-rotation",
+  "scope": [
+    "AC0",
+    "ACC0",
+    "TC0",
+    "NC1",
+    "L",
+    "NL",
+    "LogCFL",
+    "NC",
+    "SC",
+    "Ppoly",
+    "NPpoly",
+    "PSPACE",
+    "EXP",
+    "NEXP",
+    "EXPSPACE",
+    "E",
+    "NE"
+  ],
+  "scope_pair_count": 1411,
+  "baseline_scope_counts": {
+    "inclusion": 414,
+    "separation": 405,
+    "candidate": 592
+  },
+  "all50_comparisons": "Snapshot includes every outgoing and incoming target for each assigned class,1411 distinct ordered pairs. Family and seed review is not1411 independent expert proofs of openness.",
+  "excluded_risk": "Future flaws in proofs currently accepted by the community, as instructed by user.",
+  "sources": [
+    {
+      "id": "Borodin1977",
+      "title": "On Relating Time and Space to Size and Depth",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/relating-time-space-size-depth.pdf",
+      "locator": "Section3, Lemma1 and Theorem4, printedp738; following paragraph gives nonrecursive length-language witness",
+      "publication_date": "1977-12",
+      "role": "primary-proof"
+    },
+    {
+      "id": "BCD1989",
+      "title": "Two Applications of Inductive Counting for Complementation Problems",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/two-applications-complementation-via-inductive-counting.pdf",
+      "locator": "Printedp560 uniform circuit inclusions; Section3.1 and Corollary15",
+      "publication_date": "1989-06",
+      "role": "primary-proof"
+    },
+    {
+      "id": "Williams2014",
+      "title": "Nonuniform ACC Circuit Lower Bounds",
+      "url": "https://people.csail.mit.edu/rrw/acc-lbs-journal-final.pdf",
+      "locator": "Theorem1.1; Lemma5.4; Section6",
+      "publication_date": "2014-01",
+      "role": "primary-proof"
+    },
+    {
+      "id": "FK2004",
+      "title": "NP with Small Advice",
+      "url": "https://eccc.weizmann.ac.il/report/2004/103/download/",
+      "locator": "Section5, printedp8; bibliography[10] FLZ1994",
+      "publication_date": "2004",
+      "role": "primary-research-recounting-earlier-theorem"
+    },
+    {
+      "id": "FLZ2010",
+      "title": "Separating NE from Nonuniform Nondeterministic Classes",
+      "url": "https://faculty.utrgv.edu/liyu.zhang/blz10-sepNE-joco.pdf",
+      "locator": "Introduction, attribution to Fu–Li–Zhong; use later direct primary theorem in classical dossier for admission",
+      "role": "author-hosted-primary-research"
+    },
+    {
+      "id": "BFS2009",
+      "title": "Unconditional Lower Bounds against Advice",
+      "url": "https://eccc.weizmann.ac.il/report/2009/064/download/",
+      "locator": "Theorem6; independently read by classical auditor; Buhrman, Fortnow, Santhanam",
+      "publication_date": "2009",
+      "role": "cross-auditor-primary-proof"
+    },
+    {
+      "id": "AvM2012",
+      "title": "Nondeterministic Circuit Lower Bounds from Mildly Derandomizing Arthur-Merlin Games",
+      "url": "https://eccc.weizmann.ac.il/report/2012/080/download/",
+      "locator": "Introduction printedp4, unconditional PSPACE⊆NP/poly⇒PSPACE⊆Σ3P; contrast Theorem2 extra promise-AM assumption",
+      "publication_date": "2012-06-18",
+      "role": "primary-research"
+    },
+    {
+      "id": "CR2006",
+      "title": "Oblivious Symmetric Alternation",
+      "url": "https://citeseerx.ist.psu.edu/document?doi=a30f7791418e769d6d763e8d78029eca86734039&repid=rep1&type=pdf",
+      "locator": "Karp–Lipton collapse to oblivious symmetric alternation; full direct PDF access failed, indexed primary text retrieved",
+      "publication_date": "2006",
+      "role": "supporting-primary-discovery"
+    },
+    {
+      "id": "BFFT1999",
+      "title": "Two Oracles that Force a Big Crunch",
+      "url": "https://cse.sc.edu/~fenner/papers/bigcrunch.pdf",
+      "locator": "Abstract and introduction: relativized NEXP=P^NP; bounded-query separations do not extend automatically to full P^NP",
+      "role": "primary-scope-check"
+    },
+    {
+      "id": "Mocas1996",
+      "title": "Separating classes in the exponential-time hierarchy from classes in PH",
+      "url": "https://www.sciencedirect.com/science/article/pii/030439759500078X",
+      "locator": "Abstract; fixed constant c in NEXP versus P^NP[O(n^c)]",
+      "publication_date": "1996-05-20",
+      "role": "primary-scope-check"
+    },
+    {
+      "id": "PT2026",
+      "title": "Composing Low-Space Algorithms",
+      "url": "https://eccc.weizmann.ac.il/report/2025/140/revision/1/download/",
+      "locator": "Section4.3.1, printedp22/PDFp24; NC⊄SC explicitly a conjecture; time-space limits for directed reachability",
+      "publication_date": "2026-03-29",
+      "role": "recent-primary-open-boundary"
+    },
+    {
+      "id": "DG2022",
+      "title": "Evaluating Monotone Circuits on Surfaces",
+      "url": "https://eccc.weizmann.ac.il/report/2022/147/revision/1/download/",
+      "locator": "Introduction: LogDCFL versus LogCFL distinction; restricted circuit evaluation",
+      "publication_date": "2022",
+      "role": "scope-check"
+    },
+    {
+      "id": "CW2021",
+      "title": "Smaller ACC0 Circuits for Symmetric Functions",
+      "url": "https://arxiv.org/abs/2107.04706",
+      "locator": "Abstract: even EXP versus polynomial-size depth3 MOD6 remains open",
+      "publication_date": "2021-07-09",
+      "role": "primary-open-boundary"
+    },
+    {
+      "id": "CR2020",
+      "title": "Strong Average-Case Circuit Lower Bounds from Non-trivial Derandomization",
+      "url": "https://eccc.weizmann.ac.il/report/2020/010/",
+      "locator": "Revision1 abstract, NQP versus ACC0 with bottom THR layer",
+      "publication_date": "2020-09-03",
+      "role": "primary-frontier-sweep"
+    },
+    {
+      "id": "CTW2026",
+      "title": "Super-quadratic Lower Bounds for Depth-2 Linear Threshold Circuits",
+      "url": "https://eccc.weizmann.ac.il/report/2026/039/",
+      "locator": "Abstract: E^NP function versus depth2 threshold circuits of a fixed subcubic size",
+      "publication_date": "2026-03-15",
+      "role": "primary-frontier-sweep"
+    },
+    {
+      "id": "RW2026",
+      "title": "Near-Maximum Circuit Lower Bounds for Exponential Time with Merlin-Arthur Queries",
+      "url": "https://eccc.weizmann.ac.il/report/2026/118/",
+      "locator": "Revision1 abstract: E^promiseMA with one advice bit",
+      "publication_date": "2026-07-12",
+      "role": "primary-frontier-sweep"
+    },
+    {
+      "id": "Torus2026",
+      "title": "Lower Bounds and Separations for Torus Polynomials",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.88",
+      "locator": "Abstract: majority outside ACC0 remains conjectural",
+      "publication_date": "2026-01",
+      "role": "primary-open-boundary"
+    },
+    {
+      "id": "Montoya2026",
+      "title": "Entropy of pebble automata and space complexity",
+      "url": "https://arxiv.org/abs/2605.08555v1",
+      "locator": "PDF Theorem35 proof, printedpp15–17",
+      "publication_date": "2026-05-08",
+      "role": "excluded-unreviewed-claim"
+    }
+  ],
+  "zoo_access_note": "Full fresh live fetch failed403 forA/L/N/P/S/T. Named sections were read from indexed search responses, including available tails; E live fullpage succeeded. Zoo is discovery only and neither primary theorem evidence nor an authoritative cutoff snapshot.",
+  "zoo_entry_reviews": [
+    {
+      "class_id": "AC0",
+      "url": "https://complexityzoo.net/Complexity_Zoo:A",
+      "heading": "AC^{0}: Unbounded Fanin Constant-Depth Circuits",
+      "access": "indexed-named-section",
+      "primary_anchor": "FSS1984",
+      "outcome": "No new relation; nonuniform convention checked."
+    },
+    {
+      "class_id": "ACC0",
+      "url": "https://complexityzoo.net/Complexity_Zoo:A",
+      "heading": "ACC^{0}: AC^{0} With Arbitrary MOD Gates",
+      "access": "indexed-named-section",
+      "primary_anchor": "Williams2014",
+      "outcome": "Fixed finite moduli; old lower-bound text mapped to NE, not E."
+    },
+    {
+      "class_id": "TC0",
+      "url": "https://complexityzoo.net/Complexity_Zoo:T",
+      "heading": "TC^{0}: Constant-Depth Threshold Circuits",
+      "access": "indexed-named-section",
+      "primary_anchor": "CTW2026",
+      "outcome": "Depth-specific lower bounds do not separate the union over fixed depths."
+    },
+    {
+      "class_id": "NC1",
+      "url": "https://complexityzoo.net/Complexity_Zoo:N",
+      "heading": "NC^{1}: Level 1 of NC",
+      "access": "indexed-named-section",
+      "primary_anchor": "Borodin1977",
+      "outcome": "Zoo inherits a uniform convention; benchmark NC1 is nonuniform. No NC1⊆L import."
+    },
+    {
+      "class_id": "L",
+      "url": "https://complexityzoo.net/Complexity_Zoo:L",
+      "heading": "L: Logarithmic Space",
+      "access": "indexed-named-section",
+      "primary_anchor": "Borodin1977",
+      "outcome": "Uniform NC1 reference does not change benchmark NC1."
+    },
+    {
+      "class_id": "NL",
+      "url": "https://complexityzoo.net/Complexity_Zoo:N",
+      "heading": "NL: Nondeterministic Logarithmic-Space",
+      "access": "indexed-named-section",
+      "primary_anchor": "BCD1989",
+      "outcome": "Complement closure and LogCFL inclusion already represented."
+    },
+    {
+      "class_id": "LogCFL",
+      "url": "https://complexityzoo.net/Complexity_Zoo:L",
+      "heading": "LOGCFL: Logarithmically Reducible to CFL",
+      "access": "indexed-named-section",
+      "primary_anchor": "BCD1989",
+      "outcome": "Uniform SAC1 characterization, complement closure already represented."
+    },
+    {
+      "class_id": "NC",
+      "url": "https://complexityzoo.net/Complexity_Zoo:N",
+      "heading": "NC: Nick's Class",
+      "access": "indexed-named-section",
+      "primary_anchor": "Borodin1977",
+      "outcome": "Logspace uniformity used; no transfer of random-oracle separations."
+    },
+    {
+      "class_id": "SC",
+      "url": "https://complexityzoo.net/Complexity_Zoo:S",
+      "heading": "SC: Steve's Class",
+      "access": "indexed-named-section",
+      "primary_anchor": "PT2026",
+      "outcome": "Same machine must meet time and space bounds; not an intersection of two algorithms."
+    },
+    {
+      "class_id": "Ppoly",
+      "url": "https://complexityzoo.net/Complexity_Zoo:P",
+      "heading": "P/poly: Nonuniform Polynomial-Time",
+      "access": "indexed-named-section",
+      "primary_anchor": "CR2006",
+      "outcome": "Advice and circuit characterization; flagged missing PH⊆Ppoly conditional."
+    },
+    {
+      "class_id": "NPpoly",
+      "url": "https://complexityzoo.net/Complexity_Zoo:N",
+      "heading": "NP/poly: Nonuniform NP",
+      "access": "indexed-named-section",
+      "primary_anchor": "AvM2012",
+      "outcome": "AM inclusion already represented; Σ3 collapse not Σ2."
+    },
+    {
+      "class_id": "PSPACE",
+      "url": "https://complexityzoo.net/Complexity_Zoo:P",
+      "heading": "PSPACE: Polynomial-Space",
+      "access": "indexed-named-section",
+      "primary_anchor": "Borodin1977",
+      "outcome": "Oracle-only strict containments excluded."
+    },
+    {
+      "class_id": "EXP",
+      "url": "https://complexityzoo.net/Complexity_Zoo:E",
+      "heading": "EXP: Exponential Time",
+      "access": "live-fullpage",
+      "primary_anchor": "CW2021",
+      "outcome": "Fixed-polynomial exponent union; no E^NP-to-E substitution."
+    },
+    {
+      "class_id": "NEXP",
+      "url": "https://complexityzoo.net/Complexity_Zoo:N",
+      "heading": "NEXP: Nondeterministic EXP",
+      "access": "indexed-named-section",
+      "primary_anchor": "BFS2009",
+      "outcome": "Found missing logarithmic-query separation through primary literature."
+    },
+    {
+      "class_id": "EXPSPACE",
+      "url": "https://complexityzoo.net/Complexity_Zoo:E",
+      "heading": "EXPSPACE: Exponential Space",
+      "access": "live-fullpage",
+      "primary_anchor": "Borodin1977",
+      "outcome": "Time versus space union boundaries remain candidates."
+    },
+    {
+      "class_id": "E",
+      "url": "https://complexityzoo.net/Complexity_Zoo:E",
+      "heading": "E: Exponential Time With Linear Exponent",
+      "access": "live-fullpage",
+      "primary_anchor": "Williams2014",
+      "outcome": "Known disequalities alone cannot select either noninclusion direction."
+    },
+    {
+      "class_id": "NE",
+      "url": "https://complexityzoo.net/Complexity_Zoo:N",
+      "heading": "NE: Nondeterministic E",
+      "access": "indexed-named-section",
+      "primary_anchor": "FK2004",
+      "outcome": "Fixed linear exponent; polynomial padding connects lower bounds with NEXP."
+    }
+  ],
+  "classification_snapshot": [
+    {
+      "class_id": "AC0",
+      "outgoing": {
+        "inclusion": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "separation": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": []
+      },
+      "incoming": {
+        "inclusion": [
+          "AC0"
+        ],
+        "separation": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": []
+      }
+    },
+    {
+      "class_id": "ACC0",
+      "outgoing": {
+        "inclusion": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": []
+      },
+      "incoming": {
+        "inclusion": [
+          "AC0",
+          "ACC0"
+        ],
+        "separation": [
+          "NEXP",
+          "EXPSPACE",
+          "NE"
+        ],
+        "candidate": [
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "E"
+        ]
+      }
+    },
+    {
+      "class_id": "TC0",
+      "outgoing": {
+        "inclusion": [
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "ACC0"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "AC0",
+          "ACC0",
+          "TC0"
+        ],
+        "separation": [
+          "EXPSPACE"
+        ],
+        "candidate": [
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      }
+    },
+    {
+      "class_id": "NC1",
+      "outgoing": {
+        "inclusion": [
+          "NC1",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1"
+        ],
+        "separation": [
+          "EXPSPACE"
+        ],
+        "candidate": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      }
+    },
+    {
+      "class_id": "L",
+      "outgoing": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH"
+        ]
+      }
+    },
+    {
+      "class_id": "NL",
+      "outgoing": {
+        "inclusion": [
+          "NL",
+          "LogCFL",
+          "NC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "SC"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH"
+        ]
+      }
+    },
+    {
+      "class_id": "LogCFL",
+      "outgoing": {
+        "inclusion": [
+          "LogCFL",
+          "NC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "SC"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH"
+        ]
+      }
+    },
+    {
+      "class_id": "NC",
+      "outgoing": {
+        "inclusion": [
+          "NC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "SC"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH"
+        ]
+      }
+    },
+    {
+      "class_id": "SC",
+      "outgoing": {
+        "inclusion": [
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "SC"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "NL",
+          "LogCFL",
+          "NC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH"
+        ]
+      }
+    },
+    {
+      "class_id": "Ppoly",
+      "outgoing": {
+        "inclusion": [
+          "Ppoly",
+          "NPpoly"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "Ppoly"
+        ],
+        "separation": [
+          "EXPSPACE"
+        ],
+        "candidate": [
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      }
+    },
+    {
+      "class_id": "NPpoly",
+      "outgoing": {
+        "inclusion": [
+          "NPpoly"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "NP",
+          "FewP",
+          "MA",
+          "AM",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "separation": [
+          "EXPSPACE"
+        ],
+        "candidate": [
+          "coUP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "coMA",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      }
+    },
+    {
+      "class_id": "PSPACE",
+      "outgoing": {
+        "inclusion": [
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "candidate": [
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      }
+    },
+    {
+      "class_id": "EXP",
+      "outgoing": {
+        "inclusion": [
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "E"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "E"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "candidate": [
+          "NEXP",
+          "EXPSPACE",
+          "NE"
+        ]
+      }
+    },
+    {
+      "class_id": "NEXP",
+      "outgoing": {
+        "inclusion": [
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "ZPP",
+          "UP",
+          "NP",
+          "FewP",
+          "NPcapcoNP",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "TC0",
+          "NC1",
+          "coRP",
+          "BPP",
+          "coUP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "candidate": [
+          "EXPSPACE"
+        ]
+      }
+    },
+    {
+      "class_id": "EXPSPACE",
+      "outgoing": {
+        "inclusion": [
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "E",
+          "NE"
+        ],
+        "candidate": [
+          "EXP",
+          "NEXP"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly"
+        ],
+        "candidate": []
+      }
+    },
+    {
+      "class_id": "E",
+      "outgoing": {
+        "inclusion": [
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P"
+        ],
+        "candidate": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "E"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "candidate": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "NE"
+        ]
+      }
+    },
+    {
+      "class_id": "NE",
+      "outgoing": {
+        "inclusion": [
+          "NEXP",
+          "EXPSPACE",
+          "NE"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "ZPP",
+          "UP",
+          "NP",
+          "FewP",
+          "NPcapcoNP"
+        ],
+        "candidate": [
+          "TC0",
+          "NC1",
+          "coRP",
+          "BPP",
+          "coUP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "E"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "ZPP",
+          "UP",
+          "NP",
+          "FewP",
+          "NPcapcoNP",
+          "E",
+          "NE"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "candidate": [
+          "coRP",
+          "BPP",
+          "coUP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP"
+        ]
+      }
+    }
+  ],
+  "known_seed_count": 84,
+  "known_seed_reviews": [
+    {
+      "id": "classical-inclusion-AC0-ACC0",
+      "relation": "inclusion",
+      "left": "AC0",
+      "right": "ACC0",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "circuit-bases"
+    },
+    {
+      "id": "classical-inclusion-ACC0-TC0",
+      "relation": "inclusion",
+      "left": "ACC0",
+      "right": "TC0",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "circuit-bases"
+    },
+    {
+      "id": "classical-inclusion-TC0-NC1",
+      "relation": "inclusion",
+      "left": "TC0",
+      "right": "NC1",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "circuit-bases"
+    },
+    {
+      "id": "classical-inclusion-NC1-Ppoly",
+      "relation": "inclusion",
+      "left": "NC1",
+      "right": "Ppoly",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "circuit-bases"
+    },
+    {
+      "id": "classical-inclusion-L-NL",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "NL",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-L-SC",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "SC",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-NC-P",
+      "relation": "inclusion",
+      "left": "NC",
+      "right": "P",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "uniform-circuit-time"
+    },
+    {
+      "id": "classical-inclusion-SC-P",
+      "relation": "inclusion",
+      "left": "SC",
+      "right": "P",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-P-E",
+      "relation": "inclusion",
+      "left": "P",
+      "right": "E",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-E-EXP",
+      "relation": "inclusion",
+      "left": "E",
+      "right": "EXP",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-E-NE",
+      "relation": "inclusion",
+      "left": "E",
+      "right": "NE",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-NP-NE",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "NE",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-NE-NEXP",
+      "relation": "inclusion",
+      "left": "NE",
+      "right": "NEXP",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-EXP-NEXP",
+      "relation": "inclusion",
+      "left": "EXP",
+      "right": "NEXP",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-P-Ppoly",
+      "relation": "inclusion",
+      "left": "P",
+      "right": "Ppoly",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "uniform-circuit-time"
+    },
+    {
+      "id": "classical-inclusion-Ppoly-NPpoly",
+      "relation": "inclusion",
+      "left": "Ppoly",
+      "right": "NPpoly",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-NP-NPpoly",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "NPpoly",
+      "baseline_source_ids": [
+        "AB2007"
+      ],
+      "review_group": "resource-monotonicity"
+    },
+    {
+      "id": "classical-inclusion-NL-LogCFL",
+      "relation": "inclusion",
+      "left": "NL",
+      "right": "LogCFL",
+      "baseline_source_ids": [
+        "BCD1989"
+      ],
+      "review_group": "logcfl"
+    },
+    {
+      "id": "classical-inclusion-LogCFL-NC",
+      "relation": "inclusion",
+      "left": "LogCFL",
+      "right": "NC",
+      "baseline_source_ids": [
+        "BCD1989"
+      ],
+      "review_group": "logcfl"
+    },
+    {
+      "id": "classical-inclusion-L-NC",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "NC",
+      "baseline_source_ids": [
+        "BCD1989"
+      ],
+      "review_group": "logcfl"
+    },
+    {
+      "id": "classical-inclusion-NL-NC",
+      "relation": "inclusion",
+      "left": "NL",
+      "right": "NC",
+      "baseline_source_ids": [
+        "BCD1989"
+      ],
+      "review_group": "logcfl"
+    },
+    {
+      "id": "classical-inclusion-BPP-Ppoly",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "Ppoly",
+      "baseline_source_ids": [
+        "BG1981",
+        "Adleman1978"
+      ],
+      "review_group": "advice"
+    },
+    {
+      "id": "classical-inclusion-PH-PSPACE",
+      "relation": "inclusion",
+      "left": "PH",
+      "right": "PSPACE",
+      "baseline_source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "review_group": "polynomial-space-simulation"
+    },
+    {
+      "id": "classical-inclusion-PSPACE-EXP",
+      "relation": "inclusion",
+      "left": "PSPACE",
+      "right": "EXP",
+      "baseline_source_ids": [
+        "Savitch1970",
+        "AB2007"
+      ],
+      "review_group": "polynomial-space-simulation"
+    },
+    {
+      "id": "classical-inclusion-NEXP-EXPSPACE",
+      "relation": "inclusion",
+      "left": "NEXP",
+      "right": "EXPSPACE",
+      "baseline_source_ids": [
+        "Savitch1970"
+      ],
+      "review_group": "polynomial-space-simulation"
+    },
+    {
+      "id": "classical-separation-E-P",
+      "relation": "separation",
+      "left": "E",
+      "right": "P",
+      "baseline_source_ids": [
+        "HS1965"
+      ],
+      "review_group": "deterministic-time-hierarchy"
+    },
+    {
+      "id": "classical-separation-EXP-E",
+      "relation": "separation",
+      "left": "EXP",
+      "right": "E",
+      "baseline_source_ids": [
+        "HS1965"
+      ],
+      "review_group": "deterministic-time-hierarchy"
+    },
+    {
+      "id": "classical-separation-NE-NP",
+      "relation": "separation",
+      "left": "NE",
+      "right": "NP",
+      "baseline_source_ids": [
+        "SFM1978"
+      ],
+      "review_group": "nondeterministic-time-hierarchy"
+    },
+    {
+      "id": "classical-separation-NEXP-NE",
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "NE",
+      "baseline_source_ids": [
+        "SFM1978"
+      ],
+      "review_group": "nondeterministic-time-hierarchy"
+    },
+    {
+      "id": "classical-separation-EXPSPACE-PSPACE",
+      "relation": "separation",
+      "left": "EXPSPACE",
+      "right": "PSPACE",
+      "baseline_source_ids": [
+        "Seiferas1977"
+      ],
+      "review_group": "space-hierarchy"
+    },
+    {
+      "id": "classical-separation-PSPACE-SC",
+      "relation": "separation",
+      "left": "PSPACE",
+      "right": "SC",
+      "baseline_source_ids": [
+        "Seiferas1977"
+      ],
+      "review_group": "space-hierarchy"
+    },
+    {
+      "id": "classical-separation-PSPACE-NC",
+      "relation": "separation",
+      "left": "PSPACE",
+      "right": "NC",
+      "baseline_source_ids": [
+        "Borodin1977",
+        "Seiferas1977"
+      ],
+      "review_group": "space-hierarchy"
+    },
+    {
+      "id": "classical-separation-L-AC0",
+      "relation": "separation",
+      "left": "L",
+      "right": "AC0",
+      "baseline_source_ids": [
+        "FSS1984"
+      ],
+      "review_group": "parity-lower-bound"
+    },
+    {
+      "id": "classical-separation-ACC0-AC0",
+      "relation": "separation",
+      "left": "ACC0",
+      "right": "AC0",
+      "baseline_source_ids": [
+        "FSS1984"
+      ],
+      "review_group": "parity-lower-bound"
+    },
+    {
+      "id": "classical-separation-NE-ACC0",
+      "relation": "separation",
+      "left": "NE",
+      "right": "ACC0",
+      "baseline_source_ids": [
+        "Williams2014"
+      ],
+      "review_group": "acc-lower-bound"
+    },
+    {
+      "id": "classical-separation-AC0-L",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "L",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-NL",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NL",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-LogCFL",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "LogCFL",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-NC",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NC",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-SC",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SC",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "P",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-RP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "RP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-coRP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coRP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-ZPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "ZPP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-BPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "BPP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-UP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "UP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-coUP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coUP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-NP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-coNP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coNP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-FewP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "FewP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-SPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SPP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-CeqP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "CeqP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-PP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "PP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-parityP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "parityP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-AWPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "AWPP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-LWPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "LWPP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-WPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "WPP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-MA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "MA",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-coMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coMA",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-AM",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "AM",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-coAM",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coAM",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-QCMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "QCMA",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-QMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "QMA",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-coQMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coQMA",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-BQP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "BQP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-SBP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SBP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-SZK",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SZK",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-NPcapcoNP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NPcapcoNP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-Sigma2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Sigma2P",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-Pi2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Pi2P",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-Delta2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Delta2P",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-Theta2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Theta2P",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-PH",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "PH",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-PSPACE",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "PSPACE",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-EXP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "EXP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-NEXP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NEXP",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-EXPSPACE",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "EXPSPACE",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-E",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "E",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-AC0-NE",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NE",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nonuniform-undecidability"
+    },
+    {
+      "id": "classical-separation-EXPSPACE-NPpoly",
+      "relation": "separation",
+      "left": "EXPSPACE",
+      "right": "NPpoly",
+      "baseline_source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "review_group": "nondeterministic-circuit-diagonalization"
+    },
+    {
+      "id": "classical-inclusion-AM-NPpoly",
+      "relation": "inclusion",
+      "left": "AM",
+      "right": "NPpoly",
+      "baseline_source_ids": [
+        "IKW2002Classical",
+        "Adleman1978"
+      ],
+      "review_group": "advice"
+    },
+    {
+      "id": "q-parityp-pspace",
+      "relation": "inclusion",
+      "left": "parityP",
+      "right": "PSPACE",
+      "baseline_source_ids": [
+        "q-ffkl02"
+      ],
+      "review_group": "polynomial-space-simulation"
+    },
+    {
+      "id": "q-pp-pspace",
+      "relation": "inclusion",
+      "left": "PP",
+      "right": "PSPACE",
+      "baseline_source_ids": [
+        "q-fr98"
+      ],
+      "review_group": "polynomial-space-simulation"
+    },
+    {
+      "id": "q-nexp-not-acc0",
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "ACC0",
+      "baseline_source_ids": [
+        "q-williams13"
+      ],
+      "review_group": "acc-lower-bound"
+    }
+  ],
+  "seed_review_groups": {
+    "circuit-bases": {
+      "status": "valid_model_match",
+      "argument": "Fixing the gate basis embeds AC0 in ACC0. Fixed-modulus gates have constant-depth threshold simulations. Majority has bounded-fan-in logarithmic-depth circuits, and a constant number of such layers remains logarithmic depth. Dropping depth gives P/poly.",
+      "anchors": [
+        "AB2007",
+        "Williams2014"
+      ],
+      "provenance_note": "Constructive basis checks; broad textbook citation not reread end-to-end this round."
+    },
+    "resource-monotonicity": {
+      "status": "valid_model_match",
+      "argument": "Resource enlargement, deterministic-to-nondeterministic simulation, and ignoring advice preserve the claimed unions. A halting logarithmic-space machine has polynomially many configurations, establishing L⊆SC with the same machine.",
+      "anchors": [
+        "AB2007"
+      ],
+      "provenance_note": "Checked against concrete finite-control definitions; baseline textbook is supporting reference."
+    },
+    "uniform-circuit-time": {
+      "status": "valid_model_match",
+      "argument": "A logspace generator has polynomial running time; evaluate its polynomial-size output topologically. Conversely, unrolling a polynomial-time computation yields a polynomial-size circuit.",
+      "anchors": [
+        "Borodin1977",
+        "AB2007"
+      ]
+    },
+    "logcfl": {
+      "status": "valid_model_match",
+      "argument": "Uniform SAC1 characterization supplies NL⊆LogCFL⊆NC. L⊆NC and NL⊆NC follow.",
+      "anchors": [
+        "BCD1989"
+      ],
+      "provenance_note": "Printedp560 contains these inclusions with uniformity explicit."
+    },
+    "advice": {
+      "status": "valid_model_match",
+      "argument": "Amplify error below 2^(-n-1), union-bound over inputs of length n, and fix the shared random string. BPP becomes deterministic advice computation; AM becomes nondeterministic advice computation.",
+      "anchors": [
+        "Adleman1978",
+        "IKW2002Classical"
+      ],
+      "provenance_note": "Elementary amplification/advice argument checked; original papers not reread in full this round."
+    },
+    "polynomial-space-simulation": {
+      "status": "valid_model_match",
+      "argument": "Enumerate polynomial witnesses/choices and counters in polynomial space; each fixed PH level has a polynomial-space simulation. Polynomial-space deterministic configuration counting gives exponential time; Savitch converts exponential nondeterministic space into the same exponential-space union.",
+      "anchors": [
+        "Savitch1970",
+        "Stockmeyer1976",
+        "q-fr98",
+        "q-ffkl02"
+      ],
+      "provenance_note": "Operational simulation checked; counting-specific source audit delegated to counting auditor."
+    },
+    "deterministic-time-hierarchy": {
+      "status": "valid_model_match",
+      "argument": "Hierarchy separates polynomial time from 2^(O(n)) and separates the latter union from 2^(poly(n)). Constants/finite alphabet/multitape polynomial overhead do not alter these unions.",
+      "anchors": [
+        "HS1965"
+      ],
+      "provenance_note": "Standard accepted hierarchy theorem assumed per user waiver; statement-to-union application reviewed."
+    },
+    "nondeterministic-time-hierarchy": {
+      "status": "valid_model_match",
+      "argument": "The nondeterministic time hierarchy yields NE⊄NP and NEXP⊄NE. Do not exchange nondeterministic and deterministic classes.",
+      "anchors": [
+        "SFM1978"
+      ],
+      "provenance_note": "Standard accepted hierarchy theorem assumed; statement-to-union application reviewed."
+    },
+    "space-hierarchy": {
+      "status": "valid_model_match",
+      "argument": "Space hierarchy separates exponential space from polynomial space and polynomial space from every polylogarithmic space bound. SC is within the latter; uniform NC is within it by Borodin Theorem4.",
+      "anchors": [
+        "Seiferas1977",
+        "Borodin1977"
+      ],
+      "provenance_note": "Borodin primary passage read directly; accepted space hierarchy statement assumed."
+    },
+    "parity-lower-bound": {
+      "status": "valid_model_match",
+      "argument": "Parity is computable in L and ACC0[2] but has no polynomial-size constant-depth AND/OR/NOT circuit family.",
+      "anchors": [
+        "FSS1984"
+      ],
+      "provenance_note": "Standard accepted parity lower bound; its nonuniform scope checked."
+    },
+    "acc-lower-bound": {
+      "status": "valid_model_match",
+      "argument": "Theorem1.1 directly rules out ACC0 for NTIME[2^n], hence NE and NEXP. Theorem1.2 uses E^NP and cannot be transferred to E.",
+      "anchors": [
+        "Williams2014",
+        "q-williams13"
+      ],
+      "provenance_note": "Direct primary Theorem1.1 and Lemma5.4 inspected."
+    },
+    "nonuniform-undecidability": {
+      "status": "valid_model_match",
+      "argument": "Choose a nonrecursive set S of lengths and output the constant bit [n∈S] at length n. This is an AC0 family, while every uniform roster class is recursive. Constants suffice, so no encoding or unary-recognition overhead is needed.",
+      "anchors": [
+        "Borodin1977"
+      ],
+      "provenance_note": "Explicit primary observation following Theorem4, printedp738. Quantum/counting total-language recursiveness cross-checked with their auditor."
+    },
+    "nondeterministic-circuit-diagonalization": {
+      "status": "valid_elementary_derivation",
+      "argument": "For large n choose s=2^(floor(n/4)). Nondeterministic circuit descriptions with at most s gates have O(s log s) bits, so fewer than 2^(2^n) truth tables arise. Enumerate truth tables and circuits and evaluate all nondeterministic assignments using O(2^n) space. Choose an omitted truth table. This defeats every polynomial circuit bound eventually, proving a language in EXPSPACE outside NP/poly. Unrestricted time is essential.",
+      "anchors": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "provenance_note": "Independent constructive audit; not attributed as a verbatim published theorem."
+    }
+  },
+  "conditional_review": {
+    "count_touching_scope": 69,
+    "reviewed_families": [
+      "Karp–Lipton/Meyer and MA collapses",
+      "IKW NEXP/MA equivalence",
+      "advice hardwiring for five nonuniform targets",
+      "polynomial and exponential padding with resource accounting",
+      "intersection rules and complement transport"
+    ],
+    "source_verification_limit": "Existing deep theorem proofs are trusted per user waiver. Several original papers were not reread in full in this round; individual mathematical statement transfer and model assumptions were reviewed."
+  },
+  "proposed_deltas": [
+    {
+      "id": "NE-not-Theta2P",
+      "kind": "known-separation",
+      "claim": {
+        "relation": "separation",
+        "left": "NE",
+        "right": "Theta2P"
+      },
+      "coordinating_owner": "classical_literature",
+      "sources": [
+        "FK2004",
+        "BFS2009",
+        "FLZ2010"
+      ],
+      "derivation": "Primary NEXP lower bound against fixed-polynomial bounded NP queries covers Theta2P. Polynomial padding from NEXP into NE preserves O(log n) query count when unpadding.",
+      "new_baseline_pairs": [
+        {
+          "relation": "separation",
+          "left": "NE",
+          "right": "Theta2P"
+        },
+        {
+          "relation": "separation",
+          "left": "NE",
+          "right": "coNP"
+        },
+        {
+          "relation": "separation",
+          "left": "NE",
+          "right": "coRP"
+        },
+        {
+          "relation": "separation",
+          "left": "NE",
+          "right": "coUP"
+        },
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "Theta2P"
+        },
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "coNP"
+        },
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "coRP"
+        },
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "coUP"
+        }
+      ],
+      "fanout_initial": 8,
+      "fanout_after_logical_coNP_fix": 2,
+      "admission": "Recommend addition after independent cross-review; avoid double-counting classical dossier."
+    },
+    {
+      "id": "NE-not-coNP",
+      "kind": "elementary-separation",
+      "claim": {
+        "relation": "separation",
+        "left": "NE",
+        "right": "coNP"
+      },
+      "coordinating_owner": "root-logical-audit",
+      "derivation": "NE⊆coNP implies NP⊆coNP and hence NP=coNP. Then NE⊆NP contradicts the nondeterministic time hierarchy.",
+      "fanout_initial": 6,
+      "admission": "Root handles generic failed-literal reasoning; no duplicate baseline seed required."
+    },
+    {
+      "id": "pspace-nondeterministic-circuits-ph",
+      "kind": "conditional",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "NPpoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "PH"
+        }
+      ],
+      "sources": [
+        "AvM2012"
+      ],
+      "derivation": "The unconditional collapse goes to Sigma3P, a subclass of PH.",
+      "baseline_fanout": 0,
+      "admission": "Recommended; do not conclude Sigma2P without the additional promise-AM premise."
+    },
+    {
+      "id": "np-circuits-ph-circuits",
+      "kind": "conditional",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Ppoly"
+        }
+      ],
+      "sources": [
+        "CR2006"
+      ],
+      "derivation": "Also follows elementarily: the premise makes NP/poly=P/poly; iterate elimination of each fixed number of PH quantifiers using closure of P/poly under complement and polynomial-size composition.",
+      "baseline_fanout": 0,
+      "coordinating_owner": "classical_literature",
+      "admission": "Recommended after cross-review of explicit elementary derivation."
+    },
+    {
+      "id": "general-polynomial-padding",
+      "kind": "conditional-family",
+      "coordinating_owner": "root-logical-audit",
+      "template": [
+        "E⊆C implies EXP⊆C",
+        "NE⊆C implies NEXP⊆C"
+      ],
+      "scope_reviewed": [
+        "AC0",
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE"
+      ],
+      "excluded_targets": [
+        "E",
+        "NE"
+      ],
+      "derivation": "Specific length-regular polynomial padding preserves all listed targets. Small circuit families fix padding inputs. Uniform small-space models simulate the padded input with logarithmic counters. SC preserves both bounds on the same simulation. Advice at the padded length is still polynomial in original length.",
+      "admission": "Independently confirmed; this uses closure under this padding, not arbitrary polynomial reductions."
+    }
+  ],
+  "semantic_audit": [
+    {
+      "files": [
+        "lean/InclusionBench/Machines.lean"
+      ],
+      "checks": [
+        "Transition tables have finite domains and finitely many choices; no arbitrary initialization or hidden oracle.",
+        "Input head is bounded by endmarkers and input tape excluded from space.",
+        "WorkTape footprint measures the visited interval, not merely currently nonblank cells.",
+        "NL requires a finite bound on every branch and bounded workspace on every reachable configuration.",
+        "SC uses the same deterministic machine for both resources; halting freezes execution.",
+        "E/NE use linear exponents, EXP/NEXP/EXPSPACE union polynomial exponents. Polynomial machine-model overhead preserves these definitions."
+      ],
+      "result": "No class-changing discrepancy found."
+    },
+    {
+      "files": [
+        "lean/InclusionBench/Circuits.lean"
+      ],
+      "checks": [
+        "AC0/ACC0/TC0/NC1/Ppoly allow arbitrary nonuniform families, including nonrecursive length languages.",
+        "Gate references are backwards Fin indices: acyclicity is structural.",
+        "ACC0 has one fixed modulus per family; finite fixed collections of moduli can be combined without length-dependent modulus.",
+        "Size counts gates and wires, not literal bit encoding; polynomial overhead preserves every roster size union.",
+        "Majority tie convention is at least half; constants and repeated wires give usual threshold gates."
+      ],
+      "result": "No class-changing discrepancy found; output-depth convention addressed separately."
+    },
+    {
+      "files": [
+        "lean/InclusionBench/UniformCircuits.lean"
+      ],
+      "checks": [
+        "Generator emits concrete circuit serialization with unary-coded natural fields, polynomial overhead.",
+        "Generator must halt in polynomial time and use logarithmic workspace on every input; circuit depends only on length.",
+        "Output-depth rather than maximum unused-gate depth is harmless: unroll every gate for d(n) layers; the designated output stabilizes by d(n), with polynomial size and logspace generation. This avoids assuming reachability trimming is in L."
+      ],
+      "result": "No class-changing discrepancy found; textbook equivalence remains an unformalized mathematical model argument."
+    },
+    {
+      "files": [
+        "lean/InclusionBench/LogCFL.lean",
+        "lean/InclusionBench/Transducers.lean",
+        "lean/InclusionBench/ProofSystems.lean"
+      ],
+      "checks": [
+        "LogCFL uses a finite grammar and a concrete logspace polynomial-time transducer.",
+        "Output is append-only, write-only and excluded from workspace; transitions cannot inspect it.",
+        "NPpoly arbitrary advice depends only on length, intentionally; verifier and witness bound are polynomial."
+      ],
+      "result": "No class-changing discrepancy found."
+    }
+  ],
+  "recent_primary_sweep": [
+    {
+      "source": "CR2020",
+      "disposition": "No new roster pair",
+      "reason": "Nondeterministic quasipolynomial time lies in NE. ACC0 with a bottom threshold layer is weaker than unrestricted TC0. Existing NE⊄ACC0 covers roster consequence."
+    },
+    {
+      "source": "CTW2026",
+      "disposition": "No new roster pair",
+      "reason": "Oracle class E^NP and fixed depth2/fixed polynomial size; neither plain E nor the full TC0 union."
+    },
+    {
+      "source": "RW2026",
+      "disposition": "No new roster pair",
+      "reason": "Promise-MA queries and one advice bit cannot be removed from the hard-function class."
+    },
+    {
+      "source": "Torus2026",
+      "disposition": "Supports an unresolved boundary",
+      "reason": "A restricted approximation model; no established TC0⊄ACC0 theorem."
+    },
+    {
+      "source": "PT2026",
+      "disposition": "Supports unresolved NC/SC boundary",
+      "reason": "The relevant class separation is explicitly used as a conjecture."
+    },
+    {
+      "source": "Montoya2026",
+      "disposition": "Do not admit as known",
+      "reason": "Theorem35 proof assumes arbitrary automaton decomposes into local A_k and global B routines without a normalization result. It also assumes a projection of a uniform configuration distribution is uniform; equal fiber sizes are not established. No publication/acceptance evidence was found. This is a present proof gap in an unreviewed claim, not a forecast of failure of an accepted proof.",
+      "required_next_step": "Independent review of the two stated gaps; revisit if a corrected accepted proof appears."
+    }
+  ],
+  "unresolved_boundaries": [
+    "NC vsSC; NL/LogCFL vsSC",
+    "L/NL/LogCFL/NC/SC vsnonuniformACC0/TC0/NC1",
+    "EXP/PSPACE/NEXP vsPpoly/NPpoly",
+    "EXP vsACC0; NE/NEXP vsTC0 orNC1",
+    "EXPSPACE vsEXP/NEXP",
+    "E vsNP/PSPACE andEXP vsNP",
+    "NE/NEXP vsfullDelta2P, distinct fromTheta2P"
+  ],
+  "uncertainty": {
+    "conclusion": "This round does not justify expected remaining incorrect classifications below2.",
+    "ranges_status": "Explicit sensitivity ranges, not calibrated posterior estimates; do not combine as independent events or publish their products as a certified expectation.",
+    "risks": [
+      {
+        "id": "missed-old-exponential-oracle-separation",
+        "probability_of_at_least_one_more_error_range": [
+          0.05,
+          0.25
+        ],
+        "conditional_affected_pairs_range": [
+          2,
+          16
+        ],
+        "basis": "This round actually found the old Theta2 separation absent from seed lists and Zoo entry. A broad historical query-model sweep is not yet complete.",
+        "next_review": "Rotate another auditor through E/NE/EXP/NEXP versus full bounded-query, counting, and interactive families."
+      },
+      {
+        "id": "uniformity-or-advice-transfer",
+        "probability_of_at_least_one_error_range": [
+          0.005,
+          0.03
+        ],
+        "conditional_affected_pairs_range": [
+          1,
+          264
+        ],
+        "basis": "Definitions and direct Borodin paragraph strongly support the main nonuniform block; an unnoticed model-convention transfer could nevertheless affect many labels. These numbers are sensitivity assumptions, not measured calibration.",
+        "next_review": "Independent machine/circuit semantics review, especially all44 uniform endpoints of the unary witness."
+      },
+      {
+        "id": "late-precutoff-circuit-or-space-theorem",
+        "probability_of_at_least_one_error_range": [
+          0.01,
+          0.1
+        ],
+        "conditional_affected_pairs_range": [
+          1,
+          20
+        ],
+        "basis": "Several2026 primary frontiers checked; no complete proceedings/revision census yet. Recent unreviewed separation claim was located and triaged.",
+        "next_review": "Cross-check CCC/STOC/FOCS/ITCS/ECCC2024–cutoff metadata and accepted scope."
+      },
+      {
+        "id": "missing-logical-consequence",
+        "probability_of_at_least_one_more_error_range": [
+          0.02,
+          0.2
+        ],
+        "conditional_affected_pairs_range": [
+          2,
+          24
+        ],
+        "basis": "Elementary NE/coNP omission and general padding omission demonstrate that existing transitive closure was incomplete. Root exhaustive failed-literal pass is pending integration.",
+        "next_review": "Replay expanded implication and contradiction certificates, then resweep every candidate in the1411-pair union."
+      }
+    ],
+    "reason_no_global_bound": "Scope overlaps other auditors; conditional fanout may exceed the illustrative ranges; candidate sampling is not random; older Θ2 omission warns against estimating from search absence alone.",
+    "next_step": "Rotate reviewers and integrate definite corrections, then measure actual reachable pair fanout for each remaining concrete uncertainty."
+  }
+}

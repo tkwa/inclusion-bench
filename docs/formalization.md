@@ -1,8 +1,8 @@
 # Formalization status
 
-**Version 0.2.0 is operational: all 50 canonical class definitions compile, the inference kernel is checked, and new ordinary proofs have an isolated Lean verification route.** The Mathlib-free core supplies 46 definitions; the quantum project supplies four more and the complete interpretation. Existing cited theorems and model conventions are explicit trusted baseline inputs. Their proofs do not need to be recreated in Lean before running the benchmark.
+**Version 0.3.0 is operational: all 50 canonical class definitions compile, the inference kernel is checked, and new ordinary proofs have an isolated Lean verification route.** The Mathlib-free core supplies 46 definitions; the quantum project supplies four more and the complete interpretation. Existing cited theorems and model conventions are explicit trusted baseline inputs. Their proofs do not need to be recreated in Lean before running the benchmark.
 
-Textbook-model equivalences, general quantum gate unitarity and an automatic formal ZFC implementation remain future work. These limitations are documented rather than used as a launch gate for ordinary runs. A model still has to prove its exact new claim against the frozen class interpretation; merely compiling definitions or a conditional consequence does not establish a breakthrough. Historical review separately determines whether each resolved pair earns a point.
+Textbook-model equivalences, quantum amplification and an automatic formal ZFC implementation remain future work. These limitations are documented rather than used as a launch gate for ordinary runs. A model still has to prove its exact new claim against the frozen class interpretation; merely compiling definitions or a conditional consequence does not establish a breakthrough. Historical review separately determines whether each resolved pair earns a point.
 
 ## What has been proved
 
@@ -59,7 +59,7 @@ Import `InclusionQuantum` to obtain `InclusionBench.Quantum.completeInterpretati
 
 These definitions fix concrete conventions; they do not prove equivalence with every textbook machine or encoding convention. Several elementary containments are proved directly: deterministic resource-bound monotonicity, SC ⊆ P, E ⊆ EXP, NE ⊆ NEXP, NC¹ ⊆ P/poly, AC⁰ ⊆ ACC⁰, UP ⊆ FewP, SPP ⊆ PP, SPP ⊆ AWPP, RP ⊆ SBP, Θ₂P ⊆ Δ₂P, and Σ₂P ⊆ PH for the supplied definitions. Deep literature results have not been recreated in Lean.
 
-The quantum project also proves normalization of computational basis states, injectivity of gate records, and that applying X twice restores the state. General gate unitarity, preservation of normalization by arbitrary circuits, amplification, and equivalence with conventional quantum models remain unproved. In particular, the presence of an `acceptanceProbability` definition does not mean the library has proved all probability invariants for it.
+The quantum project proves normalization of computational basis states, injectivity of gate records, and that applying X twice restores the state. `InclusionQuantum/Normalization.lean` proves that every H, T, X and CNOT gate preserves squared norm; any circuit and the input/witness/ancilla embedding preserve normalization; and acceptance lies between zero and one for normalized witnesses. It also checks the empty witness used by BQP. These theorems use the actual class definitions. Amplification and equivalence with conventional quantum models remain separate trusted mathematics.
 
 ## What the Python-to-Lean bridge certifies
 
@@ -77,9 +77,9 @@ The Linux driver runs candidate elaboration in a container with one CPU, 8 GiB m
 
 The current format accepts checked theorem, definition and opaque bodies. It rejects new axioms, unsafe/partial declarations, unresolved expressions and new inductive/constructor/recursor declarations. Supporting additional declaration forms is an extension of the proof format, not permission to bypass kernel checking. The trusted Lean compiler, dependency objects, checker code and maintainer review process remain part of the trust boundary.
 
-A verified report binds the dataset, source bytes, claims, checker and semantic-source hashes, and records the trusted baseline assumptions and runtime. It establishes the submitted ordinary theorem relative to those explicit historical inputs. It does not establish model authorship, budget compliance, historical novelty or ZFC independence. `review-proof` binds that evidence to a sealed model artifact; run review and per-pair historical review are still required before scoring.
+A verified report binds the dataset, source bytes, claims, checker and semantic-source hashes, and records the trusted baseline assumptions and runtime. It establishes the submitted ordinary theorem relative to those explicit historical inputs. It does not establish model authorship, budget compliance, historical novelty or ZFC independence. `review-proof` binds that evidence to a sealed model artifact; run review and recorded per-pair historical decisions are still required before scoring. The release-wide audit supplies the latter for this suite.
 
-All proof candidates in a run must be adjudicated. A genuine completed run may receive an official zero once its provenance and candidates are reviewed; the 1,386 frozen candidates do not require blanket openness certification. See [the specification](SPEC.md) for subset cohorts and scoring gates.
+All proof candidates in a run must be adjudicated. A genuine completed run may receive an official zero once its provenance and candidates are reviewed; the 1,378 frozen questions already have revisable historical decisions. See [the specification](SPEC.md) for subset cohorts and scoring gates.
 
 ## Independence and ZFC
 

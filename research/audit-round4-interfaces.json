@@ -1,0 +1,3046 @@
+{
+  "schema_version": 1,
+  "audit_round": 4,
+  "reviewer": "quantum_coverage",
+  "date": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+  "scope": {
+    "counting_classes": [
+      "UP",
+      "coUP",
+      "FewP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "LWPP",
+      "WPP"
+    ],
+    "other_class_families": {
+      "randomized": [
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP"
+      ],
+      "nondeterministic_and_intersection": [
+        "NP",
+        "coNP",
+        "NPcapcoNP"
+      ],
+      "classical_proof": [
+        "MA",
+        "coMA",
+        "AM",
+        "coAM"
+      ],
+      "quantum": [
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP"
+      ],
+      "small_probability_and_zero_knowledge": [
+        "SBP",
+        "SZK"
+      ],
+      "polynomial_hierarchy": [
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH"
+      ]
+    },
+    "directed_pair_count": 440,
+    "status_counts": {
+      "candidate": 385,
+      "inclusion": 55
+    },
+    "excluded": "Internal counting pairs; exponential-time, space, circuit and advice endpoints; all other pairs outside this Cartesian slice. A few quantum/SBP/SZK stress cases are discussed as adjacent scope.",
+    "prior_broader_interface_candidate_count": 526,
+    "candidates_in_current_slice": 385,
+    "broader_candidates_outside_current_slice": 141
+  },
+  "result": {
+    "proposed_seed_additions": [],
+    "proposed_seed_deletions": [],
+    "proposed_baseline_label_corrections": [],
+    "new_conditional_rule_proposals": [],
+    "ordinary_labels_changed": 0,
+    "summary": "No additional established ordinary inclusion or separation found. The main new evidence is explicit primary scope checks, oracle barriers, and an auxiliary-class graph projection with zero new roster edges."
+  },
+  "sources": [
+    {
+      "id": "interface-MN16",
+      "title": "Quantum interpretations of AWPP and APP",
+      "authors": "Tomoyuki Morimae; Harumichi Nishimura",
+      "year": 2016,
+      "url": "https://www.rintonpress.com/xxqic16/qic-16-56/0498-0514.pdf",
+      "locator": "pp.499–504, Figure1, Theorems3–8; §6 p.508; AppendixB pp.510–511",
+      "reviewed": "Read the class definitions and theorem statements; checked the input-side intersection in Theorem8 and gate convention on p.499.",
+      "quote": "UP ∩ coUP ⊆ postBPPFP ⊆ WAPP.",
+      "scope": "Ordinary languages, with additional postselection classes and an explicitly fixed Hadamard/Toffoli gate set for exact identities."
+    },
+    {
+      "id": "interface-BCHTV16",
+      "title": "On SZK and PP",
+      "authors": "Adam Bouland; Lijie Chen; Dhiraj Holden; Justin Thaler; Prashant Nalini Vasudevan",
+      "year": 2016,
+      "url": "https://eccc.weizmann.ac.il/report/2016/140/revision/2/download",
+      "locator": "§1 pp.1–2; Figure1 p.8; Corollary5.4 p.25; Lemma6.3 p.27; Theorem8.1 p.30",
+      "reviewed": "Read the oracle quantifier, the HVPZK upper bound, and the stronger-polarization hypothesis.",
+      "quote": "There exists an oracle O such that NISZKᴼ ⊄ UPPᴼ.",
+      "scope": "The principal separations are relativized. HVPZK is not the roster class SZK. Revision2 was posted2016-11-29; the later title is On the Power of Statistical Zero Knowledge.",
+      "publication_date": "2016-11-29"
+    },
+    {
+      "id": "interface-Vol20",
+      "title": "The Untold Story of SBP",
+      "authors": "Ilya Volkovich",
+      "year": 2020,
+      "url": "https://eccc.weizmann.ac.il/report/2018/088/revision/1/download",
+      "locator": "Theorem2 p.2; Definitions2.12–2.13 p.7; Lemma3.2 and proof p.9",
+      "reviewed": "Read the exact statistical-distance parameters and the meaning of n as sampler input length.",
+      "quote": "Our next main result exhibits a non-trivial problem in the intersection of the promised versions of SZK and SBP.",
+      "scope": "Theorem2 concerns an extreme-gap promise problem. It does not give a reduction of every SZK language to that problem."
+    },
+    {
+      "id": "interface-AKKT20",
+      "title": "Quantum Lower Bounds for Approximate Counting via Laurent Polynomials",
+      "authors": "Scott Aaronson; Robin Kothari; William Kretschmer; Justin Thaler",
+      "year": 2020,
+      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol169-ccc2020/LIPIcs.CCC.2020.7/LIPIcs.CCC.2020.7.pdf",
+      "locator": "Figure1 and discussion p.7:4; Corollary20 pp.7:21–7:22",
+      "reviewed": "Read the explicit oracle construction and the distinction between QMA and SBQP.",
+      "quote": "There exists an oracle A and a pair of languages L0, L1 such that:",
+      "scope": "SBP⊄QMA is relative to an oracle; SBQP contains both classes. Neither oracle separation is a benchmark separation."
+    },
+    {
+      "id": "interface-STT05",
+      "title": "Quantum and Classical Complexity Classes: Separations, Collapses, and Closure Properties",
+      "authors": "Holger Spakowski; Mayur Thakur; Rahul Tripathi",
+      "year": 2005,
+      "url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=464&itemId=374",
+      "alternate_url": "https://citeseerx.ist.psu.edu/document?doi=d52acf5cae7e117a88744fa578719a97afc7e26d&repid=rep1&type=pdf",
+      "locator": "Proposition2.12; Theorem3.1; Corollary3.12 (author manuscript p.13)",
+      "reviewed": "Rechecked the ordinary inclusion chains and the ZPP/WPP oracle barrier. Prior rounds inspected original rendered pages for the closure section.",
+      "scope": "Corollary3.12 separates ZPP from WPP relative to a single oracle, and extends to superclass/subclass pairs."
+    },
+    {
+      "id": "interface-MW18",
+      "title": "Oracle Separations for Quantum Statistical Zero-Knowledge",
+      "authors": "Sanketh Menda; John Watrous",
+      "year": 2018,
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/OraclesQSZK.pdf",
+      "locator": "Abstract and §1; §3 first oracle construction pp.7–11",
+      "reviewed": "Read the UP∩coUP endpoint and the classical-oracle setting.",
+      "quote": "quantum statistical zero knowledge does not contain UP ∩ coUP",
+      "scope": "An oracle result about QSZK, a distinct class. Since classical Statistical Difference embeds in quantum state distinguishability, this also obstructs relativizing UP∩coUP⊆SZK."
+    },
+    {
+      "id": "interface-BBF98",
+      "title": "NP Might Not Be As Easy As Detecting Unique Solutions",
+      "authors": "Richard Beigel; Harry Buhrman; Lance Fortnow",
+      "year": 1998,
+      "url": "https://lance.fortnow.com/papers/files/newiso.pdf",
+      "locator": "Theorem1.4 p.1; Corollary1.7 p.2; §5 p.3",
+      "reviewed": "Checked that the parity collapse and the ZPP collapse are for the same oracle.",
+      "scope": "The constructed oracle has P=parityP and ZPP=EXP. Thus ZPP⊄parityP in that world; this is not an ordinary negative fact."
+    },
+    {
+      "id": "interface-VW16",
+      "title": "Quantum Proofs",
+      "authors": "Thomas Vidick; John Watrous",
+      "year": 2016,
+      "url": "https://arxiv.org/pdf/1610.01664",
+      "locator": "§3.2.3 pp.44–45; §3.4.4 pp.61–63; §3.5 pp.64–65",
+      "reviewed": "Read the PP simulation and classical-witness discussion, including the distinction between query cost and total time.",
+      "scope": "The survey states MA⊆QCMA⊆QMA⊆PP. Restricting its promise-class simulations to total languages is valid. Group non-membership is an individual problem, not a known QMA-complete problem."
+    },
+    {
+      "id": "interface-Fenner02",
+      "title": "PP-lowness and a simple definition of AWPP",
+      "authors": "Stephen A. Fenner",
+      "year": 2002,
+      "url": "https://eccc.weizmann.ac.il/report/2002/036/download/",
+      "locator": "Theorem1.1; Definitions1.2 onward; abstract",
+      "reviewed": "Checked the bounded GapP criterion and the direction AWPP⊆APP⊆PP; primary PDF text has encoding defects, with theorem text visible through its indexed ECCC record.",
+      "scope": "APP and the class of PP-low languages are upper classes, not synonyms for AWPP or WPP."
+    },
+    {
+      "id": "interface-BGM03",
+      "title": "Small Bounded-Error Computations and Completeness",
+      "authors": "Elmar Böhler; Christian Glaßer; Daniel Meister",
+      "year": 2003,
+      "url": "https://eccc.weizmann.ac.il/report/2003/069/download",
+      "locator": "Abstract; §2; Proposition3.3; operator results in §4",
+      "reviewed": "Checked the SBP machine characterization and surrounding operator taxonomy. This ECCC paper does not contain the separate WAPP taxonomy of the earlier MFCS paper.",
+      "scope": "Its use of promise class describes restrictions on recognizing machines; the benchmark still uses total languages."
+    },
+    {
+      "id": "interface-BGM06",
+      "title": "Error-bounded probabilistic computations between MA and AM",
+      "authors": "Elmar Böhler; Christian Glaßer; Daniel Meister",
+      "year": 2006,
+      "url": "https://www.sciencedirect.com/science/article/pii/S0022000006000778",
+      "locator": "Publisher abstract; DOI10.1016/j.jcss.2006.05.001; WAPP definition additionally restated in MN16 Definition11",
+      "reviewed": "Publisher abstract read; an October2002 manuscript was located at CiteSeerX but the full retrieval failed. No claim of full-text review of that version.",
+      "scope": "MA⊆SBP⊆AM∩BPPpath; a stated SBP/Σ2P separation is relativized."
+    },
+    {
+      "id": "interface-Hitchcock03",
+      "title": "The Size of SPP",
+      "authors": "John M. Hitchcock",
+      "year": 2003,
+      "url": "https://www.eecs.uwyo.edu/~jhitchco/papers/sspp.pdf",
+      "locator": "Theorems1.1–1.3 pp.1–2; Theorem2.1 p.3",
+      "reviewed": "Read the measure hypotheses on all collapse claims.",
+      "scope": "PH⊆SPP is conditional on nonzero resource-bounded measure; lowness alone does not remove that hypothesis."
+    },
+    {
+      "id": "interface-Fortnow99",
+      "title": "Relativized Worlds with an Infinite Hierarchy",
+      "authors": "Lance Fortnow",
+      "year": 1999,
+      "url": "https://lance.fortnow.com/papers/files/sppph.pdf",
+      "locator": "Theorems4.1–4.3 pp.4–5",
+      "reviewed": "Read both oracle worlds and the randomized counting simulation used in their construction.",
+      "scope": "These statements do not place ordinary PH inside SPP or ordinary SPP inside PH."
+    }
+  ],
+  "candidate_clusters": [
+    {
+      "id": "szk_counting",
+      "title": "SZK versus counting upper bounds",
+      "candidate_tests": [
+        {
+          "left": "SZK",
+          "right": "PP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 1
+        },
+        {
+          "left": "SZK",
+          "right": "AWPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 2
+        },
+        {
+          "left": "SZK",
+          "right": "WPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 10
+        },
+        {
+          "left": "SZK",
+          "right": "CeqP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 4
+        },
+        {
+          "left": "SZK",
+          "right": "SPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 25
+        }
+      ],
+      "source_ids": [
+        "interface-BCHTV16",
+        "interface-Vol20"
+      ],
+      "verdict": "No ordinary inclusion found. HVPZK⊆PP concerns perfect simulation; SZK permits statistical error. The promise gap in Volkovich is tied to the resulting sampler input length, so ordinary polarization cannot simply be substituted.",
+      "scope_check": "PP=PostBQP is insufficient: replacing an entire multi-message statistical protocol by one postselection computation is an additional theorem. The paper supplies only an oracle obstruction to such a relativizing transformation."
+    },
+    {
+      "id": "sbp_counting",
+      "title": "SBP versus GapP approximation and exact normalizers",
+      "candidate_tests": [
+        {
+          "left": "SBP",
+          "right": "AWPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 9
+        },
+        {
+          "left": "SBP",
+          "right": "WPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 27
+        },
+        {
+          "left": "SBP",
+          "right": "CeqP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 5
+        },
+        {
+          "left": "SBP",
+          "right": "SPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 65
+        }
+      ],
+      "source_ids": [
+        "interface-MN16",
+        "interface-BGM03",
+        "interface-BGM06"
+      ],
+      "verdict": "SBP⊆PP is already known. No stronger roster upper bound found. A #P acceptance gap with an unrestricted upper tail cannot be substituted for the bounded interval required by AWPP.",
+      "scope_check": "WAPP is an auxiliary class with an upper bound on its counting function; WAPP⊆SBP and WAPP⊆AWPP do not imply SBP⊆AWPP."
+    },
+    {
+      "id": "small_probability_quantum",
+      "title": "SBP and SZK versus quantum witnesses",
+      "candidate_tests": [
+        {
+          "left": "SBP",
+          "right": "QMA",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 1
+        },
+        {
+          "left": "SZK",
+          "right": "QMA",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 3
+        },
+        {
+          "left": "SBP",
+          "right": "BQP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 39
+        },
+        {
+          "left": "SZK",
+          "right": "BQP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 6
+        }
+      ],
+      "source_ids": [
+        "interface-AKKT20",
+        "interface-BCHTV16"
+      ],
+      "verdict": "All four remain candidates. Both cited papers explicitly work with oracles for their negative results.",
+      "scope_check": "SBQP/A0PP contains QMA and SBP but is not QMA; dropping this distinction would create false inclusions."
+    },
+    {
+      "id": "random_exact",
+      "title": "Zero-error and bounded-error randomness versus exact counting",
+      "candidate_tests": [
+        {
+          "left": "ZPP",
+          "right": "WPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 1
+        },
+        {
+          "left": "ZPP",
+          "right": "SPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 4
+        },
+        {
+          "left": "ZPP",
+          "right": "parityP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 1
+        },
+        {
+          "left": "BPP",
+          "right": "WPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 6
+        },
+        {
+          "left": "BQP",
+          "right": "WPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 8
+        },
+        {
+          "left": "BQP",
+          "right": "parityP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 5
+        }
+      ],
+      "source_ids": [
+        "interface-STT05",
+        "interface-BBF98"
+      ],
+      "verdict": "Current ZPP⊆CeqP, ZPP⊆AWPP, and BQP⊆AWPP labels are supported. No ZPP⊆WPP or ZPP⊆parityP theorem found; each has a direct oracle barrier.",
+      "scope_check": "A Las Vegas algorithm may have variable failure probability. Its successful branch count is not thereby an FP normalizer or a unique witness."
+    },
+    {
+      "id": "np_intersection",
+      "title": "NP∩coNP versus exact-counting and unambiguous intersections",
+      "candidate_tests": [
+        {
+          "left": "NPcapcoNP",
+          "right": "SPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 9
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "WPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 3
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "parityP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 2
+        },
+        {
+          "left": "NPcapcoNP",
+          "right": "AWPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 1
+        }
+      ],
+      "source_ids": [
+        "interface-MN16",
+        "interface-STT05",
+        "interface-BBF98"
+      ],
+      "verdict": "NP∩coNP⊆CeqP already follows from coNP⊆CeqP. No stronger counting inclusion found. Theorem8 of MN16 starts from UP∩coUP, a smaller intersection.",
+      "scope_check": "Since ZPP⊆NP∩coNP relativizes, STT and BBF barriers also rule out relativizing inclusions of this intersection in WPP and parityP. They do not prove ordinary noninclusions."
+    },
+    {
+      "id": "co_up",
+      "title": "Complementary unambiguity and zero knowledge",
+      "candidate_tests": [
+        {
+          "left": "coUP",
+          "right": "NP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 14
+        },
+        {
+          "left": "coUP",
+          "right": "SBP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 4
+        },
+        {
+          "left": "coUP",
+          "right": "QMA",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 2
+        },
+        {
+          "left": "coUP",
+          "right": "SZK",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 5
+        },
+        {
+          "left": "UP",
+          "right": "SZK",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 5
+        }
+      ],
+      "source_ids": [
+        "interface-MW18",
+        "interface-MN16",
+        "interface-STT05"
+      ],
+      "verdict": "No new status found. coUP⊆SPP/LWPP/WPP/AWPP/parityP/PP follows from UP⊆SPP and complement closure; it does not follow that coUP⊆NP.",
+      "scope_check": "The first Menda–Watrous oracle witness lies in both UP and coUP and outside QSZK. It prevents a generic relativizing zero-knowledge simulation of either unambiguous class."
+    },
+    {
+      "id": "counting_quantum",
+      "title": "Exact and approximate counting versus BQP and quantum proofs",
+      "candidate_tests": [
+        {
+          "left": "SPP",
+          "right": "QMA",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 5
+        },
+        {
+          "left": "WPP",
+          "right": "BQP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 19
+        },
+        {
+          "left": "AWPP",
+          "right": "QMA",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 11
+        },
+        {
+          "left": "QMA",
+          "right": "AWPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 11
+        },
+        {
+          "left": "QCMA",
+          "right": "AWPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 9
+        }
+      ],
+      "source_ids": [
+        "interface-MN16",
+        "interface-VW16",
+        "interface-STT05"
+      ],
+      "verdict": "QMA/coQMA/QCMA⊆PP and BQP⊆AWPP are already present. WPP⊆postBQP_FP is an upper bound using postselection, not WPP⊆BQP.",
+      "scope_check": "The exact postselection identities use a fixed gate set. No gate-independent exact equivalence was introduced into the benchmark."
+    },
+    {
+      "id": "ph_counting",
+      "title": "Polynomial hierarchy and proof classes versus counting",
+      "candidate_tests": [
+        {
+          "left": "PH",
+          "right": "PP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 7
+        },
+        {
+          "left": "AM",
+          "right": "PP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 3
+        },
+        {
+          "left": "PH",
+          "right": "SPP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 107
+        },
+        {
+          "left": "SPP",
+          "right": "PH",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 1
+        },
+        {
+          "left": "Delta2P",
+          "right": "PP",
+          "current_status": "candidate",
+          "hypothetical_complete_matrix_fanout": 1
+        }
+      ],
+      "source_ids": [
+        "interface-Hitchcock03",
+        "interface-Fortnow99",
+        "interface-VW16",
+        "interface-BGM06"
+      ],
+      "verdict": "No omitted unconditional endpoint found. Θ2P⊆PP is already known; P^NP, a full adaptive-oracle class, cannot be replaced by its logarithmic-query restriction.",
+      "scope_check": "Randomized reductions, P^PP/P^#P upper bounds, nonzero-measure hypotheses, and relativized worlds do not resolve the ordinary candidate pairs."
+    },
+    {
+      "id": "auxiliary_taxonomy",
+      "title": "Projection through nearby classes absent from the roster",
+      "candidate_tests": [],
+      "source_ids": [
+        "interface-MN16",
+        "interface-Fenner02",
+        "interface-BGM06"
+      ],
+      "verdict": "The auxiliary inclusion graph described below creates zero new roster inclusions.",
+      "scope_check": "APP, WAPP, postBQP_FP, postBPP_FP, SBQP, coCeqP, and UP∩coUP were kept distinct. No shared upper bound was converted to an ordering of its subclasses."
+    }
+  ],
+  "coverage_by_family": [
+    {
+      "family": "randomized",
+      "other_classes": [
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP"
+      ],
+      "directed_pair_count": 80,
+      "status_counts": {
+        "candidate": 70,
+        "inclusion": 10
+      },
+      "coverage_strength": "All labels enumerated; source-chain audit by family and targeted plausible shortcuts, not an individually exhaustive literature search for each pair."
+    },
+    {
+      "family": "nondeterministic_and_intersection",
+      "other_classes": [
+        "NP",
+        "coNP",
+        "NPcapcoNP"
+      ],
+      "directed_pair_count": 60,
+      "status_counts": {
+        "inclusion": 8,
+        "candidate": 52
+      },
+      "coverage_strength": "All labels enumerated; source-chain audit by family and targeted plausible shortcuts, not an individually exhaustive literature search for each pair."
+    },
+    {
+      "family": "classical_proof",
+      "other_classes": [
+        "MA",
+        "coMA",
+        "AM",
+        "coAM"
+      ],
+      "directed_pair_count": 80,
+      "status_counts": {
+        "inclusion": 8,
+        "candidate": 72
+      },
+      "coverage_strength": "All labels enumerated; source-chain audit by family and targeted plausible shortcuts, not an individually exhaustive literature search for each pair."
+    },
+    {
+      "family": "quantum",
+      "other_classes": [
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP"
+      ],
+      "directed_pair_count": 80,
+      "status_counts": {
+        "inclusion": 10,
+        "candidate": 70
+      },
+      "coverage_strength": "All labels enumerated; source-chain audit by family and targeted plausible shortcuts, not an individually exhaustive literature search for each pair."
+    },
+    {
+      "family": "small_probability_and_zero_knowledge",
+      "other_classes": [
+        "SBP",
+        "SZK"
+      ],
+      "directed_pair_count": 40,
+      "status_counts": {
+        "inclusion": 3,
+        "candidate": 37
+      },
+      "coverage_strength": "All labels enumerated; source-chain audit by family and targeted plausible shortcuts, not an individually exhaustive literature search for each pair."
+    },
+    {
+      "family": "polynomial_hierarchy",
+      "other_classes": [
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH"
+      ],
+      "directed_pair_count": 100,
+      "status_counts": {
+        "inclusion": 16,
+        "candidate": 84
+      },
+      "coverage_strength": "All labels enumerated; source-chain audit by family and targeted plausible shortcuts, not an individually exhaustive literature search for each pair."
+    }
+  ],
+  "pairs": [
+    {
+      "left": "UP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "NP",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "QCMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "QMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "UP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "UP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "coNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "coQMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "coUP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coUP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "NP",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "QCMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "QMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "FewP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "FewP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "SPP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "Sigma2P",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "Pi2P",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "Delta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "Theta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "SPP",
+      "right": "PH",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "Sigma2P",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "Pi2P",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "Delta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "Theta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "CeqP",
+      "right": "PH",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "Sigma2P",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "Pi2P",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "Delta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "Theta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "PP",
+      "right": "PH",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "Sigma2P",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "Pi2P",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "Delta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "Theta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "parityP",
+      "right": "PH",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "Sigma2P",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "Pi2P",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "Delta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "Theta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "AWPP",
+      "right": "PH",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "Sigma2P",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "Pi2P",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "Delta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "Theta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "LWPP",
+      "right": "PH",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "RP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "coRP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "ZPP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "BPP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "NP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "coNP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "NPcapcoNP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "MA",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "coMA",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "AM",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "coAM",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "QCMA",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "QMA",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "coQMA",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "BQP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "SBP",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "SZK",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "Sigma2P",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "Pi2P",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "Delta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "Theta2P",
+      "status": "candidate"
+    },
+    {
+      "left": "WPP",
+      "right": "PH",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "ZPP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "BPP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "UP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "ZPP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "BPP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "coUP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "ZPP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "BPP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "FewP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "ZPP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "BPP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "SPP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "CeqP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "CeqP",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "CeqP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "CeqP",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "CeqP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coMA",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "AM",
+      "right": "PP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "PP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "QMA",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coQMA",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "BQP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "SBP",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "SZK",
+      "right": "PP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "PP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "PP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "PP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PP",
+      "status": "inclusion"
+    },
+    {
+      "left": "PH",
+      "right": "PP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "ZPP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "BPP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "parityP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "AWPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "AWPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "AWPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "AWPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "AWPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "SBP",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "AWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "ZPP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "BPP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "LWPP",
+      "status": "candidate"
+    },
+    {
+      "left": "RP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coRP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "ZPP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "BPP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "NP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coNP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "MA",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coMA",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "AM",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coAM",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QCMA",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "QMA",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "coQMA",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "BQP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SBP",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "SZK",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Pi2P",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Delta2P",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "Theta2P",
+      "right": "WPP",
+      "status": "candidate"
+    },
+    {
+      "left": "PH",
+      "right": "WPP",
+      "status": "candidate"
+    }
+  ],
+  "auxiliary_graph": {
+    "edges": [
+      {
+        "left": "AWPP",
+        "right": "postBQP_aFP"
+      },
+      {
+        "left": "postBQP_aFP",
+        "right": "AWPP"
+      },
+      {
+        "left": "WPP",
+        "right": "postBQP_FP"
+      },
+      {
+        "left": "BQP",
+        "right": "postBQP_FP"
+      },
+      {
+        "left": "postBQP_FP",
+        "right": "AWPP"
+      },
+      {
+        "left": "APP",
+        "right": "postBQP_asize"
+      },
+      {
+        "left": "postBQP_asize",
+        "right": "APP"
+      },
+      {
+        "left": "postBQP_FP",
+        "right": "postBQP_exp"
+      },
+      {
+        "left": "postBQP_exp",
+        "right": "postBQP_FP"
+      },
+      {
+        "left": "postBQP_FP",
+        "right": "postBQP_FQP"
+      },
+      {
+        "left": "postBQP_FQP",
+        "right": "postBQP_FP"
+      },
+      {
+        "left": "postBQP_exp",
+        "right": "postBQP_size"
+      },
+      {
+        "left": "postBQP_size",
+        "right": "APP"
+      },
+      {
+        "left": "AWPP",
+        "right": "APP"
+      },
+      {
+        "left": "APP",
+        "right": "PP"
+      },
+      {
+        "left": "BPP",
+        "right": "postBPP_FP"
+      },
+      {
+        "left": "UPcapcoUP",
+        "right": "postBPP_FP"
+      },
+      {
+        "left": "UPcapcoUP",
+        "right": "UP"
+      },
+      {
+        "left": "UPcapcoUP",
+        "right": "coUP"
+      },
+      {
+        "left": "postBPP_FP",
+        "right": "WAPP"
+      },
+      {
+        "left": "WAPP",
+        "right": "AWPP"
+      },
+      {
+        "left": "WAPP",
+        "right": "SBP"
+      },
+      {
+        "left": "postBPP_FP",
+        "right": "postBQP_FP"
+      },
+      {
+        "left": "postBPP_FP",
+        "right": "postBPP"
+      },
+      {
+        "left": "SBP",
+        "right": "postBPP"
+      },
+      {
+        "left": "postBPP",
+        "right": "PP"
+      },
+      {
+        "left": "SBP",
+        "right": "SBQP"
+      },
+      {
+        "left": "QMA",
+        "right": "SBQP"
+      },
+      {
+        "left": "AWPP",
+        "right": "SBQP"
+      },
+      {
+        "left": "coCeqP",
+        "right": "SBQP"
+      },
+      {
+        "left": "SBQP",
+        "right": "PP"
+      },
+      {
+        "left": "PP",
+        "right": "postBQP"
+      },
+      {
+        "left": "postBQP",
+        "right": "PP"
+      },
+      {
+        "left": "NP",
+        "right": "coCeqP"
+      },
+      {
+        "left": "WPP",
+        "right": "coCeqP"
+      }
+    ],
+    "source_ids": [
+      "interface-MN16",
+      "interface-Fenner02",
+      "interface-BGM06",
+      "interface-AKKT20",
+      "auditCQ-Vya03"
+    ],
+    "source_note": "Vyalyi A0PP and its identification with SBQP were reviewed in prior rounds; this is exploratory reachability, not a new canonical theorem import. Exact postselection identities retain the source gate convention.",
+    "new_projected_roster_edges": []
+  },
+  "residual_risk": {
+    "interpretation": "Judgmental uncertainty about currently missing older ordinary results, not theorem correctness and not a calibrated probability bound. No numbers were chosen to achieve the user threshold.",
+    "prior_row": "audit-round3-counting-risk.json: missed_old_quantum_counting_interfaces",
+    "prior_probability_any_omission": 0.08,
+    "prior_mean_distinct_wrong_labels_if_event": 6,
+    "prior_expected_wrong_labels": 0.48,
+    "suggested_replacement_probability_any_omission": 0.06,
+    "suggested_mean_distinct_wrong_labels_if_event": 6,
+    "suggested_expected_wrong_labels": 0.36,
+    "probability_sensitivity": [
+      0.02,
+      0.15
+    ],
+    "conditional_mean_fanout_sensitivity": [
+      3,
+      12
+    ],
+    "combined_expected_sensitivity": [
+      0.06,
+      1.8
+    ],
+    "rationale": "The inspected older source chains cover several plausible high-fanout shortcuts and independently confirm that the tempting claims use different models. This warrants a modest downward revision, not multiplying independent no-finding probabilities: sources share ancestry, no omission-detection rate is calibrated, and141 of the broader526 candidate interfaces lie outside the exact counting-by-other slice. The mean fanout remains6 because an unnoticed nonrelativizing or intermediate-class result could still propagate to several labels.",
+    "remaining_clusters": [
+      "Nonrelativizing older inclusions not emphasized in the selected primary chains",
+      "Specialized journal papers or author manuscripts omitted by searches",
+      "A non-obvious projection through a class or reduction type absent from this auxiliary graph",
+      "The141 broader counting/quantum-interface candidates outside the exact440-pair slice"
+    ],
+    "aggregation": "Replace the previous0.48 old-interface row with0.36 if this judgment is adopted; do not add it as a new component. Do not change the internal-counting, definition/application, recent-paper, or classical/circuit/space components on this evidence. The adjacent examples overlap the broader row and are not separate risks.",
+    "exclusions": [
+      "Future flaws discovered in currently accepted published proofs",
+      "New conditional implications with no present baseline-label effect",
+      "Recent-paper census performed independently by classical_literature"
+    ],
+    "independent_assessment": "lean_kernel independently supported the modest8%→6% revision while keeping the mean6, conditional on recording coverage limits and no full BGM taxonomy review.",
+    "recent_quantum_szk_note": "This old-literature dossier does not extend the separate recent classical/time/counting allowance to quantum/SZK. A targeted recent quantum/SZK index pass is assigned separately; its residual must be accounted for without double counting already screened conference and counting papers."
+  },
+  "limitations": [
+    "No database proves exhaustive coverage of old mathematics. All440 labels are enumerated, but detailed independent primary analysis targets families and stress cases.",
+    "The full BGM2002/2006 taxonomy and EATCS2015 survey were not both successfully retrieved; only explicitly listed readable passages are claimed as reviewed.",
+    "Oracle barriers demonstrate limits of relativizing methods. They never certify an ordinary pair as separated or open.",
+    "Candidate means unresolved in this audited dataset, not a proof of historical openness."
+  ]
+}

@@ -1,0 +1,1431 @@
+{
+  "schema_version": 1,
+  "audit_round": 3,
+  "reviewer": "lean_kernel",
+  "date": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+  "scope": {
+    "counting_quantum_classes": [
+      "AWPP",
+      "BQP",
+      "CeqP",
+      "FewP",
+      "LWPP",
+      "PP",
+      "QCMA",
+      "QMA",
+      "SPP",
+      "UP",
+      "WPP",
+      "coQMA",
+      "coUP",
+      "parityP"
+    ],
+    "application_definition_pair_count": 1204,
+    "application_definition_label_counts": {
+      "candidate": 807,
+      "inclusion": 279,
+      "separation": 118
+    },
+    "old_omission_excluded_endpoint_classes": [
+      "AC0",
+      "ACC0",
+      "E",
+      "EXP",
+      "EXPSPACE",
+      "L",
+      "LogCFL",
+      "NC",
+      "NC1",
+      "NE",
+      "NEXP",
+      "NL",
+      "NPpoly",
+      "PSPACE",
+      "Ppoly",
+      "SC",
+      "TC0"
+    ],
+    "old_omission_pair_count": 728,
+    "old_omission_label_counts": {
+      "candidate": 579,
+      "inclusion": 149
+    },
+    "old_candidate_family_counts": {
+      "interfaces": 526,
+      "internal_counting": 53
+    }
+  },
+  "judgmental_estimate": {
+    "expected_wrong_current_labels": 1.1152,
+    "application_definition_component": 0.435,
+    "missed_old_results_component": 0.6801999999999999,
+    "sensitivity_scenarios_at_fixed_conditional_means": [
+      0.315,
+      3.152
+    ],
+    "interpretation": "Subjective expectation over present audit mistakes; not a calibrated confidence interval or a formal statistical bound. The sensitivity endpoints vary event probabilities together while holding conditional mean fanouts fixed. Larger correlated mistakes remain possible.",
+    "aggregation_rule": "Charge a mislabeled pair to its first applicable cause in listed order. Conditional impacts mean additional distinct labels beyond earlier causes. Do not add the 0.435 application component if another dossier already charges the same counting/quantum definition failures. Literature omissions with any of the 17 excluded endpoints belong to the circuit/space/exponential audit.",
+    "conditioning_exclusions": [
+      "Future flaws in currently accepted proofs",
+      "Recent-paper census and acceptance triage",
+      "All circuit/space/exponential/advice omission families already assigned elsewhere",
+      "Missing conditional-scoring rules that do not change any current baseline classification"
+    ],
+    "conditional_rule_omissions_current_label_contribution": 0,
+    "event_multiplicity": "Each omission row is one global event: at least one old result was missed anywhere in that entire scope. Its conditional mean counts the union of all distinct wrong pair labels from all missed results in that row, after excluding labels assigned to earlier causes. It is not a per-paper or per-pair probability, and must not be multiplied by the number of candidates or omitted results."
+  },
+  "risk_rows": [
+    {
+      "id": "counting_definition_application",
+      "event": "At least one counting-specific definition or textbook-transfer error remains, excluding errors in the accepted published proofs themselves.",
+      "probability": 0.006,
+      "probability_sensitivity": [
+        0.002,
+        0.02
+      ],
+      "mean_wrong_labels_conditional_on_event": 30,
+      "conditional_fanout_rationale": "Measured complete-matrix withholding fanouts are 6 for WPP→AWPP, 34 for threshold/gap anchors, 39 for SPP→LWPP→WPP, and 45 for FewP→SPP. A model error can affect multiple anchors; some lost inference paths have independent easy mathematical justifications, so withholding is exposure rather than an error count. Thirty is a deliberately broad conditional mean.",
+      "evidence": "Concrete transition multiplicities, global halting, exact SPP/zero/positive/parity tests, nonnegative AWPP bounds, and computed signed WPP/LWPP normalizers were independently inspected. No mismatch found.",
+      "concrete_suspect": null,
+      "expected_wrong_labels": 0.18,
+      "expected_sensitivity": [
+        0.06,
+        0.6
+      ]
+    },
+    {
+      "id": "quantum_definition_application",
+      "event": "At least one quantum-specific definition or simulation transfer error remains, excluding errors in accepted published theorems.",
+      "probability": 0.006,
+      "probability_sensitivity": [
+        0.002,
+        0.02
+      ],
+      "mean_wrong_labels_conditional_on_event": 35,
+      "conditional_fanout_rationale": "QMA→PP withholding loses 18 complete-matrix labels; removing the MA→QCMA and QCMA→QMA simulation anchors loses 45. A shared model mismatch could affect both. Conditional mean 35 allows broader propagation beyond the three in-scope QMA/PP inclusions.",
+      "evidence": "The H/T/X/CNOT formulas, distinct CNOT wires, input/witness/ancilla indexing, pure witness normalization, total-language gap, and concrete unary-length circuit generator were inspected. Classical-witness dephasing is realizable by copying to unused ancillas. No arbitrary-amplitude gate or nonuniform generator is present.",
+      "concrete_suspect": null,
+      "expected_wrong_labels": 0.21,
+      "expected_sensitivity": [
+        0.07,
+        0.7000000000000001
+      ]
+    },
+    {
+      "id": "remaining_seed_statement_transfer",
+      "event": "An existing counting/quantum seed has a remaining source-strength, promise, complement or model-convention mismatch that is not already attributed to the two definition rows.",
+      "probability": 0.003,
+      "probability_sensitivity": [
+        0.001,
+        0.01
+      ],
+      "mean_wrong_labels_conditional_on_event": 15,
+      "conditional_fanout_rationale": "The representative single-anchor exposure ranges 5–45; direct simulations and sign transformations have separate short arguments. Fifteen allows a moderate misapplication cascade without assuming all withheld inferences are actually false.",
+      "evidence": "Twenty-three relevant inclusion seed statements and the complement conventions were reread against primary passages. QMA⊆PP, BQP⊆AWPP and WPP⊆AWPP have exact primary theorem locators. Oracle separations are not ordinary facts.",
+      "concrete_suspect": null,
+      "expected_wrong_labels": 0.045,
+      "expected_sensitivity": [
+        0.015,
+        0.15
+      ]
+    },
+    {
+      "id": "missed_old_internal_counting_inclusion",
+      "event": "At least one established older unconditional inclusion among the ten counting classes remains mislabeled as a candidate, with all circuit/space/exponential endpoint omissions excluded.",
+      "probability": 0.04,
+      "probability_sensitivity": [
+        0.01,
+        0.1
+      ],
+      "mean_wrong_labels_conditional_on_event": 5,
+      "conditional_fanout_rationale": "There are 53 unresolved internal counting pairs. Measured potential fanouts range 1 for LWPP⊆parityP, 2 for WPP⊆parityP, 4 for AWPP⊆CeqP, up to 28–33 for strong collapse premises. An unnoticed old local relationship is more plausible than a famous collapse; the mean weights the former heavily.",
+      "evidence": "FFK/FFKL primary definitions and chains, OH counting closure results, KST lowness, STT closure, individual Zoo discovery records and the parent historical inclusion graph comparison yielded no missing unconditional counting edge. Finding many conditional rules does not establish an unconditional omission.",
+      "concrete_suspect": null,
+      "expected_wrong_labels": 0.2,
+      "expected_sensitivity": [
+        0.05,
+        0.5
+      ],
+      "event_scope": "Global at-least-one-omission event across the entire stated pair family; the conditional mean includes the union of all omissions in that family."
+    },
+    {
+      "id": "missed_old_quantum_counting_interfaces",
+      "event": "At least one established older unconditional inclusion between counting/quantum classes and other non-resource roster classes remains mislabeled as a candidate.",
+      "probability": 0.08,
+      "probability_sensitivity": [
+        0.02,
+        0.2
+      ],
+      "mean_wrong_labels_conditional_on_event": 6,
+      "conditional_fanout_rationale": "There are 526 unresolved interface pairs after excluding internal counting and all 17 resource/circuit/advice endpoints. Representative measured fanouts are 1 for SZK⊆PP or SBP⊆QMA, 3 for AM⊆PP, 6 for BQP⊆SBP, 7 for coNP⊆QCMA, 8 for BQP⊆WPP, 9 for SBP⊆AWPP or NPcapcoNP⊆SPP. These are stress cases, not asserted theorems.",
+      "evidence": "This heterogeneous family is the main residual literature risk. Primary old papers explicitly identify the tempting SZK/PP and SBP/QMA results as oracle separations, so they provide no ordinary labels. Repeated searches are correlated and are not treated as independent likelihood multipliers.",
+      "concrete_suspect": null,
+      "expected_wrong_labels": 0.48,
+      "expected_sensitivity": [
+        0.12,
+        1.2000000000000002
+      ],
+      "event_scope": "Global at-least-one-omission event across the entire stated pair family; the conditional mean includes the union of all omissions in that family."
+    },
+    {
+      "id": "missed_old_noninclusion_or_independence",
+      "event": "An old established ordinary noninclusion or exact ZFC-independence result remains overlooked inside the non-resource scope.",
+      "probability": 0.0001,
+      "probability_sensitivity": [
+        0.0,
+        0.001
+      ],
+      "mean_wrong_labels_conditional_on_event": 2,
+      "conditional_fanout_rationale": "Every remaining class contains P and is contained in PSPACE, so any ordinary noninclusion here would already imply P≠PSPACE. Such an old result is extraordinarily unlikely to have escaped this audit; oracle statements are much more plausible false leads. No exact ZFC-independence result was found.",
+      "evidence": "This is a residual allowance, not a proposed separation. Recent claimed breakthroughs and their acceptance history are excluded and owned by the recent-paper census.",
+      "concrete_suspect": null,
+      "expected_wrong_labels": 0.0002,
+      "expected_sensitivity": [
+        0.0,
+        0.002
+      ],
+      "event_scope": "Global at-least-one-omission event across the entire stated pair family; the conditional mean includes the union of all omissions in that family."
+    }
+  ],
+  "measured_anchor_withholding_exposures": [
+    {
+      "id": "few_to_spp",
+      "withheld_seed_ids": [
+        "q-fewp-spp"
+      ],
+      "all_matrix_labels_not_rederived": 45,
+      "counting_quantum_incident_labels_not_rederived": 45,
+      "non_resource_scope_labels_not_rederived": 21,
+      "all_lost_atoms": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "parityP"
+        },
+        {
+          "relation": "separation",
+          "left": "LWPP",
+          "right": "AC0"
+        },
+        {
+          "relation": "separation",
+          "left": "SPP",
+          "right": "AC0"
+        },
+        {
+          "relation": "separation",
+          "left": "WPP",
+          "right": "AC0"
+        },
+        {
+          "relation": "separation",
+          "left": "parityP",
+          "right": "AC0"
+        }
+      ]
+    },
+    {
+      "id": "wpp_awpp",
+      "withheld_seed_ids": [
+        "q-wpp-awpp"
+      ],
+      "all_matrix_labels_not_rederived": 6,
+      "counting_quantum_incident_labels_not_rederived": 6,
+      "non_resource_scope_labels_not_rederived": 6,
+      "all_lost_atoms": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "AWPP"
+        }
+      ]
+    },
+    {
+      "id": "qma_pp",
+      "withheld_seed_ids": [
+        "q-qma-pp"
+      ],
+      "all_matrix_labels_not_rederived": 18,
+      "counting_quantum_incident_labels_not_rederived": 18,
+      "non_resource_scope_labels_not_rederived": 3,
+      "all_lost_atoms": [
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "EXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "EXPSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "NEXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "PSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "EXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "EXPSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "NEXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "PSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "EXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "EXPSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "NEXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "PSPACE"
+        },
+        {
+          "relation": "separation",
+          "left": "EXPSPACE",
+          "right": "QCMA"
+        },
+        {
+          "relation": "separation",
+          "left": "EXPSPACE",
+          "right": "QMA"
+        },
+        {
+          "relation": "separation",
+          "left": "EXPSPACE",
+          "right": "coQMA"
+        }
+      ]
+    },
+    {
+      "id": "bqp_awpp",
+      "withheld_seed_ids": [
+        "q-bqp-awpp"
+      ],
+      "all_matrix_labels_not_rederived": 5,
+      "counting_quantum_incident_labels_not_rederived": 5,
+      "non_resource_scope_labels_not_rederived": 5,
+      "all_lost_atoms": [
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "AWPP"
+        }
+      ]
+    },
+    {
+      "id": "qcma_simulations",
+      "withheld_seed_ids": [
+        "q-ma-qcma",
+        "q-qcma-qma"
+      ],
+      "all_matrix_labels_not_rederived": 45,
+      "counting_quantum_incident_labels_not_rederived": 45,
+      "non_resource_scope_labels_not_rederived": 28,
+      "all_lost_atoms": [
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "QCMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "QCMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "QCMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "QCMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "EXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "EXPSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "NEXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "PSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "QCMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coMA",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "QMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "coQMA"
+        },
+        {
+          "relation": "separation",
+          "left": "EXPSPACE",
+          "right": "QCMA"
+        },
+        {
+          "relation": "separation",
+          "left": "QMA",
+          "right": "AC0"
+        },
+        {
+          "relation": "separation",
+          "left": "coQMA",
+          "right": "AC0"
+        }
+      ]
+    },
+    {
+      "id": "spp_lwpp_wpp",
+      "withheld_seed_ids": [
+        "q-lwpp-wpp",
+        "q-spp-lwpp"
+      ],
+      "all_matrix_labels_not_rederived": 39,
+      "counting_quantum_incident_labels_not_rederived": 39,
+      "non_resource_scope_labels_not_rederived": 22,
+      "all_lost_atoms": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "EXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "EXPSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "NEXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "PSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "WPP"
+        },
+        {
+          "relation": "separation",
+          "left": "EXPSPACE",
+          "right": "LWPP"
+        },
+        {
+          "relation": "separation",
+          "left": "LWPP",
+          "right": "AC0"
+        },
+        {
+          "relation": "separation",
+          "left": "WPP",
+          "right": "AC0"
+        }
+      ]
+    },
+    {
+      "id": "counting_thresholds",
+      "withheld_seed_ids": [
+        "q-ceqp-pp",
+        "q-conp-ceqp",
+        "q-spp-parityp",
+        "q-wpp-ceqp"
+      ],
+      "all_matrix_labels_not_rederived": 34,
+      "counting_quantum_incident_labels_not_rederived": 34,
+      "non_resource_scope_labels_not_rederived": 17,
+      "all_lost_atoms": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "EXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "EXPSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "NEXP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "PSPACE"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "CeqP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "parityP"
+        },
+        {
+          "relation": "separation",
+          "left": "CeqP",
+          "right": "AC0"
+        },
+        {
+          "relation": "separation",
+          "left": "EXPSPACE",
+          "right": "CeqP"
+        },
+        {
+          "relation": "separation",
+          "left": "parityP",
+          "right": "AC0"
+        }
+      ]
+    }
+  ],
+  "measured_hypothetical_inclusion_fanouts": [
+    {
+      "hypothetical_inclusion": {
+        "left": "LWPP",
+        "right": "parityP"
+      },
+      "candidate_labels_resolved_in_old_scope": 1,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "WPP",
+        "right": "parityP"
+      },
+      "candidate_labels_resolved_in_old_scope": 2,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "AWPP",
+        "right": "CeqP"
+      },
+      "candidate_labels_resolved_in_old_scope": 4,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "CeqP",
+        "right": "AWPP"
+      },
+      "candidate_labels_resolved_in_old_scope": 28,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "SPP",
+        "right": "NP"
+      },
+      "candidate_labels_resolved_in_old_scope": 33,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "FewP",
+        "right": "coUP"
+      },
+      "candidate_labels_resolved_in_old_scope": 22,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "SZK",
+        "right": "PP"
+      },
+      "candidate_labels_resolved_in_old_scope": 1,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "SBP",
+        "right": "QMA"
+      },
+      "candidate_labels_resolved_in_old_scope": 1,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "SBP",
+        "right": "AWPP"
+      },
+      "candidate_labels_resolved_in_old_scope": 9,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "BQP",
+        "right": "WPP"
+      },
+      "candidate_labels_resolved_in_old_scope": 8,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "coNP",
+        "right": "QCMA"
+      },
+      "candidate_labels_resolved_in_old_scope": 7,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "AM",
+        "right": "PP"
+      },
+      "candidate_labels_resolved_in_old_scope": 3,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "BQP",
+        "right": "SBP"
+      },
+      "candidate_labels_resolved_in_old_scope": 6,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    },
+    {
+      "hypothetical_inclusion": {
+        "left": "NPcapcoNP",
+        "right": "SPP"
+      },
+      "candidate_labels_resolved_in_old_scope": 9,
+      "warning": "Fanout stress test only; this is not a proposed known theorem or a statement-specific probability."
+    }
+  ],
+  "source_spot_checks": [
+    {
+      "title": "On the Power of Statistical Zero Knowledge / On SZK and PP",
+      "url": "https://eccc.weizmann.ac.il/report/2016/140/",
+      "date": "2016-09-10",
+      "checked": "Original and revision abstracts explicitly describe an oracle separation from PP. This is not an ordinary SZK⊄PP fact, nor an SZK⊆PP containment.",
+      "decision": "no_delta"
+    },
+    {
+      "title": "QMA Lower Bounds for Approximate Counting",
+      "url": "https://eccc.weizmann.ac.il/report/2019/015/",
+      "date": "2019-02-07",
+      "checked": "Primary abstract explicitly concludes an oracle with SBP not contained in QMA. The model distinction is preserved.",
+      "decision": "no_delta"
+    },
+    {
+      "title": "Quantum interpretations of AWPP and APP",
+      "url": "https://www.rintonpress.com/xxqic16/qic-16-56/0498-0514.pdf",
+      "date": "2016",
+      "checked": "Read the introduction, Figure 1 text, definitions and Theorems 3–8 as triage. No immediate new roster edge identified; full independent graph comparison is assigned to the next review.",
+      "decision": "follow_up_assigned_no_delta"
+    }
+  ],
+  "concrete_remaining_suspect": null,
+  "highest_value_next_check": {
+    "action": "Independent primary-source review of Morimae–Nishimura (2016), Figure 1 and Theorems 3–8, followed by the full Böhler–Glaßer–Meister taxonomy if time permits.",
+    "status": "Assigned to quantum_coverage for the next bounded audit round; no probability revision is made before that review.",
+    "reason": "The highest-EV row is older cross-interface literature. These sources can reveal bridges through classes outside the roster and add evidence beyond re-reading the same FFK/STT/Vyalyi conditional proofs.",
+    "primary_sources": [
+      {
+        "title": "Quantum interpretations of AWPP and APP",
+        "authors": [
+          "Tomoyuki Morimae",
+          "Harumichi Nishimura"
+        ],
+        "year": 2016,
+        "url": "https://www.rintonpress.com/xxqic16/qic-16-56/0498-0514.pdf",
+        "locators": [
+          "Figure 1, printed page 501",
+          "Theorems 3–8, printed pages 503–504",
+          "Definitions 1, 10–12, and 17"
+        ]
+      },
+      {
+        "title": "Small Bounded-Error Computations and Completeness",
+        "authors": [
+          "Elmar Böhler",
+          "Christian Glaßer",
+          "Daniel Meister"
+        ],
+        "year": 2003,
+        "url": "https://eccc.weizmann.ac.il/report/2003/069/",
+        "locators": [
+          "Full class taxonomy and closure discussion, beyond the already checked SBP definition and Proposition 3.3"
+        ]
+      }
+    ],
+    "precise_subset": "Compare directed roster reachability involving WPP, AWPP, BQP, SBP, AM and UP/coUP through postBQP_FP, postBPP_FP, WAPP, APP and SBQP, plus complementary endpoints only when their complement closure is established.",
+    "pitfalls": [
+      "UP∩coUP is not the roster class NPcapcoNP.",
+      "WAPP is not WPP.",
+      "The exact postselection equalities use a stated gate set; do not transfer them indiscriminately between exact circuit models.",
+      "An oracle separation does not classify the corresponding ordinary pair."
+    ],
+    "separate_definition_check": "A direct normalization-preservation proof for the four explicit quantum gates and initial-state embedding would address the separate quantum-definition row without formalizing the deep published containments."
+  },
+  "assumptions_not_evidence": [
+    "The numerical probabilities and conditional means are explicit judgments.",
+    "Zero SAT-forced literals limits encoded-theory omissions but supplies no likelihood against missing theorems.",
+    "The number of subagent reviews is not converted into an independence-based confidence multiplier."
+  ],
+  "files_consulted": [
+    "research/audit-round1-counting-quantum.json",
+    "research/audit-round2-cross-counting.json",
+    "research/audit-round2-cross-counting.md",
+    "data/classes.json",
+    "data/knowledge.json",
+    "lean/InclusionBench/Counting.lean",
+    "lean/InclusionBench/Transducers.lean",
+    "quantum/InclusionQuantum/Quantum.lean"
+  ]
+}

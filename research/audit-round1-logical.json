@@ -1,0 +1,1033 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "method": "Single-assumption refutation under the existing cited baseline and rules",
+  "hypotheses_tested": 2772,
+  "findings": [
+    {
+      "conclusion": {
+        "relation": "separation",
+        "left": "NE",
+        "right": "coNP"
+      },
+      "discharged_assumption": {
+        "relation": "inclusion",
+        "left": "NE",
+        "right": "coNP"
+      },
+      "contradiction": {
+        "attempted": {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "NP",
+          "id": "inclusion:coNP:NP",
+          "reason": "complement",
+          "parents": [
+            "inclusion:NP:coNP"
+          ],
+          "source_ids": []
+        },
+        "existing": {
+          "target": "separation:coNP:NP",
+          "steps": [
+            {
+              "id": "separation:NE:NP",
+              "relation": "separation",
+              "left": "NE",
+              "right": "NP",
+              "reason": "baseline:classical-separation-NE-NP",
+              "parents": [],
+              "source_ids": [
+                "SFM1978"
+              ]
+            },
+            {
+              "id": "inclusion:NE:coNP",
+              "relation": "inclusion",
+              "left": "NE",
+              "right": "coNP",
+              "reason": "audit-temporary-assumption",
+              "parents": [],
+              "source_ids": []
+            },
+            {
+              "id": "separation:coNP:NP",
+              "relation": "separation",
+              "left": "coNP",
+              "right": "NP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NE:NP",
+                "inclusion:NE:coNP"
+              ],
+              "source_ids": []
+            }
+          ]
+        },
+        "parent_proofs": [
+          {
+            "target": "inclusion:NP:coNP",
+            "steps": [
+              {
+                "id": "inclusion:NP:NE",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NE",
+                "reason": "baseline:classical-inclusion-NP-NE",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NE:coNP",
+                "relation": "inclusion",
+                "left": "NE",
+                "right": "coNP",
+                "reason": "audit-temporary-assumption",
+                "parents": [],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NP:coNP",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "coNP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:NP:NE",
+                  "inclusion:NE:coNP"
+                ],
+                "source_ids": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "conclusion": {
+        "relation": "separation",
+        "left": "NE",
+        "right": "coRP"
+      },
+      "discharged_assumption": {
+        "relation": "inclusion",
+        "left": "NE",
+        "right": "coRP"
+      },
+      "contradiction": {
+        "attempted": {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "RP",
+          "id": "inclusion:coRP:RP",
+          "reason": "complement",
+          "parents": [
+            "inclusion:RP:coRP"
+          ],
+          "source_ids": []
+        },
+        "existing": {
+          "target": "separation:coRP:RP",
+          "steps": [
+            {
+              "id": "separation:NE:NP",
+              "relation": "separation",
+              "left": "NE",
+              "right": "NP",
+              "reason": "baseline:classical-separation-NE-NP",
+              "parents": [],
+              "source_ids": [
+                "SFM1978"
+              ]
+            },
+            {
+              "id": "inclusion:RP:NP",
+              "relation": "inclusion",
+              "left": "RP",
+              "right": "NP",
+              "reason": "baseline:classical-inclusion-RP-NP",
+              "parents": [],
+              "source_ids": [
+                "Gill1977",
+                "AB2007"
+              ]
+            },
+            {
+              "id": "separation:NE:RP",
+              "relation": "separation",
+              "left": "NE",
+              "right": "RP",
+              "reason": "separation-right",
+              "parents": [
+                "separation:NE:NP",
+                "inclusion:RP:NP"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "inclusion:NE:coRP",
+              "relation": "inclusion",
+              "left": "NE",
+              "right": "coRP",
+              "reason": "audit-temporary-assumption",
+              "parents": [],
+              "source_ids": []
+            },
+            {
+              "id": "separation:coRP:RP",
+              "relation": "separation",
+              "left": "coRP",
+              "right": "RP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NE:RP",
+                "inclusion:NE:coRP"
+              ],
+              "source_ids": []
+            }
+          ]
+        },
+        "parent_proofs": [
+          {
+            "target": "inclusion:RP:coRP",
+            "steps": [
+              {
+                "id": "inclusion:RP:NP",
+                "relation": "inclusion",
+                "left": "RP",
+                "right": "NP",
+                "reason": "baseline:classical-inclusion-RP-NP",
+                "parents": [],
+                "source_ids": [
+                  "Gill1977",
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NP:NE",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NE",
+                "reason": "baseline:classical-inclusion-NP-NE",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:RP:NE",
+                "relation": "inclusion",
+                "left": "RP",
+                "right": "NE",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:RP:NP",
+                  "inclusion:NP:NE"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NE:coRP",
+                "relation": "inclusion",
+                "left": "NE",
+                "right": "coRP",
+                "reason": "audit-temporary-assumption",
+                "parents": [],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:RP:coRP",
+                "relation": "inclusion",
+                "left": "RP",
+                "right": "coRP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:RP:NE",
+                  "inclusion:NE:coRP"
+                ],
+                "source_ids": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "conclusion": {
+        "relation": "separation",
+        "left": "NE",
+        "right": "coUP"
+      },
+      "discharged_assumption": {
+        "relation": "inclusion",
+        "left": "NE",
+        "right": "coUP"
+      },
+      "contradiction": {
+        "attempted": {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "UP",
+          "id": "inclusion:coUP:UP",
+          "reason": "complement",
+          "parents": [
+            "inclusion:UP:coUP"
+          ],
+          "source_ids": []
+        },
+        "existing": {
+          "target": "separation:coUP:UP",
+          "steps": [
+            {
+              "id": "separation:NE:NP",
+              "relation": "separation",
+              "left": "NE",
+              "right": "NP",
+              "reason": "baseline:classical-separation-NE-NP",
+              "parents": [],
+              "source_ids": [
+                "SFM1978"
+              ]
+            },
+            {
+              "id": "inclusion:UP:FewP",
+              "relation": "inclusion",
+              "left": "UP",
+              "right": "FewP",
+              "reason": "baseline:classical-inclusion-UP-FewP",
+              "parents": [],
+              "source_ids": [
+                "AB2007"
+              ]
+            },
+            {
+              "id": "inclusion:FewP:NP",
+              "relation": "inclusion",
+              "left": "FewP",
+              "right": "NP",
+              "reason": "baseline:classical-inclusion-FewP-NP",
+              "parents": [],
+              "source_ids": [
+                "AB2007"
+              ]
+            },
+            {
+              "id": "inclusion:UP:NP",
+              "relation": "inclusion",
+              "left": "UP",
+              "right": "NP",
+              "reason": "transitivity",
+              "parents": [
+                "inclusion:UP:FewP",
+                "inclusion:FewP:NP"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "separation:NE:UP",
+              "relation": "separation",
+              "left": "NE",
+              "right": "UP",
+              "reason": "separation-right",
+              "parents": [
+                "separation:NE:NP",
+                "inclusion:UP:NP"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "inclusion:NE:coUP",
+              "relation": "inclusion",
+              "left": "NE",
+              "right": "coUP",
+              "reason": "audit-temporary-assumption",
+              "parents": [],
+              "source_ids": []
+            },
+            {
+              "id": "separation:coUP:UP",
+              "relation": "separation",
+              "left": "coUP",
+              "right": "UP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NE:UP",
+                "inclusion:NE:coUP"
+              ],
+              "source_ids": []
+            }
+          ]
+        },
+        "parent_proofs": [
+          {
+            "target": "inclusion:UP:coUP",
+            "steps": [
+              {
+                "id": "inclusion:UP:FewP",
+                "relation": "inclusion",
+                "left": "UP",
+                "right": "FewP",
+                "reason": "baseline:classical-inclusion-UP-FewP",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:FewP:NP",
+                "relation": "inclusion",
+                "left": "FewP",
+                "right": "NP",
+                "reason": "baseline:classical-inclusion-FewP-NP",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NP:NE",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NE",
+                "reason": "baseline:classical-inclusion-NP-NE",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:FewP:NE",
+                "relation": "inclusion",
+                "left": "FewP",
+                "right": "NE",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:FewP:NP",
+                  "inclusion:NP:NE"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:UP:NE",
+                "relation": "inclusion",
+                "left": "UP",
+                "right": "NE",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:UP:FewP",
+                  "inclusion:FewP:NE"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NE:coUP",
+                "relation": "inclusion",
+                "left": "NE",
+                "right": "coUP",
+                "reason": "audit-temporary-assumption",
+                "parents": [],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:UP:coUP",
+                "relation": "inclusion",
+                "left": "UP",
+                "right": "coUP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:UP:NE",
+                  "inclusion:NE:coUP"
+                ],
+                "source_ids": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "conclusion": {
+        "relation": "separation",
+        "left": "NEXP",
+        "right": "coNP"
+      },
+      "discharged_assumption": {
+        "relation": "inclusion",
+        "left": "NEXP",
+        "right": "coNP"
+      },
+      "contradiction": {
+        "attempted": {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "NP",
+          "id": "inclusion:coNP:NP",
+          "reason": "complement",
+          "parents": [
+            "inclusion:NP:coNP"
+          ],
+          "source_ids": []
+        },
+        "existing": {
+          "target": "separation:coNP:NP",
+          "steps": [
+            {
+              "id": "separation:NE:NP",
+              "relation": "separation",
+              "left": "NE",
+              "right": "NP",
+              "reason": "baseline:classical-separation-NE-NP",
+              "parents": [],
+              "source_ids": [
+                "SFM1978"
+              ]
+            },
+            {
+              "id": "inclusion:NE:NEXP",
+              "relation": "inclusion",
+              "left": "NE",
+              "right": "NEXP",
+              "reason": "baseline:classical-inclusion-NE-NEXP",
+              "parents": [],
+              "source_ids": [
+                "AB2007"
+              ]
+            },
+            {
+              "id": "separation:NEXP:NP",
+              "relation": "separation",
+              "left": "NEXP",
+              "right": "NP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NE:NP",
+                "inclusion:NE:NEXP"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "inclusion:NEXP:coNP",
+              "relation": "inclusion",
+              "left": "NEXP",
+              "right": "coNP",
+              "reason": "audit-temporary-assumption",
+              "parents": [],
+              "source_ids": []
+            },
+            {
+              "id": "separation:coNP:NP",
+              "relation": "separation",
+              "left": "coNP",
+              "right": "NP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NEXP:NP",
+                "inclusion:NEXP:coNP"
+              ],
+              "source_ids": []
+            }
+          ]
+        },
+        "parent_proofs": [
+          {
+            "target": "inclusion:NP:coNP",
+            "steps": [
+              {
+                "id": "inclusion:NP:NE",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NE",
+                "reason": "baseline:classical-inclusion-NP-NE",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NE:NEXP",
+                "relation": "inclusion",
+                "left": "NE",
+                "right": "NEXP",
+                "reason": "baseline:classical-inclusion-NE-NEXP",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NP:NEXP",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NEXP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:NP:NE",
+                  "inclusion:NE:NEXP"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NEXP:coNP",
+                "relation": "inclusion",
+                "left": "NEXP",
+                "right": "coNP",
+                "reason": "audit-temporary-assumption",
+                "parents": [],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NP:coNP",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "coNP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:NP:NEXP",
+                  "inclusion:NEXP:coNP"
+                ],
+                "source_ids": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "conclusion": {
+        "relation": "separation",
+        "left": "NEXP",
+        "right": "coRP"
+      },
+      "discharged_assumption": {
+        "relation": "inclusion",
+        "left": "NEXP",
+        "right": "coRP"
+      },
+      "contradiction": {
+        "attempted": {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "RP",
+          "id": "inclusion:coRP:RP",
+          "reason": "complement",
+          "parents": [
+            "inclusion:RP:coRP"
+          ],
+          "source_ids": []
+        },
+        "existing": {
+          "target": "separation:coRP:RP",
+          "steps": [
+            {
+              "id": "separation:NEXP:NE",
+              "relation": "separation",
+              "left": "NEXP",
+              "right": "NE",
+              "reason": "baseline:classical-separation-NEXP-NE",
+              "parents": [],
+              "source_ids": [
+                "SFM1978"
+              ]
+            },
+            {
+              "id": "inclusion:RP:NP",
+              "relation": "inclusion",
+              "left": "RP",
+              "right": "NP",
+              "reason": "baseline:classical-inclusion-RP-NP",
+              "parents": [],
+              "source_ids": [
+                "Gill1977",
+                "AB2007"
+              ]
+            },
+            {
+              "id": "inclusion:NP:NE",
+              "relation": "inclusion",
+              "left": "NP",
+              "right": "NE",
+              "reason": "baseline:classical-inclusion-NP-NE",
+              "parents": [],
+              "source_ids": [
+                "AB2007"
+              ]
+            },
+            {
+              "id": "inclusion:RP:NE",
+              "relation": "inclusion",
+              "left": "RP",
+              "right": "NE",
+              "reason": "transitivity",
+              "parents": [
+                "inclusion:RP:NP",
+                "inclusion:NP:NE"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "separation:NEXP:RP",
+              "relation": "separation",
+              "left": "NEXP",
+              "right": "RP",
+              "reason": "separation-right",
+              "parents": [
+                "separation:NEXP:NE",
+                "inclusion:RP:NE"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "inclusion:NEXP:coRP",
+              "relation": "inclusion",
+              "left": "NEXP",
+              "right": "coRP",
+              "reason": "audit-temporary-assumption",
+              "parents": [],
+              "source_ids": []
+            },
+            {
+              "id": "separation:coRP:RP",
+              "relation": "separation",
+              "left": "coRP",
+              "right": "RP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NEXP:RP",
+                "inclusion:NEXP:coRP"
+              ],
+              "source_ids": []
+            }
+          ]
+        },
+        "parent_proofs": [
+          {
+            "target": "inclusion:RP:coRP",
+            "steps": [
+              {
+                "id": "inclusion:RP:NP",
+                "relation": "inclusion",
+                "left": "RP",
+                "right": "NP",
+                "reason": "baseline:classical-inclusion-RP-NP",
+                "parents": [],
+                "source_ids": [
+                  "Gill1977",
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NP:NE",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NE",
+                "reason": "baseline:classical-inclusion-NP-NE",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:RP:NE",
+                "relation": "inclusion",
+                "left": "RP",
+                "right": "NE",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:RP:NP",
+                  "inclusion:NP:NE"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NE:NEXP",
+                "relation": "inclusion",
+                "left": "NE",
+                "right": "NEXP",
+                "reason": "baseline:classical-inclusion-NE-NEXP",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:RP:NEXP",
+                "relation": "inclusion",
+                "left": "RP",
+                "right": "NEXP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:RP:NE",
+                  "inclusion:NE:NEXP"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NEXP:coRP",
+                "relation": "inclusion",
+                "left": "NEXP",
+                "right": "coRP",
+                "reason": "audit-temporary-assumption",
+                "parents": [],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:RP:coRP",
+                "relation": "inclusion",
+                "left": "RP",
+                "right": "coRP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:RP:NEXP",
+                  "inclusion:NEXP:coRP"
+                ],
+                "source_ids": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "conclusion": {
+        "relation": "separation",
+        "left": "NEXP",
+        "right": "coUP"
+      },
+      "discharged_assumption": {
+        "relation": "inclusion",
+        "left": "NEXP",
+        "right": "coUP"
+      },
+      "contradiction": {
+        "attempted": {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "UP",
+          "id": "inclusion:coUP:UP",
+          "reason": "complement",
+          "parents": [
+            "inclusion:UP:coUP"
+          ],
+          "source_ids": []
+        },
+        "existing": {
+          "target": "separation:coUP:UP",
+          "steps": [
+            {
+              "id": "separation:NE:NP",
+              "relation": "separation",
+              "left": "NE",
+              "right": "NP",
+              "reason": "baseline:classical-separation-NE-NP",
+              "parents": [],
+              "source_ids": [
+                "SFM1978"
+              ]
+            },
+            {
+              "id": "inclusion:NE:NEXP",
+              "relation": "inclusion",
+              "left": "NE",
+              "right": "NEXP",
+              "reason": "baseline:classical-inclusion-NE-NEXP",
+              "parents": [],
+              "source_ids": [
+                "AB2007"
+              ]
+            },
+            {
+              "id": "separation:NEXP:NP",
+              "relation": "separation",
+              "left": "NEXP",
+              "right": "NP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NE:NP",
+                "inclusion:NE:NEXP"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "inclusion:UP:FewP",
+              "relation": "inclusion",
+              "left": "UP",
+              "right": "FewP",
+              "reason": "baseline:classical-inclusion-UP-FewP",
+              "parents": [],
+              "source_ids": [
+                "AB2007"
+              ]
+            },
+            {
+              "id": "inclusion:FewP:NP",
+              "relation": "inclusion",
+              "left": "FewP",
+              "right": "NP",
+              "reason": "baseline:classical-inclusion-FewP-NP",
+              "parents": [],
+              "source_ids": [
+                "AB2007"
+              ]
+            },
+            {
+              "id": "inclusion:UP:NP",
+              "relation": "inclusion",
+              "left": "UP",
+              "right": "NP",
+              "reason": "transitivity",
+              "parents": [
+                "inclusion:UP:FewP",
+                "inclusion:FewP:NP"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "separation:NEXP:UP",
+              "relation": "separation",
+              "left": "NEXP",
+              "right": "UP",
+              "reason": "separation-right",
+              "parents": [
+                "separation:NEXP:NP",
+                "inclusion:UP:NP"
+              ],
+              "source_ids": []
+            },
+            {
+              "id": "inclusion:NEXP:coUP",
+              "relation": "inclusion",
+              "left": "NEXP",
+              "right": "coUP",
+              "reason": "audit-temporary-assumption",
+              "parents": [],
+              "source_ids": []
+            },
+            {
+              "id": "separation:coUP:UP",
+              "relation": "separation",
+              "left": "coUP",
+              "right": "UP",
+              "reason": "separation-left",
+              "parents": [
+                "separation:NEXP:UP",
+                "inclusion:NEXP:coUP"
+              ],
+              "source_ids": []
+            }
+          ]
+        },
+        "parent_proofs": [
+          {
+            "target": "inclusion:UP:coUP",
+            "steps": [
+              {
+                "id": "inclusion:UP:FewP",
+                "relation": "inclusion",
+                "left": "UP",
+                "right": "FewP",
+                "reason": "baseline:classical-inclusion-UP-FewP",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:FewP:NP",
+                "relation": "inclusion",
+                "left": "FewP",
+                "right": "NP",
+                "reason": "baseline:classical-inclusion-FewP-NP",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:UP:NP",
+                "relation": "inclusion",
+                "left": "UP",
+                "right": "NP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:UP:FewP",
+                  "inclusion:FewP:NP"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NP:NE",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NE",
+                "reason": "baseline:classical-inclusion-NP-NE",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NE:NEXP",
+                "relation": "inclusion",
+                "left": "NE",
+                "right": "NEXP",
+                "reason": "baseline:classical-inclusion-NE-NEXP",
+                "parents": [],
+                "source_ids": [
+                  "AB2007"
+                ]
+              },
+              {
+                "id": "inclusion:NP:NEXP",
+                "relation": "inclusion",
+                "left": "NP",
+                "right": "NEXP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:NP:NE",
+                  "inclusion:NE:NEXP"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:UP:NEXP",
+                "relation": "inclusion",
+                "left": "UP",
+                "right": "NEXP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:UP:NP",
+                  "inclusion:NP:NEXP"
+                ],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:NEXP:coUP",
+                "relation": "inclusion",
+                "left": "NEXP",
+                "right": "coUP",
+                "reason": "audit-temporary-assumption",
+                "parents": [],
+                "source_ids": []
+              },
+              {
+                "id": "inclusion:UP:coUP",
+                "relation": "inclusion",
+                "left": "UP",
+                "right": "coUP",
+                "reason": "transitivity",
+                "parents": [
+                  "inclusion:UP:NEXP",
+                  "inclusion:NEXP:coUP"
+                ],
+                "source_ids": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": "Not complete propositional consequence finding; does not certify openness. Each proposed correction needs provenance and semantic review."
+}

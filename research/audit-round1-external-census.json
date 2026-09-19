@@ -1,0 +1,3570 @@
+{
+  "schema_version": 1,
+  "source_url": "https://www.math.ucdavis.edu/~greg/zoology/relations.html",
+  "intro_url": "https://www.math.ucdavis.edu/~greg/zoology/",
+  "source_sha256": "5a4688ebb42b6f695a936bd72f9c3b8deba8324286fee01f3df0031ef01a0510",
+  "extracted_edge_count": 459,
+  "explicit_node_count": 296,
+  "dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "scope": "External universal-oracle inclusion edges only; oracle separations NEVER counted as unrelativized separations. Source is an older discovery census, not a 2026 openness certification.",
+  "mapping": {
+    "AC0": "AC^0/poly",
+    "ACC0": "ACC^0/poly",
+    "TC0": "TC^0/poly",
+    "NC1": "NC^1/poly",
+    "L": "L",
+    "NL": "NL",
+    "LogCFL": "SAC^1",
+    "NC": "NC",
+    "SC": "SC",
+    "P": "P",
+    "RP": "RP",
+    "coRP": "co.RP",
+    "ZPP": "ZPP",
+    "BPP": "BPP",
+    "UP": "UP",
+    "coUP": "co.UP",
+    "NP": "NP",
+    "coNP": "co.NP",
+    "FewP": "FewP",
+    "SPP": "SPP",
+    "CeqP": "C_=P",
+    "PP": "PP",
+    "parityP": "+P",
+    "AWPP": "AWPP",
+    "LWPP": "LWPP",
+    "WPP": "WPP",
+    "MA": "MA",
+    "coMA": "co.MA",
+    "AM": "AM",
+    "coAM": "co.AM",
+    "QCMA": "QCMA",
+    "QMA": "QMA",
+    "coQMA": "co.QMA",
+    "BQP": "BQP",
+    "SBP": "SBP",
+    "SZK": "SZK",
+    "NPcapcoNP": "cocap.NP",
+    "Sigma2P": "Sigma_2P",
+    "Pi2P": "co.Sigma_2P",
+    "Delta2P": "Delta_2P",
+    "Theta2P": "P^{NP[log]}",
+    "PH": "PH",
+    "Ppoly": "P/poly",
+    "NPpoly": "NP/poly",
+    "PSPACE": "PSPACE",
+    "EXP": "EXP",
+    "NEXP": "NEXP",
+    "EXPSPACE": "EXPSPACE",
+    "E": "E",
+    "NE": "NE"
+  },
+  "mapping_limitations": [
+    "Uniform NC convention and uniform SAC1/LogCFL equivalence require explicit review.",
+    "Nonuniform classes mapped to /poly variants; unavailable nodes excluded.",
+    "Complement identities reused from our catalog, so this component is not independent."
+  ],
+  "confirmed_inclusions": [
+    {
+      "left": "AC0",
+      "right": "AC0",
+      "external_left": "AC^0/poly",
+      "external_right": "AC^0/poly"
+    },
+    {
+      "left": "AC0",
+      "right": "TC0",
+      "external_left": "AC^0/poly",
+      "external_right": "TC^0/poly"
+    },
+    {
+      "left": "AC0",
+      "right": "Ppoly",
+      "external_left": "AC^0/poly",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "AC0",
+      "right": "NPpoly",
+      "external_left": "AC^0/poly",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "TC0",
+      "right": "TC0",
+      "external_left": "TC^0/poly",
+      "external_right": "TC^0/poly"
+    },
+    {
+      "left": "TC0",
+      "right": "Ppoly",
+      "external_left": "TC^0/poly",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "TC0",
+      "right": "NPpoly",
+      "external_left": "TC^0/poly",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "L",
+      "right": "L",
+      "external_left": "L",
+      "external_right": "L"
+    },
+    {
+      "left": "L",
+      "right": "NL",
+      "external_left": "L",
+      "external_right": "NL"
+    },
+    {
+      "left": "L",
+      "right": "LogCFL",
+      "external_left": "L",
+      "external_right": "SAC^1"
+    },
+    {
+      "left": "L",
+      "right": "NC",
+      "external_left": "L",
+      "external_right": "NC"
+    },
+    {
+      "left": "L",
+      "right": "SC",
+      "external_left": "L",
+      "external_right": "SC"
+    },
+    {
+      "left": "L",
+      "right": "P",
+      "external_left": "L",
+      "external_right": "P"
+    },
+    {
+      "left": "L",
+      "right": "RP",
+      "external_left": "L",
+      "external_right": "RP"
+    },
+    {
+      "left": "L",
+      "right": "BPP",
+      "external_left": "L",
+      "external_right": "BPP"
+    },
+    {
+      "left": "L",
+      "right": "UP",
+      "external_left": "L",
+      "external_right": "UP"
+    },
+    {
+      "left": "L",
+      "right": "NP",
+      "external_left": "L",
+      "external_right": "NP"
+    },
+    {
+      "left": "L",
+      "right": "coNP",
+      "external_left": "L",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "L",
+      "right": "FewP",
+      "external_left": "L",
+      "external_right": "FewP"
+    },
+    {
+      "left": "L",
+      "right": "SPP",
+      "external_left": "L",
+      "external_right": "SPP"
+    },
+    {
+      "left": "L",
+      "right": "CeqP",
+      "external_left": "L",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "L",
+      "right": "PP",
+      "external_left": "L",
+      "external_right": "PP"
+    },
+    {
+      "left": "L",
+      "right": "parityP",
+      "external_left": "L",
+      "external_right": "+P"
+    },
+    {
+      "left": "L",
+      "right": "AWPP",
+      "external_left": "L",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "L",
+      "right": "LWPP",
+      "external_left": "L",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "L",
+      "right": "WPP",
+      "external_left": "L",
+      "external_right": "WPP"
+    },
+    {
+      "left": "L",
+      "right": "MA",
+      "external_left": "L",
+      "external_right": "MA"
+    },
+    {
+      "left": "L",
+      "right": "AM",
+      "external_left": "L",
+      "external_right": "AM"
+    },
+    {
+      "left": "L",
+      "right": "coAM",
+      "external_left": "L",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "L",
+      "right": "QCMA",
+      "external_left": "L",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "L",
+      "right": "QMA",
+      "external_left": "L",
+      "external_right": "QMA"
+    },
+    {
+      "left": "L",
+      "right": "BQP",
+      "external_left": "L",
+      "external_right": "BQP"
+    },
+    {
+      "left": "L",
+      "right": "SBP",
+      "external_left": "L",
+      "external_right": "SBP"
+    },
+    {
+      "left": "L",
+      "right": "SZK",
+      "external_left": "L",
+      "external_right": "SZK"
+    },
+    {
+      "left": "L",
+      "right": "Sigma2P",
+      "external_left": "L",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "L",
+      "right": "Pi2P",
+      "external_left": "L",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "L",
+      "right": "Delta2P",
+      "external_left": "L",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "L",
+      "right": "Theta2P",
+      "external_left": "L",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "L",
+      "right": "PH",
+      "external_left": "L",
+      "external_right": "PH"
+    },
+    {
+      "left": "L",
+      "right": "Ppoly",
+      "external_left": "L",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "L",
+      "right": "NPpoly",
+      "external_left": "L",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "L",
+      "right": "PSPACE",
+      "external_left": "L",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "L",
+      "right": "EXP",
+      "external_left": "L",
+      "external_right": "EXP"
+    },
+    {
+      "left": "L",
+      "right": "NEXP",
+      "external_left": "L",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "L",
+      "right": "EXPSPACE",
+      "external_left": "L",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "L",
+      "right": "E",
+      "external_left": "L",
+      "external_right": "E"
+    },
+    {
+      "left": "L",
+      "right": "NE",
+      "external_left": "L",
+      "external_right": "NE"
+    },
+    {
+      "left": "NL",
+      "right": "NL",
+      "external_left": "NL",
+      "external_right": "NL"
+    },
+    {
+      "left": "NL",
+      "right": "LogCFL",
+      "external_left": "NL",
+      "external_right": "SAC^1"
+    },
+    {
+      "left": "NL",
+      "right": "NC",
+      "external_left": "NL",
+      "external_right": "NC"
+    },
+    {
+      "left": "NL",
+      "right": "P",
+      "external_left": "NL",
+      "external_right": "P"
+    },
+    {
+      "left": "NL",
+      "right": "RP",
+      "external_left": "NL",
+      "external_right": "RP"
+    },
+    {
+      "left": "NL",
+      "right": "BPP",
+      "external_left": "NL",
+      "external_right": "BPP"
+    },
+    {
+      "left": "NL",
+      "right": "UP",
+      "external_left": "NL",
+      "external_right": "UP"
+    },
+    {
+      "left": "NL",
+      "right": "NP",
+      "external_left": "NL",
+      "external_right": "NP"
+    },
+    {
+      "left": "NL",
+      "right": "coNP",
+      "external_left": "NL",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "NL",
+      "right": "FewP",
+      "external_left": "NL",
+      "external_right": "FewP"
+    },
+    {
+      "left": "NL",
+      "right": "SPP",
+      "external_left": "NL",
+      "external_right": "SPP"
+    },
+    {
+      "left": "NL",
+      "right": "CeqP",
+      "external_left": "NL",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "NL",
+      "right": "PP",
+      "external_left": "NL",
+      "external_right": "PP"
+    },
+    {
+      "left": "NL",
+      "right": "parityP",
+      "external_left": "NL",
+      "external_right": "+P"
+    },
+    {
+      "left": "NL",
+      "right": "AWPP",
+      "external_left": "NL",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "NL",
+      "right": "LWPP",
+      "external_left": "NL",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "NL",
+      "right": "WPP",
+      "external_left": "NL",
+      "external_right": "WPP"
+    },
+    {
+      "left": "NL",
+      "right": "MA",
+      "external_left": "NL",
+      "external_right": "MA"
+    },
+    {
+      "left": "NL",
+      "right": "AM",
+      "external_left": "NL",
+      "external_right": "AM"
+    },
+    {
+      "left": "NL",
+      "right": "coAM",
+      "external_left": "NL",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "NL",
+      "right": "QCMA",
+      "external_left": "NL",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "NL",
+      "right": "QMA",
+      "external_left": "NL",
+      "external_right": "QMA"
+    },
+    {
+      "left": "NL",
+      "right": "BQP",
+      "external_left": "NL",
+      "external_right": "BQP"
+    },
+    {
+      "left": "NL",
+      "right": "SBP",
+      "external_left": "NL",
+      "external_right": "SBP"
+    },
+    {
+      "left": "NL",
+      "right": "SZK",
+      "external_left": "NL",
+      "external_right": "SZK"
+    },
+    {
+      "left": "NL",
+      "right": "Sigma2P",
+      "external_left": "NL",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "NL",
+      "right": "Pi2P",
+      "external_left": "NL",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "NL",
+      "right": "Delta2P",
+      "external_left": "NL",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "NL",
+      "right": "Theta2P",
+      "external_left": "NL",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "NL",
+      "right": "PH",
+      "external_left": "NL",
+      "external_right": "PH"
+    },
+    {
+      "left": "NL",
+      "right": "Ppoly",
+      "external_left": "NL",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "NL",
+      "right": "NPpoly",
+      "external_left": "NL",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "NL",
+      "right": "PSPACE",
+      "external_left": "NL",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "NL",
+      "right": "EXP",
+      "external_left": "NL",
+      "external_right": "EXP"
+    },
+    {
+      "left": "NL",
+      "right": "NEXP",
+      "external_left": "NL",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "NL",
+      "right": "EXPSPACE",
+      "external_left": "NL",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "NL",
+      "right": "E",
+      "external_left": "NL",
+      "external_right": "E"
+    },
+    {
+      "left": "NL",
+      "right": "NE",
+      "external_left": "NL",
+      "external_right": "NE"
+    },
+    {
+      "left": "LogCFL",
+      "right": "LogCFL",
+      "external_left": "SAC^1",
+      "external_right": "SAC^1"
+    },
+    {
+      "left": "LogCFL",
+      "right": "NC",
+      "external_left": "SAC^1",
+      "external_right": "NC"
+    },
+    {
+      "left": "LogCFL",
+      "right": "P",
+      "external_left": "SAC^1",
+      "external_right": "P"
+    },
+    {
+      "left": "LogCFL",
+      "right": "RP",
+      "external_left": "SAC^1",
+      "external_right": "RP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "BPP",
+      "external_left": "SAC^1",
+      "external_right": "BPP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "UP",
+      "external_left": "SAC^1",
+      "external_right": "UP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "NP",
+      "external_left": "SAC^1",
+      "external_right": "NP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "coNP",
+      "external_left": "SAC^1",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "FewP",
+      "external_left": "SAC^1",
+      "external_right": "FewP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "SPP",
+      "external_left": "SAC^1",
+      "external_right": "SPP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "CeqP",
+      "external_left": "SAC^1",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "LogCFL",
+      "right": "PP",
+      "external_left": "SAC^1",
+      "external_right": "PP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "parityP",
+      "external_left": "SAC^1",
+      "external_right": "+P"
+    },
+    {
+      "left": "LogCFL",
+      "right": "AWPP",
+      "external_left": "SAC^1",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "LWPP",
+      "external_left": "SAC^1",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "WPP",
+      "external_left": "SAC^1",
+      "external_right": "WPP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "MA",
+      "external_left": "SAC^1",
+      "external_right": "MA"
+    },
+    {
+      "left": "LogCFL",
+      "right": "AM",
+      "external_left": "SAC^1",
+      "external_right": "AM"
+    },
+    {
+      "left": "LogCFL",
+      "right": "coAM",
+      "external_left": "SAC^1",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "LogCFL",
+      "right": "QCMA",
+      "external_left": "SAC^1",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "LogCFL",
+      "right": "QMA",
+      "external_left": "SAC^1",
+      "external_right": "QMA"
+    },
+    {
+      "left": "LogCFL",
+      "right": "BQP",
+      "external_left": "SAC^1",
+      "external_right": "BQP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "SBP",
+      "external_left": "SAC^1",
+      "external_right": "SBP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "SZK",
+      "external_left": "SAC^1",
+      "external_right": "SZK"
+    },
+    {
+      "left": "LogCFL",
+      "right": "Sigma2P",
+      "external_left": "SAC^1",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "LogCFL",
+      "right": "Pi2P",
+      "external_left": "SAC^1",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "LogCFL",
+      "right": "Delta2P",
+      "external_left": "SAC^1",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "LogCFL",
+      "right": "Theta2P",
+      "external_left": "SAC^1",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "LogCFL",
+      "right": "PH",
+      "external_left": "SAC^1",
+      "external_right": "PH"
+    },
+    {
+      "left": "LogCFL",
+      "right": "Ppoly",
+      "external_left": "SAC^1",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "LogCFL",
+      "right": "NPpoly",
+      "external_left": "SAC^1",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "LogCFL",
+      "right": "PSPACE",
+      "external_left": "SAC^1",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "LogCFL",
+      "right": "EXP",
+      "external_left": "SAC^1",
+      "external_right": "EXP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "NEXP",
+      "external_left": "SAC^1",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "EXPSPACE",
+      "external_left": "SAC^1",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "LogCFL",
+      "right": "E",
+      "external_left": "SAC^1",
+      "external_right": "E"
+    },
+    {
+      "left": "LogCFL",
+      "right": "NE",
+      "external_left": "SAC^1",
+      "external_right": "NE"
+    },
+    {
+      "left": "NC",
+      "right": "NC",
+      "external_left": "NC",
+      "external_right": "NC"
+    },
+    {
+      "left": "NC",
+      "right": "P",
+      "external_left": "NC",
+      "external_right": "P"
+    },
+    {
+      "left": "NC",
+      "right": "RP",
+      "external_left": "NC",
+      "external_right": "RP"
+    },
+    {
+      "left": "NC",
+      "right": "BPP",
+      "external_left": "NC",
+      "external_right": "BPP"
+    },
+    {
+      "left": "NC",
+      "right": "UP",
+      "external_left": "NC",
+      "external_right": "UP"
+    },
+    {
+      "left": "NC",
+      "right": "NP",
+      "external_left": "NC",
+      "external_right": "NP"
+    },
+    {
+      "left": "NC",
+      "right": "coNP",
+      "external_left": "NC",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "NC",
+      "right": "FewP",
+      "external_left": "NC",
+      "external_right": "FewP"
+    },
+    {
+      "left": "NC",
+      "right": "SPP",
+      "external_left": "NC",
+      "external_right": "SPP"
+    },
+    {
+      "left": "NC",
+      "right": "CeqP",
+      "external_left": "NC",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "NC",
+      "right": "PP",
+      "external_left": "NC",
+      "external_right": "PP"
+    },
+    {
+      "left": "NC",
+      "right": "parityP",
+      "external_left": "NC",
+      "external_right": "+P"
+    },
+    {
+      "left": "NC",
+      "right": "AWPP",
+      "external_left": "NC",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "NC",
+      "right": "LWPP",
+      "external_left": "NC",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "NC",
+      "right": "WPP",
+      "external_left": "NC",
+      "external_right": "WPP"
+    },
+    {
+      "left": "NC",
+      "right": "MA",
+      "external_left": "NC",
+      "external_right": "MA"
+    },
+    {
+      "left": "NC",
+      "right": "AM",
+      "external_left": "NC",
+      "external_right": "AM"
+    },
+    {
+      "left": "NC",
+      "right": "coAM",
+      "external_left": "NC",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "NC",
+      "right": "QCMA",
+      "external_left": "NC",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "NC",
+      "right": "QMA",
+      "external_left": "NC",
+      "external_right": "QMA"
+    },
+    {
+      "left": "NC",
+      "right": "BQP",
+      "external_left": "NC",
+      "external_right": "BQP"
+    },
+    {
+      "left": "NC",
+      "right": "SBP",
+      "external_left": "NC",
+      "external_right": "SBP"
+    },
+    {
+      "left": "NC",
+      "right": "SZK",
+      "external_left": "NC",
+      "external_right": "SZK"
+    },
+    {
+      "left": "NC",
+      "right": "Sigma2P",
+      "external_left": "NC",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "NC",
+      "right": "Pi2P",
+      "external_left": "NC",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "NC",
+      "right": "Delta2P",
+      "external_left": "NC",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "NC",
+      "right": "Theta2P",
+      "external_left": "NC",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "NC",
+      "right": "PH",
+      "external_left": "NC",
+      "external_right": "PH"
+    },
+    {
+      "left": "NC",
+      "right": "Ppoly",
+      "external_left": "NC",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "NC",
+      "right": "NPpoly",
+      "external_left": "NC",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "NC",
+      "right": "PSPACE",
+      "external_left": "NC",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "NC",
+      "right": "EXP",
+      "external_left": "NC",
+      "external_right": "EXP"
+    },
+    {
+      "left": "NC",
+      "right": "NEXP",
+      "external_left": "NC",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "NC",
+      "right": "EXPSPACE",
+      "external_left": "NC",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "NC",
+      "right": "E",
+      "external_left": "NC",
+      "external_right": "E"
+    },
+    {
+      "left": "NC",
+      "right": "NE",
+      "external_left": "NC",
+      "external_right": "NE"
+    },
+    {
+      "left": "SC",
+      "right": "SC",
+      "external_left": "SC",
+      "external_right": "SC"
+    },
+    {
+      "left": "SC",
+      "right": "P",
+      "external_left": "SC",
+      "external_right": "P"
+    },
+    {
+      "left": "SC",
+      "right": "RP",
+      "external_left": "SC",
+      "external_right": "RP"
+    },
+    {
+      "left": "SC",
+      "right": "BPP",
+      "external_left": "SC",
+      "external_right": "BPP"
+    },
+    {
+      "left": "SC",
+      "right": "UP",
+      "external_left": "SC",
+      "external_right": "UP"
+    },
+    {
+      "left": "SC",
+      "right": "NP",
+      "external_left": "SC",
+      "external_right": "NP"
+    },
+    {
+      "left": "SC",
+      "right": "coNP",
+      "external_left": "SC",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "SC",
+      "right": "FewP",
+      "external_left": "SC",
+      "external_right": "FewP"
+    },
+    {
+      "left": "SC",
+      "right": "SPP",
+      "external_left": "SC",
+      "external_right": "SPP"
+    },
+    {
+      "left": "SC",
+      "right": "CeqP",
+      "external_left": "SC",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "SC",
+      "right": "PP",
+      "external_left": "SC",
+      "external_right": "PP"
+    },
+    {
+      "left": "SC",
+      "right": "parityP",
+      "external_left": "SC",
+      "external_right": "+P"
+    },
+    {
+      "left": "SC",
+      "right": "AWPP",
+      "external_left": "SC",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "SC",
+      "right": "LWPP",
+      "external_left": "SC",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "SC",
+      "right": "WPP",
+      "external_left": "SC",
+      "external_right": "WPP"
+    },
+    {
+      "left": "SC",
+      "right": "MA",
+      "external_left": "SC",
+      "external_right": "MA"
+    },
+    {
+      "left": "SC",
+      "right": "AM",
+      "external_left": "SC",
+      "external_right": "AM"
+    },
+    {
+      "left": "SC",
+      "right": "coAM",
+      "external_left": "SC",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "SC",
+      "right": "QCMA",
+      "external_left": "SC",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "SC",
+      "right": "QMA",
+      "external_left": "SC",
+      "external_right": "QMA"
+    },
+    {
+      "left": "SC",
+      "right": "BQP",
+      "external_left": "SC",
+      "external_right": "BQP"
+    },
+    {
+      "left": "SC",
+      "right": "SBP",
+      "external_left": "SC",
+      "external_right": "SBP"
+    },
+    {
+      "left": "SC",
+      "right": "SZK",
+      "external_left": "SC",
+      "external_right": "SZK"
+    },
+    {
+      "left": "SC",
+      "right": "Sigma2P",
+      "external_left": "SC",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "SC",
+      "right": "Pi2P",
+      "external_left": "SC",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "SC",
+      "right": "Delta2P",
+      "external_left": "SC",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "SC",
+      "right": "Theta2P",
+      "external_left": "SC",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "SC",
+      "right": "PH",
+      "external_left": "SC",
+      "external_right": "PH"
+    },
+    {
+      "left": "SC",
+      "right": "Ppoly",
+      "external_left": "SC",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "SC",
+      "right": "NPpoly",
+      "external_left": "SC",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "SC",
+      "right": "PSPACE",
+      "external_left": "SC",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "SC",
+      "right": "EXP",
+      "external_left": "SC",
+      "external_right": "EXP"
+    },
+    {
+      "left": "SC",
+      "right": "NEXP",
+      "external_left": "SC",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "SC",
+      "right": "EXPSPACE",
+      "external_left": "SC",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "SC",
+      "right": "E",
+      "external_left": "SC",
+      "external_right": "E"
+    },
+    {
+      "left": "SC",
+      "right": "NE",
+      "external_left": "SC",
+      "external_right": "NE"
+    },
+    {
+      "left": "P",
+      "right": "P",
+      "external_left": "P",
+      "external_right": "P"
+    },
+    {
+      "left": "P",
+      "right": "RP",
+      "external_left": "P",
+      "external_right": "RP"
+    },
+    {
+      "left": "P",
+      "right": "BPP",
+      "external_left": "P",
+      "external_right": "BPP"
+    },
+    {
+      "left": "P",
+      "right": "UP",
+      "external_left": "P",
+      "external_right": "UP"
+    },
+    {
+      "left": "P",
+      "right": "NP",
+      "external_left": "P",
+      "external_right": "NP"
+    },
+    {
+      "left": "P",
+      "right": "coNP",
+      "external_left": "P",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "P",
+      "right": "FewP",
+      "external_left": "P",
+      "external_right": "FewP"
+    },
+    {
+      "left": "P",
+      "right": "SPP",
+      "external_left": "P",
+      "external_right": "SPP"
+    },
+    {
+      "left": "P",
+      "right": "CeqP",
+      "external_left": "P",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "P",
+      "right": "PP",
+      "external_left": "P",
+      "external_right": "PP"
+    },
+    {
+      "left": "P",
+      "right": "parityP",
+      "external_left": "P",
+      "external_right": "+P"
+    },
+    {
+      "left": "P",
+      "right": "AWPP",
+      "external_left": "P",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "P",
+      "right": "LWPP",
+      "external_left": "P",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "P",
+      "right": "WPP",
+      "external_left": "P",
+      "external_right": "WPP"
+    },
+    {
+      "left": "P",
+      "right": "MA",
+      "external_left": "P",
+      "external_right": "MA"
+    },
+    {
+      "left": "P",
+      "right": "AM",
+      "external_left": "P",
+      "external_right": "AM"
+    },
+    {
+      "left": "P",
+      "right": "coAM",
+      "external_left": "P",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "P",
+      "right": "QCMA",
+      "external_left": "P",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "P",
+      "right": "QMA",
+      "external_left": "P",
+      "external_right": "QMA"
+    },
+    {
+      "left": "P",
+      "right": "BQP",
+      "external_left": "P",
+      "external_right": "BQP"
+    },
+    {
+      "left": "P",
+      "right": "SBP",
+      "external_left": "P",
+      "external_right": "SBP"
+    },
+    {
+      "left": "P",
+      "right": "SZK",
+      "external_left": "P",
+      "external_right": "SZK"
+    },
+    {
+      "left": "P",
+      "right": "Sigma2P",
+      "external_left": "P",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "P",
+      "right": "Pi2P",
+      "external_left": "P",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "P",
+      "right": "Delta2P",
+      "external_left": "P",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "P",
+      "right": "Theta2P",
+      "external_left": "P",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "P",
+      "right": "PH",
+      "external_left": "P",
+      "external_right": "PH"
+    },
+    {
+      "left": "P",
+      "right": "Ppoly",
+      "external_left": "P",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "P",
+      "right": "NPpoly",
+      "external_left": "P",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "P",
+      "right": "PSPACE",
+      "external_left": "P",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "P",
+      "right": "EXP",
+      "external_left": "P",
+      "external_right": "EXP"
+    },
+    {
+      "left": "P",
+      "right": "NEXP",
+      "external_left": "P",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "P",
+      "right": "EXPSPACE",
+      "external_left": "P",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "P",
+      "right": "E",
+      "external_left": "P",
+      "external_right": "E"
+    },
+    {
+      "left": "P",
+      "right": "NE",
+      "external_left": "P",
+      "external_right": "NE"
+    },
+    {
+      "left": "RP",
+      "right": "RP",
+      "external_left": "RP",
+      "external_right": "RP"
+    },
+    {
+      "left": "RP",
+      "right": "BPP",
+      "external_left": "RP",
+      "external_right": "BPP"
+    },
+    {
+      "left": "RP",
+      "right": "NP",
+      "external_left": "RP",
+      "external_right": "NP"
+    },
+    {
+      "left": "RP",
+      "right": "PP",
+      "external_left": "RP",
+      "external_right": "PP"
+    },
+    {
+      "left": "RP",
+      "right": "AWPP",
+      "external_left": "RP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "RP",
+      "right": "MA",
+      "external_left": "RP",
+      "external_right": "MA"
+    },
+    {
+      "left": "RP",
+      "right": "AM",
+      "external_left": "RP",
+      "external_right": "AM"
+    },
+    {
+      "left": "RP",
+      "right": "coAM",
+      "external_left": "RP",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "RP",
+      "right": "QCMA",
+      "external_left": "RP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "RP",
+      "right": "QMA",
+      "external_left": "RP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "RP",
+      "right": "BQP",
+      "external_left": "RP",
+      "external_right": "BQP"
+    },
+    {
+      "left": "RP",
+      "right": "SBP",
+      "external_left": "RP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "RP",
+      "right": "SZK",
+      "external_left": "RP",
+      "external_right": "SZK"
+    },
+    {
+      "left": "RP",
+      "right": "Sigma2P",
+      "external_left": "RP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "RP",
+      "right": "Pi2P",
+      "external_left": "RP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "RP",
+      "right": "Delta2P",
+      "external_left": "RP",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "RP",
+      "right": "Theta2P",
+      "external_left": "RP",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "RP",
+      "right": "PH",
+      "external_left": "RP",
+      "external_right": "PH"
+    },
+    {
+      "left": "RP",
+      "right": "Ppoly",
+      "external_left": "RP",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "RP",
+      "right": "NPpoly",
+      "external_left": "RP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "RP",
+      "right": "PSPACE",
+      "external_left": "RP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "RP",
+      "right": "EXP",
+      "external_left": "RP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "RP",
+      "right": "NEXP",
+      "external_left": "RP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "RP",
+      "right": "EXPSPACE",
+      "external_left": "RP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "RP",
+      "right": "NE",
+      "external_left": "RP",
+      "external_right": "NE"
+    },
+    {
+      "left": "ZPP",
+      "right": "RP",
+      "external_left": "ZPP",
+      "external_right": "RP"
+    },
+    {
+      "left": "ZPP",
+      "right": "ZPP",
+      "external_left": "ZPP",
+      "external_right": "ZPP"
+    },
+    {
+      "left": "ZPP",
+      "right": "BPP",
+      "external_left": "ZPP",
+      "external_right": "BPP"
+    },
+    {
+      "left": "ZPP",
+      "right": "NP",
+      "external_left": "ZPP",
+      "external_right": "NP"
+    },
+    {
+      "left": "ZPP",
+      "right": "coNP",
+      "external_left": "ZPP",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "ZPP",
+      "right": "PP",
+      "external_left": "ZPP",
+      "external_right": "PP"
+    },
+    {
+      "left": "ZPP",
+      "right": "AWPP",
+      "external_left": "ZPP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "ZPP",
+      "right": "MA",
+      "external_left": "ZPP",
+      "external_right": "MA"
+    },
+    {
+      "left": "ZPP",
+      "right": "AM",
+      "external_left": "ZPP",
+      "external_right": "AM"
+    },
+    {
+      "left": "ZPP",
+      "right": "coAM",
+      "external_left": "ZPP",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "ZPP",
+      "right": "QCMA",
+      "external_left": "ZPP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "ZPP",
+      "right": "QMA",
+      "external_left": "ZPP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "ZPP",
+      "right": "BQP",
+      "external_left": "ZPP",
+      "external_right": "BQP"
+    },
+    {
+      "left": "ZPP",
+      "right": "SBP",
+      "external_left": "ZPP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "ZPP",
+      "right": "SZK",
+      "external_left": "ZPP",
+      "external_right": "SZK"
+    },
+    {
+      "left": "ZPP",
+      "right": "NPcapcoNP",
+      "external_left": "ZPP",
+      "external_right": "cocap.NP"
+    },
+    {
+      "left": "ZPP",
+      "right": "Sigma2P",
+      "external_left": "ZPP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "ZPP",
+      "right": "Pi2P",
+      "external_left": "ZPP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "ZPP",
+      "right": "Delta2P",
+      "external_left": "ZPP",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "ZPP",
+      "right": "Theta2P",
+      "external_left": "ZPP",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "ZPP",
+      "right": "PH",
+      "external_left": "ZPP",
+      "external_right": "PH"
+    },
+    {
+      "left": "ZPP",
+      "right": "Ppoly",
+      "external_left": "ZPP",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "ZPP",
+      "right": "NPpoly",
+      "external_left": "ZPP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "ZPP",
+      "right": "PSPACE",
+      "external_left": "ZPP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "ZPP",
+      "right": "EXP",
+      "external_left": "ZPP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "ZPP",
+      "right": "NEXP",
+      "external_left": "ZPP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "ZPP",
+      "right": "EXPSPACE",
+      "external_left": "ZPP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "ZPP",
+      "right": "NE",
+      "external_left": "ZPP",
+      "external_right": "NE"
+    },
+    {
+      "left": "BPP",
+      "right": "BPP",
+      "external_left": "BPP",
+      "external_right": "BPP"
+    },
+    {
+      "left": "BPP",
+      "right": "PP",
+      "external_left": "BPP",
+      "external_right": "PP"
+    },
+    {
+      "left": "BPP",
+      "right": "AWPP",
+      "external_left": "BPP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "BPP",
+      "right": "MA",
+      "external_left": "BPP",
+      "external_right": "MA"
+    },
+    {
+      "left": "BPP",
+      "right": "AM",
+      "external_left": "BPP",
+      "external_right": "AM"
+    },
+    {
+      "left": "BPP",
+      "right": "coAM",
+      "external_left": "BPP",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "BPP",
+      "right": "QCMA",
+      "external_left": "BPP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "BPP",
+      "right": "QMA",
+      "external_left": "BPP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "BPP",
+      "right": "BQP",
+      "external_left": "BPP",
+      "external_right": "BQP"
+    },
+    {
+      "left": "BPP",
+      "right": "SBP",
+      "external_left": "BPP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "BPP",
+      "right": "SZK",
+      "external_left": "BPP",
+      "external_right": "SZK"
+    },
+    {
+      "left": "BPP",
+      "right": "Sigma2P",
+      "external_left": "BPP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "BPP",
+      "right": "Pi2P",
+      "external_left": "BPP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "BPP",
+      "right": "PH",
+      "external_left": "BPP",
+      "external_right": "PH"
+    },
+    {
+      "left": "BPP",
+      "right": "Ppoly",
+      "external_left": "BPP",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "BPP",
+      "right": "NPpoly",
+      "external_left": "BPP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "BPP",
+      "right": "PSPACE",
+      "external_left": "BPP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "BPP",
+      "right": "EXP",
+      "external_left": "BPP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "BPP",
+      "right": "NEXP",
+      "external_left": "BPP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "BPP",
+      "right": "EXPSPACE",
+      "external_left": "BPP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "UP",
+      "right": "UP",
+      "external_left": "UP",
+      "external_right": "UP"
+    },
+    {
+      "left": "UP",
+      "right": "NP",
+      "external_left": "UP",
+      "external_right": "NP"
+    },
+    {
+      "left": "UP",
+      "right": "FewP",
+      "external_left": "UP",
+      "external_right": "FewP"
+    },
+    {
+      "left": "UP",
+      "right": "SPP",
+      "external_left": "UP",
+      "external_right": "SPP"
+    },
+    {
+      "left": "UP",
+      "right": "CeqP",
+      "external_left": "UP",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "UP",
+      "right": "PP",
+      "external_left": "UP",
+      "external_right": "PP"
+    },
+    {
+      "left": "UP",
+      "right": "parityP",
+      "external_left": "UP",
+      "external_right": "+P"
+    },
+    {
+      "left": "UP",
+      "right": "AWPP",
+      "external_left": "UP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "UP",
+      "right": "LWPP",
+      "external_left": "UP",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "UP",
+      "right": "WPP",
+      "external_left": "UP",
+      "external_right": "WPP"
+    },
+    {
+      "left": "UP",
+      "right": "MA",
+      "external_left": "UP",
+      "external_right": "MA"
+    },
+    {
+      "left": "UP",
+      "right": "AM",
+      "external_left": "UP",
+      "external_right": "AM"
+    },
+    {
+      "left": "UP",
+      "right": "QCMA",
+      "external_left": "UP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "UP",
+      "right": "QMA",
+      "external_left": "UP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "UP",
+      "right": "SBP",
+      "external_left": "UP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "UP",
+      "right": "Sigma2P",
+      "external_left": "UP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "UP",
+      "right": "Pi2P",
+      "external_left": "UP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "UP",
+      "right": "Delta2P",
+      "external_left": "UP",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "UP",
+      "right": "Theta2P",
+      "external_left": "UP",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "UP",
+      "right": "PH",
+      "external_left": "UP",
+      "external_right": "PH"
+    },
+    {
+      "left": "UP",
+      "right": "NPpoly",
+      "external_left": "UP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "UP",
+      "right": "PSPACE",
+      "external_left": "UP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "UP",
+      "right": "EXP",
+      "external_left": "UP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "UP",
+      "right": "NEXP",
+      "external_left": "UP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "UP",
+      "right": "EXPSPACE",
+      "external_left": "UP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "UP",
+      "right": "NE",
+      "external_left": "UP",
+      "external_right": "NE"
+    },
+    {
+      "left": "NP",
+      "right": "NP",
+      "external_left": "NP",
+      "external_right": "NP"
+    },
+    {
+      "left": "NP",
+      "right": "PP",
+      "external_left": "NP",
+      "external_right": "PP"
+    },
+    {
+      "left": "NP",
+      "right": "MA",
+      "external_left": "NP",
+      "external_right": "MA"
+    },
+    {
+      "left": "NP",
+      "right": "AM",
+      "external_left": "NP",
+      "external_right": "AM"
+    },
+    {
+      "left": "NP",
+      "right": "QCMA",
+      "external_left": "NP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "NP",
+      "right": "QMA",
+      "external_left": "NP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "NP",
+      "right": "SBP",
+      "external_left": "NP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "NP",
+      "right": "Sigma2P",
+      "external_left": "NP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "NP",
+      "right": "Pi2P",
+      "external_left": "NP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "NP",
+      "right": "Delta2P",
+      "external_left": "NP",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "NP",
+      "right": "Theta2P",
+      "external_left": "NP",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "NP",
+      "right": "PH",
+      "external_left": "NP",
+      "external_right": "PH"
+    },
+    {
+      "left": "NP",
+      "right": "NPpoly",
+      "external_left": "NP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "NP",
+      "right": "PSPACE",
+      "external_left": "NP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "NP",
+      "right": "EXP",
+      "external_left": "NP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "NP",
+      "right": "NEXP",
+      "external_left": "NP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "NP",
+      "right": "EXPSPACE",
+      "external_left": "NP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "NP",
+      "right": "NE",
+      "external_left": "NP",
+      "external_right": "NE"
+    },
+    {
+      "left": "coNP",
+      "right": "coNP",
+      "external_left": "co.NP",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "coNP",
+      "right": "PP",
+      "external_left": "co.NP",
+      "external_right": "PP"
+    },
+    {
+      "left": "coNP",
+      "right": "coAM",
+      "external_left": "co.NP",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "coNP",
+      "right": "Sigma2P",
+      "external_left": "co.NP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "coNP",
+      "right": "Pi2P",
+      "external_left": "co.NP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "coNP",
+      "right": "Delta2P",
+      "external_left": "co.NP",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "coNP",
+      "right": "Theta2P",
+      "external_left": "co.NP",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "coNP",
+      "right": "PH",
+      "external_left": "co.NP",
+      "external_right": "PH"
+    },
+    {
+      "left": "coNP",
+      "right": "PSPACE",
+      "external_left": "co.NP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "coNP",
+      "right": "EXP",
+      "external_left": "co.NP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "coNP",
+      "right": "NEXP",
+      "external_left": "co.NP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "coNP",
+      "right": "EXPSPACE",
+      "external_left": "co.NP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "FewP",
+      "right": "NP",
+      "external_left": "FewP",
+      "external_right": "NP"
+    },
+    {
+      "left": "FewP",
+      "right": "FewP",
+      "external_left": "FewP",
+      "external_right": "FewP"
+    },
+    {
+      "left": "FewP",
+      "right": "SPP",
+      "external_left": "FewP",
+      "external_right": "SPP"
+    },
+    {
+      "left": "FewP",
+      "right": "CeqP",
+      "external_left": "FewP",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "FewP",
+      "right": "PP",
+      "external_left": "FewP",
+      "external_right": "PP"
+    },
+    {
+      "left": "FewP",
+      "right": "parityP",
+      "external_left": "FewP",
+      "external_right": "+P"
+    },
+    {
+      "left": "FewP",
+      "right": "AWPP",
+      "external_left": "FewP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "FewP",
+      "right": "LWPP",
+      "external_left": "FewP",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "FewP",
+      "right": "WPP",
+      "external_left": "FewP",
+      "external_right": "WPP"
+    },
+    {
+      "left": "FewP",
+      "right": "MA",
+      "external_left": "FewP",
+      "external_right": "MA"
+    },
+    {
+      "left": "FewP",
+      "right": "AM",
+      "external_left": "FewP",
+      "external_right": "AM"
+    },
+    {
+      "left": "FewP",
+      "right": "QCMA",
+      "external_left": "FewP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "FewP",
+      "right": "QMA",
+      "external_left": "FewP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "FewP",
+      "right": "SBP",
+      "external_left": "FewP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "FewP",
+      "right": "Sigma2P",
+      "external_left": "FewP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "FewP",
+      "right": "Pi2P",
+      "external_left": "FewP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "FewP",
+      "right": "Delta2P",
+      "external_left": "FewP",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "FewP",
+      "right": "Theta2P",
+      "external_left": "FewP",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "FewP",
+      "right": "PH",
+      "external_left": "FewP",
+      "external_right": "PH"
+    },
+    {
+      "left": "FewP",
+      "right": "NPpoly",
+      "external_left": "FewP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "FewP",
+      "right": "PSPACE",
+      "external_left": "FewP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "FewP",
+      "right": "EXP",
+      "external_left": "FewP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "FewP",
+      "right": "NEXP",
+      "external_left": "FewP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "FewP",
+      "right": "EXPSPACE",
+      "external_left": "FewP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "FewP",
+      "right": "NE",
+      "external_left": "FewP",
+      "external_right": "NE"
+    },
+    {
+      "left": "SPP",
+      "right": "SPP",
+      "external_left": "SPP",
+      "external_right": "SPP"
+    },
+    {
+      "left": "SPP",
+      "right": "CeqP",
+      "external_left": "SPP",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "SPP",
+      "right": "PP",
+      "external_left": "SPP",
+      "external_right": "PP"
+    },
+    {
+      "left": "SPP",
+      "right": "parityP",
+      "external_left": "SPP",
+      "external_right": "+P"
+    },
+    {
+      "left": "SPP",
+      "right": "AWPP",
+      "external_left": "SPP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "SPP",
+      "right": "LWPP",
+      "external_left": "SPP",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "SPP",
+      "right": "WPP",
+      "external_left": "SPP",
+      "external_right": "WPP"
+    },
+    {
+      "left": "SPP",
+      "right": "PSPACE",
+      "external_left": "SPP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "SPP",
+      "right": "EXP",
+      "external_left": "SPP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "SPP",
+      "right": "NEXP",
+      "external_left": "SPP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "SPP",
+      "right": "EXPSPACE",
+      "external_left": "SPP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "CeqP",
+      "right": "CeqP",
+      "external_left": "C_=P",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "CeqP",
+      "right": "PP",
+      "external_left": "C_=P",
+      "external_right": "PP"
+    },
+    {
+      "left": "CeqP",
+      "right": "PSPACE",
+      "external_left": "C_=P",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "CeqP",
+      "right": "EXP",
+      "external_left": "C_=P",
+      "external_right": "EXP"
+    },
+    {
+      "left": "CeqP",
+      "right": "NEXP",
+      "external_left": "C_=P",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "CeqP",
+      "right": "EXPSPACE",
+      "external_left": "C_=P",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "PP",
+      "right": "PP",
+      "external_left": "PP",
+      "external_right": "PP"
+    },
+    {
+      "left": "PP",
+      "right": "PSPACE",
+      "external_left": "PP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "PP",
+      "right": "EXP",
+      "external_left": "PP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "PP",
+      "right": "NEXP",
+      "external_left": "PP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "PP",
+      "right": "EXPSPACE",
+      "external_left": "PP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "parityP",
+      "right": "parityP",
+      "external_left": "+P",
+      "external_right": "+P"
+    },
+    {
+      "left": "parityP",
+      "right": "PSPACE",
+      "external_left": "+P",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "parityP",
+      "right": "EXP",
+      "external_left": "+P",
+      "external_right": "EXP"
+    },
+    {
+      "left": "parityP",
+      "right": "NEXP",
+      "external_left": "+P",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "parityP",
+      "right": "EXPSPACE",
+      "external_left": "+P",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "AWPP",
+      "right": "PP",
+      "external_left": "AWPP",
+      "external_right": "PP"
+    },
+    {
+      "left": "AWPP",
+      "right": "AWPP",
+      "external_left": "AWPP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "AWPP",
+      "right": "PSPACE",
+      "external_left": "AWPP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "AWPP",
+      "right": "EXP",
+      "external_left": "AWPP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "AWPP",
+      "right": "NEXP",
+      "external_left": "AWPP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "AWPP",
+      "right": "EXPSPACE",
+      "external_left": "AWPP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "LWPP",
+      "right": "CeqP",
+      "external_left": "LWPP",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "LWPP",
+      "right": "PP",
+      "external_left": "LWPP",
+      "external_right": "PP"
+    },
+    {
+      "left": "LWPP",
+      "right": "AWPP",
+      "external_left": "LWPP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "LWPP",
+      "right": "LWPP",
+      "external_left": "LWPP",
+      "external_right": "LWPP"
+    },
+    {
+      "left": "LWPP",
+      "right": "WPP",
+      "external_left": "LWPP",
+      "external_right": "WPP"
+    },
+    {
+      "left": "LWPP",
+      "right": "PSPACE",
+      "external_left": "LWPP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "LWPP",
+      "right": "EXP",
+      "external_left": "LWPP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "LWPP",
+      "right": "NEXP",
+      "external_left": "LWPP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "LWPP",
+      "right": "EXPSPACE",
+      "external_left": "LWPP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "WPP",
+      "right": "CeqP",
+      "external_left": "WPP",
+      "external_right": "C_=P"
+    },
+    {
+      "left": "WPP",
+      "right": "PP",
+      "external_left": "WPP",
+      "external_right": "PP"
+    },
+    {
+      "left": "WPP",
+      "right": "AWPP",
+      "external_left": "WPP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "WPP",
+      "right": "WPP",
+      "external_left": "WPP",
+      "external_right": "WPP"
+    },
+    {
+      "left": "WPP",
+      "right": "PSPACE",
+      "external_left": "WPP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "WPP",
+      "right": "EXP",
+      "external_left": "WPP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "WPP",
+      "right": "NEXP",
+      "external_left": "WPP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "WPP",
+      "right": "EXPSPACE",
+      "external_left": "WPP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "MA",
+      "right": "PP",
+      "external_left": "MA",
+      "external_right": "PP"
+    },
+    {
+      "left": "MA",
+      "right": "MA",
+      "external_left": "MA",
+      "external_right": "MA"
+    },
+    {
+      "left": "MA",
+      "right": "AM",
+      "external_left": "MA",
+      "external_right": "AM"
+    },
+    {
+      "left": "MA",
+      "right": "QCMA",
+      "external_left": "MA",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "MA",
+      "right": "QMA",
+      "external_left": "MA",
+      "external_right": "QMA"
+    },
+    {
+      "left": "MA",
+      "right": "SBP",
+      "external_left": "MA",
+      "external_right": "SBP"
+    },
+    {
+      "left": "MA",
+      "right": "Sigma2P",
+      "external_left": "MA",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "MA",
+      "right": "Pi2P",
+      "external_left": "MA",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "MA",
+      "right": "PH",
+      "external_left": "MA",
+      "external_right": "PH"
+    },
+    {
+      "left": "MA",
+      "right": "NPpoly",
+      "external_left": "MA",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "MA",
+      "right": "PSPACE",
+      "external_left": "MA",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "MA",
+      "right": "EXP",
+      "external_left": "MA",
+      "external_right": "EXP"
+    },
+    {
+      "left": "MA",
+      "right": "NEXP",
+      "external_left": "MA",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "MA",
+      "right": "EXPSPACE",
+      "external_left": "MA",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "AM",
+      "right": "AM",
+      "external_left": "AM",
+      "external_right": "AM"
+    },
+    {
+      "left": "AM",
+      "right": "Pi2P",
+      "external_left": "AM",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "AM",
+      "right": "PH",
+      "external_left": "AM",
+      "external_right": "PH"
+    },
+    {
+      "left": "AM",
+      "right": "NPpoly",
+      "external_left": "AM",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "AM",
+      "right": "PSPACE",
+      "external_left": "AM",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "AM",
+      "right": "EXP",
+      "external_left": "AM",
+      "external_right": "EXP"
+    },
+    {
+      "left": "AM",
+      "right": "NEXP",
+      "external_left": "AM",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "AM",
+      "right": "EXPSPACE",
+      "external_left": "AM",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "coAM",
+      "right": "coAM",
+      "external_left": "co.AM",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "coAM",
+      "right": "Sigma2P",
+      "external_left": "co.AM",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "coAM",
+      "right": "PH",
+      "external_left": "co.AM",
+      "external_right": "PH"
+    },
+    {
+      "left": "coAM",
+      "right": "PSPACE",
+      "external_left": "co.AM",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "coAM",
+      "right": "EXP",
+      "external_left": "co.AM",
+      "external_right": "EXP"
+    },
+    {
+      "left": "coAM",
+      "right": "NEXP",
+      "external_left": "co.AM",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "coAM",
+      "right": "EXPSPACE",
+      "external_left": "co.AM",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "QCMA",
+      "right": "PP",
+      "external_left": "QCMA",
+      "external_right": "PP"
+    },
+    {
+      "left": "QCMA",
+      "right": "QCMA",
+      "external_left": "QCMA",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "QCMA",
+      "right": "QMA",
+      "external_left": "QCMA",
+      "external_right": "QMA"
+    },
+    {
+      "left": "QCMA",
+      "right": "PSPACE",
+      "external_left": "QCMA",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "QCMA",
+      "right": "EXP",
+      "external_left": "QCMA",
+      "external_right": "EXP"
+    },
+    {
+      "left": "QCMA",
+      "right": "NEXP",
+      "external_left": "QCMA",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "QCMA",
+      "right": "EXPSPACE",
+      "external_left": "QCMA",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "QMA",
+      "right": "PP",
+      "external_left": "QMA",
+      "external_right": "PP"
+    },
+    {
+      "left": "QMA",
+      "right": "QMA",
+      "external_left": "QMA",
+      "external_right": "QMA"
+    },
+    {
+      "left": "QMA",
+      "right": "PSPACE",
+      "external_left": "QMA",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "QMA",
+      "right": "EXP",
+      "external_left": "QMA",
+      "external_right": "EXP"
+    },
+    {
+      "left": "QMA",
+      "right": "NEXP",
+      "external_left": "QMA",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "QMA",
+      "right": "EXPSPACE",
+      "external_left": "QMA",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "BQP",
+      "right": "PP",
+      "external_left": "BQP",
+      "external_right": "PP"
+    },
+    {
+      "left": "BQP",
+      "right": "AWPP",
+      "external_left": "BQP",
+      "external_right": "AWPP"
+    },
+    {
+      "left": "BQP",
+      "right": "QCMA",
+      "external_left": "BQP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "BQP",
+      "right": "QMA",
+      "external_left": "BQP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "BQP",
+      "right": "BQP",
+      "external_left": "BQP",
+      "external_right": "BQP"
+    },
+    {
+      "left": "BQP",
+      "right": "PSPACE",
+      "external_left": "BQP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "BQP",
+      "right": "EXP",
+      "external_left": "BQP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "BQP",
+      "right": "NEXP",
+      "external_left": "BQP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "BQP",
+      "right": "EXPSPACE",
+      "external_left": "BQP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "SBP",
+      "right": "PP",
+      "external_left": "SBP",
+      "external_right": "PP"
+    },
+    {
+      "left": "SBP",
+      "right": "AM",
+      "external_left": "SBP",
+      "external_right": "AM"
+    },
+    {
+      "left": "SBP",
+      "right": "SBP",
+      "external_left": "SBP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "SBP",
+      "right": "Pi2P",
+      "external_left": "SBP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "SBP",
+      "right": "PH",
+      "external_left": "SBP",
+      "external_right": "PH"
+    },
+    {
+      "left": "SBP",
+      "right": "NPpoly",
+      "external_left": "SBP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "SBP",
+      "right": "PSPACE",
+      "external_left": "SBP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "SBP",
+      "right": "EXP",
+      "external_left": "SBP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "SBP",
+      "right": "NEXP",
+      "external_left": "SBP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "SBP",
+      "right": "EXPSPACE",
+      "external_left": "SBP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "SZK",
+      "right": "AM",
+      "external_left": "SZK",
+      "external_right": "AM"
+    },
+    {
+      "left": "SZK",
+      "right": "coAM",
+      "external_left": "SZK",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "SZK",
+      "right": "SZK",
+      "external_left": "SZK",
+      "external_right": "SZK"
+    },
+    {
+      "left": "SZK",
+      "right": "Sigma2P",
+      "external_left": "SZK",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "SZK",
+      "right": "Pi2P",
+      "external_left": "SZK",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "SZK",
+      "right": "PH",
+      "external_left": "SZK",
+      "external_right": "PH"
+    },
+    {
+      "left": "SZK",
+      "right": "NPpoly",
+      "external_left": "SZK",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "SZK",
+      "right": "PSPACE",
+      "external_left": "SZK",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "SZK",
+      "right": "EXP",
+      "external_left": "SZK",
+      "external_right": "EXP"
+    },
+    {
+      "left": "SZK",
+      "right": "NEXP",
+      "external_left": "SZK",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "SZK",
+      "right": "EXPSPACE",
+      "external_left": "SZK",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "NP",
+      "external_left": "cocap.NP",
+      "external_right": "NP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "coNP",
+      "external_left": "cocap.NP",
+      "external_right": "co.NP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PP",
+      "external_left": "cocap.NP",
+      "external_right": "PP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "MA",
+      "external_left": "cocap.NP",
+      "external_right": "MA"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "AM",
+      "external_left": "cocap.NP",
+      "external_right": "AM"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "coAM",
+      "external_left": "cocap.NP",
+      "external_right": "co.AM"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "QCMA",
+      "external_left": "cocap.NP",
+      "external_right": "QCMA"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "QMA",
+      "external_left": "cocap.NP",
+      "external_right": "QMA"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "SBP",
+      "external_left": "cocap.NP",
+      "external_right": "SBP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "NPcapcoNP",
+      "external_left": "cocap.NP",
+      "external_right": "cocap.NP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Sigma2P",
+      "external_left": "cocap.NP",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Pi2P",
+      "external_left": "cocap.NP",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Delta2P",
+      "external_left": "cocap.NP",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Theta2P",
+      "external_left": "cocap.NP",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PH",
+      "external_left": "cocap.NP",
+      "external_right": "PH"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "NPpoly",
+      "external_left": "cocap.NP",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PSPACE",
+      "external_left": "cocap.NP",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "EXP",
+      "external_left": "cocap.NP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "NEXP",
+      "external_left": "cocap.NP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "EXPSPACE",
+      "external_left": "cocap.NP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "NE",
+      "external_left": "cocap.NP",
+      "external_right": "NE"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "Sigma2P",
+      "external_left": "Sigma_2P",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "PH",
+      "external_left": "Sigma_2P",
+      "external_right": "PH"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "PSPACE",
+      "external_left": "Sigma_2P",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "EXP",
+      "external_left": "Sigma_2P",
+      "external_right": "EXP"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "NEXP",
+      "external_left": "Sigma_2P",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "EXPSPACE",
+      "external_left": "Sigma_2P",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "Pi2P",
+      "right": "Pi2P",
+      "external_left": "co.Sigma_2P",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "Pi2P",
+      "right": "PH",
+      "external_left": "co.Sigma_2P",
+      "external_right": "PH"
+    },
+    {
+      "left": "Pi2P",
+      "right": "PSPACE",
+      "external_left": "co.Sigma_2P",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "Pi2P",
+      "right": "EXP",
+      "external_left": "co.Sigma_2P",
+      "external_right": "EXP"
+    },
+    {
+      "left": "Pi2P",
+      "right": "NEXP",
+      "external_left": "co.Sigma_2P",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "Pi2P",
+      "right": "EXPSPACE",
+      "external_left": "co.Sigma_2P",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "Delta2P",
+      "right": "Sigma2P",
+      "external_left": "Delta_2P",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "Delta2P",
+      "right": "Pi2P",
+      "external_left": "Delta_2P",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "Delta2P",
+      "right": "Delta2P",
+      "external_left": "Delta_2P",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "Delta2P",
+      "right": "PH",
+      "external_left": "Delta_2P",
+      "external_right": "PH"
+    },
+    {
+      "left": "Delta2P",
+      "right": "PSPACE",
+      "external_left": "Delta_2P",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "Delta2P",
+      "right": "EXP",
+      "external_left": "Delta_2P",
+      "external_right": "EXP"
+    },
+    {
+      "left": "Delta2P",
+      "right": "NEXP",
+      "external_left": "Delta_2P",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "Delta2P",
+      "right": "EXPSPACE",
+      "external_left": "Delta_2P",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PP",
+      "external_left": "P^{NP[log]}",
+      "external_right": "PP"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Sigma2P",
+      "external_left": "P^{NP[log]}",
+      "external_right": "Sigma_2P"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Pi2P",
+      "external_left": "P^{NP[log]}",
+      "external_right": "co.Sigma_2P"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Delta2P",
+      "external_left": "P^{NP[log]}",
+      "external_right": "Delta_2P"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Theta2P",
+      "external_left": "P^{NP[log]}",
+      "external_right": "P^{NP[log]}"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PH",
+      "external_left": "P^{NP[log]}",
+      "external_right": "PH"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PSPACE",
+      "external_left": "P^{NP[log]}",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "Theta2P",
+      "right": "EXP",
+      "external_left": "P^{NP[log]}",
+      "external_right": "EXP"
+    },
+    {
+      "left": "Theta2P",
+      "right": "NEXP",
+      "external_left": "P^{NP[log]}",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "Theta2P",
+      "right": "EXPSPACE",
+      "external_left": "P^{NP[log]}",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "PH",
+      "right": "PH",
+      "external_left": "PH",
+      "external_right": "PH"
+    },
+    {
+      "left": "PH",
+      "right": "PSPACE",
+      "external_left": "PH",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "PH",
+      "right": "EXP",
+      "external_left": "PH",
+      "external_right": "EXP"
+    },
+    {
+      "left": "PH",
+      "right": "NEXP",
+      "external_left": "PH",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "PH",
+      "right": "EXPSPACE",
+      "external_left": "PH",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "Ppoly",
+      "right": "Ppoly",
+      "external_left": "P/poly",
+      "external_right": "P/poly"
+    },
+    {
+      "left": "Ppoly",
+      "right": "NPpoly",
+      "external_left": "P/poly",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "NPpoly",
+      "right": "NPpoly",
+      "external_left": "NP/poly",
+      "external_right": "NP/poly"
+    },
+    {
+      "left": "PSPACE",
+      "right": "PSPACE",
+      "external_left": "PSPACE",
+      "external_right": "PSPACE"
+    },
+    {
+      "left": "PSPACE",
+      "right": "EXP",
+      "external_left": "PSPACE",
+      "external_right": "EXP"
+    },
+    {
+      "left": "PSPACE",
+      "right": "NEXP",
+      "external_left": "PSPACE",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "PSPACE",
+      "right": "EXPSPACE",
+      "external_left": "PSPACE",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "EXP",
+      "right": "EXP",
+      "external_left": "EXP",
+      "external_right": "EXP"
+    },
+    {
+      "left": "EXP",
+      "right": "NEXP",
+      "external_left": "EXP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "EXP",
+      "right": "EXPSPACE",
+      "external_left": "EXP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "NEXP",
+      "right": "NEXP",
+      "external_left": "NEXP",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "NEXP",
+      "right": "EXPSPACE",
+      "external_left": "NEXP",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "EXPSPACE",
+      "external_left": "EXPSPACE",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "E",
+      "right": "EXP",
+      "external_left": "E",
+      "external_right": "EXP"
+    },
+    {
+      "left": "E",
+      "right": "NEXP",
+      "external_left": "E",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "E",
+      "right": "EXPSPACE",
+      "external_left": "E",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "E",
+      "right": "E",
+      "external_left": "E",
+      "external_right": "E"
+    },
+    {
+      "left": "E",
+      "right": "NE",
+      "external_left": "E",
+      "external_right": "NE"
+    },
+    {
+      "left": "NE",
+      "right": "NEXP",
+      "external_left": "NE",
+      "external_right": "NEXP"
+    },
+    {
+      "left": "NE",
+      "right": "EXPSPACE",
+      "external_left": "NE",
+      "external_right": "EXPSPACE"
+    },
+    {
+      "left": "NE",
+      "right": "NE",
+      "external_left": "NE",
+      "external_right": "NE"
+    }
+  ],
+  "potential_missing_inclusions": [],
+  "unmatched_classes": [
+    "ACC0",
+    "NC1",
+    "coRP",
+    "coUP",
+    "coMA",
+    "coQMA"
+  ]
+}

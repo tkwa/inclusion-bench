@@ -1,12 +1,12 @@
 # AI benchmark scoring specification
 
-**Version 0.2.0 is operational.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require historical review of each resolved candidate pair.
+**Version 0.3.0 is operational.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require a recorded historical decision for each resolved pair. The release-wide audit supplies those decisions for the current suite.
 
 ## Target universe and freeze
 
 The evaluated system is one fixed AI model and configuration in one budgeted run. See [the evaluation protocol](EVALUATION.md) for prompts, adapters, evidence and admission. An instance asks whether one class is included in another. Languages are subsets of finite binary strings, classes are sets of languages, and inclusion means ordinary set inclusion.
 
-The 50-class catalog has 2,500 ordered pairs, including 50 reflexive pairs. The 0.2.0 baseline settles 709 inclusions and 405 noninclusions, leaving **1,386 frozen candidate questions**. All 50 classes have concrete Lean definitions under the catalog conventions. AC0, ACC0, TC0, NC1, P/poly and NP/poly are nonuniform; NC is logspace-uniform.
+The 50-class catalog has 2,500 ordered pairs, including 50 reflexive pairs. The 0.3.0 baseline settles 709 inclusions and 413 noninclusions, leaving **1,378 frozen questions audited as open at the cutoff**. The historical decisions are revisable; they do not prove the absence of an overlooked paper. All 50 classes have concrete Lean definitions under the catalog conventions. AC0, ACC0, TC0, NC1, P/poly and NP/poly are nonuniform; NC is logspace-uniform.
 
 The cutoff is September 1, 2026, inclusive: a result publicly available before September 2, 2026 at 00:00 UTC is pre-cutoff. Historical review checks original versions, corrections, the exact statement and publication evidence. A later exposition can explain an older result but does not alone establish its earlier availability.
 
@@ -22,7 +22,7 @@ For one run, let S be its accepted model claims, R the candidate pairs resolved 
 score(run) = | R ∩ H |
 ```
 
-An official score is published only after the run-admission requirements below are satisfied. Every pair in R must receive a historical decision; a pair reviewed as already known earns zero. Each ordered pair contributes at most one point, regardless of how many proofs resolve it. Accepted answers to different tasks in the same run may combine through implications. Different runs are never pooled.
+An official score is published only after the run-admission requirements below are satisfied. Every pair in R must have a historical decision, including one supplied by the release-wide audit; a pair reviewed as already known earns zero. Each ordered pair contributes at most one point, regardless of how many proofs resolve it. Accepted answers to different tasks in the same run may combine through implications. Different runs are never pooled.
 
 Implication credit ranges over the frozen candidate universe, including consequences outside a run's assigned subset. Exact run, attempt and artifact hashes bind accepted proofs to their originating run. The standalone `score` command assumes mathematical claims for diagnosis and reports hypothetical consequences. Operational official scores use `evaluate-run`; `score --official` is not the operational admission route.
 
@@ -56,7 +56,7 @@ The ordinary proof verifier generates a trusted helper containing only cited bas
 
 Review registries are maintainer-controlled inputs, not model answers. A review packet is a template, not an acceptance decision. The commands `review-run`, `review-proof` and `review-history` record explicit decisions; `verify-proof` supplies proof-checking evidence without awarding points by itself.
 
-An operational official run must use the current frozen version and sealed schema-v2 evidence, have an accepted run review, and have every proof candidate adjudicated. All candidate consequences of accepted proofs need historical decisions. At least one genuine model request must produce a completed `unsolved` or `proof_candidate` answer, and the recorded charge must fit the token budget. Infrastructure fixtures, smoke tests, empty runs and runs consisting only of errors or exhausted budgets cannot become ranked model results.
+An operational official run must use the current frozen version and sealed schema-v2 evidence, have an accepted run review, and have every proof candidate adjudicated. All candidate consequences of accepted proofs need historical decisions; existing release-wide decisions are reused. At least one genuine model request must produce a completed `unsolved` or `proof_candidate` answer, and the recorded charge must fit the token budget. Infrastructure fixtures, smoke tests, empty runs and runs consisting only of errors or exhausted budgets cannot become ranked model results.
 
 **A measured zero is valid.** If a real run meets those requirements and resolves no eligible pairs, it receives zero. Unclaimed candidates need no blanket openness certification for that result. A pending proof candidate prevents a final score until adjudicated, even if the eventual score is zero.
 

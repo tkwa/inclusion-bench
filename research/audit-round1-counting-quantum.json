@@ -1,0 +1,7290 @@
+{
+  "schema_version": 1,
+  "audit_round": 1,
+  "reviewer": "counting-quantum independent audit",
+  "date": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "scope": [
+    "UP",
+    "coUP",
+    "FewP",
+    "SPP",
+    "CeqP",
+    "PP",
+    "parityP",
+    "AWPP",
+    "LWPP",
+    "WPP",
+    "BQP",
+    "QCMA",
+    "QMA",
+    "coQMA"
+  ],
+  "scope_pair_count": 1204,
+  "scope_pair_counts": {
+    "inclusion": 279,
+    "separation": 116,
+    "unreviewed": 809
+  },
+  "summary": {
+    "wrong_seed_facts_confirmed": 0,
+    "independently_discovered_missing_unconditional_facts": 0,
+    "conditional_rules_proposed": 21,
+    "conditional_rules_held": 2,
+    "numeric_expected_remaining_error_bound_supported": false,
+    "baseline_edits_made": false
+  },
+  "sources": [
+    {
+      "id": "auditCQ-FFK94",
+      "title": "Gap-definable Counting Classes",
+      "authors": "Stephen Fenner, Lance Fortnow, Stuart Kurtz",
+      "year": 1994,
+      "url": "https://cse.sc.edu/~fenner/papers/gaps.pdf",
+      "locator": "Sections 3–5, especially Theorem 5.5; original PDF extraction is degraded",
+      "notes": "Original source for GapP classes, FewP inclusion and lowness. Corroborated with KST1992 and STT2005, which explicitly identify the inherited theorem."
+    },
+    {
+      "id": "auditCQ-FFKL02",
+      "title": "An Oracle Builder’s Toolkit",
+      "authors": "Stephen Fenner, Lance Fortnow, Stuart Kurtz, Lide Li",
+      "year": 2002,
+      "url": "https://lance.fortnow.com/papers/files/obt.pdf",
+      "locator": "Definition 2.2, Definition 2.3; Definition 6.1, Lemma 6.3 and Corollary 6.4, printed pp.25–26",
+      "notes": "Exact normalized GapP definition of AWPP and equivalence with an FP normalizer; BPP and WPP inclusions."
+    },
+    {
+      "id": "auditCQ-KST92",
+      "title": "Graph Isomorphism is Low for PP",
+      "authors": "Johannes Köbler, Uwe Schöning, Jacobo Torán",
+      "year": 1992,
+      "url": "https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.inst.190/Mitarbeiter/toran/gi-low.pdf",
+      "locator": "Section 2.2, printed p.8, Theorem 2.9 and paragraph after Definition 2.10",
+      "quote": "SPP = {L | Gap-P^L = Gap-P}.",
+      "notes": "Explicitly recalls FFK Theorem5.5; SPP is self-low and LWPP is low for PP and CeqP. Positive FP convention converts to nonzero signed FP by multiplying numerator and normalizer."
+    },
+    {
+      "id": "auditCQ-OH91",
+      "title": "A Complexity Theory for Feasible Closure Properties",
+      "authors": "Mitsunori Ogiwara, Lane Hemachandra",
+      "year": 1991,
+      "publication_date": "1991-03",
+      "url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=7017&itemId=4661",
+      "locator": "Propositions 2.6(5), 2.7(2–3), printed pp.7–8; Theorem 3.2 and first proof bullet, pp.10–11",
+      "quote": "(3), (4), and C=P = UP are equivalent.",
+      "notes": "Primary technical report; journal version JCSS46(3),1993. Theorem3.2(3) is PP=UP; (4) also equates PH, CH, CeqP, PP and parityP with UP. Prop2.7(2): PP⊆C=·CeqP. Prop2.7(3): parityP^parityP=P^parityP=parityP."
+    },
+    {
+      "id": "auditCQ-STT05",
+      "title": "Quantum and Classical Complexity Classes: Separations, Collapses, and Closure Properties",
+      "authors": "Holger Spakowski, Mayur Thakur, Rahul Tripathi",
+      "year": 2005,
+      "publication_date": "2005-07-01",
+      "url": "https://doi.org/10.1016/j.ic.2004.10.009",
+      "primary_manuscript_url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=464&itemId=374",
+      "locator": "Theorem5.1 (PH⊆UP^CeqP), Theorem5.4(a), Theorem5.6(a,b), Theorem5.9; journal pp.24–28. Introduction attributes SPP^LWPP=LWPP to FFK94.",
+      "quote": "Theorem 5.4 (a) UP^AWPP ⊆ AWPP.",
+      "notes": "Primary manuscript OCR is corrupt; exact statements verified also in indexed full journal PDF: https://citeseerx.ist.psu.edu/document?doi=d52acf5cae7e117a88744fa578719a97afc7e26d&repid=rep1&type=pdf . WPP truth-table closure; UP^WPP⊆coCeqP. Oracle failures are not ordinary separations."
+    },
+    {
+      "id": "auditCQ-Vya03",
+      "title": "QMA=PP implies that PP contains PH",
+      "authors": "Mikhail Vyalyi",
+      "year": 2003,
+      "publication_date": "2003-04-08",
+      "url": "https://eccc.weizmann.ac.il/report/2003/021/download/",
+      "locator": "Theorem1 pp.5–6; Theorem2 pp.7–8; Corollaries1–2 p.8",
+      "quote": "If QMA = PP then QMA = PP ⊇ PH.",
+      "notes": "Corollary2 assumes coCeqP=PP. A stronger CeqP⊆QMA premise is not a stated theorem and is held for independent derivation review."
+    },
+    {
+      "id": "auditCQ-MW05",
+      "title": "Quantum Arthur–Merlin Games",
+      "authors": "Chris Marriott, John Watrous",
+      "year": 2005,
+      "url": "https://arxiv.org/pdf/cs/0506068",
+      "locator": "Definition of QMA; Theorem3.3 amplification, Theorem3.4 and Remark3.5, pp.13–14",
+      "quote": "QMA ⊆ PP.",
+      "notes": "Also QMA⊆A0PP. Bounded-error total languages are obtained by requiring the verifier gap on every input."
+    },
+    {
+      "id": "auditCQ-FR99",
+      "title": "Complexity Limitations on Quantum Computation",
+      "authors": "Lance Fortnow, John Rogers",
+      "year": 1999,
+      "url": "https://lance.fortnow.com/papers/files/quantum.pdf",
+      "locator": "Definition2.1 and following paragraph, p.3; Theorem3.1, Theorem3.3, Corollaries3.4–3.5, pp.5–7",
+      "quote": "BQP machines can simulate deterministic Turing machines and other BQP machines as subroutines",
+      "notes": "BQP⊆AWPP and AWPP is PP-low. The subroutine paragraph cites Bernstein–Vazirani1997. Classical adaptive-query simulation needs only amplification and polynomial composition."
+    },
+    {
+      "id": "auditCQ-BV97",
+      "title": "Quantum Complexity Theory",
+      "authors": "Ethan Bernstein, Umesh Vazirani",
+      "year": 1997,
+      "publication_date": "1997-10",
+      "url": "https://web.cs.miami.edu/home/burt/learning/csc595.251/Bernstein-Vazirani-QTM.pdf",
+      "locator": "Sections4–7 composition/simulation, Section8.1 amplification and inclusion bounds, Section8.3 quantum oracles",
+      "notes": "Primary journal paper at an academic mirror; verifies finite precision, machine/circuit robustness, and efficient composition."
+    },
+    {
+      "id": "auditCQ-Toda91",
+      "title": "PP is as Hard as the Polynomial-Time Hierarchy",
+      "authors": "Seinosuke Toda",
+      "year": 1991,
+      "publication_date": "1991-10",
+      "url": "https://epubs.siam.org/doi/10.1137/0220053",
+      "locator": "Abstract and main theorem, SIAM J.Comput.20(5),865–877",
+      "quote": "PH is included in BP · ⊕P.",
+      "notes": "Also PH⊆P^PP. BP denotes bounded-error randomized reduction, not an assertion PH⊆parityP or PH⊆PP."
+    },
+    {
+      "id": "auditCQ-SizeSPP03",
+      "title": "The Size of SPP",
+      "year": 2003,
+      "url": "https://eccc.weizmann.ac.il/report/2003/063/download",
+      "locator": "Theorem2.1 p.2; paragraph before Corollary5.3 pp.5–6",
+      "quote": "NP ⊆ SPP if and only if Δ₂P ⊆ SPP.",
+      "notes": "The subsequent PH⊆SPP equivalence explicitly adds the hypothesis that NP has nonzero p-measure. Do not discard that premise.",
+      "authors": "John M. Hitchcock"
+    },
+    {
+      "id": "auditCQ-Ivanashev26",
+      "title": "Low Sets and Closure Properties of Counting Function Classes",
+      "authors": "Yaroslav Ivanashev",
+      "year": 2026,
+      "publication_date": "2026-08-02",
+      "url": "https://arxiv.org/abs/2507.04110v5",
+      "full_text_url": "https://arxiv.org/html/2507.04110v5",
+      "locator": "Definitions2.1–2.2, Proposition2.3; proof of Theorem2.4; Theorem3.2",
+      "notes": "v5 is before cutoff. Mostly new function-class results; its recalled CeqP=coNP collapse matches the older derived rule below. No new ordinary roster status confirmed."
+    },
+    {
+      "id": "auditCQ-BHNZ26",
+      "title": "Separating QMA from QCMA with a classical oracle",
+      "authors": "John Bostanci, Jonas Haferkamp, Chinmay Nirkhe, Mark Zhandry",
+      "year": 2026,
+      "publication_date": "2026-01-17",
+      "url": "https://arxiv.org/abs/2511.09551v2",
+      "locator": "Abstract; Theorem1.1",
+      "notes": "Pre-cutoff classical-oracle separation, not QMA⊄QCMA in the ordinary setting."
+    },
+    {
+      "id": "auditCQ-BHV26",
+      "title": "Separating Quantum and Classical Advice with Good Codes",
+      "authors": "John Bostanci, Andrew Huang, Vinod Vaikuntanathan",
+      "year": 2026,
+      "publication_date": "2026-04-12",
+      "url": "https://arxiv.org/abs/2602.09385v2",
+      "locator": "Abstract and main theorem",
+      "notes": "Simplifies classical-oracle QMA/QCMA separation and extends advice separation. Both are relativized."
+    },
+    {
+      "id": "auditCQ-AIK22",
+      "title": "The Acrobatics of BQP",
+      "authors": "Scott Aaronson, DeVon Ingram, William Kretschmer",
+      "year": 2022,
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2022.20",
+      "locator": "Abstract and main oracle-results overview",
+      "notes": "Oracle results are guards against treating an unrelativized inclusion hypothesis as true relative to arbitrary oracles."
+    },
+    {
+      "id": "auditCQ-RT22",
+      "title": "Oracle Separation of BQP and PH",
+      "authors": "Ran Raz, Avishay Tal",
+      "year": 2022,
+      "url": "https://doi.org/10.1145/3530258",
+      "locator": "Title, abstract and main theorem",
+      "notes": "Oracle only; does not justify ordinary BQP⊄PH."
+    }
+  ],
+  "proposed_fact_deltas": [],
+  "proposed_rule_deltas": [
+    {
+      "id": "auditCQ-pp-qma-ph-pp",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03"
+      ],
+      "locator": "Corollary1",
+      "justification": "QMA⊆PP is baseline, so the premise is QMA=PP.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 26,
+        "additional_statuses_with_rule": 21,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "coQMA"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-pp-ceqp-ph-pp",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "CeqP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03"
+      ],
+      "locator": "Corollary2",
+      "justification": "CeqP⊆PP and PP is self-complementary; PP⊆CeqP makes coCeqP=PP.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 13,
+        "additional_statuses_with_rule": 14,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-ceqp-awpp-ph-awpp",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorems5.1,5.4(a)",
+      "justification": "PH⊆UP^CeqP⊆UP^AWPP⊆AWPP.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 4,
+        "additional_statuses_with_rule": 18,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "AWPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-ceqp-wpp-ph-wpp",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorems5.1,5.6(b)",
+      "justification": "PH⊆UP^CeqP⊆UP^WPP⊆coCeqP; premise and WPP⊆CeqP plus complement closure identify coCeqP=WPP.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 13,
+        "additional_statuses_with_rule": 42,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BPP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BPP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "WPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-ceqp-up-counting-collapse",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "UP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "UP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "UP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91"
+      ],
+      "locator": "Theorem3.2, first proof bullet",
+      "justification": "UP⊆CeqP makes the premise equality. The stated equivalence collapses PH, CH, PP and parityP to UP.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 499,
+        "additional_statuses_with_rule": 194,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "FewP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "NP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "PH"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "UP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "coNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "coUP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "FewP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "NP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "PH"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "UP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "coNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "coUP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "FewP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "NP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "PH"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "UP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "coNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "coUP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "FewP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "NP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "PH"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "UP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "coNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "coUP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "FewP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "NP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "PH"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "UP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "coNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "coUP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "FewP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "NP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "PH"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "UP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "coNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "coUP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "FewP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "NP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "PH"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "UP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "coNP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "parityP"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "parityP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-ceqp-lwpp-counting-collapse",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "auditCQ-KST92",
+        "auditCQ-STT05",
+        "auditCQ-Toda91"
+      ],
+      "locator": "OH Proposition2.7(2); KST p.8; STT introduction",
+      "justification": "PP⊆C=·CeqP⊆CeqP^CeqP⊆CeqP^LWPP=CeqP⊆LWPP. Both PH and parityP lie in P^PP⊆P^LWPP=LWPP. This is a derivation, not a verbatim named theorem.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 21,
+        "additional_statuses_with_rule": 81,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BPP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BPP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BPP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "WPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-ceqp-parity-counting-collapse",
+      "status": "hold_derivation_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "auditCQ-Toda91"
+      ],
+      "locator": "OH Proposition2.7(2–3)",
+      "justification": "Suspected rule, not admitted: replacing CeqP^CeqP by parityP^parityP would relativize the hypothesis. Need an explicit closure-of-exact-counting argument; no such primary theorem verified in this pass."
+    },
+    {
+      "id": "auditCQ-ceqp-conp-ph-sigma2",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05",
+        "auditCQ-Ivanashev26"
+      ],
+      "locator": "STT Theorem5.1; Ivanashev Theorem2.4 proof",
+      "justification": "PH⊆UP^CeqP⊆UP^coNP⊆NP^NP=Sigma2P.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 90,
+        "additional_statuses_with_rule": 7,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "Pi2P"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-np-spp-delta2",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-SizeSPP03"
+      ],
+      "locator": "Paragraph before Corollary5.3",
+      "justification": "Delta2P=P^NP⊆P^SPP=SPP. Only the oracle is replaced; no relativization of the premise.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 29,
+        "additional_statuses_with_rule": 13,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "parityP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-np-lwpp-delta2",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Introduction: SPP^LWPP=LWPP (FFK94)",
+      "justification": "Delta2P=P^NP⊆P^LWPP=LWPP. Only the oracle is replaced; no relativization of the premise.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 17,
+        "additional_statuses_with_rule": 9,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "WPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-np-awpp-delta2",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorem5.4(a)",
+      "justification": "Delta2P=P^NP⊆P^AWPP=AWPP. Only the oracle is replaced; no relativization of the premise.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 3,
+        "additional_statuses_with_rule": 3,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-np-bqp-delta2",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "locator": "FR paragraph after Definition2.1",
+      "justification": "Delta2P=P^NP⊆P^BQP=BQP. Only the oracle is replaced; no relativization of the premise.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 16,
+        "additional_statuses_with_rule": 11,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "coQMA"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-np-parityp-delta2",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91"
+      ],
+      "locator": "Proposition2.7(3)",
+      "justification": "Delta2P=P^NP⊆P^parityP=parityP. Only the oracle is replaced; no relativization of the premise.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 6,
+        "additional_statuses_with_rule": 2,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "parityP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-np-wpp-theta2",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "locator": "Theorem5.6(a)",
+      "justification": "Theta2P=P_parallel^NP⊆P_parallel^WPP=WPP.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 11,
+        "additional_statuses_with_rule": 3,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "WPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-parity-bpp-ph-bpp",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91"
+      ],
+      "locator": "PH⊆BP·parityP",
+      "justification": "Compose the randomized reduction with amplified BPP answers; total-language gap holds on every generated query.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 58,
+        "additional_statuses_with_rule": 182,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "FewP",
+            "right": "RP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "RP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "RP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "ZPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "coRP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPpoly",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "coAM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "UP",
+            "right": "RP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "coMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "AM"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "MA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "SBP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "coRP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coUP",
+            "right": "coRP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-parity-bqp-ph-bqp",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "locator": "Toda main theorem; FR Definition2.1 discussion",
+      "justification": "Compose the randomized reduction with amplified quantum computation for its total parityP target.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 17,
+        "additional_statuses_with_rule": 68,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "QMA"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-pp-awpp-oracle-consequences",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-STT05"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^AWPP=AWPP. The two consequences may overlap other proposed rules.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 12,
+        "additional_statuses_with_rule": 16,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "PP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-pp-bqp-oracle-consequences",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BQP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-FR99",
+        "auditCQ-BV97"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^BQP=BQP. The two consequences may overlap other proposed rules.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 70,
+        "additional_statuses_with_rule": 48,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "coQMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "QCMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "QMA"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "coQMA"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-pp-parityp-oracle-consequences",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-OH91"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^parityP=parityP. The two consequences may overlap other proposed rules.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 20,
+        "additional_statuses_with_rule": 7,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "parityP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-pp-spp-oracle-consequences",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "SPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-SizeSPP03"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^SPP=SPP. The two consequences may overlap other proposed rules.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 102,
+        "additional_statuses_with_rule": 55,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "SPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "WPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-pp-lwpp-oracle-consequences",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "LWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Toda91",
+        "auditCQ-OH91",
+        "auditCQ-STT05"
+      ],
+      "locator": "Toda theorem; OH Proposition2.6(5); closure sources above",
+      "justification": "PH∪parityP⊆P^PP⊆P^LWPP=LWPP. The two consequences may overlap other proposed rules.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 62,
+        "additional_statuses_with_rule": 40,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "WPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "CeqP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "LWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "PP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "WPP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Hypothetical premise assumed; marginal effect against existing rules only, not against the union of proposals. No new unconditional status implied merely by this count."
+      }
+    },
+    {
+      "id": "auditCQ-ceqp-qma-ph-pp",
+      "status": "hold_derivation_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03"
+      ],
+      "locator": "Theorem2 proof, pp.7–8",
+      "justification": "Possible strengthening: the proof appears to need an A0PP test only for an exact #P-value predicate, a CeqP language. Must independently check amplification, nonnegative gap and aggregate wrong-guess error before adoption."
+    },
+    {
+      "id": "auditCQ-ceqp-parity-ph-parity",
+      "status": "proposed_for_cross_review",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05",
+        "auditCQ-OH91"
+      ],
+      "locator": "STT Theorem5.1; OH Proposition2.7(3)",
+      "justification": "PH⊆UP^CeqP⊆UP^parityP⊆parityP^parityP=parityP. UP⊆parityP relativizes unconditionally; the hypothetical CeqP inclusion only replaces the oracle.",
+      "fanout": {
+        "baseline_new_statuses_without_rule": 9,
+        "additional_statuses_with_rule": 12,
+        "additional_pairs": [
+          {
+            "relation": "inclusion",
+            "left": "AM",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BPP",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "MA",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SBP",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SZK",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "parityP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "parityP"
+          }
+        ],
+        "measurement_dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+        "interpretation": "Marginal effect assuming premise, against baseline rules only."
+      }
+    }
+  ],
+  "class_entry_census": [
+    {
+      "class": "UP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AU",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 32,
+        "separation": 10,
+        "unreviewed": 57
+      },
+      "outgoing": {
+        "inclusion": [
+          "UP",
+          "NP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "AM",
+          "QCMA",
+          "QMA",
+          "SBP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "NE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "coUP",
+          "coNP",
+          "coMA",
+          "coAM",
+          "coQMA",
+          "BQP",
+          "SZK",
+          "NPcapcoNP",
+          "Ppoly",
+          "E"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "UP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "NEXP",
+          "EXPSPACE",
+          "NE"
+        ],
+        "unreviewed": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "E"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "coUP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AC",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 27,
+        "separation": 8,
+        "unreviewed": 64
+      },
+      "outgoing": {
+        "inclusion": [
+          "coUP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "coMA",
+          "coAM",
+          "coQMA",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "NP",
+          "FewP",
+          "MA",
+          "AM",
+          "QCMA",
+          "QMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "coUP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "FewP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AF",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 32,
+        "separation": 10,
+        "unreviewed": 57
+      },
+      "outgoing": {
+        "inclusion": [
+          "NP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "AM",
+          "QCMA",
+          "QMA",
+          "SBP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "NPpoly",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE",
+          "NE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "coNP",
+          "coMA",
+          "coAM",
+          "coQMA",
+          "BQP",
+          "SZK",
+          "NPcapcoNP",
+          "Ppoly",
+          "E"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "UP",
+          "FewP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "NEXP",
+          "EXPSPACE",
+          "NE"
+        ],
+        "unreviewed": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "coUP",
+          "NP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "E"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "SPP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AS",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 20,
+        "separation": 8,
+        "unreviewed": 71
+      },
+      "outgoing": {
+        "inclusion": [
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "UP",
+          "coUP",
+          "FewP",
+          "SPP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "NP",
+          "coNP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "CeqP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AC",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 22,
+        "separation": 8,
+        "unreviewed": 69
+      },
+      "outgoing": {
+        "inclusion": [
+          "CeqP",
+          "PP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "coRP",
+          "ZPP",
+          "UP",
+          "coUP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "LWPP",
+          "WPP",
+          "NPcapcoNP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "RP",
+          "BPP",
+          "NP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "PP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AP",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 34,
+        "separation": 8,
+        "unreviewed": 57
+      },
+      "outgoing": {
+        "inclusion": [
+          "PP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "NPcapcoNP",
+          "Theta2P"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "parityP",
+          "AM",
+          "coAM",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "parityP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3ASymbols",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 15,
+        "separation": 8,
+        "unreviewed": 76
+      },
+      "outgoing": {
+        "inclusion": [
+          "parityP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "UP",
+          "coUP",
+          "FewP",
+          "SPP",
+          "parityP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "NP",
+          "coNP",
+          "CeqP",
+          "PP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "AWPP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AA",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91",
+        "auditCQ-FFKL02",
+        "auditCQ-STT05"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 23,
+        "separation": 8,
+        "unreviewed": 68
+      },
+      "outgoing": {
+        "inclusion": [
+          "PP",
+          "AWPP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "parityP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "FewP",
+          "SPP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "BQP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "NP",
+          "coNP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "LWPP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AL",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91",
+        "auditCQ-FFKL02",
+        "auditCQ-STT05"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 19,
+        "separation": 8,
+        "unreviewed": 72
+      },
+      "outgoing": {
+        "inclusion": [
+          "CeqP",
+          "PP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "parityP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "UP",
+          "coUP",
+          "FewP",
+          "SPP",
+          "LWPP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "NP",
+          "coNP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "WPP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AW",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-OH91",
+        "auditCQ-FFKL02",
+        "auditCQ-STT05"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 19,
+        "separation": 8,
+        "unreviewed": 72
+      },
+      "outgoing": {
+        "inclusion": [
+          "CeqP",
+          "PP",
+          "AWPP",
+          "WPP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "parityP",
+          "LWPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "UP",
+          "coUP",
+          "FewP",
+          "SPP",
+          "LWPP",
+          "WPP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "NP",
+          "coNP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "BQP",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AB",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FR99",
+        "auditCQ-MW05",
+        "auditCQ-BV97"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 20,
+        "separation": 8,
+        "unreviewed": 71
+      },
+      "outgoing": {
+        "inclusion": [
+          "PP",
+          "AWPP",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "BQP",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "parityP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "BQP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "coQMA",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "QCMA",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AQ",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FR99",
+        "auditCQ-MW05",
+        "auditCQ-BV97"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 23,
+        "separation": 8,
+        "unreviewed": 68
+      },
+      "outgoing": {
+        "inclusion": [
+          "PP",
+          "QCMA",
+          "QMA",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "NP",
+          "FewP",
+          "MA",
+          "QCMA",
+          "BQP",
+          "NPcapcoNP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "coUP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "coMA",
+          "AM",
+          "coAM",
+          "QMA",
+          "coQMA",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "QMA",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AQ",
+      "entry_access": "Indexed named section and tail through next heading; direct live fetch returned403.",
+      "primary_anchor_ids": [
+        "auditCQ-FR99",
+        "auditCQ-MW05",
+        "auditCQ-BV97"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 23,
+        "separation": 8,
+        "unreviewed": 68
+      },
+      "outgoing": {
+        "inclusion": [
+          "PP",
+          "QMA",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "coQMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "NP",
+          "FewP",
+          "MA",
+          "QCMA",
+          "QMA",
+          "BQP",
+          "NPcapcoNP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "coUP",
+          "coNP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "coMA",
+          "AM",
+          "coAM",
+          "coQMA",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    },
+    {
+      "class": "coQMA",
+      "discovery_url": "https://complexityzoo.net/Complexity_Zoo%3AQ",
+      "entry_access": "No separate coQMA entry located; QMA entry plus explicit complement definition audited.",
+      "primary_anchor_ids": [
+        "auditCQ-FR99",
+        "auditCQ-MW05",
+        "auditCQ-BV97"
+      ],
+      "incident_pair_count": 99,
+      "status_counts": {
+        "inclusion": 21,
+        "separation": 8,
+        "unreviewed": 70
+      },
+      "outgoing": {
+        "inclusion": [
+          "PP",
+          "coQMA",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "EXPSPACE"
+        ],
+        "separation": [
+          "AC0"
+        ],
+        "unreviewed": [
+          "ACC0",
+          "TC0",
+          "NC1",
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "UP",
+          "coUP",
+          "NP",
+          "coNP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "coMA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "BQP",
+          "SBP",
+          "SZK",
+          "NPcapcoNP",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "Ppoly",
+          "NPpoly",
+          "E",
+          "NE"
+        ]
+      },
+      "incoming": {
+        "inclusion": [
+          "L",
+          "NL",
+          "LogCFL",
+          "NC",
+          "SC",
+          "P",
+          "RP",
+          "coRP",
+          "ZPP",
+          "BPP",
+          "coUP",
+          "coNP",
+          "coMA",
+          "coQMA",
+          "BQP",
+          "NPcapcoNP"
+        ],
+        "separation": [
+          "AC0",
+          "ACC0",
+          "TC0",
+          "NC1",
+          "Ppoly",
+          "NPpoly",
+          "EXPSPACE"
+        ],
+        "unreviewed": [
+          "UP",
+          "NP",
+          "FewP",
+          "SPP",
+          "CeqP",
+          "PP",
+          "parityP",
+          "AWPP",
+          "LWPP",
+          "WPP",
+          "MA",
+          "AM",
+          "coAM",
+          "QCMA",
+          "QMA",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Pi2P",
+          "Delta2P",
+          "Theta2P",
+          "PH",
+          "PSPACE",
+          "EXP",
+          "NEXP",
+          "E",
+          "NE"
+        ]
+      },
+      "finding": "No new direct ordinary-language inclusion or separation found in entry; all mentioned in-roster unconditional positive edges are already derivable. Entry oracle statements were not imported."
+    }
+  ],
+  "semantics_review": {
+    "file_sha256": {
+      "lean/InclusionBench/Machines.lean": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d",
+      "lean/InclusionBench/Counting.lean": "066a003a9b33237012c9bfe37b57789cf037a73d6f32a2ca5e19bbdb2b7cde93",
+      "lean/InclusionBench/Transducers.lean": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+      "lean/InclusionBench/Definitions.lean": "e0d5557209211850587cfec322d81915655c48a9f673781aef446206a4e2cabb",
+      "quantum/InclusionQuantum/Quantum.lean": "969015d3c3e948e8c78abb2629ac19ad711f1c596a3ce55f7a083d2466ad11f1",
+      "quantum/InclusionQuantum/Complete.lean": "698636f4719e690b14b838c43e673c581cef1968ca6810ba13b1ed91a6938b25"
+    },
+    "finding": "No concrete semantic mismatch confirmed in assigned definitions. This is source inspection, not a completed Lean equivalence proof.",
+    "checks": [
+      "Nondeterministic transition lists retain branch multiplicity; allBranchesHaltWithin excludes truncating nonhalting branches; early accepting leaves count once.",
+      "Existential runtime functions must be polynomially bounded and bound a single finite-control machine on every input; they do not add advice.",
+      "UP and FewP restrict accepting count globally; coUP is language complement. GapP is a difference of two actual SharpP functions.",
+      "CeqP tests zero, PP tests strictly positive integer gap, parityP tests odd accepting count. Threshold conventions are convertible.",
+      "SPP tests exact characteristic values. AWPP universally quantifies requested explicit error polynomial and has nonnegative gap bounded by a power-of-two polynomial normalizer on every input.",
+      "LWPP and WPP use genuine uniform polynomial-time integer transducers. A nonzero signed normalizer is equivalent to a positive one by multiplying gap and normalizer by the normalizer. Unary input to LWPP prevents covert dependence on input contents.",
+      "Quantum gates are explicit H,T,X,CNOT with distinct control/target. Circuit serialization and finite-control generator prohibit an arbitrary uncomputable circuit family.",
+      "QMA quantifies normalized pure quantum witnesses; mixed states cannot improve a linear acceptance functional beyond pure states. QCMA quantifies basis witnesses. BQP uses the unique zero-qubit basis state.",
+      "Quantum input, witness and zero ancilla registers are disjoint; fixed explicit polynomial witness/ancilla lengths allow padding. Constant completeness and soundness bounds apply to every input."
+    ],
+    "minor_documentation_observation": "Counting.lean introductory comment still says LWPP/WPP omitted, although they are now concretely defined in Transducers.lean. This does not change a class."
+  },
+  "padding_review": {
+    "proposals_owned_by": "root",
+    "targets_approved": [
+      "UP",
+      "coUP",
+      "FewP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "LWPP",
+      "WPP",
+      "BQP",
+      "QCMA",
+      "QMA",
+      "coQMA"
+    ],
+    "rules": [
+      "E⊆C ⇒ EXP⊆C",
+      "NE⊆C ⇒ NEXP⊆C"
+    ],
+    "derivation": "Choose exact polynomial padding length p(n)≥n+1, e.g. (n+2)^k. The padded exponential-time language is in E/NE. Deterministic padding preserves accepting multiplicity, FP normalizers and polynomial time. LWPP uses h(0^{p(n)}); AWPP chooses padded error dominating original requested error. Quantum generators compose with p(n), hardwire suffix and pad witnesses without changing acceptance.",
+    "small_input_caveat": "Do not use n^k−n−1 padding blindly at n=0 or1; fix finitely many lengths or use (n+2)^k."
+  },
+  "cross_team_findings_not_claimed_as_new": [
+    {
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NE",
+          "right": "coUP"
+        },
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "coUP"
+        }
+      ],
+      "owner": "root/classical_literature",
+      "reason": "Hierarchy and complement consequences reported by classical audit; not duplicate discoveries here. Current measured snapshot still leaves these unreviewed."
+    }
+  ],
+  "rejected_inferences": [
+    {
+      "claim": "QMA⊄QCMA or BQP⊄PH from oracle theorems",
+      "reason": "Oracle separations are not ordinary-language class separations.",
+      "source_ids": [
+        "auditCQ-BHNZ26",
+        "auditCQ-BHV26",
+        "auditCQ-RT22"
+      ]
+    },
+    {
+      "claim": "NP⊆SPP ⇒ PH⊆SPP by relativizing the premise",
+      "reason": "Unrelativized inclusion is not available relative to arbitrary oracles. The sourced PH collapse adds a measure assumption; only Delta2P consequence proposed.",
+      "source_ids": [
+        "auditCQ-SizeSPP03"
+      ]
+    },
+    {
+      "claim": "NP⊆WPP ⇒ Delta2P⊆WPP from generic closure",
+      "reason": "Only truth-table closure is known here; STT supplies an oracle against general Turing closure.",
+      "source_ids": [
+        "auditCQ-STT05"
+      ]
+    },
+    {
+      "claim": "PP⊄Ppoly from each-fixed-exponent lower bounds",
+      "reason": "∀k ∃L outside SIZE(n^k) does not give ∃L outside the union Ppoly."
+    },
+    {
+      "claim": "P=UP ⇒ P=NP via unique-SAT",
+      "reason": "Total UP differs from PromiseUP; Valiant–Vazirani reductions do not certify every produced instance satisfies uniqueness."
+    }
+  ],
+  "recent_search_screen": [
+    {
+      "source_id": "auditCQ-Ivanashev26",
+      "result": "Pre-cutoff v5 screened; function-class additions and recalled collapse rules, no new ordinary pair seed."
+    },
+    {
+      "source_id": "auditCQ-BHNZ26",
+      "result": "Pre-cutoff; oracle scope only."
+    },
+    {
+      "source_id": "auditCQ-BHV26",
+      "result": "Pre-cutoff; oracle scope only."
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.26921",
+      "title": "En Route to a Standard QMA1 vs QCMA Oracle Separation",
+      "publication_date": "2026-04-29",
+      "result": "Oracle/gate-restricted setting; no roster ordinary delta."
+    },
+    {
+      "url": "https://arxiv.org/abs/2609.13032",
+      "title": "QMA has perfect completeness",
+      "publication_date": "2026-09-11",
+      "result": "After cutoff and QMA1 outside roster. Explicitly excluded from baseline."
+    }
+  ],
+  "uncertainty": {
+    "expected_remaining_misclassified_pairs": null,
+    "reason_no_expected_value": "No calibrated probability of literature omission or correlated theorem-family miss is available. A census is evidence of coverage, not a quantitative guarantee. Future flaws in currently accepted proofs are excluded from this assessment as requested.",
+    "missing_known_status_count_logical_range": [
+      0,
+      809
+    ],
+    "range_interpretation": "Conservative combinatorial bound for unresolved incident pairs, not a confidence interval or expected value; includes cross-team confirmed omissions until integration.",
+    "risk_groups": [
+      {
+        "group": "Unconditional roster inclusions",
+        "assessment": "Most comprehensively covered: per-class census plus primary counting/quantum chains and exact definitions; no new omitted positive edge found.",
+        "probability": null
+      },
+      {
+        "group": "Implicit negative consequences through padding, hierarchy and collapse hypotheses",
+        "assessment": "Largest remaining practical risk. Other reviewers already found missing classifications; recompute after all shared padding/failed-literal rules.",
+        "probability": null
+      },
+      {
+        "group": "2025–2026 literature and total/promise/oracle distinctions",
+        "assessment": "Targeted primary sweep performed, not exhaustive citation traversal. Oracle advances do not reduce ordinary unknown count.",
+        "probability": null
+      },
+      {
+        "group": "Conditional scoring completeness",
+        "assessment": "Multiple confirmed missing rules have fanouts up to hundreds under a hypothetical assumption. Marginal fanouts are measured, not likelihoods.",
+        "probability": null
+      }
+    ],
+    "next_steps": [
+      "Cross-review every proposed conditional, especially operator-versus-oracle conversions.",
+      "Recompute all audited rows after root integrates generic padding and failed-literal consequences.",
+      "Seek a second independent literature census and targeted primary references for each remaining suspect family before asserting a global expected-error bound."
+    ],
+    "cross_team_confirmed_pending_status_count": 2
+  },
+  "known_label_audit_groups": [
+    {
+      "id": "counting-subclass-chain",
+      "classes": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "LWPP",
+        "WPP",
+        "AWPP",
+        "CeqP",
+        "PP",
+        "parityP"
+      ],
+      "coverage": "All incident known positive labels enumerated in class_entry_census; checked primitive chain, complement transforms, and compositions into NP/PH/proof-system upper classes.",
+      "finding": "No incorrect positive seed found; each direct Zoo roster edge already in closure.",
+      "anchors": [
+        "auditCQ-FFK94",
+        "auditCQ-KST92",
+        "auditCQ-FFKL02",
+        "auditCQ-OH91"
+      ]
+    },
+    {
+      "id": "quantum-chain",
+      "classes": [
+        "BQP",
+        "QCMA",
+        "QMA",
+        "coQMA"
+      ],
+      "coverage": "BPP⊆BQP⊆AWPP⊆PP, MA⊆QCMA⊆QMA⊆PP, BQP⊆QMA∩coQMA, coMA⊆coQMA; PSPACE/EXP simulation upper bounds.",
+      "finding": "No mismatch between class specification and theorem scope found. QMA is total-language restriction of verifier definition.",
+      "anchors": [
+        "auditCQ-FR99",
+        "auditCQ-MW05",
+        "auditCQ-BV97"
+      ]
+    },
+    {
+      "id": "negative-common-witnesses",
+      "coverage": "All assigned classes contain P and are contained in PSPACE. Outgoing AC0 negatives inherit parity lower bound in P. Incoming AC0/ACC0/TC0/NC1/Ppoly/NPpoly negatives inherit undecidable length-language witnesses against uniform decidable classes. Incoming EXPSPACE negatives inherit deterministic space hierarchy.",
+      "finding": "No contradiction with assigned semantics. Source proofs in baseline are trusted as requested; their model applicability was checked.",
+      "anchors_in_baseline": true
+    },
+    {
+      "id": "negative-time-hierarchy",
+      "coverage": "NE/NEXP versus UP/FewP already negative via NP containment. NE/NEXP versus coUP were missing in measured snapshot and reported independently by classical reviewer. Broader semantic counting classes cannot be separated merely by enumerating their promise-respecting machines.",
+      "finding": "Known-label additions from generic padding/failed literals need integration and independent recomputation.",
+      "anchors_in_baseline": true
+    },
+    {
+      "id": "uniformity-boundary",
+      "coverage": "AC0,ACC0,TC0,NC1 are nonuniform; NC is logspace-uniform. A nonuniform circuit inclusion cannot establish a uniform machine inclusion.",
+      "finding": "All audited count/quantum classes are uniform and decidable under their exact finite descriptions.",
+      "anchors": [
+        "auditCQ-BV97"
+      ]
+    }
+  ]
+}

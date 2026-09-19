@@ -1,0 +1,1799 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "sources": [
+    {
+      "id": "AuditPadding",
+      "title": "Length-regular padding review",
+      "url": "research/audit-padding.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-19",
+      "notes": "A recorded derivation from historical definitions, independently reviewed by three domain agents. No new historical publication date is asserted."
+    }
+  ],
+  "rules": [
+    {
+      "id": "padding-regular-E-L",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "L"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "L"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of L. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-L",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "L"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "L"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of L. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-NL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of NL. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-NL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of NL. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-LogCFL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "LogCFL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "LogCFL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of LogCFL. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-LogCFL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "LogCFL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "LogCFL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of LogCFL. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-NC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NC"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of NC. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-NC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NC"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of NC. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-SC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "SC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "SC"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of SC. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-SC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "SC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "SC"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of SC. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-RP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "RP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "RP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of RP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-RP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "RP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "RP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of RP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-coRP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coRP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of coRP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-coRP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coRP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of coRP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-ZPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "ZPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of ZPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-ZPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "ZPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of ZPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-BPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "BPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "BPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of BPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-BPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "BPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "BPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of BPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-UP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "UP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "UP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of UP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-UP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "UP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "UP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of UP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-coUP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coUP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coUP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of coUP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-coUP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coUP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coUP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of coUP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-NP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of NP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-NP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of NP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-coNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coNP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of coNP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-coNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coNP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of coNP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-FewP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "FewP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "FewP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of FewP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-FewP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "FewP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "FewP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of FewP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-SPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of SPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-SPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "SPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "SPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of SPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-CeqP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "CeqP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "CeqP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of CeqP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-CeqP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "CeqP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "CeqP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of CeqP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-PP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of PP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-PP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of PP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-parityP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of parityP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-parityP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of parityP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-AWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of AWPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-AWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of AWPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-LWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of LWPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-LWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "LWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "LWPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of LWPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-WPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of WPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-WPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of WPP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-MA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "MA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of MA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-MA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "MA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of MA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-coMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of coMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-coMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of coMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-AM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "AM"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "AM"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of AM. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-AM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "AM"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "AM"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of AM. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-coAM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coAM"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coAM"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of coAM. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-coAM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coAM"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coAM"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of coAM. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-QCMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "QCMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "QCMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of QCMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-QCMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "QCMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "QCMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of QCMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-QMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "QMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of QMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-QMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "QMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of QMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-coQMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coQMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coQMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of coQMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-coQMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coQMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coQMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of coQMA. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-BQP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of BQP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-BQP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "BQP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "BQP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of BQP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-SBP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "SBP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "SBP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of SBP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-SBP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "SBP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "SBP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of SBP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-SZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "SZK"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "SZK"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of SZK. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-SZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "SZK"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "SZK"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of SZK. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-NPcapcoNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of NPcapcoNP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-NPcapcoNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of NPcapcoNP. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-Sigma2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "Sigma2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of Sigma2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-Sigma2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "Sigma2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of Sigma2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-Pi2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "Pi2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Pi2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of Pi2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-Pi2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "Pi2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "Pi2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of Pi2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-Delta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "Delta2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Delta2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of Delta2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-Delta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "Delta2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "Delta2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of Delta2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-Theta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "Theta2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Theta2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of Theta2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-Theta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "Theta2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "Theta2P"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of Theta2P. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-PH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PH"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of PH. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-PH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PH"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of PH. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-NPpoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NPpoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NPpoly"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of NPpoly. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-NPpoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NPpoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NPpoly"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of NPpoly. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-E-PSPACE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PSPACE"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PSPACE"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from EXP to E, followed by inverse-padding closure of PSPACE. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-PSPACE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PSPACE"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PSPACE"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of PSPACE. See research/audit-padding.md for the class-specific argument."
+    },
+    {
+      "id": "padding-regular-NE-EXP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "EXP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "EXP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "AB2007"
+      ],
+      "justification": "Length-regular polynomial padding from NEXP to NE, followed by inverse-padding closure of EXP. See research/audit-padding.md for the class-specific argument."
+    }
+  ],
+  "omitted": "Existing identical rules and conclusions already in the baseline closure are omitted."
+}

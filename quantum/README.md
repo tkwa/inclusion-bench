@@ -61,9 +61,12 @@ configuration. No Mathlib dependency download or compilation ran locally.
 The checked theorems include coverage of all 50 classes, compatibility with
 the core interpretation, normalized computational basis states, injectivity
 of gate records, and the fact that applying X twice restores the state.
-The audit file prints their Lean axiom dependencies.
+`InclusionQuantum/Normalization.lean` proves squared-norm preservation by
+every concrete gate and circuit, preservation by the input/witness/ancilla
+embedding, and acceptance bounds between zero and one for normalized witnesses.
+The empty witness used by BQP is also proved normalized. The audit file prints
+their Lean axiom dependencies.
 
-General gate unitarity, normalization preservation, amplification, textbook
-model equivalence, and the literature's inclusion and separation theorems
-remain unproved here. Having all definitions available does not certify the
+Amplification, textbook model equivalence, and the literature's inclusion and
+separation theorems remain unproved here. Having all definitions available does not certify the
 historical baseline or prove any open complexity-class relation.

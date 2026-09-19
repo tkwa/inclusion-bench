@@ -1,6 +1,6 @@
 # Development, evaluation and embedding
 
-Version 0.2.0 is operational. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 50 canonical definitions. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
+Version 0.3.0 is operational. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 50 canonical definitions. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
 
 Run commands from the repository root. An editable installation (`python3 -m pip install -e .`) also exposes the `inclusion-bench` command.
 
@@ -27,9 +27,9 @@ Local adapters default to one CPU and 4 GiB, and configuration rejects limits ab
 
 `research/classical.json` and `research/quantum.json` are the literature inputs. The importer assembles them into `data/knowledge.json`; editing generated data alone fails the reproducibility check. Edit class specifications in `data/classes.json`, then rerun the importer and release build. `scripts/catalog_seed.py` is an authoring utility, not a routine build step.
 
-Keep exact source locators, historical dates, model conventions and uncertainties with each change. The [baseline audit](../research/baseline-audit.md) distinguishes family-level screening from per-pair historical decisions. The current baseline has 709 inclusions, 405 noninclusions and 1,386 candidate questions.
+Keep exact source locators, historical dates, model conventions and uncertainties with each change. The [baseline audit](../research/baseline-audit.md) links family-level source checks, all-pair status indexing and per-pair historical decisions. The current baseline has 709 inclusions, 413 noninclusions and 1,378 candidate questions.
 
-After intentionally changing the versioned dataset, rebuild and freeze it:
+After intentionally changing the versioned dataset, refresh the literature assessment and logical audit reports against the new digest, rebuild the all-pair audit index, and record the new release's historical decisions. Earlier records remain in the registry with their original dataset hashes; they do not automatically apply to a changed version. Once those records are ready, rebuild and freeze it:
 
 ```sh
 python3 scripts/build_release.py
@@ -37,6 +37,21 @@ python3 -m inclusion_bench.cli freeze
 ```
 
 `data/freeze.json` binds the dataset, taskset, formalization bundle and audit. Freezing does not certify all candidates open. A normal evaluation uses the existing freeze; it must not silently replace the dataset underneath an earlier run. Historical decisions about that version's candidates go in `data/history_reviews.json`, preserving the original frozen question set.
+
+## Reproduce the historical audit checks
+
+The literature dossiers under `research/audit-*` retain their original snapshot hashes. `research/audit-assessment.json` records the final human-readable judgment in structured form; `scripts/build_audit_index.py` binds it and its evidence files to all 2,500 current classifications. That script never makes a historical admission decision on its own.
+
+For the independent finite-theory check, install the optional research dependency `python-sat==1.9.dev15` in a separate environment, then run:
+
+```sh
+python3 scripts/audit_sat.py --output /tmp/inclusion-sat-check.json
+python3 scripts/check_baseline_traces.py --output /tmp/inclusion-lean-traces.json
+```
+
+Build the core Lean library first. The trace checker uses one compiler thread and an 8 GiB limit on Linux, and reports peak resident memory. Its theorems assume the cited facts and rules explicitly. SAT checks only their finite propositional consequences; neither program searches the literature or proves that a candidate was historically open. Compare their dataset and generated-source/CNF hashes with the final reports. Avoid overwriting frozen audit evidence during routine verification.
+
+The external census can be reproduced with `scripts/audit_external_census.py` using a separately downloaded copy of its cited HTML source. Its report records the exact source hash and the six unmatched catalog names. Oracle separation entries are never imported as ordinary noninclusions.
 
 ## Start a model run
 
@@ -79,7 +94,7 @@ python3 -m inclusion_bench.cli review-run runs/first/run.json review.json
 python3 -m inclusion_bench.cli review-proof runs/first/run.json review.json --attempt-id attempt-0001
 ```
 
-After recording every proof decision, regenerate a packet to list the historical reviews needed for accepted consequences:
+The current release supplies historical decisions for every question. After recording proof decisions, regenerate a packet to list any historical decisions still needed:
 
 ```sh
 python3 -m inclusion_bench.cli review-packet runs/first/run.json --output history-review.json

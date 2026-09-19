@@ -1,67 +1,67 @@
-# Baseline audit and launch policy
+# September 2026 historical audit
 
-**Recorded September 19, 2026. Historical cutoff: September 1, 2026.** This is an AI-assisted literature and semantic audit by the collaborating Codex agent `/root/classical_literature`. It is not a human expert certification that every candidate was open at the cutoff.
+The audit corrects **eight classifications** and adds **106 implication rules**. Version 0.3.0 has 50 classes and 2,500 ordered pairs: **709 known inclusions, 413 known noninclusions and 1,378 remaining questions**. The cutoff includes results publicly available before September 2, 2026, 00:00 UTC.
 
-The corrected baseline contains **709 inclusions and 405 noninclusions**, leaving **1,386 candidate questions** among the 2,500 ordered pairs. The [machine-readable audit](baseline-audit.json) indexes every pair and assigns it to one of 100 ordered family groups. Those groups record the conventions, source families and searches considered. Indexing every pair does not mean conducting 2,500 independent literature searches.
+The audit is AI-assisted. Domain reviewers searched primary literature, then exchanged scopes for independent checks. It does not represent a human expert endorsement. Existing accepted mathematical results remain trusted inputs; their proofs were not reconstructed in Lean.
 
-Runs can start against these frozen candidates. Points require historical review of each pair actually claimed, including pairs obtained through implications. Existing theorems are trusted, cited baseline inputs; their proofs do not need to be formalized in Lean.
+## Corrections
 
-## Corrections from this pass
+Both **NE and NEXP are not contained in Θ₂P, coNP, coRP or coUP**. These eight directions were candidates in version 0.2.0 and now earn zero.
 
-| Added fact or implication | Evidence checked |
+[Buhrman–Fortnow–Santhanam, Theorem 6](https://eccc.weizmann.ac.il/report/2009/064/download/) excludes NEXP from polynomial time with a fixed polynomial bound on NP queries and advice. Its c=1 case covers logarithmically many queries without advice. The [regular-padding argument](audit-padding.md) transfers this exclusion to NE. Complement and hierarchy reasoning independently establish the six coNP/coRP/coUP consequences. The fixed query exponent matters: the theorem does not establish NEXP ⊄ Δ₂P.
+
+The additional rules comprise 81 regular-padding instances, three classical consequences and 22 counting/quantum consequences. They include stronger propagation from hypothetical exact-counting collapses. The latter constructions received a [separate third review](audit-round3-exact-count.md). These are implications used to score future answers; adding them does not assert their open premises.
+
+## What was checked
+
+| Check | Coverage and result |
 | --- | --- |
-| Θ₂P ⊆ PP | Beigel, Hemachandra and Wechsung, February 1989, Theorem 2.1 and Corollary 2.3 of the [original technical report](https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=8631&itemId=5587). The repository's later deposit date is not the theorem's publication date. |
-| NP ⊆ BPP ⇒ PH ⊆ BPP | Theorem 3.3 of Fortnow's [A Simple Proof of Toda's Theorem](https://toc.cs.uchicago.edu/articles/v005a007/), published July 3, 2009. |
-| coNP ⊆ AM ⇒ PH ⊆ AM | Klapper's [primary author abstract](https://cs.uky.edu/~klapper/abs/lowness.html), Mathematical Systems Theory 22 (1989), recovers this collapse using the notation BP·NP. |
-| NP ⊆ P/poly ⇒ AM ⊆ MA | Arvind, Köbler, Schöning and Schuler, [If NP has polynomial-size circuits, then MA = AM](https://www.sciencedirect.com/science/article/pii/030439759591133B), January 23, 1995. Publisher abstract and author publication record checked. |
-| NP ⊆ BPP ⇒ NP ⊆ RP | SAT self-reduction, amplification and final assignment verification; derivation below. |
-| ⊕P ⊆ P ⇒ NP ⊆ RP | Specialize the isolation reduction in Fortnow's Theorem 3.1 to a deterministic parity-SAT solver; derivation below. |
+| Domain literature review | All 50 class entries and all 2,500 ordered pairs indexed through overlapping domain and theorem-family reviews |
+| Independent cross-review | Classical/circuit/space seeds, counting/quantum seeds, model conventions and proposed implications |
+| External inclusion census | 582 existing inclusions confirmed; no missing inclusion found in the matched portion of the cited census |
+| Independent SAT encoding | Both polarities tested for all 1,378 candidates; no additional forced resolution in the finite cited theory |
+| Lean inference replay | All 1,122 known-label derivations checked with literature facts and rules as explicit hypotheses |
+| Recent title screening | 1,488 conference entries and 580 ECCC submission-window records, with 32 closer primary-source scope checks |
+| Additional quantum literature | 984 cutoff-eligible Quantum journal entries inventoried, 94 selected by the recorded title filter; TQC/QIC indexes and 27 closer primary-source checks |
+| Quantum semantics | Exact gates, complete circuits and register embedding preserve normalization; acceptance probabilities are proved between zero and one |
+| Operational verification | All 50 Lean definitions compile; isolated proof admission accepts valid proofs and rejects the tested forged evidence |
 
-Only the first correction changes unconditional baseline pair counts. The other five improve the consequences assigned to future proofs. Neither the imported implications nor this audit claim to enumerate every known implication.
+The title counts overlap across venues and repositories; they are not a count of distinct papers or full-paper reviews. ECCC submission dates are not publication dates. Relevant reports and revisions were checked for actual public availability. FOCS 2026 titles require individually dated preprints because the conference occurs after the cutoff.
 
-## Elementary implications added during this audit
+A SAT model is not a model of complexity theory or ZFC. The SAT check establishes completeness only for literal consequences of its finite encoding. Likewise, a Lean trace proves the deduction from its stated hypotheses, not the literature theorem supplied as a hypothesis. No-result literature searches supply revisable historical judgments, not proofs that a problem was open.
 
-For **NP ⊆ BPP ⇒ NP ⊆ RP**, use an amplified BPP SAT algorithm to fix a satisfying assignment one variable at a time. Bound the error of each query so that their sum is at most one third; this remains valid for adaptive queries. Accept only if the final assignment passes deterministic verification. A satisfiable formula is accepted with probability at least two thirds, and an unsatisfiable formula is never accepted. The historical ingredients are the SAT self-reduction and amplification in the [Arora–Barak author draft](https://theory.cs.princeton.edu/complexity/book.pdf). This paragraph records the elementary consequence, not a new research result dated before the cutoff.
+## Residual-error assessment
 
-For **⊕P ⊆ P ⇒ NP ⊆ RP**, generate the random list of formulas in the isolation theorem. Unsatisfiability is preserved in every formula; on a satisfiable input, with high probability at least one formula has exactly one solution. A deterministic parity solver accepts the list if any formula has an odd number of solutions. This has no false positives. The proof is a specialization of [Fortnow's Theorem 3.1 and Lemma 3.4](https://toc.cs.uchicago.edu/articles/v005a007/). It does not replace the total parity solver with a solver for the total-language class UP: Unique-SAT has a promise that must be handled separately.
+The final working expectation is **1.98 incorrectly classified pairs** (unrounded ledger sum 1.9822), slightly below the requested threshold of two. The research pass stopped after **4,584,652 tracked goal tokens**, before release assembly and publication. This is a subjective judgment with little margin to the threshold; it is not a calibrated bound.
 
-## Semantic checks
+| Cause group | Working expected wrong pairs |
+| --- | ---: |
+| Definition and theorem-application errors | 0.602 |
+| Missed older results | 1.0302 |
+| Missed recent results | 0.30 |
+| Software and final assembly | 0.05 |
+| **Total** | **1.9822** |
 
-The four small circuit classes AC0, ACC0, TC0 and NC1 are nonuniform. P/poly and NP/poly also admit arbitrary advice. Every unary language therefore has an AC0 family: at each length, a circuit tests the unary word and hardwires the appropriate membership bit. Choosing an undecidable unary language witnesses noninclusion of AC0 in each of the 44 recursive classes. All **264 ordered pairs from these six nonuniform classes to the recursive classes** are consequently already settled. These facts must not be mistaken for circuit lower bounds on efficiently decidable languages. See the [classical derivation notes](classical-notes.md) and the [author textbook's advice definitions](https://theory.cs.princeton.edu/complexity/book.pdf).
+The recorded sensitivity endpoints sum to **0.31–12.33 expected errors**. They illustrate how different probability and consequence assumptions change the answer; they are not a confidence interval. More than two actual errors remains plausible.
 
-NC is logspace-uniform; NC1 in this roster is not. Thus the familiar uniform-NC1-to-L simulation cannot be inserted as NC1 ⊆ L. SC requires polynomial time and polylogarithmic space simultaneously. Savitch's simulation does not establish NL ⊆ SC. A simulation with a better fixed exponent also need not separate unions over every polynomial exponent.
+The final assessment is recorded in `audit-assessment.json` and bound to the pair index. Its unit is an incorrectly classified ordered pair. A shared mistake can affect many pairs, so the ledger counts the distinct affected pairs conditional on each error event, rather than assigning an independent probability to every matrix cell. It excludes future discoveries of flaws in currently accepted proofs, as requested.
 
-Counting definitions remain distinct: C=P tests an exact gap, PP tests its sign, and ⊕P tests path-count parity. Toda's upper bound uses a counting oracle; it does not say PH ⊆ PP. A lower bound saying that for every fixed exponent some language needs larger circuits does not, without further argument, give one language outside P/poly.
+The estimate is subjective. Its sensitivity scenarios are not confidence intervals, and a broad upper scenario can exceed two even when the working expectation is below two. Reviewer agreement is not treated as independent statistical evidence. Missing conditional implications that change no current classification do not contribute to the current-label error count, though they can affect future scores.
 
-Oracle, promise, query and communication results require a valid transfer to the benchmark's unrelativized total languages. The same caution applies to derandomization: a statement about total BPP cannot silently substitute for a PromiseBPP algorithm inside a verifier.
+## Historical decisions and corrections
 
-## Recent-result screen
+The [historical registry](../data/history_reviews.json) records each admitted question's decision, reviewer identity, evidence and rationale against the exact dataset hash. Model runs reuse those decisions. New ordinary results still require proof verification, mathematical review and sealed run provenance; independence follows the separate metatheory-review protocol.
 
-The audit inspected primary abstracts and version histories for several results close to the cutoff. These checks establish what the papers claim and which models they use; they do not validate every proof.
+If an earlier accepted result was missed, record the evidence, mark the pair known at the cutoff and revise any affected score. Preserve the original run and review history. Changes to the mathematical baseline create a new benchmark version. Version 0.2.0 remains available in Git history and its release tag.
 
-| Public evidence | Effect on this baseline |
-| --- | --- |
-| Williams, [Simulating Time in Square-Root Space](https://eccc.weizmann.ac.il/report/2025/017/), February 24, 2025 | A finer time/space simulation, not P ≠ PSPACE. |
-| Bostanci, Haferkamp, Nirkhe and Zhandry, [Separating QMA from QCMA with a classical oracle](https://arxiv.org/abs/2511.09551), November 12, 2025; revised January 17, 2026 | The oracle qualification prevents an unconditional QMA ⊄ QCMA seed. |
-| Volkovich, [Yet Another Proof that BPP ⊆ PH](https://eccc.weizmann.ac.il/report/2026/004/), January 16, 2026 | Reproves known containments. |
-| Miloschewsky, Podder and Rudolph, [En Route to a Standard QMA1 vs. QCMA Oracle Separation](https://arxiv.org/abs/2604.26921), April 29, 2026 | Oracle models and verifier restrictions remain part of the statements. |
-| Chatterjee and colleagues, [Bipartite Matching is in NC](https://eccc.weizmann.ac.il/report/2026/100/), June 14, 2026; revised June 15 and July 15 | A problem-specific algorithm claim does not establish P = NC. The June revision records a proof correction. |
-| Ren and Williams, [Near-Maximum Circuit Lower Bounds for Exponential Time with Merlin-Arthur Queries](https://arxiv.org/abs/2607.09963), July 10, 2026 | The class has a promise-MA oracle and advice; removing those qualifiers would change the theorem. |
+## Evidence
 
-The JSON dossier also records checks of the SZK oracle-separation literature and July/August 2026 papers about bit-counting classes outside this roster. No-result searches are recorded as searches, never as proof that a question was open.
+The [machine-readable index](baseline-audit.json) links all 2,500 pairs to their domain dossiers, known-result sources and final checks. It hashes the supporting reports and the structured assessment.
 
-## Policy for running and scoring
+- Domain reviews: [classical](audit-round1-classical.md), [circuits and space](audit-round1-circuits-space.md), [counting and quantum](audit-round1-counting-quantum.md).
+- Cross-reviews: [classical/circuit/space](audit-round2-cross-classical.md), [counting consequences](audit-round2-cross-counting.md), [exact-count constructions](audit-round3-exact-count.md).
+- Later literature checks: [recent publications](audit-round2-recent.md), [counting interfaces](audit-round4-interfaces.md), [older classical results](audit-round4-classical-risk.md), [recent quantum and zero knowledge](audit-round5-recent-quantum.md), [internal counting classes](audit-round6-internal-counting.md).
+- Risk and method checks: [counting/quantum risk](audit-round3-counting-risk.md), [independent audit-method review](audit-round4-audit-method.md).
+- Reproduction evidence: [final SAT report](audit-final-sat.json), [all known-label Lean traces](audit-final-lean-traces.json), [external census](audit-round1-external-census.json), and the [development instructions](../docs/DEVELOPMENT.md#reproduce-the-historical-audit-checks).
 
-1. **Freeze candidates and provenance.** A run records the exact model configuration, budget, question set and dataset version. Candidate status means absence from that version's baseline closure.
-2. **Review proofs and historical eligibility separately.** Accept an exact mathematical statement and its proof under the benchmark's semantics. Before granting a point, review whether that ordered pair was already settled, directly or implicitly, before September 2, 2026 at 00:00 UTC.
-3. **Review every point requested.** Implication-derived pairs count, but each still needs its own historical eligibility decision. A review can cover a family with a common argument if it identifies all covered pairs and the supporting evidence explicitly.
-4. **Allow measured zeroes.** A real model run can receive an official zero once the run is reviewed and all its proof candidates are adjudicated. Unclaimed candidate pairs do not need blanket openness certification to record this result.
-5. **Correct omissions retrospectively.** An overlooked pre-cutoff result earns zero. Publish the evidence, correct eligibility and recompute affected scores while preserving the original frozen run. Do not silently rewrite history or reward rediscovery of known consequences.
-
-The historical baseline's zero is a scoring convention, not a measured AI result. ZFC-independence submissions need an exact metatheorem and explicit metatheory; independence does not propagate through ordinary relation closure.
-
-## Limits and reproducibility
-
-This was a focused AI-assisted review, not an exhaustive survey of every publication before the cutoff. Some primary rechecks were limited to abstracts. Historical sources with year-only metadata are identified in the knowledge base; crawl and repository dates are not substituted for original publication dates. The audit does not claim Lean proofs of existing theorems or a completed proof that every operational definition is equivalent to every textbook convention.
-
-The JSON binds the complete `classes` and `knowledge` documents using SHA-256 over canonical UTF-8 JSON with sorted keys, compact separators and unescaped Unicode. Policy and audit contents are excluded from that graph hash to avoid a circular dependency. The release can separately hash this audit file and record that hash in its freeze manifest. Every pair has a baseline status, family group, source index, semantic flags and explicit pending-review status where appropriate.
+One plausible pre-cutoff NL-versus-LogCFL manuscript was withheld because the reviewers found a concrete counterexample to a closure lemma and separate gaps in its entropy argument. The [cross-review](audit-round2-cross-classical.md#independent-review-of-the-may-2026-separation-claim) states those objections. This decision concerns an error visible now; it is not a charge for a hypothetical future flaw in an accepted proof.

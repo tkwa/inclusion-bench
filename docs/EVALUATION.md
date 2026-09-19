@@ -2,7 +2,7 @@
 
 InclusionBench evaluates an AI model's ability to resolve complexity-theory questions. One entry identifies a model configuration, an assigned set of questions, a declared budget and a single recorded run. Its accepted proofs and their consequences determine its score.
 
-Version 0.2.0 is open for runs. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite consists of frozen candidate questions. Historical eligibility is reviewed for each pair that would receive a positive point, so the entire literature audit need not finish before an evaluation can start.
+Version 0.3.0 is open for runs. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite contains 1,378 frozen questions with recorded open-at-cutoff decisions from the [release audit](../research/baseline-audit.md). Runs reuse these revisable historical judgments; they still need proof and run-integrity review.
 
 ## 1. Freeze the benchmark
 
@@ -109,25 +109,25 @@ The ordinary Lean checker is not an automatic ZFC-independence verifier. The abs
 
 ## 6. Review the history of positive points
 
-Pool the accepted claims and compute their consequences on the frozen baseline. Before awarding any positive point, review that pair's status at the cutoff, including the release's exact UTC convention. The history record names the dataset, reviewer, evidence, rationale and one of:
+Pool the accepted claims and compute their consequences on the frozen baseline. Before awarding any positive point, require a recorded decision about that pair's status at the cutoff, including the release's exact UTC convention. Reuse the release-wide decision when available; a run does not require a duplicate literature review. The history record names the dataset, reviewer, evidence, rationale and one of:
 
 - `open_at_cutoff`: the direction is eligible for a point.
 - `known_at_cutoff`: the direction earns no point, even if the baseline omitted its earlier resolution.
 
-After accepting proofs, regenerate a packet so its `history_review` section lists every pending candidate consequence:
+The release audit normally leaves no historical decisions pending. After accepting proofs, regenerate a packet to identify any remaining decisions:
 
 ```sh
 python3 -m inclusion_bench review-packet runs/first/run.json --output history-review.json
 ```
 
-Inspect each listed pair and fill that section's reviewer, decision, evidence and rationale. Then pass the whole packet; `review-history` extracts `history_review`:
+If pairs are listed, inspect each one and fill that section's reviewer, decision, evidence and rationale. Then pass the whole packet; `review-history` extracts `history_review`:
 
 ```sh
 python3 -m inclusion_bench review-history history-review.json
 python3 -m inclusion_bench evaluate-run runs/first/run.json
 ```
 
-A standalone history-review object also works. If the run has no resolved candidate pairs, no historical review is needed; an empty pending template is not an acceptance record.
+A standalone history-review object also works. Skip `review-history` when the section is empty; the release decisions already satisfy the history gate. If the run has no resolved candidate pairs, no historical review is needed; an empty pending template is not an acceptance record.
 
 History review applies to implied points as well as direct claims, including consequences outside the assignment. A source list alone does not certify openness. Consult the actual statements, versions and public availability dates. The cutoff is September 1, 2026, with its precise boundary specified in the release policy.
 
@@ -143,7 +143,7 @@ For run `r`, let `S_r` be its accepted ordinary claims, `I_r` its accepted indep
 
 Count each ordered pair once. Do not add direct and implied resolutions twice or pool accepted proofs from different runs. Contradictory statements cannot earn points; a conflict blocks scoring until review resolves it. Preserve the derivation graph and its links back to accepted attempts, artifact hashes and cited rules.
 
-An official result requires a sealed genuine model run, accepted run-integrity review, disposition of its proof candidates, and historical decisions for all pairs the accepted claims resolve. A run with no accepted resolutions can receive a reviewed **zero** without certifying every unattempted question's history. A pending review produces an unavailable official score, not zero.
+An official result requires a sealed genuine model run, accepted run-integrity review, disposition of its proof candidates, and historical decisions for all candidate pairs the accepted claims resolve. Pairs already settled by the baseline need no additional history record and earn zero. A run with no accepted resolutions can receive a reviewed **zero** without certifying every unattempted question's history. A pending review produces an unavailable official score, not zero.
 
 Once `evaluate-run` reports an official result, prepare its public evidence and register the leaderboard entry:
 

@@ -131,7 +131,7 @@ def main(packet):
 
         compile_steps = [f"lean -j1 -o /config/lean/InclusionBench/{m}.olean /config/lean/InclusionBench/{m}.lean" for m in CORE]
         compile_steps += ["lean -j1 -o /config/lean/InclusionBench.olean /config/lean/InclusionBench.lean"]
-        compile_steps += [f"lean -j1 -o /config/quantum/InclusionQuantum/{m}.olean /config/quantum/InclusionQuantum/{m}.lean" for m in ("Quantum", "Complete")]
+        compile_steps += [f"lean -j1 -o /config/quantum/InclusionQuantum/{m}.olean /config/quantum/InclusionQuantum/{m}.lean" for m in ("Quantum", "Normalization", "Complete")]
         compile_steps += ["lean -j1 -o /config/quantum/InclusionQuantum.olean /config/quantum/InclusionQuantum.lean"]
         compile_steps += [f"lean -j1 -o /config/{m}.olean /config/{m}.lean" for m in ("ProofCodec", "ProofExport", "TrustedBaseline")]
         code, output, error = run("set -eu\ncd /config\n" + "\n".join(compile_steps), writable=True)

@@ -1,6 +1,6 @@
 # Classical knowledge-base review
 
-This is a literature-informed draft for a benchmark frozen at **2026-09-01**. Its positive mathematical statements have source anchors or explicit derivations. Its omissions do **not** certify that a problem was open on the cutoff date. The machine-readable companion is [classical.json](classical.json).
+This records the classical baseline for a benchmark with historical cutoff **2026-09-01**. Its positive mathematical statements have source anchors or explicit derivations. Its omissions do **not** certify that a problem was open on the cutoff date. The machine-readable companion is [classical.json](classical.json).
 
 The roster contains 50 classes. AC0, ACC0, TC0, NC1, P/poly, and NP/poly are nonuniform; `NC` means **logspace-uniform NC**. Every other entry denotes a class of total decision languages. These conventions matter to the score: a nonuniform TC0 lower bound can remain open when the corresponding uniform separation is already known.
 
@@ -14,9 +14,9 @@ The roster contains 50 classes. AC0, ACC0, TC0, NC1, P/poly, and NP/poly are non
 - [Babai–Fortnow–Nisan–Wigderson, Lemma 4.2](https://lance.fortnow.com/papers/files/bppexp.pdf) gives EXP ⊆ P/poly ⇒ EXP = MA. The related PSPACE consequence uses an efficient circuit for the honest prover in [IP = PSPACE](https://doi.org/10.1145/146585.146609).
 - [Toda](https://epubs.siam.org/doi/10.1137/0220053) gives PH ⊆ P^PP. The implemented consequence is PP ⊆ P ⇒ PH ⊆ P. PH ⊆ PP is **not** a baseline fact.
 
-## Elementary derivations needing mathematical review
+## Independently reviewed elementary derivations
 
-The JSON labels these as derivations, rather than pretending a historical paper contains the exact benchmark-specific formulation. They are mathematically explicit enough for a reviewer to check and later formalize.
+The JSON labels these as derivations, rather than pretending a historical paper contains the exact benchmark-specific formulation. They were checked in the [classical and circuit cross-review](audit-round2-cross-classical.md); their existing proofs remain trusted inputs.
 
 ### Undecidable unary languages in AC0
 
@@ -48,9 +48,35 @@ Replacing circuit evaluation by nondeterministic circuit evaluation gives NP ⊆
 
 For each roster class A, A ⊆ NP and A ⊆ coNP imply A ⊆ NP ∩ coNP. The JSON contains all 50 instances. It also contains all 50 instances for ZPP = RP ∩ coRP. These rules refer to intersections of **classes of languages**, not to the Boolean hierarchy class DP.
 
+### PH circuits under NP circuits
+
+If NP ⊆ P/poly, hardwiring the advice into polynomial-size circuits gives
+NP/poly ⊆ P/poly. To eliminate an existential quantifier block applied to a
+P/poly predicate, guess its polynomial-size witness and evaluate the advised
+predicate; this language is in NP/poly, hence P/poly under the assumption.
+P/poly is closed under complement, so universal blocks can also be eliminated.
+Induct on the fixed number of blocks for each PH language. This proves
+NP ⊆ P/poly ⇒ PH ⊆ P/poly, with a polynomial size bound that may depend on the
+language and its finite hierarchy level.
+
+### Logarithmic NP queries and exponential nondeterminism
+
+[Buhrman–Fortnow–Santhanam, Theorem 6](https://eccc.weizmann.ac.il/report/2009/064/download/)
+excludes NEXP from deterministic polynomial time with at most n^c NP queries
+and n^c advice bits, for each fixed c. Taking c=1 covers O(log n) queries with
+no advice, after absorbing finitely many small lengths. Thus NEXP ⊄ Theta2P.
+The [length-regular padding argument](audit-padding.md) gives NE ⊄ Theta2P.
+The query exponent must remain fixed; this theorem does not prove
+NEXP ⊄ Delta2P.
+
+There is also an independent elementary proof of NE ⊄ coNP. The contrary
+would imply NP ⊆ coNP because NP ⊆ NE. Complementing gives NP = coNP, and
+then NE ⊆ NP contradicts the nondeterministic time hierarchy. The audit's
+logical-refutation dossier retains this second derivation.
+
 ## Exponential-space exclusion from nondeterministic advice
 
-**EXPSPACE ⊄ NP/poly** has the following direct counting argument. It is included as an elementary derivation in the JSON. This research pass did not locate an exact primary-source statement; the argument still warrants the same explicit mathematical review as other benchmark derivations.
+**EXPSPACE ⊄ NP/poly** has the following direct counting argument. It is included as an elementary derivation in the JSON. The argument was independently checked in the [classical and circuit cross-review](audit-round2-cross-classical.md).
 
 At each sufficiently large n, let s = ⌊2^(n/4)⌋. There are at most 2^O(s log(n+s)) nondeterministic Boolean circuits of size at most s, with at most s relevant witness-input bits. This is smaller than the 2^(2ⁿ) truth tables on n input bits. Choose the lexicographically first truth table not represented by any such circuit.
 
@@ -60,7 +86,7 @@ The resulting language has no polynomial-size nondeterministic circuits, since e
 
 ## Where the audit stops
 
-The sources cover classical seed relations and selected collapse, padding, and hardwiring rules. They do not exhaust all implications expressible on 50 classes. In particular, lowness, nonuniform collapse refinements, and contrapositives requiring several hypotheses may require additional rules. NP ⊆ BPP ⇒ NP ⊆ RP and PH ⊆ BPP is recorded as an unimported candidate pending a precise primary-source locator.
+The sources cover classical seed relations and selected collapse, padding, and hardwiring rules. They do not exhaust all implications expressible on 50 classes. In particular, lowness, nonuniform collapse refinements, and contrapositives requiring several hypotheses may require additional rules. The imported NP ⊆ BPP consequences use Fortnow's 2009 primary proof of Toda's theorem, including Theorems 3.1 and 3.3.
 
 Several tempting shortcuts are invalid:
 
@@ -69,4 +95,4 @@ Several tempting shortcuts are invalid:
 - P = BPP for total languages does not automatically give a deterministic algorithm for a promise-BPP verifier, so it does not by itself justify MA = NP.
 - Oracle and communication-complexity separations do not settle the corresponding unrelativized language inclusions. A September 2026 communication result found during search was both outside the cutoff and outside this model.
 
-Historical publication dates establish that the seeded theorems predate the cutoff. They cannot establish that every remaining pair was open then. Before official scoring, a reviewer must audit the residual pairs, record a source and cutoff rationale for each eligible item, review the derivations above, and verify the formal statements. The present dataset supports provisional exploration until that work is complete.
+Historical publication dates establish that the seeded theorems predate the cutoff. They cannot establish the completeness of the literature search. The [release audit](baseline-audit.md) records revisable historical decisions for the remaining questions; accepted new proofs and run provenance are reviewed separately.

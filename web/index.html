@@ -33,7 +33,7 @@
     </section>
 
     <div class="page-content">
-      <aside class="draft-banner" aria-label="Benchmark release status"><span class="tag">Open for runs</span><p><strong>Run a model on the frozen questions.</strong> Proofs and run integrity are reviewed before publication; every positive point also needs a cutoff-history check.</p><a href="https://github.com/tkwa/inclusion-bench#run-a-model">Start a run <span aria-hidden="true">↓</span></a></aside>
+      <aside class="draft-banner" aria-label="Benchmark release status"><span class="tag">Open for runs</span><p><strong>Run a model on the frozen questions.</strong> The release records the cutoff audit. Model proofs and run integrity are reviewed before scores are published.</p><a href="https://github.com/tkwa/inclusion-bench#run-a-model">Start a run <span aria-hidden="true">↓</span></a></aside>
 
       <div id="load-error" class="error-panel" role="alert" hidden><h2>The benchmark data could not be loaded.</h2><p id="load-error-detail">Serve this directory over HTTP with benchmark.json beside this page.</p><button type="button" id="retry-load">Try again</button></div>
       <p id="loading" role="status" class="loading">Loading the benchmark…</p>
@@ -56,10 +56,10 @@
         <section id="evaluation" class="section evaluation-section" aria-labelledby="evaluation-title">
           <div class="section-heading"><div><p class="eyebrow">02 / Evaluation protocol</p><h2 id="evaluation-title">One model. One declared run.</h2></div><span class="tag tag-outline">Public white-box suite</span></div>
           <div class="protocol-grid">
-            <article><span class="method-number">01</span><h3>Choose the questions.</h3><p>Assign a subset or the full frozen suite. The class definitions and cited baseline are public. A question absent from that baseline is a candidate until its history is reviewed.</p></article>
+            <article><span class="method-number">01</span><h3>Choose the questions.</h3><p>Assign a subset or the full frozen suite. The class definitions and cited baseline are public. The release audit records which questions were open at the cutoff.</p></article>
             <article><span class="method-number">02</span><h3>Run the model.</h3><p>Choose an explicit model version and token and time limits. The OpenAI and Anthropic adapters preserve prompts, answers, proof files and provider usage.</p></article>
             <article><span class="method-number">03</span><h3>Review the evidence.</h3><p>Check the run record and each proof. New ordinary claims use the Lean proof checker; independence metatheorems require explicit expert review. Existing cited results are trusted.</p></article>
-            <article><span class="method-number">04</span><h3>Count the resolutions.</h3><p>Combine accepted proofs with the frozen implications. Before awarding a positive point, confirm the pair was open at the cutoff. A reviewed run with no solutions can score zero.</p></article>
+            <article><span class="method-number">04</span><h3>Count the resolutions.</h3><p>Combine accepted proofs with the frozen implications. Count each resolved pair admitted by the cutoff audit once. A reviewed run with no solutions can score zero.</p></article>
           </div>
           <p class="section-intro"><a href="https://github.com/tkwa/inclusion-bench/blob/main/docs/EVALUATION.md">Read the full evaluation protocol ↗</a> · <a href="https://github.com/tkwa/inclusion-bench/blob/main/evaluation/tasks.json">Get the frozen candidate suite ↗</a></p>
         </section>
@@ -77,7 +77,7 @@
             <div class="matrix-card"><div class="matrix-card-header"><span id="matrix-description">50 × 50 relation matrix</span><span class="micro-label">SELECT A CELL</span></div><div class="matrix-scroll" id="matrix-scroll" tabindex="0" role="region" aria-label="Scrollable complexity-class inclusion matrix"><table id="matrix-table" class="matrix-table"><caption class="sr-only">Rows are the contained class A; columns are the containing class B. Activate a cell to inspect its status.</caption></table></div><p class="matrix-empty" id="matrix-empty" hidden>No classes match these filters.</p><div class="matrix-card-footer"><span id="matrix-visible-count"></span><span>Scroll to explore <span aria-hidden="true">↔</span></span></div></div>
             <aside class="pair-panel" aria-labelledby="pair-title"><p class="eyebrow">Selected relationship</p><h3 id="pair-title">NP <span>⊆</span> P</h3><div id="pair-status"></div><p id="pair-explanation" class="pair-explanation">Select a cell to inspect the relationship.</p><dl class="class-definitions" id="pair-definitions"></dl><div class="pair-evidence" id="pair-evidence"></div></aside>
           </div>
-          <p class="section-note">A candidate is unresolved in the frozen baseline, which can contain omissions. Every credited pair receives a historical check; a pre-cutoff result earns no point. Circuit uniformity and language-versus-promise conventions are part of the task.</p>
+          <p class="section-note">The release records historical decisions for the open questions. Those decisions can be revised if a pre-cutoff result was missed; known results earn no point. Circuit uniformity and language-versus-promise conventions are part of the task.</p>
         </section>
 
         <section id="scenarios" class="section" aria-labelledby="scenarios-title">

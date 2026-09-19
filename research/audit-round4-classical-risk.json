@@ -1,0 +1,2484 @@
+{
+  "schema_version": 1,
+  "audit_round": 4,
+  "reviewer": {
+    "identity": "classical_literature",
+    "type": "AI-assisted literature and source review",
+    "human_expert_certification": false
+  },
+  "reviewed_at": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+  "binding": {
+    "classes_canonical_sha256": "54a298e5a1f27b2395bcbad3b3c049952424d0639f5da1045f9fc3cb0eb1f048",
+    "knowledge_canonical_sha256": "85bbfec5a1414e5be1c8409b2ba82ace1bcf4f908966f3a0fdb594dc7c5455f1",
+    "policy_canonical_sha256": "26c43481ebabc8dadb077eb60b38562eccd87541f12e2a6c64bf769d0668cc88",
+    "matrix_counts": {
+      "inclusion": 709,
+      "separation": 413,
+      "independence": 0,
+      "unreviewed": 1378
+    }
+  },
+  "scope": {
+    "older_primary_chains": "Classical exponential-time, query, advice and semantic-hierarchy separations, with explicit attention to E/NE/EXP/NEXP versus NPpoly/Ppoly/Delta2P/Theta2P/BPP/ZPP. Counting-specific and quantum-specific omissions retain their existing endpoint-family allowances.",
+    "basic_classes": [
+      "AM",
+      "BPP",
+      "Delta2P",
+      "MA",
+      "NP",
+      "NPcapcoNP",
+      "P",
+      "PH",
+      "Pi2P",
+      "RP",
+      "SBP",
+      "SZK",
+      "Sigma2P",
+      "Theta2P",
+      "ZPP",
+      "coAM",
+      "coMA",
+      "coNP",
+      "coRP"
+    ],
+    "basic_block_count": 361,
+    "basic_status_counts": {
+      "inclusion": 146,
+      "unreviewed": 215
+    },
+    "basic_scope_partition": "Both endpoints in this exact list. Counting10, quantum4, and resource17 endpoint pairs are excluded from the incremental basic allowance. MA/coMA/AM/coAM/SBP/SZK versus other basic classes ARE included.",
+    "focus_left": [
+      "E",
+      "NE",
+      "EXP",
+      "NEXP"
+    ],
+    "focus_right": [
+      "NPpoly",
+      "Ppoly",
+      "Delta2P",
+      "Theta2P",
+      "BPP",
+      "ZPP",
+      "NP",
+      "coNP"
+    ],
+    "focus_pair_count": 32,
+    "focus_status_counts": {
+      "unreviewed": 24,
+      "separation": 8
+    },
+    "scope_limitations": [
+      "The 32 explicit time comparisons are a traceable focal slice, not the entire older source-review scope.",
+      "A family screen indexed to a pair is not an independent proof of its openness.",
+      "This pass follows selected older reference chains, not every historical publication.",
+      "Recent quantum and zero-knowledge results are not silently included in the separate round-two 0.15 estimate."
+    ]
+  },
+  "result": {
+    "proposed_fact_additions": [],
+    "proposed_fact_deletions": [],
+    "proposed_rule_additions": [],
+    "proposed_rule_deletions": [],
+    "ordinary_label_corrections": [],
+    "known_errors_remaining_in_this_review": [],
+    "summary": "No additional unconditional roster-pair classification found. All narrow, conditional, advice, promise, oracle and fixed-exponent qualifications were retained. Absence of a discovered error is not certification of all candidate statuses."
+  },
+  "sources": [
+    {
+      "id": "r4-HM95",
+      "authors": [
+        "Steven Homer",
+        "Sarah Mocas"
+      ],
+      "title": "Nonuniform Lower Bounds for Exponential Time Classes",
+      "year": 1995,
+      "url": "https://web.cecs.pdx.edu/~sarah/homer.ps",
+      "metadata_url": "https://link.springer.com/chapter/10.1007/3-540-60246-1_122",
+      "locator": "Author draft dated February 16, 1995: Theorems 2.1–2.2, Corollaries 2.1–2.5, Theorem 3.1 and Corollary 3.1; printed pp.4–9",
+      "read_depth": "Recovered complete author PostScript, converted locally and read theorem statements with surrounding proof/quantifier context; publisher metadata checked.",
+      "version_limitation": "Author draft, with unfinished introductory wording; do not assert line-for-line identity with the MFCS 1995 published version. Publisher record supplies original publication year, not later digitization date.",
+      "assessment": "The advice exponents and circuit sizes are fixed constants. Relativized corollaries retain EXP with a stronger oracle. Neither EXP⊄Ppoly nor NEXP⊄NPpoly follows by taking a union over bounds.",
+      "delta": "No new roster label.",
+      "retrieved_author_file": {
+        "sha256": "8f9ff1274f166c34a3e84bc195be6400259c0b8586f1412e336a323f786cc6e9",
+        "bytes": 134998,
+        "format": "PostScript",
+        "retrieved_at": "2026-09-19",
+        "repository_copy": false
+      }
+    },
+    {
+      "id": "r4-M96",
+      "authors": [
+        "Sarah Mocas"
+      ],
+      "title": "Separating Classes in the Exponential Time Hierarchy from Classes in PH",
+      "year": 1996,
+      "url": "https://web.cecs.pdx.edu/~sarah/bounded-query.ps",
+      "metadata_url": "https://www.sciencedirect.com/science/article/pii/030439759500078X",
+      "locator": "Author manuscript Corollary 3.1 p.9; Theorem 3.4 and Corollary 3.3 p.11; concluding discussion pp.11–12",
+      "read_depth": "Recovered full author PostScript; read Sections 3–4 and reference chain to Fu–Li–Zhong 1994.",
+      "version_limitation": "Author publications page uses the alternate manuscript title Using Bounded Query Classes to Separate Classes in the Exponential Time Hierarchy from Classes in PH; journal is TCS 158:221–231.",
+      "assessment": "Parallel NP queries and each fixed polynomial query bound are separated from NEXP. Unrestricted polynomially many adaptive NP queries remain a different target. Higher-level corollaries retain corresponding exponential-hierarchy levels. The already imported Theta2P noninclusion is corroborated; no Delta2P noninclusion is licensed.",
+      "delta": "No new roster label.",
+      "retrieved_author_file": {
+        "sha256": "ed055ecdd9aa707e5f83f8192db76920c81abef5b0bba4f9a762f311774f7a05",
+        "bytes": 134255,
+        "format": "PostScript",
+        "retrieved_at": "2026-09-19",
+        "repository_copy": false
+      }
+    },
+    {
+      "id": "r4-M02",
+      "authors": [
+        "Sarah Mocas"
+      ],
+      "title": "A Note on the Relationship of BPP and RP to Exponential Time Classes",
+      "year": 2002,
+      "url": "https://web.cecs.pdx.edu/~sarah/tr-02.ps",
+      "metadata_url": "https://web.cecs.pdx.edu/~sarah/pubs.html",
+      "locator": "Portland State TR02-1; Theorem 3.1; Corollaries 3.3–3.5 printed pp.3–4; discussion and Corollaries 3.7–3.8 p.5",
+      "read_depth": "Recovered full author PostScript and read all result statements, assumptions and adjacent proofs.",
+      "assessment": "BPP differs from ZPEXP with an RP oracle. P=RP implies BPP≠EXP; P=ZPP implies RP≠EXP. Oracle removal and circuit corollaries retain hypotheses. ZPEXP and its relativization are not roster synonyms for EXP.",
+      "delta": "No unconditional roster label. P=RP conditional EXP-versus-BPP statement already follows from baseline implications by contradiction.",
+      "retrieved_author_file": {
+        "sha256": "d58e1fda82b027a5bdf6fe435d680284ee6311ffdc7d8ef5ad45c088451344a2",
+        "bytes": 79941,
+        "format": "PostScript",
+        "retrieved_at": "2026-09-19",
+        "repository_copy": false
+      }
+    },
+    {
+      "id": "r4-BFS09",
+      "authors": [
+        "Harry Buhrman",
+        "Lance Fortnow",
+        "Rahul Santhanam"
+      ],
+      "title": "Unconditional Lower Bounds Against Advice",
+      "year": 2009,
+      "url": "https://lance.fortnow.com/papers/files/advice.pdf",
+      "metadata_url": "https://eccc.weizmann.ac.il/report/2009/064/",
+      "locator": "Sections 3–6, especially Theorems 3, 6, 8–9, 13, 15–18, 22; printed pp.4–10",
+      "read_depth": "Read all result statements, their fixed-bound quantifiers, and the proof disjunction in Theorem 3; followed older references beyond the prior Theorem 6 check.",
+      "assessment": "Theorem 3 is NEXP⊄NP/n^c for each fixed c; its proof disjunction does not independently establish NEXP⊄NPpoly. Theorems 6 and 9 retain fixed query/time exponents. BPEXP and MAEXP remain distinct larger left classes in Theorems 13 and 15. Oracle equalities in Theorems 17–18 are neither ordinary containments nor ZFC independence. Theorem 22 uses coNEXP advice, not coNP.",
+      "delta": "No new roster label."
+    },
+    {
+      "id": "r4-FST05",
+      "authors": [
+        "Lance Fortnow",
+        "Rahul Santhanam",
+        "Luca Trevisan"
+      ],
+      "title": "Hierarchies for Semantic Classes",
+      "year": 2005,
+      "url": "https://lance.fortnow.com/papers/files/promise.pdf",
+      "locator": "STOC 2005 extended abstract; Theorems 1–3 and Section 4.2; printed p.2 onward",
+      "read_depth": "Read formal theorem statements and advice conventions, beyond the earlier bibliography reference.",
+      "assessment": "The semantic hierarchies retain advice in the harder class, including one-bit advice cases. They cannot be read as uniform BPP or ZPP hierarchies separating roster EXP/NEXP comparisons.",
+      "delta": "No new roster label."
+    },
+    {
+      "id": "r4-MP06",
+      "authors": [
+        "Dieter van Melkebeek",
+        "Konstantin Pervyshev"
+      ],
+      "title": "A Generic Time Hierarchy With One Bit of Advice",
+      "year": 2006,
+      "publication_date": "2006-11-20",
+      "url": "https://drops.dagstuhl.de/storage/16dagstuhl-seminar-proceedings/dsp-vol06111/DagSemProc.06111.3/DagSemProc.06111.3.pdf",
+      "metadata_url": "https://drops.dagstuhl.de/entities/document/10.4230/DagSemProc.06111.3",
+      "journal_url": "https://link.springer.com/article/10.1007/s00037-007-0227-8",
+      "locator": "Theorems 1–4, printed pp.3–4; introduction on uniform semantic hierarchies",
+      "read_depth": "Read the 2006 primary version theorem statements and advice quantifiers; checked 2007 journal metadata, not its entire proof text.",
+      "assessment": "The harder machines retain advice. Removing one advice bit is not an innocuous conversion to an ordinary uniform class. Positive advice is especially material for semantic classes.",
+      "delta": "No new roster label."
+    },
+    {
+      "id": "r4-FS16",
+      "authors": [
+        "Lance Fortnow",
+        "Rahul Santhanam"
+      ],
+      "title": "New Non-uniform Lower Bounds for Uniform Classes",
+      "year": 2016,
+      "url": "https://lance.fortnow.com/papers/files/sublinear.pdf",
+      "metadata_url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2016.19",
+      "published_pdf": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol050-ccc2016/LIPIcs.CCC.2016.19/LIPIcs.CCC.2016.19.pdf",
+      "locator": "Theorems 1.1–1.4, author manuscript pp.1–2; Section 7 extension scope",
+      "read_depth": "Read complete introductory theorem statements and definitions of advice, NP-uniform circuits and RE; official CCC 2016 record verified.",
+      "assessment": "The hierarchy is against a bounded sublinear advice exponent. The circuit application is NP-uniform and fixed-size-degree. RE uses one-sided exponential randomness; its lower bound does not give NE/NEXP versus BPP. No NPpoly or Ppoly exclusion follows by dropping qualifiers.",
+      "delta": "No new roster label."
+    },
+    {
+      "id": "r4-BFT98",
+      "authors": [
+        "Harry Buhrman",
+        "Lance Fortnow",
+        "Thomas Thierauf"
+      ],
+      "title": "Nonrelativizing Separations",
+      "year": 1998,
+      "url": "https://ir.cwi.nl/pub/1270/1270D.pdf",
+      "metadata_url": "https://ir.cwi.nl/pub/1270",
+      "locator": "CCC 1998 pp.8–12; Section 3 definition of MAEXP; Theorem 3.4 and Corollaries 3.5–3.6, printed p.10; Section 4",
+      "read_depth": "Read the final published five-page primary PDF, including the exponential verifier definition and the nonrelativizing separation argument.",
+      "assessment": "MAEXP⊄Ppoly and PEXP⊄Ppoly do not give NEXP⊄Ppoly or EXP⊄Ppoly. PEXP here is exponential-time majority, and MAEXP retains probabilistic verification and exponential messages. Its relativized circuit inclusion is an oracle result.",
+      "delta": "No new roster label."
+    },
+    {
+      "id": "r4-FS17",
+      "authors": [
+        "Lance Fortnow",
+        "Rahul Santhanam"
+      ],
+      "title": "Robust Simulations and Significant Separations",
+      "year": 2017,
+      "url": "https://lance.fortnow.com/papers/files/robust.pdf",
+      "metadata_url": "https://www.sciencedirect.com/science/article/am/pii/S0890540117301037",
+      "preprint_url": "https://arxiv.org/abs/1012.2034",
+      "locator": "Theorems 28 and 30; Proposition 36; introductory theorem scope",
+      "read_depth": "Read the author journal manuscript theorem statements, including explicit Promise-MAEXP in Theorem 30; publication chain includes 2010 preprint, ICALP 2011 and TAMC 2015.",
+      "version_limitation": "The arXiv original and later journal manuscript are not treated as identical versions. No new baseline theorem is imported from the current PDF.",
+      "assessment": "Robustly-often circuit results retain a fixed size degree or an explicit promise class. NEXP versus ACC0 and nondeterministic/co-nondeterministic hierarchy consequences already have baseline labels. Strengthening the frequency of a separation does not by itself add a roster pair.",
+      "delta": "No new roster label."
+    },
+    {
+      "id": "r4-CJSW24",
+      "authors": [
+        "Lijie Chen",
+        "Ce Jin",
+        "Rahul Santhanam",
+        "R. Ryan Williams"
+      ],
+      "title": "Constructive Separations and Their Consequences",
+      "year": 2024,
+      "publication_date": "2024-02-15",
+      "url": "https://theoretics.episciences.org/12881/pdf",
+      "locator": "Abstract and Theorem 1.2, printed p.5",
+      "read_depth": "Rechecked the theorem premise and parameterized class list; this source was already reviewed in earlier rounds, so it is corroboration rather than newly discovered independent evidence.",
+      "assessment": "The constructive conclusion assumes a separation; membership of a class in its parameter list does not assert that every listed pair is known separated or known open. The abstract specifically treats ZPP versus EXP and BPP versus NEXP as major open examples.",
+      "delta": "No new roster label."
+    }
+  ],
+  "reference_chains": [
+    {
+      "chain": [
+        "r4-BFS09",
+        "r4-HM95"
+      ],
+      "new_work": "Recovered author full text and checked quantifier order for fixed advice/circuit bounds.",
+      "outcome": "No EXP or NEXP exclusion from arbitrary polynomial advice."
+    },
+    {
+      "chain": [
+        "r4-BFS09",
+        "r4-M96",
+        "Fu–Li–Zhong 1994"
+      ],
+      "new_work": "Recovered Mocas full author text rather than relying on its publisher abstract; checked the parallel-query result and Section 4 limitation.",
+      "outcome": "Theta2P separation corroborated; Delta2P remains a candidate. Original Fu–Li–Zhong 1994 full text was not recovered; no new fact relies on that unrecovered text."
+    },
+    {
+      "chain": [
+        "r4-M02",
+        "r4-BFS09"
+      ],
+      "new_work": "Read original 2002 conditional derandomization/exponential-class results and compare the later advice-paper endpoints.",
+      "outcome": "An RP oracle or equality assumption remains; ordinary EXP versus BPP not settled."
+    },
+    {
+      "chain": [
+        "r4-FST05",
+        "r4-MP06",
+        "r4-FS16"
+      ],
+      "new_work": "Check the advice on both sides in early semantic hierarchies and later sublinear-advice extensions.",
+      "outcome": "No uniform randomized hierarchy obtained by deleting advice."
+    },
+    {
+      "chain": [
+        "r4-BFT98",
+        "r4-FS17"
+      ],
+      "new_work": "Read original published MAEXP separation and later robust/promise version.",
+      "outcome": "No legitimate replacement of MAEXP/Promise-MAEXP/PEXP by NEXP/EXP."
+    },
+    {
+      "chain": [
+        "r4-CJSW24"
+      ],
+      "new_work": "Recheck conditional premise of modern constructive-separation theorem against older claims.",
+      "outcome": "Corroborates scope boundaries; not a blanket list of open pair certificates."
+    }
+  ],
+  "queries_recorded_this_completion": [
+    {
+      "query": "\"Robust Simulations and Significant Separations\" Fortnow Santhanam journal 2017",
+      "purpose": "Resolve journal versus preprint metadata; primary publisher and author versions retained."
+    },
+    {
+      "query": "\"New Non-uniform Lower Bounds for Uniform Classes\" CCC 2016 15",
+      "purpose": "Confirm official CCC article 19 and published PDF."
+    }
+  ],
+  "retrieval_notes": [
+    "Author PostScript files were converted serially using Ghostscript SAFER mode with one rendering thread, then text extracted for theorem checks. Source papers are not copied into the public repository.",
+    "Several source links already existed in earlier dossiers; deeper full-text scope checks, not repeated bibliography hits, supply the incremental evidence.",
+    "Current hosting/index crawl dates were not substituted for original paper publication dates."
+  ],
+  "focus_pairs": [
+    {
+      "left": "EXP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "EXP",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "EXP",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "EXP",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "EXP",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "EXP",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "EXP",
+      "right": "Ppoly",
+      "status": "unreviewed"
+    },
+    {
+      "left": "EXP",
+      "right": "NPpoly",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NEXP",
+      "right": "ZPP",
+      "status": "separation"
+    },
+    {
+      "left": "NEXP",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NEXP",
+      "right": "NP",
+      "status": "separation"
+    },
+    {
+      "left": "NEXP",
+      "right": "coNP",
+      "status": "separation"
+    },
+    {
+      "left": "NEXP",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NEXP",
+      "right": "Theta2P",
+      "status": "separation"
+    },
+    {
+      "left": "NEXP",
+      "right": "Ppoly",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NEXP",
+      "right": "NPpoly",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "Ppoly",
+      "status": "unreviewed"
+    },
+    {
+      "left": "E",
+      "right": "NPpoly",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NE",
+      "right": "ZPP",
+      "status": "separation"
+    },
+    {
+      "left": "NE",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NE",
+      "right": "NP",
+      "status": "separation"
+    },
+    {
+      "left": "NE",
+      "right": "coNP",
+      "status": "separation"
+    },
+    {
+      "left": "NE",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NE",
+      "right": "Theta2P",
+      "status": "separation"
+    },
+    {
+      "left": "NE",
+      "right": "Ppoly",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NE",
+      "right": "NPpoly",
+      "status": "unreviewed"
+    }
+  ],
+  "basic_pairs": [
+    {
+      "left": "P",
+      "right": "P",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "RP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "coRP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "ZPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "BPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "NP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "coNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "SZK",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "NPcapcoNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "P",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "RP",
+      "right": "RP",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "RP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "RP",
+      "right": "BPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "NP",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "RP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "SZK",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "RP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "RP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coRP",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coRP",
+      "right": "coRP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coRP",
+      "right": "BPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coRP",
+      "right": "coNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "SZK",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coRP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coRP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "ZPP",
+      "right": "RP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "coRP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "ZPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "BPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "NP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "coNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "SZK",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "NPcapcoNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "ZPP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "BPP",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "SZK",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "BPP",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "BPP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "NP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "coNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coNP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coNP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "MA",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "MA",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "coMA",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "coMA",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "coMA",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coMA",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coMA",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coMA",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "AM",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "AM",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "Sigma2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "AM",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "AM",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "coAM",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "coAM",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "coAM",
+      "right": "Pi2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "coAM",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "SBP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "SBP",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "SBP",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "Sigma2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "SBP",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SBP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "SZK",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "SZK",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "SZK",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "SZK",
+      "status": "inclusion"
+    },
+    {
+      "left": "SZK",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "SZK",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "SZK",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "SZK",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "NP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "coNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "MA",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "coMA",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "AM",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "coAM",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "SBP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "NPcapcoNP",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "Pi2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "Pi2P",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "Sigma2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Pi2P",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Pi2P",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "Delta2P",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Delta2P",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Delta2P",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Delta2P",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Delta2P",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "Theta2P",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Sigma2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Pi2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Delta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Theta2P",
+      "right": "Theta2P",
+      "status": "inclusion"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PH",
+      "status": "inclusion"
+    },
+    {
+      "left": "PH",
+      "right": "P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "RP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "coRP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "ZPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "BPP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "NP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "coNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "MA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "coMA",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "AM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "coAM",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "SBP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "SZK",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "NPcapcoNP",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "Sigma2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "Pi2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "Delta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "Theta2P",
+      "status": "unreviewed"
+    },
+    {
+      "left": "PH",
+      "right": "PH",
+      "status": "inclusion"
+    }
+  ],
+  "basic_sanity_checks": {
+    "all_basic_classes_between_P_and_PH": true,
+    "hypothesis": {
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "P"
+    },
+    "basic_inclusions_in_hypothetical_closure": 361,
+    "deduction": "Any noninclusion with both endpoints in this block would imply P≠NP. This is a consequence of the cited baseline, not a proof that no missing known inclusion exists.",
+    "ordinary_baseline_not_modified": true
+  },
+  "conditional_recheck": {
+    "source_id": "r4-M02",
+    "statement": "P=RP implies EXP≠BPP",
+    "derivation": "Assume RP⊆P and EXP⊆BPP. NP⊆EXP gives NP⊆BPP, so the baseline self-reduction implication gives NP⊆RP⊆P. PH collapses to P; BPP⊆PH then gives EXP⊆P, contradicting the deterministic time hierarchy.",
+    "status": "Logical scope check only; no unconditional pair and no new rule imported."
+  },
+  "selected_model_recheck": {
+    "files": [
+      {
+        "path": "lean/InclusionBench/Randomized.lean",
+        "sha256": "afe42aecdef48f9379a7e074140c89ce15a6fd4fed357358a11217237807d5c3"
+      },
+      {
+        "path": "lean/InclusionBench/ProofSystems.lean",
+        "sha256": "608a856b9d9e8c9167e1b56300a5bfb88a87ba6d6989ca6385afe9a3ed943b53"
+      },
+      {
+        "path": "lean/InclusionBench/Oracles.lean",
+        "sha256": "df8f0a685b0b31265dfb13cce3b56f6aee58fb089f32882e2fd1e72d5715a2df"
+      }
+    ],
+    "reviewed": [
+      "Finite fair-coin sample space and all-input halting/error conditions.",
+      "MA witness chosen before randomness versus AM witness depending on the public random string.",
+      "Finite coefficient lists specify witness/random lengths; polynomial verifier runs on an injective tuple encoding.",
+      "NPpoly advice depends only on input length and is intentionally arbitrary subject to its polynomial bound.",
+      "Theta2P bounds adaptive oracle queries by a constant times log2(n+1)+1; Delta2P does not inherit a fixed global polynomial query exponent."
+    ],
+    "no_selected_mismatch_found": true,
+    "limitations": [
+      "Not a new complete proof of model equivalence.",
+      "Not a complete rereview of low-level tape and transducer implementation.",
+      "Shared low-level implementation risks are accounted for by the other audit ledger; only basic-block translation/application risk is assigned here."
+    ]
+  },
+  "risk_assessment": {
+    "type": "Explicit judgmental expected count, not calibrated statistics or a rigorous upper bound",
+    "excludes": "Future-discovered flaws in currently accepted proofs; those are excluded by the user. Known concrete errors may not be discounted probabilistically.",
+    "older_exponential_query_advice": {
+      "operation": "replace prior component",
+      "prior_component": "research/audit-round2-cross-classical.json older overlooked exponential/query/advice omission",
+      "prior_probability": 0.1,
+      "prior_conditional_mean_distinct_pairs": 6,
+      "prior_expected_pairs": 0.6,
+      "probability": 0.06,
+      "conditional_mean_distinct_pairs": 6,
+      "expected_pairs": 0.36,
+      "probability_sensitivity": [
+        0.02,
+        0.15
+      ],
+      "conditional_mean_sensitivity": [
+        2,
+        16
+      ],
+      "expected_sensitivity": [
+        0.04,
+        2.4
+      ],
+      "basis": "Recovery of original older author manuscripts, all major theorem scopes in the 2009 advice paper, advice-preserving hierarchy followups, and the original MAEXP paper reduce the particular reference-chain gap that yielded the earlier Theta2P omission. The evidence overlaps and does not warrant treating each negative paper as an independent trial. Obscure corollaries and journals remain a real residual.",
+      "pair_assignment": "Older classical exponential/query/advice omission component, including the focal32 and adjacent classical time/proof comparisons. Counting- or quantum-specific omission components retain their separate ledger. Assign a wrong label once under a fixed cause precedence."
+    },
+    "incremental_basic_older_omission": {
+      "operation": "add previously uncovered basic block",
+      "probability": 0.02,
+      "conditional_mean_distinct_pairs": 8,
+      "expected_pairs": 0.16,
+      "probability_sensitivity": [
+        0.005,
+        0.06
+      ],
+      "conditional_mean_sensitivity": [
+        2,
+        20
+      ],
+      "expected_sensitivity": [
+        0.01,
+        1.2
+      ],
+      "basis": "Round-one complete class-entry census, primary implication checks, no missing ordinary edge in later interface passes, and the fact that any basic-block separation implies P≠NP. The largest residual is an unnoticed known inclusion involving auxiliary classes or a specialized proof-system characterization.",
+      "pair_assignment": "Only basic_pairs, both endpoints in the explicit19; conditional fanout counts distinct wrong labels in this block, not consequences outside it."
+    },
+    "incremental_basic_model_application": {
+      "operation": "add previously uncovered basic block",
+      "probability": 0.002,
+      "conditional_mean_distinct_pairs": 30,
+      "expected_pairs": 0.06,
+      "probability_sensitivity": [
+        0.0005,
+        0.01
+      ],
+      "conditional_mean_sensitivity": [
+        10,
+        80
+      ],
+      "expected_sensitivity": [
+        0.005,
+        0.8
+      ],
+      "basis": "Concrete finite randomness and verifier/oracle definitions plus selected quantifier-order and budget checks reduce obvious mismatches; textbook equivalence proofs are incomplete, so a shared interpretation error with many basic-pair consequences remains possible.",
+      "pair_assignment": "Only basic_pairs. Wrong translation/application, not a newly discovered flaw in an accepted theorem. Consequences outside the basic block remain assigned to their endpoint-family ledgers."
+    },
+    "total_this_dossier": 0.58,
+    "sensitivity_endpoint_products_sum": [
+      0.055,
+      4.4
+    ],
+    "aggregation_instructions": [
+      "Replace .60 with .36; do not add both.",
+      "Add .16+.06=.22 for the formerly uncovered basic19 block.",
+      "Keep round-two recent .15 separate and do not expand its stated classical/time/counting scope without additional review.",
+      "These family probabilities are events that at least one omission or mismatch exists; conditional means count the union of wrong labels from that event. They are not per-paper rates.",
+      "Overlap must be resolved by endpoint and cause precedence before aggregation; independence is not assumed.",
+      "This dossier alone does not establish the all50 stopping threshold."
+    ],
+    "would_increase": [
+      "A newly identified accepted historical theorem settling another ordinary candidate pair, particularly through a difficult-to-find corollary.",
+      "An advice, oracle, promise, fixed-exponent or model-translation error in a seed or review.",
+      "Evidence that a source chain or important older publication venue was materially undercovered."
+    ],
+    "would_decrease": [
+      "Independent expert examination of the215 basic candidates and these exact theorem scopes.",
+      "Further primary journal-only and obscure reference-chain coverage without a new ordinary omission.",
+      "Proofs or independent checks connecting selected machine definitions to the literature conventions."
+    ]
+  },
+  "prior_dossiers_read": [
+    {
+      "path": "research/audit-round1-classical.json",
+      "sha256": "06340f04c990874b3969a553c7d327d50e09de332cb9acf4b2d0618b56931c70"
+    },
+    {
+      "path": "research/audit-round1-circuits-space.json",
+      "sha256": "1a110b2a94f9eae5a505af253d04cfe6239400d950de2cc12a7d0742b6013f2d"
+    },
+    {
+      "path": "research/audit-round2-cross-classical.json",
+      "sha256": "419d08325bd2a912b25e37726adebdc372e9cfc4f9561162e66e48142ec2db43"
+    },
+    {
+      "path": "research/audit-round2-cross-counting.json",
+      "sha256": "8224ebcf23abf94a68ec76b062ac75573c37bf04c2469be442243f983754c78d"
+    },
+    {
+      "path": "research/audit-round2-recent.json",
+      "sha256": "3565ab23692e0aee8a569c4c3064c55ffd7ef5e522b9dc99b54304b063b7ae58"
+    },
+    {
+      "path": "research/audit-round3-counting-risk.json",
+      "sha256": "29349458f88ee698fc0d28d1a577de21f7223ba38c484d6a63efcc6eb987455b"
+    },
+    {
+      "path": "research/audit-round4-interfaces.json",
+      "sha256": "9c21d9ed291e4b13b6f7964370945e840b37e6e13ffac99bd267b5f6bec74338"
+    },
+    {
+      "path": "research/audit-round4-audit-method.json",
+      "sha256": "f82297a243885a73e58b77f1390c6c86427f3e0c9adb3db6031474052d1f5737"
+    }
+  ],
+  "limitations": [
+    "No historical openness is inferred merely from an unproductive search.",
+    "Source scopes are checked without attempting to reprove every accepted published result.",
+    "The primary Fu–Li–Zhong1994 full text remains unrecovered; later original proofs and direct author statements support existing imported labels.",
+    "Probability and fanout ranges are scenario judgments, not confidence intervals.",
+    "The selected class-model check does not replace the independent software/kernel and other endpoint-family audits."
+  ]
+}

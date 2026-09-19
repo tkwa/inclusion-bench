@@ -19,6 +19,9 @@ class RunnerTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory()
         self.root = Path(self.temporary.name)
         shutil.copytree(ROOT / 'data', self.root / 'data')
+        # Exercise pending/accepted/corrected history in isolation from any
+        # release-wide audit decisions included in the real repository.
+        (self.root / 'data/history_reviews.json').write_text('[]\n')
         for relative in read_json(ROOT / 'data/formalization.json')['files']:
             target = self.root / relative
             target.parent.mkdir(parents=True, exist_ok=True)

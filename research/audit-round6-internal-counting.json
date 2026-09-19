@@ -1,0 +1,1715 @@
+{
+  "schema_version": 1,
+  "audit_round": 6,
+  "reviewer": {
+    "identity": "classical_literature subagent",
+    "type": "AI-assisted independent literature review",
+    "human_expert_certification": false
+  },
+  "reviewed_at": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+  "binding": {
+    "classes_sha256": "54a298e5a1f27b2395bcbad3b3c049952424d0639f5da1045f9fc3cb0eb1f048",
+    "knowledge_sha256": "85bbfec5a1414e5be1c8409b2ba82ace1bcf4f908966f3a0fdb594dc7c5455f1",
+    "matrix_counts": {
+      "inclusion": 709,
+      "separation": 413,
+      "candidate": 1378
+    }
+  },
+  "scope": {
+    "classes": [
+      "UP",
+      "coUP",
+      "FewP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "LWPP",
+      "WPP"
+    ],
+    "ordered_pairs": 100,
+    "known_inclusions": 47,
+    "known_separations": 0,
+    "candidate_pairs": 53,
+    "risk_component": "Older internal-counting inclusion omissions only; no model/application,recent,resource or broader-interface estimate is replaced."
+  },
+  "result": {
+    "proposed_facts": [],
+    "proposed_rules": [],
+    "incorrect_current_labels_found": [],
+    "historical_openness_certified": false,
+    "summary": "No extra ordinary relation found. Previously unavailable BGM report and two later counting-taxonomy branches were examined."
+  },
+  "sources": [
+    {
+      "id": "r6-bgm02",
+      "title": "Error-bounded probabilistic computations between MA and AM",
+      "authors": [
+        "Elmar Böhler",
+        "Christian Glaßer",
+        "Daniel Meister"
+      ],
+      "publication_date": "2002-10-07",
+      "url": "https://www1.pub.informatik.uni-wuerzburg.de/pub/TRs/tr299.ps.gz",
+      "discovery_url": "https://www.informatik.uni-wuerzburg.de/index.php?id=148542",
+      "version": "University of Würzburg technical report299; cover and dated title page inspected; final JCSS72(6),1043–1076(2006) not retrieved in this pass",
+      "locators": [
+        "Definitions4.1,4.3,4.5,4.8,4.10",
+        "Theorems4.2,4.6,4.9;Propositions4.4,4.11,4.12",
+        "Figure1,printed p.15,visually inspected",
+        "Section5 and Figure2;conclusion p.25"
+      ],
+      "new_evidence": true,
+      "review_depth": "Relevant full-text taxonomy and definitions, plus visual Figure1; oracle scope checked. Not every proof reconstructed.",
+      "finding": "Few→SPP→WPP→AWPP→APP→PP supplies no missing roster edge. WAPP is a different #P class below AWPP; it cannot replace WPP. Section5 noninclusions use oracles.",
+      "retrieved_bytes_sha256": "7d703ef7d29ca6bc11409456de92fa11d498340131115524876e1c28271e2c30"
+    },
+    {
+      "id": "r6-hhsw18",
+      "title": "The Robustness of LWPP and WPP, with an Application to Graph Reconstruction",
+      "authors": [
+        "Edith Hemaspaandra",
+        "Lane A. Hemaspaandra",
+        "Holger Spakowski",
+        "Osamu Watanabe"
+      ],
+      "publication_date": "2018-07-06",
+      "first_publication_date": "2017-11-03",
+      "url": "https://arxiv.org/pdf/1711.01250v3",
+      "locators": [
+        "Definitions2.3–2.9",
+        "Theorems3.1,3.7,3.11,3.12",
+        "Theorem5.2 and Section6",
+        "Theorem7.3"
+      ],
+      "new_evidence": true,
+      "review_depth": "Definitions and relevant theorem statements/proof constructions, not full oracle diagonalizations.",
+      "finding": "Polynomial target lists preserve LWPP,WPP and CeqP. Exp-LWPP=coCeqP counts exponentially many possible target values, not extra time, and is not LWPP. LWPP+ uses #P and is distinct. No new roster edge."
+    },
+    {
+      "id": "r6-hjnp24",
+      "title": "Gaps, Ambiguity, and Establishing Complexity-Class Containments via Iterative Constant-Setting",
+      "authors": [
+        "Lane A. Hemaspaandra",
+        "Mandar Juvekar",
+        "Arian Nadjimzadah",
+        "Patrick A. Phillips"
+      ],
+      "publication_date": "2024-02-09",
+      "first_publication_date": "2021-09-29",
+      "url": "https://arxiv.org/pdf/2109.14764v5",
+      "locators": [
+        "Definitions and Table1,pp.1–4",
+        "Section3 related work,pp.8–9",
+        "Theorem4.1 and its parameter requirements"
+      ],
+      "new_evidence": true,
+      "review_depth": "Restriction definitions, taxonomy and principal metatheorem scope; not every application proof.",
+      "finding": "Restricted counting RC_S requires zero accepting paths on no-inputs, unlike SPP zero gap. Existing FewP-to-parity/SPP consequences are already encoded. Bounds on ambiguity and target density do not establish FewP⊆UP or SPP⊆FewP."
+    },
+    {
+      "id": "r6-ffkl02",
+      "title": "An Oracle Builder's Toolkit",
+      "authors": [
+        "Stephen A. Fenner",
+        "Lance Fortnow",
+        "Stuart A. Kurtz",
+        "Lide Li"
+      ],
+      "year": 2002,
+      "url": "https://lance.fortnow.com/papers/files/obt.pdf",
+      "locators": [
+        "Definitions2.2–2.3,pp.5–6",
+        "Definition6.1,Lemma6.3,Corollary6.4"
+      ],
+      "new_evidence": false,
+      "review_depth": "Rechecked definitions and taxonomy; later AWPP passages already directly read in round2.",
+      "finding": "Confirms UP→FewP→Few→SPP→LWPP→WPP→CeqP∩coCeqP→PP and WPP→AWPP. Intersections and complement notation are retained."
+    },
+    {
+      "id": "r6-ffk94",
+      "title": "Gap-definable Counting Classes",
+      "authors": [
+        "Stephen A. Fenner",
+        "Lance Fortnow",
+        "Stuart A. Kurtz"
+      ],
+      "year": 1994,
+      "url": "https://cse.sc.edu/~fenner/papers/gaps.pdf",
+      "locators": [
+        "Corollary5.8 and Definition5.13,previous round2 reading",
+        "Corollary6.2 and Proposition6.3,printed p.20,visually inspected this round"
+      ],
+      "new_evidence": "limited new scope check; core exact-count results already read",
+      "review_depth": "Previously reviewed core passages plus fresh visual reading of p.20; raw text extraction is corrupted.",
+      "finding": "Almost(C) and random-oracle lowness retain their oracle/probability qualifier; they are not ordinary PH⊆SPP or an extra internal edge."
+    },
+    {
+      "id": "r6-stt05",
+      "title": "Quantum and Classical Complexity Classes: Separations, Collapses, and Closure Properties",
+      "authors": [
+        "Holger Spakowski",
+        "Mayur Thakur",
+        "Rahul Tripathi"
+      ],
+      "publication_date": "2005-07-01",
+      "url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=464&itemId=374",
+      "locators": [
+        "Theorem3.1 and Corollary3.12",
+        "Previously reviewed closure and collapse passages in round2"
+      ],
+      "new_evidence": false,
+      "review_depth": "Inherited explicit prior primary checks and cross-review, not newly recovered full text.",
+      "finding": "WPP truth-table closure and oracle failures of stronger closure do not give ordinary WPP≠LWPP. No new fact proposed from this source."
+    },
+    {
+      "id": "r6-fortnow97",
+      "title": "Counting Complexity",
+      "authors": [
+        "Lance Fortnow"
+      ],
+      "year": 1997,
+      "url": "https://lance.fortnow.com/papers/files/counting.pdf",
+      "locators": [
+        "Classifications4.4–4.13,printed pp.13–15",
+        "Theorems5.5–5.6,pp.22–23",
+        "Theorem6.1,p.24"
+      ],
+      "new_evidence": true,
+      "review_depth": "Author survey taxonomy, low-class identities and oracle statements.",
+      "finding": "Gap-zero, positive-gap and parity tests remain distinct. Oracle parity-versus-PP separations do not classify ordinary pairs; SPP lowness alone does not eliminate arbitrary oracle levels."
+    }
+  ],
+  "exact_candidate_pairs": [
+    {
+      "left": "AWPP",
+      "right": "CeqP"
+    },
+    {
+      "left": "AWPP",
+      "right": "FewP"
+    },
+    {
+      "left": "AWPP",
+      "right": "LWPP"
+    },
+    {
+      "left": "AWPP",
+      "right": "SPP"
+    },
+    {
+      "left": "AWPP",
+      "right": "UP"
+    },
+    {
+      "left": "AWPP",
+      "right": "WPP"
+    },
+    {
+      "left": "AWPP",
+      "right": "coUP"
+    },
+    {
+      "left": "AWPP",
+      "right": "parityP"
+    },
+    {
+      "left": "CeqP",
+      "right": "AWPP"
+    },
+    {
+      "left": "CeqP",
+      "right": "FewP"
+    },
+    {
+      "left": "CeqP",
+      "right": "LWPP"
+    },
+    {
+      "left": "CeqP",
+      "right": "SPP"
+    },
+    {
+      "left": "CeqP",
+      "right": "UP"
+    },
+    {
+      "left": "CeqP",
+      "right": "WPP"
+    },
+    {
+      "left": "CeqP",
+      "right": "coUP"
+    },
+    {
+      "left": "CeqP",
+      "right": "parityP"
+    },
+    {
+      "left": "FewP",
+      "right": "UP"
+    },
+    {
+      "left": "FewP",
+      "right": "coUP"
+    },
+    {
+      "left": "LWPP",
+      "right": "FewP"
+    },
+    {
+      "left": "LWPP",
+      "right": "SPP"
+    },
+    {
+      "left": "LWPP",
+      "right": "UP"
+    },
+    {
+      "left": "LWPP",
+      "right": "coUP"
+    },
+    {
+      "left": "LWPP",
+      "right": "parityP"
+    },
+    {
+      "left": "PP",
+      "right": "AWPP"
+    },
+    {
+      "left": "PP",
+      "right": "CeqP"
+    },
+    {
+      "left": "PP",
+      "right": "FewP"
+    },
+    {
+      "left": "PP",
+      "right": "LWPP"
+    },
+    {
+      "left": "PP",
+      "right": "SPP"
+    },
+    {
+      "left": "PP",
+      "right": "UP"
+    },
+    {
+      "left": "PP",
+      "right": "WPP"
+    },
+    {
+      "left": "PP",
+      "right": "coUP"
+    },
+    {
+      "left": "PP",
+      "right": "parityP"
+    },
+    {
+      "left": "SPP",
+      "right": "FewP"
+    },
+    {
+      "left": "SPP",
+      "right": "UP"
+    },
+    {
+      "left": "SPP",
+      "right": "coUP"
+    },
+    {
+      "left": "UP",
+      "right": "coUP"
+    },
+    {
+      "left": "WPP",
+      "right": "FewP"
+    },
+    {
+      "left": "WPP",
+      "right": "LWPP"
+    },
+    {
+      "left": "WPP",
+      "right": "SPP"
+    },
+    {
+      "left": "WPP",
+      "right": "UP"
+    },
+    {
+      "left": "WPP",
+      "right": "coUP"
+    },
+    {
+      "left": "WPP",
+      "right": "parityP"
+    },
+    {
+      "left": "coUP",
+      "right": "FewP"
+    },
+    {
+      "left": "coUP",
+      "right": "UP"
+    },
+    {
+      "left": "parityP",
+      "right": "AWPP"
+    },
+    {
+      "left": "parityP",
+      "right": "CeqP"
+    },
+    {
+      "left": "parityP",
+      "right": "FewP"
+    },
+    {
+      "left": "parityP",
+      "right": "LWPP"
+    },
+    {
+      "left": "parityP",
+      "right": "PP"
+    },
+    {
+      "left": "parityP",
+      "right": "SPP"
+    },
+    {
+      "left": "parityP",
+      "right": "UP"
+    },
+    {
+      "left": "parityP",
+      "right": "WPP"
+    },
+    {
+      "left": "parityP",
+      "right": "coUP"
+    }
+  ],
+  "all_internal_pairs": [
+    {
+      "left": "UP",
+      "right": "UP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "FewP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "SPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "parityP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "UP",
+      "right": "WPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "coUP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "SPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "parityP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "coUP",
+      "right": "WPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "FewP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "SPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "parityP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "FewP",
+      "right": "WPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "SPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "parityP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "SPP",
+      "right": "WPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "AWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "CeqP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "AWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "PP",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "CeqP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "PP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "parityP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "AWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "parityP",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "CeqP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "WPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    },
+    {
+      "left": "WPP",
+      "right": "WPP",
+      "status": "inclusion",
+      "review": "family taxonomy and definitions; no pair-specific proof of historical openness"
+    }
+  ],
+  "independent_taxonomy_projection": {
+    "method": "Ten cited/elementary basis edges, reflexivity and ordinary transitivity only; coUP→SPP follows UP→SPP and complement closure of SPP. Independently projected before comparison to full engine.",
+    "basis_edges": [
+      {
+        "left": "UP",
+        "right": "FewP"
+      },
+      {
+        "left": "coUP",
+        "right": "SPP"
+      },
+      {
+        "left": "FewP",
+        "right": "SPP"
+      },
+      {
+        "left": "SPP",
+        "right": "LWPP"
+      },
+      {
+        "left": "LWPP",
+        "right": "WPP"
+      },
+      {
+        "left": "WPP",
+        "right": "CeqP"
+      },
+      {
+        "left": "WPP",
+        "right": "AWPP"
+      },
+      {
+        "left": "CeqP",
+        "right": "PP"
+      },
+      {
+        "left": "AWPP",
+        "right": "PP"
+      },
+      {
+        "left": "SPP",
+        "right": "parityP"
+      }
+    ],
+    "reachability_count": 47,
+    "missing_from_current_baseline": [],
+    "current_internal_inclusions_absent_from_basis": [],
+    "interpretation": "All47 encoded internal inclusions reproduced. This verifies projection consistency, not completeness of unencoded mathematics."
+  },
+  "hypothetical_fanouts": [
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "WPP",
+        "right": "LWPP"
+      },
+      "new_internal_labels": 1,
+      "pairs": [
+        {
+          "left": "WPP",
+          "right": "LWPP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "LWPP",
+        "right": "SPP"
+      },
+      "new_internal_labels": 2,
+      "pairs": [
+        {
+          "left": "LWPP",
+          "right": "SPP"
+        },
+        {
+          "left": "LWPP",
+          "right": "parityP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "WPP",
+        "right": "parityP"
+      },
+      "new_internal_labels": 2,
+      "pairs": [
+        {
+          "left": "LWPP",
+          "right": "parityP"
+        },
+        {
+          "left": "WPP",
+          "right": "parityP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "SPP",
+        "right": "FewP"
+      },
+      "new_internal_labels": 2,
+      "pairs": [
+        {
+          "left": "SPP",
+          "right": "FewP"
+        },
+        {
+          "left": "coUP",
+          "right": "FewP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "FewP"
+      },
+      "new_internal_labels": 1,
+      "pairs": [
+        {
+          "left": "coUP",
+          "right": "FewP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "AWPP",
+        "right": "CeqP"
+      },
+      "new_internal_labels": 1,
+      "pairs": [
+        {
+          "left": "AWPP",
+          "right": "CeqP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "parityP",
+        "right": "PP"
+      },
+      "new_internal_labels": 1,
+      "pairs": [
+        {
+          "left": "parityP",
+          "right": "PP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "CeqP",
+        "right": "AWPP"
+      },
+      "new_internal_labels": 4,
+      "pairs": [
+        {
+          "left": "CeqP",
+          "right": "AWPP"
+        },
+        {
+          "left": "PP",
+          "right": "AWPP"
+        },
+        {
+          "left": "parityP",
+          "right": "AWPP"
+        },
+        {
+          "left": "parityP",
+          "right": "PP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "PP",
+        "right": "CeqP"
+      },
+      "new_internal_labels": 2,
+      "pairs": [
+        {
+          "left": "AWPP",
+          "right": "CeqP"
+        },
+        {
+          "left": "PP",
+          "right": "CeqP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "UP",
+        "right": "coUP"
+      },
+      "new_internal_labels": 3,
+      "pairs": [
+        {
+          "left": "UP",
+          "right": "coUP"
+        },
+        {
+          "left": "coUP",
+          "right": "FewP"
+        },
+        {
+          "left": "coUP",
+          "right": "UP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "AWPP",
+        "right": "UP"
+      },
+      "new_internal_labels": 27,
+      "pairs": [
+        {
+          "left": "AWPP",
+          "right": "CeqP"
+        },
+        {
+          "left": "AWPP",
+          "right": "FewP"
+        },
+        {
+          "left": "AWPP",
+          "right": "LWPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "SPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "UP"
+        },
+        {
+          "left": "AWPP",
+          "right": "WPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "coUP"
+        },
+        {
+          "left": "AWPP",
+          "right": "parityP"
+        },
+        {
+          "left": "FewP",
+          "right": "UP"
+        },
+        {
+          "left": "FewP",
+          "right": "coUP"
+        },
+        {
+          "left": "LWPP",
+          "right": "FewP"
+        },
+        {
+          "left": "LWPP",
+          "right": "SPP"
+        },
+        {
+          "left": "LWPP",
+          "right": "UP"
+        },
+        {
+          "left": "LWPP",
+          "right": "coUP"
+        },
+        {
+          "left": "LWPP",
+          "right": "parityP"
+        },
+        {
+          "left": "SPP",
+          "right": "FewP"
+        },
+        {
+          "left": "SPP",
+          "right": "UP"
+        },
+        {
+          "left": "SPP",
+          "right": "coUP"
+        },
+        {
+          "left": "UP",
+          "right": "coUP"
+        },
+        {
+          "left": "WPP",
+          "right": "FewP"
+        },
+        {
+          "left": "WPP",
+          "right": "LWPP"
+        },
+        {
+          "left": "WPP",
+          "right": "SPP"
+        },
+        {
+          "left": "WPP",
+          "right": "UP"
+        },
+        {
+          "left": "WPP",
+          "right": "coUP"
+        },
+        {
+          "left": "WPP",
+          "right": "parityP"
+        },
+        {
+          "left": "coUP",
+          "right": "FewP"
+        },
+        {
+          "left": "coUP",
+          "right": "UP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    },
+    {
+      "hypothesis": {
+        "relation": "inclusion",
+        "left": "PP",
+        "right": "UP"
+      },
+      "new_internal_labels": 53,
+      "pairs": [
+        {
+          "left": "AWPP",
+          "right": "CeqP"
+        },
+        {
+          "left": "AWPP",
+          "right": "FewP"
+        },
+        {
+          "left": "AWPP",
+          "right": "LWPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "SPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "UP"
+        },
+        {
+          "left": "AWPP",
+          "right": "WPP"
+        },
+        {
+          "left": "AWPP",
+          "right": "coUP"
+        },
+        {
+          "left": "AWPP",
+          "right": "parityP"
+        },
+        {
+          "left": "CeqP",
+          "right": "AWPP"
+        },
+        {
+          "left": "CeqP",
+          "right": "FewP"
+        },
+        {
+          "left": "CeqP",
+          "right": "LWPP"
+        },
+        {
+          "left": "CeqP",
+          "right": "SPP"
+        },
+        {
+          "left": "CeqP",
+          "right": "UP"
+        },
+        {
+          "left": "CeqP",
+          "right": "WPP"
+        },
+        {
+          "left": "CeqP",
+          "right": "coUP"
+        },
+        {
+          "left": "CeqP",
+          "right": "parityP"
+        },
+        {
+          "left": "FewP",
+          "right": "UP"
+        },
+        {
+          "left": "FewP",
+          "right": "coUP"
+        },
+        {
+          "left": "LWPP",
+          "right": "FewP"
+        },
+        {
+          "left": "LWPP",
+          "right": "SPP"
+        },
+        {
+          "left": "LWPP",
+          "right": "UP"
+        },
+        {
+          "left": "LWPP",
+          "right": "coUP"
+        },
+        {
+          "left": "LWPP",
+          "right": "parityP"
+        },
+        {
+          "left": "PP",
+          "right": "AWPP"
+        },
+        {
+          "left": "PP",
+          "right": "CeqP"
+        },
+        {
+          "left": "PP",
+          "right": "FewP"
+        },
+        {
+          "left": "PP",
+          "right": "LWPP"
+        },
+        {
+          "left": "PP",
+          "right": "SPP"
+        },
+        {
+          "left": "PP",
+          "right": "UP"
+        },
+        {
+          "left": "PP",
+          "right": "WPP"
+        },
+        {
+          "left": "PP",
+          "right": "coUP"
+        },
+        {
+          "left": "PP",
+          "right": "parityP"
+        },
+        {
+          "left": "SPP",
+          "right": "FewP"
+        },
+        {
+          "left": "SPP",
+          "right": "UP"
+        },
+        {
+          "left": "SPP",
+          "right": "coUP"
+        },
+        {
+          "left": "UP",
+          "right": "coUP"
+        },
+        {
+          "left": "WPP",
+          "right": "FewP"
+        },
+        {
+          "left": "WPP",
+          "right": "LWPP"
+        },
+        {
+          "left": "WPP",
+          "right": "SPP"
+        },
+        {
+          "left": "WPP",
+          "right": "UP"
+        },
+        {
+          "left": "WPP",
+          "right": "coUP"
+        },
+        {
+          "left": "WPP",
+          "right": "parityP"
+        },
+        {
+          "left": "coUP",
+          "right": "FewP"
+        },
+        {
+          "left": "coUP",
+          "right": "UP"
+        },
+        {
+          "left": "parityP",
+          "right": "AWPP"
+        },
+        {
+          "left": "parityP",
+          "right": "CeqP"
+        },
+        {
+          "left": "parityP",
+          "right": "FewP"
+        },
+        {
+          "left": "parityP",
+          "right": "LWPP"
+        },
+        {
+          "left": "parityP",
+          "right": "PP"
+        },
+        {
+          "left": "parityP",
+          "right": "SPP"
+        },
+        {
+          "left": "parityP",
+          "right": "UP"
+        },
+        {
+          "left": "parityP",
+          "right": "WPP"
+        },
+        {
+          "left": "parityP",
+          "right": "coUP"
+        }
+      ],
+      "status": "stress test only, not proposed fact"
+    }
+  ],
+  "risk_assessment": {
+    "replaces": {
+      "file": "research/audit-round3-counting-risk.json",
+      "component": "Missed older internal counting inclusion",
+      "probability": 0.04,
+      "conditional_mean_distinct_labels": 5,
+      "expected_labels": 0.2
+    },
+    "revised": {
+      "probability": 0.03,
+      "conditional_mean_distinct_labels": 5,
+      "expected_labels": 0.15
+    },
+    "event": "At least one accepted older ordinary inclusion still missing somewhere among the53 internal candidates, after earlier application/model causes are assigned. Conditional impact is the union of distinct wrong labels from all such omissions.",
+    "reason_for_change": "A concrete previously inaccessible primary taxonomy was recovered, and the LWPP/WPP robustness and ambiguity/restricted-counting follow-up branches were checked directly. They close identifiable retrieval/terminology gaps. A modest quarter reduction in the family-event probability reflects that evidence; correlated citations and nonexhaustive coverage prevent a stronger update. No new label was found.",
+    "why_impact_retained": "Local hypothetical inclusions often affect1–4 internal pairs, but a missed stronger collapse can affect many. Keeping mean5 retains allowance for correlated union impact rather than equating impact with one pair or one theorem.",
+    "probability_sensitivity": [
+      0.01,
+      0.08
+    ],
+    "conditional_impact_sensitivity": [
+      3,
+      12
+    ],
+    "product_sensitivity": [
+      0.03,
+      0.96
+    ],
+    "sensitivity_is_confidence_interval": false,
+    "calibrated": false,
+    "threshold_tuned": false,
+    "aggregation": "Replace0.20 with0.15; do not add0.15 to the prior row. Other components unchanged. This dossier alone does not establish a global stopping condition.",
+    "would_raise_estimate": [
+      "An accepted ordinary pair found through an uncensused intermediate class or terminology.",
+      "A relevant addition in the unretrieved2006 final BGM text absent from its2002 report.",
+      "An independent taxonomy conflicting with the ten-edge projection."
+    ],
+    "would_lower_estimate": [
+      "Independent expert review of the53 candidates and the actual final journal reference chains.",
+      "Recovery and review of the2006 final version, plus genuinely new primary branches rather than repeated citations."
+    ],
+    "excluded": "Future-discovered flaws in currently accepted proofs, as requested; present translation/application errors are charged elsewhere."
+  },
+  "resource_risk_scope_clarification": {
+    "supersedes_ambiguous_sentence": "research/audit-round4-classical-risk.json risk_assessment older-omission pair_assignment",
+    "resource_classes": [
+      "AC0",
+      "ACC0",
+      "TC0",
+      "NC1",
+      "L",
+      "NL",
+      "LogCFL",
+      "NC",
+      "SC",
+      "Ppoly",
+      "NPpoly",
+      "PSPACE",
+      "EXP",
+      "NEXP",
+      "EXPSPACE",
+      "E",
+      "NE"
+    ],
+    "older_omission_expected_labels": 0.36,
+    "event_probability": 0.06,
+    "conditional_mean_distinct_labels": 6,
+    "assignment": "Every ordered pair with at least one of these17 resource endpoints, regardless of the other endpoint, for older omitted results. Counting/quantum older-omission rows exclude every such pair.",
+    "all_assigned_pairs": 1411,
+    "counting_or_quantum_cross_pairs": 476,
+    "cross_candidates": 228,
+    "evidence_basis": [
+      "Original audit-round1-circuits-space17×all census and84 incident seed checks",
+      "Round4 recovered old time/query/advice manuscripts",
+      "Subsequent counting/quantum interface reviews and explicit model/application ledger"
+    ],
+    "assessment": "The0.36 remains my subjective allocation for this full older-resource domain. The narrower round4 wording was inaccurate bookkeeping, not an intended unreviewed exemption; this statement makes the assignment explicit. No new quantitative evidence warrants changing it merely because the overlap was clarified.",
+    "scope_traps": [
+      "A fixed-degree PP/MA circuit lower bound need not separate the polynomial-size union.",
+      "BQP/poly,BQP/qpoly or oracle advice classes cannot be substituted for ordinary BQP or Ppoly.",
+      "Restricted quantum space,uniformity or simultaneous-resource theorems cannot be substituted for ordinary BQP→NC/SC."
+    ],
+    "separate_causes": "Counting/quantum model or theorem-application mistakes touching resource endpoints remain in the applicable model rows, with first-cause attribution; this older-literature row must not charge the same wrong pair twice.",
+    "full_disjoint_endpoint_partition_counts": {
+      "resource": 1411,
+      "internal_counting": 100,
+      "other_nonresource_counting_quantum_interfaces": 628,
+      "basic19": 361
+    }
+  },
+  "retrieval_notes": [
+    "BGMTR299 index metadata indicated August2002, but actual dated title page is7October2002; use the latter.",
+    "PostScript was downloaded from the observed university archive URL and rendered locally with one worker; Figure1 visually checked.",
+    "The final2006 publisher page returned403 in this pass; do not represent the final journal text as read.",
+    "An earlier EATCS2015 mention could not be tied to a definite title/URL by the referring reviewer; it is an unresolved discovery lead, not verified missing literature or evidence.",
+    "FFKPDF raw extraction corrupted; newly discussed p.20 read visually."
+  ],
+  "prior_dossiers_read": [
+    {
+      "path": "research/audit-round1-counting-quantum.json",
+      "sha256": "e15649a2e5f290991e1722848ef910b48ff01d5ccc4cfaa5c693b20193a0b624"
+    },
+    {
+      "path": "research/audit-round2-cross-counting.json",
+      "sha256": "8224ebcf23abf94a68ec76b062ac75573c37bf04c2469be442243f983754c78d"
+    },
+    {
+      "path": "research/audit-round3-counting-risk.json",
+      "sha256": "29349458f88ee698fc0d28d1a577de21f7223ba38c484d6a63efcc6eb987455b"
+    },
+    {
+      "path": "research/audit-round3-exact-count.json",
+      "sha256": "f997cecc27ff866961b1574a92c212879de1273fd4da4fbadd6c3416ee9176f3"
+    },
+    {
+      "path": "research/audit-round4-interfaces.json",
+      "sha256": "9c21d9ed291e4b13b6f7964370945e840b37e6e13ffac99bd267b5f6bec74338"
+    },
+    {
+      "path": "research/audit-round1-circuits-space.json",
+      "sha256": "1a110b2a94f9eae5a505af253d04cfe6239400d950de2cc12a7d0742b6013f2d"
+    },
+    {
+      "path": "research/audit-round4-classical-risk.json",
+      "sha256": "3d8714a091d04ec31c6bac58b39195fb9991127048879029523c6267cb29a8f7"
+    }
+  ],
+  "limitations": [
+    "No blanket certification follows from not finding a theorem.",
+    "This is bounded primary taxonomy/reference-chain review, not an exhaustive bibliographic index.",
+    "Repeated authors and citations are correlated evidence.",
+    "No canonical knowledge,data,policy,Lean or release files changed."
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "benchmark": "InclusionBench",
-  "dataset_sha256": "8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d",
+  "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
   "stage": "operational",
   "cutoff": "2026-09-01",
   "access": "public-white-box",
@@ -14,7 +14,7 @@
       "lean/InclusionBench/Catalog.lean": "a4134d5c2ec2606bd16723087f52e35baa61bfaed6bdff88e12c8659083487b8",
       "lean/InclusionBench/Certificate.lean": "58bf3419297ac19a4c13e577f7026d3bd2c9c63600e94f9d398fe5edd2d93227",
       "lean/InclusionBench/Circuits.lean": "e753f12343270df006d17e54ced26238f6681396ad357c047d62ef45a8b11ad1",
-      "lean/InclusionBench/Counting.lean": "066a003a9b33237012c9bfe37b57789cf037a73d6f32a2ca5e19bbdb2b7cde93",
+      "lean/InclusionBench/Counting.lean": "8552ddcbc10177f70f8315efdede3bdff38958056c72b0f40545912f9e1eb5aa",
       "lean/InclusionBench/Definitions.lean": "e0d5557209211850587cfec322d81915655c48a9f673781aef446206a4e2cabb",
       "lean/InclusionBench/Derivation.lean": "2a8ba6a9b1d1a24ef629bccbdc82291298be22cc5a1622a836cecab5cbab170a",
       "lean/InclusionBench/Independence.lean": "c7406f107993fc00b2d0e5416b6b7e44b53b20cc6a0dbd85e51e49778c5e40b8",
@@ -30,10 +30,11 @@
       "lean/InclusionBench/UniformCircuits.lean": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2",
       "lean/lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
       "quantum/InclusionQuantum/Complete.lean": "698636f4719e690b14b838c43e673c581cef1968ca6810ba13b1ed91a6938b25",
-      "quantum/InclusionQuantum/Quantum.lean": "969015d3c3e948e8c78abb2629ac19ad711f1c596a3ce55f7a083d2466ad11f1",
+      "quantum/InclusionQuantum/Normalization.lean": "c2e67506a2fb2d0cd94c51974dc4b9ad68b95bae5fd8700b5ab3a600d0a0ebc1",
+      "quantum/InclusionQuantum/Quantum.lean": "fd174462ff36f8a6ce104f21179398749ed087a155a869ef07089b3081a13762",
       "quantum/lake-manifest.json": "6f7b536f784cd06e934eb5ad749921f8ec389c1a10e48bb7ae2ad3a268e42dd2"
     },
-    "bundle_sha256": "c3b1f180a8c1353aa4d4fe23f434e5c31633d242080d614d22e57a59b7648dd1"
+    "bundle_sha256": "3b16d3fdb4a679b92150d5b0dc6e4a7e5ab36ec57c177e0bbe45bb6d8c34c691"
   },
   "eligibility_manifest_sha256": null,
   "tasks": [
@@ -9118,26 +9119,6 @@
       "prompt": "Resolve whether NE is contained in TC⁰ under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
     },
     {
-      "task_id": "inclusion.NE.Theta2P",
-      "left": "NE",
-      "right": "Theta2P",
-      "statement": "NE ⊆ Θ₂P",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .Theta2P)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .Theta2P)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NE is contained in Θ₂P under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
       "task_id": "inclusion.NE.WPP",
       "left": "NE",
       "right": "WPP",
@@ -9198,26 +9179,6 @@
       "prompt": "Resolve whether NE is contained in coMA under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
     },
     {
-      "task_id": "inclusion.NE.coNP",
-      "left": "NE",
-      "right": "coNP",
-      "statement": "NE ⊆ coNP",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .coNP)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .coNP)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NE is contained in coNP under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
       "task_id": "inclusion.NE.coQMA",
       "left": "NE",
       "right": "coQMA",
@@ -9236,46 +9197,6 @@
         "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
       },
       "prompt": "Resolve whether NE is contained in coQMA under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
-      "task_id": "inclusion.NE.coRP",
-      "left": "NE",
-      "right": "coRP",
-      "statement": "NE ⊆ coRP",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .coRP)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .coRP)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NE is contained in coRP under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
-      "task_id": "inclusion.NE.coUP",
-      "left": "NE",
-      "right": "coUP",
-      "statement": "NE ⊆ coUP",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .coUP)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NE) (InclusionBench.Quantum.completeInterpretation .coUP)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NE is contained in coUP under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
     },
     {
       "task_id": "inclusion.NE.parityP",
@@ -9758,26 +9679,6 @@
       "prompt": "Resolve whether NEXP is contained in TC⁰ under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
     },
     {
-      "task_id": "inclusion.NEXP.Theta2P",
-      "left": "NEXP",
-      "right": "Theta2P",
-      "statement": "NEXP ⊆ Θ₂P",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .Theta2P)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .Theta2P)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NEXP is contained in Θ₂P under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
       "task_id": "inclusion.NEXP.WPP",
       "left": "NEXP",
       "right": "WPP",
@@ -9838,26 +9739,6 @@
       "prompt": "Resolve whether NEXP is contained in coMA under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
     },
     {
-      "task_id": "inclusion.NEXP.coNP",
-      "left": "NEXP",
-      "right": "coNP",
-      "statement": "NEXP ⊆ coNP",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .coNP)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .coNP)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NEXP is contained in coNP under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
       "task_id": "inclusion.NEXP.coQMA",
       "left": "NEXP",
       "right": "coQMA",
@@ -9876,46 +9757,6 @@
         "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
       },
       "prompt": "Resolve whether NEXP is contained in coQMA under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
-      "task_id": "inclusion.NEXP.coRP",
-      "left": "NEXP",
-      "right": "coRP",
-      "statement": "NEXP ⊆ coRP",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .coRP)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .coRP)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NEXP is contained in coRP under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
-    },
-    {
-      "task_id": "inclusion.NEXP.coUP",
-      "left": "NEXP",
-      "right": "coUP",
-      "statement": "NEXP ⊆ coUP",
-      "eligibility": "candidate_open_at_cutoff",
-      "allowed_resolutions": [
-        "inclusion",
-        "separation",
-        "independence"
-      ],
-      "lean": {
-        "import": "InclusionQuantum",
-        "inclusion_target": "InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .coUP)",
-        "separation_target": "InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .NEXP) (InclusionBench.Quantum.completeInterpretation .coUP)",
-        "independence_target": null,
-        "independence_note": "An expert metatheory review must fix the exact ZFC sentence and proof relation."
-      },
-      "prompt": "Resolve whether NEXP is contained in coUP under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
     },
     {
       "task_id": "inclusion.NEXP.parityP",
@@ -27758,5 +27599,5 @@
       "prompt": "Resolve whether ⊕P is contained in coUP under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points."
     }
   ],
-  "taskset_sha256": "1f05932f98c87a2dcc94154bdf5fe280d1692e4420aefe048b2aaee9aa001498"
+  "taskset_sha256": "0211422f8a9f23c351de44da2a140d8d11f4ed444fcbb241a75c7c26d8a73b5d"
 }

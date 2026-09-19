@@ -110,7 +110,10 @@ for match in re.finditer(r"depends on axioms:\s*\[([^\]]*)\]", output):
     if unexpected:
         raise SystemExit("Unexpected axiom dependencies: " + ", ".join(sorted(unexpected)))
 for theorem in ("complete_agrees_with_core", "every_class_defined", "all_fifty_defined",
-                "gateFields_injective", "basisState_normalized", "pauliX_twice"):
+                "gateFields_injective", "basisState_normalized", "pauliX_twice",
+                "gate_preserves_normSquared", "circuit_preserves_normSquared",
+                "initialState_preserves_normSquared", "acceptance_bounded",
+                "empty_witness_normalized"):
     qualified = "InclusionBench.Quantum." + theorem
     pattern = re.escape("'" + qualified + "'") + r" (?:depends on axioms:|does not depend on any axioms)"
     if not re.search(pattern, output):

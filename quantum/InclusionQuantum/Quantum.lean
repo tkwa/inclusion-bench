@@ -14,9 +14,11 @@ acceptance predicate. A finite-control polynomial-time transducer generates
 the complete serialized circuit on unary input length.
 
 The definitions below use pure normalized quantum witnesses, classical input
-bits, zero ancillary bits, and one measured output wire. Gate unitarity,
-preservation of normalization, amplification, and equivalence to textbook
-models remain separate proof obligations. No such claim is assumed here.
+bits, zero ancillary bits, and one measured output wire. Normalization.lean
+proves gate/circuit norm preservation, register-embedding norm preservation,
+and acceptance bounds for these exact definitions. Amplification, general
+unitarity statements, and equivalence to textbook models remain separate
+proof obligations. No such claim is assumed here.
 -/
 
 namespace InclusionBench.Quantum

@@ -11,8 +11,8 @@ requires that every branch has halted at that limit.
 
 These are operational definitions in the model of `Machines.lean`. Their
 equivalence with textbook machine models remains unproved. In particular, no
-catalog containment is imported as a theorem. LWPP and WPP are omitted until
-there is a concrete polynomial-time integer-output transducer model.
+catalog containment is imported as a theorem. LWPP and WPP are defined in
+`Transducers.lean` using a concrete polynomial-time integer-output model.
 -/
 
 namespace InclusionBench.Counting

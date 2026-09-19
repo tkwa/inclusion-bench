@@ -24,6 +24,38 @@ class BenchmarkTests(unittest.TestCase):
         for claims in [[], [{"relation": "inclusion", "left": "P", "right": "NP"}]]:
             self.assertEqual(self.b.score({"claims": claims})["score"], 0)
 
+    def test_audited_exponential_query_separations_earn_no_points(self):
+        claims = [{"relation": "separation", "left": left, "right": right}
+                  for left in ("NE", "NEXP")
+                  for right in ("Theta2P", "coNP", "coRP", "coUP")]
+        for claim in claims:
+            self.assertIn(Atom.read(claim), self.b.baseline.proofs)
+        self.assertEqual(self.b.score({"claims": claims})["score"], 0)
+        with self.assertRaises(Contradiction):
+            self.b.closure([{"relation": "inclusion", "left": "NE", "right": "Theta2P"}])
+
+    def test_regular_padding_preserves_both_exponential_families(self):
+        cases = [("E", "EXP", "PSPACE"), ("NE", "NEXP", "WPP")]
+        for small, large, target in cases:
+            self.assertIn((small, target), self.b.unresolved)
+            result = self.b.closure([{"relation": "inclusion", "left": small, "right": target}])
+            self.assertIn(Atom("inclusion", large, target), result.proofs)
+        # Linear-exponential target bounds are not preserved by arbitrary
+        # polynomial padding; the generic family deliberately excludes them.
+        self.assertFalse(any(r.id.startswith("padding-regular-") and
+                             r.conclusion.right in {"E", "NE"} for r in self.b.rules))
+
+    def test_few_witnesses_collapse_am_to_sbp(self):
+        result = self.b.closure([{"relation": "inclusion", "left": "NP", "right": "FewP"}])
+        self.assertIn(Atom("inclusion", "AM", "SBP"), result.proofs)
+
+    def test_exact_count_rules_require_their_hypothesis(self):
+        self.assertNotIn(Atom("inclusion", "PH", "PP"), self.b.baseline.proofs)
+        self.assertNotIn(Atom("inclusion", "parityP", "PP"), self.b.baseline.proofs)
+        result = self.b.closure([{"relation": "inclusion", "left": "CeqP", "right": "QMA"}])
+        self.assertIn(Atom("inclusion", "PH", "PP"), result.proofs)
+        self.assertIn(Atom("inclusion", "parityP", "PP"), result.proofs)
+
     def test_user_example_implies_p_strictly_below_pspace(self):
         claims = [{"relation": "inclusion", "left": "BPP", "right": "NP"}, {"relation": "separation", "left": "NP", "right": "BPP"}]
         result = self.b.score({"claims": claims})
@@ -51,6 +83,7 @@ class BenchmarkTests(unittest.TestCase):
     def test_karp_lipton_consequence_and_contrapositive(self):
         c = self.b.closure([{"relation": "inclusion", "left": "NP", "right": "Ppoly"}])
         self.assertIn(Atom("inclusion", "PH", "Sigma2P"), c.proofs)
+        self.assertIn(Atom("inclusion", "PH", "Ppoly"), c.proofs)
         d = self.b.closure([{"relation": "separation", "left": "PH", "right": "Sigma2P"}])
         self.assertIn(Atom("separation", "NP", "Ppoly"), d.proofs)
 

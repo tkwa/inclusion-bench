@@ -10,6 +10,7 @@ from inclusion_bench.benchmark import Benchmark, read_json
 from inclusion_bench.engine import Atom
 from inclusion_bench.lean_export import export_theorem
 from inclusion_bench.evaluation import taskset, leaderboard
+from inclusion_bench.reviews import history_status
 
 
 def write(path, value, compact=False):
@@ -46,8 +47,13 @@ def build():
         resolutions = [{k: v for k, v in row.items() if k != "proof"} | {"proof": {"target": row["proof"]["target"]}} for row in result["resolutions"]]
         scenarios.append({"id": case["id"], "title": case["title"], "claims": case["claims"], "score": result["score"], "official_points": 0, "resolutions": resolutions, "proof_steps": proof_steps(closure, benchmark.baseline.proofs), "notes": case.get("notes", "Hypothetical result, not a verified achievement.")})
     pairs = []
+    opened, historically_known, history = history_status(benchmark)
     for pair in matrix["pairs"]:
         entry = dict(pair)
+        decision = history.get((pair["left"], pair["right"]))
+        if decision:
+            entry["history_status"] = decision["status"]
+            entry["history_review_sha256"] = decision["review_sha256"]
         if pair["status"] in {"inclusion", "separation", "independence"}:
             atom = Atom(pair["status"], pair["left"], pair["right"])
             if atom in benchmark.baseline.proofs:
@@ -69,6 +75,12 @@ def build():
         "task_count": len(suite["tasks"]), "taskset_sha256": suite["taskset_sha256"],
         "scenarios": scenarios, "sources": sources, "coverage": coverage,
         "seed_fact_count": len(benchmark.knowledge["facts"]), "rule_count": len(benchmark.knowledge["rules"]),
+        "historical_review": {
+            "reviewed_open_count": len(opened),
+            "reviewed_known_count": len(historically_known),
+            "all_candidates_reviewed": benchmark.unresolved <= opened | historically_known,
+            "report_url": "https://github.com/tkwa/inclusion-bench/blob/main/research/baseline-audit.md",
+        },
     }
     write("web/benchmark.json", payload, compact=True)
     exports = [

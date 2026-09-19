@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "audit_round": 4,
+  "reviewer": "lean_kernel",
+  "date": "2026-09-19",
+  "historical_cutoff": "2026-09-01",
+  "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+  "status": "independent_method_review_complete_final_index_generation_pending",
+  "aggregation_review": {
+    "classical_application_keep": 0.177,
+    "classical_old_omission": "classical_literature reports replacement0.36 (6% global event times mean6), pending completed final dossier; supersedes prior0.60.",
+    "recent_classical_time_counting_keep": 0.15,
+    "recent_replaces": 0.18,
+    "counting_quantum_prior": 1.1152,
+    "counting_interface_revision": {
+      "old_component": 0.48,
+      "proposed_component": 0.36,
+      "revised_counting_total_if_adopted": 0.9952,
+      "condition": "A completed independent round-four interface dossier documents its 385 of 526 candidate coverage and new primary-source checks. This reviewer supports the modest 8% to 6% global-event revision with conditional mean six unchanged.",
+      "not_revised": [
+        "0.435 application/definition component",
+        "0.20 internal-counting omission component",
+        "0.0002 old noninclusion/independence component"
+      ]
+    },
+    "base_subtotal_before_classical_old_basic_and_uncovered_recent": 1.4922,
+    "base_subtotal_if_interface_revision_adopted": 1.3722,
+    "base_subtotal_formula": "0.177 + 0.15 + counting_quantum_component + 0.05 software allowance; then add nonoverlapping classical-old, basic-classical and uncovered recent components.",
+    "coverage_gaps": [
+      {
+        "id": "basic19",
+        "classes": [
+          "AM",
+          "BPP",
+          "Delta2P",
+          "MA",
+          "NP",
+          "NPcapcoNP",
+          "P",
+          "PH",
+          "Pi2P",
+          "RP",
+          "SBP",
+          "SZK",
+          "Sigma2P",
+          "Theta2P",
+          "ZPP",
+          "coAM",
+          "coMA",
+          "coNP",
+          "coRP"
+        ],
+        "ordered_pairs": 361,
+        "known_inclusions": 146,
+        "candidate_pairs": 215,
+        "owner_status": "classical_literature confirms exact361-pair coverage: incremental0.22 =0.16 old omissions +0.06 definition/application; final dossier being written."
+      },
+      {
+        "id": "recent_quantum_and_zero_knowledge",
+        "description": "The recent census explicitly limits its 0.15 estimate to classical/time/counting focus. Main-venue title coverage alone does not establish that it already charges all recent quantum/SZK discoveries. Obtain an explicit domain extension or add a separate residual component.",
+        "owner_status": "Scope question sent to quantum_coverage and root."
+      }
+    ],
+    "double_counting_rules": [
+      "Use the unrounded 0.177 retained classical application contribution, not the earlier rounded one-pair total.",
+      "Replace, rather than add to, the older 0.60, recent 0.18 and interface 0.48 rows.",
+      "Attribute each mislabeled pair to its first applicable cause. Nonuniformity and quantum-recursiveness mistakes must not both charge the same AC0/nonuniform block.",
+      "Treat omission events as global at-least-one events with conditional union impacts, not independent per-pair or per-paper risks.",
+      "Exclude future flaws in accepted published proofs and conditional-rule omissions that change no current label."
+    ],
+    "interpretation": "Expected number of wrong labels is not the probability of any error, nor a guarantee of zero or at most one error. An expectation below two meets only the explicitly judgmental stopping rule. Correlated labels are permitted; reviewer agreement is not an independence multiplier."
+  },
+  "software_allowance": {
+    "expected_additional_wrong_labels": 0.05,
+    "working_probability": 0.01,
+    "working_conditional_distinct_labels": 5,
+    "probability_sensitivity": [
+      0.002,
+      0.03
+    ],
+    "conditional_labels_sensitivity": [
+      2,
+      20
+    ],
+    "endpoint_product_sensitivity": [
+      0.004,
+      0.6
+    ],
+    "scope": "Additional current classification errors from status indexing, trace/export binding, computation or risk-ledger aggregation, after mathematical application/literature causes have been excluded.",
+    "interpretation": "Rounded explicit judgment, not a measured software failure rate or a calibrated confidence bound. All present concrete failures must be fixed first.",
+    "conditions": [
+      "Regenerate the final audit index after the explicit historical decision.",
+      "Compare all 2500 index rows exactly with Benchmark.matrix(), and all1378 candidate decisions with the intended registry.",
+      "Verify final dataset/report/source/file hashes and run generated-artifact/release checks."
+    ],
+    "grounds": "All1122 current proof records were independently checked against actual seeds, structural endpoints, complement maps and registered rules. All2500 published matrix rows and1378 task memberships match. CNF and generated Lean source hashes reproduce final reports. Twenty-five relevant tests pass. Remaining risk is a shared parser/binding/assembly mistake or a later publication regression; these checks do not supply empirical calibration."
+  },
+  "independent_checks": {
+    "proof_records_checked": 1122,
+    "proof_reason_counts": {
+      "cited_seed": 134,
+      "reflexivity": 50,
+      "transitivity": 557,
+      "separation-left": 283,
+      "separation-right": 69,
+      "complement": 26,
+      "registered_rule": 1,
+      "registered_contrapositive": 2
+    },
+    "eligible_matrix_rows_checked": 2500,
+    "web_matrix_rows_checked": 2500,
+    "matrix_mismatches": 0,
+    "task_candidates_checked": 1378,
+    "task_membership_mismatches": 0,
+    "final_sat_hypotheses": 2756,
+    "final_sat_findings": 0,
+    "reproduced_cnf_clauses": 121507,
+    "reproduced_cnf_sha256": "00a14489ae9afa038c304e7cc50a343dd4a3bf4045fafa42fd910eb5f32e1190",
+    "reproduced_lean_source_sha256": "0a459b0bc39488c52adad3caea57dd7f1d58c191103c7bd069d2956b58a796a6",
+    "final_lean_targets_match_all_known": true,
+    "test_command": "python3 -m unittest tests.test_engine tests.test_benchmark",
+    "tests_passed": 25,
+    "sat_rerun_by_this_reviewer": false,
+    "lean_recompile_by_this_reviewer": false
+  },
+  "script_scope_findings": [
+    {
+      "file": "scripts/audit_sat.py",
+      "finding": "Sound inclusion/sign, transitivity, complement and Horn encoding on inspection. Completeness is only propositional entailment in the registered finite theory. SAT tests candidates; independently checked known traces supply the other direction. No independence metatheorem is encoded."
+    },
+    {
+      "file": "scripts/check_baseline_traces.py",
+      "finding": "All target declarations and allowlisted standard axiom dependencies are checked. Literature leaves, named rules and complement equalities remain explicit hypotheses. This proves inference, not textbook equivalence or historical openness."
+    },
+    {
+      "file": "scripts/build_audit_index.py",
+      "finding": "Explicit assessment and dataset binding precede historical decisions. Scope is family review rather than2500 independent searches. Root fixed the Atom key mismatch; corrected line independently reread. check_generated now compares exact2500row status map, supporting dossier hashes, assessment hash and historical record hashes."
+    }
+  ],
+  "concrete_issues": [
+    {
+      "id": "known-pair-Atom-key",
+      "file": "scripts/build_audit_index.py",
+      "description": "New builder constructs pair with status but calls Atom.read(pair), which requires relation. First known row raises KeyError.",
+      "severity": "execution_blocker_not_silent_wrong_label",
+      "sent_to_root": true,
+      "required_fix": "Use Atom(item[status], item[left], item[right]) or an explicit relation-key mapping.",
+      "status": "Fixed by root and exact corrected source line independently reread: Atom(pair[status], pair[left], pair[right])."
+    },
+    {
+      "id": "stale-old-audit",
+      "file": "research/baseline-audit.json",
+      "description": "Old0.2 index contains the eight corrected NE/NEXP candidate labels and old hashes. Final SAT/Lean, eligibility and website matrices already use current labels. Root confirms final index regeneration is intentionally pending.",
+      "wrong_stale_rows": 8,
+      "severity": "known_pending_publication_update",
+      "sent_to_root": true
+    }
+  ],
+  "limitations": [
+    "No empirical statistical error bound follows from the tests or clean reviews.",
+    "The 0.05 allowance is conditional on correcting known blockers and completing exact final publication checks; it cannot replace those actions.",
+    "Checks were read-only; no canonical mathematical data or audit script was edited.",
+    "The normalization follow-up provides new compiled evidence; any numerical application-risk revision is assigned to an independent reviewer, not inferred from compilation alone."
+  ],
+  "normalization_followup": {
+    "status": "compiled_and_required_by_complete_quantum_entry_point_and_proof_verifier",
+    "source": "quantum/InclusionQuantum/Normalization.lean",
+    "source_sha256": "c2e67506a2fb2d0cd94c51974dc4b9ad68b95bae5fd8700b5ab3a600d0a0ebc1",
+    "compiled_at_utc_date": "2026-09-19",
+    "lean_version": "4.19.0",
+    "host": "authorized Ubuntu host",
+    "cpu_count": 1,
+    "address_space_limit_bytes": 8589934592,
+    "compiler_exit_code": 0,
+    "theorems": [
+      "gate_preserves_normSquared",
+      "circuit_preserves_normSquared",
+      "initialState_preserves_normSquared",
+      "acceptance_bounded",
+      "empty_witness_normalized"
+    ],
+    "axiom_dependencies": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "full_quantum_entry_point_audit_declarations": 11,
+    "original_Quantum_lean_noncomment_source_unchanged": true,
+    "risk_update": "Independent quantum reviewer is inspecting the compiled results before any quantum-definition risk revision. No revision made in this method dossier.",
+    "still_unproved": [
+      "General unitary/linearity API",
+      "Amplification",
+      "Textbook model equivalence",
+      "Deep literature containments"
+    ]
+  }
+}

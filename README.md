@@ -6,9 +6,9 @@ Give a model a frozen set of complexity-class inclusion questions and a declared
 
 [Leaderboard and task explorer](https://tkwa.github.io/inclusion-bench/) · [Evaluation protocol](docs/EVALUATION.md) · [Scoring specification](docs/SPEC.md) · [Formalization status](docs/formalization.md)
 
-**Version 0.2.0 is open for model runs.** The release includes 50 canonical operational class definitions, a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
+**Version 0.3.0 is open for model runs.** The release includes 50 canonical operational class definitions, a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
 
-The frozen suite contains **candidate questions**, meaning pairs unresolved in its baseline. A baseline omission can make a candidate already known, so every positive point requires a historical review confirming openness at the September 1, 2026 cutoff. A real run that resolves nothing can receive an official zero after run-integrity review and disposition of all proof candidates. No paid model run or model score was invented for this release.
+The frozen suite contains **1,378 questions audited as open at the September 1, 2026 cutoff**. The [release audit](research/baseline-audit.md) records historical eligibility for every question, so model runs reuse those decisions. These are revisable literature judgments: a missed pre-cutoff result earns no point and triggers a recorded correction. A real run that resolves nothing can receive an official zero after run-integrity review and disposition of all proof candidates. No paid model run or model score was invented for this release.
 
 ## Run a model
 
@@ -62,7 +62,7 @@ python3 -m inclusion_bench review-run runs/first/run.json review.json
 python3 -m inclusion_bench review-proof runs/first/run.json review.json --attempt-id attempt-0001
 ```
 
-Repeat proof review for each candidate. After accepted proofs are recorded, generate a fresh packet to obtain their pending historical decisions:
+Repeat proof review for each candidate. This release already records historical decisions for the full suite. If a later version or correction leaves decisions pending, generate a fresh packet:
 
 ```sh
 python3 -m inclusion_bench review-packet runs/first/run.json --output history-review.json
@@ -75,7 +75,7 @@ python3 -m inclusion_bench review-history history-review.json
 python3 -m inclusion_bench evaluate-run runs/first/run.json
 ```
 
-No proof or history review is needed for an ordinary unsolved attempt. Before a positive score is published, every pair its accepted proofs resolve must be classified as open or known at the cutoff. Known pairs earn zero. Pending proof candidates or required history decisions keep the official score unavailable; unavailable is different from zero. [Full review protocol](docs/EVALUATION.md) · [Verifier setup and proof format](docs/PROOF_REVIEW.md).
+No proof or history review is needed for an ordinary unsolved attempt. Every positively scored pair needs an open-at-cutoff decision; the release audit supplies these for the current suite. Known pairs earn zero. Pending proof candidates or required history decisions keep the official score unavailable; unavailable is different from zero. [Full review protocol](docs/EVALUATION.md) · [Verifier setup and proof format](docs/PROOF_REVIEW.md).
 
 Once evaluation reports an official score, register the run for the leaderboard:
 
@@ -122,7 +122,9 @@ The [catalog](data/classes.json) fixes every convention. Nonuniform classes can 
 - [`data/knowledge.json`](data/knowledge.json): cited baseline facts and conditional implications.
 - [`data/freeze.json`](data/freeze.json): the release's dataset and taskset hashes.
 - [`evaluation/tasks.json`](evaluation/tasks.json): the fixed public candidate questions.
-- [`research/`](research/): primary-source records, theorem locators and historical audit notes.
+- [`research/baseline-audit.md`](research/baseline-audit.md): audit findings, coverage, residual-error estimate and versioned corrections.
+- [`data/history_reviews.json`](data/history_reviews.json): dated historical decisions for the frozen questions.
+- [`research/`](research/): primary-source records, theorem locators and independent review dossiers.
 - [`lean/`](lean/) and [`quantum/`](quantum/): all 50 operational definitions and Lean inference/scoring foundations.
 
 The definitions are the benchmark's canonical targets. The core covers 46 classes; the pinned Mathlib extension supplies the four quantum classes and agrees with the core interpretation. Alternative textbook characterizations, aliases such as IP for PSPACE, and further invariants can be added with documented equivalences. They are useful future work rather than launch requirements.

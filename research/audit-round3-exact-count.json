@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "audit": "round3-exact-count",
+  "reviewer": "quantum_coverage",
+  "reviewed_at": "2026-09-19",
+  "cutoff": "2026-09-01",
+  "input_dossier": "research/audit-round2-cross-counting.json",
+  "input_dossier_sha256": "8224ebcf23abf94a68ec76b062ac75573c37bf04c2469be442243f983754c78d",
+  "dataset_sha256": "2fd75d1c9b1cd2b14d1ee1ac3477a56110b8990340372ceaf74f1efb20f54e73",
+  "scope": "Independent reconstruction of D1 and D2 and their four normalized conditional rules only.",
+  "summary": {
+    "accepted_rules": 4,
+    "rejected_rules": 0,
+    "conditional_conclusions": 10,
+    "new_unconditional_pair_labels": 0
+  },
+  "rule_reviews": [
+    {
+      "id": "auditCQ-ceqp-awpp-ph-awpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "AWPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "justification": "Only oracle class CeqP is replaced by AWPP. UP^AWPP⊆AWPP is an unconditional theorem. Exact-count construction D1 also gives PP and parityP endpoints.",
+      "derivation_id": "D1",
+      "verdict": "accept",
+      "independent_checks": [
+        "D1 puts PH, PP and parityP inside UP^CeqP.",
+        "The hypothesis puts the same exact equality language in AWPP.",
+        "STT Theorem5.4(a), read from the rendered original p22, gives UP^AWPP⊆AWPP."
+      ]
+    },
+    {
+      "id": "auditCQ-ceqp-wpp-ph-wpp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "WPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "WPP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "WPP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-STT05"
+      ],
+      "justification": "WPP⊆CeqP and the premise identify WPP=CeqP. Complement closure gives coCeqP=WPP. Therefore UP^CeqP⊆UP^WPP⊆coCeqP=WPP. D1 adds PP and parityP. No claim P^WPP=WPP is needed.",
+      "derivation_id": "D1",
+      "verdict": "accept",
+      "independent_checks": [
+        "D1 puts all three source classes inside UP^CeqP.",
+        "WPP⊆CeqP and the hypothesis give equality. WPP complement closure also gives coCeqP=WPP.",
+        "STT Theorem5.6(b), read from the rendered original p24, gives UP^WPP⊆coCeqP. Ordinary P^WPP=WPP is never assumed."
+      ]
+    },
+    {
+      "id": "auditCQ-ceqp-parity-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "auditCQ-Toda91",
+        "auditCQ-STT05"
+      ],
+      "justification": "Discharged by D1: PP⊆UP^CeqP. Replace the oracle by parityP, then use the unconditional relativizing UP⊆parityP and parityP^parityP=parityP. This avoids relativizing the hypothesis CeqP⊆parityP.",
+      "derivation_id": "D1",
+      "verdict": "accept",
+      "independent_checks": [
+        "D1 gives PP,PH⊆UP^CeqP.",
+        "Use the same exact equality language as a parityP oracle. With that actual oracle, the outer machine has0 or1 accepting branches, so its accepting-path parity decides the same language.",
+        "Apply unconditional parityP^parityP=parityP, OH Proposition2.7(3). The hypothetical CeqP⊆parityP is not relativized."
+      ]
+    },
+    {
+      "id": "auditCQ-ceqp-qma-ph-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "PP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-Vya03",
+        "auditCQ-MW05",
+        "auditCQ-Toda91"
+      ],
+      "justification": "Discharged by D2, which only needs the exact-count language in A0PP. CeqP⊆QMA and QMA⊆A0PP supply that. Common encoded query length makes the amplified threshold independent of the guessed count. Nonnegative gaps prevent cancellations and a polynomially large exponent defeats all wrong guesses. Apply the same argument to parityP∈P^#P[1] for the second endpoint.",
+      "derivation_id": "D2",
+      "verdict": "accept",
+      "independent_checks": [
+        "D2 applies to every language in P^#P[1], including PH and parityP.",
+        "Only the total exact-count language is placed in QMA and then A0PP; no PP⊆QMA premise is needed.",
+        "Common query length, globally nonnegative gaps, strict count width, polynomial amplification and the explicit FP threshold make the final GapP sign test valid."
+      ]
+    }
+  ],
+  "D1": {
+    "verdict": "accept",
+    "claim": "P^#P[1]⊆UP^CeqP",
+    "construction": [
+      "Compose the deterministic query map into F∈#P. A fixed polynomial clock makes the post-query acceptance predicate b(x,j) polynomial-time even on incorrect guesses. No-query computations use a dummy F.",
+      "Choose an explicit integer polynomial w(n) with F(x)<2^w(n), using one extra bit if F can attain the original power-of-two bound. Guess exactly w(n) bits; leading zeros are included but each integer in[0,2^w) has exactly one such word.",
+      "Use encode(x,j)=1^n 0 x j for n=|x| and |j|=w(n). This is injective, polynomial-time, and has common length ℓ(n)=2n+1+w(n)≥w(n). Parsing checks both field lengths. Define exactA to contain exactly the valid encodings with F(x)=value(j).",
+      "On valid encodings F(x)−value(j) is a GapP gap. On invalid encodings use gap1. Polynomial-time selection and FP⊆GapP make exactA a total CeqP language.",
+      "The oracle NPTM accepts only when exactA answers yes and b(x,j)=1. There is at most one accepting guessed word on every x. Replacing the class containing exactA never changes that actual oracle or the machine answers. STT Definition5.2 requires unambiguity relative to the actual oracle, which is exactly satisfied.",
+      "PH⊆P^#P[1] is the strong Toda theorem explicitly used by STT and Vyalyi. parityP has a direct one-count parity predicate. For PP defined as positive f1−f2 with f1,f2∈#P, pick q with both counts<2^q and query the single #P function F=2^q f1+f2. Recover f1 by division and f2 by remainder; compare them. This verifies the one-query PP endpoint without silently changing the Lean GapP definition."
+    ],
+    "edge_cases_checked": [
+      "zero count",
+      "maximum accepting count",
+      "n=0",
+      "fixed-width leading zeros",
+      "malformed encoding",
+      "postprocessing on wrong guesses",
+      "actual-oracle unambiguity",
+      "single fixed oracle language",
+      "no relativization of hypothetical inclusion"
+    ]
+  },
+  "D2": {
+    "verdict": "accept",
+    "claim": "CeqP⊆QMA ⇒ PH∪parityP⊆PP",
+    "construction": [
+      "Use D1 exactA and its common-length encoding. By the premise exactA∈QMA, and the accepted QMA⊆A0PP theorem applies to this total language.",
+      "Vyalyi Lemma3 supplies GapP h0 and integer polynomial p with yes-query h0(z)>2^p(|z|) and no-query0≤h0(z)<2^p(|z|)/2. Hence h0 is nonnegative on every input. The power-of-two threshold depends only on query length, not on the guessed count.",
+      "Let k(m)=m+2. Polynomially bounded products preserve GapP, so h(z)=h0(z)^k(|z|) is GapP. Set S(n)=2^[p(ℓ(n))(ℓ(n)+2)]. S is positive FP with polynomially many output bits. On correct exact-count queries h>S; on wrong ones0≤h<2^−(ℓ+2)S.",
+      "Form H(x)=Σ_{j∈{0,1}^w(n)} b(x,j)h(encode(x,j)). This is a GapP function by guessing j and taking the corresponding gap. A b=0 branch must contribute gap0, implemented with one accepting and one rejecting branch; it is not a plain rejecting leaf that would contribute−1.",
+      "If x is accepted, the unique correct count has b=1 and contributes>S; every other term is nonnegative. Thus H>S. If x is rejected, the correct count has b=0 and all included terms are wrong. There are at most2^w terms, so H<2^w 2^−(ℓ+2)S≤S/4. This covers an empty selected set as well since S>0.",
+      "H−S is GapP and is positive exactly on L. The same construction works for any P^#P[1] language, so PH and parityP are both endpoints. No QMA complement closure, PP⊆QMA, relativized premise, or promise-oracle behavior is used."
+    ],
+    "edge_cases_checked": [
+      "all guesses have exactly equal query length",
+      "threshold computable with polynomial output size",
+      "nonnegative wrong-query errors",
+      "strict yes inequality",
+      "gap0 for filtered summands",
+      "number of wrong guesses bounded by2^w",
+      "amplification exponent polynomial in input",
+      "total-language exactA",
+      "finite gate-set/threshold equivalence is an accepted model bridge, not newly kernel-proved"
+    ]
+  },
+  "sources": [
+    {
+      "id": "auditCQ-Vya03",
+      "title": "QMA = PP implies that PP contains PH",
+      "url": "https://eccc.weizmann.ac.il/report/2003/021/download/",
+      "year": 2003,
+      "locator": "GapP closure pp2–3; Definition2 and Lemma3 pp3–4; Theorem1 p5; strong Toda and exact-count use in Theorem2 pp7–8",
+      "inspection": "Primary text read directly in this pass. The CeqP premise is a checked adaptation, not a verbatim corollary."
+    },
+    {
+      "id": "auditCQ-STT05",
+      "title": "Quantum and Classical Complexity Classes: Separations, Collapses, and Closure Properties",
+      "url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=464&itemId=374",
+      "year": 2005,
+      "locator": "Theorem5.1, Definitions5.2–5.3, Theorem5.4(a), printedp22; Theorem5.6(b), printedp24",
+      "inspection": "PDF text extraction is corrupted; the existing /private/tmp/stt22.png, stt23.png, stt24.png rendered pages were visually read."
+    },
+    {
+      "id": "auditCQ-OH91",
+      "title": "A Complexity Theory for Feasible Closure Properties",
+      "url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=7017&itemId=4661",
+      "year": 1991,
+      "locator": "Proposition2.7(3), printedpp7–8",
+      "inspection": "Primary text states parity oracle closure. Used only as an unconditional theorem."
+    }
+  ],
+  "replay": {
+    "status": "consistent",
+    "new_unconditional_atoms": [],
+    "limitation": "Ordinary closure replay only; parent owns complete SAT replay."
+  },
+  "risk_note": "These are conditional scoring implications, not additional claims that currently unresolved pairs are known. The prior held rules are discharged by explicit mathematical derivations. This bounded review supplies no global expected-error estimate and does not formalize the accepted counting/quantum closure theorems."
+}

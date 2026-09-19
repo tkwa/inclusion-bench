@@ -1,0 +1,2407 @@
+{
+  "schema_version": 1,
+  "audit": "round2-cross-classical",
+  "reviewed_at": "2026-09-19",
+  "cutoff": "2026-09-01",
+  "baseline_dataset_sha256": "03a20575c82bab512158a0bb0bb7766c4066b5c8ecc645c012d16053ad1714e2",
+  "baseline_counts": {
+    "inclusion": 709,
+    "separation": 413,
+    "independence": 0,
+    "unreviewed": 1378
+  },
+  "status": "independent_targeted_review_complete_no_classification_correction",
+  "scope": "Adversarial review of classical/circuit/space high-fanout baseline seeds and exact operational models; not a second literature census or certification of all candidate pairs.",
+  "reviewed_seed_ids": [
+    "classical-inclusion-AC0-ACC0",
+    "classical-inclusion-ACC0-TC0",
+    "classical-inclusion-L-NC",
+    "classical-inclusion-L-SC",
+    "classical-inclusion-LogCFL-NC",
+    "classical-inclusion-NC-P",
+    "classical-inclusion-NC1-Ppoly",
+    "classical-inclusion-NL-NC",
+    "classical-inclusion-NP-NPpoly",
+    "classical-inclusion-P-Ppoly",
+    "classical-inclusion-Ppoly-NPpoly",
+    "classical-inclusion-SC-P",
+    "classical-inclusion-TC0-NC1",
+    "classical-separation-AC0-AM",
+    "classical-separation-AC0-AWPP",
+    "classical-separation-AC0-BPP",
+    "classical-separation-AC0-BQP",
+    "classical-separation-AC0-CeqP",
+    "classical-separation-AC0-Delta2P",
+    "classical-separation-AC0-E",
+    "classical-separation-AC0-EXP",
+    "classical-separation-AC0-EXPSPACE",
+    "classical-separation-AC0-FewP",
+    "classical-separation-AC0-L",
+    "classical-separation-AC0-LWPP",
+    "classical-separation-AC0-LogCFL",
+    "classical-separation-AC0-MA",
+    "classical-separation-AC0-NC",
+    "classical-separation-AC0-NE",
+    "classical-separation-AC0-NEXP",
+    "classical-separation-AC0-NL",
+    "classical-separation-AC0-NP",
+    "classical-separation-AC0-NPcapcoNP",
+    "classical-separation-AC0-P",
+    "classical-separation-AC0-PH",
+    "classical-separation-AC0-PP",
+    "classical-separation-AC0-PSPACE",
+    "classical-separation-AC0-Pi2P",
+    "classical-separation-AC0-QCMA",
+    "classical-separation-AC0-QMA",
+    "classical-separation-AC0-RP",
+    "classical-separation-AC0-SBP",
+    "classical-separation-AC0-SC",
+    "classical-separation-AC0-SPP",
+    "classical-separation-AC0-SZK",
+    "classical-separation-AC0-Sigma2P",
+    "classical-separation-AC0-Theta2P",
+    "classical-separation-AC0-UP",
+    "classical-separation-AC0-WPP",
+    "classical-separation-AC0-ZPP",
+    "classical-separation-AC0-coAM",
+    "classical-separation-AC0-coMA",
+    "classical-separation-AC0-coNP",
+    "classical-separation-AC0-coQMA",
+    "classical-separation-AC0-coRP",
+    "classical-separation-AC0-coUP",
+    "classical-separation-AC0-parityP",
+    "classical-separation-E-P",
+    "classical-separation-EXP-E",
+    "classical-separation-EXPSPACE-NPpoly",
+    "classical-separation-EXPSPACE-PSPACE",
+    "classical-separation-NE-ACC0",
+    "classical-separation-NE-NP",
+    "classical-separation-NEXP-NE",
+    "classical-separation-NEXP-Theta2P",
+    "classical-separation-PSPACE-NC",
+    "classical-separation-PSPACE-SC",
+    "q-nexp-not-acc0"
+  ],
+  "reviewed_seed_count": 68,
+  "nonuniform_classes": [
+    "AC0",
+    "ACC0",
+    "TC0",
+    "NC1",
+    "Ppoly",
+    "NPpoly"
+  ],
+  "recursive_targets": [
+    "L",
+    "NL",
+    "LogCFL",
+    "NC",
+    "SC",
+    "P",
+    "RP",
+    "coRP",
+    "ZPP",
+    "BPP",
+    "UP",
+    "coUP",
+    "NP",
+    "coNP",
+    "FewP",
+    "SPP",
+    "CeqP",
+    "PP",
+    "parityP",
+    "AWPP",
+    "LWPP",
+    "WPP",
+    "MA",
+    "coMA",
+    "AM",
+    "coAM",
+    "QCMA",
+    "QMA",
+    "coQMA",
+    "BQP",
+    "SBP",
+    "SZK",
+    "NPcapcoNP",
+    "Sigma2P",
+    "Pi2P",
+    "Delta2P",
+    "Theta2P",
+    "PH",
+    "PSPACE",
+    "EXP",
+    "NEXP",
+    "EXPSPACE",
+    "E",
+    "NE"
+  ],
+  "formal_file_sha256": {
+    "lean/InclusionBench/Machines.lean": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d",
+    "lean/InclusionBench/Circuits.lean": "e753f12343270df006d17e54ced26238f6681396ad357c047d62ef45a8b11ad1",
+    "lean/InclusionBench/UniformCircuits.lean": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2",
+    "lean/InclusionBench/Transducers.lean": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+    "lean/InclusionBench/ProofSystems.lean": "608a856b9d9e8c9167e1b56300a5bfb88a87ba6d6989ca6385afe9a3ed943b53",
+    "lean/InclusionBench/Oracles.lean": "df8f0a685b0b31265dfb13cce3b56f6aee58fb089f32882e2fd1e72d5715a2df",
+    "lean/InclusionBench/LogCFL.lean": "51f94e3b7854aa811b8d0080154e37d5987e365b2a269a7c4b807871c76b6a5e",
+    "lean/InclusionBench/Definitions.lean": "e0d5557209211850587cfec322d81915655c48a9f673781aef446206a4e2cabb",
+    "quantum/InclusionQuantum/Quantum.lean": "969015d3c3e948e8c78abb2629ac19ad711f1c596a3ce55f7a083d2466ad11f1",
+    "quantum/InclusionQuantum/Complete.lean": "698636f4719e690b14b838c43e673c581cef1968ca6810ba13b1ed91a6938b25"
+  },
+  "sources": [
+    {
+      "id": "Borodin1977",
+      "title": "On Relating Time and Space to Size and Depth",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/relating-time-space-size-depth.pdf",
+      "year": 1977,
+      "publication_date": "1977-12",
+      "locator": "SIAM J. Comput. 6(4), pp. 733–744; circuit-depth/space simulation",
+      "notes": "DOI 10.1137/0206054. Uniform NC uses polylogarithmic space.",
+      "additional_locator": "Printed p738: Lemma1, Theorem4, and following paragraph explicitly describing nonrecursive length languages with trivial circuits."
+    },
+    {
+      "id": "Williams2014",
+      "title": "Nonuniform ACC Circuit Lower Bounds",
+      "url": "https://people.csail.mit.edu/rrw/acc-lbs-journal-final.pdf",
+      "year": 2014,
+      "locator": "Theorem 1.1, Lemma 5.4",
+      "notes": "DOI 10.1145/2559903. Theorem 1.1 gives NTIME[2^n] ⊄ ACC0. Ignore stale journal-template footer dates.",
+      "publication_date": "2014-01"
+    },
+    {
+      "id": "HS1965",
+      "title": "On the Computational Complexity of Algorithms",
+      "url": "https://www3.risc.jku.at/people/schreine/courses/compcomp/HartmanisStearns1965.pdf",
+      "year": 1965,
+      "locator": "Transactions AMS 117, pp. 285–306; time hierarchy",
+      "notes": "Use standard multitape hierarchy consequence.",
+      "publication_date": "1965-05"
+    },
+    {
+      "id": "SFM1978",
+      "title": "Separating Nondeterministic Time Complexity Classes",
+      "url": "https://citeseerx.ist.psu.edu/document?doi=5a5339f901785db63330bc653ea76ea02b51d3fd&repid=rep1&type=pdf",
+      "year": 1978,
+      "locator": "JACM 25(1), pp. 146–167; main hierarchy theorem",
+      "notes": "DOI 10.1145/322047.322061.",
+      "publication_date": "1978-01"
+    },
+    {
+      "id": "Seiferas1977",
+      "title": "Techniques for separating space complexity classes",
+      "url": "https://www.sciencedirect.com/science/article/pii/S002200007780041X",
+      "year": 1977,
+      "locator": "JCSS 14(1), pp. 73–99; space diagonalization",
+      "notes": "DOI 10.1016/S0022-0000(77)80041-X.",
+      "publication_date": "1977-02"
+    },
+    {
+      "id": "BFS2009",
+      "title": "Unconditional Lower Bounds against Advice",
+      "authors": [
+        "Harry Buhrman",
+        "Lance Fortnow",
+        "Rahul Santhanam"
+      ],
+      "url": "https://eccc.weizmann.ac.il/report/2009/064/download/",
+      "year": 2009,
+      "publication_date": "2009",
+      "locator": "Theorem 6, printed p. 5",
+      "notes": "For each fixed c, NEXP is not contained in polynomial time with at most n^c NP queries and n^c advice bits. Theta2P uses O(log n) queries and no advice. Do not take a union over c on the right to infer NEXP not in Delta2P.",
+      "short_quote": "For any c",
+      "quoted_formula": "NEXP ⊄ P^{NP[n^c]}/n^c",
+      "access": "Full Theorem6 statement and proof read."
+    },
+    {
+      "id": "BCD1989",
+      "title": "Two Applications of Inductive Counting for Complementation Problems",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/two-applications-complementation-via-inductive-counting.pdf",
+      "year": 1989,
+      "locator": "§3.1; LOGCFL = uniform SAC¹ and complement closure",
+      "notes": "Authors Borodin, Cook, Dymond, Ruzzo, Tompa; DOI 10.1137/0218038. Contains NL ⊆ SAC¹ ⊆ AC¹ ⊆ NC²."
+    },
+    {
+      "id": "SFM1978-author-copy",
+      "title": "Separating Nondeterministic Time Complexity Classes",
+      "authors": [
+        "Joel I. Seiferas",
+        "Michael J. Fischer",
+        "Albert R. Meyer"
+      ],
+      "year": 1978,
+      "url": "https://www.researchgate.net/publication/220430544_Separating_Nondeterministic_Time_Complexity_Classes",
+      "locator": "Corollary4.1, printed p155; author-uploaded full text by Albert R. Meyer",
+      "access": "Full theorem statement read; direct CiteSeer PDF redirect failed."
+    },
+    {
+      "id": "Seiferas1977-author-copy",
+      "title": "Techniques for Separating Space Complexity Classes",
+      "authors": [
+        "Joel I. Seiferas"
+      ],
+      "year": 1977,
+      "url": "https://www.researchgate.net/publication/220574510_Techniques_for_Separating_Space_Complexity_Classes",
+      "locator": "Sections2 (off-line TM conventions) and4 (deterministic diagonalization), Theorems2–4; author-uploaded full text",
+      "access": "Full text inspected; publisher page returned403."
+    },
+    {
+      "id": "FLZ2010-crosscheck",
+      "title": "Separating NE from some nonuniform nondeterministic complexity classes",
+      "authors": [
+        "Bin Fu",
+        "Angsheng Li",
+        "Liyu Zhang"
+      ],
+      "year": 2010,
+      "url": "https://faculty.utrgv.edu/liyu.zhang/blz10-sepNE-joco.pdf",
+      "locator": "Theorem11, printed p10/PDFindex9; DOI10.1007/s10878-010-9327-5",
+      "notes": "Corroborates the NEXP lower bound for fixed polynomial query/advice bounds. Different authors from Fu, H. Li and Zhong1994."
+    },
+    {
+      "id": "FK2004-crosscheck",
+      "title": "NP with Small Advice",
+      "year": 2004,
+      "url": "https://eccc.weizmann.ac.il/report/2004/103/download/",
+      "locator": "Section4, printed p8, cites Fu, H. Li and Zhong1994 for NEXP not in parallel P^NP; references[10]",
+      "notes": "Corroboration only; primary proof used for acceptance is BFS2009 Theorem6."
+    },
+    {
+      "id": "Montoya2026v1",
+      "title": "Entropy of pebble automata and space complexity",
+      "author": "J. Andres Montoya",
+      "publication_date": "2026-05-08",
+      "url": "https://arxiv.org/html/2605.08555v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.08555",
+      "locator": "Definition17/Theorem18, printedpp10–11; Theorem35, printedpp15–17; Corollary37"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "C2-nonuniform-recursive",
+      "verdict": "confirmed",
+      "seed_ids": [
+        "classical-separation-AC0-L",
+        "classical-separation-AC0-NL",
+        "classical-separation-AC0-LogCFL",
+        "classical-separation-AC0-NC",
+        "classical-separation-AC0-SC",
+        "classical-separation-AC0-P",
+        "classical-separation-AC0-RP",
+        "classical-separation-AC0-coRP",
+        "classical-separation-AC0-ZPP",
+        "classical-separation-AC0-BPP",
+        "classical-separation-AC0-UP",
+        "classical-separation-AC0-coUP",
+        "classical-separation-AC0-NP",
+        "classical-separation-AC0-coNP",
+        "classical-separation-AC0-FewP",
+        "classical-separation-AC0-SPP",
+        "classical-separation-AC0-CeqP",
+        "classical-separation-AC0-PP",
+        "classical-separation-AC0-parityP",
+        "classical-separation-AC0-AWPP",
+        "classical-separation-AC0-LWPP",
+        "classical-separation-AC0-WPP",
+        "classical-separation-AC0-MA",
+        "classical-separation-AC0-coMA",
+        "classical-separation-AC0-AM",
+        "classical-separation-AC0-coAM",
+        "classical-separation-AC0-QCMA",
+        "classical-separation-AC0-QMA",
+        "classical-separation-AC0-coQMA",
+        "classical-separation-AC0-BQP",
+        "classical-separation-AC0-SBP",
+        "classical-separation-AC0-SZK",
+        "classical-separation-AC0-NPcapcoNP",
+        "classical-separation-AC0-Sigma2P",
+        "classical-separation-AC0-Pi2P",
+        "classical-separation-AC0-Delta2P",
+        "classical-separation-AC0-Theta2P",
+        "classical-separation-AC0-PH",
+        "classical-separation-AC0-PSPACE",
+        "classical-separation-AC0-EXP",
+        "classical-separation-AC0-NEXP",
+        "classical-separation-AC0-EXPSPACE",
+        "classical-separation-AC0-E",
+        "classical-separation-AC0-NE"
+      ],
+      "formal_files": [
+        "lean/InclusionBench/Circuits.lean",
+        "quantum/InclusionQuantum/Quantum.lean",
+        "quantum/InclusionQuantum/Complete.lean"
+      ],
+      "source_ids": [
+        "Borodin1977",
+        "ClassicalDerivations"
+      ],
+      "reasoning": [
+        "Choose an undecidable set S of lengths and let L_S contain every binary word of length n exactly when n belongs to S. One constant gate per n decides L_S. The family quantifier has no uniformity condition, and constants are permitted at depth zero. This witness belongs to all six nonuniform classes.",
+        "For each of the other 44 classes, fix the machine/verifier/generator witnessing membership. Ordinary machines are effective and halt; polynomial majorants can replace any existential, possibly noncomputable time bound. Finite accepting paths and finite random strings are enumerable. A fixed level of an oracle hierarchy has recursive oracles. Context-free membership and the explicit logarithmic-space reduction are recursive.",
+        "The exact quantum gate set is H,T,X,CNOT with algebraic constants, with a uniform finite-control generator. For fixed input, QMA acceptance is a finite polynomial expression in real and imaginary parts of the witness, constrained by a polynomial normalization equation. Real algebraic quantifier elimination decides whether a normalized witness attains the threshold; the total-language gap makes this a decider. Arbitrary quantum witnesses therefore do not import undecidable classical advice.",
+        "A decider for L_S would decide S by testing 0^n, a contradiction. The same argument works at n=0 by selecting the constant gate."
+      ],
+      "remaining_issue": "No concrete semantic mismatch found. No Lean theorem proving recursiveness of all targets is supplied by this audit; the user waived formalizing existing results. A change of the roster to uniform AC0 or arbitrary quantum amplitudes would invalidate the contract and require a new release."
+    },
+    {
+      "id": "C2-circuit-size-basis",
+      "verdict": "confirmed",
+      "seed_ids": [
+        "classical-inclusion-AC0-ACC0",
+        "classical-inclusion-ACC0-TC0",
+        "classical-inclusion-TC0-NC1",
+        "classical-inclusion-NC1-Ppoly",
+        "classical-separation-NE-ACC0",
+        "q-nexp-not-acc0"
+      ],
+      "formal_files": [
+        "lean/InclusionBench/Circuits.lean"
+      ],
+      "source_ids": [
+        "Williams2014",
+        "AB2007"
+      ],
+      "reasoning": [
+        "Every gate is finite; references are to prior gates. encodingSize counts both gates and every wire occurrence, including repeated majority or modulo inputs. Unbounded fan-in cannot encode an exponentially large list for free.",
+        "encodingSize is not a bit-level serialization size, but all input and gate indices have logarithmic bit length in n plus circuit size. ACC permits one fixed modulus at every length, so the omitted modulus bit-length is only a constant. The standard polynomial-size union is unchanged.",
+        "TC0 uses majority gates exactly as its catalog entry says, with threshold at half and ties accepting; strict-majority conventions are interconvertible using constants. The model is not a weighted threshold gate with unrestricted hidden weights.",
+        "Polynomial size and depth are uniform bounds over n for each family. The ACC modulus is existential outside the family/length quantifier. Williams Theorem1.1 matches this nonuniform fixed-modulus, fixed-depth polynomial-size class."
+      ],
+      "remaining_issue": "The standard simulation theorems between these bases are cited rather than kernel-proved, as permitted. No incorrect gate basis, quantifier order, or hidden size parameter found."
+    },
+    {
+      "id": "C2-uniform-NC",
+      "verdict": "confirmed",
+      "seed_ids": [
+        "classical-inclusion-NC-P",
+        "classical-inclusion-L-NC",
+        "classical-inclusion-NL-NC",
+        "classical-inclusion-LogCFL-NC",
+        "classical-separation-PSPACE-NC",
+        "classical-separation-AC0-NC"
+      ],
+      "formal_files": [
+        "lean/InclusionBench/UniformCircuits.lean",
+        "lean/InclusionBench/Transducers.lean",
+        "lean/InclusionBench/Circuits.lean"
+      ],
+      "source_ids": [
+        "Borodin1977",
+        "BCD1989",
+        "Seiferas1977"
+      ],
+      "reasoning": [
+        "A single concrete transducer emits the entire serialized circuit and must output the same circuit on every input of a fixed length. It has logarithmic work space and polynomial time; its output tape is write-only and cannot serve as uncharged workspace.",
+        "Unary fields make encodings longer by at most a polynomial because gate and wire counts are polynomial. A standard binary-field generator can convert to this representation using logarithmic counters; the reverse conversion also uses logarithmic space.",
+        "Circuit.depth measures the designated output cone. Deep unused gates do not affect acceptance. To compare to an all-gates-depth convention without assuming L=NL, use d(n)+1 layers of copies of every gate, where d(n) is a fixed polylogarithmic upper bound for output depth. Input/constant values are correct at layer0, and each successive layer computes from the preceding layer. The output stabilizes by layer d(n). The new circuit has polynomial size, polylogarithmic depth at every gate, and a logspace generator. No reachability/pruning oracle is needed.",
+        "A recursive output evaluator needs at most O(log^(k+1)n) work space: a depth-O(log^k n) stack of O(log n)-bit gate addresses and a regenerated gate description. This suffices for PSPACE noninclusion by the deterministic space hierarchy even without using Borodin stronger depth-plus-log-size optimization."
+      ],
+      "remaining_issue": "Formal equivalence to other uniform circuit encoding conventions remains unproved; explicit bidirectional simulation arguments were checked. No hidden nonuniformity found."
+    },
+    {
+      "id": "C2-SC-simultaneous",
+      "verdict": "confirmed",
+      "seed_ids": [
+        "classical-inclusion-L-SC",
+        "classical-inclusion-SC-P",
+        "classical-separation-PSPACE-SC",
+        "classical-separation-AC0-SC"
+      ],
+      "formal_files": [
+        "lean/InclusionBench/Machines.lean"
+      ],
+      "source_ids": [
+        "ClassicalDerivations",
+        "Seiferas1977"
+      ],
+      "reasoning": [
+        "SC existentially chooses one DMachine for both predicates. Once its transition is none, after leaves the terminal configuration fixed forever. Hence the time witness and the space witness have the same earliest terminal computation as a prefix. Its earliest halt is within the polynomial time bound and its entire prefix satisfies the polylogarithmic space bound.",
+        "The alternative weaker definition P intersect polylog-space could use two unrelated machines. The current definition does not do that.",
+        "WorkTape.footprint is the represented visited interval, not just nonblank cells. Moving inside the interval preserves its length and visiting a new end increases it; erasing does not reclaim cells. The read-only input head is bounded by endmarkers, so its position cannot act as an uncharged arbitrary counter."
+      ],
+      "remaining_issue": "A small future Lean lemma equating the two witnessed runs to their common earliest halt would document the argument. Its absence is not a mathematical classification error."
+    },
+    {
+      "id": "C2-advice-and-EXPSPACE",
+      "verdict": "confirmed",
+      "seed_ids": [
+        "classical-inclusion-P-Ppoly",
+        "classical-inclusion-Ppoly-NPpoly",
+        "classical-inclusion-NP-NPpoly",
+        "classical-separation-EXPSPACE-NPpoly"
+      ],
+      "formal_files": [
+        "lean/InclusionBench/ProofSystems.lean",
+        "lean/InclusionBench/Circuits.lean"
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "reasoning": [
+        "NPpoly advice is an arbitrary Nat-to-Word function with polynomial length bound and argument input.length. The deterministic verifier has a finite transition table and a fixed polynomial runtime on all encoded/malformed words. Witness length is a finite coefficient polynomial, and encodeTriple is injective with linear expansion. This is length advice, not per-input advice or an arbitrary verifier.",
+        "For each sufficiently large n, set s=2^floor(n/4). Bounded-fan-in nondeterministic circuits with at most s gates need at most O(s) distinct relevant witness variables; unused variables can be removed and relevant variables renamed. Descriptions use O(s log(n+s)) bits. Their number is smaller than 2^(2^n).",
+        "Enumerate 2^n-bit candidate truth tables. For each candidate enumerate every circuit description of size at most s; for each circuit enumerate all x of length n and all assignments to its O(s) witness bits to test whether it accepts x. Reject a candidate if one circuit agrees everywhere. Some candidate survives by counting.",
+        "Store only one candidate table, one circuit description, an input counter, a witness counter, and the current circuit evaluation. Total space is O(2^n); running time may be doubly exponential or worse but is finite. Return the surviving table bit indexed by the original x.",
+        "Every fixed polynomial-size nondeterministic circuit family eventually fits under s, so the diagonal language belongs to EXPSPACE and not NPpoly. Any polynomial-time advice verifier unrolls into such a circuit after its advice is fixed."
+      ],
+      "remaining_issue": "The exact benchmark-specific diagonalization is an independently reviewed derivation rather than a quoted theorem. It establishes EXPSPACE noninclusion, not EXP or PSPACE noninclusion in NPpoly."
+    },
+    {
+      "id": "C2-hierarchy-quantifiers",
+      "verdict": "confirmed",
+      "seed_ids": [
+        "classical-separation-E-P",
+        "classical-separation-EXP-E",
+        "classical-separation-NE-NP",
+        "classical-separation-NEXP-NE",
+        "classical-separation-EXPSPACE-PSPACE",
+        "classical-separation-PSPACE-NC",
+        "classical-separation-PSPACE-SC"
+      ],
+      "formal_files": [
+        "lean/InclusionBench/Machines.lean"
+      ],
+      "source_ids": [
+        "HS1965",
+        "SFM1978",
+        "Seiferas1977",
+        "Borodin1977"
+      ],
+      "reasoning": [
+        "The exact definitions use unions over constant coefficients/degrees. Fixed finite exceptional lengths can be hardwired and constants absorbed into the n+1 bounds.",
+        "For E versus P and NE versus NP, choose a hierarchy witness at T2(n)=2^n; every polynomial bound at n+1 is o(T2(n)). For EXP versus E and NEXP versus NE, choose T2(n)=2^(n^2); every 2^(cn) bound at n+1 is o(T2(n)). These are one-language-outside-the-whole-union conclusions, not a different language per fixed exponent.",
+        "SFM1978 Corollary4.1 explicitly separates NTIME(T2) from the union of NTIME(T1) with T1(n+1)=o(T2(n)); thus the nondeterministic union step is directly supported.",
+        "For PSPACE versus all polylogarithmic bounds, place all those bounds below n^(1/2) eventually and separate that bound from space n. For EXPSPACE versus PSPACE, place all polynomial bounds below 2^(n/2) eventually and separate that bound from space 2^n. Space-constructibility and finite initial exceptions are harmless.",
+        "The one-work-tape finite alphabet model simulates fixed multitape models with polynomial time overhead and constant-factor space overhead (or logarithmic bookkeeping within these bounds). Polynomial time overhead preserves E and NE as well as EXP and NEXP. No fixed exponent identity is asserted."
+      ],
+      "remaining_issue": "Primary deterministic time PDF timed out in this pass; it remains an accepted cited theorem, whose future proof flaws the user expressly excludes. Its class/model application was checked independently. Original nondeterministic and space papers were accessible as author-uploaded full texts."
+    },
+    {
+      "id": "C2-Theta2-separation",
+      "verdict": "confirmed",
+      "seed_ids": [
+        "classical-separation-NEXP-Theta2P"
+      ],
+      "formal_files": [
+        "lean/InclusionBench/Oracles.lean"
+      ],
+      "source_ids": [
+        "BFS2009",
+        "FLZ2010-crosscheck",
+        "FK2004-crosscheck"
+      ],
+      "reasoning": [
+        "BFS2009 Theorem6 says for each fixed c, NEXP is not contained in P with at most n^c NP queries and n^c advice bits. Theta2P lies in the c=1 class: its O(log n) queries are at most n beyond a finite initial segment, which can be hardwired; advice may be empty. Its polynomial runtime exponent need not be fixed for this containment.",
+        "If NE were contained in Theta2P, pad each L in NEXP from n to p(n)=(n+2)^k to put the padded language in NE. A Theta2P decider on this explicitly polynomial-long padded input runs in polynomial original time and asks O(log p(n))=O(log n) NP queries. Hence NEXP would be contained in Theta2P, contradicting Theorem6.",
+        "The exact oracle model has one fixed NP language, a physically written polynomial-length query, a finite-control machine, a polynomial time bound, and a logarithmic query counter; deleting blank symbols from query tapes is a computable polynomial-overhead encoding convention. There is no unbounded-query or nonuniform-advice loophole.",
+        "Six associated coNP/coRP/coUP noninclusions also follow without BFS: NE subset coNP implies NP subset coNP, hence NP=coNP, hence NE subset NP, contradicting hierarchy. NEXP inherits the same witness."
+      ],
+      "remaining_issue": "Do not infer NEXP not contained in Delta2P by taking a union over c on the right. NE not contained in Theta2P is a valid separate padding consequence."
+    }
+  ],
+  "complement_review": {
+    "class_ids": [
+      "AC0",
+      "ACC0",
+      "TC0",
+      "NC1",
+      "NC",
+      "SC",
+      "Ppoly",
+      "L",
+      "PSPACE",
+      "EXP",
+      "EXPSPACE",
+      "E",
+      "Theta2P"
+    ],
+    "verdict": "confirmed",
+    "reasoning": "Deterministic and oracle machines flip the output accept bit without changing computation; circuit classes append one NOT gate and generators emit it. Asymptotic union bounds absorb the additional gate/depth. Advice Ppoly keeps the same family. No complement closure of NPpoly, NE, or NEXP was inserted. NL and LogCFL closure depends on their separately cited accepted theorems, not a naive nondeterministic output flip."
+  },
+  "dependency_measurement": {
+    "method": "Remove each listed seed group, retain every other seed/rule/complement, recompute Closure.saturate, compare current proof atoms. Single-thread Python, no network calls or heavy computation.",
+    "meaning": "These are lost labels in the present engine, not probability estimates or complete worst-case semantic fanout. Redundant derivations may retain a true label after a supporting theorem is removed. Group losses overlap.",
+    "groups": [
+      {
+        "group": "nonuniform_AC0_vs_recursive",
+        "removed_seed_ids": [
+          "classical-separation-AC0-L",
+          "classical-separation-AC0-NL",
+          "classical-separation-AC0-LogCFL",
+          "classical-separation-AC0-NC",
+          "classical-separation-AC0-SC",
+          "classical-separation-AC0-P",
+          "classical-separation-AC0-RP",
+          "classical-separation-AC0-coRP",
+          "classical-separation-AC0-ZPP",
+          "classical-separation-AC0-BPP",
+          "classical-separation-AC0-UP",
+          "classical-separation-AC0-coUP",
+          "classical-separation-AC0-NP",
+          "classical-separation-AC0-coNP",
+          "classical-separation-AC0-FewP",
+          "classical-separation-AC0-SPP",
+          "classical-separation-AC0-CeqP",
+          "classical-separation-AC0-PP",
+          "classical-separation-AC0-parityP",
+          "classical-separation-AC0-AWPP",
+          "classical-separation-AC0-LWPP",
+          "classical-separation-AC0-WPP",
+          "classical-separation-AC0-MA",
+          "classical-separation-AC0-coMA",
+          "classical-separation-AC0-AM",
+          "classical-separation-AC0-coAM",
+          "classical-separation-AC0-QCMA",
+          "classical-separation-AC0-QMA",
+          "classical-separation-AC0-coQMA",
+          "classical-separation-AC0-BQP",
+          "classical-separation-AC0-SBP",
+          "classical-separation-AC0-SZK",
+          "classical-separation-AC0-NPcapcoNP",
+          "classical-separation-AC0-Sigma2P",
+          "classical-separation-AC0-Pi2P",
+          "classical-separation-AC0-Delta2P",
+          "classical-separation-AC0-Theta2P",
+          "classical-separation-AC0-PH",
+          "classical-separation-AC0-PSPACE",
+          "classical-separation-AC0-EXP",
+          "classical-separation-AC0-NEXP",
+          "classical-separation-AC0-EXPSPACE",
+          "classical-separation-AC0-E",
+          "classical-separation-AC0-NE"
+        ],
+        "lost_classifications": 264,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "AM"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "BPP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "CeqP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "E"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "EXP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "EXPSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "FewP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "L"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "LWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "LogCFL"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "MA"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "NC"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "NE"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "NEXP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "NL"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "NP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "P"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "PH"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "PSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "RP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "SBP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "SC"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "SPP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "SZK"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "UP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "WPP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "ZPP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "coAM"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "coMA"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "AC0",
+            "right": "parityP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "AM"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "BPP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "CeqP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "E"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "EXP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "EXPSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "FewP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "L"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "LWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "LogCFL"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "MA"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "NC"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "NE"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "NEXP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "NL"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "NP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "P"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "PH"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "PSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "RP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "SBP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "SC"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "SPP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "SZK"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "UP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "WPP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "ZPP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "coAM"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "coMA"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "ACC0",
+            "right": "parityP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "AM"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "BPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "CeqP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "E"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "EXP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "EXPSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "FewP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "L"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "LWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "LogCFL"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "MA"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "NC"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "NE"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "NEXP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "NL"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "NP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "P"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "PH"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "PSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "RP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "SBP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "SC"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "SPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "SZK"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "UP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "WPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "ZPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "coAM"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "coMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "NC1",
+            "right": "parityP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "AM"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "BPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "CeqP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "E"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "EXP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "EXPSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "FewP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "L"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "LWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "LogCFL"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "MA"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "NC"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "NE"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "NEXP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "NL"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "NP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "P"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "PH"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "PSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "RP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "SBP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "SC"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "SPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "SZK"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "UP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "WPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "ZPP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "coAM"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "coMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "NPpoly",
+            "right": "parityP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "AM"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "BPP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "CeqP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "E"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "EXP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "EXPSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "FewP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "L"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "LWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "LogCFL"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "MA"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "NC"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "NE"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "NEXP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "NL"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "NP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "P"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "PH"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "PSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "RP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "SBP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "SC"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "SPP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "SZK"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "UP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "WPP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "ZPP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "coAM"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "coMA"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "Ppoly",
+            "right": "parityP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "AM"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "BPP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "CeqP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "E"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "EXP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "EXPSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "FewP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "L"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "LWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "LogCFL"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "MA"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "NC"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "NE"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "NEXP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "NL"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "NP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "NPcapcoNP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "P"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "PH"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "PSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "RP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "SBP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "SC"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "SPP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "SZK"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "UP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "WPP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "ZPP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "coAM"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "coMA"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "TC0",
+            "right": "parityP"
+          }
+        ]
+      },
+      {
+        "group": "EXPSPACE_not_NPpoly",
+        "removed_seed_ids": [
+          "classical-separation-EXPSPACE-NPpoly"
+        ],
+        "lost_classifications": 4,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "NC1"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "TC0"
+          }
+        ]
+      },
+      {
+        "group": "E_not_P",
+        "removed_seed_ids": [
+          "classical-separation-E-P"
+        ],
+        "lost_classifications": 0,
+        "lost_atoms": []
+      },
+      {
+        "group": "EXP_not_E",
+        "removed_seed_ids": [
+          "classical-separation-EXP-E"
+        ],
+        "lost_classifications": 1,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "EXP",
+            "right": "E"
+          }
+        ]
+      },
+      {
+        "group": "NE_not_NP",
+        "removed_seed_ids": [
+          "classical-separation-NE-NP"
+        ],
+        "lost_classifications": 0,
+        "lost_atoms": []
+      },
+      {
+        "group": "NEXP_not_NE",
+        "removed_seed_ids": [
+          "classical-separation-NEXP-NE"
+        ],
+        "lost_classifications": 2,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "NE"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "NE"
+          }
+        ]
+      },
+      {
+        "group": "PSPACE_not_SC",
+        "removed_seed_ids": [
+          "classical-separation-PSPACE-SC"
+        ],
+        "lost_classifications": 1,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "PSPACE",
+            "right": "SC"
+          }
+        ]
+      },
+      {
+        "group": "PSPACE_not_NC",
+        "removed_seed_ids": [
+          "classical-separation-PSPACE-NC"
+        ],
+        "lost_classifications": 3,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "PSPACE",
+            "right": "LogCFL"
+          },
+          {
+            "relation": "separation",
+            "left": "PSPACE",
+            "right": "NC"
+          },
+          {
+            "relation": "separation",
+            "left": "PSPACE",
+            "right": "NL"
+          }
+        ]
+      },
+      {
+        "group": "EXPSPACE_not_PSPACE",
+        "removed_seed_ids": [
+          "classical-separation-EXPSPACE-PSPACE"
+        ],
+        "lost_classifications": 16,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "AWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "BQP"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "CeqP"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "Delta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "LWPP"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "PH"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "PP"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "PSPACE"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "Pi2P"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "QCMA"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "QMA"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "SPP"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "Sigma2P"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "WPP"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "coQMA"
+          },
+          {
+            "relation": "separation",
+            "left": "EXPSPACE",
+            "right": "parityP"
+          }
+        ]
+      },
+      {
+        "group": "NEXP_not_Theta2P",
+        "removed_seed_ids": [
+          "classical-separation-NEXP-Theta2P"
+        ],
+        "lost_classifications": 8,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "coUP"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "Theta2P"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "coNP"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "coRP"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "coUP"
+          }
+        ]
+      },
+      {
+        "group": "NE_ACC0_and_NEXP_ACC0",
+        "removed_seed_ids": [
+          "classical-separation-NE-ACC0",
+          "q-nexp-not-acc0"
+        ],
+        "lost_classifications": 2,
+        "lost_atoms": [
+          {
+            "relation": "separation",
+            "left": "NE",
+            "right": "ACC0"
+          },
+          {
+            "relation": "separation",
+            "left": "NEXP",
+            "right": "ACC0"
+          }
+        ]
+      }
+    ],
+    "union_of_lost_classifications": 301
+  },
+  "proposed_deltas": [
+    {
+      "kind": "citation_enrichment_only",
+      "seed_ids": [
+        "classical-separation-AC0-L",
+        "classical-separation-AC0-NL",
+        "classical-separation-AC0-LogCFL",
+        "classical-separation-AC0-NC",
+        "classical-separation-AC0-SC",
+        "classical-separation-AC0-P",
+        "classical-separation-AC0-RP",
+        "classical-separation-AC0-coRP",
+        "classical-separation-AC0-ZPP",
+        "classical-separation-AC0-BPP",
+        "classical-separation-AC0-UP",
+        "classical-separation-AC0-coUP",
+        "classical-separation-AC0-NP",
+        "classical-separation-AC0-coNP",
+        "classical-separation-AC0-FewP",
+        "classical-separation-AC0-SPP",
+        "classical-separation-AC0-CeqP",
+        "classical-separation-AC0-PP",
+        "classical-separation-AC0-parityP",
+        "classical-separation-AC0-AWPP",
+        "classical-separation-AC0-LWPP",
+        "classical-separation-AC0-WPP",
+        "classical-separation-AC0-MA",
+        "classical-separation-AC0-coMA",
+        "classical-separation-AC0-AM",
+        "classical-separation-AC0-coAM",
+        "classical-separation-AC0-QCMA",
+        "classical-separation-AC0-QMA",
+        "classical-separation-AC0-coQMA",
+        "classical-separation-AC0-BQP",
+        "classical-separation-AC0-SBP",
+        "classical-separation-AC0-SZK",
+        "classical-separation-AC0-NPcapcoNP",
+        "classical-separation-AC0-Sigma2P",
+        "classical-separation-AC0-Pi2P",
+        "classical-separation-AC0-Delta2P",
+        "classical-separation-AC0-Theta2P",
+        "classical-separation-AC0-PH",
+        "classical-separation-AC0-PSPACE",
+        "classical-separation-AC0-EXP",
+        "classical-separation-AC0-NEXP",
+        "classical-separation-AC0-EXPSPACE",
+        "classical-separation-AC0-E",
+        "classical-separation-AC0-NE"
+      ],
+      "add_source_ids": [
+        "Borodin1977"
+      ],
+      "locator": "Printed p738 paragraph after Theorem4",
+      "changes_classifications": false,
+      "reason": "This primary source states the nonrecursive length-language/trivial-circuit phenomenon explicitly; retain the exact finite-gate benchmark derivation."
+    }
+  ],
+  "classification_corrections": [],
+  "residual_risk": {
+    "excluded": "Per user instruction, exclude flaws discovered in future in currently accepted published proofs. This audit instead checks quotation, quantifiers, model transfer, implementation semantics, and literature omissions.",
+    "concrete_unresolved_status_suspects": [],
+    "clusters": [
+      {
+        "id": "nonuniformity-contract",
+        "observed_ablation_fanout": 264,
+        "evidence": "Exact Family and basis definitions plus independent constant-gate witness and primary Borodin paragraph. Contract currently consistent.",
+        "unresolved": "No concrete mismatch; monitor any future uniformity or computable-amplitude convention changes."
+      },
+      {
+        "id": "advice-diagonalization-transfer",
+        "observed_ablation_fanout": 4,
+        "evidence": "Independent finite-space enumeration argument and exact verifier/advice quantifiers inspected.",
+        "unresolved": "Kernel proofs of the machine-to-circuit translation are absent but explicitly waived; mathematical construction contains no identified gap."
+      },
+      {
+        "id": "NC-output-depth-and-SC-simultaneity",
+        "observed_ablation_fanout": 4,
+        "evidence": "Layered NC normalization avoids hidden L=NL pruning; deterministic halt-prefix argument proves simultaneous-resource reading.",
+        "unresolved": "Formal normalization and prefix lemmas not supplied; no semantic counterexample found."
+      },
+      {
+        "id": "Theta2-query-exponent",
+        "observed_ablation_fanout": 8,
+        "evidence": "Primary Theorem6 statement read and regular-padding transfer checked against exact oracle model. Six of the eight have an independent hierarchy/complement argument.",
+        "unresolved": "No concrete mismatch; disallow the invalid Delta2P union step."
+      },
+      {
+        "id": "omitted-literature-outside-targets",
+        "observed_ablation_fanout": null,
+        "evidence": "This round did not repeat the all-class historical census.",
+        "unresolved": "No statistical model or independence assumptions support extrapolation from this targeted clean pass to the entire1378-candidate matrix."
+      }
+    ],
+    "numerical_expected_remaining_errors": 1.0,
+    "why_no_numeric_bound": "A subjective scoped estimate is now supplied at the parent request. It is not a calibrated or rigorous bound for the entire benchmark; its high-fanout sensitivity envelope crosses2 by a wide margin.",
+    "supported_conclusion": "No additional classification correction is indicated in the audited groups. My scoped working judgment is about1 expected residual error, with a broad0.14–8.21 sensitivity envelope. This does not establish the whole benchmark below2 expected remaining errors.",
+    "judgmental_estimate": {
+      "scope": "Expected wrong current pair labels attributable to the classical/circuit/space risks reviewed here, counted among all2500 pairs. Not an additional estimate for quantum/counting/interactive domains reviewed by other agents.",
+      "point_estimate_rounded": 1.0,
+      "scenario_envelope": [
+        0.14,
+        8.21
+      ],
+      "interpretation": "Explicit subjective sensitivity envelope, not a frequentist confidence interval or calibrated posterior. The point estimate is a rounded working judgment. Upper endpoints intentionally retain high-fanout omission possibilities; this is not tuned to satisfy the<2 target.",
+      "clusters": [
+        {
+          "id": "shared-nonuniform-contract-error",
+          "probability_range": [
+            0.0001,
+            0.002
+          ],
+          "conditional_affected_pairs_range": [
+            264,
+            264
+          ],
+          "working_probability": 0.0005,
+          "working_conditional_pairs": 264,
+          "basis": "Both exact class maps and nonuniform family quantifiers were independently read, and an explicit constant-gate witness matches a primary-source paragraph. A remaining common-contract error would require overlooking a direct definitional conflict, so I assign a much smaller subjective chance than to missing literature."
+        },
+        {
+          "id": "specific-operational-model-transfer",
+          "probability_range": [
+            0.002,
+            0.01
+          ],
+          "conditional_affected_pairs_range": [
+            1,
+            12
+          ],
+          "working_probability": 0.005,
+          "working_conditional_pairs": 5,
+          "basis": "Read concrete code and checked finite transition domains, head bounds, workspace accounting, circuit encoding, uniformity, same-machine SC, and advice quantifiers. Remaining risk is a localized overlooked interpretation issue; no concrete suspect remains."
+        },
+        {
+          "id": "seed-theorem-application",
+          "probability_range": [
+            0.002,
+            0.01
+          ],
+          "conditional_affected_pairs_range": [
+            1,
+            16
+          ],
+          "working_probability": 0.005,
+          "working_conditional_pairs": 4,
+          "basis": "Exact hierarchy union quantifiers, fixed-query theorem, and benchmark-specific diagonalization were reconstructed. Accepted theorem failure is excluded; this risk covers an overlooked application or transcription error."
+        },
+        {
+          "id": "older-unsearched-separation",
+          "probability_range": [
+            0.05,
+            0.2
+          ],
+          "conditional_affected_pairs_range": [
+            2,
+            16
+          ],
+          "working_probability": 0.1,
+          "working_conditional_pairs": 6,
+          "basis": "Round1 actually found the omitted bounded-query NEXP separation, so zero additional omissions cannot be presumed. Round2 validated it but was not another broad historical census. The likely residual cluster is an old query-model or advice distinction, with several descendants."
+        },
+        {
+          "id": "recent-precutoff-omission",
+          "probability_range": [
+            0.01,
+            0.06
+          ],
+          "conditional_affected_pairs_range": [
+            1,
+            70
+          ],
+          "working_probability": 0.03,
+          "working_conditional_pairs": 6,
+          "basis": "Recent circuit/space papers were screened by the other reviewer; this pass independently invalidated the concrete Montoya candidate. The range retains a low-probability high-fanout omitted result;70 is the measured fanout of the specific claimed separation, not a universal maximum."
+        }
+      ],
+      "arithmetic": "Working weighted contributions total0.957 labels, rounded to1.0. Multiplying the displayed range endpoints and adding gives0.1404–8.208 labels. Linearity of expectation does not require independence, but overlapping clusters can double-count errors, and the event/fanout ranges themselves are subjective. Neither sum is a rigorous bound.",
+      "logical_closure": "Root reports complete SAT checking of all candidate literals in the current finite rule theory. Conditional on that check and correct rule encoding, no extra missing logical-consequence risk is assigned within that theory. Missing theorems remain in the literature-omission clusters.",
+      "Montoya": "No classification error is assigned merely for not accepting this v1 proof: the general intermediate theorem has an explicit counterexample and the entropy proof has independent gaps. A different valid pre-cutoff proof, if overlooked, belongs in the omission clusters."
+    }
+  },
+  "montoya_triage": {
+    "id": "C2-Montoya2026",
+    "source": {
+      "id": "Montoya2026v1",
+      "title": "Entropy of pebble automata and space complexity",
+      "author": "J. Andres Montoya",
+      "publication_date": "2026-05-08",
+      "url": "https://arxiv.org/html/2605.08555v1",
+      "pdf_url": "https://arxiv.org/pdf/2605.08555",
+      "locator": "Definition17/Theorem18, printedpp10–11; Theorem35, printedpp15–17; Corollary37"
+    },
+    "claim": {
+      "relation": "separation",
+      "left": "LogCFL",
+      "right": "NL"
+    },
+    "disposition": "Do not classify as proved from this manuscript; present mathematical failures identified independently.",
+    "candidate_fanout": 70,
+    "checks": [
+      {
+        "id": "M18",
+        "severity": "decisive_counterexample_to_intermediate_theorem",
+        "location": "Definition17 and Theorem18, printedpp10–11",
+        "reported_statement": "Masked concatenation T⊗L is context-free whenever T and L are context-free.",
+        "counterexample": "Let D={a^n b^n c^n:n≥0} over Γ={a,b,c}. Set T=Γ* minus D. T is context-free: it is the union of the regular language outside a*b*c*, the context-free set {a^i b^j c^k:i≠j}, and the context-free set {a^i b^j c^k:j≠k}. Set L={ε} over the disjoint alphabet {d}. Restrict masked concatenation to the regular set Γ*#d, meaning exactly one local factor w and nonempty cofactor d. If w∈T, d is selected and the word is rejected because d∉L. If w∉T, no cofactor is selected and ε∈L, so it is accepted. The intersection is D#d. Were the masked concatenation context-free, regular intersection and the homomorphism deleting # and d would make D context-free, a contradiction.",
+        "proof_error": "The proposed PDA simulation treats one nondeterministic run of a recognizer for T as if it decides the characteristic bit of membership in T. A rejecting branch does not establish nonmembership.",
+        "limits": "This disproves the stated general lemma. It does not by itself refute the final NL≠LogCFL statement or prove that a different restricted construction could not work."
+      },
+      {
+        "id": "M35-normalization",
+        "severity": "missing_essential_argument",
+        "location": "Theorem35 proof, printedp16, first paragraph and subroutine bullets",
+        "issue": "The theorem quantifies over an arbitrary pebble automaton for L_{k+1}. The proof assumes that it invokes a pebble subroutine recognizing L_k and has a separate global controller. There is no normalization theorem producing this decomposition while preserving the claimed configuration entropy. A machine may inspect or interleave local factors without calling such a subroutine."
+      },
+      {
+        "id": "M35-projection",
+        "severity": "invalid_probability_inference",
+        "location": "Theorem35 proof, printedp16, identification of C_k with X_{A_k}",
+        "issue": "Uniformity on full coding configurations does not imply uniformity of a projected local configuration. Equal fiber sizes would be needed and are not proved.",
+        "independent_finite_counterexample": "Take X uniform on {a,b,c}, with f(a)=f(b)=0 and f(c)=1. The projected probabilities are2/3 and1/3, so H(f(X))=h2(1/3), not log2(2). Language-preserving extra control states can also disturb fiber cardinalities, so these are not protected by merely accepting the same language."
+      },
+      {
+        "id": "M35-conditional",
+        "severity": "missing_entropy_identity",
+        "location": "Theorem35 proof, printedp17, final equality",
+        "issue": "The conditional entropy of a uniform configuration variable given a projection is a weighted average of logarithms of fiber sizes. The separately defined query-configuration variable Y is uniform on its own support, whose entropy is the logarithm of an integer. No support bijection/equipartition establishing their asserted equality is supplied.",
+        "independent_finite_counterexample": "For the same3-point example with fiber sizes2 and1, H(X|f(X))=2/3 bit. This cannot equal log2(m) for an integer m, since m^3=4 would have no integer solution."
+      }
+    ],
+    "impact": "The main induction in Corollary37 explicitly invokes Theorem35. Its unproved identities cannot support the claimed separation. Theorem18 supplies an additional explicit false lemma used to keep the constructed language sequence context-free.",
+    "review_basis": "Exact primary definitions and proof paragraphs were read. The decision does not depend on venue, author reputation, citation counts, or predictions of future flaws in accepted proofs."
+  }
+}
