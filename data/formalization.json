@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "definitions supplied; textbook equivalence and literature proof obligations remain",
+  "definition_count": 50,
+  "files": {
+    "lean/InclusionBench/Catalog.lean": "a4134d5c2ec2606bd16723087f52e35baa61bfaed6bdff88e12c8659083487b8",
+    "lean/InclusionBench/Certificate.lean": "58bf3419297ac19a4c13e577f7026d3bd2c9c63600e94f9d398fe5edd2d93227",
+    "lean/InclusionBench/Circuits.lean": "e753f12343270df006d17e54ced26238f6681396ad357c047d62ef45a8b11ad1",
+    "lean/InclusionBench/Counting.lean": "066a003a9b33237012c9bfe37b57789cf037a73d6f32a2ca5e19bbdb2b7cde93",
+    "lean/InclusionBench/Definitions.lean": "e0d5557209211850587cfec322d81915655c48a9f673781aef446206a4e2cabb",
+    "lean/InclusionBench/Derivation.lean": "2a8ba6a9b1d1a24ef629bccbdc82291298be22cc5a1622a836cecab5cbab170a",
+    "lean/InclusionBench/Independence.lean": "c7406f107993fc00b2d0e5416b6b7e44b53b20cc6a0dbd85e51e49778c5e40b8",
+    "lean/InclusionBench/LogCFL.lean": "51f94e3b7854aa811b8d0080154e37d5987e365b2a269a7c4b807871c76b6a5e",
+    "lean/InclusionBench/Machines.lean": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d",
+    "lean/InclusionBench/Oracles.lean": "df8f0a685b0b31265dfb13cce3b56f6aee58fb089f32882e2fd1e72d5715a2df",
+    "lean/InclusionBench/ProofSystems.lean": "608a856b9d9e8c9167e1b56300a5bfb88a87ba6d6989ca6385afe9a3ed943b53",
+    "lean/InclusionBench/Randomized.lean": "afe42aecdef48f9379a7e074140c89ce15a6fd4fed357358a11217237807d5c3",
+    "lean/InclusionBench/Scoring.lean": "2cff83c24a59959eb58ee76742fced9fd0a192b1d777226ec0da8e0e974f4bf6",
+    "lean/InclusionBench/Semantics.lean": "14f9911c082fd1877959fa2a6f40d85e421c2c86b5a37c0f02fbcda03cdb959e",
+    "lean/InclusionBench/Statistical.lean": "eff56792ab1f5f7a1e7571866156c412b257b7314ad6fb98b7e7e322f9774005",
+    "lean/InclusionBench/Transducers.lean": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+    "lean/InclusionBench/UniformCircuits.lean": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2",
+    "lean/lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "quantum/InclusionQuantum/Complete.lean": "698636f4719e690b14b838c43e673c581cef1968ca6810ba13b1ed91a6938b25",
+    "quantum/InclusionQuantum/Quantum.lean": "969015d3c3e948e8c78abb2629ac19ad711f1c596a3ce55f7a083d2466ad11f1",
+    "quantum/lake-manifest.json": "6f7b536f784cd06e934eb5ad749921f8ec389c1a10e48bb7ae2ad3a268e42dd2"
+  },
+  "bundle_sha256": "c3b1f180a8c1353aa4d4fe23f434e5c31633d242080d614d22e57a59b7648dd1"
+}

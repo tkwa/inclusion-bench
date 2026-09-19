@@ -1,8 +1,8 @@
-# Scoring specification
+# AI benchmark scoring specification
 
 ## Target universe
 
-An instance is an ordered pair from the frozen class catalog. The current 50-class roster has 2,500 pairs, including 50 reflexive pairs that are known and ineligible. A language is a subset of finite binary strings; a class is a set of languages. Inclusion means ordinary set inclusion, not a reduction.
+The evaluated system is one fixed AI model and configuration in one budgeted run. See [the evaluation protocol](EVALUATION.md) for prompts, adapters, evidence and run admission. An instance is an ordered pair from the frozen class catalog. The current 50-class roster has 2,500 pairs, including 50 reflexive pairs that are known and ineligible. A language is a subset of finite binary strings; a class is a set of languages. Inclusion means ordinary set inclusion, not a reduction.
 
 The cutoff is September 1, 2026, inclusive: a result publicly available before September 2, 2026 at 00:00 UTC is pre-cutoff. Original versions, acceptance claims, corrections and publication dates require evidence. A later exposition can explain an older theorem but cannot establish its historical availability by itself. Month-only dates near the cutoff require explicit review.
 
@@ -19,7 +19,7 @@ score(S) = | { (A,B) in E : an accepted resolution of (A,B)
                           follows from the baseline and S } |
 ```
 
-Each ordered pair contributes at most one point, regardless of the number of proofs or the direction of the answer. Aggregate system scores use the union of their resolved pairs. A cumulative record must name the complete accepted proof set so incompatible assumptions cannot be mixed. The prototype scores a supplied set of claims together; an official cumulative submission registry remains a release task.
+Each ordered pair contributes at most one point, regardless of the number of proofs or the direction of the answer. A run score uses the union of the pairs resolved by its accepted proof artifacts. Answers to different tasks in the same run may combine through implications. Different runs are never pooled. Exact run, attempt and artifact hashes bind every admitted proof to its originating run. The standalone `score` command assumes mathematical claims for diagnosis; `evaluate-run` requires trusted proof reviews before counting them.
 
 A contradiction with the baseline, with another submitted claim, or between derived resolutions rejects the submission. Logical explosion earns no points. Existing facts and consequences earn zero. A stronger result earns at least as many points when it entails all the weaker submission's accepted consequences under the same dataset; the engine need not discover every implication in mathematics.
 
@@ -54,4 +54,4 @@ The present dataset has no certified-open pairs. `unreviewed` means “not resol
 
 A future certified mode additionally requires a complete eligibility manifest for the exact dataset and a repository-maintained acceptance record matching the exact submission digest. The code checks neither author identity nor proof correctness merely from JSON. Those must come from the proof/review pipeline. Setting local metadata to `certified` is not a way to obtain a valid public score.
 
-The leaderboard currently contains one historical reference row with zero points. It contains no fabricated model evaluations or scores. A zero reference follows from the scoring definition; it is not a literature search conclusion about every result published after the cutoff.
+The model leaderboard currently has no evaluated runs. A separate historical reference displays zero points. Partial suites, smoke fixtures, unverified candidates and draft runs cannot become ranked model entries. A zero reference follows from the scoring definition; it is not a literature search conclusion about every result published after the cutoff.

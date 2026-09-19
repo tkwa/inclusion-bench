@@ -14,7 +14,11 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(self.site["dataset_sha256"], self.b.digest)
         self.assertEqual(len(self.site["pairs"]), 2500)
         self.assertEqual(self.site["counts"], self.b.matrix()["counts"])
-        self.assertEqual([r["score"] for r in self.site["leaderboard"]], [0])
+        self.assertEqual(self.site["leaderboard"], [])
+        self.assertEqual(self.site["baseline"]["score"], 0)
+        suite = json.loads((ROOT / "evaluation/tasks.json").read_text())
+        self.assertEqual(len(suite["tasks"]), len(self.b.unresolved))
+        self.assertEqual(self.site["taskset_sha256"], suite["taskset_sha256"])
 
     def test_shared_proof_graphs_are_complete_and_acyclic(self):
         baseline = self.site["baseline_proof_steps"]

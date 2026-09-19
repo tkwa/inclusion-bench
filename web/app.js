@@ -53,7 +53,7 @@
   function reasonLabel(reason) {
     const raw = typeof reason === "string" ? reason : JSON.stringify(reason || "Recorded implication");
     if (raw.startsWith("baseline:")) return "Recorded baseline theorem";
-    const known = { reflexivity: "Every class contains itself", transitivity: "Compose two inclusions", complement: "Take complements on both sides", "separation-left": "The larger row class inherits a separating language", "separation-right": "The smaller column class still excludes the separating language", submission: "Assumed breakthrough" };
+    const known = { reflexivity: "Every class contains itself", transitivity: "Compose two inclusions", complement: "Take complements on both sides", "separation-left": "The larger row class inherits a separating language", "separation-right": "The smaller column class still excludes the separating language", submission: "Assumed model output" };
     if (known[raw]) return known[raw];
     if (raw.startsWith("padding-")) return "A reviewed padding implication";
     if (raw.startsWith("hardwire-")) return "A reviewed circuit simulation implication";
@@ -113,14 +113,18 @@
     const name = d.name || "Inclusion Bench";
     $("site-name").textContent = name;
     $("footer-name").textContent = name;
-    document.title = `${name} — the complexity frontier`;
+    document.title = `${name} — AI complexity-theory benchmark`;
     $("cutoff").textContent = date(d.cutoff);
     $("version").textContent = `Version ${d.version || "draft"}`;
     $("class-count").textContent = number(d.class_count ?? d.classes.length);
     $("pair-count").textContent = number(d.ordered_pairs ?? d.classes.length ** 2);
     const counts = d.counts || {};
+    const certified = d.stage === "certified";
+    document.querySelector(".draft-banner").hidden = certified;
+    document.querySelector(".hero .tag-dark").textContent = certified ? "Certified" : "Draft";
     $("known-count").textContent = number((counts.inclusion || 0) + (counts.separation || 0) + (counts.independence || 0));
-    $("unreviewed-count").textContent = number(counts.unreviewed ?? d.pairs.filter((p) => normalizedStatus(p) === "unreviewed").length);
+    $("unreviewed-count").textContent = number(certified ? counts.open_at_cutoff : (counts.unreviewed ?? d.pairs.filter((p) => normalizedStatus(p) === "unreviewed").length));
+    document.querySelector(".stat-pending .stat-label").textContent = certified ? "eligible questions at the cutoff" : "pairs awaiting eligibility review";
     $("dataset-hash").textContent = d.dataset_sha256 || "Not provided";
     const repo = safeLink(d.repository_url || d.repo_url || d.repository || "");
     if (repo && (d.repository_url || d.repo_url || d.repository)) {
@@ -132,38 +136,64 @@
     if (coverage && Number.isFinite(coverage.direct) && Number.isFinite(coverage.unsupported)) {
       const mapped = coverage.direct + (coverage.consequence || 0);
       const total = mapped + coverage.unsupported;
-      $("coverage-summary").textContent = `${total} example advances: ${mapped} map to roster claims; ${coverage.unsupported} have no guaranteed scoring implication. This is a stress test, not a likelihood ranking.`;
+      $("coverage-summary").textContent = `${total} example advances: ${mapped} map to roster claims; ${coverage.unsupported} have no guaranteed scoring implication. These are scope examples, not an AI evaluation set or a forecast.`;
     }
   }
 
   function renderLeaderboard() {
     const body = $("leaderboard-body");
     body.replaceChildren();
-    const records = (state.data.leaderboard || []).filter((r) => !["hypothetical", "scenario", "demo"].includes(r.kind));
+    const isReference = (record) => /baseline|historical|reference/i.test(`${record.kind || ""} ${record.name || ""}`);
+    const rows = state.data.leaderboard || [];
+    const records = rows.filter((record) => !isReference(record) && !["hypothetical", "scenario", "demo"].includes(record.kind));
     for (const record of records) {
       const tr = element("tr");
       tr.append(element("td", "", record.rank ?? "—"));
-      const entry = element("td");
-      entry.append(element("span", "entry-name", record.name));
-      const baseline = /baseline|historical|reference/i.test(`${record.kind || ""} ${record.name || ""}`);
-      entry.append(element("span", "entry-description", baseline ? "Knowledge available at the cutoff" : record.description || "Accepted mathematical result"));
-      tr.append(entry);
+      const model = element("td");
+      const modelName = typeof record.model === "string" ? record.model : record.model?.name;
+      model.append(element("span", "entry-name", modelName || record.model_name || record.name || "Unspecified model"));
+      const version = record.model_version || record.model?.version || record.version;
+      model.append(element("span", "entry-description", version ? `Version ${version}` : "Version not supplied"));
+      tr.append(model);
+      const run = element("td");
+      const runId = record.run_id || (typeof record.run === "string" ? record.run : record.run?.id);
+      run.append(element("span", "run-name", runId || "Run ID not supplied"));
+      if (record.track) run.append(element("span", "entry-description", `${record.track} · cohort ${String(record.cohort_sha256 || "").slice(0, 8)}`));
+      if (record.date) run.append(element("span", "record-date", date(record.date)));
+      tr.append(run);
       const score = element("td", "number-column");
-      score.append(element("span", "leaderboard-score", number(record.score)));
+      score.append(element("span", "leaderboard-score", number(record.verified_points ?? record.score)));
+      if (Number.isFinite(record.direct_points) && Number.isFinite(record.consequence_points)) {
+        score.append(element("span", "score-breakdown", `${number(record.direct_points)} direct · ${number(record.consequence_points)} implied`));
+      }
       tr.append(score);
       const status = element("td");
-      status.append(element("span", "record-status", baseline ? "Reference baseline" : record.kind || "Recorded submission"));
-      status.append(element("span", "record-date", date(record.date)));
+      status.append(element("span", "record-status", record.verification_status || "Verified evaluation"));
+      const report = safeLink(record.report_url || record.run_url || "");
+      if (report && (record.report_url || record.run_url)) {
+        const link = element("a", "record-report", "Run report ↗");
+        link.href = report;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        status.append(link);
+      }
       tr.append(status);
       body.append(tr);
     }
     if (!records.length) {
       const tr = element("tr");
-      const td = element("td", "entry-description", "No official entries have been recorded.");
-      td.colSpan = 4;
+      const td = element("td", "leaderboard-empty");
+      td.colSpan = 5;
+      td.append(element("strong", "", "No verified AI evaluations yet."));
+      td.append(element("p", "", "Official evaluations open after the historical eligibility audit and verification requirements are complete."));
       tr.append(td);
       body.append(tr);
     }
+    const supplied = state.data.baseline ?? state.data.baseline_reference;
+    const reference = typeof supplied === "object" && supplied !== null ? supplied : rows.find(isReference);
+    $("baseline-name").textContent = reference?.name || "Pre-cutoff public knowledge";
+    $("baseline-score").textContent = number(reference?.score ?? (typeof supplied === "number" ? supplied : 0));
+    $("baseline-description").textContent = `Known mathematics as of ${date(reference?.date || state.data.cutoff)} earns no new-resolution points. This reference is not a model run.`;
   }
 
   function renderFilters() {
@@ -256,7 +286,7 @@
     const pair = displayPair(left, right);
     const status = normalizedStatus(pair);
     $("pair-title").replaceChildren(document.createTextNode(label(left)), element("span", "", "⊆"), document.createTextNode(label(right)));
-    const badge = element("span", `relation-badge ${status} ${pair.hypothetical ? "hypothetical" : ""}`, pair.hypothetical ? `Hypothetical ${status === "separation" ? "noninclusion" : status}` : statusLabels[status]);
+    const badge = element("span", `relation-badge ${status} ${pair.hypothetical ? "hypothetical" : ""}`, pair.hypothetical ? `Hypothetical ${status === "separation" ? "noninclusion" : status}` : pair.status === "open_at_cutoff" ? "Certified open at cutoff" : statusLabels[status]);
     $("pair-status").replaceChildren(badge);
     const explanations = {
       inclusion: "Every language in the row class is also in the column class, according to the recorded baseline.",
@@ -264,7 +294,7 @@
       unreviewed: "The current baseline has no resolution for this direction. A historical review must establish eligibility before a new result can earn an official point.",
       independence: "The recorded result establishes independence of this inclusion from the specified formal theory. Consult its certificate for the exact metatheoretic assumptions.",
     };
-    $("pair-explanation").textContent = pair.hypothetical ? "This relation follows inside the selected scenario. Its assumptions have not been proved or admitted by the benchmark." : explanations[status];
+    $("pair-explanation").textContent = pair.hypothetical ? "This relation follows in the selected scoring example. No AI run has been credited with proving its assumptions." : pair.status === "open_at_cutoff" ? "Historical review certifies this question as open at the cutoff. An accepted model proof can resolve it for one point." : explanations[status];
     const definitions = $("pair-definitions");
     definitions.replaceChildren();
     for (const id of [...new Set([left, right])]) {
@@ -310,7 +340,7 @@
     const claims = $("scenario-claims");
     claims.replaceChildren();
     for (const claim of state.scenario?.claims || []) claims.append(element("span", "claim-chip", statement(claim)));
-    if (!state.scenario) claims.append(element("p", "proof-note", "No hypothetical scenarios are supplied in this dataset."));
+    if (!state.scenario) claims.append(element("p", "proof-note", "No scoring examples are supplied in this dataset."));
     const select = $("resolution-select");
     select.replaceChildren();
     for (const [index, resolution] of (state.scenario?.resolutions || []).entries()) select.add(new Option(statement(resolution), String(index)));
@@ -324,7 +354,7 @@
     const trace = $("scenario-trace");
     trace.replaceChildren();
     if (!resolution) {
-      trace.append(element("p", "proof-note", "This scenario resolves no additional pairs under the current draft baseline."));
+      trace.append(element("p", "proof-note", "This scoring example resolves no additional pairs under the current draft baseline."));
       return;
     }
     const proof = resolveProof(resolution.proof, true);
@@ -377,7 +407,7 @@
       }
       sourceLinks(detail, step.source_ids);
       if (!step.parents?.length && !step.source_ids?.length) {
-        detail.append(element("p", "", /assum|claim|submission|hypothes/i.test(String(step.reason)) ? "Assumed for this scenario; not an admitted theorem." : "A logical or definitional step. No separate literature source is attached."));
+        detail.append(element("p", "", /assum|claim|submission|hypothes/i.test(String(step.reason)) ? "Assumed for this scoring example; not a verified model output." : "A logical or definitional step. No separate literature source is attached."));
       }
       if (step.id) detail.append(element("p", "", `Record: ${step.id}`));
       details.append(detail);
@@ -385,7 +415,7 @@
       wrap.append(details);
       target.append(wrap);
     }
-    if (!compact) target.append(element("p", "proof-note", "This trace checks the recorded implications. It does not supply a semantic Lean proof of an assumed breakthrough."));
+    if (!compact) target.append(element("p", "proof-note", "This trace records the implication steps. The assumed model output still needs a verified mathematical proof."));
   }
 
   function renderSources() {

@@ -1,6 +1,6 @@
 # Formalization status
 
-**The reasoning kernel is checked in Lean. The full benchmark is not yet formally certified.** The core library has concrete operational definitions for 46 of the 50 catalog entries. The four quantum definitions, most cited complexity theorems, the historical eligibility audit, and a formal ZFC implementation remain unfinished. Official admission must stay disabled until those obligations are met.
+**All 50 class definitions compile in Lean, and the reasoning kernel is checked. The benchmark is not yet formally certified.** The Mathlib-free core supplies 46 operational definitions; the optional quantum project supplies the other four and a complete interpretation. Textbook-model equivalences, general quantum gate unitarity, most cited complexity theorems, historical eligibility certification, and a formal ZFC implementation remain unfinished. Definitions and conditional inference proofs do not establish a submitted research result.
 
 ## What has been proved
 
@@ -14,7 +14,7 @@ The library defines a language as `List Bool → Prop` and a complexity class as
 
 `lean/Examples.lean` checks accepted and rejected certificates and verifies that duplicate eligibility entries cannot create extra points. `lean/AxiomAudit.lean` prints the kernel dependencies of the principal theorems. The audit contains only standard Lean foundations (`propext`, `Classical.choice`, and `Quot.sound`) where needed; there are no project-specific axioms or incomplete proofs.
 
-## Concrete definitions: 46 of 50
+## Concrete definitions: all 50
 
 `Machines.lean` defines finite-control deterministic and nondeterministic machines with a read-only input tape, endmarkers, a two-way work tape, finite transition tables, and explicit time and work-space bounds. Initialization cannot inspect an arbitrary language, and no oracle is hidden in the model.
 
@@ -32,6 +32,8 @@ The library defines a language as `List Bool → Prop` and a complexity class as
 
 `Statistical.lean` uses two concrete polynomial-time samplers and exact finite statistical distance. Repeated outputs retain their probability mass; only the support is deduplicated. Its SZK definition uses the Statistical Difference characterization on total languages. Equivalence to interactive statistical zero knowledge remains unproved.
 
+The optional `quantum/` project adds BQP, QCMA, QMA, and coQMA using Mathlib's exact real and complex arithmetic. States are complex amplitudes on finite computational basis strings. H, T, X, and CNOT have explicit actions; T uses the exact phase `(1 + i) / sqrt(2)`. Concrete polynomial-time output transducers generate complete circuit descriptions on unary input length. Witness and ancilla lengths are explicit polynomials. QCMA uses classical basis witnesses; QMA quantifies over normalized complex witness states. Acceptance is a finite sum of squared amplitudes, with the total-language 2/3 and 1/3 completeness/soundness gaps.
+
 | Catalog entries | Definition supplied |
 | --- | --- |
 | L, P, PSPACE, E, EXP, EXPSPACE | Deterministic tape-machine resource classes |
@@ -47,18 +49,21 @@ The library defines a language as `List Bool → Prop` and a complexity class as
 | MA, coMA, AM, coAM, NP/poly | Concrete verifiers, finite witness/randomness bounds, and length advice where specified |
 | Σ₂P, Π₂P, Δ₂P, Θ₂P, PH | Concrete oracle machines and the polynomial hierarchy |
 | SZK | Concrete uniform samplers with the Statistical Difference gap on every input |
+| BQP, QCMA, QMA, coQMA | Uniform finite quantum circuits and explicit classical or complex witness registers; optional Mathlib project |
 
-`Definitions.lean` exposes this as `operationalDefinition : ClassId → Option ComplexityClass`. Missing entries return `none`. Lean checks that precisely 46 entries have definitions. It also defines the compatibility obligation that a future complete interpretation must satisfy.
+The core's `Definitions.lean` exposes `operationalDefinition : ClassId → Option ComplexityClass` and proves that it supplies 46 entries. Its four quantum entries remain `none` so the core does not acquire a Mathlib dependency.
+
+Import `InclusionQuantum` to obtain `InclusionBench.Quantum.completeInterpretation : Interpretation ClassId`. It explicitly assigns a concrete definition to every catalog constructor, without a default replacement class. `complete_agrees_with_core` proves agreement with all 46 core entries; `every_class_defined` and `all_fifty_defined` establish complete coverage. These are checked theorems about the supplied definitions, not proofs of textbook equivalence or of the historical class lattice.
 
 These definitions fix concrete conventions; they do not prove equivalence with every textbook machine or encoding convention. Several elementary containments are proved directly: deterministic resource-bound monotonicity, SC ⊆ P, E ⊆ EXP, NE ⊆ NEXP, NC¹ ⊆ P/poly, AC⁰ ⊆ ACC⁰, UP ⊆ FewP, SPP ⊆ PP, SPP ⊆ AWPP, RP ⊆ SBP, Θ₂P ⊆ Δ₂P, and Σ₂P ⊆ PH for the supplied definitions. Deep literature results have not been recreated in Lean.
 
-The four missing definitions are QCMA, QMA, coQMA, and BQP. Merely having a constructor in `Catalog.lean` does not supply one of these definitions.
+The quantum project also proves normalization of computational basis states, injectivity of gate records, and that applying X twice restores the state. General gate unitarity, preservation of normalization by arbitrary circuits, amplification, and equivalence with conventional quantum models remain unproved. In particular, the presence of an `acceptanceProbability` definition does not mean the library has proved all probability invariants for it.
 
 ## What the Python-to-Lean bridge certifies
 
 The Python exporter turns a selected closure trace into a Lean theorem with visible hypotheses. Structural steps call proved Lean lemmas; submitted statements, cited baseline facts, cited conditional rules, and complement identities are explicit assumptions. The generated file includes the dataset digest and an axiom audit.
 
-A successful Lean check establishes that the selected consequence follows from those assumptions. It does **not** establish that a submitted theorem is true, that a citation proves its encoded statement, that the full Python implementation is verified, or that the pair was open on September 1, 2026. Every cited leaf and every cited rule still needs its own semantic proof. The current bridge takes an explicit `Interpretation ClassId`; it does not silently fill the four missing definitions.
+A successful Lean check establishes that the selected consequence follows from those assumptions. It does **not** establish that a submitted theorem is true, that a citation proves its encoded statement, that the full Python implementation is verified, or that the pair was open on September 1, 2026. Every cited leaf and every cited rule still needs its own semantic proof. The current bridge takes an explicit `Interpretation ClassId`. The complete quantum interpretation can supply that argument, but doing so does not discharge the theorem's baseline or submission hypotheses.
 
 ## Independence and ZFC
 
@@ -68,7 +73,7 @@ The repository does not yet encode ZFC syntax, axioms, or derivations, nor the t
 
 ## Reproduce the checks
 
-The project pins [Lean 4.19.0](https://github.com/leanprover/lean4/releases/tag/v4.19.0) and needs only its bundled libraries. From the repository root:
+Both projects pin [Lean 4.19.0](https://github.com/leanprover/lean4/releases/tag/v4.19.0). The core needs only Lean's bundled libraries. From the repository root:
 
 ```sh
 sh lean/build.sh
@@ -80,6 +85,16 @@ If the compiler is not on the search path:
 LEAN_BIN=/absolute/path/to/lean sh lean/build.sh
 ```
 
-The script compiles modules sequentially with one Lean worker, runs the examples, and prints the axiom audit. It does not download or build Mathlib. Generated `.olean` files are build products and must not be committed.
+The core script compiles modules sequentially with one Lean worker, runs the examples, and prints the axiom audit. It does not download or build Mathlib.
 
-The implementation was checked with the official macOS arm64 Lean 4.19.0 release. Every module, the example checks, and the axiom audit compiled successfully. See [Lean's account of kernel validation](https://lean-lang.org/doc/reference/latest/) for the distinction between checking a proof term and just executing a program.
+For all 50 definitions, install the optional dependencies and run the quantum checks:
+
+```sh
+cd quantum
+sh setup.sh
+sh build.sh
+```
+
+The quantum project pins Mathlib v4.19.0 at commit `c44e0c8ee63ca166450922a373c7409c5d26b00b` and locks its dependencies. Its build also checks the core serially. See [the quantum README](../quantum/README.md) for cache setup and a Linux CPU-affinity command that constrains setup as well as compilation. Generated `.olean` files and downloaded dependency caches are build products and must not be committed.
+
+The core was checked with the official macOS arm64 Lean 4.19.0 release. The complete core-plus-quantum build and `quantum/AxiomAudit.lean` were checked on the authorized Ubuntu host with one CPU. Both builds succeeded; their audited theorems use only standard Lean foundations, with no custom axioms or incomplete proofs. Mathlib setup and quantum compilation did not run on the local Mac. See [Lean's account of kernel validation](https://lean-lang.org/doc/reference/latest/) for the distinction between checking a proof term and just executing a program.

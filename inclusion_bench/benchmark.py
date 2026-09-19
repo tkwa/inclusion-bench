@@ -83,6 +83,22 @@ class Benchmark:
             closure.add(Atom.read(raw), "submission")
         return closure.saturate()
 
+    def certified_eligibility(self) -> set[tuple[str, str]]:
+        if self.policy["release_stage"] != "certified":
+            raise InvalidEvidence("Official scoring is disabled: cutoff audit and semantic Lean formalization are incomplete.")
+        manifest = read_json(self.root / "data" / "eligibility.json")
+        if manifest.get("dataset_sha256") != self.digest or manifest.get("status") != "certified":
+            raise InvalidEvidence("No certified eligibility manifest for this dataset")
+        pairs = [(p["left"], p["right"]) for p in manifest["pairs"]]
+        if len(pairs) != len(set(pairs)) or set(pairs) != {(a, b) for a in self.ids for b in self.ids}:
+            raise InvalidEvidence("Certified manifest must classify every ordered pair exactly once")
+        eligible = {(p["left"], p["right"]) for p in manifest["pairs"] if p["status"] == "open_at_cutoff"}
+        if not eligible <= self.unresolved:
+            raise InvalidEvidence("Known baseline pairs cannot be eligible")
+        if any(p["status"] not in {"open_at_cutoff", "inclusion", "separation", "independence"} for p in manifest["pairs"]):
+            raise InvalidEvidence("Certified manifest contains unreviewed pairs")
+        return eligible
+
     def score(self, submission: dict, official: bool = False) -> dict:
         claims = submission.get("claims")
         if not isinstance(claims, list):
@@ -91,23 +107,11 @@ class Benchmark:
             raise InvalidEvidence("At most 2,500 claims are allowed")
         if official:
             # A draft never awards public points, irrespective of submitted metadata.
-            if self.policy["release_stage"] != "certified":
-                raise InvalidEvidence("Official scoring is disabled: cutoff audit and semantic Lean formalization are incomplete. Use scenario mode to inspect consequences.")
-            manifest = read_json(self.root / "data" / "eligibility.json")
+            eligible = self.certified_eligibility()
             reviews = read_json(self.root / "data" / "reviews.json")
-            if manifest.get("dataset_sha256") != self.digest or manifest.get("status") != "certified":
-                raise InvalidEvidence("No certified eligibility manifest for this dataset")
             review = next((r for r in reviews if r.get("submission_sha256") == canonical_hash(submission) and r.get("dataset_sha256") == self.digest and r.get("status") == "accepted"), None)
             if review is None:
                 raise InvalidEvidence("No accepted maintainer review for this exact submission and dataset")
-            pairs = [(p["left"], p["right"]) for p in manifest["pairs"]]
-            if len(pairs) != len(set(pairs)) or set(pairs) != {(a, b) for a in self.ids for b in self.ids}:
-                raise InvalidEvidence("Certified manifest must classify every ordered pair exactly once")
-            eligible = {(p["left"], p["right"]) for p in manifest["pairs"] if p["status"] == "open_at_cutoff"}
-            if not eligible <= self.unresolved:
-                raise InvalidEvidence("Known baseline pairs cannot be eligible")
-            if any(p["status"] not in {"open_at_cutoff", "inclusion", "separation", "independence"} for p in manifest["pairs"]):
-                raise InvalidEvidence("Certified manifest contains unreviewed pairs")
         else:
             eligible = self.unresolved
         result = self.closure(claims)

@@ -407,11 +407,11 @@
       "definition": "Total languages verified by polynomial-time uniform quantum circuits and polynomial-length classical witnesses, with completeness ≥ 2/3 and soundness ≤ 1/3. Fix a standard finite universal algebraic gate set.",
       "universe": "total binary languages",
       "uniformity": "uniform",
-      "formalization_status": "specification_only",
+      "formalization_status": "operational_model_defined_equivalence_unproved",
       "definition_source_ids": [
         "q-watrous08"
       ],
-      "lean_definition_file": null
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
     },
     {
       "id": "QMA",
@@ -420,11 +420,11 @@
       "definition": "Total languages verified by polynomial-time uniform quantum circuits and polynomial-qubit quantum witnesses, with completeness ≥ 2/3 and soundness ≤ 1/3. Fix a standard finite universal algebraic gate set.",
       "universe": "total binary languages",
       "uniformity": "uniform",
-      "formalization_status": "specification_only",
+      "formalization_status": "operational_model_defined_equivalence_unproved",
       "definition_source_ids": [
         "q-watrous08"
       ],
-      "lean_definition_file": null
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
     },
     {
       "id": "coQMA",
@@ -433,11 +433,11 @@
       "definition": "Complements of total languages in QMA.",
       "universe": "total binary languages",
       "uniformity": "uniform",
-      "formalization_status": "specification_only",
+      "formalization_status": "operational_model_defined_equivalence_unproved",
       "definition_source_ids": [
         "q-watrous08"
       ],
-      "lean_definition_file": null
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
     },
     {
       "id": "BQP",
@@ -446,11 +446,11 @@
       "definition": "Total languages decided by polynomial-time uniform quantum circuits with error at most 1/3 on every input. Fix a standard finite universal algebraic gate set.",
       "universe": "total binary languages",
       "uniformity": "uniform",
-      "formalization_status": "specification_only",
+      "formalization_status": "operational_model_defined_equivalence_unproved",
       "definition_source_ids": [
         "q-watrous08"
       ],
-      "lean_definition_file": null
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
     },
     {
       "id": "SBP",

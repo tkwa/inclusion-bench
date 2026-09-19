@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InclusionBench adapter response v1",
+  "description": "One JSON object on adapter standard output. The adapter writes referenced files in the run directory; the runner computes their SHA-256 digests. A proof_candidate is an unverified model claim, not an accepted proof or score. Diagnostic output belongs on standard error.",
+  "type": "object",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "unsolved",
+        "proof_candidate"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/atom"
+      },
+      "default": []
+    },
+    "artifacts": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/relativePath"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "proof_candidate"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "claims",
+          "artifacts"
+        ],
+        "properties": {
+          "claims": {
+            "minItems": 1
+          },
+          "artifacts": {
+            "minItems": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "claims": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "atom": {
+      "type": "object",
+      "required": [
+        "relation",
+        "left",
+        "right"
+      ],
+      "properties": {
+        "relation": {
+          "enum": [
+            "inclusion",
+            "separation",
+            "independence"
+          ]
+        },
+        "left": {
+          "enum": [
+            "AC0",
+            "ACC0",
+            "TC0",
+            "NC1",
+            "L",
+            "NL",
+            "LogCFL",
+            "NC",
+            "SC",
+            "P",
+            "RP",
+            "coRP",
+            "ZPP",
+            "BPP",
+            "UP",
+            "coUP",
+            "NP",
+            "coNP",
+            "FewP",
+            "SPP",
+            "CeqP",
+            "PP",
+            "parityP",
+            "AWPP",
+            "LWPP",
+            "WPP",
+            "MA",
+            "coMA",
+            "AM",
+            "coAM",
+            "QCMA",
+            "QMA",
+            "coQMA",
+            "BQP",
+            "SBP",
+            "SZK",
+            "NPcapcoNP",
+            "Sigma2P",
+            "Pi2P",
+            "Delta2P",
+            "Theta2P",
+            "PH",
+            "Ppoly",
+            "NPpoly",
+            "PSPACE",
+            "EXP",
+            "NEXP",
+            "EXPSPACE",
+            "E",
+            "NE"
+          ]
+        },
+        "right": {
+          "enum": [
+            "AC0",
+            "ACC0",
+            "TC0",
+            "NC1",
+            "L",
+            "NL",
+            "LogCFL",
+            "NC",
+            "SC",
+            "P",
+            "RP",
+            "coRP",
+            "ZPP",
+            "BPP",
+            "UP",
+            "coUP",
+            "NP",
+            "coNP",
+            "FewP",
+            "SPP",
+            "CeqP",
+            "PP",
+            "parityP",
+            "AWPP",
+            "LWPP",
+            "WPP",
+            "MA",
+            "coMA",
+            "AM",
+            "coAM",
+            "QCMA",
+            "QMA",
+            "coQMA",
+            "BQP",
+            "SBP",
+            "SZK",
+            "NPcapcoNP",
+            "Sigma2P",
+            "Pi2P",
+            "Delta2P",
+            "Theta2P",
+            "PH",
+            "Ppoly",
+            "NPpoly",
+            "PSPACE",
+            "EXP",
+            "NEXP",
+            "EXPSPACE",
+            "E",
+            "NE"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![/\\\\])(?![A-Za-z]:)(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$))[^\\u0000]+$",
+      "description": "A relative file path inside the run directory. Absolute paths and parent traversal are forbidden. The runner separately checks file existence and containment after resolving symlinks."
+    }
+  },
+  "additionalProperties": true
+}

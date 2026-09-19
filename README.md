@@ -1,42 +1,51 @@
 # InclusionBench
 
-**One point for resolving one open complexity-class inclusion. Consequences count.**
+**An AI mathematics benchmark built from open questions in complexity theory.**
 
-InclusionBench turns a complexity breakthrough into a set of resolved ordered pairs. A proof that `NP ⊄ BPP`, for example, also establishes `PSPACE ⊄ P`. The scorer follows those implications and counts each eligible pair once.
+Give an AI the frozen task suite, a fixed configuration and a recorded budget. For each ordered pair of complexity classes, ask it to prove inclusion, prove non-inclusion, or prove independence from ZFC. Verify its proof artifacts, then award one point for each eligible question its answers resolve. Proven consequences count; duplicate resolutions count once within the run.
 
-**This is a working research preview, not a certified competition release.** It has 50 classes, a cited knowledge base, a tested scorer, a Lean proof library and an interactive leaderboard. The September 1, 2026 open-problem audit and the full operational Lean formalization are unfinished. Official scoring therefore refuses submissions. Scenario scores assume their claims and show provisional impact; they never award public points.
+The leaderboard entry is a **model run**. A breakthrough with broad consequences can earn many points because that run has solved many benchmark questions.
 
-[Explore the leaderboard](https://tkwa.github.io/inclusion-bench/) · [Scoring specification](docs/SPEC.md) · [Formalization status](docs/formalization.md) · [Coverage audit](research/coverage-notes.md)
+[Leaderboard and task explorer](https://tkwa.github.io/inclusion-bench/) · [Evaluation protocol](docs/EVALUATION.md) · [Scoring specification](docs/SPEC.md) · [Formalization status](docs/formalization.md)
 
-## Try it
+**This is a research preview. Official evaluation is not open yet.** The repository supplies 50 class definitions, 1,387 provisional tasks, a cited baseline, an AI adapter harness, a tested consequence scorer, compiled Lean foundations and a website. Certifying the September 1, 2026 open-problem set, proving the remaining semantic and literature obligations, and completing proof admission remain substantive work. Unknown to this dataset does not mean certified open. No evaluated AI runs or invented model scores appear on the leaderboard.
 
-Python 3.11 or later; the scorer has no runtime dependencies. Run from the repository root:
+## Run an evaluation
 
-```sh
-python3 -m inclusion_bench.cli validate
-python3 -m inclusion_bench.cli score examples/bpp-strictly-below-np.json
-python3 -m inclusion_bench.cli explain separation PSPACE P \
-  --assuming examples/bpp-strictly-below-np.json
-python3 -m unittest discover -s tests -v
-```
-
-The score response contains every resolved pair and its derivation, including the source IDs and submitted premises. A contradictory claim, unknown class, or attempt to turn an independence result into a normal negative edge is rejected. `--official` fails closed in this release.
-
-To view the website locally:
+Python 3.11 or later; no Python runtime dependencies. From the repository root:
 
 ```sh
-python3 -m http.server 8000 --directory web
+python3 -m inclusion_bench validate
+python3 -m inclusion_bench tasks --output evaluation/tasks.json
+python3 -m inclusion_bench run-adapter \
+  --model 'Infrastructure fixture' --model-version 'not-an-AI' \
+  --task inclusion.NP.P --wall-seconds 60 --track smoke-test \
+  --output /tmp/inclusion-fixture \
+  -- python3 "$PWD/evaluation/unsolved_adapter.py"
+python3 -m inclusion_bench evaluate-run /tmp/inclusion-fixture/run.json
 ```
 
-Open `http://localhost:8000`. The entire site is static. Copy `web/` to an existing website or embed its deployed URL in an iframe. It makes no requests to analytics, fonts, model APIs, or a backend.
+The included adapter always returns `unsolved`. It tests the infrastructure and is never a model result. The output directory must be new. Replace the command after `--` with a trusted model adapter; use `--all-tasks` for the full suite. Each invocation receives a JSON task, the class catalog and the known implication rules on standard input. It returns `unsolved` or a `proof_candidate` with exact claims and relative proof-artifact paths. [Adapter schema](schemas/adapter-response.schema.json) · [Run schema](schemas/ai-run.schema.json) · [Prompt template](evaluation/prompt-template.md).
+
+The Linux/macOS harness enforces a shared wall-time deadline and records prompts, responses, evidence hashes and run identity. CPU, memory, model-token and tool-access enforcement belong to the adapter's execution environment and must be independently recorded and reviewed. Tool-assisted and closed-book runs are separate tracks; partial runs are not ranked as full-suite runs.
+
+A model's `accepted: true` field earns nothing. Only exact proof artifacts admitted through the maintainer review registry contribute to provisional verified points. Official scores additionally require a certified dataset and a review of the run's provenance, configuration and budget. The draft returns an unavailable official score, distinct from a verified zero.
 
 ## What earns a point
 
-The target for ordered pair `(A, B)` is **A ⊆ B**, where both are classes of total binary decision languages. Resolving it means proving the inclusion, proving its negation, or proving independence from ZFC in an explicitly specified metatheory. Only pairs certified open at the cutoff are eligible.
+The target for `(A, B)` is **A ⊆ B**, ordinary inclusion between classes of total binary decision languages. Only pairs certified open at the cutoff are eligible. A proof of its negation or an admissible ZFC-independence metatheorem also resolves the target.
 
-Strict inclusion `A ⊊ B` consists of two claims: `A ⊆ B` and `B ⊄ A`. Known directions earn nothing. Proven consequences may resolve many other eligible pairs; duplicate proofs do not multiply credit.
+Strict inclusion `A ⊊ B` means `A ⊆ B` and `B ⊄ A`. Known directions earn nothing. Accepted proofs from one run are pooled before closure, so implications can combine answers to different tasks. Results from different runs are never combined into a fictional model score.
 
-Pre-cutoff results score zero by definition. The baseline's zero is a reference row, not evidence that no public research has advanced since the cutoff. No model runs or accepted post-cutoff results have been entered in this preview.
+For example, a proof of `BPP ⊊ NP` would also establish `P ⊊ PSPACE`. On the provisional dataset its closure resolves 196 previously unresolved ordered pairs. This is a scoring example, not an AI achievement. Inspect it with:
+
+```sh
+python3 -m inclusion_bench score examples/bpp-strictly-below-np.json
+python3 -m inclusion_bench explain separation PSPACE P \
+  --assuming examples/bpp-strictly-below-np.json
+```
+
+Pre-cutoff knowledge scores zero by definition. The historical zero appears separately from the model leaderboard; it makes no claim about developments after the cutoff. The questions and rules are public, so this is a white-box benchmark with possible training contamination, unlike a hidden test set. New answers still need valid proofs.
 
 ## The 50 classes
 
@@ -52,27 +61,33 @@ Pre-cutoff results score zero by definition. The baseline's zero is a reference 
 | Polynomial hierarchy | Θ₂P, Δ₂P, Σ₂P, Π₂P, PH |
 | Exponential resources | E, NE, EXP, NEXP, PSPACE, EXPSPACE |
 
-The exact conventions are in [the catalog](data/classes.json). Nonuniform classes can contain undecidable languages, so they must not be silently included in EXP. Quantum and interactive classes here contain **total languages**; a promise-only separation need not resolve a target.
+The [catalog](data/classes.json) fixes every convention. Nonuniform classes can contain undecidable languages and must not be silently included in EXP. Promise-only, fixed-exponent, search or algebraic advances need not resolve these total-language targets. The [coverage stress test](research/coverage.json) maps 36 of 50 illustrative advances; broad coverage is the aim, not exhaustive coverage of a speculative top 50.
 
-This roster covers many central structural questions. It cannot guarantee coverage of the “50 most likely advances”: that population has no established ranking, and important advances concern fixed exponents, individual problems, search, promise problems, or arithmetic circuits. The [50-scenario stress test](research/coverage.json) records 36 mappings and 14 uncovered cases instead of claiming complete coverage.
-
-## Data and verification
+## Data and Lean
 
 - [`data/classes.json`](data/classes.json): stable IDs, mathematical specifications, uniformity and complement identities.
-- [`data/knowledge.json`](data/knowledge.json): cited inclusion/separation seeds and conditional Horn rules.
-- [`data/eligibility.json`](data/eligibility.json): all 2,500 ordered pairs; unresolved entries are explicitly **unreviewed**, not automatically open.
-- [`data/policy.json`](data/policy.json): cutoff, credit and admission policy.
-- [`research/`](research/): literature records, locators, derivations and audit gaps.
-- [`lean/`](lean/): compiled semantic and scoring theorems, machine/circuit foundations and a partial class interpretation. Citations are not disguised as proved theorems.
+- [`data/knowledge.json`](data/knowledge.json): 133 cited seeds and 138 conditional rules from 40 source records.
+- [`data/eligibility.json`](data/eligibility.json): all 2,500 pairs, with 708 inclusions, 405 non-inclusions and 1,387 unreviewed entries after closure.
+- [`evaluation/tasks.json`](evaluation/tasks.json): prompts bound to the dataset and formalization bundle by a taskset hash.
+- [`research/`](research/): primary-source literature records, locators, derivations and audit gaps.
+- [`lean/`](lean/) and [`quantum/`](quantum/): concrete operational definitions for all 50 classes, with compiled closure, certificate and scoring theorems. Textbook-equivalence proofs and most deep baseline theorems remain unfinished.
 
-Regenerate derived data with `python3 scripts/build_release.py`. CI checks the Python tests, reproducible data and Lean library using one worker for each build. [Development instructions](docs/DEVELOPMENT.md) explain proof export and website deployment.
+The dependency-free Lean core covers 46 classes. The pinned Mathlib extension supplies the four quantum classes and a complete interpretation agreeing with the core. Both builds passed with one compiler worker. The axiom audits contain only standard Lean foundations; no project-specific axioms or `sorry` proofs are used.
 
-The Python closure can export a target's actual inference trace to a Lean theorem. Baseline results, submitted claims, cited conditional rules and complement identities appear as explicit hypotheses; transitivity, separation propagation and contraposition are then checked by Lean. This verifies the inference **conditional on those hypotheses**. It does not verify a claimed solution to P versus NP.
+The scorer can export a consequence's actual inference trace to Lean. Cited baseline results, submitted claims and substantive conditional rules appear as explicit hypotheses. Lean checks the deduction from them; it does not turn an unverified claim into a proof. ZFC independence has an abstract interface, while an actual ZFC encoding remains unfinished.
 
-## Before official scoring opens
+## Website and development
 
-[The release checklist](docs/RELEASE.md) tracks the remaining work: complete semantic definitions, prove or independently review the historical results, certify every pair's cutoff status, implement actual ZFC syntax and proof semantics, and admit proof artifacts through review. The current implementation does not substitute a hash or an `accepted: true` field for mathematical verification.
+```sh
+python3 scripts/build_release.py
+python3 -m unittest discover -s tests -v
+python3 scripts/check_generated.py
+python3 scripts/check_lean.py
+python3 -m http.server 8000 --directory web
+```
 
-The chosen name is **InclusionBench**. Other names considered: ClassFrontier, ComplexityAtlas and SeparationBench.
+Open `http://localhost:8000`. The static site has a model leaderboard, evaluation protocol, pair matrix, proof traces and secondary scoring examples. Copy `web/` into your website or embed the [deployed page](https://tkwa.github.io/inclusion-bench/). It has no analytics, external fonts, model API calls or backend. [Development and embedding](docs/DEVELOPMENT.md) · [Release obligations](docs/RELEASE.md).
+
+The chosen name is **InclusionBench**. Alternatives: **ClassFrontier**, **ComplexityFrontier**, **SeparationBench**.
 
 Original code and benchmark text are MIT-licensed. Linked papers retain their authors' copyrights.

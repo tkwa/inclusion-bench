@@ -11,6 +11,7 @@
   "baseline_meaning": "Historical pre-cutoff results earn zero by definition. Zero does not assert that no post-cutoff public result exists.",
   "scenario_eligibility": "Absent from conservative baseline closure; unreviewed, not certified open.",
   "independence": "Separate metatheorem establishing neither ZFC proof of inclusion nor ZFC proof of its negation, under an explicitly documented metatheory. It does not enter ordinary relation closure.",
-  "credit": "Union of resolved eligible ordered pairs per submission or system; no duplicate credit for multiple proofs or dates.",
-  "admission": "Maintainer-reviewed proof artifact and exact statement, frozen dataset hash, verified proof audit and certified per-pair eligibility are required. Current draft fails closed."
+  "credit": "Union of resolved eligible ordered pairs from accepted proof artifacts within one run; no duplicate credit and no pooling across runs.",
+  "admission": "Maintainer-reviewed proof artifact and exact statement, frozen dataset hash, verified proof audit and certified per-pair eligibility are required. Current draft fails closed.",
+  "unit_of_evaluation": "One exact AI model snapshot and configuration in one recorded, budgeted evaluation run."
 }

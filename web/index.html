@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An open benchmark for progress on complexity-class inclusions, with a sourced baseline, transparent scoring and a public leaderboard.">
+  <meta name="description" content="A public benchmark for AI mathematical research: evaluate model runs on open complexity-class inclusions and credit their verified consequences.">
   <meta name="theme-color" content="#112d3b">
-  <title>Inclusion Bench — the complexity frontier</title>
+  <title>Inclusion Bench — AI complexity-theory benchmark</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -14,7 +14,7 @@
   <header class="masthead">
     <div class="masthead-inner">
       <a class="wordmark" href="#" aria-label="Inclusion Bench home"><span class="mark" aria-hidden="true">⊆</span><span id="site-name">Inclusion Bench</span></a>
-      <nav aria-label="Main navigation"><a href="#leaderboard">Leaderboard</a><a href="#frontier">The frontier</a><a href="#scenarios">Scenarios</a><a href="#method">Method</a></nav>
+      <nav aria-label="Main navigation"><a href="#leaderboard">Leaderboard</a><a href="#evaluation">Evaluation</a><a href="#frontier">Task suite</a><a href="#scenarios">Scoring examples</a></nav>
       <a class="repo-link" href="https://github.com/tkwa/inclusion-bench" id="repo-link">Repository <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -23,17 +23,17 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Open research benchmark <span class="tag tag-dark">Draft</span></p>
-          <h1 id="hero-title">How much of the frontier<br> does a proof resolve?</h1>
-          <p class="hero-description">One point for each previously open class inclusion resolved. Its consequences count too.</p>
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> AI mathematics benchmark <span class="tag tag-dark">Draft</span></p>
+          <h1 id="hero-title">Can AI resolve the open<br> questions of complexity theory?</h1>
+          <p class="hero-description">Evaluate a model on open complexity-class inclusions. Score the distinct questions its verified proofs resolve, including consequences.</p>
           <div class="hero-meta"><span>Baseline cutoff <strong id="cutoff">September 1, 2026</strong></span><span class="meta-divider" aria-hidden="true"></span><span id="version">Version —</span></div>
         </div>
-        <div class="hero-equation" aria-hidden="true"><span class="equation-caption">THE QUESTION BEHIND EVERY CELL</span><div><span class="equation-a">A</span><span class="equation-symbol">⊆</span><span class="equation-b">B</span><span class="equation-question">?</span></div><p>A theorem changes more than one square.</p></div>
+        <div class="hero-equation" aria-hidden="true"><span class="equation-caption">THE QUESTION BEHIND EVERY CELL</span><div><span class="equation-a">A</span><span class="equation-symbol">⊆</span><span class="equation-b">B</span><span class="equation-question">?</span></div><p>One run. Every verified consequence.</p></div>
       </div>
     </section>
 
     <div class="page-content">
-      <aside class="draft-banner" aria-label="Benchmark release status"><span class="tag">Draft release</span><p><strong>Official admissions are paused.</strong> The cutoff audit and semantic formalizations are incomplete. Scores in the scenario explorer are hypothetical.</p><a href="#method">Read the scope <span aria-hidden="true">↓</span></a></aside>
+      <aside class="draft-banner" aria-label="Benchmark release status"><span class="tag">Draft release</span><p><strong>Official evaluations are not open yet.</strong> The cutoff audit and semantic formalizations are incomplete. Scoring examples are hypothetical, not model results.</p><a href="#method">Read the scope <span aria-hidden="true">↓</span></a></aside>
 
       <div id="load-error" class="error-panel" role="alert" hidden><h2>The benchmark data could not be loaded.</h2><p id="load-error-detail">Serve this directory over HTTP with benchmark.json beside this page.</p><button type="button" id="retry-load">Try again</button></div>
       <p id="loading" role="status" class="loading">Loading the benchmark…</p>
@@ -47,12 +47,25 @@
         </section>
 
         <section id="leaderboard" class="section" aria-labelledby="leaderboard-title">
-          <div class="section-heading"><div><p class="eyebrow">01 / Public record</p><h2 id="leaderboard-title">Leaderboard</h2></div><span class="tag tag-outline">Verified submissions only</span></div>
-          <div class="leaderboard-card"><div class="table-scroll"><table class="leaderboard-table"><caption class="sr-only">Official leaderboard, currently limited to the public baseline</caption><thead><tr><th scope="col">Rank</th><th scope="col">Entry</th><th scope="col" class="number-column">Points</th><th scope="col">Record</th></tr></thead><tbody id="leaderboard-body"></tbody></table></div><div class="leaderboard-foot"><span class="small-dot" aria-hidden="true"></span><p>Zero establishes the reference point. It does not certify that every unreviewed pair was open at the cutoff.</p></div></div>
+          <div class="section-heading"><div><p class="eyebrow">01 / Model evaluations</p><h2 id="leaderboard-title">AI leaderboard</h2></div><span class="tag tag-outline">Verified runs only</span></div>
+          <p class="section-intro">One row per model version and evaluation run. A run earns credit for the distinct questions resolved by its verified outputs; results from separate runs are not pooled.</p>
+          <div class="leaderboard-card"><div class="table-scroll"><table class="leaderboard-table"><caption class="sr-only">Official AI leaderboard. Each row identifies a model version and one evaluation run.</caption><thead><tr><th scope="col">Rank</th><th scope="col">Model / version</th><th scope="col">Evaluation run</th><th scope="col" class="number-column">Verified points</th><th scope="col">Verification</th></tr></thead><tbody id="leaderboard-body"></tbody></table></div><div class="leaderboard-foot"><span class="small-dot" aria-hidden="true"></span><p>Proofs and their implications are deduplicated within the run. Each eligible ordered pair is worth one point.</p></div></div>
+          <aside class="baseline-reference" aria-label="Historical knowledge reference, not a model evaluation"><div><span class="eyebrow">Reference only · not an AI evaluation</span><strong id="baseline-name">Pre-cutoff public knowledge</strong><p id="baseline-description">Known mathematics earns no new-resolution points by construction.</p></div><div class="baseline-value"><strong id="baseline-score">0</strong><span>reference points</span></div></aside>
+        </section>
+
+        <section id="evaluation" class="section evaluation-section" aria-labelledby="evaluation-title">
+          <div class="section-heading"><div><p class="eyebrow">02 / Evaluation protocol</p><h2 id="evaluation-title">One model. One declared run.</h2></div><span class="tag tag-outline">Public white-box suite</span></div>
+          <div class="protocol-grid">
+            <article><span class="method-number">01</span><h3>Give it the open tasks.</h3><p>Use a fixed public snapshot of the eligible inclusion questions, definitions and known implications. The model may inspect the suite; this is not a hidden test set.</p></article>
+            <article><span class="method-number">02</span><h3>Declare the conditions.</h3><p>Record the model version, tools and resource budget before collecting answers. Preserve the prompts and outputs as one identified evaluation run.</p></article>
+            <article><span class="method-number">03</span><h3>Verify its proofs.</h3><p>Require a proof, disproof or independence result for each claimed resolution. Mathematical review and the required formal checks decide what is accepted.</p></article>
+            <article><span class="method-number">04</span><h3>Count all consequences.</h3><p>Combine the run's accepted proofs with reviewed implications. Award one point per distinct eligible pair, whether resolved directly or as a consequence.</p></article>
+          </div>
+          <p class="section-intro"><a href="https://github.com/tkwa/inclusion-bench/blob/main/docs/EVALUATION.md">Read the full evaluation protocol ↗</a> · <a href="https://github.com/tkwa/inclusion-bench/blob/main/evaluation/tasks.json">Get the provisional task suite ↗</a></p>
         </section>
 
         <section id="frontier" class="section" aria-labelledby="frontier-title">
-          <div class="section-heading"><div><p class="eyebrow">02 / The landscape</p><h2 id="frontier-title">Every direction matters.</h2></div><p class="section-aside">Rows are <i>A</i>. Columns are <i>B</i>.<br>Each cell asks whether <i>A</i> ⊆ <i>B</i>.</p></div>
+          <div class="section-heading"><div><p class="eyebrow">03 / Public task suite</p><h2 id="frontier-title">The questions an AI must resolve.</h2></div><p class="section-aside">Rows are <i>A</i>. Columns are <i>B</i>.<br>Each cell asks whether <i>A</i> ⊆ <i>B</i>.</p></div>
           <div class="matrix-toolbar">
             <div class="field search-field"><label for="class-search">Find a class</label><input type="search" id="class-search" placeholder="Search P, quantum, counting…" autocomplete="off"></div>
             <div class="field"><label for="family-filter">Family</label><select id="family-filter"><option value="">All families</option></select></div>
@@ -68,14 +81,14 @@
         </section>
 
         <section id="scenarios" class="section" aria-labelledby="scenarios-title">
-          <div class="section-heading"><div><p class="eyebrow">03 / Explore the consequences</p><h2 id="scenarios-title">One result. Many implications.</h2></div><span class="tag tag-scenario">Hypothetical examples</span></div>
-          <div class="scenario-layout"><div class="scenario-card"><div class="field"><label for="scenario-select">Suppose this were proved…</label><select id="scenario-select"></select></div><div class="scenario-score"><strong id="scenario-score">—</strong><div><span>draft points</span><p>Assuming the claims are proved<br>and the affected pairs are eligible.</p></div></div><div id="scenario-claims" class="scenario-claims"></div><label class="checkbox-label"><input type="checkbox" id="scenario-overlay"> Show these resolutions on the matrix</label><p class="scenario-disclaimer">This is a consequence calculation, not a submission or a forecast.</p></div><div class="trace-card"><div class="trace-header"><div><p class="eyebrow">Follow the reasoning</p><h3>A proof trail for every point.</h3></div><span aria-hidden="true" class="trace-symbol">↳</span></div><div class="field"><label for="resolution-select">Inspect a resolved pair</label><select id="resolution-select"></select></div><div id="scenario-trace" class="proof-trace"></div></div></div>
+          <div class="section-heading"><div><p class="eyebrow">04 / How credit propagates</p><h2 id="scenarios-title">Scoring examples</h2></div><span class="tag tag-scenario">Hypothetical examples</span></div>
+          <div class="scenario-layout"><div class="scenario-card"><div class="field"><label for="scenario-select">If a model proved…</label><select id="scenario-select"></select></div><div class="scenario-score"><strong id="scenario-score">—</strong><div><span>illustrative points</span><p>Assuming the claims are proved<br>and the affected pairs are eligible.</p></div></div><div id="scenario-claims" class="scenario-claims"></div><label class="checkbox-label"><input type="checkbox" id="scenario-overlay"> Show these resolutions on the matrix</label><p class="scenario-disclaimer">These examples explain the scorer. They are not AI evaluations, submissions or forecasts.</p></div><div class="trace-card"><div class="trace-header"><div><p class="eyebrow">Follow the reasoning</p><h3>A proof trail for every point.</h3></div><span aria-hidden="true" class="trace-symbol">↳</span></div><div class="field"><label for="resolution-select">Inspect a resolved pair</label><select id="resolution-select"></select></div><div id="scenario-trace" class="proof-trace"></div></div></div>
         </section>
 
-        <section id="method" class="section method-section" aria-labelledby="method-title"><div class="section-heading"><div><p class="eyebrow">04 / Scope & provenance</p><h2 id="method-title">A precise score needs a precise scope.</h2></div></div><div class="method-grid"><article><span class="method-number">01</span><h3>Resolve the statement.</h3><p>A point concerns one ordered inclusion. A proof, a disproof, or an accepted independence result can settle it. Repeated derivations earn no extra points.</p></article><article><span class="method-number">02</span><h3>Count its consequences.</h3><p>Inclusions, noninclusions, complement identities and reviewed conditional theorems propagate through the graph. Each result retains a trace to its premises and sources.</p></article><article><span class="method-number">03</span><h3>Keep the limits visible.</h3><p>These are total-language classes. Promise-only separations, many algorithmic speedups, search problems and fixed-exponent lower bounds need other measures.</p></article></div><div class="coverage-strip"><div><p class="eyebrow">Coverage stress test</p><p id="coverage-summary">50 example advances expose both the reach of this roster and its gaps.</p></div><a href="https://github.com/tkwa/inclusion-bench/blob/main/research/coverage-notes.md">Read the coverage audit <span aria-hidden="true">↗</span></a></div><details class="sources-details"><summary><span>Source registry</span><span id="source-count" class="source-count"></span></summary><p class="source-preface">Sources support the recorded baseline and implication rules. This list alone does not certify historical eligibility.</p><ol id="source-list" class="source-list"></ol></details><div class="dataset-id"><span>Dataset SHA-256</span><code id="dataset-hash">—</code><button type="button" id="copy-hash" class="text-button">Copy</button><span id="copy-status" class="sr-only" role="status"></span></div></section>
+        <section id="method" class="section method-section" aria-labelledby="method-title"><div class="section-heading"><div><p class="eyebrow">05 / Scope & provenance</p><h2 id="method-title">What the score measures.</h2></div></div><p class="method-context">The benchmark measures an AI run's ability to resolve open questions about total-language complexity classes. It is intended for mathematical reasoning beyond the current public baseline. It does not attempt to cover every kind of progress in complexity theory: promise-only separations, individual algorithmic speedups, search problems and fixed-exponent lower bounds can fall outside this suite.</p><div class="coverage-strip"><div><p class="eyebrow">Design audit</p><p id="coverage-summary">The design audit documents what this class roster can and cannot measure.</p></div><a href="https://github.com/tkwa/inclusion-bench/blob/main/research/coverage-notes.md">Read the coverage audit <span aria-hidden="true">↗</span></a></div><details class="sources-details"><summary><span>Source registry</span><span id="source-count" class="source-count"></span></summary><p class="source-preface">Sources support the recorded baseline and implication rules. This list alone does not certify historical eligibility.</p><ol id="source-list" class="source-list"></ol></details><div class="dataset-id"><span>Dataset SHA-256</span><code id="dataset-hash">—</code><button type="button" id="copy-hash" class="text-button">Copy</button><span id="copy-status" class="sr-only" role="status"></span></div></section>
       </div>
     </div>
   </main>
-  <footer class="footer"><span id="footer-name">Inclusion Bench</span><p>A public record of mathematical progress.</p><a href="#">Back to top <span aria-hidden="true">↑</span></a></footer>
+  <footer class="footer"><span id="footer-name">Inclusion Bench</span><p>A public benchmark for AI mathematical research.</p><a href="#">Back to top <span aria-hidden="true">↑</span></a></footer>
 </body>
 </html>
