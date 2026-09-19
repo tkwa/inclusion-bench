@@ -1,0 +1,15 @@
+name = "inclusionQuantum"
+version = "0.1.0"
+defaultTargets = ["InclusionQuantum"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.19.0"
+
+[[require]]
+name = "inclusionBench"
+path = "../lean"
+
+[[lean_lib]]
+name = "InclusionQuantum"

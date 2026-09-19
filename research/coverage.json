@@ -1,0 +1,752 @@
+{
+  "schema_version": 1,
+  "cutoff": "2026-09-01",
+  "status": "coverage stress test; not a ranked forecast and not an exhaustive set of likely advances",
+  "population": "50 concrete structural or algorithmic breakthrough scenarios selected to probe coverage. Opposite answers to one open question are not systematically counted twice.",
+  "coverage_summary": {
+    "direct": 35,
+    "consequence": 1,
+    "unsupported": 14,
+    "officially_certified_covered": 0
+  },
+  "interpretation": "Direct and consequence mean that a mathematical mapping is provided, conditional on the mapped pair being certified open at the cutoff. They do not certify that the result was still open or guarantee an official score in the draft benchmark. Unsupported means no scored implication is established here, not that no implication could ever exist.",
+  "sources": [
+    {
+      "id": "cov-babai15",
+      "title": "Graph Isomorphism in Quasipolynomial Time",
+      "url": "https://arxiv.org/abs/1512.03547",
+      "year": 2015,
+      "locator": "Abstract / main algorithmic theorem",
+      "notes": "An example of a major improvement for a single problem rather than a collapse of an entire roster class."
+    },
+    {
+      "id": "cov-daskalakis08",
+      "title": "The Complexity of Nash Equilibria",
+      "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-107.html",
+      "year": 2008,
+      "locator": "Author dissertation abstract, PPAD-completeness",
+      "notes": "Search/class distinction."
+    },
+    {
+      "id": "cov-qpcp24",
+      "title": "The Status of the Quantum PCP Conjecture (Games Version)",
+      "url": "https://arxiv.org/abs/2403.13084",
+      "year": 2024,
+      "locator": "Abstract / discussion of distinct PCP formulations",
+      "notes": "Natarajan and Nirkhe; do not equate quantum games PCP and Hamiltonian PCP."
+    },
+    {
+      "id": "cov-ctw26",
+      "title": "Super-quadratic Lower Bounds for Depth-2 Linear Threshold Circuits",
+      "url": "https://eccc.weizmann.ac.il/report/2026/039/",
+      "year": 2026,
+      "locator": "Main theorem / abstract, posted 2026-03-14",
+      "notes": "Chen, Tal and Wang. Actual pre-cutoff frontier advance invisible to the union-over-size-and-depth TC0 target. Included as evidence of the limitation, not as a new scoring claim."
+    }
+  ],
+  "external_source_registry": "q-* source IDs are defined in research/quantum.json",
+  "scenarios": [
+    {
+      "id": "advance-01",
+      "title": "P differs from NP",
+      "category": "classical",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NP",
+          "right": "P"
+        }
+      ],
+      "notes": "A language in NP requires superpolynomial deterministic time.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-02",
+      "title": "Derandomize BPP in polynomial time",
+      "category": "randomness",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "P"
+        }
+      ],
+      "notes": "Full worst-case BPP=P, as total-language classes.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-03",
+      "title": "Separate NP from coNP",
+      "category": "classical",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NP",
+          "right": "coNP"
+        }
+      ],
+      "notes": "The converse separation follows by complementation.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-04",
+      "title": "Prove SAT has no bounded-error polynomial-time algorithm",
+      "category": "randomness",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NP",
+          "right": "BPP"
+        }
+      ],
+      "notes": "SAT completeness transfers the lower bound to the class pair.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-05",
+      "title": "Unconditional quantum advantage for a total decision language",
+      "category": "quantum",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "BQP",
+          "right": "BPP"
+        }
+      ],
+      "notes": "Requires an unrelativized total language, not only a sampling or promise advantage.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-06",
+      "title": "Rule out polynomial-time quantum algorithms for NP-complete problems",
+      "category": "quantum",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NP",
+          "right": "BQP"
+        }
+      ],
+      "notes": "Requires an unconditional complexity lower bound.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-07",
+      "title": "A total BQP language outside the polynomial hierarchy",
+      "category": "quantum",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "BQP",
+          "right": "PH"
+        }
+      ],
+      "notes": "An oracle separation does not suffice.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-08",
+      "title": "A total QMA language with no QCMA verifier",
+      "category": "quantum",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "QMA",
+          "right": "QCMA"
+        }
+      ],
+      "notes": "This expressly requires a total language; the promise-only version is separately listed as unsupported.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-09",
+      "title": "Simulate quantum witnesses with classical witnesses",
+      "category": "quantum",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "QCMA"
+        }
+      ],
+      "notes": "A full promise-QMA containment also implies this total-language containment.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-10",
+      "title": "Remove witnesses from all quantum NP verification",
+      "category": "quantum",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "BQP"
+        }
+      ],
+      "notes": "A full promise collapse gives the stated total-language consequence.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-11",
+      "title": "Classical bounded-error algorithms for all statistical zero knowledge",
+      "category": "zero_knowledge",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "SZK",
+          "right": "BPP"
+        }
+      ],
+      "notes": "A full promise-SZK collapse is strong enough; algorithms for individual problems are not.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-12",
+      "title": "A total statistical zero-knowledge language outside BQP",
+      "category": "zero_knowledge",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "SZK",
+          "right": "BQP"
+        }
+      ],
+      "notes": "Must produce a total-language separation.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-13",
+      "title": "Derandomize Merlin–Arthur verification",
+      "category": "randomness",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "NP"
+        }
+      ],
+      "notes": "Direct verifier-class collapse; total BPP=P alone is not imported as a proof.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-14",
+      "title": "Derandomize Arthur–Merlin verification",
+      "category": "randomness",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "NP"
+        }
+      ],
+      "notes": "Removes public randomness from the two-message proof class.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-15",
+      "title": "Prove the polynomial hierarchy extends beyond its second level",
+      "category": "hierarchy",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "PH",
+          "right": "Sigma2P"
+        }
+      ],
+      "notes": "A separation of any higher PH level from Sigma2P suffices.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-16",
+      "title": "Separate polynomial space from the polynomial hierarchy",
+      "category": "hierarchy",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "PSPACE",
+          "right": "PH"
+        }
+      ],
+      "notes": "An unconditional PSPACE language outside PH.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-17",
+      "title": "Separate polynomial time from polynomial space",
+      "category": "hierarchy",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "PSPACE",
+          "right": "P"
+        }
+      ],
+      "notes": "Could follow from any intermediate separation between P and PSPACE.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-18",
+      "title": "Separate deterministic exponential time from polynomial space",
+      "category": "hierarchy",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "EXP",
+          "right": "PSPACE"
+        }
+      ],
+      "notes": "Distinguishes the two union classes, not a fixed resource bound.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-19",
+      "title": "Separate nondeterministic and deterministic exponential time",
+      "category": "hierarchy",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "EXP"
+        }
+      ],
+      "notes": "Requires separation of the union classes; an E-versus-NE separation alone has different strength.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-20",
+      "title": "Deterministic logspace directed reachability",
+      "category": "space",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "L"
+        }
+      ],
+      "notes": "An L algorithm for directed s-t connectivity gives L=NL.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-21",
+      "title": "Prove polynomial-time computation cannot all be parallelized",
+      "category": "parallelism",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "P",
+          "right": "NC"
+        }
+      ],
+      "notes": "NC is logspace-uniform polylog-depth polynomial-size circuits.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-22",
+      "title": "Separate logarithmic-depth circuits from constant-depth threshold circuits",
+      "category": "circuits",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NC1",
+          "right": "TC0"
+        }
+      ],
+      "notes": "Both circuit classes in this comparison are nonuniform.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-23",
+      "title": "Separate threshold circuits from constant-depth modular circuits",
+      "category": "circuits",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "TC0",
+          "right": "ACC0"
+        }
+      ],
+      "notes": "Both classes allow arbitrary nonuniform polynomial-size families.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-24",
+      "title": "Superpolynomial threshold-circuit lower bounds for NEXP",
+      "category": "circuits",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "TC0"
+        }
+      ],
+      "notes": "Must hold against all fixed depths and all polynomial sizes, not just depth two or one fixed size exponent.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-25",
+      "title": "Superpolynomial general circuit lower bounds for NP",
+      "category": "circuits",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NP",
+          "right": "Ppoly"
+        }
+      ],
+      "notes": "An NP language without polynomial-size Boolean circuits.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-26",
+      "title": "Superpolynomial general circuit lower bounds for NEXP",
+      "category": "circuits",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NEXP",
+          "right": "Ppoly"
+        }
+      ],
+      "notes": "A weaker target class than NP, but still a major unresolved general-circuit barrier.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-27",
+      "title": "Superpolynomial general circuit lower bounds for PSPACE",
+      "category": "circuits",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "PSPACE",
+          "right": "Ppoly"
+        }
+      ],
+      "notes": "Fixed-exponent lower bounds with a different hard language for each exponent do not establish this.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-28",
+      "title": "One PP language requiring superpolynomial-size circuits",
+      "category": "circuits",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "PP",
+          "right": "Ppoly"
+        }
+      ],
+      "notes": "Must exchange the quantifiers in known fixed-exponent PP lower bounds: one language defeats all polynomial exponents.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-29",
+      "title": "Separate parity counting from deterministic polynomial time",
+      "category": "counting",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "parityP",
+          "right": "P"
+        }
+      ],
+      "notes": "A total parity-counting language without a P algorithm.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-30",
+      "title": "Prove quantum computers cannot decide every PP language efficiently",
+      "category": "counting",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "PP",
+          "right": "BQP"
+        }
+      ],
+      "notes": "A total-language lower bound for quantum computation.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-31",
+      "title": "Separate unambiguous nondeterminism from deterministic time",
+      "category": "unambiguity",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "UP",
+          "right": "P"
+        }
+      ],
+      "notes": "A total language with an unambiguous polynomial verifier but no P algorithm.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-32",
+      "title": "Prove efficient certificates on both sides do not imply easy decision",
+      "category": "unambiguity",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NPcapcoNP",
+          "right": "P"
+        }
+      ],
+      "notes": "A total NP intersect coNP language outside P.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-33",
+      "title": "Separate NP from unambiguous polynomial time",
+      "category": "unambiguity",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "NP",
+          "right": "UP"
+        }
+      ],
+      "notes": "Rules out UP verifiers for at least one NP language.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-34",
+      "title": "Quantum algorithms for every SPP language",
+      "category": "counting",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "BQP"
+        }
+      ],
+      "notes": "A whole-class simulation, not only a graph-isomorphism algorithm.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-35",
+      "title": "Match quantum computation to its AWPP counting upper bound",
+      "category": "counting",
+      "coverage": "direct",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "AWPP",
+          "right": "BQP"
+        }
+      ],
+      "notes": "Since BQP is already contained in AWPP, this would establish equality.",
+      "eligibility": "pending cutoff certification; a mapped pair is not a certified point"
+    },
+    {
+      "id": "advance-36",
+      "title": "Polynomial-time algorithms for every TFNP search problem",
+      "category": "total_search",
+      "coverage": "consequence",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "P"
+        }
+      ],
+      "notes": "For any L in NP intersect coNP, ask for either an NP certificate of membership or a coNP certificate of nonmembership, tagged with its side. This is a total polynomially bounded NP search relation. A polynomial solver decides L. This argument does not apply to a collapse of PPAD alone.",
+      "eligibility": "pending cutoff certification; direct reduction argument supplied"
+    },
+    {
+      "id": "advance-37",
+      "title": "Polynomial-time graph isomorphism",
+      "category": "algorithms",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "A faster algorithm for this individual language does not imply that NP, SPP or any other roster class collapses. GI is not known complete for those classes.",
+      "source_ids": [
+        "cov-babai15"
+      ]
+    },
+    {
+      "id": "advance-38",
+      "title": "Classical polynomial-time integer factoring",
+      "category": "algorithms",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "Factoring is a particular search/function problem. Its efficient solution need not decide every language in NP intersect coNP or BQP.",
+      "source_ids": [
+        "q-fr98"
+      ]
+    },
+    {
+      "id": "advance-39",
+      "title": "Deterministic polynomial-time general polynomial identity testing",
+      "category": "algebraic_complexity",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "Known implications include a disjunction: NEXP lacks polynomial-size Boolean circuits OR permanent lacks polynomial-size arithmetic circuits. The second branch need not settle a roster pair.",
+      "source_ids": [
+        "q-ki04"
+      ]
+    },
+    {
+      "id": "advance-40",
+      "title": "Prove the matrix multiplication exponent is two",
+      "category": "fine_grained",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "All the algorithms involved remain polynomial time; the roster has no fixed-exponent arithmetic-operation classes.",
+      "source_ids": []
+    },
+    {
+      "id": "advance-41",
+      "title": "Refute SETH with a faster exponential-time SAT algorithm",
+      "category": "fine_grained",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "A speedup can refute a quantitative hypothesis while leaving P versus NP and all roster inclusions unresolved. A proof of ETH or SETH would imply NP not contained in P, but refutation need not.",
+      "source_ids": []
+    },
+    {
+      "id": "advance-42",
+      "title": "Truly subquadratic exact edit distance",
+      "category": "fine_grained",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "This distinguishes polynomial exponents inside P. Without a separate theorem connecting the speedup to a roster relation, the benchmark awards no point.",
+      "source_ids": []
+    },
+    {
+      "id": "advance-43",
+      "title": "Polynomial-time algorithms for every PPAD search problem",
+      "category": "total_search",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "PPAD is a class of total search relations, outside this language roster. Solving PPAD-complete Nash problems need not settle any listed language inclusion.",
+      "source_ids": [
+        "cov-daskalakis08"
+      ]
+    },
+    {
+      "id": "advance-44",
+      "title": "Separate VP from VNP over characteristic zero",
+      "category": "algebraic_complexity",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "Algebraic circuit families are not Boolean decision-language classes. No implication to a scored Boolean pair is supplied by this benchmark.",
+      "source_ids": []
+    },
+    {
+      "id": "advance-45",
+      "title": "Superpolynomial lower bounds for Frege proofs",
+      "category": "proof_complexity",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "Lower bounds for one proof system do not by themselves establish NP differs from coNP; that conclusion requires ruling out every polynomially bounded Cook–Reckhow proof system.",
+      "source_ids": []
+    },
+    {
+      "id": "advance-46",
+      "title": "Prove the Hamiltonian quantum PCP conjecture",
+      "category": "quantum",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "A gap-amplification/completeness result can be a major advance without changing a total-language class inclusion.",
+      "source_ids": [
+        "cov-qpcp24"
+      ]
+    },
+    {
+      "id": "advance-47",
+      "title": "Separate promise-QMA from promise-QCMA without a total-language witness",
+      "category": "promise",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "A promise-problem witness does not automatically produce a total language in QMA outside QCMA. The corresponding total-language scenario is advance-08.",
+      "source_ids": [
+        "q-watrous08"
+      ]
+    },
+    {
+      "id": "advance-48",
+      "title": "A new separation relative to an oracle",
+      "category": "relativization",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "The scorer fixes unrelativized classes. Even a major new oracle separation does not prove their unrelativized noninclusion. The classical-oracle QMA/QCMA problem was already solved before the cutoff.",
+      "source_ids": [
+        "q-bhnz25"
+      ]
+    },
+    {
+      "id": "advance-49",
+      "title": "A superlinear or fixed-exponent Boolean circuit lower bound for an explicit NP language",
+      "category": "circuits",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "Ruling out n^1.01-size circuits leaves n^2-size circuits possible and does not give NP not contained in P/poly. Likewise fixed-depth threshold bounds do not settle NEXP versus TC0.",
+      "source_ids": [
+        "cov-ctw26"
+      ]
+    },
+    {
+      "id": "advance-50",
+      "title": "Optimal explicit Ramsey graph constructions",
+      "category": "pseudorandomness",
+      "coverage": "unsupported",
+      "claims": [],
+      "why_not_guaranteed": "A construction for one combinatorial object need not derandomize all BPP languages or resolve any roster pair. Whole-class consequences would need their own proof.",
+      "source_ids": []
+    }
+  ],
+  "gaps": [
+    "Total-language versus promise-problem separation",
+    "Individual algorithms versus whole complexity classes",
+    "Fixed resource exponents and fine-grained complexity",
+    "Search/function and algebraic-circuit classes",
+    "Proof systems, relativization and barrier results",
+    "A finite sample cannot support a claim to cover the 50 most likely advances without a separately elicited and versioned forecast distribution."
+  ],
+  "roster_recommendation": {
+    "accepted_choice": "Use the agreed 50-class roster, with nonuniform AC0/ACC0/TC0/NC1 and uniform NC. NISZK is omitted.",
+    "benefit": "The nonuniform convention represents central circuit-lower-bound questions directly. P/poly and NP/poly retain arbitrary advice, including undecidable languages.",
+    "tradeoff": "Dropping NISZK omits a recognized zero-knowledge question; adding it back alone would not repair the promise-language distinction. E and NE retain some padding structure but do not capture most quantitative exponential-time advances.",
+    "possible_future_tracks": [
+      "A separately typed promise-problem roster",
+      "Problem-specific algorithm and explicit-construction targets",
+      "Fixed-exponent circuit, time and proof-size targets",
+      "TFNP/PPAD/PLS and function-class targets",
+      "Algebraic VP/VNP and PIT targets"
+    ]
+  }
+}

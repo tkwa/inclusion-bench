@@ -1,0 +1,62 @@
+name: Verify benchmark and publish leaderboard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: benchmark-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      LEAN_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check scorer and generated data
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 scripts/check_generated.py
+      - name: Install pinned official Lean compiler
+        run: |
+          curl --fail --location --retry 3 https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst --output "$RUNNER_TEMP/lean.tar.zst"
+          tar --use-compress-program=unzstd -xf "$RUNNER_TEMP/lean.tar.zst" -C "$RUNNER_TEMP"
+          echo "LEAN_BIN=$RUNNER_TEMP/lean-4.19.0-linux/bin/lean" >> "$GITHUB_ENV"
+      - name: Check Lean library and actual scorer traces
+        run: python3 scripts/check_lean.py
+      - name: Validate website script
+        run: node --check web/app.js
+      - name: Upload leaderboard
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: web
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Publish leaderboard
+        id: deployment
+        uses: actions/deploy-pages@v4

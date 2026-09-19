@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.tools/
+lean/.lake/
+.lake/
+*.olean
+*.ilean
+*.c.o
+.DS_Store
+web/review-*.png

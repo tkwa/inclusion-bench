@@ -1,0 +1,6 @@
+name = "inclusionBench"
+version = "0.1.0"
+defaultTargets = ["InclusionBench"]
+
+[[lean_lib]]
+name = "InclusionBench"

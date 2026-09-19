@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An open benchmark for progress on complexity-class inclusions, with a sourced baseline, transparent scoring and a public leaderboard.">
+  <meta name="theme-color" content="#112d3b">
+  <title>Inclusion Bench — the complexity frontier</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="wordmark" href="#" aria-label="Inclusion Bench home"><span class="mark" aria-hidden="true">⊆</span><span id="site-name">Inclusion Bench</span></a>
+      <nav aria-label="Main navigation"><a href="#leaderboard">Leaderboard</a><a href="#frontier">The frontier</a><a href="#scenarios">Scenarios</a><a href="#method">Method</a></nav>
+      <a class="repo-link" href="https://github.com/tkwa/inclusion-bench" id="repo-link">Repository <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Open research benchmark <span class="tag tag-dark">Draft</span></p>
+          <h1 id="hero-title">How much of the frontier<br> does a proof resolve?</h1>
+          <p class="hero-description">One point for each previously open class inclusion resolved. Its consequences count too.</p>
+          <div class="hero-meta"><span>Baseline cutoff <strong id="cutoff">September 1, 2026</strong></span><span class="meta-divider" aria-hidden="true"></span><span id="version">Version —</span></div>
+        </div>
+        <div class="hero-equation" aria-hidden="true"><span class="equation-caption">THE QUESTION BEHIND EVERY CELL</span><div><span class="equation-a">A</span><span class="equation-symbol">⊆</span><span class="equation-b">B</span><span class="equation-question">?</span></div><p>A theorem changes more than one square.</p></div>
+      </div>
+    </section>
+
+    <div class="page-content">
+      <aside class="draft-banner" aria-label="Benchmark release status"><span class="tag">Draft release</span><p><strong>Official admissions are paused.</strong> The cutoff audit and semantic formalizations are incomplete. Scores in the scenario explorer are hypothetical.</p><a href="#method">Read the scope <span aria-hidden="true">↓</span></a></aside>
+
+      <div id="load-error" class="error-panel" role="alert" hidden><h2>The benchmark data could not be loaded.</h2><p id="load-error-detail">Serve this directory over HTTP with benchmark.json beside this page.</p><button type="button" id="retry-load">Try again</button></div>
+      <p id="loading" role="status" class="loading">Loading the benchmark…</p>
+
+      <div id="benchmark-content" hidden>
+        <section class="stats" aria-label="Dataset summary">
+          <div class="stat"><span class="stat-number" id="class-count">—</span><span class="stat-label">complexity classes</span></div>
+          <div class="stat"><span class="stat-number" id="pair-count">—</span><span class="stat-label">ordered pairs</span></div>
+          <div class="stat"><span class="stat-number" id="known-count">—</span><span class="stat-label">baseline relations known</span></div>
+          <div class="stat stat-pending"><span class="stat-number" id="unreviewed-count">—</span><span class="stat-label">pairs awaiting eligibility review</span></div>
+        </section>
+
+        <section id="leaderboard" class="section" aria-labelledby="leaderboard-title">
+          <div class="section-heading"><div><p class="eyebrow">01 / Public record</p><h2 id="leaderboard-title">Leaderboard</h2></div><span class="tag tag-outline">Verified submissions only</span></div>
+          <div class="leaderboard-card"><div class="table-scroll"><table class="leaderboard-table"><caption class="sr-only">Official leaderboard, currently limited to the public baseline</caption><thead><tr><th scope="col">Rank</th><th scope="col">Entry</th><th scope="col" class="number-column">Points</th><th scope="col">Record</th></tr></thead><tbody id="leaderboard-body"></tbody></table></div><div class="leaderboard-foot"><span class="small-dot" aria-hidden="true"></span><p>Zero establishes the reference point. It does not certify that every unreviewed pair was open at the cutoff.</p></div></div>
+        </section>
+
+        <section id="frontier" class="section" aria-labelledby="frontier-title">
+          <div class="section-heading"><div><p class="eyebrow">02 / The landscape</p><h2 id="frontier-title">Every direction matters.</h2></div><p class="section-aside">Rows are <i>A</i>. Columns are <i>B</i>.<br>Each cell asks whether <i>A</i> ⊆ <i>B</i>.</p></div>
+          <div class="matrix-toolbar">
+            <div class="field search-field"><label for="class-search">Find a class</label><input type="search" id="class-search" placeholder="Search P, quantum, counting…" autocomplete="off"></div>
+            <div class="field"><label for="family-filter">Family</label><select id="family-filter"><option value="">All families</option></select></div>
+            <div class="field"><label for="status-filter">Highlight</label><select id="status-filter"><option value="">All relations</option><option value="inclusion">Known inclusion</option><option value="separation">Known noninclusion</option><option value="unreviewed">Unreviewed</option><option value="independence">Independence</option></select></div>
+            <button type="button" class="text-button" id="reset-filters">Reset filters</button>
+          </div>
+          <div class="matrix-legend" aria-label="Matrix legend"><span><i class="swatch swatch-inclusion"></i>Known inclusion</span><span><i class="swatch swatch-separation"></i>Known noninclusion</span><span><i class="swatch swatch-unreviewed"></i>Unreviewed</span><span><i class="swatch swatch-independence"></i>Independent</span><span class="legend-scenario" id="scenario-legend" hidden><i class="swatch swatch-scenario"></i>Hypothetical resolution</span></div>
+          <div class="matrix-layout">
+            <div class="matrix-card"><div class="matrix-card-header"><span id="matrix-description">50 × 50 relation matrix</span><span class="micro-label">SELECT A CELL</span></div><div class="matrix-scroll" id="matrix-scroll" tabindex="0" role="region" aria-label="Scrollable complexity-class inclusion matrix"><table id="matrix-table" class="matrix-table"><caption class="sr-only">Rows are the contained class A; columns are the containing class B. Activate a cell to inspect its status.</caption></table></div><p class="matrix-empty" id="matrix-empty" hidden>No classes match these filters.</p><div class="matrix-card-footer"><span id="matrix-visible-count"></span><span>Scroll to explore <span aria-hidden="true">↔</span></span></div></div>
+            <aside class="pair-panel" aria-labelledby="pair-title"><p class="eyebrow">Selected relationship</p><h3 id="pair-title">NP <span>⊆</span> P</h3><div id="pair-status"></div><p id="pair-explanation" class="pair-explanation">Select a cell to inspect the relationship.</p><dl class="class-definitions" id="pair-definitions"></dl><div class="pair-evidence" id="pair-evidence"></div></aside>
+          </div>
+          <p class="section-note">Unreviewed means not resolved by this draft baseline. It is not a certified open problem. Circuit uniformity and language-versus-promise conventions affect every comparison.</p>
+        </section>
+
+        <section id="scenarios" class="section" aria-labelledby="scenarios-title">
+          <div class="section-heading"><div><p class="eyebrow">03 / Explore the consequences</p><h2 id="scenarios-title">One result. Many implications.</h2></div><span class="tag tag-scenario">Hypothetical examples</span></div>
+          <div class="scenario-layout"><div class="scenario-card"><div class="field"><label for="scenario-select">Suppose this were proved…</label><select id="scenario-select"></select></div><div class="scenario-score"><strong id="scenario-score">—</strong><div><span>draft points</span><p>Assuming the claims are proved<br>and the affected pairs are eligible.</p></div></div><div id="scenario-claims" class="scenario-claims"></div><label class="checkbox-label"><input type="checkbox" id="scenario-overlay"> Show these resolutions on the matrix</label><p class="scenario-disclaimer">This is a consequence calculation, not a submission or a forecast.</p></div><div class="trace-card"><div class="trace-header"><div><p class="eyebrow">Follow the reasoning</p><h3>A proof trail for every point.</h3></div><span aria-hidden="true" class="trace-symbol">↳</span></div><div class="field"><label for="resolution-select">Inspect a resolved pair</label><select id="resolution-select"></select></div><div id="scenario-trace" class="proof-trace"></div></div></div>
+        </section>
+
+        <section id="method" class="section method-section" aria-labelledby="method-title"><div class="section-heading"><div><p class="eyebrow">04 / Scope & provenance</p><h2 id="method-title">A precise score needs a precise scope.</h2></div></div><div class="method-grid"><article><span class="method-number">01</span><h3>Resolve the statement.</h3><p>A point concerns one ordered inclusion. A proof, a disproof, or an accepted independence result can settle it. Repeated derivations earn no extra points.</p></article><article><span class="method-number">02</span><h3>Count its consequences.</h3><p>Inclusions, noninclusions, complement identities and reviewed conditional theorems propagate through the graph. Each result retains a trace to its premises and sources.</p></article><article><span class="method-number">03</span><h3>Keep the limits visible.</h3><p>These are total-language classes. Promise-only separations, many algorithmic speedups, search problems and fixed-exponent lower bounds need other measures.</p></article></div><div class="coverage-strip"><div><p class="eyebrow">Coverage stress test</p><p id="coverage-summary">50 example advances expose both the reach of this roster and its gaps.</p></div><a href="https://github.com/tkwa/inclusion-bench/blob/main/research/coverage-notes.md">Read the coverage audit <span aria-hidden="true">↗</span></a></div><details class="sources-details"><summary><span>Source registry</span><span id="source-count" class="source-count"></span></summary><p class="source-preface">Sources support the recorded baseline and implication rules. This list alone does not certify historical eligibility.</p><ol id="source-list" class="source-list"></ol></details><div class="dataset-id"><span>Dataset SHA-256</span><code id="dataset-hash">—</code><button type="button" id="copy-hash" class="text-button">Copy</button><span id="copy-status" class="sr-only" role="status"></span></div></section>
+      </div>
+    </div>
+  </main>
+  <footer class="footer"><span id="footer-name">Inclusion Bench</span><p>A public record of mathematical progress.</p><a href="#">Back to top <span aria-hidden="true">↑</span></a></footer>
+</body>
+</html>

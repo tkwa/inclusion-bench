@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "benchmark": "InclusionBench",
+  "version": "0.1.0-draft",
+  "cutoff": "2026-09-01",
+  "cutoff_convention": "Results publicly available before 2026-09-02 00:00:00 UTC count as pre-cutoff. Publication dates and status require human audit.",
+  "release_stage": "draft",
+  "point_unit": "One ordered class pair certified open at cutoff and newly resolved by an accepted proof, disproof, or ZFC-independence metatheorem.",
+  "official_scoring_enabled": false,
+  "public_baseline_score": 0,
+  "baseline_meaning": "Historical pre-cutoff results earn zero by definition. Zero does not assert that no post-cutoff public result exists.",
+  "scenario_eligibility": "Absent from conservative baseline closure; unreviewed, not certified open.",
+  "independence": "Separate metatheorem establishing neither ZFC proof of inclusion nor ZFC proof of its negation, under an explicitly documented metatheory. It does not enter ordinary relation closure.",
+  "credit": "Union of resolved eligible ordered pairs per submission or system; no duplicate credit for multiple proofs or dates.",
+  "admission": "Maintainer-reviewed proof artifact and exact statement, frozen dataset hash, verified proof audit and certified per-pair eligibility are required. Current draft fails closed."
+}

@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InclusionBench scenario or proposed submission",
+  "type": "object",
+  "required": [
+    "claims"
+  ],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "claims": {
+      "type": "array",
+      "maxItems": 2500,
+      "items": {
+        "$ref": "#/$defs/atom"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "url",
+          "statement",
+          "proof_kind"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "proof_kind": {
+            "enum": [
+              "lean",
+              "paper",
+              "zfc_independence"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "$defs": {
+    "atom": {
+      "type": "object",
+      "required": [
+        "relation",
+        "left",
+        "right"
+      ],
+      "properties": {
+        "relation": {
+          "enum": [
+            "inclusion",
+            "separation",
+            "independence"
+          ]
+        },
+        "left": {
+          "enum": [
+            "AC0",
+            "ACC0",
+            "TC0",
+            "NC1",
+            "L",
+            "NL",
+            "LogCFL",
+            "NC",
+            "SC",
+            "P",
+            "RP",
+            "coRP",
+            "ZPP",
+            "BPP",
+            "UP",
+            "coUP",
+            "NP",
+            "coNP",
+            "FewP",
+            "SPP",
+            "CeqP",
+            "PP",
+            "parityP",
+            "AWPP",
+            "LWPP",
+            "WPP",
+            "MA",
+            "coMA",
+            "AM",
+            "coAM",
+            "QCMA",
+            "QMA",
+            "coQMA",
+            "BQP",
+            "SBP",
+            "SZK",
+            "NPcapcoNP",
+            "Sigma2P",
+            "Pi2P",
+            "Delta2P",
+            "Theta2P",
+            "PH",
+            "Ppoly",
+            "NPpoly",
+            "PSPACE",
+            "EXP",
+            "NEXP",
+            "EXPSPACE",
+            "E",
+            "NE"
+          ]
+        },
+        "right": {
+          "enum": [
+            "AC0",
+            "ACC0",
+            "TC0",
+            "NC1",
+            "L",
+            "NL",
+            "LogCFL",
+            "NC",
+            "SC",
+            "P",
+            "RP",
+            "coRP",
+            "ZPP",
+            "BPP",
+            "UP",
+            "coUP",
+            "NP",
+            "coNP",
+            "FewP",
+            "SPP",
+            "CeqP",
+            "PP",
+            "parityP",
+            "AWPP",
+            "LWPP",
+            "WPP",
+            "MA",
+            "coMA",
+            "AM",
+            "coAM",
+            "QCMA",
+            "QMA",
+            "coQMA",
+            "BQP",
+            "SBP",
+            "SZK",
+            "NPcapcoNP",
+            "Sigma2P",
+            "Pi2P",
+            "Delta2P",
+            "Theta2P",
+            "PH",
+            "Ppoly",
+            "NPpoly",
+            "PSPACE",
+            "EXP",
+            "NEXP",
+            "EXPSPACE",
+            "E",
+            "NE"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

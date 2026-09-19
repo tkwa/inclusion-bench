@@ -1,0 +1,575 @@
+{
+  "schema_version": 1,
+  "cutoff": "2026-09-01",
+  "audit_status": "draft; source-checked seeds, not an exhaustive historical open-problem certification",
+  "scope": "Total languages over finite binary strings. AC0, ACC0, TC0 and NC1 are nonuniform; NC is logspace-uniform. Promise-class containments are restricted to total languages, never conversely.",
+  "sources": [
+    {
+      "id": "q-fr98",
+      "title": "Complexity Limitations on Quantum Computation",
+      "url": "https://arxiv.org/abs/cs/9811023",
+      "year": 1998,
+      "locator": "Theorem 3.1; Theorem 3.3; Corollary 3.5; Definitions 2.3–2.5",
+      "notes": "Fortnow and Rogers. Author full text: https://lance.fortnow.com/papers/files/quantum.pdf. Explicit total-language BQP definition."
+    },
+    {
+      "id": "q-mw05",
+      "title": "Quantum Arthur-Merlin Games",
+      "url": "https://arxiv.org/abs/cs/0506068",
+      "year": 2005,
+      "locator": "Abstract and the strong QMA amplification theorem / containment in PP",
+      "notes": "Marriott and Watrous. Primary theorem gives QMA contained in PP; restricting yes/no promise to a partition gives the language containment."
+    },
+    {
+      "id": "q-watrous08",
+      "title": "Quantum Computational Complexity",
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QuantumComputationalComplexity.pdf",
+      "year": 2008,
+      "locator": "Sections IV.1, V.1, V.4, V.5",
+      "notes": "Watrous's author survey. Used for machine/circuit definitions and direct simulation derivations, not as the primary source for QMA contained in PP."
+    },
+    {
+      "id": "q-ffk94",
+      "title": "Gap-Definable Counting Classes",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0022000005800248",
+      "year": 1994,
+      "locator": "Abstract: Few contained in SPP; GapP closure; definitions of counting classes",
+      "notes": "Fenner, Fortnow and Kurtz. Author PDF https://cse.sc.edu/~fenner/papers/gaps.pdf has poor extracted text; readable definitions and inclusion chain also checked in q-ffkl02."
+    },
+    {
+      "id": "q-ffkl02",
+      "title": "An Oracle Builder's Toolkit",
+      "url": "https://lance.fortnow.com/papers/files/obt.pdf",
+      "year": 2002,
+      "locator": "Section 2.1, Definition 2.3, printed pp. 5–6; Section 6.1, Definition 6.2 and Lemma 6.3",
+      "notes": "Fenner, Fortnow, Kurtz and Li. PDF dated 2002-11-11; expanded version of 1993 conference paper. Gives readable counting definitions, FewP–SPP–LWPP–WPP–C=P–PP chain and WPP contained in AWPP."
+    },
+    {
+      "id": "q-bgm03",
+      "title": "Small Bounded-Error Computations and Completeness",
+      "url": "https://eccc.weizmann.ac.il/report/2003/069/",
+      "year": 2003,
+      "locator": "Abstract; Section 1; Definition 2.9; Proposition 3.3; Section 4",
+      "notes": "Böhler, Glaßer and Meister. Primary authors' paper states MA contained in SBP contained in AM intersect BPPpath and BPPpath contained in PP; language-level gap definitions are explicit."
+    },
+    {
+      "id": "q-gsv98",
+      "title": "Honest-Verifier Statistical Zero-Knowledge Equals General Statistical Zero-Knowledge",
+      "url": "https://www.wisdom.weizmann.ac.il/~oded/PSX/gsv.pdf",
+      "year": 1998,
+      "locator": "Section 1, especially printed pp. 1–2: HVSZK contained in AM intersect coAM; HVSZK closed under complement; theorem HVSZK=SZK",
+      "notes": "Goldreich, Sahai and Vadhan. For AM upper bound authors credit Fortnow and Aiello–Håstad; for complement closure Okamoto and Sahai–Vadhan. Total-language restrictions inherit both conclusions."
+    },
+    {
+      "id": "q-gsv99",
+      "title": "Can Statistical Zero Knowledge be Made Non-Interactive? or On the Relationship of SZK and NISZK",
+      "url": "https://www.wisdom.weizmann.ac.il/~oded/PSX/niszk.pdf",
+      "year": 1999,
+      "locator": "Theorems 1.5–1.6; explicit warning immediately after Theorem 1.5",
+      "notes": "Goldreich, Sahai and Vadhan. SZK=BPP iff NISZK=BPP here is explicitly about promise problems. Do not import it as an implication about total-language classes without an additional argument. NISZK is outside the final roster."
+    },
+    {
+      "id": "q-lautemann83",
+      "title": "BPP and the Polynomial Hierarchy",
+      "url": "https://www.sciencedirect.com/science/article/pii/0020019083900443",
+      "year": 1983,
+      "locator": "Abstract / main theorem",
+      "notes": "Lautemann's primary publication proves BPP contained in Sigma2P; complement closure also gives Pi2P."
+    },
+    {
+      "id": "q-ikw02",
+      "title": "In Search of an Easy Witness: Exponential Time vs. Probabilistic Polynomial Time",
+      "url": "https://www.cs.sfu.ca/~kabanets/Research/ikw.html",
+      "year": 2002,
+      "locator": "Main equivalence NEXP contained in P/poly iff NEXP=MA; full journal manuscript Section 4.1",
+      "notes": "Impagliazzo, Kabanets and Wigderson; JCSS 65(4), 672–694, 2002; preliminary CCC 2001. Full theorem checked at https://www.math.tau.ac.il/~amnon/Classes/2017-BPP/Lectures/IKW02.pdf (abstract and Section 4.1)."
+    },
+    {
+      "id": "q-aw09",
+      "title": "Algebrization: A New Barrier in Complexity Theory",
+      "url": "https://www.scottaaronson.com/papers/alg.pdf",
+      "year": 2009,
+      "locator": "Theorem 3.5 and paragraph immediately following, printed p. 12; Corollary 3.15; Section 3.5",
+      "notes": "Aaronson and Wigderson. Taking trivial oracles gives PP contained in P/poly implies P^#P contained in MA. Restricting to PP yields the roster rule; Toda also yields PH contained in MA."
+    },
+    {
+      "id": "q-bhnz25",
+      "title": "Separating QMA from QCMA with a Classical Oracle",
+      "url": "https://arxiv.org/abs/2511.09551",
+      "year": 2025,
+      "locator": "Abstract / main theorem",
+      "notes": "Bostanci, Haferkamp, Nirkhe and Zhandry. Published before the benchmark cutoff. This is an oracle separation and is deliberately NOT a QMA-versus-QCMA baseline fact."
+    },
+    {
+      "id": "q-williams13",
+      "title": "Non-Uniform ACC Circuit Lower Bounds",
+      "url": "https://people.csail.mit.edu/rrw/acc-lbs-journal-final.pdf",
+      "year": 2014,
+      "locator": "Abstract / main theorem",
+      "notes": "Williams. Journal of the ACM, 2014, DOI 10.1145/2559903; preliminary result 2011. Theorem 1.1 strengthens NEXP to NTIME[2^n]. Source ID is stable despite the bibliographic correction."
+    },
+    {
+      "id": "q-ki04",
+      "title": "Derandomizing Polynomial Identity Tests Means Proving Circuit Lower Bounds",
+      "url": "https://www.cs.sfu.ca/~kabanets/Research/poly.html",
+      "year": 2004,
+      "locator": "Authors' abstract, first and second paragraphs",
+      "notes": "Kabanets and Impagliazzo. The consequence of BPP=P is a DISJUNCTION involving arithmetic permanent lower bounds, not the unconditional Boolean statement NEXP not contained in P/poly."
+    },
+    {
+      "id": "q-sv03",
+      "title": "A Complete Problem for Statistical Zero Knowledge",
+      "url": "https://www.cs.ucla.edu/~sahai/work/web/2003%20Publications/J.ACM2003.pdf",
+      "year": 2003,
+      "locator": "Theorem 3.1, page 208; Section 3.2 polarization lemma",
+      "notes": "Primary source for the Statistical Difference characterization used by the optional operational SZK definition. The characterization equivalence is not proved in this repository."
+    }
+  ],
+  "facts": [
+    {
+      "id": "q-bpp-bqp",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "BQP",
+      "source_ids": [
+        "q-watrous08"
+      ],
+      "justification": "Reversible classical simulation with quantum-generated random bits; preserves the bounded-error language gap."
+    },
+    {
+      "id": "q-bqp-awpp",
+      "relation": "inclusion",
+      "left": "BQP",
+      "right": "AWPP",
+      "source_ids": [
+        "q-fr98"
+      ],
+      "justification": "Theorem 3.1."
+    },
+    {
+      "id": "q-awpp-pp",
+      "relation": "inclusion",
+      "left": "AWPP",
+      "right": "PP",
+      "source_ids": [
+        "q-fr98",
+        "q-ffkl02"
+      ],
+      "justification": "AWPP's approximating GapP gap can be thresholded at half its normalizer; also follows from PP-lowness."
+    },
+    {
+      "id": "q-bqp-qcma",
+      "relation": "inclusion",
+      "left": "BQP",
+      "right": "QCMA",
+      "source_ids": [
+        "q-watrous08"
+      ],
+      "justification": "Use a witness of length zero in the QCMA verifier definition."
+    },
+    {
+      "id": "q-ma-qcma",
+      "relation": "inclusion",
+      "left": "MA",
+      "right": "QCMA",
+      "source_ids": [
+        "q-watrous08"
+      ],
+      "justification": "Simulate the classical randomized MA verifier quantumly, retaining its classical witness."
+    },
+    {
+      "id": "q-qcma-qma",
+      "relation": "inclusion",
+      "left": "QCMA",
+      "right": "QMA",
+      "source_ids": [
+        "q-watrous08"
+      ],
+      "justification": "Measure a proposed witness in the computational basis, then execute the QCMA verifier; a mixture cannot exceed the best classical witness's acceptance probability."
+    },
+    {
+      "id": "q-qma-pp",
+      "relation": "inclusion",
+      "left": "QMA",
+      "right": "PP",
+      "source_ids": [
+        "q-mw05"
+      ],
+      "justification": "Strong amplification followed by replacing the witness with a maximally mixed state yields the PP simulation."
+    },
+    {
+      "id": "q-fewp-spp",
+      "relation": "inclusion",
+      "left": "FewP",
+      "right": "SPP",
+      "source_ids": [
+        "q-ffk94",
+        "q-ffkl02"
+      ],
+      "justification": "The published chain gives FewP contained in Few contained in SPP."
+    },
+    {
+      "id": "q-spp-lwpp",
+      "relation": "inclusion",
+      "left": "SPP",
+      "right": "LWPP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "Use constant normalizer 1 in the LWPP definition."
+    },
+    {
+      "id": "q-lwpp-wpp",
+      "relation": "inclusion",
+      "left": "LWPP",
+      "right": "WPP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "A normalizer depending only on input length is a special case of an input-dependent normalizer."
+    },
+    {
+      "id": "q-wpp-ceqp",
+      "relation": "inclusion",
+      "left": "WPP",
+      "right": "CeqP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "If the WPP gap is h and the nonzero normalizer is f, then f−h is zero precisely on yes-instances."
+    },
+    {
+      "id": "q-wpp-awpp",
+      "relation": "inclusion",
+      "left": "WPP",
+      "right": "AWPP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "Section 6.1: WPP contained in AWPP-prime and Lemma 6.3 identifies AWPP-prime with AWPP."
+    },
+    {
+      "id": "q-ceqp-pp",
+      "relation": "inclusion",
+      "left": "CeqP",
+      "right": "PP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "For integer GapP gap g, the GapP expression 1−g² is positive exactly when g=0."
+    },
+    {
+      "id": "q-conp-ceqp",
+      "relation": "inclusion",
+      "left": "coNP",
+      "right": "CeqP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "A coNP language is characterized by the accepting-path count of its complement's NP machine being zero; #P is contained in GapP."
+    },
+    {
+      "id": "q-spp-parityp",
+      "relation": "inclusion",
+      "left": "SPP",
+      "right": "parityP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "The SPP gap is 1 on yes-instances and 0 on no-instances; Definition 2.3 characterizes parityP by odd GapP gap."
+    },
+    {
+      "id": "q-parityp-pspace",
+      "relation": "inclusion",
+      "left": "parityP",
+      "right": "PSPACE",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "Enumerate polynomial-length nondeterministic choices with a polynomial-space counter and retain the parity of accepting computations."
+    },
+    {
+      "id": "q-pp-pspace",
+      "relation": "inclusion",
+      "left": "PP",
+      "right": "PSPACE",
+      "source_ids": [
+        "q-fr98"
+      ],
+      "justification": "Corollary 3.5, through P^#P."
+    },
+    {
+      "id": "q-np-ma",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "MA",
+      "source_ids": [
+        "q-bgm03"
+      ],
+      "justification": "An MA verifier can ignore randomness and run the deterministic NP verifier."
+    },
+    {
+      "id": "q-bpp-ma",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "MA",
+      "source_ids": [
+        "q-bgm03"
+      ],
+      "justification": "An MA verifier can ignore the witness and run the BPP machine."
+    },
+    {
+      "id": "q-ma-sbp",
+      "relation": "inclusion",
+      "left": "MA",
+      "right": "SBP",
+      "source_ids": [
+        "q-bgm03"
+      ],
+      "justification": "Stated in the abstract and Section 1; exponentially amplify MA and guess the proof uniformly."
+    },
+    {
+      "id": "q-sbp-am",
+      "relation": "inclusion",
+      "left": "SBP",
+      "right": "AM",
+      "source_ids": [
+        "q-bgm03"
+      ],
+      "justification": "Stated in the abstract and Section 1; also derived from the SB operator containment in BP-exists."
+    },
+    {
+      "id": "q-sbp-pp",
+      "relation": "inclusion",
+      "left": "SBP",
+      "right": "PP",
+      "source_ids": [
+        "q-bgm03"
+      ],
+      "justification": "The SBP #P count minus its FP threshold is a GapP function with the correct strict sign; also via BPPpath."
+    },
+    {
+      "id": "q-bpp-szk",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "SZK",
+      "source_ids": [
+        "q-gsv98"
+      ],
+      "justification": "A protocol with no prover messages has a verifier that decides the BPP language itself and a perfect simulator of its own view."
+    },
+    {
+      "id": "q-szk-am",
+      "relation": "inclusion",
+      "left": "SZK",
+      "right": "AM",
+      "source_ids": [
+        "q-gsv98"
+      ],
+      "justification": "HVSZK contained in AM intersect coAM and HVSZK=SZK."
+    },
+    {
+      "id": "q-szk-coam",
+      "relation": "inclusion",
+      "left": "SZK",
+      "right": "coAM",
+      "source_ids": [
+        "q-gsv98"
+      ],
+      "justification": "HVSZK contained in AM intersect coAM and HVSZK=SZK."
+    },
+    {
+      "id": "q-bpp-sigma2p",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "Sigma2P",
+      "source_ids": [
+        "q-lautemann83"
+      ],
+      "justification": "Lautemann's theorem; complement closure derives BPP contained in Pi2P."
+    },
+    {
+      "id": "q-nexp-not-acc0",
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "ACC0",
+      "source_ids": [
+        "q-williams13"
+      ],
+      "justification": "Nonuniform ACC lower bound. ACC0 is the union over fixed depths and fixed moduli with polynomial size."
+    }
+  ],
+  "rules": [
+    {
+      "id": "q-ikw-nexp-circuits",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "q-ikw02"
+      ],
+      "justification": "IKW gives NEXP=MA; MA contained in NEXP is already known."
+    },
+    {
+      "id": "q-pp-circuits-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "MA"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "q-aw09"
+      ],
+      "justification": "Theorem 3.5 with trivial oracles gives P^#P contained in MA. PP and PH are contained in P^#P (the latter by Toda, explicitly used in Section 3.4)."
+    },
+    {
+      "id": "q-ikw-nexp-ma-circuits",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "MA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "q-ikw02"
+      ],
+      "justification": "The reverse direction of the IKW equivalence. MA is unconditionally contained in NEXP, so the premise gives NEXP=MA."
+    }
+  ],
+  "complement_pairs": [
+    {
+      "left": "SPP",
+      "right": "SPP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "From a 0/1 GapP gap g, use 1−g."
+    },
+    {
+      "left": "LWPP",
+      "right": "LWPP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "Replace gap g by f(0^|x|)−g; the length-dependent normalizer is unchanged."
+    },
+    {
+      "left": "WPP",
+      "right": "WPP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "Replace gap g by f(x)−g; the FP normalizer is unchanged."
+    },
+    {
+      "left": "AWPP",
+      "right": "AWPP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "Replace approximating gap g by f−g to exchange the near-zero and near-one intervals."
+    },
+    {
+      "left": "PP",
+      "right": "PP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "If membership means integer GapP gap g>0, then 1−2g>0 holds exactly on nonmembers."
+    },
+    {
+      "left": "parityP",
+      "right": "parityP",
+      "source_ids": [
+        "q-ffkl02"
+      ],
+      "justification": "Replace GapP gap g by g+1 to exchange odd and even parity."
+    },
+    {
+      "left": "BQP",
+      "right": "BQP",
+      "source_ids": [
+        "q-watrous08"
+      ],
+      "justification": "Flip the output bit, exchanging bounded-error acceptance and rejection."
+    },
+    {
+      "left": "SZK",
+      "right": "SZK",
+      "source_ids": [
+        "q-gsv98"
+      ],
+      "justification": "HVSZK is closed under complement and equals SZK; Section 1 credits Okamoto and Sahai–Vadhan for the complement theorem."
+    },
+    {
+      "left": "MA",
+      "right": "coMA",
+      "source_ids": [
+        "q-bgm03"
+      ],
+      "justification": "coMA is defined as the set of complements of MA languages."
+    },
+    {
+      "left": "AM",
+      "right": "coAM",
+      "source_ids": [
+        "q-bgm03",
+        "q-gsv98"
+      ],
+      "justification": "coAM is defined as the set of complements of AM languages."
+    },
+    {
+      "left": "QMA",
+      "right": "coQMA",
+      "source_ids": [
+        "q-watrous08"
+      ],
+      "justification": "coQMA is defined as the set of complements of QMA languages; this is not a claim QMA=coQMA."
+    }
+  ],
+  "notes": [
+    "The search checked cited statements and selected 2025–2026 updates. It did not prove absence of all pre-cutoff results. Unreached pairs must be unclassified until curator certification, rather than automatically called open.",
+    "No unrelativized strict separation between BQP and BPP, NP and BQP, or QMA and QCMA is seeded. Oracle results do not resolve those ordered pairs.",
+    "A promise-class inclusion restricts to a total-language inclusion. A separation witnessed only by a promise problem need not yield a total-language separation. The benchmark currently misses that second type of result.",
+    "BPP=P for total languages does not by itself permit replacing a verifier's promise-BPP problem by a P machine. In particular this file does not encode BPP=P implies MA=NP or QCMA=NP.",
+    "The q-gsv99 equivalence between NISZK=BPP and SZK=BPP is explicitly for promise classes and is not encoded for the total-language roster.",
+    "Neither SBP nor CeqP is assigned self-complement closure. Their complement closure is not known here; this is not a proven nonclosure.",
+    "parityP contained in PP is not a known seed. Exact parity and a threshold are different counting conditions.",
+    "Do not encode BPP=P implies NEXP not contained in Ppoly: Kabanets–Impagliazzo gives a disjunction with an arithmetic circuit lower bound, which this pair-only rule language cannot express.",
+    "The nonuniform circuit convention is essential. Nonuniform AC0 already contains undecidable length languages and must not be included in P or L. Its known reverse separations from all decidable roster classes should be provided by the classical baseline.",
+    "All source years are document/publication years, not the search engine's sometimes misleading crawl or republication date. Later revisions require a pinned historical-version audit before eligibility is frozen."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "title": "What if BPP were strictly contained in NP?",
+  "claims": [
+    {"relation": "inclusion", "left": "BPP", "right": "NP"},
+    {"relation": "separation", "left": "NP", "right": "BPP"}
+  ]
+}

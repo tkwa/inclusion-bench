@@ -1,0 +1,4962 @@
+{
+  "sources": [
+    {
+      "id": "AB2007",
+      "title": "Computational Complexity: A Modern Approach (author-hosted draft)",
+      "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+      "year": 2007,
+      "locator": "Chapters 2–7; Theorems 5.6, 6.11, 6.13, 6.14, 7.8; §§6.3–6.4",
+      "notes": "Primary author-written proofs and definitions; draft theorem numbers differ from the 2009 book. Not evidence that an unlisted relation was open in 2026.",
+      "publication_date": "2007-01-08"
+    },
+    {
+      "id": "HS1965",
+      "title": "On the Computational Complexity of Algorithms",
+      "url": "https://www3.risc.jku.at/people/schreine/courses/compcomp/HartmanisStearns1965.pdf",
+      "year": 1965,
+      "locator": "Transactions AMS 117, pp. 285–306; time hierarchy",
+      "notes": "Use standard multitape hierarchy consequence.",
+      "publication_date": "1965-05"
+    },
+    {
+      "id": "SFM1978",
+      "title": "Separating Nondeterministic Time Complexity Classes",
+      "url": "https://citeseerx.ist.psu.edu/document?doi=5a5339f901785db63330bc653ea76ea02b51d3fd&repid=rep1&type=pdf",
+      "year": 1978,
+      "locator": "JACM 25(1), pp. 146–167; main hierarchy theorem",
+      "notes": "DOI 10.1145/322047.322061.",
+      "publication_date": "1978-01"
+    },
+    {
+      "id": "Seiferas1977",
+      "title": "Techniques for separating space complexity classes",
+      "url": "https://www.sciencedirect.com/science/article/pii/S002200007780041X",
+      "year": 1977,
+      "locator": "JCSS 14(1), pp. 73–99; space diagonalization",
+      "notes": "DOI 10.1016/S0022-0000(77)80041-X.",
+      "publication_date": "1977-02"
+    },
+    {
+      "id": "Savitch1970",
+      "title": "Relationships between nondeterministic and deterministic tape complexities",
+      "url": "https://www.sciencedirect.com/science/article/pii/S002200007080006X",
+      "year": 1970,
+      "locator": "JCSS 4(2), pp. 177–192; NSPACE(s) ⊆ DSPACE(s²)",
+      "notes": "For s(n) ≥ log n.",
+      "publication_date": "1970-04"
+    },
+    {
+      "id": "Immerman1988",
+      "title": "Nondeterministic Space is Closed under Complementation",
+      "url": "https://epubs.siam.org/doi/10.1137/0217058",
+      "year": 1988,
+      "locator": "SIAM J. Comput. 17(5), pp. 935–938; main theorem",
+      "notes": "Independently proved by Szelepcsényi.",
+      "publication_date": "1988-10"
+    },
+    {
+      "id": "BCD1989",
+      "title": "Two Applications of Inductive Counting for Complementation Problems",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/two-applications-complementation-via-inductive-counting.pdf",
+      "year": 1989,
+      "locator": "§3.1; LOGCFL = uniform SAC¹ and complement closure",
+      "notes": "Authors Borodin, Cook, Dymond, Ruzzo, Tompa; DOI 10.1137/0218038. Contains NL ⊆ SAC¹ ⊆ AC¹ ⊆ NC²."
+    },
+    {
+      "id": "Gill1977",
+      "title": "Computational Complexity of Probabilistic Turing Machines",
+      "url": "https://epubs.siam.org/doi/10.1137/0206049",
+      "year": 1977,
+      "locator": "SIAM J. Comput. 6(4), pp. 675–695; probabilistic class definitions",
+      "notes": "Binary fair coins, bounded error on every input.",
+      "publication_date": "1977-12"
+    },
+    {
+      "id": "Adleman1978",
+      "title": "Two theorems on random polynomial time",
+      "url": "https://mikael-monet.net/share/papers/adleman1978.pdf",
+      "year": 1978,
+      "locator": "Theorem I; FOCS pp. 75–83",
+      "notes": "Original theorem covers RP; BPP extension is attributed to Bennett–Gill. DOI 10.1109/SFCS.1978.37.",
+      "publication_date": "1978-10"
+    },
+    {
+      "id": "BG1981",
+      "title": "Relative to a Random Oracle A, P^A ≠ NP^A ≠ co-NP^A with Probability 1",
+      "url": "https://www.cs.cornell.edu/courses/cs682/2006sp/Handouts/BennettGill.pdf",
+      "year": 1981,
+      "locator": "Nonuniform simulation of bounded-error computation",
+      "notes": "Used only for BPP ⊆ P/poly; oracle separations are not unrelativized separations.",
+      "publication_date": "1981-02"
+    },
+    {
+      "id": "Lautemann1983",
+      "title": "BPP and the polynomial hierarchy",
+      "url": "https://www.sciencedirect.com/science/article/pii/0020019083900443",
+      "year": 1983,
+      "locator": "Information Processing Letters 17(4), pp. 215–217; main theorem",
+      "notes": "BPP ⊆ Σ₂P; complement closure gives Π₂P.",
+      "publication_date": "1983-11-08"
+    },
+    {
+      "id": "Stockmeyer1976",
+      "title": "The polynomial-time hierarchy",
+      "url": "https://research.ibm.com/publications/the-polynomial-time-hierarchy",
+      "year": 1976,
+      "locator": "Theoretical Computer Science 3(1), pp. 1–22",
+      "notes": "DOI 10.1016/0304-3975(76)90061-X; hierarchy and collapse framework.",
+      "publication_date": "1976-10"
+    },
+    {
+      "id": "KL1980",
+      "title": "Some connections between nonuniform and uniform complexity classes",
+      "url": "https://doi.org/10.1145/800141.804678",
+      "year": 1980,
+      "locator": "STOC pp. 302–309; nonuniform collapse theorem",
+      "notes": "The Σ₂P version includes Sipser’s improvement; see AB2007 Theorem 6.13."
+    },
+    {
+      "id": "Toda1991",
+      "title": "PP is as Hard as the Polynomial-Time Hierarchy",
+      "url": "https://epubs.siam.org/doi/10.1137/0220053",
+      "year": 1991,
+      "locator": "SIAM J. Comput. 20(5), pp. 865–877; PH ⊆ P^PP",
+      "notes": "Does not assert PH ⊆ PP.",
+      "publication_date": "1991-10"
+    },
+    {
+      "id": "BFNW1993",
+      "title": "BPP Has Subexponential Time Simulations unless EXPTIME has Publishable Proofs",
+      "url": "https://lance.fortnow.com/papers/files/bppexp.pdf",
+      "year": 1993,
+      "locator": "Lemma 4.2(1); discussion after Corollary 1.3",
+      "notes": "Conference version 1991; journal Computational Complexity 3, pp. 307–318. EXP ⊆ P/poly ⇒ EXP = MA."
+    },
+    {
+      "id": "IW1997",
+      "title": "P = BPP if E requires exponential circuits: derandomizing the XOR lemma",
+      "url": "https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/IW97/proc.pdf",
+      "year": 1997,
+      "locator": "Abstract and main hardness-versus-randomness theorem",
+      "notes": "Exponential circuit hardness; mere E ⊄ P/poly is insufficient for this implication.",
+      "publication_date": "1997-05-04"
+    },
+    {
+      "id": "Williams2014",
+      "title": "Nonuniform ACC Circuit Lower Bounds",
+      "url": "https://people.csail.mit.edu/rrw/acc-lbs-journal-final.pdf",
+      "year": 2014,
+      "locator": "Theorem 1.1, Lemma 5.4",
+      "notes": "DOI 10.1145/2559903. Theorem 1.1 gives NTIME[2^n] ⊄ ACC0. Ignore stale journal-template footer dates.",
+      "publication_date": "2014-01"
+    },
+    {
+      "id": "FSS1984",
+      "title": "Parity, Circuits, and the Polynomial-Time Hierarchy",
+      "url": "https://wiki.epfl.ch/edicpublic/documents/Candidacy%20exam/Furst%20Saxe%20Sipser%20-%201984%20-%20Parity%20circuits%20and%20the%20polynomial-time%20hierarchy.pdf",
+      "year": 1984,
+      "locator": "Main parity lower bound; Mathematical Systems Theory 17, pp. 13–27",
+      "notes": "Parity is in both L and ACC0 but not nonuniform AC0."
+    },
+    {
+      "id": "Shamir1992",
+      "title": "IP = PSPACE",
+      "url": "https://doi.org/10.1145/146585.146609",
+      "year": 1992,
+      "locator": "JACM 39(4), pp. 869–877; honest prover uses polynomial space",
+      "notes": "Supports PSPACE ⊆ P/poly ⇒ PSPACE = MA by hardwiring the prover.",
+      "publication_date": "1992-10"
+    },
+    {
+      "id": "Aaronson2017",
+      "title": "P = ? NP",
+      "url": "https://eccc.weizmann.ac.il/report/2017/004/download",
+      "year": 2017,
+      "locator": "§2 padding discussion; Corollary 54",
+      "notes": "Author survey with proofs of padding and PSPACE circuit-collapse consequences; not an exhaustive 2026 audit."
+    },
+    {
+      "id": "ClassicalDerivations",
+      "title": "Elementary derivations recorded for this benchmark",
+      "url": "research/classical-notes.md",
+      "locator": "Unary witness, padding, hardwiring, and intersection arguments",
+      "notes": "Benchmark-specific proof commentary attached to standard counting, padding and simulation arguments. Recording date is not a publication date or independent evidence of historical novelty.",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-18"
+    },
+    {
+      "id": "Borodin1977",
+      "title": "On Relating Time and Space to Size and Depth",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/relating-time-space-size-depth.pdf",
+      "year": 1977,
+      "publication_date": "1977-12",
+      "locator": "SIAM J. Comput. 6(4), pp. 733–744; circuit-depth/space simulation",
+      "notes": "DOI 10.1137/0206054. Uniform NC uses polylogarithmic space."
+    },
+    {
+      "id": "Babai1985",
+      "title": "Trading group theory for randomness",
+      "url": "https://doi.org/10.1145/22145.22192",
+      "year": 1985,
+      "publication_date": "1985-05",
+      "locator": "STOC pp. 421–429; AM hierarchy and AM ⊆ Π₂P",
+      "notes": "AM containment also stated explicitly in AGH1990 §1.1."
+    },
+    {
+      "id": "AGH1990",
+      "title": "On the Power of Interaction",
+      "url": "https://www.csc.kth.se/~johanh/powerofinteraction.pdf",
+      "year": 1990,
+      "locator": "§1.1, p. 2; Babai’s AM[2] ⊆ Π₂ theorem",
+      "notes": "Authors Aiello, Goldwasser, Håstad; Combinatorica 10, pp. 3–25."
+    },
+    {
+      "id": "IKW2002Classical",
+      "title": "In Search of an Easy Witness: Exponential Time vs. Probabilistic Polynomial Time",
+      "url": "https://www.math.tau.ac.il/~amnon/Classes/2017-BPP/Lectures/IKW02.pdf",
+      "year": 2002,
+      "publication_date": "2002-05-22",
+      "locator": "Printed p. 10, footnote 3; AM ⊆ NP/poly",
+      "notes": "Author manuscript. The paper explicitly notes this unconditional containment; amplification and fixing random coins is the elementary proof."
+    }
+  ],
+  "facts": [
+    {
+      "id": "classical-inclusion-AC0-ACC0",
+      "relation": "inclusion",
+      "left": "AC0",
+      "right": "ACC0",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Standard nonuniform circuit simulation."
+    },
+    {
+      "id": "classical-inclusion-ACC0-TC0",
+      "relation": "inclusion",
+      "left": "ACC0",
+      "right": "TC0",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Standard nonuniform circuit simulation."
+    },
+    {
+      "id": "classical-inclusion-TC0-NC1",
+      "relation": "inclusion",
+      "left": "TC0",
+      "right": "NC1",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Standard nonuniform circuit simulation."
+    },
+    {
+      "id": "classical-inclusion-NC1-Ppoly",
+      "relation": "inclusion",
+      "left": "NC1",
+      "right": "Ppoly",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Standard nonuniform circuit simulation."
+    },
+    {
+      "id": "classical-inclusion-L-NL",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "NL",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-L-SC",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "SC",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-NC-P",
+      "relation": "inclusion",
+      "left": "NC",
+      "right": "P",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-SC-P",
+      "relation": "inclusion",
+      "left": "SC",
+      "right": "P",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-P-E",
+      "relation": "inclusion",
+      "left": "P",
+      "right": "E",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-E-EXP",
+      "relation": "inclusion",
+      "left": "E",
+      "right": "EXP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-E-NE",
+      "relation": "inclusion",
+      "left": "E",
+      "right": "NE",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-NP-NE",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "NE",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-NE-NEXP",
+      "relation": "inclusion",
+      "left": "NE",
+      "right": "NEXP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-EXP-NEXP",
+      "relation": "inclusion",
+      "left": "EXP",
+      "right": "NEXP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-P-Ppoly",
+      "relation": "inclusion",
+      "left": "P",
+      "right": "Ppoly",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-Ppoly-NPpoly",
+      "relation": "inclusion",
+      "left": "Ppoly",
+      "right": "NPpoly",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-NP-NPpoly",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "NPpoly",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-NPcapcoNP-NP",
+      "relation": "inclusion",
+      "left": "NPcapcoNP",
+      "right": "NP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-NPcapcoNP-coNP",
+      "relation": "inclusion",
+      "left": "NPcapcoNP",
+      "right": "coNP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Immediate simulation or definition."
+    },
+    {
+      "id": "classical-inclusion-NL-LogCFL",
+      "relation": "inclusion",
+      "left": "NL",
+      "right": "LogCFL",
+      "source_ids": [
+        "BCD1989"
+      ],
+      "justification": "Simulate a logspace machine by an auxiliary pushdown machine without using its stack."
+    },
+    {
+      "id": "classical-inclusion-LogCFL-NC",
+      "relation": "inclusion",
+      "left": "LogCFL",
+      "right": "NC",
+      "source_ids": [
+        "BCD1989"
+      ],
+      "justification": "LOGCFL = uniform SAC¹ ⊆ uniform NC²."
+    },
+    {
+      "id": "classical-inclusion-L-NC",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "NC",
+      "source_ids": [
+        "BCD1989"
+      ],
+      "justification": "Follows from L ⊆ NL ⊆ LOGCFL ⊆ uniform NC²."
+    },
+    {
+      "id": "classical-inclusion-NL-NC",
+      "relation": "inclusion",
+      "left": "NL",
+      "right": "NC",
+      "source_ids": [
+        "BCD1989"
+      ],
+      "justification": "Repeated squaring decides directed reachability in uniform NC²."
+    },
+    {
+      "id": "classical-inclusion-P-ZPP",
+      "relation": "inclusion",
+      "left": "P",
+      "right": "ZPP",
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "Probabilistic simulation; ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "classical-inclusion-ZPP-RP",
+      "relation": "inclusion",
+      "left": "ZPP",
+      "right": "RP",
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "Probabilistic simulation; ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "classical-inclusion-ZPP-coRP",
+      "relation": "inclusion",
+      "left": "ZPP",
+      "right": "coRP",
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "Probabilistic simulation; ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "classical-inclusion-RP-BPP",
+      "relation": "inclusion",
+      "left": "RP",
+      "right": "BPP",
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "Probabilistic simulation; ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "classical-inclusion-coRP-BPP",
+      "relation": "inclusion",
+      "left": "coRP",
+      "right": "BPP",
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "Probabilistic simulation; ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "classical-inclusion-RP-NP",
+      "relation": "inclusion",
+      "left": "RP",
+      "right": "NP",
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "Probabilistic simulation; ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "classical-inclusion-coRP-coNP",
+      "relation": "inclusion",
+      "left": "coRP",
+      "right": "coNP",
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "Probabilistic simulation; ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "classical-inclusion-P-UP",
+      "relation": "inclusion",
+      "left": "P",
+      "right": "UP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "A deterministic decider is unambiguous."
+    },
+    {
+      "id": "classical-inclusion-UP-FewP",
+      "relation": "inclusion",
+      "left": "UP",
+      "right": "FewP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "At most one accepting path is polynomially many."
+    },
+    {
+      "id": "classical-inclusion-FewP-NP",
+      "relation": "inclusion",
+      "left": "FewP",
+      "right": "NP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Drop the bound on accepting paths."
+    },
+    {
+      "id": "classical-inclusion-coUP-coNP",
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "coNP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Complement UP ⊆ NP."
+    },
+    {
+      "id": "classical-inclusion-P-NPcapcoNP",
+      "relation": "inclusion",
+      "left": "P",
+      "right": "NPcapcoNP",
+      "source_ids": [
+        "AB2007"
+      ],
+      "justification": "Deterministic polynomial time is closed under complement."
+    },
+    {
+      "id": "classical-inclusion-BPP-Ppoly",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "Ppoly",
+      "source_ids": [
+        "BG1981",
+        "Adleman1978"
+      ],
+      "justification": "Amplify below 2^(-n), then fix coins simultaneously for all n-bit inputs."
+    },
+    {
+      "id": "classical-inclusion-BPP-Sigma2P",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "Sigma2P",
+      "source_ids": [
+        "Lautemann1983"
+      ],
+      "justification": "Sipser–Gács–Lautemann containment and BPP complement closure."
+    },
+    {
+      "id": "classical-inclusion-BPP-Pi2P",
+      "relation": "inclusion",
+      "left": "BPP",
+      "right": "Pi2P",
+      "source_ids": [
+        "Lautemann1983"
+      ],
+      "justification": "Sipser–Gács–Lautemann containment and BPP complement closure."
+    },
+    {
+      "id": "classical-inclusion-NP-Theta2P",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "Theta2P",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-coNP-Theta2P",
+      "relation": "inclusion",
+      "left": "coNP",
+      "right": "Theta2P",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-Theta2P-Delta2P",
+      "relation": "inclusion",
+      "left": "Theta2P",
+      "right": "Delta2P",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-Delta2P-Sigma2P",
+      "relation": "inclusion",
+      "left": "Delta2P",
+      "right": "Sigma2P",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-Delta2P-Pi2P",
+      "relation": "inclusion",
+      "left": "Delta2P",
+      "right": "Pi2P",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-Sigma2P-PH",
+      "relation": "inclusion",
+      "left": "Sigma2P",
+      "right": "PH",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-Pi2P-PH",
+      "relation": "inclusion",
+      "left": "Pi2P",
+      "right": "PH",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-PH-PSPACE",
+      "relation": "inclusion",
+      "left": "PH",
+      "right": "PSPACE",
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Oracle/quantifier simulation in the polynomial hierarchy."
+    },
+    {
+      "id": "classical-inclusion-PSPACE-EXP",
+      "relation": "inclusion",
+      "left": "PSPACE",
+      "right": "EXP",
+      "source_ids": [
+        "Savitch1970",
+        "AB2007"
+      ],
+      "justification": "A deterministic polynomial-space machine has exponentially many configurations."
+    },
+    {
+      "id": "classical-inclusion-NEXP-EXPSPACE",
+      "relation": "inclusion",
+      "left": "NEXP",
+      "right": "EXPSPACE",
+      "source_ids": [
+        "Savitch1970"
+      ],
+      "justification": "Exponential-time nondeterminism uses exponential space; Savitch preserves the exponential-space union."
+    },
+    {
+      "id": "classical-separation-E-P",
+      "relation": "separation",
+      "left": "E",
+      "right": "P",
+      "source_ids": [
+        "HS1965"
+      ],
+      "justification": "Hierarchy theorem; SC and uniform NC use at most polylogarithmic space when applicable."
+    },
+    {
+      "id": "classical-separation-EXP-E",
+      "relation": "separation",
+      "left": "EXP",
+      "right": "E",
+      "source_ids": [
+        "HS1965"
+      ],
+      "justification": "Hierarchy theorem; SC and uniform NC use at most polylogarithmic space when applicable."
+    },
+    {
+      "id": "classical-separation-NE-NP",
+      "relation": "separation",
+      "left": "NE",
+      "right": "NP",
+      "source_ids": [
+        "SFM1978"
+      ],
+      "justification": "Hierarchy theorem; SC and uniform NC use at most polylogarithmic space when applicable."
+    },
+    {
+      "id": "classical-separation-NEXP-NE",
+      "relation": "separation",
+      "left": "NEXP",
+      "right": "NE",
+      "source_ids": [
+        "SFM1978"
+      ],
+      "justification": "Hierarchy theorem; SC and uniform NC use at most polylogarithmic space when applicable."
+    },
+    {
+      "id": "classical-separation-EXPSPACE-PSPACE",
+      "relation": "separation",
+      "left": "EXPSPACE",
+      "right": "PSPACE",
+      "source_ids": [
+        "Seiferas1977"
+      ],
+      "justification": "Hierarchy theorem; SC and uniform NC use at most polylogarithmic space when applicable."
+    },
+    {
+      "id": "classical-separation-PSPACE-SC",
+      "relation": "separation",
+      "left": "PSPACE",
+      "right": "SC",
+      "source_ids": [
+        "Seiferas1977"
+      ],
+      "justification": "Hierarchy theorem; SC and uniform NC use at most polylogarithmic space when applicable."
+    },
+    {
+      "id": "classical-separation-PSPACE-NC",
+      "relation": "separation",
+      "left": "PSPACE",
+      "right": "NC",
+      "source_ids": [
+        "Borodin1977",
+        "Seiferas1977"
+      ],
+      "justification": "Uniform NC circuit evaluation uses polylogarithmic space; the space hierarchy separates PSPACE from the union of all polylogarithmic space bounds."
+    },
+    {
+      "id": "classical-separation-L-AC0",
+      "relation": "separation",
+      "left": "L",
+      "right": "AC0",
+      "source_ids": [
+        "FSS1984"
+      ],
+      "justification": "PARITY is a witness."
+    },
+    {
+      "id": "classical-separation-ACC0-AC0",
+      "relation": "separation",
+      "left": "ACC0",
+      "right": "AC0",
+      "source_ids": [
+        "FSS1984"
+      ],
+      "justification": "PARITY is a witness."
+    },
+    {
+      "id": "classical-separation-NE-ACC0",
+      "relation": "separation",
+      "left": "NE",
+      "right": "ACC0",
+      "source_ids": [
+        "Williams2014"
+      ],
+      "justification": "Theorem 1.1 separates even NTIME[2^n] from polynomial-size nonuniform ACC0."
+    },
+    {
+      "id": "classical-separation-AC0-L",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "L",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-NL",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NL",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-LogCFL",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "LogCFL",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-NC",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NC",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-SC",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SC",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "P",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-RP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "RP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-coRP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coRP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-ZPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "ZPP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-BPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "BPP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-UP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "UP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-coUP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coUP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-NP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-coNP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coNP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-FewP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "FewP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-SPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SPP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-CeqP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "CeqP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-PP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "PP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-parityP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "parityP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-AWPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "AWPP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-LWPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "LWPP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-WPP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "WPP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-MA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "MA",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-coMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coMA",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-AM",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "AM",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-coAM",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coAM",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-QCMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "QCMA",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-QMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "QMA",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-coQMA",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "coQMA",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-BQP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "BQP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-SBP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SBP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-SZK",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "SZK",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-NPcapcoNP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NPcapcoNP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-Sigma2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Sigma2P",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-Pi2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Pi2P",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-Delta2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Delta2P",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-Theta2P",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "Theta2P",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-PH",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "PH",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-PSPACE",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "PSPACE",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-EXP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "EXP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-NEXP",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NEXP",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-EXPSPACE",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "EXPSPACE",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-E",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "E",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-separation-AC0-NE",
+      "relation": "separation",
+      "left": "AC0",
+      "right": "NE",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "An undecidable unary language is recognized by depth-two nonuniform circuits; the target contains only recursive languages.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-inclusion-MA-Sigma2P",
+      "relation": "inclusion",
+      "left": "MA",
+      "right": "Sigma2P",
+      "source_ids": [
+        "BFNW1993"
+      ],
+      "justification": "§2 states MA ⊆ Σ₂P ∩ Π₂P; alternatively use perfect completeness."
+    },
+    {
+      "id": "classical-inclusion-AM-Pi2P",
+      "relation": "inclusion",
+      "left": "AM",
+      "right": "Pi2P",
+      "source_ids": [
+        "Babai1985",
+        "AGH1990"
+      ],
+      "justification": "Babai’s AM ⊆ Π₂P theorem."
+    },
+    {
+      "id": "classical-separation-EXPSPACE-NPpoly",
+      "relation": "separation",
+      "left": "EXPSPACE",
+      "right": "NPpoly",
+      "source_ids": [
+        "ClassicalDerivations",
+        "AB2007"
+      ],
+      "justification": "Count nondeterministic circuits of size 2^(n/4); find an omitted 2^n-bit truth table by exhaustive search in O(2^n) space. Every NP/poly language has polynomial-size nondeterministic circuits.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "classical-inclusion-AM-NPpoly",
+      "relation": "inclusion",
+      "left": "AM",
+      "right": "NPpoly",
+      "source_ids": [
+        "IKW2002Classical",
+        "Adleman1978"
+      ],
+      "justification": "Amplify the AM protocol to error less than 2^(-n), choose coins good for all n-bit inputs, and use those coins as NP advice."
+    }
+  ],
+  "rules": [
+    {
+      "id": "ph-collapse-p",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "P"
+        }
+      ],
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Eliminate one quantifier block at a time."
+    },
+    {
+      "id": "ph-collapse-np",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "NP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "NP"
+        }
+      ],
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Complement transport gives NP = coNP; collapse PH at level one."
+    },
+    {
+      "id": "ph-collapse-sigma2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Pi2P",
+          "right": "Sigma2P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "Stockmeyer1976",
+        "AB2007"
+      ],
+      "justification": "Complement transport gives Σ₂P = Π₂P; collapse PH at level two."
+    },
+    {
+      "id": "karp-lipton",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "KL1980",
+        "AB2007"
+      ],
+      "justification": "Karp–Lipton theorem with Sipser’s improvement."
+    },
+    {
+      "id": "meyer-exp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Sigma2P"
+        }
+      ],
+      "source_ids": [
+        "KL1980",
+        "AB2007"
+      ],
+      "justification": "Meyer’s theorem, AB2007 Theorem 6.14."
+    },
+    {
+      "id": "bfnw-exp-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "BFNW1993"
+      ],
+      "justification": "Lemma 4.2(1)."
+    },
+    {
+      "id": "pspace-circuits-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "Shamir1992",
+        "Aaronson2017"
+      ],
+      "justification": "Send a circuit for the polynomial-space honest prover as the MA witness."
+    },
+    {
+      "id": "toda-pp-p",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "P"
+        }
+      ],
+      "source_ids": [
+        "Toda1991"
+      ],
+      "justification": "PH ⊆ P^PP; replace the PP oracle by a polynomial-time algorithm."
+    },
+    {
+      "id": "padding-p-np",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "E"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "EXP"
+        }
+      ],
+      "source_ids": [
+        "BFNW1993",
+        "Aaronson2017"
+      ],
+      "justification": "Exponential padding of nondeterministic computations."
+    },
+    {
+      "id": "padding-e-ne",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "E"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "EXP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomial padding reduces 2^(n^k) time to linear-exponential time.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-p-pspace",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXPSPACE",
+          "right": "EXP"
+        }
+      ],
+      "source_ids": [
+        "Aaronson2017"
+      ],
+      "justification": "Exponential padding converts exponential space to polynomial space."
+    },
+    {
+      "id": "padding-p-nc",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "NC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PSPACE"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations",
+        "Borodin1977"
+      ],
+      "justification": "Apply the assumed polylog-space simulation to an exponentially padded computation.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-np-nc",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "NC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PSPACE"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations",
+        "Borodin1977"
+      ],
+      "justification": "A padded NEXP language is in NP; polylogarithmic space in the padded length is polynomial space.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-p-sc",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "SC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PSPACE"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Apply the assumed polylog-space simulation to an exponentially padded computation.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-np-sc",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "SC"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PSPACE"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "A padded NEXP language is in NP; polylogarithmic space in the padded length is polynomial space.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "hardwire-p-ac0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "AC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "AC0"
+        }
+      ],
+      "source_ids": [
+        "Williams2014"
+      ],
+      "justification": "Lemma 5.4: hardwire an arbitrary polynomial-size circuit into the circuit-evaluation language."
+    },
+    {
+      "id": "hardwire-np-ac0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "AC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "AC0"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Use nondeterministic circuit evaluation and hardwire the advice/circuit description.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-e-ac0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "AC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "AC0"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomially pad the input into E, then hardwire the padding bits.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-ne-ac0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "AC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "AC0"
+        }
+      ],
+      "source_ids": [
+        "Williams2014",
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomial padding and fixed input bits; see Theorem 1.1 proof for ACC0.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "hardwire-p-acc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "ACC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "ACC0"
+        }
+      ],
+      "source_ids": [
+        "Williams2014"
+      ],
+      "justification": "Lemma 5.4: hardwire an arbitrary polynomial-size circuit into the circuit-evaluation language."
+    },
+    {
+      "id": "hardwire-np-acc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "ACC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "ACC0"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Use nondeterministic circuit evaluation and hardwire the advice/circuit description.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-e-acc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "ACC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "ACC0"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomially pad the input into E, then hardwire the padding bits.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-ne-acc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "ACC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "ACC0"
+        }
+      ],
+      "source_ids": [
+        "Williams2014",
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomial padding and fixed input bits; see Theorem 1.1 proof for ACC0.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "hardwire-p-tc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "TC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "TC0"
+        }
+      ],
+      "source_ids": [
+        "Williams2014"
+      ],
+      "justification": "Lemma 5.4: hardwire an arbitrary polynomial-size circuit into the circuit-evaluation language."
+    },
+    {
+      "id": "hardwire-np-tc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "TC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "TC0"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Use nondeterministic circuit evaluation and hardwire the advice/circuit description.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-e-tc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "TC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "TC0"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomially pad the input into E, then hardwire the padding bits.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-ne-tc0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "TC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "TC0"
+        }
+      ],
+      "source_ids": [
+        "Williams2014",
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomial padding and fixed input bits; see Theorem 1.1 proof for ACC0.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "hardwire-p-nc1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "NC1"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "NC1"
+        }
+      ],
+      "source_ids": [
+        "Williams2014"
+      ],
+      "justification": "Lemma 5.4: hardwire an arbitrary polynomial-size circuit into the circuit-evaluation language."
+    },
+    {
+      "id": "hardwire-np-nc1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "NC1"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "NC1"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Use nondeterministic circuit evaluation and hardwire the advice/circuit description.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-e-nc1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NC1"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NC1"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomially pad the input into E, then hardwire the padding bits.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-ne-nc1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NC1"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NC1"
+        }
+      ],
+      "source_ids": [
+        "Williams2014",
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomial padding and fixed input bits; see Theorem 1.1 proof for ACC0.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "hardwire-p-ppoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "Williams2014"
+      ],
+      "justification": "Lemma 5.4: hardwire an arbitrary polynomial-size circuit into the circuit-evaluation language."
+    },
+    {
+      "id": "hardwire-np-ppoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Use nondeterministic circuit evaluation and hardwire the advice/circuit description.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-e-ppoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomially pad the input into E, then hardwire the padding bits.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "padding-ne-ppoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "Williams2014",
+        "ClassicalDerivations"
+      ],
+      "justification": "Polynomial padding and fixed input bits; see Theorem 1.1 proof for ACC0.",
+      "audit_status": "elementary_derivation_requires_review"
+    },
+    {
+      "id": "intersection-np-conp-AC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "AC0",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "AC0",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AC0",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-AC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "AC0",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "AC0",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AC0",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-ACC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "ACC0",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ACC0",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "ACC0",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-ACC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "ACC0",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ACC0",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "ACC0",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-TC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "TC0",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "TC0",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "TC0",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-TC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "TC0",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "TC0",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "TC0",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NC1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NC1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-L",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-L",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-LogCFL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-LogCFL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "LogCFL",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-SC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-SC",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SC",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "P",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-RP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-RP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "RP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-coRP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-coRP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-ZPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-ZPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "ZPP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-BPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-BPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BPP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-UP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-UP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "UP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-coUP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-coUP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-coNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-coNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-FewP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-FewP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-SPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-SPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SPP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-CeqP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-CeqP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CeqP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-PP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-PP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-parityP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-parityP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-AWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "AWPP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "AWPP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AWPP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-AWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "AWPP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "AWPP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AWPP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-LWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-LWPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-WPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-WPP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-MA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-MA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "MA",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-coMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coMA",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coMA",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coMA",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-coMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coMA",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coMA",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coMA",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-AM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-AM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-coAM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coAM",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coAM",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coAM",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-coAM",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coAM",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coAM",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coAM",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-QCMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-QCMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QCMA",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-QMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-QMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-coQMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-coQMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "coQMA",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-BQP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-BQP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BQP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-SBP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SBP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SBP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SBP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-SBP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SBP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SBP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SBP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-SZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SZK",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SZK",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SZK",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-SZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "SZK",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "SZK",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "SZK",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NPcapcoNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NPcapcoNP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPcapcoNP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-Sigma2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Sigma2P",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Sigma2P",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Sigma2P",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-Sigma2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Sigma2P",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Sigma2P",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Sigma2P",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-Pi2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Pi2P",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Pi2P",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Pi2P",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-Pi2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Pi2P",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Pi2P",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Pi2P",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-Delta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-Delta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Delta2P",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-Theta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-Theta2P",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Theta2P",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-PH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-PH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-Ppoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-Ppoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "Ppoly",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NPpoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NPpoly",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NPpoly",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-PSPACE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-PSPACE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-EXP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-EXP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NEXP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NEXP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-EXPSPACE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "EXPSPACE",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "EXPSPACE",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXPSPACE",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-EXPSPACE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "EXPSPACE",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "EXPSPACE",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXPSPACE",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-E",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-E",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-NE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-NE",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    }
+  ],
+  "class_recommendations": {
+    "roster": [
+      "AC0",
+      "ACC0",
+      "TC0",
+      "NC1",
+      "L",
+      "NL",
+      "LogCFL",
+      "NC",
+      "SC",
+      "P",
+      "RP",
+      "coRP",
+      "ZPP",
+      "BPP",
+      "UP",
+      "coUP",
+      "NP",
+      "coNP",
+      "FewP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "LWPP",
+      "WPP",
+      "MA",
+      "coMA",
+      "AM",
+      "coAM",
+      "QCMA",
+      "QMA",
+      "coQMA",
+      "BQP",
+      "SBP",
+      "SZK",
+      "NPcapcoNP",
+      "Sigma2P",
+      "Pi2P",
+      "Delta2P",
+      "Theta2P",
+      "PH",
+      "Ppoly",
+      "NPpoly",
+      "PSPACE",
+      "EXP",
+      "NEXP",
+      "EXPSPACE",
+      "E",
+      "NE"
+    ],
+    "count": 50,
+    "nonuniform_ids": [
+      "AC0",
+      "ACC0",
+      "NC1",
+      "NPpoly",
+      "Ppoly",
+      "TC0"
+    ],
+    "uniform_nc": "NC means logspace-uniform polynomial-size bounded-fan-in circuits of polylogarithmic depth.",
+    "circuit_semantics": "AC0, ACC0, TC0 and NC1 are NONUNIFORM families. ACC0 allows a fixed arbitrary modulus m ≥ 2 per family, equivalently a fixed finite set of moduli.",
+    "advice_semantics": "Ppoly and NPpoly use arbitrary polynomial-length advice, possibly uncomputable.",
+    "problem_semantics": "All classes are sets of total decision languages over binary strings. Randomized/quantum definitions impose a gap for every input. Quantum gate sets must be fixed and computable.",
+    "complement_self": [
+      "AC0",
+      "ACC0",
+      "TC0",
+      "NC1",
+      "L",
+      "NL",
+      "LogCFL",
+      "NC",
+      "SC",
+      "P",
+      "ZPP",
+      "BPP",
+      "NPcapcoNP",
+      "Delta2P",
+      "Theta2P",
+      "PH",
+      "Ppoly",
+      "PSPACE",
+      "EXP",
+      "EXPSPACE",
+      "E"
+    ],
+    "complement_pairs": [
+      [
+        "RP",
+        "coRP"
+      ],
+      [
+        "UP",
+        "coUP"
+      ],
+      [
+        "NP",
+        "coNP"
+      ],
+      [
+        "Sigma2P",
+        "Pi2P"
+      ]
+    ],
+    "complement_sources": {
+      "NL": [
+        "Immerman1988"
+      ],
+      "LogCFL": [
+        "BCD1989"
+      ],
+      "default": [
+        "AB2007",
+        "ClassicalDerivations"
+      ]
+    },
+    "omitted_class": "NISZK omitted from the initial 51; final selection fixed by root."
+  },
+  "cutoff_limitations": [
+    "Provisional literature-informed seed set. No exhaustive verification of open status on 2026-09-01 has been performed. Missing closure facts are unknown-to-dataset, not certified open problems.",
+    "No paper proof in this file is machine-checked. Lean semantics must not turn citations into hidden axioms or declare abstract graph soundness to be a mechanized proof of the cited theorems.",
+    "Exact mathematical review remains required for entries labelled elementary_derivation_requires_review, in particular uniform-circuit space simulations, advice hardwiring, and unary undecidability.",
+    "Quantitative hardness, fine-grained improvements, promise problems, search/function classes, algebraic classes VP/VNP, and independence metatheorems need richer propositions than ordered language-class pairs.",
+    "E ⊄ Ppoly does not by itself justify BPP ⊆ P via IW1997. The required premise is an exponential circuit lower bound with appropriate quantifiers over lengths.",
+    "Kannan fixed-degree circuit lower bounds do not establish Sigma2P ⊄ Ppoly. Do not reverse quantifiers over language and polynomial degree.",
+    "Toda gives PH ⊆ P^PP, not PH ⊆ PP. A low-level PH collapse does not automatically collapse counting classes.",
+    "BPP = P for total languages does not automatically derandomize promise-BPP verifiers; do not infer MA = NP or BQP = P.",
+    "No oracle or communication-complexity separation can be imported as an unrelativized language-class separation.",
+    "Primary-source publication dates are historical bibliographic dates. Search-engine crawl dates and stale PDF template footers were not used as publication dates."
+  ],
+  "unimported_candidates": [
+    {
+      "relation": "conditional",
+      "premise": "NP ⊆ BPP",
+      "conclusion": "NP ⊆ RP and PH ⊆ BPP",
+      "reason": "Standard self-reduction and error-amplification consequences. Exact original-paper locator not verified in this pass; lecture notes support the statement but were not imported as primary-source seeds."
+    }
+  ]
+}
