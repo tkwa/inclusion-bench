@@ -10,7 +10,7 @@
   };
   const statusLabels = {
     inclusion: "Known inclusion", separation: "Known noninclusion",
-    unreviewed: "Eligibility unreviewed", independence: "Independent of ZFC",
+    unreviewed: "Candidate · history unreviewed", independence: "Independent of ZFC",
   };
   const key = (left, right) => `${left}|${right}`;
   const number = (n) => Number.isFinite(Number(n)) ? Number(n).toLocaleString("en-US") : "—";
@@ -115,16 +115,18 @@
     $("footer-name").textContent = name;
     document.title = `${name} — AI complexity-theory benchmark`;
     $("cutoff").textContent = date(d.cutoff);
-    $("version").textContent = `Version ${d.version || "draft"}`;
+    $("version").textContent = `Version ${d.version || "unversioned"}`;
     $("class-count").textContent = number(d.class_count ?? d.classes.length);
     $("pair-count").textContent = number(d.ordered_pairs ?? d.classes.length ** 2);
     const counts = d.counts || {};
-    const certified = d.stage === "certified";
-    document.querySelector(".draft-banner").hidden = certified;
-    document.querySelector(".hero .tag-dark").textContent = certified ? "Certified" : "Draft";
+    const operational = ["operational", "certified"].includes(d.stage);
+    document.querySelector(".draft-banner").hidden = false;
+    document.querySelector(".hero .tag-dark").textContent = operational ? "Open for runs" : "Snapshot preview";
+    document.querySelector(".draft-banner>.tag").textContent = operational ? "Open for runs" : "Snapshot preview";
     $("known-count").textContent = number((counts.inclusion || 0) + (counts.separation || 0) + (counts.independence || 0));
-    $("unreviewed-count").textContent = number(certified ? counts.open_at_cutoff : (counts.unreviewed ?? d.pairs.filter((p) => normalizedStatus(p) === "unreviewed").length));
-    document.querySelector(".stat-pending .stat-label").textContent = certified ? "eligible questions at the cutoff" : "pairs awaiting eligibility review";
+    const candidateCount = d.candidate_task_count ?? ((counts.unreviewed ?? d.pairs.filter((p) => p.status === "unreviewed").length) + (counts.open_at_cutoff || 0));
+    $("unreviewed-count").textContent = number(candidateCount);
+    document.querySelector(".stat-pending .stat-label").textContent = "candidate questions";
     $("dataset-hash").textContent = d.dataset_sha256 || "Not provided";
     const repo = safeLink(d.repository_url || d.repo_url || d.repository || "");
     if (repo && (d.repository_url || d.repo_url || d.repository)) {
@@ -159,6 +161,8 @@
       const runId = record.run_id || (typeof record.run === "string" ? record.run : record.run?.id);
       run.append(element("span", "run-name", runId || "Run ID not supplied"));
       if (record.track) run.append(element("span", "entry-description", `${record.track} · cohort ${String(record.cohort_sha256 || "").slice(0, 8)}`));
+      const assigned = record.assigned_task_count ?? record.assignment_count;
+      if (Number.isFinite(assigned)) run.append(element("span", "entry-description", `${number(assigned)} assigned question${assigned === 1 ? "" : "s"}`));
       if (record.date) run.append(element("span", "record-date", date(record.date)));
       tr.append(run);
       const score = element("td", "number-column");
@@ -185,7 +189,7 @@
       const td = element("td", "leaderboard-empty");
       td.colSpan = 5;
       td.append(element("strong", "", "No verified AI evaluations yet."));
-      td.append(element("p", "", "Official evaluations open after the historical eligibility audit and verification requirements are complete."));
+      td.append(element("p", "", "Runs are open. Publish a real model result after reviewing its run record, proof candidates and any positively scored pairs."));
       tr.append(td);
       body.append(tr);
     }
@@ -291,7 +295,7 @@
     const explanations = {
       inclusion: "Every language in the row class is also in the column class, according to the recorded baseline.",
       separation: "The baseline establishes that some language in the row class is absent from the column class.",
-      unreviewed: "The current baseline has no resolution for this direction. A historical review must establish eligibility before a new result can earn an official point.",
+      unreviewed: "This is a runnable candidate question: the frozen baseline has no resolution in this direction. Its cutoff history must be checked before it earns a positive point.",
       independence: "The recorded result establishes independence of this inclusion from the specified formal theory. Consult its certificate for the exact metatheoretic assumptions.",
     };
     $("pair-explanation").textContent = pair.hypothetical ? "This relation follows in the selected scoring example. No AI run has been credited with proving its assumptions." : pair.status === "open_at_cutoff" ? "Historical review certifies this question as open at the cutoff. An accepted model proof can resolve it for one point." : explanations[status];
@@ -354,7 +358,7 @@
     const trace = $("scenario-trace");
     trace.replaceChildren();
     if (!resolution) {
-      trace.append(element("p", "proof-note", "This scoring example resolves no additional pairs under the current draft baseline."));
+      trace.append(element("p", "proof-note", "This scoring example resolves no additional pairs under the frozen baseline."));
       return;
     }
     const proof = resolveProof(resolution.proof, true);

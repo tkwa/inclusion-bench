@@ -2,7 +2,7 @@ import InclusionBench.Catalog
 
 namespace InclusionBench
 
--- Dataset SHA-256: 0aa915caa5b84a095278864dba0a1ab9ee4bdf54648e3b87e52a72208104dfbc
+-- Dataset SHA-256: 8f69436c927248a9b7615fa97543f83764fef4afdc7b6a61b2ae9de1b4665d1d
 -- This theorem is conditional on its visible hypotheses.
 -- It verifies inference, not the submitted result or the historical literature.
 theorem CollapseExample (model : Interpretation ClassId)

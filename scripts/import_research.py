@@ -26,9 +26,9 @@ assert complete == {item['id'] for item in catalog['classes']}, 'Complete Lean i
 for item in catalog['classes']:
  item['formalization_status']='operational_model_defined_equivalence_unproved'
  item['lean_definition_file']='lean/InclusionBench/Definitions.lean' if item['id'] in defined else 'quantum/InclusionQuantum/Complete.lean'
-knowledge={'schema_version':1,'status':'draft; cited mathematical claims, not Lean-proved baseline facts','sources':a['sources']+b['sources'],'facts':a['facts']+b['facts'],'rules':a['rules']+b['rules'],'audit_limitations':a['cutoff_limitations']+b['notes']}
+knowledge={'schema_version':1,'status':'trusted cited baseline; existing literature proofs need not be formalized','sources':a['sources']+b['sources'],'facts':a['facts']+b['facts'],'rules':a['rules']+b['rules'],'audit_limitations':a['cutoff_limitations']+b['notes']}
 write('data/classes.json',catalog)
 write('data/knowledge.json',knowledge)
 paths=sorted([*R.glob('lean/InclusionBench/*.lean'), *R.glob('quantum/InclusionQuantum/*.lean'), R/'lean/lean-toolchain', R/'quantum/lake-manifest.json'])
 files={str(p.relative_to(R)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
-write('data/formalization.json', {'schema_version':1, 'status':'definitions supplied; textbook equivalence and literature proof obligations remain', 'definition_count':len(complete), 'files':files, 'bundle_sha256':hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',', ':')).encode()).hexdigest()})
+write('data/formalization.json', {'schema_version':1, 'status':'canonical operational definitions supplied; existing model-equivalence and literature results are trusted inputs', 'definition_count':len(complete), 'files':files, 'bundle_sha256':hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',', ':')).encode()).hexdigest()})

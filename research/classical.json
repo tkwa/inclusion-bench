@@ -218,6 +218,51 @@
       "publication_date": "2002-05-22",
       "locator": "Printed p. 10, footnote 3; AM ⊆ NP/poly",
       "notes": "Author manuscript. The paper explicitly notes this unconditional containment; amplification and fixing random coins is the elementary proof."
+    },
+    {
+      "id": "BHW1989",
+      "title": "On the Power of Probabilistic Polynomial Time: P^NP[log] ⊆ PP",
+      "url": "https://urresearch.rochester.edu/fileDownloadForInstitutionalItem.action?itemFileId=8631&itemId=5587",
+      "year": 1989,
+      "publication_date": "1989-02",
+      "locator": "University of Rochester technical report TR275, February 1989, Theorem 2.1 and Corollary 2.3",
+      "notes": "Beigel, Hemachandra, and Wechsung. Original report date is February 1989; later repository deposit dates do not date the theorem."
+    },
+    {
+      "id": "Fortnow2009Toda",
+      "title": "A Simple Proof of Toda’s Theorem",
+      "url": "https://toc.cs.uchicago.edu/articles/v005a007/",
+      "year": 2009,
+      "publication_date": "2009-07-03",
+      "locator": "Theory of Computing 5, pp. 135–140; Theorems 3.1 and 3.3, Lemma 3.4",
+      "notes": "Primary author proof. Theorem 3.3 states NP ⊆ BPP implies PH ⊆ BPP. Theorem 3.1 gives a randomized formula list preserving unsatisfiability and isolating a solution with high probability."
+    },
+    {
+      "id": "Klapper1989",
+      "title": "Generalized Lowness and Highness and Probabilistic Complexity Classes",
+      "url": "https://cs.uky.edu/~klapper/abs/lowness.html",
+      "year": 1989,
+      "publication_date": "1989",
+      "locator": "Mathematical Systems Theory 22, pp. 37–46; author-hosted abstract, final sentence",
+      "notes": "Recovers the Boppana–Håstad–Zachos result coNP ⊆ BP·NP implies PH ⊆ BP·NP. Here BP·NP is AM; it is not the oracle class BPP^NP. The author abstract, not a full-text proof, was rechecked in the September 2026 audit."
+    },
+    {
+      "id": "AKSS1995",
+      "title": "If NP has polynomial-size circuits, then MA = AM",
+      "url": "https://www.sciencedirect.com/science/article/pii/030439759591133B",
+      "year": 1995,
+      "publication_date": "1995-01-23",
+      "locator": "Theoretical Computer Science 137(2), pp. 279–282; main theorem and publisher abstract",
+      "notes": "Arvind, Köbler, Schöning, Schuler. DOI 10.1016/0304-3975(95)91133-B. Publisher abstract and author publication list were checked; full publisher PDF was not accessible during this audit."
+    },
+    {
+      "id": "AuditDerivations2026",
+      "title": "September 2026 baseline audit: elementary consequences of historical theorems",
+      "url": "research/baseline-audit.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-19",
+      "locator": "Elementary implications added during this audit",
+      "notes": "Dated audit commentary, not a newly published pre-cutoff research result. Used only alongside historical primary sources to explain SAT self-reduction and the parity specialization of Valiant–Vazirani."
     }
   ],
   "facts": [
@@ -1390,6 +1435,16 @@
         "Adleman1978"
       ],
       "justification": "Amplify the AM protocol to error less than 2^(-n), choose coins good for all n-bit inputs, and use those coins as NP advice."
+    },
+    {
+      "id": "classical-inclusion-Theta2P-PP",
+      "relation": "inclusion",
+      "left": "Theta2P",
+      "right": "PP",
+      "source_ids": [
+        "BHW1989"
+      ],
+      "justification": "The report proves P^NP[log] ⊆ PP (equivalently, polynomial-time truth-table access to NP is contained in PP). This is exactly the roster definition of Theta2P."
     }
   ],
   "rules": [
@@ -4816,6 +4871,114 @@
         "AB2007"
       ],
       "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "np-in-bpp-collapse-ph",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "BPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "BPP"
+        }
+      ],
+      "source_ids": [
+        "Fortnow2009Toda"
+      ],
+      "justification": "Theorem 3.3 explicitly states this collapse. BPP is closed under polynomially many adaptive calls with amplification."
+    },
+    {
+      "id": "conp-in-am-collapse-ph",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "coNP",
+          "right": "AM"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "AM"
+        }
+      ],
+      "source_ids": [
+        "Klapper1989",
+        "Babai1985"
+      ],
+      "justification": "The cited BP·NP collapse uses BP·NP = AM. Keep the bounded-probability operator distinct from an unrestricted NP oracle."
+    },
+    {
+      "id": "np-circuits-collapse-am-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "AM",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "AKSS1995"
+      ],
+      "justification": "The main theorem gives MA = AM if NP has polynomial-size circuits; the reverse inclusion is already in the baseline."
+    },
+    {
+      "id": "np-in-bpp-one-sided",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "BPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "RP"
+        }
+      ],
+      "source_ids": [
+        "AB2007",
+        "AuditDerivations2026"
+      ],
+      "justification": "Run an amplified BPP SAT decider while fixing one variable at a time. A union bound makes every adaptive query correct with probability at least 2/3 on satisfiable inputs. Accept only after deterministically checking the final assignment. Unsatisfiable inputs are never accepted, so SAT and then every NP language are in RP. The source provides the historical SAT self-reduction and error-amplification ingredients; this sentence is the audit derivation."
+    },
+    {
+      "id": "parity-in-p-isolation",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "parityP",
+          "right": "P"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NP",
+          "right": "RP"
+        }
+      ],
+      "source_ids": [
+        "Fortnow2009Toda",
+        "AuditDerivations2026"
+      ],
+      "justification": "Use the formula list from Theorem 3.1 and a deterministic parity-SAT decider. Accept if any formula has an odd number of solutions. If the input is unsatisfiable, every formula is unsatisfiable and acceptance is impossible. If satisfiable, with high probability some formula has exactly one solution. Thus SAT is in RP. This uses a total parity solver and does not assume that a solver for the total-language class UP solves the Unique-SAT promise problem."
     }
   ],
   "class_recommendations": {
@@ -4951,12 +5114,5 @@
     "No oracle or communication-complexity separation can be imported as an unrelativized language-class separation.",
     "Primary-source publication dates are historical bibliographic dates. Search-engine crawl dates and stale PDF template footers were not used as publication dates."
   ],
-  "unimported_candidates": [
-    {
-      "relation": "conditional",
-      "premise": "NP ⊆ BPP",
-      "conclusion": "NP ⊆ RP and PH ⊆ BPP",
-      "reason": "Standard self-reduction and error-amplification consequences. Exact original-paper locator not verified in this pass; lecture notes support the statement but were not imported as primary-source seeds."
-    }
-  ]
+  "unimported_candidates": []
 }

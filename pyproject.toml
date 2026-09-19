@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "inclusion-bench"
-version = "0.1.0"
+version = "0.2.0"
 description = "An AI mathematics benchmark of open complexity-class inclusion problems"
 requires-python = ">=3.11"
 license = {text = "MIT"}
@@ -18,3 +18,12 @@ packages = ["inclusion_bench"]
 
 [tool.setuptools.data-files]
 "share/inclusion-bench/data" = ["data/*.json"]
+"share/inclusion-bench/configs" = ["configs/*.json"]
+"share/inclusion-bench/research" = ["research/*.json", "research/*.md"]
+"share/inclusion-bench/evaluation" = ["evaluation/tasks.json", "evaluation/unsolved_adapter.py"]
+"share/inclusion-bench/evaluation/adapters" = ["evaluation/adapters/*.py", "evaluation/adapters/README.md"]
+"share/inclusion-bench/lean" = ["lean/*.lean", "lean/lean-toolchain", "lean/lakefile.toml", "lean/build.sh"]
+"share/inclusion-bench/lean/InclusionBench" = ["lean/InclusionBench/*.lean"]
+"share/inclusion-bench/quantum" = ["quantum/*.lean", "quantum/lean-toolchain", "quantum/lakefile.toml", "quantum/lake-manifest.json", "quantum/*.sh"]
+"share/inclusion-bench/quantum/InclusionQuantum" = ["quantum/InclusionQuantum/*.lean"]
+"share/inclusion-bench/scripts/proofcheck" = ["scripts/proofcheck/*.lean", "scripts/proofcheck/*.py"]

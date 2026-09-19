@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "InclusionBench adapter response v1",
-  "description": "One JSON object on adapter standard output. The adapter writes referenced files in the run directory; the runner computes their SHA-256 digests. A proof_candidate is an unverified model claim, not an accepted proof or score. Diagnostic output belongs on standard error.",
+  "title": "InclusionBench operational adapter response v2",
+  "description": "One JSON object on adapter standard output. The runner accepts four statuses, preserves artifacts and usage on failures, and hashes referenced files. A proof_candidate is unverified. Accounting fields are supplied by operational provider adapters; absent measurements from custom adapters are treated conservatively, never as proof of zero usage.",
   "type": "object",
   "required": [
     "status"
@@ -10,7 +10,9 @@
     "status": {
       "enum": [
         "unsolved",
-        "proof_candidate"
+        "proof_candidate",
+        "error",
+        "budget_exhausted"
       ]
     },
     "claims": {
@@ -26,6 +28,67 @@
       "items": {
         "$ref": "#/$defs/relativePath"
       }
+    },
+    "provider": {
+      "type": "string"
+    },
+    "model_requested": {
+      "type": "string"
+    },
+    "provider_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "response_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "usage": {
+      "$ref": "#/$defs/providerUsage"
+    },
+    "usage_complete": {
+      "type": "boolean"
+    },
+    "request_made": {
+      "type": "boolean"
+    },
+    "budget_charge_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "finish_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dry_run": {
+      "type": "boolean"
+    },
+    "budget_overrun": {
+      "type": "boolean"
+    },
+    "input_tokens_counted": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "input_token_reserve": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_output_tokens_sent": {
+      "type": "integer",
+      "minimum": 0
     }
   },
   "allOf": [
@@ -192,6 +255,47 @@
       "minLength": 1,
       "pattern": "^(?![/\\\\])(?![A-Za-z]:)(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$))[^\\u0000]+$",
       "description": "A relative file path inside the run directory. Absolute paths and parent traversal are forbidden. The runner separately checks file existence and containment after resolving symlinks."
+    },
+    "providerUsage": {
+      "type": "object",
+      "properties": {
+        "input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "total_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "reasoning_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "provider_usage": {
+          "type": "object"
+        },
+        "usage_complete": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true,
+      "description": "Measured provider token counts. Unknown measurements are null, not zero. Counts and their sums are checked by the runner."
     }
   },
   "additionalProperties": true

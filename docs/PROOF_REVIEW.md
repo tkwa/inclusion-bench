@@ -1,0 +1,130 @@
+# Checking submitted proofs
+
+Ordinary inclusion and noninclusion submissions have an executable Lean verifier. It checks closed theorems over all 50 operational class definitions in `InclusionBench.Quantum.completeInterpretation`. A successful report establishes the submitted statement relative to the explicitly trusted literature baseline. Benchmark points also require the separate proof, run-integrity, and cutoff-history reviews described in [EVALUATION.md](EVALUATION.md).
+
+Existing published proofs may be trusted under the benchmark's existing-proof waiver. Each cited fact, conditional implication, and complement identity becomes a named axiom generated from the current dataset. Submitted results never become axioms. The generated file exists only in the verifier's temporary job directory; it does not weaken the core library's no-custom-axioms build.
+
+## Submit a proof
+
+Write a UTF-8 Lean file containing declarations under the verifier's fixed imports. This infrastructure example is already known and earns zero points:
+
+```lean
+open InclusionBench
+
+theorem submitted :
+    Includes (Quantum.completeInterpretation .P)
+             (Quantum.completeInterpretation .P) :=
+  includes_refl _
+```
+
+Specify the exact declaration for each ordinary claim:
+
+```json
+[
+  {"relation": "inclusion", "left": "P", "right": "P", "theorem": "submitted"}
+]
+```
+
+Use `separation` for `NonIncludes`. Qualified theorem names such as `MyProof.result` are supported. Targets must be closed and monomorphic: a theorem with an unproved hypothesis does not match an unconditional benchmark claim.
+
+The Python entry point is:
+
+```python
+import json
+from pathlib import Path
+from inclusion_bench.benchmark import Benchmark
+from inclusion_bench.proofcheck import verify_proof
+
+runtime = json.loads(Path(".tools/proofcheck-runtime.json").read_text())
+report = verify_proof(
+    Benchmark(), "proof.lean",
+    [{"relation": "inclusion", "left": "P", "right": "P",
+      "theorem": "submitted"}],
+    report_path="proof-report.json",
+    timeout_seconds=180,
+    **runtime,
+)
+```
+
+The setup command below writes this runtime configuration. `host=None` uses Docker on the local Linux machine. To use another Linux host, set `host` to its SSH alias and set `remote_root` and `toolchain_path` to paths on that host. There is no fallback that executes submitted Lean directly on the host.
+
+To inspect the available trusted facts and their exact declaration names, call `trusted_baseline(Benchmark(), claims)`. It returns the generated Lean source, the source-linked axiom manifest, and the expected-target map. `baseline_name("fact:" + fact_id)` gives a stable name. Every axiom has its fact/rule identifier, source identifiers, and source metadata hash in the report. Baseline assumptions are reviewable mathematical inputs; the verifier does not prove their consistency or their agreement with every textbook presentation of the classes.
+
+## What the verifier checks
+
+1. It hashes the proof bytes, dataset, semantic sources, checker sources, and generated baseline. It checks the remote Mathlib lock file and records manifests of the actual Mathlib objects, Lean executable/objects/shared libraries, and Docker image ID. These fingerprints identify the trusted installation; they do not independently attest to its provenance.
+2. A trusted build reconstructs the repository's core and quantum libraries from the submitted verifier package's **trusted repository sources**, then compiles the generated baseline and export helper. Candidate source is not executed during this stage.
+3. A separate container elaborates the candidate and exports declaration types and proof terms as bounded JSON. The candidate cannot write host files or change the trusted imports. Its compiled objects are discarded.
+4. A fresh container reads only the JSON. The trusted decoder constructs Lean names, universes, expressions, and declarations, then calls the synchronous kernel declaration checker with checking enabled. It imports no candidate module and executes no candidate initializer or native library.
+5. For each requested theorem, the kernel checks its use at a server-generated exact target type. Changing notation, reporting a different claim, or printing a successful diagnostic cannot change that target.
+6. The verifier collects actual axiom dependencies of every reconstructed declaration. The allowlist contains only `propext`, `Classical.choice`, `Quot.sound`, and the generated cited baseline axioms. `sorryAx`, new axioms, and native-compiler trust axioms are rejected.
+
+This design follows Lean's distinction between elaborating untrusted source and validating its proof objects. Lean's [proof-validation documentation](https://lean-lang.org/doc/reference/latest/ValidatingProofs/) explains why an untrusted `.olean` file and an ordinary successful compiler invocation are insufficient. The current checker reuses Lean 4.19's kernel; it is not an independently implemented kernel.
+
+Each container uses one CPU, an 8 GiB memory and swap ceiling, 32 processes, no network, no capabilities, a read-only root filesystem, and bounded temporary storage. Candidate execution has no writable host mount. Output is bounded while the process runs; a timeout or output overflow also removes the container. The timeout applies separately to trusted build, candidate elaboration, and fresh replay. Only one container runs at a time.
+
+## Set up a public Linux verifier
+
+Start with a Linux x86_64 or aarch64 machine with Docker Engine, Python 3.10 or later, Git, and enough disk space for Lean and the requested Mathlib cache. Your user must be able to run Docker. No private repository or private machine is needed:
+
+```sh
+git clone https://github.com/tkwa/inclusion-bench.git
+cd inclusion-bench
+python3 scripts/proofcheck/setup_linux.py \
+  --toolchain-path "$HOME/.local/share/inclusion-bench/lean-4.19.0" \
+  --image ubuntu:22.04
+```
+
+Setup pulls the small public Ubuntu image, downloads the official [Lean 4.19.0 release](https://github.com/leanprover/lean4/releases/tag/v4.19.0) when needed, checks out each dependency at the committed lock's exact revision, and fetches only the four required Mathlib modules and their transitive imports. It preserves the dependency lock and refuses to overwrite a checkout at a different revision. It records the release archive hash and checks the GitHub asset digest when one is provided.
+
+Provisioning runs in a trusted container limited to one CPU and 8 GiB, including cache extraction. This setup container has network access and writable installation directories because its job is to install trusted dependencies. It installs no host packages. Proof-checking containers always disable network access and candidate host writes.
+
+The generated `.tools/proofcheck-runtime.json` contains the exact keyword arguments for `verify_proof`, including the resolved image ID. The toolchain path is optional: setup defaults to `.tools/lean-4.19.0` in the checkout. Existing installations can be reused with `--toolchain-path`; `--skip-pull` reuses an installed image. Check an existing installation without downloading or changing it:
+
+```sh
+python3 scripts/proofcheck/setup_linux.py --check-only \
+  --toolchain-path "$HOME/.local/share/inclusion-bench/lean-4.19.0"
+```
+
+The command-line verifier accepts `--local`, `--image`, `--toolchain-path`, and `--remote-root`. For example, after writing the proof and claims above:
+
+```sh
+python3 -m inclusion_bench verify-proof proof.lean --claims claims.json \
+  --report proof-report.json --local --image ubuntu:22.04 \
+  --toolchain-path "$HOME/.local/share/inclusion-bench/lean-4.19.0" \
+  --remote-root "$PWD"
+```
+
+Verification requires the chosen image to be installed already; it never pulls an image. Any compatible Linux image with `/bin/sh`, `cat`, and glibc can be supplied by name or digest, and the actual image ID is recorded. The API's original defaults still target Thomas's existing SSH host and cached NVIDIA Ubuntu image. Public users should supply the generated configuration or the explicit options above. A GPU is never used.
+
+## Current proof-format limits
+
+Version 1 accepts ordinary theorem declarations, safe definitions, and opaque declarations with bodies, using types already present in the trusted imports. Newly declared inductive types, structures, constructors, recursors, unsafe declarations, and partial definitions are unsupported. Such a proof requires extending and reviewing the data-only codec before it can be admitted. This limitation is a verifier-format limitation, not evidence that the mathematics is false. Imported trusted libraries remain available through the fixed `ProofExport` and `TrustedBaseline` imports; arbitrary additional imports are outside the submission format.
+
+Proof source is limited to 2 MiB, exported JSON to 32 MiB, and reconstructed declarations to 100,000. Reports have one of three statuses: `verified`, `rejected`, or `unavailable`. Only `verified` is positive proof evidence. A report always contains `official_points: 0`: the verifier itself cannot award points or certify that a statement was open at the cutoff.
+
+The Lean kernel, its runtime, the trusted repository sources, pinned dependency objects, Docker/Linux isolation, and the reviewer's verifier installation form the trust boundary. Do not accept a model-authored report or a report copied without rerunning the verifier. A maintainer binds the resulting report to the exact artifact hash in `data/ai_reviews.json`; run integrity is recorded separately in `data/ai_run_reviews.json`.
+
+## Independence certificates
+
+ZFC independence has a separate expert-review lane. An independence submission must identify the exact inclusion sentence, the encoding of that sentence and ZFC, the proof relation, the ambient metatheory, and any consistency assumptions. It must establish both nonderivability directions or provide a metatheorem that entails them under its stated assumptions. A contradiction between a proposition and its negation is not an independence certificate.
+
+The core Lean `ProofTheory.Independent` interface represents the two nonderivability obligations relative to an explicit proof relation. The automated ordinary-proof verifier does not implement a full ZFC encoding and rejects `independence` claims. Expert acceptance must record the exact theorem, checked proof artifacts, reviewers, assumptions, and the precise ordered pair. Independence receives no inclusion/separation propagation. The existing-proof waiver does not turn an unverified new independence assertion into an axiom.
+
+## Verification tests
+
+Run the local input-validation tests with:
+
+```sh
+python -m unittest tests.test_proofcheck -v
+```
+
+Run the actual isolated positive and adversarial tests using the generated local runtime configuration:
+
+```sh
+INCLUSION_PROOFCHECK_INTEGRATION=1 \
+  INCLUSION_PROOFCHECK_CONFIG=.tools/proofcheck-runtime.json \
+  python -m unittest tests.test_proofcheck.IsolatedProofcheckTests -v
+```
+
+The integration suite checks a real reflexivity proof, a cited baseline proof, an incorrect target, `sorry`, a fabricated axiom, a fake successful diagnostic, and a malicious candidate that writes a forged proof export and exits successfully before the exporter runs. The last test exercises the fresh kernel directly. These are infrastructure tests and contribute no benchmark score.

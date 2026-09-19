@@ -1,155 +1,161 @@
 # AI evaluation protocol
 
-InclusionBench evaluates an AI system's attempts to solve open complexity-theory problems. One run assigns the frozen problem suite to a specified model configuration under a declared budget. Verified consequences of that run's proofs determine its score.
+InclusionBench evaluates an AI model's ability to resolve complexity-theory questions. One entry identifies a model configuration, an assigned set of questions, a declared budget and a single recorded run. Its accepted proofs and their consequences determine its score.
 
-This document specifies the evaluation contract. The current release is a draft: candidate tasks can be generated and attempts can be recorded, but official scores remain unavailable until eligibility and semantic proof admission are certified. A hypothetical set of claims is not an AI evaluation.
+Version 0.2.0 is open for runs. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite consists of frozen candidate questions. Historical eligibility is reviewed for each pair that would receive a positive point, so the entire literature audit need not finish before an evaluation can start.
 
-## 1. Freeze the problems
+## 1. Freeze the benchmark
 
-A certified release contains one task for **every ordered pair certified open at the cutoff**, using the exact class definitions and uniformity conventions in that release. A task asks whether A ⊆ B, A ⊄ B, or the encoded inclusion is independent of ZFC. Reversed pairs are separate tasks. Equalities, strict containments, or stronger theorems can resolve several tasks through proved consequences.
+The release fixes the 50 class identifiers, their canonical operational definitions, uniformity conventions, baseline facts, implication rules, cutoff and candidate task list. A candidate is an ordered pair absent from the baseline's resolution closure. Its absence does not by itself establish historical openness.
 
-The task manifest must contain:
+A task asks whether A ⊆ B, A ⊄ B, or the encoded inclusion is independent of ZFC. Reversing the classes creates a different task. Equalities and strict containments can resolve several directions. The targets are classes of total binary decision languages; a promise problem or relativized question does not silently replace them.
 
-| Field | Required content |
-| --- | --- |
-| `schema_version`, `benchmark_version` | Format and release identifiers |
-| `dataset_sha256`, `taskset_sha256` | Digests of the frozen mathematical data and canonical task manifest |
-| `cutoff`, `cutoff_convention` | The release's exact historical boundary; no runner-local date interpretation |
-| `task_id`, `left`, `right` | A stable ID and two catalog IDs; one entry per ordered pair |
-| `eligibility_status`, `eligibility_record` | Certified historical openness and the review record supporting it |
-| `statement`, `definition_refs` | The actual inclusion question and exact operational conventions |
-| `baseline_refs`, `prompt_sha256` | Permitted baseline material and the fully rendered prompt digest |
-
-Sort tasks by `(left, right)` before hashing. The versioned schema must specify canonical JSON serialization and exclude the digest's own field from its hashed payload. Reject duplicate pairs, unknown IDs, missing definitions, and an eligibility manifest from another dataset. Freeze the rule set as well as the pair list; otherwise the same proof could receive different scores during an evaluation.
-
-The draft may generate an analogous suite from pairs absent from its conservative baseline closure. Every such task must be marked `unreviewed`; absence from a database does not certify an open problem. These tasks support dry runs only. Once a certified eligibility manifest exists, both task membership and the full-suite completeness check must use that exact manifest, rather than the draft complement of known closure or a comparison of task counts alone.
-
-## 2. Define a run before starting it
-
-A leaderboard row identifies a **run**, not just a product name. Record the following before dispatch:
-
-| Section | Required fields |
-| --- | --- |
-| Identity | `run_id`, `benchmark_version`, `dataset_sha256`, `taskset_sha256` |
-| Model | Provider, exact model/snapshot ID, version date if known, API endpoint/version, reasoning configuration, sampling settings, and seed if the provider supports one |
-| Harness | Repository commit, runner version, system/developer prompts, rendered task prompts, and their digests |
-| Track | `closed-book` or `tool-assisted`; any human assistance and cross-task state policy |
-| Planned budget | Per-task and total token limits, wall-clock limits, attempt limit, tool-call limits, and declared spending/resource caps |
-| Tools | Exact allowlist, tool versions, network/retrieval policy, available proof libraries, and initial filesystem contents |
-| Scheduling | Complete task list, deterministic order or recorded shuffle seed, concurrency limit, retry policy |
-| Timing | UTC start/end timestamps and the measurement source |
-
-If a provider does not expose an immutable snapshot, record the returned model ID and evaluation time, and label the snapshot as unpinned. Unknown usage fields stay `null` with a reason; they must not silently become zero. Record observed token usage, cost, tool calls, duration, and budget overruns after execution.
-
-For a standard suite run, each task starts in a fresh context with identical shared baseline material. Do not feed one task's generated proof into another task during the run. Pool accepted mathematical consequences only at scoring time. A persistent agent that shares notes across tasks belongs in a separately labeled research-campaign configuration and is not directly comparable to independent-task runs.
-
-The default attempt count is one per task. A run with multiple attempts must declare the count in advance, retain every attempt, and charge all of them to its budget. Do not publish the best of several undisclosed runs. Provider failures and retries must remain in the record even when a retry policy excludes a transport failure from mathematical attempt counts.
-
-For local tools on the development host, retain the user's limits of four CPU cores and 16 GiB RAM in aggregate. A published evaluation must declare its own enforced limits; limits on local tools do not describe a remote model provider's inference hardware.
-
-## 3. Keep access tracks separate
-
-**Closed book:** the model receives the frozen prompt and supplied baseline material, with no external retrieval, tool calls, or computation during the attempt. A verifier may run afterward; its feedback is not returned to the model. The model may emit formal source as text.
-
-**Tool assisted:** the model may use only the declared tools, within the declared budget. Record calls, outputs, retrieved URLs, retrieval times, and the content or immutable digest needed to reconstruct the evidence. Proof checking and model-directed revisions may occur inside the attempt. If network access is disabled, say so; if it is enabled, do not describe the run as closed book.
-
-Human prompting beyond the frozen protocol, theorem suggestions, or proof repairs create a human-assisted configuration. Human review of an already sealed proof is verification, not generation assistance. Reviewers must not silently repair the submitted artifact and credit the repaired proof to the model.
-
-## 4. Preserve attempts and proofs
-
-Every assigned task gets an attempt record, including unsuccessful tasks. Record:
-
-```json
-{
-  "attempt_id": "run-id/task-id/0",
-  "task_id": "release-specific-task-id",
-  "attempt_index": 0,
-  "status": "proof_candidate",
-  "started_at": "UTC timestamp",
-  "finished_at": "UTC timestamp",
-  "claims": [
-    {"relation": "inclusion", "left": "A", "right": "B"}
-  ],
-  "artifacts": [
-    {"path": "artifacts/proof.lean", "sha256": "content digest", "kind": "lean_source"}
-  ],
-  "transcript_sha256": "content digest",
-  "usage": {}
-}
-```
-
-The sample is a record shape, not a scored result. Catalog IDs, timestamps, and digests must be real values in an actual run. The implementation's versioned schema is authoritative for exact field names.
-
-Use attempt statuses `unsolved`, `proof_candidate`, `budget_exhausted`, or `error`. Report tasks outside an executed subset as not attempted when summarizing suite coverage; do not invent model attempts for them. A proof candidate may later be accepted or rejected; the model cannot assign its own review status. A timeout with useful partial work remains `budget_exhausted`, with its partial artifacts preserved. Partial progress earns no point unless it contains a separately verified resolution.
-
-Preserve the unedited final answer, complete conversation and tool trace, formal source, human-readable argument, exact theorem statement, imported dependencies, build command, environment/container identity, and verifier stdout/stderr. Hash artifacts when the attempt closes. Later revisions are new artifacts with explicit provenance; never overwrite the original.
-
-## 5. Verify before awarding points
-
-Admission has separate checks:
-
-1. **Run integrity:** the attempt belongs to this run, uses the pinned task/dataset, and obeys the declared access and budget policy.
-2. **Statement match:** the proof concerns the exact catalog classes, uniformity, inclusion direction, and unrelativized question. A relativized result, a promise problem, an added assumption, or a weaker circuit model does not silently replace the task.
-3. **Proof verification:** replay the artifact in a clean environment. Audit all assumptions and imports. Reject incomplete proofs, unchecked axioms that assert the result, and a proof of a different proposition. A conditional theorem whose hypothesis is the submitted claim does not verify that claim.
-4. **Semantic and historical review:** verify the connection between the formal statement and the catalog, the source/rule assumptions, and the pair's eligibility at the cutoff. Preserve reviewer identity, decision, reasons, artifact digests, and verification logs in a separate acceptance record.
-
-The AI path uses two independent registries. `data/ai_reviews.json` records acceptance of exact attempts, artifacts, and claims. `data/ai_run_reviews.json` records a separate integrity review of the exact run, including its model snapshot, access policy, budget compliance, transcripts, and suite binding. A mathematically valid proof does not establish that a model produced it under the declared conditions, and a compliant run does not make its claims true. Official AI scoring requires both reviews; it does not require an additional aggregate entry in the legacy `data/reviews.json` submission registry.
-
-The prototype's generated Lean traces certify that consequences follow **if the submitted statements and cited hypotheses hold**. They cannot by themselves satisfy step 3 for a new mathematical result. Current admission therefore remains blocked even if a local reviewer marks a claim promising. Distinguish `pending`, `accepted`, and `rejected` proof reviews from a release-level `official_score_available` flag.
-
-An independence submission must identify the exact encoded sentence, ZFC axioms and proof relation, its negation, the metatheory, and every consistency assumption. It must establish unprovability of both polarities. A result conditional on Con(ZFC) stays conditional unless the frozen admission policy explicitly accepts that form. Lean's foundation is not automatically a formal implementation of ZFC. Independence resolves only its exact ordered pair and never enters ordinary inclusion closure.
-
-## 6. Score the model's run
-
-Let `E` be the certified eligible pairs, `B` the frozen baseline, `S_r` the ordinary claims accepted from run `r`, and `I_r` its accepted independence pairs. The official score is:
-
-```text
-score(r) = cardinality of
-  E ∩ (pairs resolved by sound closure(B ∪ S_r) ∪ I_r)
-```
-
-Pool proofs across attempts **within that run** before computing closure. This gives stronger results their full consequence credit and allows two independently proved premises to imply a third result. Count each ordered pair once, even if several tasks, attempts, proofs, or inference paths resolve it. Do not pool proofs from different models or runs into an individual run's score.
-
-The pooled accepted statements must be mutually compatible with the baseline and the independence policy. If they conflict, block official scoring until review resolves the conflict; logical explosion earns nothing. Preserve the explanation graph from every credited pair back to accepted artifact IDs and baseline/rule IDs. If a new theorem has consequences beyond the frozen inference engine, submit proofs of the additional pair statements; a model-written rule is not automatically trusted or inserted into the baseline.
-
-Report the resolved-pair score alongside assigned/attempted tasks, accepted proofs, directly resolved tasks, consequence-resolved tasks, pending/rejected candidates, and measured resource usage. These secondary counts must not be added to the score. A partially executed suite is labeled partial; it is not a standard full-suite ranking entry. Registry corrections require a versioned rescore and a public change record.
-
-## 7. Publish results without overstating them
-
-Publish the run manifest, proof artifacts, verification decisions, credited pair IDs, and replayable consequence traces. Use `null` or “not available” for an uncertified score and “not run” for a model with no recorded evaluation. Zero is appropriate for a completed, admissible run that resolved no eligible pair. The historical pre-cutoff reference receives zero by definition; it is not a measured AI result or evidence that a particular model was evaluated.
-
-The suite is public. Both closed-book training contamination and tool-assisted retrieval of post-cutoff solutions are possible. It cannot establish blind generalization, prove that a model discovered a result independently, or establish a discovery date from a transcript alone. Record known exposure and retrieval evidence. A valid post-cutoff proof may solve the fixed benchmark task, but a retrieval-assisted run must be labeled accordingly. Claims of original discovery require a separate priority and literature review.
-
-Solved toy tasks, parser fixtures, and the Lean smoke tests validate the harness. They are not members of the open-problem suite and cannot contribute official points. No model scores should be generated from those fixtures or invented as illustrative leaderboard entries.
-
-## Current adapter contract
-
-`inclusion_bench.evaluation.taskset` exports the draft tasks. `run_adapter` sends one JSON request on the adapter's standard input for each selected task. The request contains the task, catalog, knowledge base, dataset digest, remaining wall time, and response schema. The trusted adapter runs its configured model and returns one JSON object on standard output:
-
-```json
-{"status": "unsolved", "claims": [], "artifacts": []}
-```
-
-For a proof candidate, `artifacts` is a list of relative file paths written inside the run directory. The runner validates the paths and computes their hashes before creating the manifest. An adapter for a text-only model must save the emitted proof text/source to a file and return its path. Standard output must contain only the response JSON; diagnostic output goes to standard error. The adapter must preserve the full model/tool transcript in artifact files.
-
-`evaluate_run` validates the manifest and consults `data/ai_reviews.json` for proof acceptance. These records bind the run digest, attempt digest, exact claims, artifact hashes, and verification record. Official admission separately consults `data/ai_run_reviews.json` for the exact run's integrity review and checks full membership of the certified task suite. Model-authored metadata cannot create either acceptance record. The old aggregate submission registry, `data/reviews.json`, is not an extra requirement for the AI-run path.
-
-The Linux/macOS draft runner enforces its wall-time deadline, terminates the adapter process group at attempt end, and caps captured output at 8 MB for the response and 1 MB for diagnostics. Artifact hashes are computed in streaming chunks. The adapter/container must enforce and document tool access, token budgets, CPU/RAM limits, and other declared restrictions. The minimal generated manifest does not itself establish compliance with the full certified-run protocol above. Fill the required audit fields and independently verify enforcement before publishing a comparable model result.
-
-`evaluation/unsolved_adapter.py` is an infrastructure fixture that always reports unsolved. It must use the `smoke-test` track, which is excluded from official scoring. It is not an AI model evaluation.
-
-From the repository root, export the task suite and exercise that fixture with:
+The dataset and taskset have canonical JSON hashes. The taskset binds the formalization bundle, and `data/freeze.json` identifies the released snapshot. Use the checked-in frozen version for runs. A maintainer changing mathematical data or task conventions must create a new version and freeze it:
 
 ```sh
-python -m inclusion_bench tasks --output evaluation/tasks.json
-python -m inclusion_bench run-adapter \
-  --model not-a-model --model-version infrastructure-fixture \
-  --output runs/protocol-smoke --task inclusion.NP.P \
-  --wall-seconds 60 --track smoke-test \
-  -- python "$PWD/evaluation/unsolved_adapter.py"
-python -m inclusion_bench evaluate-run runs/protocol-smoke/run.json
+python3 -m inclusion_bench freeze
 ```
 
-Choose an unused output directory; the runner refuses to overwrite an existing run. The task asks whether NP ⊆ P; the opposite orientation is a known baseline inclusion and is not an open task. This command sequence exercises one task and produces an unranked partial smoke run. It does not evaluate a model or create a proof-verification record.
+The canonical definitions are the target statements. Proving equivalence with every textbook presentation, adding aliases, or formalizing every historical theorem is useful further work, not a prerequisite to this protocol.
 
-For a real run, replace the fixture with a provider adapter, declare the model snapshot and access track, assign the intended full task suite, and preserve the required audit evidence. There is currently **no end-to-end automatic checker for submitted research proofs and no certified official release**. The adapter and manifest evaluator are runnable; acceptance of new mathematics remains a separate proof-verification and maintainer-review obligation.
+## 2. Declare the run
+
+Record the model's exact API identifier, provider, reasoning/sampling settings, assigned task IDs, access track, tool policy, time limits and token budget before generation. Preserve the configuration and its hash. If the provider returns a different model identifier or only offers a mutable alias, retain both the requested and returned IDs; do not describe an alias as an immutable snapshot.
+
+An assignment may be one question, a chosen subset, or the whole suite. Subsets are valid runs. Rankings compare matching **assignment, access track and budget** cohorts; a one-question run and a full-suite run are not ranked against each other as if their conditions matched. Preserve assignment order or its recorded shuffle seed.
+
+The supplied adapters perform one attempt per assigned task, with a fresh context and no model tools or retrieval. Each receives the frozen baseline, all canonical Lean source files, and generated `TrustedBaseline` declarations. The provider prompt asks for one Lean body without imports, with `Submission.result_N` theorems mapped to the ordered claims; the verifier supplies fixed imports. A persistent agent sharing notes across tasks requires a separately declared configuration. Pool accepted statements at scoring time, rather than secretly feeding one attempt's answer into another independent-task attempt.
+
+Do not discard unsuccessful attempts or publish the best of undisclosed retries. Provider failures, interrupted requests and partial outputs remain part of the run. Human theorem suggestions, proof repairs or extra prompting count as generation assistance and must be disclosed; reviewing an already sealed artifact is verification.
+
+## 3. Run with explicit limits
+
+Set the provider's normal credential environment variable, choose an exact model ID, and inspect the configuration's declared budgets. Replace `MODEL` below with that identifier:
+
+```sh
+python3 -m inclusion_bench preflight --config configs/openai.json --model MODEL
+python3 -m inclusion_bench run --config configs/openai.json --model MODEL --output runs/first
+python3 -m inclusion_bench evaluate-run runs/first/run.json
+```
+
+Preflight sends no provider requests. Use `--no-credentials` to check a configuration without requiring a key. The OpenAI starter configuration assigns `inclusion.NP.P`; override the assignment with repeated `--task` flags or `--all-tasks`. For Anthropic, select `configs/anthropic.json` and set `ANTHROPIC_API_KEY`.
+
+The runner limits each attempt's wall time and the run's cumulative budget, preserves checkpoints, and seals the final manifest. An interrupted run may resume only with the original configuration and frozen taskset. An in-flight request with unknown remote usage does not receive a fresh token allowance on resume. Sealed runs are immutable.
+
+The adapters call provider input-token counting before generation and reduce the output cap to fit the remaining total-token allowance. The Anthropic counter is an estimate; a configurable reserve provides headroom, and actual usage is checked afterward. Returned reasoning usage is already included in output tokens. Unknown usage stays unknown: the runner charges the remaining allowance conservatively and stops after an uncertain generation request. This is a spending control, not a claim that the provider billed exactly that amount. [Provider adapter details](../evaluation/adapters/README.md).
+
+The built-in adapters run serially and perform little local computation. On Linux, the runner uses CPU affinity and a per-process memory limit; that is not an aggregate memory cap on arbitrary child processes. macOS has no hard CPU/RAM cap in this runner. Custom tool adapters need aggregate container isolation when their process-tree budget must be enforced. Keep concurrent local work within four CPU cores and 16 GiB, and record which limits were actually enforced. These limits describe local tools, not the remote provider's inference hardware. Record observed token usage, duration, tool activity and any overrun. Provider costs are not silently inferred from stale prices or missing usage.
+
+## 4. Preserve evidence
+
+The version 2 run manifest includes the frozen hashes, model identity, full configuration, assignment, budgets, timing, checkpoint history, attempts and an evidence index. Each attempt records its task and prompt digest, status, exact claims, artifact hashes, provider identity and usage.
+
+| Attempt status | Meaning |
+| --- | --- |
+| `unsolved` | A completed answer asserts no resolved pair |
+| `proof_candidate` | The model supplied exact claims and proof artifacts; acceptance is pending |
+| `error` | A provider, transport, parsing or execution failure; available evidence is preserved |
+| `budget_exhausted` | Time or token limits prevented completion; available partial work is preserved |
+
+Preserve the final answer, full provider request and response, returned proof text, Lean source, notes, usage, provider response ID and diagnostics. Adapters save paths relative to isolated attempt directories; the runner seals the corresponding files with hashes. Credentials are never part of the published evidence. The provider adapters redact known key strings and omit authorization headers from logs.
+
+A model's `accepted: true` or `verified: true` field grants nothing. Acceptance lives in a separate maintainer-controlled registry and binds the exact run, attempt, claims and artifact hashes. Later revisions are new evidence with explicit provenance, not silent replacements of sealed model output.
+
+## 5. Review the run and its proofs
+
+Generate a packet containing the sealed hashes and pending review records:
+
+```sh
+python3 -m inclusion_bench review-packet runs/first/run.json --output review.json
+```
+
+The run reviewer checks model identity, configuration and tools, budgets and usage, transcripts and artifacts, and undisclosed human assistance. Fill the packet's `run_review` section with the reviewer, rationale, evidence and explicit decision. The command accepts the packet directly and extracts that section:
+
+```sh
+python3 -m inclusion_bench review-run runs/first/run.json review.json
+```
+
+Run-integrity acceptance is separate from proof acceptance. A standalone run-review object is also accepted.
+
+Every proof candidate must be accepted or rejected before publishing the final score. A reviewer may accept a verified subset of the model's claims, but cannot add an unsubmitted claim. Acceptance requires both statement matching and substantive proof review: the exact classes, uniformity, language conventions and inclusion direction must agree with the frozen catalog.
+
+### Ordinary inclusions and non-inclusions
+
+Use the submitted Lean body and its claims-to-theorem mapping to obtain a verification report. The adapter saves `adapter-artifacts/<provider-uuid>/claims-map.json` inside the attempt directory. Each ordinary claim includes a `theorem` field: `Submission.result_1` for the first original claim, `Submission.result_2` for the second, and so on. Independence entries are excluded from the automatic map without renumbering later claims.
+
+Replace `SOURCE` and `CLAIMS_MAP` in the command with their sealed paths from the manifest, resolving relative paths beneath the run directory. Do not add imports to the sealed source: it runs under the verifier's fixed imports. The supplied canonical sources and generated baseline let the model refer to the exact target definitions and historical assumptions. See [proof format and verifier setup](PROOF_REVIEW.md).
+
+```sh
+python3 -m inclusion_bench verify-proof SOURCE --claims CLAIMS_MAP --report proof-report.json
+```
+
+The proof checker executes in a sandbox and checks the actual target with a fresh Lean kernel. The release's approved cited baseline and implication premises may be used. Arbitrary new axioms, an assumed version of the claimed result, or a proof of a different proposition do not establish a solution. Existing cited proofs do not need to be re-formalized as part of admission.
+
+Review the mathematical argument and source alongside the report. The admitted source hash must match a sealed artifact from this attempt; a reviewer must not repair the proof and attribute the repair to the original model. Fill the matching entry in `review.json` under `proof_reviews`. For an accepted ordinary proof, set `proof_report` to its report path; relative paths are resolved from the review JSON's directory. Select the entry by its actual attempt ID:
+
+```sh
+python3 -m inclusion_bench review-proof runs/first/run.json review.json --attempt-id attempt-0001
+```
+
+Repeat for every proof candidate. Standalone proof-review objects remain supported; the packet form avoids copying hashes between files.
+
+A consequence trace only establishes a deduction from its listed premises. It cannot verify a new premise by treating that premise as an assumption.
+
+### Independence metatheorems
+
+Independence has a separate expert-review lane. Its record must identify the exact encoded inclusion sentence, ZFC axioms and proof relation, metatheory, consistency assumptions, and evidence establishing unprovability of both the sentence and its negation. State conditional metatheorems as conditional; do not silently remove their assumptions.
+
+The ordinary Lean checker is not an automatic ZFC-independence verifier. The absence of such a general verifier does not block ordinary inclusion evaluations. Independence resolves only its exact ordered pair and never becomes a negative edge in ordinary inclusion closure.
+
+## 6. Review the history of positive points
+
+Pool the accepted claims and compute their consequences on the frozen baseline. Before awarding any positive point, review that pair's status at the cutoff, including the release's exact UTC convention. The history record names the dataset, reviewer, evidence, rationale and one of:
+
+- `open_at_cutoff`: the direction is eligible for a point.
+- `known_at_cutoff`: the direction earns no point, even if the baseline omitted its earlier resolution.
+
+After accepting proofs, regenerate a packet so its `history_review` section lists every pending candidate consequence:
+
+```sh
+python3 -m inclusion_bench review-packet runs/first/run.json --output history-review.json
+```
+
+Inspect each listed pair and fill that section's reviewer, decision, evidence and rationale. Then pass the whole packet; `review-history` extracts `history_review`:
+
+```sh
+python3 -m inclusion_bench review-history history-review.json
+python3 -m inclusion_bench evaluate-run runs/first/run.json
+```
+
+A standalone history-review object also works. If the run has no resolved candidate pairs, no historical review is needed; an empty pending template is not an acceptance record.
+
+History review applies to implied points as well as direct claims, including consequences outside the assignment. A source list alone does not certify openness. Consult the actual statements, versions and public availability dates. The cutoff is September 1, 2026, with its precise boundary specified in the release policy.
+
+Retrospective omissions are expected to be possible. Keep the candidate set and inference rules frozen for the run; exclude the known pair through its historical decision and record any correction. Changing the frozen baseline itself creates a new version. Published rescoring must identify the review revision and preserve an audit trail rather than quietly replacing an old score.
+
+## 7. Score and publish
+
+For run `r`, let `S_r` be its accepted ordinary claims, `I_r` its accepted independence pairs, `B` the frozen baseline and `E` the positively reviewed eligible pairs. The score is:
+
+```text
+| E ∩ (pairs resolved by closure(B ∪ S_r) ∪ I_r) |
+```
+
+Count each ordered pair once. Do not add direct and implied resolutions twice or pool accepted proofs from different runs. Contradictory statements cannot earn points; a conflict blocks scoring until review resolves it. Preserve the derivation graph and its links back to accepted attempts, artifact hashes and cited rules.
+
+An official result requires a sealed genuine model run, accepted run-integrity review, disposition of its proof candidates, and historical decisions for all pairs the accepted claims resolve. A run with no accepted resolutions can receive a reviewed **zero** without certifying every unattempted question's history. A pending review produces an unavailable official score, not zero.
+
+Once `evaluate-run` reports an official result, prepare its public evidence and register the leaderboard entry:
+
+```sh
+python3 -m inclusion_bench publish-run runs/first/run.json
+python3 scripts/build_release.py
+```
+
+`publish-run` copies the manifest and only files in its sealed evidence index into `evaluation/published-runs/<run_id>`, then registers that manifest in `data/leaderboard_runs.json`. Unindexed files in a working run directory are not copied. Commit the published evidence, review registries and generated leaderboard together; pushing to GitHub and deploying are separate actions.
+
+Publish the reviewed evidence, credited pair IDs, resource usage, cohort, verification decisions and replayable traces. Report assigned questions and actual attempted questions separately. A budget-stopped run must not claim that unattempted questions received model answers.
+
+The public leaderboard contains only genuine reviewed runs. A fixture or mock API response is infrastructure validation and cannot enter it. The historical pre-cutoff reference has zero by definition; it is not a model evaluation.
+
+The suite and rules are public. Training exposure and retrieval of post-cutoff solutions are possible. A score therefore does not establish blind generalization, independent discovery or priority. Report known exposure and the declared access policy; discovery claims require a separate literature and priority review.

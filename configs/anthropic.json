@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "provider": "anthropic",
+  "track": "closed-book",
+  "model": {
+    "name": "<MODEL>",
+    "version": "<MODEL>"
+  },
+  "selection": {
+    "task_ids": [
+      "inclusion.NP.P"
+    ]
+  },
+  "budget": {
+    "wall_time_seconds": 900,
+    "per_task_wall_time_seconds": 900,
+    "max_total_tokens": 250000,
+    "max_output_tokens_per_task": 32768,
+    "max_cpu_cores": 1,
+    "memory_limit_mib": 4096
+  },
+  "configuration": {}
+}

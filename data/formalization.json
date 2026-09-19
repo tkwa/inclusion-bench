@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "definitions supplied; textbook equivalence and literature proof obligations remain",
+  "status": "canonical operational definitions supplied; existing model-equivalence and literature results are trusted inputs",
   "definition_count": 50,
   "files": {
     "lean/InclusionBench/Catalog.lean": "a4134d5c2ec2606bd16723087f52e35baa61bfaed6bdff88e12c8659083487b8",

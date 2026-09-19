@@ -1,57 +1,77 @@
 # AI benchmark scoring specification
 
-## Target universe
+**Version 0.2.0 is operational.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require historical review of each resolved candidate pair.
 
-The evaluated system is one fixed AI model and configuration in one budgeted run. See [the evaluation protocol](EVALUATION.md) for prompts, adapters, evidence and run admission. An instance is an ordered pair from the frozen class catalog. The current 50-class roster has 2,500 pairs, including 50 reflexive pairs that are known and ineligible. A language is a subset of finite binary strings; a class is a set of languages. Inclusion means ordinary set inclusion, not a reduction.
+## Target universe and freeze
 
-The cutoff is September 1, 2026, inclusive: a result publicly available before September 2, 2026 at 00:00 UTC is pre-cutoff. Original versions, acceptance claims, corrections and publication dates require evidence. A later exposition can explain an older theorem but cannot establish its historical availability by itself. Month-only dates near the cutoff require explicit review.
+The evaluated system is one fixed AI model and configuration in one budgeted run. See [the evaluation protocol](EVALUATION.md) for prompts, adapters, evidence and admission. An instance asks whether one class is included in another. Languages are subsets of finite binary strings, classes are sets of languages, and inclusion means ordinary set inclusion.
 
-A certified release freezes the catalog, the cited rule set and per-pair eligibility. A SHA-256 digest binds the class definitions, knowledge base and policy; the manifest and admission records name that digest. Changes produce a new version and a documented rescore. Historical omissions are corrected, never treated as achievements.
+The 50-class catalog has 2,500 ordered pairs, including 50 reflexive pairs. The 0.2.0 baseline settles 709 inclusions and 405 noninclusions, leaving **1,386 frozen candidate questions**. All 50 classes have concrete Lean definitions under the catalog conventions. AC0, ACC0, TC0, NC1, P/poly and NP/poly are nonuniform; NC is logspace-uniform.
+
+The cutoff is September 1, 2026, inclusive: a result publicly available before September 2, 2026 at 00:00 UTC is pre-cutoff. Historical review checks original versions, corrections, the exact statement and publication evidence. A later exposition can explain an older result but does not alone establish its earlier availability.
+
+`freeze` records the dataset, taskset, formalization bundle and baseline-audit hashes. The dataset digest binds the class catalog, cited knowledge base and policy. Freezing fixes candidate questions; it does not certify that every candidate was open. The [AI-assisted baseline audit](../research/baseline-audit.md) records its coverage and limitations. Changes require a versioned freeze and a documented treatment of affected runs.
 
 ## Resolutions and scoring
 
-A normal atom is `inclusion(A,B)` or `separation(A,B)`. The latter is ¬(A ⊆ B), equivalent in classical logic to a witness language in A outside B. Incomparability is two separation atoms. Equality is two inclusion atoms. Strict containment A ⊊ B is inclusion(A,B) together with separation(B,A).
+An ordinary atom is `inclusion(A,B)` or `separation(A,B)`. Separation means ¬(A ⊆ B), equivalent in classical logic to a witness language in A outside B. Incomparability requires two separation atoms; equality requires two inclusion atoms. Strict containment A ⊊ B requires inclusion(A,B) and separation(B,A).
 
-For an accepted submission S and certified eligibility set E:
+For one run, let S be its accepted model claims, R the candidate pairs resolved by the baseline and S, and H the pairs reviewed as open at the cutoff:
 
 ```
-score(S) = | { (A,B) in E : an accepted resolution of (A,B)
-                          follows from the baseline and S } |
+score(run) = | R ∩ H |
 ```
 
-Each ordered pair contributes at most one point, regardless of the number of proofs or the direction of the answer. A run score uses the union of the pairs resolved by its accepted proof artifacts. Answers to different tasks in the same run may combine through implications. Different runs are never pooled. Exact run, attempt and artifact hashes bind every admitted proof to its originating run. The standalone `score` command assumes mathematical claims for diagnosis; `evaluate-run` requires trusted proof reviews before counting them.
+An official score is published only after the run-admission requirements below are satisfied. Every pair in R must receive a historical decision; a pair reviewed as already known earns zero. Each ordered pair contributes at most one point, regardless of how many proofs resolve it. Accepted answers to different tasks in the same run may combine through implications. Different runs are never pooled.
 
-A contradiction with the baseline, with another submitted claim, or between derived resolutions rejects the submission. Logical explosion earns no points. Existing facts and consequences earn zero. A stronger result earns at least as many points when it entails all the weaker submission's accepted consequences under the same dataset; the engine need not discover every implication in mathematics.
+Implication credit ranges over the frozen candidate universe, including consequences outside a run's assigned subset. Exact run, attempt and artifact hashes bind accepted proofs to their originating run. The standalone `score` command assumes mathematical claims for diagnosis and reports hypothetical consequences. Operational official scores use `evaluate-run`; `score --official` is not the operational admission route.
+
+A contradiction with the baseline, another accepted claim, or a derived resolution rejects that inconsistent claim set. Logical explosion earns no points. A stronger accepted result earns at least as many points when it entails all the weaker result's accepted consequences under the same baseline and historical eligibility decisions. The engine need not discover every implication in mathematics.
 
 ## Supported inference
 
-The scorer maintains a finite, signed relation graph and an acyclic explanation record. It repeatedly applies:
+The scorer maintains a finite signed relation graph and an acyclic explanation record. It repeatedly applies:
 
 1. Reflexivity and inclusion transitivity.
 2. Separation propagation: A ⊄ B, A ⊆ C and D ⊆ B imply C ⊄ D.
-3. Complement transport when the catalog supplies both complement identities. Direction is preserved: A ⊆ B implies coA ⊆ coB.
-4. Cited Horn implications with any finite list of signed premises.
-5. Classical contraposition of each Horn implication: its other premises and the negation of its conclusion imply the negation of the missing premise.
+3. Complement transport when the catalog supplies both identities. Direction is preserved: A ⊆ B implies coA ⊆ coB.
+4. Cited Horn implications with finite lists of signed premises.
+5. Classical contraposition: the other premises and the negation of a rule's conclusion imply the negation of its missing premise.
 
-The rule set includes hierarchy collapses, Karp–Lipton, consequences of Toda's theorem, circuit/advice collapses, padding and intersection introduction. A rule is a mathematical assertion with a source, not executable code. Every generated conclusion records its premises and rule/source IDs. The first found derivation is deterministic for a fixed input order; it need not be the shortest proof.
+The rule set includes hierarchy collapses, Karp–Lipton, consequences of Toda's theorem, circuit/advice collapses, padding and intersection introduction. Each conclusion records its premises and rule/source IDs. The first derivation found is deterministic for a fixed input order; it need not be the shortest proof.
 
-The graph is deliberately incomplete. For example, the known containment PH ⊆ P^PP cannot be replaced by PH ⊆ PP. Exponential circuit hardness needed for Impagliazzo–Wigderson cannot be replaced by the weaker claim E ⊄ P/poly. Quantitative, disjunctive and auxiliary propositions will need an extended rule language or separately proved consequences. A submitter can supply additional proved pair conclusions for review.
+The graph is incomplete. PH ⊆ P^PP cannot be replaced by PH ⊆ PP. Exponential circuit hardness needed for Impagliazzo–Wigderson cannot be replaced by E ⊄ P/poly. Quantitative, disjunctive and auxiliary propositions need a richer rule language or separately proved pair consequences. A model may submit those additional consequences for verification.
+
+## Admission and review
+
+Operational admission has three separate records:
+
+| Review | What it establishes |
+| --- | --- |
+| Run review | Exact model identity, configuration and tools, budgets and usage, sealed transcripts/artifacts, and absence of unreported human assistance. |
+| Proof review | Which submitted claims are accepted or rejected, bound to the exact run, attempt and artifact hashes. Ordinary accepted claims require a verified isolated Lean report. |
+| Historical review | Whether each resolved candidate pair was open or already known at the cutoff, with evidence and rationale. |
+
+The ordinary proof verifier generates a trusted helper containing only cited baseline facts, rules and complement identities. It elaborates the model's Lean source in an isolated container, exports declaration data, and rechecks those declarations in a fresh Lean kernel environment against exact class propositions. Only standard Lean foundations and the named trusted-baseline axioms are allowed. Submitted assumptions, fabricated verification metadata and conditional proofs with new unproved premises are not accepted proofs. See [formalization status](formalization.md) for the precise trust boundary and supported proof format.
+
+Review registries are maintainer-controlled inputs, not model answers. A review packet is a template, not an acceptance decision. The commands `review-run`, `review-proof` and `review-history` record explicit decisions; `verify-proof` supplies proof-checking evidence without awarding points by itself.
+
+An operational official run must use the current frozen version and sealed schema-v2 evidence, have an accepted run review, and have every proof candidate adjudicated. All candidate consequences of accepted proofs need historical decisions. At least one genuine model request must produce a completed `unsolved` or `proof_candidate` answer, and the recorded charge must fit the token budget. Infrastructure fixtures, smoke tests, empty runs and runs consisting only of errors or exhausted budgets cannot become ranked model results.
+
+**A measured zero is valid.** If a real run meets those requirements and resolves no eligible pairs, it receives zero. Unclaimed candidates need no blanket openness certification for that result. A pending proof candidate prevents a final score until adjudicated, even if the eventual score is zero.
+
+Declared subsets are allowed and labeled. Rankings compare only identical frozen tasksets, exact task assignments, access tracks, resource budgets and access policies. Full-suite and subset results are different cohorts; equal scores within a cohort share a rank.
+
+## Historical corrections
+
+A missed pre-cutoff theorem or consequence earns zero. Record the supporting evidence, correct historical eligibility, and recompute affected scores while retaining the original run and frozen evidence. Changes to the baseline graph or semantics require a new dataset version; a review decision about a frozen candidate can be recorded in the historical registry for that version. Do not silently reclassify a known result as an achievement.
+
+The historical baseline's zero is a scoring convention, not a measured AI result or a claim that no post-cutoff advance exists. The leaderboard publishes only actual reviewed runs. Hypothetical examples and smoke fixtures remain separately labeled.
 
 ## Independence from ZFC
 
-Independence is a metatheorem about **provability**, not an additional truth value for a language-class relation. The intended certificate establishes both:
+Independence is a metatheorem about provability. It must establish both that ZFC has no derivation of the encoded inclusion sentence and that ZFC has no derivation of its negation. The submission must specify the sentence, ZFC proof system, metatheory, assumptions and both unprovability arguments. A result conditional on Con(ZFC) must retain that condition in its expert review and public description.
 
-- there is no ZFC derivation of the encoded inclusion sentence;
-- there is no ZFC derivation of its negation.
+The repository supplies an abstract proof-relation interface, not an automatic formal encoding of ZFC syntax and derivations. Independence therefore uses a separate expert metatheory review lane. That limitation does not block ordinary inclusion or noninclusion runs.
 
-It must state its metatheory, the exact arithmetical/set-theoretic encodings, and any consistency assumptions. A theorem conditional on Con(ZFC) must be displayed as conditional and reviewed under an explicit acceptance policy. Lean's type theory is not automatically ZFC.
-
-The Lean library currently expresses independence relative to an explicit abstract proof relation. It does not implement ZFC syntax or its proof system. The Python scenario tool stores an independence claim at its exact pair and never uses it as an inclusion, a separation, or a Horn-rule premise. Even propagation across equivalences is withheld until a corresponding metatheorem is implemented. An independence resolution conflicts with an ordinary accepted resolution at that same pair under the benchmark's single-resolution policy.
-
-## Admission and the draft boundary
-
-The present dataset has no certified-open pairs. `unreviewed` means “not resolved by this dataset's conservative closure,” which is weaker than “open in the literature.” Scenario mode calculates impact on that provisional complement and labels the result hypothetical. Official mode refuses all submissions while the release stage is draft.
-
-A future certified mode additionally requires a complete eligibility manifest for the exact dataset and a repository-maintained acceptance record matching the exact submission digest. The code checks neither author identity nor proof correctness merely from JSON. Those must come from the proof/review pipeline. Setting local metadata to `certified` is not a way to obtain a valid public score.
-
-The model leaderboard currently has no evaluated runs. A separate historical reference displays zero points. Partial suites, smoke fixtures, unverified candidates and draft runs cannot become ranked model entries. A zero reference follows from the scoring definition; it is not a literature search conclusion about every result published after the cutoff.
+Independence resolves only its exact pair and never acts as an inclusion, separation or Horn-rule premise. Propagation across equivalences is withheld until a corresponding metatheorem is supplied. Under the benchmark's single-resolution policy, independence conflicts with an ordinary accepted resolution at the same pair.

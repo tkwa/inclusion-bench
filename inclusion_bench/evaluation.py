@@ -11,6 +11,7 @@ import os
 import signal
 import selectors
 import subprocess
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,13 +21,21 @@ from .engine import Atom, InvalidEvidence
 
 
 def execute_adapter(adapter: list[str], request_file: Path, response_file: Path, error_file: Path,
-                    directory: Path, deadline: float) -> tuple[int, dict]:
+                    directory: Path, deadline: float, *, memory_limit_mib=None, cpu_limit=1) -> tuple[int, dict]:
     """Run a trusted POSIX adapter; bound wall time and captured output, including descendants."""
     if os.name != 'posix':
         raise InvalidEvidence('The adapter runner currently requires Linux or macOS')
+    def child_limits():
+        import resource
+        if hasattr(os, 'sched_setaffinity'):
+            os.sched_setaffinity(0, set(sorted(os.sched_getaffinity(0))[:cpu_limit]))
+        if memory_limit_mib and sys.platform.startswith('linux'):
+            cap = memory_limit_mib * 1024 * 1024
+            resource.setrlimit(resource.RLIMIT_AS, (cap, cap))
+        resource.setrlimit(resource.RLIMIT_FSIZE, (64 * 1024 * 1024, 64 * 1024 * 1024))
     with request_file.open('rb') as stdin, response_file.open('wb') as stdout, error_file.open('wb') as stderr:
         process = subprocess.Popen(adapter, stdin=stdin, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                   cwd=directory, start_new_session=True,
+                                   cwd=directory, start_new_session=True, preexec_fn=child_limits,
                                    env={**os.environ, 'OMP_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'LEAN_NUM_THREADS': '1'})
         try:
             with selectors.DefaultSelector() as selector:
@@ -68,8 +77,11 @@ def taskset(benchmark: Benchmark) -> dict:
         tasks.append({
             'task_id': f'inclusion.{left}.{right}', 'left': left, 'right': right,
             'statement': f'{labels[left]} ⊆ {labels[right]}',
-            'eligibility': 'open_at_cutoff' if certified else 'unreviewed',
+            'eligibility': 'open_at_cutoff' if certified else 'candidate_open_at_cutoff' if benchmark.policy['release_stage'] == 'operational' else 'unreviewed',
             'allowed_resolutions': ['inclusion', 'separation', 'independence'],
+            'lean': {'import': 'InclusionQuantum', 'inclusion_target': f'InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .{left}) (InclusionBench.Quantum.completeInterpretation .{right})',
+                     'separation_target': f'InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .{left}) (InclusionBench.Quantum.completeInterpretation .{right})',
+                     'independence_target': None, 'independence_note': 'An expert metatheory review must fix the exact ZFC sentence and proof relation.'},
             'prompt': f'Resolve whether {labels[left]} is contained in {labels[right]} under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points.'
         })
     core = {'schema_version': 1, 'benchmark': 'InclusionBench', 'dataset_sha256': benchmark.digest,
@@ -109,8 +121,8 @@ def validate_run(benchmark: Benchmark, run: dict, directory: Path) -> None:
             raise InvalidEvidence(f'Missing AI run field: {field}')
     if not isinstance(run['model'], dict) or not run['model'].get('name') or not run['model'].get('version'):
         raise InvalidEvidence('An exact model name and version are required')
-    if run.get('schema_version') != 1 or not isinstance(run['attempts'], list):
-        raise InvalidEvidence('Expected schema_version 1 and a list of attempts')
+    if run.get('schema_version') not in {1, 2} or not isinstance(run['attempts'], list):
+        raise InvalidEvidence('Expected run schema_version 1 or 2 and a list of attempts')
     if not run['run_id'] or not isinstance(run['budget'], dict) or not run['budget']:
         raise InvalidEvidence('A run identity and explicit budget are required')
     try:
@@ -125,7 +137,28 @@ def validate_run(benchmark: Benchmark, run: dict, directory: Path) -> None:
     if run['dataset_sha256'] != benchmark.digest or run['taskset_sha256'] != suite['taskset_sha256']:
         raise InvalidEvidence('Run does not target this exact dataset/taskset')
     tasks = {t['task_id']: t for t in suite['tasks']}
+    if run.get('schema_version') == 2:
+        assigned = run.get('assigned_task_ids')
+        if not isinstance(assigned, list) or not assigned or len(assigned) != len(set(assigned)) or not set(assigned) <= tasks.keys():
+            raise InvalidEvidence('V2 runs require a distinct, declared task assignment')
+        if run.get('assignment_sha256') != canonical_hash(assigned):
+            raise InvalidEvidence('Task assignment hash mismatch')
+        if run.get('configuration_sha256') != canonical_hash(run.get('configuration')):
+            raise InvalidEvidence('Run configuration hash mismatch')
+        config = run['configuration']
+        if any(run.get(k) != config.get(k) for k in ('model', 'budget', 'track', 'assigned_task_ids')):
+            raise InvalidEvidence('Run identity, budget, and assignment must match the frozen configuration')
+        if run.get('tools', {}).get('adapter_command') != config.get('adapter'):
+            raise InvalidEvidence('Run adapter does not match its frozen configuration')
+        if run.get('tools', {}).get('access_policy') != config.get('tools', {'model_tools': [], 'network': 'provider-api-only'}):
+            raise InvalidEvidence('Run tool access does not match its frozen configuration')
+        if run.get('state') not in {'running', 'sealed'}:
+            raise InvalidEvidence('Run state must be running or sealed')
+        for relative, digest in run.get('evidence_index', {}).items():
+            if sha256_file(artifact_path(directory, relative)) != digest:
+                raise InvalidEvidence(f'Sealed evidence hash mismatch: {relative}')
     attempt_ids = set()
+    attempted_tasks = set()
     for attempt in run['attempts']:
         if not isinstance(attempt, dict):
             raise InvalidEvidence('Each attempt must be a JSON object')
@@ -134,6 +167,11 @@ def validate_run(benchmark: Benchmark, run: dict, directory: Path) -> None:
         attempt_ids.add(attempt['attempt_id'])
         if attempt.get('task_id') not in tasks:
             raise InvalidEvidence('Attempt references an unknown or baseline-resolved task')
+        if run.get('schema_version') == 2 and attempt['task_id'] not in run['assigned_task_ids']:
+            raise InvalidEvidence('Attempt falls outside the declared task assignment')
+        if run.get('schema_version') == 2 and attempt['task_id'] in attempted_tasks:
+            raise InvalidEvidence('V2 suite runs allow one attempt per assigned task')
+        attempted_tasks.add(attempt['task_id'])
         if attempt.get('status') not in {'unsolved', 'proof_candidate', 'error', 'budget_exhausted'}:
             raise InvalidEvidence('Unknown attempt status')
         artifacts = attempt.get('artifacts', [])
@@ -156,70 +194,133 @@ def validate_run(benchmark: Benchmark, run: dict, directory: Path) -> None:
             request = read_json(artifact_path(directory, attempt['request_path']))
             if canonical_hash(request) != attempt.get('prompt_sha256') or request.get('task', {}).get('task_id') != attempt['task_id']:
                 raise InvalidEvidence('Stored prompt does not match the attempt')
+    if run.get('schema_version') == 2:
+        charged = 0
+        measured_input = measured_output = 0
+        required = {'config.json', 'taskset.json'}
+        for attempt in run['attempts']:
+            value = attempt.get('budget_charge_tokens')
+            if type(value) is not int or value < 0:
+                raise InvalidEvidence('Every V2 attempt requires a nonnegative token charge')
+            usage = attempt.get('usage', {})
+            if not isinstance(usage, dict) or any(type(usage[k]) is not int or usage[k] < 0 for k in ('input_tokens', 'output_tokens', 'total_tokens') if usage.get(k) is not None):
+                raise InvalidEvidence('Attempt usage requires nonnegative integer token counts')
+            if value < max(usage.get('total_tokens') or 0, (usage.get('input_tokens') or 0) + (usage.get('output_tokens') or 0)):
+                raise InvalidEvidence('Token charge may not be below measured usage')
+            if type(attempt.get('request_made')) is not bool or type(attempt.get('usage_complete')) is not bool:
+                raise InvalidEvidence('Every V2 attempt must record request and usage status')
+            charged += value
+            measured_input += attempt.get('usage', {}).get('input_tokens', 0) or 0
+            measured_output += attempt.get('usage', {}).get('output_tokens', 0) or 0
+            if not attempt.get('request_path'):
+                raise InvalidEvidence('Every V2 attempt requires its captured request')
+            if attempt.get('request_path'):
+                required.add(attempt['request_path'])
+                parent = Path(attempt['request_path']).parent
+                captures = ('recovery.json',) if attempt.get('recovered_interruption') is True else ('response.json', 'stderr.txt')
+                required.update(str(parent / p) for p in captures)
+            required.update(a['path'] for a in attempt.get('artifacts', []))
+        if run.get('usage') != {'charged_tokens': charged, 'measured_input_tokens': measured_input, 'measured_output_tokens': measured_output}:
+            raise InvalidEvidence('Run usage totals must equal the recorded attempts')
+        if run.get('state') == 'sealed':
+            if run.get('in_flight') or run.get('unattempted_task_ids') != [t for t in run['assigned_task_ids'] if t not in attempted_tasks]:
+                raise InvalidEvidence('Sealed runs must account for every assigned task and have no in-flight request')
+            index = run.get('evidence_index', {})
+            if not required <= index.keys():
+                raise InvalidEvidence('Sealed evidence index must cover config, taskset, requests, transcripts, and proof artifacts')
+            saved_config = read_json(artifact_path(directory, 'config.json'))
+            saved_suite = read_json(artifact_path(directory, 'taskset.json'))
+            if canonical_hash(saved_config) != run['configuration_sha256'] or saved_suite != suite:
+                raise InvalidEvidence('Sealed config or taskset does not match the run')
 
 
 def evaluate_run(benchmark: Benchmark, manifest: Path) -> dict:
+    from .reviews import history_status, registry
     run = read_json(manifest)
     validate_run(benchmark, run, manifest.parent)
     run_hash = canonical_hash(run)
-    registry_file = benchmark.root / 'data/ai_reviews.json'
-    registry = read_json(registry_file) if registry_file.exists() else []
+    reviews = registry(benchmark, 'ai_reviews')
     accepted = []
     provenance = {}
-    verified_attempts = []
+    verified_attempts, rejected_attempts, pending_attempts = [], [], []
     for attempt in run['attempts']:
-        exact = next((r for r in registry if r.get('run_sha256') == run_hash
-            and r.get('dataset_sha256') == benchmark.digest and r.get('attempt_id') == attempt['attempt_id']
-            and r.get('attempt_sha256') == canonical_hash(attempt) and r.get('status') == 'accepted'), None)
-        if exact is not None:
-            # Registry is a maintainer-controlled trust input, never model response metadata.
-            if exact.get('verified_claims') != attempt.get('claims') or exact.get('artifact_hashes') != [a['sha256'] for a in attempt.get('artifacts', [])]:
-                raise InvalidEvidence('Accepted review does not match the exact artifact set and claims')
-            if not exact.get('verification_record'):
-                raise InvalidEvidence('An accepted review needs a proof-verification record')
-            accepted.extend(exact['verified_claims'])
-            for claim in exact['verified_claims']:
-                provenance.setdefault(Atom.read(claim).key, []).append({'attempt_id': attempt['attempt_id'], 'artifact_hashes': exact['artifact_hashes'], 'verification_record': exact['verification_record']})
-            verified_attempts.append(attempt['attempt_id'])
+        if attempt['status'] != 'proof_candidate':
+            continue
+        matches = [r for r in reviews if r.get('run_sha256') == run_hash
+                   and r.get('dataset_sha256') == benchmark.digest and r.get('attempt_id') == attempt['attempt_id']
+                   and r.get('attempt_sha256') == canonical_hash(attempt)]
+        exact = matches[-1] if matches else None
+        if exact is None or exact.get('status') not in {'accepted', 'rejected'}:
+            pending_attempts.append(attempt['attempt_id'])
+            continue
+        if exact['status'] == 'rejected':
+            rejected_attempts.append(attempt['attempt_id'])
+            continue
+        verified = exact.get('verified_claims', [])
+        if not {Atom.read(c) for c in verified} <= {Atom.read(c) for c in attempt.get('claims', [])}:
+            raise InvalidEvidence('Accepted review includes a claim not made by this model attempt')
+        if exact.get('artifact_hashes') != [a['sha256'] for a in attempt.get('artifacts', [])] or not exact.get('verification_record'):
+            raise InvalidEvidence('Accepted review must match the exact sealed artifact set and verification record')
+        accepted.extend(verified)
+        for claim in verified:
+            provenance.setdefault(Atom.read(claim).key, []).append({'attempt_id': attempt['attempt_id'],
+                'artifact_hashes': exact['artifact_hashes'], 'verification_record': exact['verification_record']})
+        verified_attempts.append(attempt['attempt_id'])
     accepted = [a.json() for a in dict.fromkeys(Atom.read(c) for c in accepted)]
     consequences = benchmark.score({'claims': accepted})
     direct = {(a['left'], a['right']) for a in accepted} & benchmark.unresolved
-    suite_count = len(taskset(benchmark)['tasks'])
+    suite = taskset(benchmark)
+    suite_count = len(suite['tasks'])
     unique_tasks = len({a['task_id'] for a in run['attempts']})
-    full_suite = unique_tasks == suite_count
-    run_registry_file = benchmark.root / 'data/ai_run_reviews.json'
-    run_reviews = read_json(run_registry_file) if run_registry_file.exists() else []
-    run_review = next((r for r in run_reviews if r.get('run_sha256') == run_hash and r.get('dataset_sha256') == benchmark.digest
-                       and r.get('taskset_sha256') == run['taskset_sha256'] and r.get('status') == 'accepted'
-                       and r.get('verification_record')), None)
-    official_ready = benchmark.policy['release_stage'] == 'certified' and run['track'] != 'smoke-test' and full_suite and run_review is not None
-    official_score = None
-    if official_ready:
-        # Artifact reviews admit mathematics; a separate run review admits provenance,
-        # configuration and budget compliance. Legacy standalone reviews are irrelevant.
-        eligible = benchmark.certified_eligibility()
-        official_score = sum((r['left'], r['right']) in eligible for r in consequences['resolutions'])
+    assigned = run.get('assigned_task_ids', [a['task_id'] for a in run['attempts']])
+    full_suite = len(set(assigned)) == suite_count
+    run_reviews = [r for r in registry(benchmark, 'ai_run_reviews') if r.get('run_sha256') == run_hash
+                   and r.get('dataset_sha256') == benchmark.digest and r.get('taskset_sha256') == run['taskset_sha256']]
+    run_review = run_reviews[-1] if run_reviews else None
+    integrity_ok = bool(run_review and run_review.get('status') == 'accepted' and run_review.get('verification_record'))
+    completed_answers = sum(a['status'] in {'unsolved', 'proof_candidate'} and a.get('request_made', run.get('schema_version') == 1)
+                            for a in run['attempts'])
+    opened, known, history = history_status(benchmark)
+    resolved = {(r['left'], r['right']) for r in consequences['resolutions']}
+    if benchmark.policy['release_stage'] == 'certified':
+        opened = benchmark.certified_eligibility()
+        known = benchmark.unresolved - opened
+    history_pending = resolved - opened - known
+    launch_ready = False
+    if benchmark.policy['release_stage'] == 'operational' and run.get('schema_version') == 2:
+        from .runner import frozen_release
+        frozen_release(benchmark)
+        launch_ready = True
+    elif benchmark.policy['release_stage'] == 'certified':
+        launch_ready = full_suite
+    official_ready = (launch_ready and run['track'] != 'smoke-test' and integrity_ok and
+                      run.get('state', 'sealed') == 'sealed' and not pending_attempts and not history_pending
+                      and completed_answers > 0 and run.get('usage', {}).get('charged_tokens', 0) <= run['budget'].get('max_total_tokens', 10**100))
+    credited = [r for r in consequences['resolutions'] if (r['left'], r['right']) in opened]
     return {
         'run_id': run['run_id'], 'model': run['model'], 'track': run['track'],
         'run_sha256': run_hash, 'dataset_sha256': benchmark.digest,
-        'attempt_count': len(run['attempts']),
-        'recorded_invocation_count': sum(bool(a.get('request_path')) for a in run['attempts']),
-        'unique_task_count': unique_tasks, 'task_count': suite_count, 'full_suite': full_suite,
-        'scope': 'full-suite' if full_suite else 'partial-suite',
-        'run_integrity_reviewed': run_review is not None,
-        'proof_candidate_count': sum(a['status'] == 'proof_candidate' for a in run['attempts']),
+        'attempt_count': len(run['attempts']), 'recorded_invocation_count': sum(bool(a.get('request_path')) for a in run['attempts']),
+        'unique_task_count': unique_tasks, 'assigned_task_count': len(assigned), 'task_count': suite_count,
+        'completed_model_answer_count': completed_answers,
+        'full_suite': full_suite, 'scope': 'full-suite' if full_suite else 'declared-subset',
+        'run_integrity_reviewed': integrity_ok, 'proof_candidate_count': sum(a['status'] == 'proof_candidate' for a in run['attempts']),
         'verified_attempt_count': len(verified_attempts), 'verified_attempt_ids': verified_attempts,
-        'provisional_verified_points': consequences['score'],
-        'direct_verified_pairs': len(direct), 'consequence_verified_pairs': consequences['score'] - len(direct),
-        'official_score': official_score,
+        'pending_attempt_ids': pending_attempts, 'rejected_attempt_ids': rejected_attempts,
+        'provisional_verified_points': consequences['score'], 'direct_verified_pairs': len(direct),
+        'consequence_verified_pairs': consequences['score'] - len(direct),
+        'history_pending_pairs': [{'left': a, 'right': b} for a, b in sorted(history_pending)],
+        'excluded_known_at_cutoff_pairs': [{'left': a, 'right': b} for a, b in sorted(resolved & known)],
+        'history_review_sha256': canonical_hash(registry(benchmark, 'history_reviews')),
+        'official_score': len(credited) if official_ready else None, 'credited_resolutions': credited if official_ready else [],
         'verified_claim_provenance': provenance, 'provisional_resolutions': consequences['resolutions'],
-        'status': 'official' if official_ready else 'not-rankable',
-        'verification_note': 'Model assertions earn no points. Only exact artifacts admitted by the trusted review registry contribute. Official scores remain unavailable until the dataset and proof pipeline are certified.',
+        'status': 'official' if official_ready else 'awaiting-review' if launch_ready and run['track'] != 'smoke-test' else 'not-rankable',
+        'verification_note': 'Existing literature is an explicit trusted baseline. Positive points require accepted model proofs and historical review of every credited pair. Run provenance and all candidate answers must be reviewed before publishing a score.',
     }
 
 
 def leaderboard(benchmark: Benchmark, manifests: list[str]) -> list[dict]:
-    """Publish only reviewed full-suite runs; ranks are within identical evaluation cohorts."""
+    """Publish reviewed runs; ranks are within identical declared evaluation cohorts."""
     records = []
     seen = set()
     for relative in manifests:
@@ -231,10 +332,10 @@ def leaderboard(benchmark: Benchmark, manifests: list[str]) -> list[dict]:
             raise InvalidEvidence('A run may appear only once on the leaderboard')
         seen.add(result['run_sha256'])
         run = read_json(path)
-        cohort = canonical_hash({'taskset_sha256': run['taskset_sha256'], 'track': run['track'], 'budget': run['budget']})
+        cohort = canonical_hash({'taskset_sha256': run['taskset_sha256'], 'track': run['track'], 'budget': run['budget'], 'assignment_sha256': run.get('assignment_sha256'), 'access_policy': run.get('tools', {}).get('access_policy')})
         records.append({'model': run['model'], 'run_id': run['run_id'], 'run_sha256': result['run_sha256'],
                         'score': result['official_score'], 'verified_points': result['official_score'],
-                        'track': run['track'], 'budget': run['budget'], 'cohort_sha256': cohort,
+                        'track': run['track'], 'budget': run['budget'], 'scope': result['scope'], 'assigned_task_count': result['assigned_task_count'], 'cohort_sha256': cohort,
                         'date': run['finished_at'], 'verification_status': 'Verified evaluation',
                         'kind': 'official-model-run',
                         'report_url': 'https://github.com/tkwa/inclusion-bench/blob/main/' + relative})

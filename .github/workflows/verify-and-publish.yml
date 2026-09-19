@@ -79,6 +79,23 @@ jobs:
           PY
       - name: Check quantum definitions and axiom dependencies on one CPU
         run: bash scripts/check_quantum.sh
+      - name: Check isolated proof admission and adversarial submissions
+        run: |
+          docker pull ubuntu:22.04
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          runtime = Path(os.environ['RUNNER_TEMP']) / 'proofcheck-runtime.json'
+          runtime.write_text(json.dumps({
+              'host': None,
+              'remote_root': os.environ['GITHUB_WORKSPACE'],
+              'toolchain_path': str(Path(os.environ['LEAN_BIN']).parent.parent),
+              'image': 'ubuntu:22.04'}))
+          with open(os.environ['GITHUB_ENV'], 'a') as environment:
+              environment.write(f'INCLUSION_PROOFCHECK_CONFIG={runtime}\n')
+          PY
+          INCLUSION_PROOFCHECK_INTEGRATION=1 INCLUSION_PROOFCHECK_CONFIG="$RUNNER_TEMP/proofcheck-runtime.json" python3 -m unittest discover -s tests -p test_proofcheck.py -v
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

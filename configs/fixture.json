@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "provider": "fixture",
+  "track": "smoke-test",
+  "model": {
+    "name": "Infrastructure fixture",
+    "version": "not-an-AI"
+  },
+  "selection": {
+    "task_ids": [
+      "inclusion.NP.P"
+    ]
+  },
+  "budget": {
+    "wall_time_seconds": 30,
+    "per_task_wall_time_seconds": 10,
+    "max_total_tokens": 1000,
+    "max_output_tokens_per_task": 256,
+    "max_cpu_cores": 1,
+    "memory_limit_mib": 4096
+  },
+  "configuration": {}
+}

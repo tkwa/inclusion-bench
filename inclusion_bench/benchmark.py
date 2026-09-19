@@ -85,7 +85,7 @@ class Benchmark:
 
     def certified_eligibility(self) -> set[tuple[str, str]]:
         if self.policy["release_stage"] != "certified":
-            raise InvalidEvidence("Official scoring is disabled: cutoff audit and semantic Lean formalization are incomplete.")
+            raise InvalidEvidence("Standalone official claim scoring is disabled for this release. Use evaluate-run with proof, run-integrity, and historical reviews.")
         manifest = read_json(self.root / "data" / "eligibility.json")
         if manifest.get("dataset_sha256") != self.digest or manifest.get("status") != "certified":
             raise InvalidEvidence("No certified eligibility manifest for this dataset")

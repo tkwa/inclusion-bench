@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
 *.egg-info/
+build/
+dist/
 .venv/
 .tools/
 lean/.lake/
@@ -10,3 +12,6 @@ lean/.lake/
 *.c.o
 .DS_Store
 web/review-*.png
+
+runs/
+!evaluation/published-runs/

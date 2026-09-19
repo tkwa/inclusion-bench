@@ -1,28 +1,50 @@
-# Release status and remaining obligations
+# Release 0.2.0
 
-Version 0.1.0 is a research preview of an **AI evaluation benchmark**. Task export, adapter execution, run manifests, review-aware consequence scoring, and the website work. All 50 operational class definitions compile through the core and optional quantum projects. Official rankings remain disabled: the historical task suite and proof-admission pipeline are not yet certified, and no model evaluation score is implied by the working smoke tests.
+InclusionBench is open for AI model runs. The release freezes the class definitions, cited mathematical baseline, implication rules and candidate questions. Existing cited proofs are trusted premises; formalizing them is not a condition of running the benchmark or admitting a new result.
 
-| Obligation | Current evidence | Remaining work |
-| --- | --- | --- |
-| Fixed class roster | 50 identifiers with explicit language and uniformity conventions | Review convention choices; no guarantee of covering every major advance is claimed |
-| Historical baseline | Primary-source literature records, locators, elementary derivations and conditional rules | Independent theorem-by-theorem mathematical review and historical-version verification |
-| Open-status certification | Complete pair matrix with known versus unreviewed status | Certify every unresolved pair as open or add its known resolution; freeze the manifest |
-| Inference scoring | Tested signed closure, contradiction rejection, proof DAGs, deduplication | Extend rules when sound implications are missing |
-| AI-run evaluation | Runnable task exporter, adapter protocol, immutable manifests, distinct access tracks, and pooled verified consequences | Complete provider adapters and audit model identity, resource enforcement, transcripts, and full-suite execution |
-| Lean scoring foundations | Checked semantic reasoning, proof certificates and finite scoring properties | Connect eligibility and official ingestion to the formal scorer |
-| Lean operational semantics | 46 core definitions plus four optional quantum definitions; complete 50-class interpretation and agreement with the core proved | Prove textbook-model equivalences and remaining semantic invariants, including general quantum unitarity and normalization preservation |
-| Lean historical results | Generic soundness under explicit hypotheses | Formalize the baseline and each substantive cited conditional theorem |
-| ZFC independence | Abstract proof-relation interface, isolated from ordinary inference | Actual ZFC syntax/proof encoding, interpretation of class sentences and metatheory policy |
-| Proof and run verification | Separate exact-artifact and exact-run review gates; draft fails closed | End-to-end sandboxed proof checking, semantic/axiom audit, and independent run-integrity review |
-| Scope | Documented example advances and explicit exclusions | Optional future promise/search/algebraic/fine-grained tracks; examples are not a coverage guarantee |
-| Website | AI leaderboard presentation, scenario explorer, interactive pair matrix | Add only genuine reviewed model runs; keep hypothetical scenarios and smoke fixtures unranked |
+The official leaderboard is evidence-driven. A real sealed run can receive zero after run-integrity review and disposition of its proof candidates. Every positive point additionally requires an accepted proof and a historical decision that its ordered pair was open at the cutoff. The repository's empty model leaderboard is intentional: infrastructure fixtures and mock provider tests are not AI evaluations, and no paid model run was performed to manufacture a result.
 
-Do not remove the draft label or enable official scoring by changing one flag. The missing mathematical artifacts are substantive prerequisites.
+## What is ready
 
-The optional quantum project was compiled on the authorized Ubuntu host using Lean and Mathlib v4.19.0 under a one-CPU restriction. Its complete interpretation has no default or opaque substitute for a class. The checked theorems include agreement with the 46 core definitions and coverage of all 50, normalized basis states, injective gate records, and X applied twice. General gate unitarity, arbitrary-circuit normalization, amplification, deep baseline results, and ZFC formalization remain unproved. See [formalization status](formalization.md) and [quantum build details](../quantum/README.md).
+| Component | Operational contract |
+| --- | --- |
+| Class roster | 50 canonical operational definitions with explicit total-language and uniformity conventions |
+| Frozen release | Dataset, taskset and formalization hashes; changed mathematics requires a new release |
+| Candidate suite | Every direction unresolved in the frozen baseline is runnable; candidate does not mean historically certified open |
+| Mathematical baseline | Cited facts and substantive implication rules are explicit trusted premises |
+| Model execution | OpenAI Responses and Anthropic Messages adapters, explicit model IDs, input counting, output caps, cumulative token budgets and wall-time limits |
+| Evidence | Isolated attempts, checkpoints, sealed manifests, artifact hashes, provider records, partial answers and usage accounting |
+| Proof admission | Exact artifact and statement review; sandboxed Lean checking for new ordinary claims; a separate expert lane for independence |
+| Run admission | Model/configuration provenance, declared tools, budgets, transcripts and human-assistance review |
+| Historical admission | An evidence-backed open/known decision for every pair that would receive a positive point |
+| Scoring | Union of a run's resolved pairs, implications included, contradictions rejected, no duplicate credit |
+| Comparisons | Subsets are allowed; ranks compare matching assignment, track and budget cohorts |
+| Website | Reviewed model leaderboard, separate historical zero, interactive matrix, citations and hypothetical scoring examples |
 
-For AI rankings, `data/ai_reviews.json` admits exact proof artifacts and claims; `data/ai_run_reviews.json` separately admits the exact run's model identity, access policy, resource use, and integrity. Both gates are required. The AI path does not require a duplicate aggregate record in the legacy `data/reviews.json` submission registry. A standard full-suite run must cover exactly the task set bound to the certified eligibility manifest. Partial runs and `smoke-test` runs remain unranked. See [the evaluation protocol](EVALUATION.md).
+## Trust boundary
 
-Known names that describe the same class should be aliases, not extra scored targets. Examples for later alias support include IP and QIP for PSPACE, and PostBQP for PP. Adding a duplicate class column would inflate scores without adding a research question.
+The release's cited existing mathematics is trusted. The Lean operational definitions are the benchmark targets. The dependency-free core covers 46 classes; the pinned quantum extension supplies the other four and agrees with the core interpretation. Further textbook-equivalence theorems, aliases and mathematical invariants can improve the library without being prerequisites for model runs.
 
-An independent audit should test whether inferred point counts overweight densely represented parts of the class lattice. The one-point-per-pair score is the primary metric requested here; family-normalized or implication-minimal auxiliary metrics could be reported later without silently changing that metric.
+New model assertions receive no trust merely because they are syntactically valid. Ordinary new claims must pass the proof checker and mathematical review; accepted source hashes must identify sealed model artifacts. The verifier's approved cited premises are distinct from arbitrary user-supplied axioms. An inference trace that assumes the submitted statement does not prove it.
+
+An independence result requires an expert report about both unprovability directions, its exact sentence, proof system, metatheory and assumptions. The ordinary checker does not claim to formalize all of ZFC. This separate lane does not delay evaluation of ordinary inclusions and separations.
+
+## Historical corrections and versioning
+
+A frozen candidate suite can contain omissions from the literature database. Review each positively resolved direction at the release cutoff. If it was already known, it earns no point. Record that decision and any versioned rescore. Do not silently alter an in-progress run's questions or implication rules.
+
+Changes to the roster, definitions, baseline or inference rules require a new version and `freeze`. Review registries retain the frozen dataset hashes and their own recorded revisions. Published results must identify the snapshot and review state used for scoring.
+
+## Further work
+
+These improvements can proceed alongside real evaluations:
+
+- More historical research, additional cited implications and independent audit of the baseline.
+- Formal proofs of existing literature results and equivalences with alternative class definitions.
+- Aliases for equivalent names, such as IP and QIP for PSPACE, without adding duplicate scored columns.
+- Broader promise, search, algebraic or fixed-exponent tracks, each with its own explicit targets.
+- A fuller formal treatment of ZFC independence and automated metatheorem checking.
+- Additional provider and agent configurations, with declared tools and comparable resource budgets.
+- Auxiliary family-level analyses of the score's sensitivity to the chosen roster.
+
+The primary metric remains one point per eligible ordered pair. Improvements must not silently change that metric or turn a hypothetical scenario into a measured model result. See the [evaluation protocol](EVALUATION.md), [provider adapters](../evaluation/adapters/README.md), and [formalization notes](formalization.md).
