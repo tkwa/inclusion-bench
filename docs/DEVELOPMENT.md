@@ -1,6 +1,6 @@
 # Development, evaluation and embedding
 
-This branch prepares provisional v0.4.0 for review. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 61 canonical definitions, with 50 scored endpoints. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
+This repository supplies the v0.4.0 release. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 61 canonical definitions, with 50 scored endpoints. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
 
 Run commands from the repository root. An editable installation (`python3 -m pip install -e .`) also exposes the `inclusion-bench` command.
 

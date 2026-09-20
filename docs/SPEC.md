@@ -1,6 +1,6 @@
 # AI benchmark scoring specification
 
-**Version 0.4.0 is provisional and prepared for review.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require a recorded historical decision for each resolved pair. The release-wide audit supplies those decisions for the current suite.
+**Version 0.4.0 is open for model runs against the frozen suite.** Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require a recorded historical decision for each resolved pair. The release-wide audit supplies those decisions for the current suite. The [publication record](../data/publication.json) records approval without changing the reviewed benchmark identities.
 
 ## Target universe and freeze
 

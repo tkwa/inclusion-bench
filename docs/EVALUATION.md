@@ -2,7 +2,7 @@
 
 InclusionBench evaluates an AI model's ability to resolve complexity-theory questions. One entry identifies a model configuration, an assigned set of questions, a declared budget and a single recorded run. Its accepted proofs and their consequences determine its score.
 
-This provisional v0.4.0 snapshot is prepared for runs and review; it is not the published release. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite contains 1,324 frozen questions with recorded open-at-cutoff decisions from the [release audit](../research/baseline-audit.md). Runs reuse these revisable historical judgments; they still need proof and run-integrity review.
+The v0.4.0 release is open for model runs. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite contains 1,324 frozen questions with recorded open-at-cutoff decisions from the [release audit](../research/baseline-audit.md). Runs reuse these revisable historical judgments; they still need proof and run-integrity review. The [publication record](../data/publication.json) records approval without rewriting the frozen snapshot's original provisional metadata.
 
 ## 1. Freeze the benchmark
 
