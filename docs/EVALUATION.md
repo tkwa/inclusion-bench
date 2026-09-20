@@ -2,7 +2,7 @@
 
 InclusionBench evaluates an AI model's ability to resolve complexity-theory questions. One entry identifies a model configuration, an assigned set of questions, a declared budget and a single recorded run. Its accepted proofs and their consequences determine its score.
 
-Version 0.3.0 is open for runs. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite contains 1,378 frozen questions with recorded open-at-cutoff decisions from the [release audit](../research/baseline-audit.md). Runs reuse these revisable historical judgments; they still need proof and run-integrity review.
+Version 0.3.1 is open for runs. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite contains 1,378 frozen questions with recorded open-at-cutoff decisions from the [release audit](../research/baseline-audit.md). Runs reuse these revisable historical judgments; they still need proof and run-integrity review.
 
 ## 1. Freeze the benchmark
 
@@ -103,7 +103,11 @@ A consequence trace only establishes a deduction from its listed premises. It ca
 
 ### Independence metatheorems
 
-Independence has a separate expert-review lane. Its record must identify the exact encoded inclusion sentence, ZFC axioms and proof relation, metatheory, consistency assumptions, and evidence establishing unprovability of both the sentence and its negation. State conditional metatheorems as conditional; do not silently remove their assumptions.
+Independence has a separate expert-review lane. Set `independence_review.premise` to `unconditional`, `zfc_consistency`, or `zfc_arithmetic_soundness`. The latter means that every first-order arithmetic sentence whose ZFC translation is provable is true in the standard natural numbers. Arithmetic soundness is a stronger premise than consistency, so it permits a weaker conditional theorem. Both nonderivability statements must follow under the selected premise: ZFC proves neither the encoded inclusion nor its negation.
+
+The review identifies the ZFC proof system, metatheory, assumptions and expert report. A soundness-conditional result also specifies `arithmetic_interpretation`. Its `claim_certificates` list contains exactly one entry for each verified independence pair, with that pair's `encoded_sentence` and `unprovability_both_polarities` evidence. See [the concrete review format](PROOF_REVIEW.md#independence-review). Keep the premise and all stated conditions in evaluated provenance and public descriptions; a conditional result must not be reported as unconditional independence.
+
+The premise is external: both nonderivability statements concern ZFC itself, not ZFC plus that premise. Expert review must check that the metatheory does not conceal stronger unapproved assumptions. Historical review also covers these conditional results; a qualifying metatheorem already public before the cutoff earns no point.
 
 The ordinary Lean checker is not an automatic ZFC-independence verifier. The absence of such a general verifier does not block ordinary inclusion evaluations. Independence resolves only its exact ordered pair and never becomes a negative edge in ordinary inclusion closure.
 
@@ -154,7 +158,7 @@ python3 scripts/build_release.py
 
 `publish-run` copies the manifest and only files in its sealed evidence index into `evaluation/published-runs/<run_id>`, then registers that manifest in `data/leaderboard_runs.json`. Unindexed files in a working run directory are not copied. Commit the published evidence, review registries and generated leaderboard together; pushing to GitHub and deploying are separate actions.
 
-Publish the reviewed evidence, credited pair IDs, resource usage, cohort, verification decisions and replayable traces. Report assigned questions and actual attempted questions separately. A budget-stopped run must not claim that unattempted questions received model answers.
+Publish the reviewed evidence, credited pair IDs, resource usage, cohort, verification decisions and replayable traces. Independence results must retain their selected premise and relevant per-pair certificate. Report assigned questions and actual attempted questions separately. A budget-stopped run must not claim that unattempted questions received model answers. The public site is [tkwa.me](https://tkwa.me); the repository also provides a [GitHub Pages mirror](https://tkwa.github.io/inclusion-bench/).
 
 The public leaderboard contains only genuine reviewed runs. A fixture or mock API response is infrastructure validation and cannot enter it. The historical pre-cutoff reference has zero by definition; it is not a model evaluation.
 

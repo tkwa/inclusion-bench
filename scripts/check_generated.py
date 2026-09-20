@@ -36,6 +36,19 @@ if audit.get('schema_version') == 2:
             raise SystemExit('Audit evidence changed after indexing: ' + relative)
     if sha256_file(ROOT / 'research/audit-assessment.json') != binding['assessment_sha256']:
         raise SystemExit('Audit assessment changed after indexing')
+    adoption = audit.get('policy_adoption')
+    if adoption:
+        original = ROOT / adoption['previous_assessment_file']
+        if sha256_file(original) != adoption['previous_assessment_sha256']:
+            raise SystemExit('Original audit assessment changed during policy adoption')
+        if read_json(original)['dataset_sha256'] != adoption['previous_dataset_sha256']:
+            raise SystemExit('Policy adoption does not identify the original audited dataset')
+        for key in ('classes_sha256', 'knowledge_sha256'):
+            if adoption['unchanged'][key] != binding[key]:
+                raise SystemExit('Policy adoption cannot carry history across changed mathematical data')
+        if (adoption['unchanged']['cutoff'] != benchmark.policy['cutoff'] or
+                adoption['unchanged']['candidate_questions'] != len(benchmark.unresolved)):
+            raise SystemExit('Policy adoption changed the historical scope')
     history_records = read_json(ROOT / 'data/history_reviews.json')
     for record in history_records:
         recorded_hash = record.get('review_sha256')

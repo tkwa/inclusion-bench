@@ -2,6 +2,8 @@
 
 The audit corrects **eight classifications** and adds **106 implication rules**. Version 0.3.0 has 50 classes and 2,500 ordered pairs: **709 known inclusions, 413 known noninclusions and 1,378 remaining questions**. The cutoff includes results publicly available before September 2, 2026, 00:00 UTC.
 
+Version 0.3.1 carries these classifications and the original residual-error assessment forward unchanged. It broadens the permitted independence premise to arithmetic soundness of ZFC. The [policy adoption record](audit-assessment.json) binds that decision to the unchanged class definitions, knowledge base and cutoff; a [targeted literature check](v0.3.1-independence-policy-review.json) addresses the expanded independence scope. This is not a repeat of the full audit. The [original assessment](audit-assessment-v0.3.0.json) and version 0.3.0 release history remain available.
+
 The audit is AI-assisted. Domain reviewers searched primary literature, then exchanged scopes for independent checks. It does not represent a human expert endorsement. Existing accepted mathematical results remain trusted inputs; their proofs were not reconstructed in Lean.
 
 ## Corrections

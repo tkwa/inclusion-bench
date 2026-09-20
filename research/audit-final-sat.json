@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+  "dataset_sha256": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
   "method": "Complete propositional entailment in the encoded finite cited theory",
   "solver": {
     "package": "python-sat",

@@ -4,9 +4,9 @@
 
 Give a model a frozen set of complexity-class inclusion questions and a declared budget. Verify its answers, then award one point for each eligible ordered pair they resolve. Proven consequences count; duplicate resolutions count once within the run. The leaderboard entry identifies a model version and a single run.
 
-[Leaderboard and task explorer](https://tkwa.github.io/inclusion-bench/) · [Evaluation protocol](docs/EVALUATION.md) · [Scoring specification](docs/SPEC.md) · [Formalization status](docs/formalization.md)
+[Public site](https://tkwa.me) · [Leaderboard and task explorer mirror](https://tkwa.github.io/inclusion-bench/) · [Evaluation protocol](docs/EVALUATION.md) · [Scoring specification](docs/SPEC.md) · [Formalization status](docs/formalization.md)
 
-**Version 0.3.0 is open for model runs.** The release includes 50 canonical operational class definitions, a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
+**Version 0.3.1 is open for model runs.** The release includes 50 canonical operational class definitions, a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
 
 The frozen suite contains **1,378 questions audited as open at the September 1, 2026 cutoff**. The [release audit](research/baseline-audit.md) records historical eligibility for every question, so model runs reuse those decisions. These are revisable literature judgments: a missed pre-cutoff result earns no point and triggers a recorded correction. A real run that resolves nothing can receive an official zero after run-integrity review and disposition of all proof candidates. No paid model run or model score was invented for this release.
 
@@ -53,7 +53,9 @@ For an ordinary new inclusion or non-inclusion, replace `SOURCE` and `CLAIMS_MAP
 python3 -m inclusion_bench verify-proof SOURCE --claims CLAIMS_MAP --report proof-report.json
 ```
 
-Prepare a Linux verifier using the [setup instructions](docs/PROOF_REVIEW.md); `--local`, `--remote-root`, `--image` and `--toolchain-path` select your installation. The verifier uses a sandbox and a fresh Lean kernel, checking the actual class statement and limiting trusted assumptions to the release's allowed cited premises. A source that assumes its own conclusion is not a verified solution. The natural-language argument and class conventions also receive mathematical review. Independence uses a separate expert-review lane that identifies the encoded sentence, ZFC proof system, metatheory, assumptions and unprovability of both polarities.
+Prepare a Linux verifier using the [setup instructions](docs/PROOF_REVIEW.md); `--local`, `--remote-root`, `--image` and `--toolchain-path` select your installation. The verifier uses a sandbox and a fresh Lean kernel, checking the actual class statement and limiting trusted assumptions to the release's allowed cited premises. A source that assumes its own conclusion is not a verified solution. The natural-language argument and class conventions also receive mathematical review.
+
+Independence uses a separate [expert-review lane](docs/PROOF_REVIEW.md#independence-review). It accepts unconditional metatheorems or ones conditional on Con(ZFC) or arithmetic soundness of ZFC: every first-order arithmetic sentence with a provable ZFC translation is true in standard N. Soundness is a stronger premise than consistency, so it permits a weaker conditional theorem. Both nonderivability polarities must hold for the exact sentence under the recorded premise. The target theory remains ZFC itself; conditions stay visible in review and public results. A full ZFC encoding and its correspondence to the claimed pair remain expert-reviewed, and independence receives no ordinary implication credit.
 
 Fill `run_review` and the relevant `proof_reviews` entry in `review.json` with the decision and evidence. For an accepted ordinary proof, set that entry's `proof_report` to the verifier report path, resolved relative to the review JSON. Record the completed sections directly:
 
@@ -87,7 +89,7 @@ This copies the manifest and only its sealed, indexed evidence to `evaluation/pu
 
 ## What earns a point
 
-The target for `(A, B)` is **A ⊆ B**, inclusion between classes of total binary decision languages. Proving inclusion, proving its negation, or establishing an admissible ZFC-independence metatheorem resolves that ordered pair. Only directions open at the cutoff earn points.
+The target for `(A, B)` is **A ⊆ B**, inclusion between classes of total binary decision languages. Proving inclusion, proving its negation, or establishing an admissible ZFC-independence metatheorem resolves that ordered pair. Only directions open at the cutoff earn points. A qualifying conditional independence metatheorem already public before the cutoff also earns zero.
 
 Strict inclusion `A ⊊ B` means `A ⊆ B` and `B ⊄ A`. Accepted proofs from one run are pooled before closure, so implications can combine answers to different tasks and resolve questions outside the assigned subset. Results from different runs are never combined into an individual model score.
 
@@ -143,7 +145,7 @@ python3 scripts/check_lean.py
 python3 -m http.server 8000 --directory web
 ```
 
-Open `http://localhost:8000`. The static site has a model leaderboard, evaluation protocol, pair matrix, proof traces and secondary scoring examples. Copy `web/` into your website or embed the [deployed page](https://tkwa.github.io/inclusion-bench/). It has no analytics, external fonts, model API calls or backend. Provider adapter tests use a local mock server and fake credentials. [Development and embedding](docs/DEVELOPMENT.md).
+Open `http://localhost:8000`. The standalone site has a model leaderboard, evaluation protocol, pair matrix, proof traces and secondary scoring examples. The public site is [tkwa.me](https://tkwa.me), managed separately; this repository also deploys a [GitHub Pages mirror](https://tkwa.github.io/inclusion-bench/). Copy `web/` into another site or embed that mirror. The standalone site has no analytics, external fonts, model API calls or backend. Provider adapter tests use a local mock server and fake credentials. [Development and embedding](docs/DEVELOPMENT.md).
 
 The chosen name is **InclusionBench**. Alternatives: **ClassFrontier**, **ComplexityFrontier**, **SeparationBench**.
 

@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 from inclusion_bench.benchmark import Benchmark, ROOT, canonical_hash, read_json
 from inclusion_bench.engine import InvalidEvidence
-from inclusion_bench.evaluation import evaluate_run, sha256_file, validate_run
+from inclusion_bench.evaluation import evaluate_run, sha256_file, validate_run, leaderboard
 from inclusion_bench.reviews import record_run_review, record_proof_review, record_history_review, review_packet, publish_run
 from inclusion_bench.runner import freeze_release, frozen_release, normalize_config, preflight, run_config
 
@@ -44,13 +44,90 @@ class RunnerTests(unittest.TestCase):
             'checks': {k: True for k in ('model_identity', 'configuration_and_tools', 'budgets_and_usage',
                                         'transcripts_and_artifacts', 'no_unreported_human_assistance')}})
 
-    def candidate(self):
+    def candidate(self, relation='separation', claims=None):
         config = copy.deepcopy(self.config)
-        claim = {'relation': 'separation', 'left': 'NP', 'right': 'P'}
+        claim = {'relation': relation, 'left': 'NP', 'right': 'P'}
         config['adapter'] = [sys.executable, '-c', 'from pathlib import Path; import json; Path("candidate.lean").write_text("-- TEST ONLY; not a proof\\n"); print(json.dumps(' + repr({
-            'status': 'proof_candidate', 'claims': [claim], 'artifacts': ['candidate.lean'],
+            'status': 'proof_candidate', 'claims': claims or [claim], 'artifacts': ['candidate.lean'],
             'usage': {'total_tokens': 12}, 'budget_charge_tokens': 12, 'usage_complete': True, 'request_made': True}) + '))']
         return run_config(self.b, config, self.root / 'candidate-run')
+
+    def test_independence_premises_are_bound_and_preserved_in_public_results(self):
+        manifest = self.candidate('independence')
+        run = read_json(manifest)
+        attempt = run['attempts'][0]
+        self.accept_run(manifest)
+        packet = review_packet(self.b, manifest)
+        self.assertEqual(packet['proof_reviews'][0]['independence_review']['premise'], '')
+        meta = {'premise': 'zfc_arithmetic_soundness', 'zfc_proof_system': 'TEST ONLY: fixed ZFC derivations',
+                'metatheory': 'TEST ONLY: no actual metatheorem', 'assumptions': 'TEST ONLY: arithmetic soundness of ZFC',
+                'arithmetic_interpretation': 'TEST ONLY: first-order arithmetic in standard N, standard ZFC translation',
+                'expert_report': 'TEST ONLY synthetic review fixture, not mathematical evidence',
+                'claim_certificates': [{'left': 'NP', 'right': 'P', 'encoded_sentence': 'TEST ONLY exact NP subset P encoding',
+                                       'unprovability_both_polarities': 'TEST ONLY both directions under the stated premise'}]}
+        review = {'run_sha256': canonical_hash(run), 'attempt_id': attempt['attempt_id'],
+                  'attempt_sha256': canonical_hash(attempt), 'status': 'accepted', 'reviewer': 'TEST ONLY',
+                  'rationale': 'Synthetic expert-review transport test; never publish as a model result',
+                  'verified_claims': attempt['claims'], 'independence_review': meta}
+        for premise in self.b.policy['independence_premises']:
+            with self.subTest(premise=premise):
+                review['independence_review'] = {**meta, 'premise': premise}
+                record_proof_review(self.b, manifest, review)
+                result = evaluate_run(self.b, manifest)
+                self.assertEqual(result['provisional_verified_points'], 1)
+                self.assertEqual(result['consequence_verified_pairs'], 0)
+                evidence = next(iter(result['verified_claim_provenance'].values()))[0]['independence_review']
+                self.assertEqual(evidence['premise'], premise)
+                self.assertEqual(evidence['claim_certificate'], meta['claim_certificates'][0])
+        record_history_review(self.b, {'dataset_sha256': self.b.digest, 'status': 'accepted',
+            'reviewer': 'TEST ONLY', 'rationale': 'Synthetic history fixture', 'pairs': [{'left': 'NP', 'right': 'P',
+            'status': 'open_at_cutoff', 'evidence': ['TEST ONLY'], 'rationale': 'TEST ONLY'}]})
+        self.assertEqual(evaluate_run(self.b, manifest)['official_score'], 1)
+        published = publish_run(self.b, manifest)
+        public = leaderboard(self.b, [published['packaged']])[0]
+        evidence = next(iter(public['independence_results'].values()))[0]['independence_review']
+        self.assertEqual(evidence['premise'], 'zfc_arithmetic_soundness')
+
+    def test_independence_rejects_missing_extra_or_unbound_premises_and_certificates(self):
+        from inclusion_bench.reviews import validate_independence_review
+        claims = [{'relation': 'independence', 'left': 'NP', 'right': 'P'},
+                  {'relation': 'independence', 'left': 'QMA', 'right': 'BQP'}]
+        meta = {'premise': 'zfc_arithmetic_soundness', 'zfc_proof_system': 'TEST', 'metatheory': 'TEST',
+                'assumptions': 'TEST', 'expert_report': 'TEST', 'arithmetic_interpretation': 'TEST standard N',
+                'claim_certificates': [{'left': c['left'], 'right': c['right'], 'encoded_sentence': 'TEST',
+                                        'unprovability_both_polarities': 'TEST both'} for c in claims]}
+        validate_independence_review(self.b, {'independence_review': meta}, claims)
+        mutations = [lambda m: m.pop('premise'), lambda m: m.update(premise='large_cardinal'),
+                     lambda m: m.update(premise=['zfc_arithmetic_soundness']),
+                     lambda m: m.pop('arithmetic_interpretation'), lambda m: m.update(assumptions=True),
+                     lambda m: m['claim_certificates'].pop(),
+                     lambda m: m['claim_certificates'].append(m['claim_certificates'][0]),
+                     lambda m: m['claim_certificates'].__setitem__(1, m['claim_certificates'][0]),
+                     lambda m: m['claim_certificates'][0].update(right='PSPACE'),
+                     lambda m: m['claim_certificates'][0].update(encoded_sentence={'fake': True}),
+                     lambda m: m['claim_certificates'][0].pop('unprovability_both_polarities')]
+        for index, mutate in enumerate(mutations):
+            with self.subTest(index=index):
+                bad = copy.deepcopy(meta)
+                mutate(bad)
+                with self.assertRaises(InvalidEvidence):
+                    validate_independence_review(self.b, {'independence_review': bad}, claims)
+
+    def test_independence_exception_cannot_bypass_ordinary_lean_verification(self):
+        claims = [{'relation': 'separation', 'left': 'NP', 'right': 'P'},
+                  {'relation': 'independence', 'left': 'QMA', 'right': 'BQP'}]
+        manifest = self.candidate(claims=claims)
+        run = read_json(manifest)
+        attempt = run['attempts'][0]
+        review = {'run_sha256': canonical_hash(run), 'attempt_id': attempt['attempt_id'],
+                  'attempt_sha256': canonical_hash(attempt), 'status': 'accepted', 'reviewer': 'TEST ONLY',
+                  'rationale': 'Synthetic mixed-claim review', 'verified_claims': claims,
+                  'independence_review': {'premise': 'zfc_arithmetic_soundness', 'zfc_proof_system': 'TEST',
+                    'metatheory': 'TEST', 'assumptions': 'TEST', 'arithmetic_interpretation': 'TEST standard N',
+                    'expert_report': 'TEST', 'claim_certificates': [{'left': 'QMA', 'right': 'BQP',
+                       'encoded_sentence': 'TEST', 'unprovability_both_polarities': 'TEST'}]}}
+        with self.assertRaisesRegex(InvalidEvidence, 'sandboxed Lean'):
+            record_proof_review(self.b, manifest, review)
 
     def test_zero_run_can_be_reviewed_without_certifying_every_question_open(self):
         manifest = run_config(self.b, self.config, self.root / 'zero-run')

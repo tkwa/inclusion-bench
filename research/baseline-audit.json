@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "audit_id": "cutoff-audit-v0.3.0-2026-09-19",
-  "recorded_at": "2026-09-19",
+  "audit_id": "cutoff-audit-v0.3.1-policy-adoption-2026-09-20",
+  "recorded_at": "2026-09-20",
   "cutoff": "2026-09-01",
   "cutoff_convention": "Results publicly available before 2026-09-02 00:00:00 UTC count as pre-cutoff. Historical decisions check exact public versions and are revisable.",
   "status": "revisable_release_wide_historical_audit",
@@ -12,11 +12,11 @@
   },
   "binding": {
     "algorithm": "SHA-256 of canonical UTF-8 JSON for data; SHA-256 of exact bytes for files",
-    "dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+    "dataset_sha256": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
     "baseline_graph_sha256": "a541f5b99433923414f9acb0b69b1156937bd7b54d51b06b25ab6259dcb761a4",
     "classes_sha256": "54a298e5a1f27b2395bcbad3b3c049952424d0639f5da1045f9fc3cb0eb1f048",
     "knowledge_sha256": "85bbfec5a1414e5be1c8409b2ba82ace1bcf4f908966f3a0fdb594dc7c5455f1",
-    "assessment_sha256": "24de3c04b64b0da578fb6ac640af6e0a2329163669ebf77f93853956bc094d7e"
+    "assessment_sha256": "eb572f5e921e2eef794a26ffeb5ec756a22cefac19247215aeb3ce3ee03963a2"
   },
   "coverage": {
     "class_count": 50,
@@ -344,9 +344,32 @@
     "Historical eligibility admits a question, not a model answer. Proof and run-integrity review remain required.",
     "An overlooked accepted pre-cutoff result earns zero and triggers a recorded correction and any versioned rescore."
   ],
+  "policy_adoption": {
+    "kind": "Carry-forward of the v0.3.0 historical audit for a policy and formalization patch; not a repeated full literature audit",
+    "previous_version": "0.3.0",
+    "previous_dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+    "previous_commit": "2e3b3806389845d0458cddf207d477c44e70d6d3",
+    "previous_audit_url": "https://github.com/tkwa/inclusion-bench/blob/v0.3.0/research/baseline-audit.json",
+    "previous_audit_sha256": "5b7993998b8f69786db9826e3d17b24d9a4531c7ff09d25c2a0bee2cf4a89ead",
+    "previous_assessment_file": "research/audit-assessment-v0.3.0.json",
+    "previous_assessment_sha256": "24de3c04b64b0da578fb6ac640af6e0a2329163669ebf77f93853956bc094d7e",
+    "previous_history_review_sha256": "ac7e5cd00e6c4e3b0716ca5e89971532f22ab4ab75569bb54b29c31971793ce8",
+    "unchanged": {
+      "classes_sha256": "54a298e5a1f27b2395bcbad3b3c049952424d0639f5da1045f9fc3cb0eb1f048",
+      "knowledge_sha256": "85bbfec5a1414e5be1c8409b2ba82ace1bcf4f908966f3a0fdb594dc7c5455f1",
+      "cutoff": "2026-09-01",
+      "all_2500_classifications": true,
+      "candidate_questions": 1378
+    },
+    "new_policy_scope": "Independence conditional on arithmetic soundness of ZFC is admitted, with explicit per-pair certificates and retained premises. Any such result already public by the cutoff earns zero.",
+    "targeted_policy_review": "research/v0.3.1-independence-policy-review.json",
+    "inherited_assessment": "The residual-error ledger and stopping decision below describe the v0.3.0 audit. They are preserved historical judgments, not a newly calibrated estimate for this patch.",
+    "mechanical_checks": "The SAT audit and all 1122 Lean inference traces were rerun against the new dataset hash; no mathematical classifications changed."
+  },
   "supporting_report_sha256": {
-    "research/audit-final-lean-traces.json": "9b0e5e39468f8ccc2ee4c155d8372b208a6fe9a0d3cd567385762b8c2434763b",
-    "research/audit-final-sat.json": "0a91b8108f79fa7f3fb04765062a75b767054c1ee3ecfdcac4175f2695554b88",
+    "research/audit-assessment-v0.3.0.json": "24de3c04b64b0da578fb6ac640af6e0a2329163669ebf77f93853956bc094d7e",
+    "research/audit-final-lean-traces.json": "2915a4db92e6fd6c50a50e1c5957d7a18e3cb59e207889f6892225cd5d842a66",
+    "research/audit-final-sat.json": "0b3777984fb6742a0403cda6f7d88dd7420a960e98ee561982e8cf4d725c121b",
     "research/audit-padding.json": "79bfa4ef1626f875dcf70154fab3c1dec403314d3edfbd72bcdc35e487513ee6",
     "research/audit-padding.md": "3028469269aa10143a23f43a61514f7fa59a02bbb39df2d4b5f19f049ba4a2b5",
     "research/audit-round1-circuits-space.json": "1a110b2a94f9eae5a505af253d04cfe6239400d950de2cc12a7d0742b6013f2d",
@@ -380,7 +403,8 @@
     "research/audit-round5-recent-quantum.json": "6dd4f43f6fbb4fd991aa8973cb79ca5d62a15a2fdd5ef0eeaf380dc22f4c4dd2",
     "research/audit-round5-recent-quantum.md": "c47c5748e615a99a340e74a461af2e73a35646959fdea35934dc877fa090f9a9",
     "research/audit-round6-internal-counting.json": "6fca038701280d654870a5b94fc62cb7a25a6007597bddcd86755699b3aea042",
-    "research/audit-round6-internal-counting.md": "edd82d19d6c9e8aa54877696ae22496a6b7c44632590675ada45862478623f6e"
+    "research/audit-round6-internal-counting.md": "edd82d19d6c9e8aa54877696ae22496a6b7c44632590675ada45862478623f6e",
+    "research/v0.3.1-independence-policy-review.json": "a835e8d94fac8a3eab5e7f8240724fb9e963ec108270a5f27c30046345a2a23e"
   },
   "pair_index": [
     {

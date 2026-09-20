@@ -88,6 +88,7 @@ def build():
         'residual_error_assessment': assessment['residual_error_assessment'],
         'stopping_decision': assessment['stopping_decision'],
         'limitations': assessment['limitations'],
+        **({'policy_adoption': assessment['policy_adoption']} if 'policy_adoption' in assessment else {}),
         'supporting_report_sha256': manifest,
         'pair_index': pairs,
     }

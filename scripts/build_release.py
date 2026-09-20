@@ -67,6 +67,9 @@ def build():
         sources.append(source)
     payload = {
         "name": "InclusionBench", "version": benchmark.policy["version"], "stage": benchmark.policy["release_stage"], "repository_url": "https://github.com/tkwa/inclusion-bench",
+        "website_url": "https://tkwa.me",
+        "independence_policy": benchmark.policy["independence"],
+        "independence_premises": benchmark.policy["independence_premises"],
         "cutoff": benchmark.policy["cutoff"], "class_count": len(benchmark.ids), "ordered_pairs": len(benchmark.ids) ** 2,
         "dataset_sha256": benchmark.digest, "counts": matrix["counts"], "classes": benchmark.classes,
         "pairs": pairs, "baseline_proof_steps": proof_steps(benchmark.baseline),

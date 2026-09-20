@@ -2,7 +2,7 @@ import InclusionBench.Catalog
 
 namespace InclusionBench
 
--- Dataset SHA-256: e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3
+-- Dataset SHA-256: 6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742
 -- This theorem is conditional on its visible hypotheses.
 -- It verifies inference, not the submitted result or the historical literature.
 theorem ExampleConsequence (model : Interpretation ClassId)

@@ -23,8 +23,13 @@ PROVIDERS = {
 }
 INSTRUCTIONS = """You are taking a public mathematical research benchmark. Resolve the assigned
 complexity-class inclusion under its exact definitions and conventions. Give a complete,
-checkable mathematical proof, or return unsolved. A conjecture, a conditional result with
-an unproved new assumption, and an oracle separation do not resolve the task. Record exact
+checkable mathematical proof, or return unsolved. Conjectures and oracle separations do not
+resolve the task. Ordinary inclusion or non-inclusion proofs may not add unproved assumptions.
+Independence may be unconditional or conditional on Con(ZFC) or arithmetic soundness of ZFC:
+every first-order arithmetic sentence whose standard translation ZFC proves is true in
+standard N. Prove both nonderivability directions under the same explicitly retained premise.
+No stronger unproved assumption is permitted. Independence uses a separate expert metatheory
+review; the ordinary Lean proof checker does not automatically verify it. Record exact
 claims, a human-readable proof in proof_markdown, and any Lean source in lean_sources.
 Existing cited theorems may be used with precise references; expose every assumption.
 Never claim that your proof has been verified. For unsolved, claims must be empty; explain

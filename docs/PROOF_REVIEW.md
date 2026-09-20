@@ -105,11 +105,42 @@ Proof source is limited to 2 MiB, exported JSON to 32 MiB, and reconstructed dec
 
 The Lean kernel, its runtime, the trusted repository sources, pinned dependency objects, Docker/Linux isolation, and the reviewer's verifier installation form the trust boundary. Do not accept a model-authored report or a report copied without rerunning the verifier. A maintainer binds the resulting report to the exact artifact hash in `data/ai_reviews.json`; run integrity is recorded separately in `data/ai_run_reviews.json`.
 
-## Independence certificates
+## Independence review
 
-ZFC independence has a separate expert-review lane. An independence submission must identify the exact inclusion sentence, the encoding of that sentence and ZFC, the proof relation, the ambient metatheory, and any consistency assumptions. It must establish both nonderivability directions or provide a metatheorem that entails them under its stated assumptions. A contradiction between a proposition and its negation is not an independence certificate.
+ZFC independence has a separate expert-review lane. For the exact encoded inclusion sentence, the metatheorem must establish that ZFC derives neither that sentence nor its negation. The admitted premise is `unconditional`, `zfc_consistency`, or `zfc_arithmetic_soundness`. Arithmetic soundness means that every first-order arithmetic sentence whose ZFC translation is provable is true in the standard natural numbers. It is stronger than consistency, so a theorem conditional on it is weaker than the corresponding consistency-conditional theorem.
 
-The core Lean `ProofTheory.Independent` interface represents the two nonderivability obligations relative to an explicit proof relation. The automated ordinary-proof verifier does not implement a full ZFC encoding and rejects `independence` claims. Expert acceptance must record the exact theorem, checked proof artifacts, reviewers, assumptions, and the precise ordered pair. Independence receives no inclusion/separation propagation. The existing-proof waiver does not turn an unverified new independence assertion into an axiom.
+Consistency and soundness are external premises of the metatheorem. The target proof relation remains ZFC itself, not ZFC augmented by either premise. The reviewer must check the arithmetic translation and standard interpretation, the actual proof system and ambient metatheory, and reject stronger unapproved assumptions hidden in that metatheory. Both nonderivability polarities must be proved under the recorded premise.
+
+The proof-review record contains an `independence_review` object. The following fragment illustrates its shape; the placeholder text must be replaced by checked evidence and does not constitute acceptance:
+
+```json
+{
+  "independence_review": {
+    "premise": "zfc_arithmetic_soundness",
+    "zfc_proof_system": "<Exact ZFC axioms, syntax, inference rules and encoding reference>",
+    "metatheory": "<Ambient formal system and its role in the metatheorem>",
+    "assumptions": "External premise: arithmetic soundness of ZFC. No additional unproved assumptions.",
+    "arithmetic_interpretation": "<Translation of first-order arithmetic into ZFC and truth in standard N>",
+    "expert_report": "<Reviewed report and proof-artifact references, with hashes>",
+    "claim_certificates": [
+      {
+        "left": "NP",
+        "right": "P",
+        "encoded_sentence": "<Exact ZFC sentence encoding NP being contained in P>",
+        "unprovability_both_polarities": "<Arguments that ZFC derives neither this sentence nor its negation, under the recorded premise>"
+      }
+    ]
+  }
+}
+```
+
+The common fields are nonempty strings. `arithmetic_interpretation` is additionally required for `zfc_arithmetic_soundness`. The `claim_certificates` list must contain exactly one entry for each verified independence pair and no entries for other pairs. Each entry has its own nonempty `encoded_sentence` and `unprovability_both_polarities` strings. The surrounding proof review still binds the sealed run, attempt, claims, artifacts, reviewer and decision. A shared freeform sentence cannot certify several distinct ordered pairs. Automatic validation checks this structure and these bindings; expert review establishes the mathematical content and checks for hidden assumptions.
+
+The core `InclusionBench.Independent` interface represents both nonderivability obligations relative to an explicit proof relation. `InclusionBench.AdmittedIndependenceCertificate` restricts the premise category to the three allowed values; it does not certify that the supplied theory and translation represent ZFC. The automated ordinary-proof verifier does not implement a full ZFC encoding and rejects `independence` claims. Expert acceptance must verify the precise ZFC correspondence and metatheorem.
+
+Evaluation provenance retains the selected premise, common review fields and relevant singular `claim_certificate` for each accepted pair. The public leaderboard exposes these records in `independence_results`. Public descriptions must keep the condition visible.
+
+Independence resolves only the certified ordered pair and never supplies an inclusion, separation or Horn-rule premise. A qualifying conditional metatheorem already public before the cutoff earns zero. The existing-proof waiver does not turn an unverified new independence assertion into an axiom.
 
 ## Verification tests
 

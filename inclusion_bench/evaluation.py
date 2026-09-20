@@ -79,10 +79,11 @@ def taskset(benchmark: Benchmark) -> dict:
             'statement': f'{labels[left]} ⊆ {labels[right]}',
             'eligibility': 'open_at_cutoff' if certified else 'candidate_open_at_cutoff' if benchmark.policy['release_stage'] == 'operational' else 'unreviewed',
             'allowed_resolutions': ['inclusion', 'separation', 'independence'],
+            'independence_premises': benchmark.policy['independence_premises'],
             'lean': {'import': 'InclusionQuantum', 'inclusion_target': f'InclusionBench.Includes (InclusionBench.Quantum.completeInterpretation .{left}) (InclusionBench.Quantum.completeInterpretation .{right})',
                      'separation_target': f'InclusionBench.NonIncludes (InclusionBench.Quantum.completeInterpretation .{left}) (InclusionBench.Quantum.completeInterpretation .{right})',
-                     'independence_target': None, 'independence_note': 'An expert metatheory review must fix the exact ZFC sentence and proof relation.'},
-            'prompt': f'Resolve whether {labels[left]} is contained in {labels[right]} under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. A conjecture, oracle separation, or conditional result with a new unproved assumption is not a solution. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points.'
+                     'independence_target': None, 'independence_note': 'An expert metatheory review must fix each exact ZFC sentence, proof relation and permitted premise. Arithmetic soundness uses truth in standard N, not truth in an arbitrary model.'},
+            'prompt': f'Resolve whether {labels[left]} is contained in {labels[right]} under the attached exact class conventions. Supply a rigorous proof of inclusion, a rigorous proof of non-inclusion, or a precise ZFC-independence metatheorem. If you cannot resolve it, return unsolved. Conjectures and oracle separations are not solutions. Ordinary inclusion or non-inclusion proofs may not add unproved assumptions. Independence may be unconditional or conditional on Con(ZFC) or arithmetic soundness of ZFC, with both unprovability directions under the same stated premise. Arithmetic soundness means all first-order arithmetic sentences whose standard translations ZFC proves are true in standard N. Retain the premise explicitly; stronger unproved assumptions are not permitted. Identify every additional ordered-pair consequence your proof establishes. Return proof artifacts and exact claim objects; the evaluator, not the model, decides verification and points.'
         })
     core = {'schema_version': 1, 'benchmark': 'InclusionBench', 'dataset_sha256': benchmark.digest,
             'stage': benchmark.policy['release_stage'], 'cutoff': benchmark.policy['cutoff'],
@@ -235,7 +236,7 @@ def validate_run(benchmark: Benchmark, run: dict, directory: Path) -> None:
 
 
 def evaluate_run(benchmark: Benchmark, manifest: Path) -> dict:
-    from .reviews import history_status, registry
+    from .reviews import history_status, registry, validate_independence_review
     run = read_json(manifest)
     validate_run(benchmark, run, manifest.parent)
     run_hash = canonical_hash(run)
@@ -261,10 +262,17 @@ def evaluate_run(benchmark: Benchmark, manifest: Path) -> dict:
             raise InvalidEvidence('Accepted review includes a claim not made by this model attempt')
         if exact.get('artifact_hashes') != [a['sha256'] for a in attempt.get('artifacts', [])] or not exact.get('verification_record'):
             raise InvalidEvidence('Accepted review must match the exact sealed artifact set and verification record')
+        independence = validate_independence_review(benchmark, exact, verified)
         accepted.extend(verified)
         for claim in verified:
+            condition = {}
+            if claim['relation'] == 'independence':
+                certificate = next(c for c in independence['claim_certificates']
+                                   if (c['left'], c['right']) == (claim['left'], claim['right']))
+                condition = {'independence_review': {k: v for k, v in independence.items()
+                                                     if k != 'claim_certificates'} | {'claim_certificate': certificate}}
             provenance.setdefault(Atom.read(claim).key, []).append({'attempt_id': attempt['attempt_id'],
-                'artifact_hashes': exact['artifact_hashes'], 'verification_record': exact['verification_record']})
+                'artifact_hashes': exact['artifact_hashes'], 'verification_record': exact['verification_record'], **condition})
         verified_attempts.append(attempt['attempt_id'])
     accepted = [a.json() for a in dict.fromkeys(Atom.read(c) for c in accepted)]
     consequences = benchmark.score({'claims': accepted})
@@ -338,6 +346,8 @@ def leaderboard(benchmark: Benchmark, manifests: list[str]) -> list[dict]:
                         'track': run['track'], 'budget': run['budget'], 'scope': result['scope'], 'assigned_task_count': result['assigned_task_count'], 'cohort_sha256': cohort,
                         'date': run['finished_at'], 'verification_status': 'Verified evaluation',
                         'kind': 'official-model-run',
+                        'independence_results': {key: evidence for key, evidence in result['verified_claim_provenance'].items()
+                                                 if any('independence_review' in item for item in evidence)},
                         'report_url': 'https://github.com/tkwa/inclusion-bench/blob/main/' + relative})
     records.sort(key=lambda r: (r['cohort_sha256'], -r['score'], r['run_id']))
     cohorts = {}

@@ -1,6 +1,6 @@
 # AI benchmark scoring specification
 
-**Version 0.3.0 is operational.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require a recorded historical decision for each resolved pair. The release-wide audit supplies those decisions for the current suite.
+**Version 0.3.1 is operational.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require a recorded historical decision for each resolved pair. The release-wide audit supplies those decisions for the current suite.
 
 ## Target universe and freeze
 
@@ -70,8 +70,20 @@ The historical baseline's zero is a scoring convention, not a measured AI result
 
 ## Independence from ZFC
 
-Independence is a metatheorem about provability. It must establish both that ZFC has no derivation of the encoded inclusion sentence and that ZFC has no derivation of its negation. The submission must specify the sentence, ZFC proof system, metatheory, assumptions and both unprovability arguments. A result conditional on Con(ZFC) must retain that condition in its expert review and public description.
+Independence is a metatheorem about provability. For the exact encoded inclusion sentence, it must establish both that ZFC has no derivation of the sentence and that ZFC has no derivation of its negation. The accepted premise is one of:
 
-The repository supplies an abstract proof-relation interface, not an automatic formal encoding of ZFC syntax and derivations. Independence therefore uses a separate expert metatheory review lane. That limitation does not block ordinary inclusion or noninclusion runs.
+| Review value | Required metatheorem |
+| --- | --- |
+| `unconditional` | Both nonderivability statements in the declared metatheory, without a consistency or soundness premise |
+| `zfc_consistency` | Con(ZFC) implies both nonderivability statements |
+| `zfc_arithmetic_soundness` | Arithmetic soundness of ZFC implies both nonderivability statements |
+
+Arithmetic soundness means that **every first-order arithmetic sentence whose translation into ZFC is provable is true in the standard natural numbers**. The translation and standard interpretation must be specified. For the standard ZFC proof system, this premise implies consistency. It is a stronger assumption than Con(ZFC), so accepting it permits a weaker conditional independence theorem. The benchmark does not assert either premise as a proved fact.
+
+These are external premises of the metatheorem. The theory whose derivations are excluded remains exactly ZFC, not ZFC augmented by consistency or soundness. Expert review must reject stronger unapproved assumptions hidden in the declared metatheory. A qualifying independence result already public before the cutoff, including one conditional on arithmetic soundness, earns zero.
+
+The expert review records the selected premise, ZFC proof system, metatheory, assumptions and proof evidence. Each verified independence pair needs its own encoded sentence and evidence for both polarities; a single unspecified sentence cannot stand for several pairs. The premise and any other stated conditions remain attached to the accepted result in evaluation provenance and public reporting. See [the review format](PROOF_REVIEW.md#independence-review).
+
+The repository supplies a proof-relation interface, arithmetic syntax and standard-natural-number semantics, and conditional independence certificates. Identifying the supplied theory with the intended ZFC proof system, validating its translations and proving the submitted metatheorem remain an expert-reviewed boundary. The ordinary proof checker does not implement a complete ZFC verification route. This separate lane does not block ordinary inclusion or noninclusion runs.
 
 Independence resolves only its exact pair and never acts as an inclusion, separation or Horn-rule premise. Propagation across equivalences is withheld until a corresponding metatheorem is supplied. Under the benchmark's single-resolution policy, independence conflicts with an ordinary accepted resolution at the same pair.

@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "review_id": "v0.3.1-independence-policy-review",
+  "reviewed_at": "2026-09-20",
+  "reviewer": {
+    "identity": "classical_literature subagent",
+    "kind": "AI-assisted bounded independent review",
+    "human_expert_certification": false
+  },
+  "historical_cutoff": "2026-09-01",
+  "dataset_sha256_at_review": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+  "classes_sha256": "54a298e5a1f27b2395bcbad3b3c049952424d0639f5da1045f9fc3cb0eb1f048",
+  "knowledge_sha256": "85bbfec5a1414e5be1c8409b2ba82ace1bcf4f908966f3a0fdb594dc7c5455f1",
+  "policy_version": "0.3.1",
+  "scope": {
+    "purpose": "Check the incremental historical effect of accepting ZFC independence conditional on arithmetic soundness, alongside unconditional and Con(ZFC)-conditional results.",
+    "targets": [
+      "AC0",
+      "ACC0",
+      "TC0",
+      "NC1",
+      "L",
+      "NL",
+      "LogCFL",
+      "NC",
+      "SC",
+      "P",
+      "RP",
+      "coRP",
+      "ZPP",
+      "BPP",
+      "UP",
+      "coUP",
+      "NP",
+      "coNP",
+      "FewP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "LWPP",
+      "WPP",
+      "MA",
+      "coMA",
+      "AM",
+      "coAM",
+      "QCMA",
+      "QMA",
+      "coQMA",
+      "BQP",
+      "SBP",
+      "SZK",
+      "NPcapcoNP",
+      "Sigma2P",
+      "Pi2P",
+      "Delta2P",
+      "Theta2P",
+      "PH",
+      "Ppoly",
+      "NPpoly",
+      "PSPACE",
+      "EXP",
+      "NEXP",
+      "EXPSPACE",
+      "E",
+      "NE"
+    ],
+    "target_convention": "The exact ordinary50-class roster inclusions; both ZFC-unprovability polarities for the same sentence. Oracle,artificial language,alternative encoding or weaker-theory independence does not automatically transfer.",
+    "review_depth": "Bounded terminology and primary-reference-chain search; not a new exhaustive2500-pair literature audit."
+  },
+  "result": {
+    "qualifying_pre_cutoff_results_found": [],
+    "proposed_pair_status_changes": [],
+    "historical_carry_forward_recommendation": "No identified reason to change the existing candidate decisions solely for this policy extension. Carry them forward explicitly as revisable decisions, recording this incremental screen; do not call this proof of historical completeness.",
+    "additional_residual_estimate_assigned": null,
+    "reason_no_new_probability": "This bounded policy screen does not provide calibrated evidence for a separate numeric error component or independently recalculate the previous aggregate."
+  },
+  "sources": [
+    {
+      "id": "aaronson2003",
+      "title": "Is P Versus NP Formally Independent?",
+      "author": "Scott Aaronson",
+      "year": 2003,
+      "url": "https://www.scottaaronson.com/papers/indep.pdf",
+      "source_kind": "author survey with reproduced proofs",
+      "locators": [
+        "Section3.1,Theorem2,printed pp.7–8",
+        "Section3.2,printed pp.8–9",
+        "Section4.1,printed pp.11–12"
+      ],
+      "review": "Primary author PDF directly read at relevant statements.",
+      "finding": "Hartmanis–Hopcroft independence retains an oracle description, even when its language is extensionally empty. Weak-arithmetic results and cryptographic bounded-arithmetic barriers do not concern independence from ZFC of the fixed ordinary roster statements.",
+      "qualifying_roster_pairs": []
+    },
+    {
+      "id": "bhd1992",
+      "title": "On the Independence of P versus NP (revised version)",
+      "authors": [
+        "Shai Ben-David",
+        "Shai Halevi"
+      ],
+      "year": 1992,
+      "version": "Technion revised technical report; hosted scan has reverse page ordering",
+      "url": "https://janos.cs.technion.ac.il/COURSES/238900-13/Papers/Ben-David-Halevi.pdf",
+      "source_kind": "primary research paper",
+      "locators": [
+        "Theorems4–5 and Corollary6",
+        "Section4.1,Theorems8–9 and Corollary10"
+      ],
+      "review": "Relevant theorem statements and proofs inspected; reverse scan ordering distinguished from printed page numbering.",
+      "finding": "These are consequences/characterizations of hypothetical nonprovability, including almost-polynomial behavior and fixed-size circuit observations. They do not establish independence of NP⊆P or NP⊆Ppoly from ZFC.",
+      "qualifying_roster_pairs": []
+    },
+    {
+      "id": "dcd1998",
+      "title": "On the existence of certain total recursive functions in nontrivial axiom systems,I",
+      "authors": [
+        "N.C.A.da Costa",
+        "F.A.Doria"
+      ],
+      "publication_date": "1998-04-30",
+      "url": "https://arxiv.org/abs/cmp-lg/9804005",
+      "primary_pdf_url": "https://arxiv.org/pdf/cmp-lg/9804005v1",
+      "source_kind": "primary unaccepted manuscript",
+      "locators": [
+        "Abstract and author comments on arXiv",
+        "Proposition4.13 and Corollary4.14 in indexed manuscript"
+      ],
+      "review": "Original arXiv metadata directly opened; statement checked against indexed full manuscript. No full proof validation claimed.",
+      "finding": "Claims one direction,ZFC not proving P≠NP under Σ1-soundness. That is insufficient for both-polarity independence, even if granted. Author metadata reports journal rejection concerning an alleged gap/error; this pass does not adjudicate that disputed one-direction proof.",
+      "qualifying_roster_pairs": []
+    },
+    {
+      "id": "dcdb2007",
+      "title": "On the metamathematics of the P vs.NP question",
+      "authors": [
+        "N.C.A.da Costa",
+        "F.A.Doria",
+        "E.Bir"
+      ],
+      "year": 2007,
+      "doi": "10.1016/j.amc.2006.12.012",
+      "url": "https://janos.cs.technion.ac.il/COURSES/238900-13/Papers/daCosta-Doria-Bir-AMC11929comcopy1.pdf",
+      "source_kind": "primary published research/review",
+      "locators": [
+        "Prologue and Section1.3",
+        "Propositions8.12,8.16,8.19,8.21",
+        "Section8.1 and Section9,printed pp.1237–1238"
+      ],
+      "review": "Exact exotic-formulation,extra-hypothesis and concluding passages read.",
+      "finding": "The exotic sentence includes totality of a fast-growing function. Transferring its consistency to ordinary P=NP requires an additional condition on an extended theory. Full ordinary independence remains a stated expectation;Section8.1 marks a proposed step as not a proof. No admissible two-polarity result follows solely from arithmetic soundness.",
+      "qualifying_roster_pairs": []
+    },
+    {
+      "id": "ikk2009",
+      "title": "An Axiomatic Approach to Algebrization",
+      "authors": [
+        "Russell Impagliazzo",
+        "Valentine Kabanets",
+        "Antonina Kolokolova"
+      ],
+      "year": 2009,
+      "url": "https://cseweb.ucsd.edu/~russell/act-stoc.pdf",
+      "archival_url": "https://drops.dagstuhl.de/entities/document/10.4230/DagSemProc.09421.3",
+      "source_kind": "primary research paper",
+      "locators": [
+        "Theorems4.1–4.2,printed pp.6–7",
+        "Section4.1 and Theorem4.10"
+      ],
+      "review": "Exact theory name,statements and oracle-based proof setup inspected.",
+      "finding": "Results involving NP/P,BPP,EXP,Ppoly,coNP/MA,NP/BQP,BQP/BPP and QMA/MA are nonderivability in ACT*,using oracle models. ACT* is not ZFC; the theorem cannot resolve ordinary roster independence.",
+      "qualifying_roster_pairs": []
+    },
+    {
+      "id": "sterkenburg2022",
+      "title": "On characterizations of learnability with computable learners",
+      "author": "Tom F.Sterkenburg",
+      "publication_date": "2022-07-02",
+      "url": "https://proceedings.mlr.press/v178/sterkenburg22a/sterkenburg22a.pdf",
+      "metadata_url": "https://proceedings.mlr.press/v178/sterkenburg22a.html",
+      "source_kind": "primary published research",
+      "locators": [
+        "Proposition12,printed p.10",
+        "Section5 discussion,printed p.13"
+      ],
+      "review": "The arithmetic-soundness premise and target objects checked directly.",
+      "finding": "Genuine conditional independence concerns learnability of individual computable hypothesis classes. These are not ordered inclusions among the50 benchmark classes.",
+      "qualifying_roster_pairs": []
+    }
+  ],
+  "queries": [
+    "\"complexity\" \"independence\" \"arithmetic soundness\" ZFC",
+    "\"P versus NP\" \"formally independent\" Aaronson",
+    "\"ZFC\" \"independent\" \"BPP\" \"PSPACE\"",
+    "\"complexity classes\" \"independent of ZFC\"",
+    "\"independence\" \"P\" \"NP\" \"ZFC\" \"sound\" theorem",
+    "\"independent\" \"ZFC\" \"BQP\" OR \"QMA\" OR \"PP\" complexity",
+    "\"independence\" \"ZFC\" \"PSPACE\" OR \"NEXP\" OR \"EXPSPACE\"",
+    "\"independent\" \"ZFC\" \"L\" \"NL\" complexity class",
+    "\"arithmetic soundness\" \"P\" \"NP\"",
+    "\"arithmetically sound\" \"ZFC\" \"complexity\"",
+    "\"On the independence of P versus NP\" Ben-David Halevi pdf",
+    "\"A note on da Costa-Doria\" pdf",
+    "\"On the existence of certain total recursive functions\" da Costa Doria criticism",
+    "\"ZFC\" \"independence\" \"complexity\" \"2024\" \"2025\" \"2026\"",
+    "\"An Axiomatic Approach to Algebrization\" pdf",
+    "\"independent of ZFC\" \"complexity\" \"2026\""
+  ],
+  "admission_constraints_confirmed": [
+    "Arithmetic soundness quantifies all first-order arithmetic sentences and uses standardNat truth; it is stronger than mere consistency.",
+    "A stronger assumption yields a weaker conditional metatheorem. Con-conditional independence can be weakened to soundness-conditional,not conversely.",
+    "Both unprovability directions share the stated premise; the target theory remains ZFC,not an extension by soundness.",
+    "Extra assumptions cannot be hidden in the metatheory or an exotic encoding.",
+    "Each exact pair has a separate sentence/certificate binding.",
+    "Independence never supplies an ordinary inclusion,separation,Horn premise or complement propagation.",
+    "Historical novelty uses the newly accepted premise scope; a pre-cutoff qualifying conditional result would earn zero."
+  ],
+  "implementation_review": {
+    "reviewed_files": [
+      {
+        "path": "inclusion_bench/reviews.py",
+        "sha256": "0966d5497cd77e6ce73b4ea0bcd88850ad001f994325976ee21f6e54f5712369"
+      },
+      {
+        "path": "inclusion_bench/evaluation.py",
+        "sha256": "60a5788d6d294921a2f4dc3ac91b4f5603a126dfff6462b056993243d891b59d"
+      },
+      {
+        "path": "tests/test_runner.py",
+        "sha256": "a36c47f3f1cd645311acd55346c50c2d8e7af579d841edbb11d9bdb0beff0744"
+      },
+      {
+        "path": "lean/InclusionBench/Independence.lean",
+        "sha256": "59f99c943ccfb23328bd8ecd68099f4d89246151b1ab69ccb84992725596cdf8"
+      },
+      {
+        "path": "data/policy.json",
+        "sha256": "83e9c803c4e5b6a08c5aceb47ea0a056ee731d86c279f4236660fa9d82e449e6"
+      }
+    ],
+    "blocking_findings": [],
+    "python_findings": [
+      "Validator requires a permitted premise,nonempty textual theory/metatheory/assumptions/report fields,and standard arithmetic interpretation for the soundness premise.",
+      "Certificate list must match exactly all verified independence pairs,with no duplicates,extras or missing pairs.",
+      "Evaluator revalidates stored reviews and preserves the premise and matching per-pair certificate in verified_claim_provenance.",
+      "Leaderboard independence_results preserves the conditional metadata after Atom normalization.",
+      "Ordinary claims still require their isolated Lean verification report; the exception is confined to independence."
+    ],
+    "lean_findings": [
+      "Typed syntax prevents free variables in closed sentences. Recursive semantics interpret terms and quantifiers in Nat.",
+      "Soundness-to-consistency explicitly requires the contradiction-to-false-arithmetic rule; no unsupported property of an arbitrary proof relation is inferred.",
+      "Conditional certificate transport uses newPremise→oldPremise,and both polarities retain that premise.",
+      "No concrete ZFC encoding or correctness of a supplied arithmetic translation is asserted."
+    ],
+    "tests_run": [
+      {
+        "command": "python3 -m unittest tests.test_runner.RunnerTests.test_independence_premises_are_bound_and_preserved_in_public_results tests.test_runner.RunnerTests.test_independence_rejects_missing_extra_or_unbound_premises_and_certificates -v",
+        "result": "2 tests passed",
+        "elapsed_seconds": 1.681
+      }
+    ],
+    "trust_boundary": "The validator checks record shape and bindings,not the truth of expert assertions. A misleading premise or fake two-polarity argument is rejected by mathematical review,not automatically parsed from prose. Synthetic tests are explicitly labeled and were run in temporary fixture repositories; they are not mathematical evidence or real scores."
+  },
+  "limitations": [
+    "Search absence is not a theorem that no qualifying result exists.",
+    "The strongest direct coverage is the P/NP independence reference chain and nearby proof-barrier families; not every pair received an individual query.",
+    "No qualifying new result appeared in the bounded recent-term queries; these are not a venue census.",
+    "Gordeev2010 exotic-formalization note was identified bibliographically but the publisher URL was inaccessible; conclusions do not rely on its uninspected text.",
+    "Disputed manuscripts were triaged by scope and stated proof status,not conclusively refuted in this pass.",
+    "No release,website,canonical data or implementation file was edited by this reviewer."
+  ]
+}

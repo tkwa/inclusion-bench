@@ -37,6 +37,41 @@ def _reviewer(review: dict) -> None:
         raise InvalidEvidence('Review status must be accepted or rejected')
 
 
+def validate_independence_review(benchmark: Benchmark, review: dict, verified: list[dict]) -> dict:
+    """Validate expert certificate bindings, not the mathematical metatheorem itself."""
+    pairs = {Atom.read(c).pair for c in verified if c['relation'] == 'independence'}
+    if not pairs:
+        return {}
+    meta = review.get('independence_review')
+    if not isinstance(meta, dict):
+        raise InvalidEvidence('Independence needs an explicit expert metatheory review')
+    if not isinstance(meta.get('premise'), str) or meta['premise'] not in benchmark.policy['independence_premises']:
+        raise InvalidEvidence('Independence requires an explicitly permitted premise')
+    required = ['zfc_proof_system', 'metatheory', 'assumptions', 'expert_report']
+    if meta['premise'] == 'zfc_arithmetic_soundness':
+        required.append('arithmetic_interpretation')
+    if not all(isinstance(meta.get(k), str) and meta[k].strip() for k in required):
+        raise InvalidEvidence('Independence needs an explicit expert metatheory review with all assumptions and interpretations')
+    certificates = meta.get('claim_certificates')
+    if not isinstance(certificates, list) or len(certificates) != len(pairs):
+        raise InvalidEvidence('Independence certificates must cover exactly the verified ordered pairs')
+    seen = set()
+    for certificate in certificates:
+        if not isinstance(certificate, dict):
+            raise InvalidEvidence('Each independence certificate must be an object')
+        left, right = certificate.get('left'), certificate.get('right')
+        if not isinstance(left, str) or not isinstance(right, str):
+            raise InvalidEvidence('Each independence certificate must name an exact ordered pair')
+        pair = (left, right)
+        if pair not in pairs or pair in seen:
+            raise InvalidEvidence('Independence certificates must cover exactly the verified ordered pairs')
+        seen.add(pair)
+        if not all(isinstance(certificate.get(k), str) and certificate[k].strip()
+                   for k in ('encoded_sentence', 'unprovability_both_polarities')):
+            raise InvalidEvidence('Every independence pair needs an exact sentence and both unprovability arguments')
+    return meta
+
+
 def history_status(benchmark: Benchmark) -> tuple[set, set, dict]:
     latest = {}
     for record in registry(benchmark, 'history_reviews'):
@@ -82,11 +117,16 @@ def review_packet(benchmark: Benchmark, manifest: Path) -> dict:
                            'transcripts_and_artifacts': False, 'no_unreported_human_assistance': False}},
             'proof_reviews': [{'run_sha256': run_hash, 'attempt_id': a['attempt_id'], 'attempt_sha256': canonical_hash(a),
                 'claims': a.get('claims', []), 'artifact_hashes': [p['sha256'] for p in a.get('artifacts', [])],
-                'reviewer': '', 'rationale': '', 'status': 'pending', 'proof_report': None}
+                'reviewer': '', 'rationale': '', 'status': 'pending', 'proof_report': None,
+                **({'independence_review': {'premise': '', 'zfc_proof_system': '', 'metatheory': '',
+                    'assumptions': '', 'arithmetic_interpretation': '', 'expert_report': '',
+                    'claim_certificates': [{'left': c['left'], 'right': c['right'], 'encoded_sentence': '',
+                        'unprovability_both_polarities': ''} for c in a['claims'] if c['relation'] == 'independence']}}
+                   if any(c['relation'] == 'independence' for c in a['claims']) else {})}
                 for a in run['attempts'] if a['status'] == 'proof_candidate'],
             'history_review': {'dataset_sha256': benchmark.digest, 'reviewer': '', 'rationale': '', 'status': 'pending',
                 'pairs': [{**p, 'status': 'pending', 'evidence': [], 'rationale': ''} for p in pending_history]},
-            'instructions': 'Complete reviews using independent evidence. Pending entries cannot be admitted. Ordinary accepted claims require the sandboxed Lean report; historical eligibility is reviewed separately for every point.'}
+            'instructions': 'Complete reviews using independent evidence. Pending entries cannot be admitted. Ordinary accepted claims require the sandboxed Lean report. Independence requires a permitted premise, a certificate for each pair and expert validation of both nonderivability arguments with no stronger unproved assumptions, including hidden assumptions in the metatheory. Historical eligibility is reviewed separately for every point.'}
 
 
 def record_run_review(benchmark: Benchmark, manifest: Path, review: dict) -> dict:
@@ -125,11 +165,7 @@ def record_proof_review(benchmark: Benchmark, manifest: Path, review: dict) -> d
         if not verified:
             raise InvalidEvidence('An accepted proof review requires verified claims')
         if any(c['relation'] == 'independence' for c in verified):
-            # No claim of an automatic formal ZFC encoding. This separately identified
-            # lane requires a precise metatheorem and an expert review record.
-            meta = review.get('independence_review', {})
-            if not all(meta.get(k) for k in ('encoded_sentence', 'zfc_proof_system', 'metatheory', 'assumptions', 'unprovability_both_polarities', 'expert_report')):
-                raise InvalidEvidence('Independence needs an explicit expert metatheory review for both polarities')
+            validate_independence_review(benchmark, review, verified)
         ordinary = {Atom.read(c) for c in verified if c['relation'] != 'independence'}
         if ordinary:
             report_path = Path(review.get('proof_report', ''))

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "benchmark": "InclusionBench",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "cutoff": "2026-09-01",
   "cutoff_convention": "Results publicly available before 2026-09-02 00:00:00 UTC count as pre-cutoff. Historical decisions check exact public versions and are revisable.",
   "release_stage": "operational",
@@ -10,11 +10,16 @@
   "public_baseline_score": 0,
   "baseline_meaning": "Historical pre-cutoff results earn zero by definition. Zero does not assert that no post-cutoff public result exists.",
   "scenario_eligibility": "Frozen questions absent from the baseline closure. The dated historical-review registry determines which are eligible for official points.",
-  "independence": "Separate metatheorem establishing neither ZFC proof of inclusion nor ZFC proof of its negation, under an explicitly documented metatheory. It does not enter ordinary relation closure.",
+  "independence": "Separate metatheorem establishing neither ZFC proof of inclusion nor ZFC proof of its negation, unconditionally or conditional on Con(ZFC) or arithmetic soundness of ZFC. Arithmetic soundness means every first-order arithmetic sentence whose standard set-theoretic translation ZFC proves is true in the standard natural numbers. The exact premise must remain explicit in the proof, expert review and public result. No stronger unproved assumption is permitted. Independence does not enter ordinary relation closure.",
   "credit": "Union of resolved eligible ordered pairs from accepted proof artifacts within one run; no duplicate credit and no pooling across runs.",
   "admission": "Model runs are open. Existing cited proofs are trusted. Official run scores require run-integrity review, adjudication of all proof candidates, verification of new ordinary proofs, and a recorded historical decision for every positively scored pair. Release-wide historical decisions can satisfy that requirement.",
   "unit_of_evaluation": "One exact AI model snapshot and configuration in one recorded, budgeted evaluation run.",
   "baseline_trust": "Cited pre-cutoff results, implications, and operational model conventions are explicit trusted inputs. Re-formalizing existing proofs is not a launch requirement.",
   "new_proof_verification": "Ordinary new claims require sandboxed Lean checking against the exact class targets with an explicit trusted-baseline axiom whitelist. Independence uses a separate expert metatheory review.",
-  "ranking": "Compare runs only within the same frozen taskset, declared task assignment, access track, and resource budget. Subsets are allowed and labeled."
+  "ranking": "Compare runs only within the same frozen taskset, declared task assignment, access track, and resource budget. Subsets are allowed and labeled.",
+  "independence_premises": {
+    "unconditional": "No additional consistency or soundness premise.",
+    "zfc_consistency": "Con(ZFC): ZFC derives no contradiction.",
+    "zfc_arithmetic_soundness": "Every closed first-order arithmetic sentence whose standard translation is provable in ZFC is true in standard N."
+  }
 }

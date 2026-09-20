@@ -1,6 +1,6 @@
 # Development, evaluation and embedding
 
-Version 0.3.0 is operational. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 50 canonical definitions. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
+Version 0.3.1 is operational. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 50 canonical definitions. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
 
 Run commands from the repository root. An editable installation (`python3 -m pip install -e .`) also exposes the `inclusion-bench` command.
 
@@ -115,7 +115,7 @@ The registries are `data/ai_run_reviews.json`, `data/ai_reviews.json` and `data/
 
 Historical review covers all candidate consequences of accepted proofs, including implications outside the assigned subset. Pairs already known at the cutoff earn zero. With no accepted resolutions, a genuine run can receive an official zero after provenance review and complete candidate adjudication; unclaimed pairs need no blanket openness certificate. At least one genuine request must have a completed model answer. Empty/error-only runs and smoke tests are not scored model results.
 
-Independence uses the separate expert metatheory review lane. Its record must identify the encoded sentence, ZFC proof system, metatheory, assumptions and both unprovability arguments. The absence of automatic ZFC syntax and proof encoding does not block ordinary evaluations.
+Independence uses the separate expert metatheory review lane. `independence_review.premise` selects `unconditional`, `zfc_consistency`, or `zfc_arithmetic_soundness`. The last premise says that every first-order arithmetic sentence whose ZFC translation is provable is true in standard N. It is stronger than consistency and permits a weaker conditional theorem. The target derivations remain those of ZFC itself. Record the proof system, metatheory, assumptions, expert report and, for soundness, arithmetic interpretation. `claim_certificates` must have exactly one encoded sentence and both-polarities argument for each verified independence pair. Preserve these conditions in evaluated provenance and public results; never feed independence into ordinary closure. The [review format](PROOF_REVIEW.md#independence-review) explains the full ZFC boundary and the check against hidden stronger assumptions. Ordinary evaluations remain available without an automatic ZFC verifier.
 
 ## Export a conditional consequence to Lean
 
@@ -143,7 +143,9 @@ python3 scripts/build_release.py
 
 The release generator re-evaluates every registered run and refuses a non-official result. Keep the proof artifacts and all three review registries available with the manifest. Rank cohorts bind the taskset, exact assignment, access track, budget and access policy. Equal scores within a cohort share a rank. Full-suite and declared-subset results show their scope and assignment count; their ranks are not interchangeable.
 
-Serve `index.html`, `styles.css`, `app.js` and `benchmark.json` from `web/` over HTTP. They use relative URLs and no external dependencies. Copy the directory into an existing site or embed the hosted leaderboard:
+The public site is [tkwa.me](https://tkwa.me). Its deployment is managed separately from this repository. The repository's standalone leaderboard is also available as a [GitHub Pages mirror](https://tkwa.github.io/inclusion-bench/).
+
+Serve `index.html`, `styles.css`, `app.js` and `benchmark.json` from `web/` over HTTP. They use relative URLs and no external dependencies. Copy the directory into an existing site or embed the Pages mirror:
 
 ```html
 <iframe

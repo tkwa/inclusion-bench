@@ -34,7 +34,7 @@ If you find a proof, provide the exact theorem statement, a complete argument, a
 - `separation`: {{left_display}} ⊄ {{right_display}}. Merely proving that two classes are unequal does not identify this direction.
 - `independence`: neither the exact encoded inclusion sentence nor its negation has a proof from ZFC, in an explicitly stated metatheory.
 
-For independence, supply the sentence encoding, proof relation, both unprovability arguments, and all consistency assumptions. Do not identify independence with a contradiction or with failure to find a proof.
+For independence, supply the sentence encoding, proof relation, both unprovability arguments, and all assumptions. The permitted premises are `unconditional`, `zfc_consistency` (Con(ZFC)), and `zfc_arithmetic_soundness`. Arithmetic soundness says that every closed first-order arithmetic sentence whose standard set-theoretic translation is provable in ZFC is true in the standard natural numbers. Both nonderivability arguments must use the same declared premise. No stronger unproved assumption is permitted; ordinary inclusion and separation proofs may not add unproved assumptions. Do not identify independence with a contradiction or with failure to find a proof.
 
 You may submit a stronger theorem and additional pair consequences. Separate established claims from conjectures and partial observations. A conditional result must retain its hypothesis. Do not introduce an axiom equivalent to the desired result, leave a proof hole, or treat a cited theorem as checked without explaining its applicability. Definitions alone do not prove a new class relation.
 

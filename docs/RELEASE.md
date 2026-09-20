@@ -1,8 +1,10 @@
-# Release 0.3.0
+# Release 0.3.1
 
 InclusionBench is open for AI model runs. The release freezes the class definitions, cited mathematical baseline, implication rules and candidate questions. Existing cited proofs are trusted premises; formalizing them is not a condition of running the benchmark or admitting a new result.
 
-Version 0.3.0 corrects eight questions that were already settled before the cutoff: NE and NEXP are each not contained in Θ₂P, coNP, coRP and coUP. The baseline now contains **709 inclusions and 413 noninclusions**, leaving **1,378 questions audited as open at the cutoff**. It adds 106 implication rules, bringing the total to 249, and records historical decisions for the whole suite. See the [audit report](../research/baseline-audit.md) for evidence, the residual-error assessment and its limits.
+Version 0.3.1 extends the independence policy to admit arithmetic soundness of ZFC as an external premise, alongside unconditional and Con(ZFC)-conditional metatheorems. It adds explicit arithmetic syntax and standard-natural-number semantics to the Lean interface, restricts admitted premise categories, and requires a separate encoded sentence and both nonderivability arguments for every accepted independence pair. Evaluation and public reporting retain each result's premise and certificate. The complete ZFC encoding and metatheorem remain expert-reviewed.
+
+The mathematical baseline comes from version 0.3.0, which corrected eight questions already settled before the cutoff: NE and NEXP are each not contained in Θ₂P, coNP, coRP and coUP. That release recorded **709 inclusions and 413 noninclusions**, leaving **1,378 questions audited as open at the cutoff**, and added 106 implication rules for a total of 249. The 0.3.1 policy extension preserves that historical audit record; its adoption and the additional policy check are recorded separately. See the [audit report](../research/baseline-audit.md) for evidence, the residual-error assessment and its limits.
 
 The official leaderboard is evidence-driven. A real sealed run can receive zero after run-integrity review and disposition of its proof candidates. Every positive point additionally requires an accepted proof and a historical decision that its ordered pair was open at the cutoff. The repository's empty model leaderboard is intentional: infrastructure fixtures and mock provider tests are not AI evaluations, and no paid model run was performed to manufacture a result.
 
@@ -29,15 +31,17 @@ The release's cited existing mathematics is trusted. The Lean operational defini
 
 New model assertions receive no trust merely because they are syntactically valid. Ordinary new claims must pass the proof checker and mathematical review; accepted source hashes must identify sealed model artifacts. The verifier's approved cited premises are distinct from arbitrary user-supplied axioms. An inference trace that assumes the submitted statement does not prove it.
 
-An independence result requires an expert report about both unprovability directions, its exact sentence, proof system, metatheory and assumptions. The ordinary checker does not claim to formalize all of ZFC. This separate lane does not delay evaluation of ordinary inclusions and separations.
+An independence result requires an expert report about both unprovability directions for each exact sentence, the ZFC proof system, metatheory and assumptions. Arithmetic soundness means that every first-order arithmetic sentence whose ZFC translation is provable is true in standard N. This is stronger than consistency, so using it permits a weaker conditional theorem. The target theory remains ZFC itself; the premise is external, and expert review rejects stronger unapproved assumptions hidden in the metatheory. Both directions must hold under the recorded premise. Conditions remain visible in review and public results, and independence never supplies an ordinary inclusion, separation or Horn-rule premise. The ordinary checker does not implement full ZFC verification. See the [independence review format](PROOF_REVIEW.md#independence-review).
 
 ## Historical corrections and versioning
 
-A frozen question suite can contain omissions from the literature database. The audit records an explicit decision for each question; a run does not need to repeat those literature checks. If a question is later found to have been settled before the cutoff, it earns no point. Record the corrected decision and any versioned rescore. Do not silently alter an in-progress run's questions or implication rules.
+A frozen question suite can contain omissions from the literature database. The audit records an explicit decision for each question; a run does not need to repeat those literature checks. If a question is later found to have been settled before the cutoff, it earns no point. This also applies to qualifying conditional independence metatheorems already public before the cutoff, including those conditional on arithmetic soundness. Record the corrected decision and any versioned rescore. Do not silently alter an in-progress run's questions or implication rules.
 
 The historical audit is AI-assisted, with independent domain and cross-reviews. It is not a human expert endorsement or a proof that no paper was missed. All 1,122 known-label inference traces passed Lean checking with cited mathematical premises explicit. A separate SAT encoding found no additional forced candidate resolution within the recorded finite theory. Neither check establishes completeness of the literature.
 
 Changes to the roster, definitions, baseline or inference rules require a new version and `freeze`. Review registries retain the frozen dataset hashes and their own recorded revisions. Published results must identify the snapshot and review state used for scoring.
+
+The public site is [tkwa.me](https://tkwa.me), developed and deployed separately. This repository also supplies the [Pages leaderboard and task explorer mirror](https://tkwa.github.io/inclusion-bench/).
 
 ## Further work
 

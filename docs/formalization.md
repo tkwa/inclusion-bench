@@ -1,6 +1,6 @@
 # Formalization status
 
-**Version 0.3.0 is operational: all 50 canonical class definitions compile, the inference kernel is checked, and new ordinary proofs have an isolated Lean verification route.** The Mathlib-free core supplies 46 definitions; the quantum project supplies four more and the complete interpretation. Existing cited theorems and model conventions are explicit trusted baseline inputs. Their proofs do not need to be recreated in Lean before running the benchmark.
+**Version 0.3.1 is operational: all 50 canonical class definitions compile, the inference kernel is checked, and new ordinary proofs have an isolated Lean verification route.** The Mathlib-free core supplies 46 definitions; the quantum project supplies four more and the complete interpretation. Existing cited theorems and model conventions are explicit trusted baseline inputs. Their proofs do not need to be recreated in Lean before running the benchmark.
 
 Textbook-model equivalences, quantum amplification and an automatic formal ZFC implementation remain future work. These limitations are documented rather than used as a launch gate for ordinary runs. A model still has to prove its exact new claim against the frozen class interpretation; merely compiling definitions or a conditional consequence does not establish a breakthrough. Historical review separately determines whether each resolved pair earns a point.
 
@@ -12,7 +12,7 @@ The library defines a language as `List Bool → Prop` and a complexity class as
 - Soundness of Horn derivations, including contraposition, under explicit hypotheses for the baseline, submissions, and cited rules.
 - Soundness of an executable, JSON-serializable certificate checker. Each step must name an existing baseline fact, an existing submitted fact, or a registered rule whose premises were already checked. Missing leaves and premature rule applications are rejected.
 - A score bound by the number of distinct eligible ordered pairs and monotonicity when additional pairs become resolved. A general numerical theorem proves that duplicating an eligible pair leaves its score unchanged. The full 50 × 50 matrix has a proved upper bound of 2,500 points; historical eligibility makes the actual bound smaller. The two orientations of a pair remain distinct. Multiple evidence types share one resolution bit.
-- A separate independence interface requiring that neither a sentence nor its negation has a proof in an explicitly supplied theory. Independence never enters the ordinary inclusion closure.
+- A separate independence interface requiring that neither a sentence nor its negation has a proof in an explicitly supplied theory, with conditional certificates for the admitted metatheoretic premises. Independence never enters the ordinary inclusion closure.
 
 `lean/Examples.lean` checks accepted and rejected certificates and verifies that duplicate eligibility entries cannot create extra points. `lean/AxiomAudit.lean` prints the kernel dependencies of the principal theorems. The permanent core and quantum library audits contain only standard Lean foundations (`propext`, `Classical.choice`, and `Quot.sound`) where needed, with no project-specific axioms or incomplete proofs. The submission verifier separately generates explicit axioms for the cited historical baseline, as described below. Those intentional trusted inputs are not disguised as proved library theorems.
 
@@ -85,7 +85,27 @@ All proof candidates in a run must be adjudicated. A genuine completed run may r
 
 `Independent theory sentence` means both `¬ theory.proves sentence` and `¬ theory.proves (theory.negation sentence)`. It is a statement about a proof relation, not the inconsistent conjunction `¬p ∧ ¬¬p`.
 
-The repository does not yet encode ZFC syntax, axioms, or derivations, nor the translation of class inclusions into that syntax. Supplying an arbitrary proof relation does not make a certificate a ZFC result. The operational independence lane requires an expert review of the exact encoded sentence, its connection to the benchmark pair, the ZFC proof system, metatheory, assumptions and unprovability in both polarities. The review is explicit; the ordinary Lean verifier does not automatically supply it. An accepted independence result resolves only that exact ordered pair, and no independence propagation rule is supplied. This separate lane does not block ordinary proof runs.
+The admitted premise may be unconditional, Con(ZFC), or arithmetic soundness of ZFC. Arithmetic soundness means that every first-order arithmetic sentence with a provable ZFC translation is true in the standard natural numbers. For the standard proof system, soundness implies consistency; using that stronger premise yields a weaker conditional independence theorem. A certificate must retain the premise and establish both nonderivability polarities under it.
+
+The premise is outside the target proof relation: nonderivability is from ZFC, not from ZFC plus consistency or soundness. The expert metatheory review must reject stronger unapproved assumptions concealed in the chosen ambient theory.
+
+The interface in [`Independence.lean`](../lean/InclusionBench/Independence.lean) supplies the following objects, all under `InclusionBench`:
+
+| Lean object | Meaning |
+| --- | --- |
+| `Arithmetic.Term n`, `Arithmetic.Formula n`, `Arithmetic.Sentence` | Typed first-order arithmetic syntax; a sentence has no free variables |
+| `Arithmetic.TrueInN` | Recursive truth semantics with quantifiers over Lean's natural numbers |
+| `ArithmeticTranslation theory` | An explicit translation into the supplied theory, with checked negation compatibility |
+| `ArithmeticSound theory translation` | Every provable translated arithmetic sentence is true in standard N |
+| `Consistent theory`, `ArithmeticExplosion theory translation` | Syntactic consistency and the explicit rule turning contradictory proofs into a proof of translated 0 = 1 |
+| `ConditionalIndependenceCertificate theory premise` | An exact target sentence and both nonderivability obligations conditional on the premise |
+| `IndependencePremise`, `AdmittedIndependenceCertificate` | The three admitted premise categories and certificates restricted to them |
+
+`arithmeticSound_implies_consistent` requires `ArithmeticExplosion`; this logical property cannot be silently assumed for an arbitrary supplied proof relation. `admitSoundnessFromConsistency` transports a consistency-conditional certificate to a soundness-conditional one, retaining the exact target sentence. `ArithmeticSoundnessIndependenceCertificate` also names the soundness specialization of the general conditional interface. None of these definitions asserts that ZFC is consistent or sound.
+
+The soundness premise concerns arithmetic sentences. The independence target may be any exact sentence of the supplied theory; the interface does not require a complexity-class inclusion itself to be arithmetical.
+
+The repository does not yet encode the full ZFC syntax, axioms or derivations, or validate the translation of each complexity inclusion into that syntax. Supplying an arbitrary proof relation does not make a certificate a ZFC result. Expert review checks the exact sentence, its connection to the benchmark pair, the ZFC proof system, arithmetic translation where relevant, metatheory, assumptions and both nonderivability arguments. The ordinary Lean verifier does not automatically supply this review. Accepted conditions remain in provenance and public reporting. An independence result resolves only its exact ordered pair and supplies no premise to ordinary inclusion, separation or Horn-rule closure. This separate lane does not block ordinary proof runs.
 
 ## Reproduce the checks
 
