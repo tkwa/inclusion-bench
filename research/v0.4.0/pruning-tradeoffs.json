@@ -1,0 +1,1170 @@
+{
+  "schema_version": 1,
+  "status": "scientific_loss_review_complete_final_context_graph_binding",
+  "reviewer": {
+    "identity": "Codex classical_literature subagent",
+    "kind": "AI-assisted qualitative scientific assessment, not an objective importance ranking"
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "selection": {
+    "scored_count": 50,
+    "context_count": 61,
+    "demoted_count": 11,
+    "input_classes_sha256": "f506991a439671d532101daba47674fbf7d4e5abc72d2d55cdb303911c9b6658",
+    "policy": "Demoted nodes retain definitions and inference vocabulary but no direct point for a pair touching them."
+  },
+  "main_judgment": "Breadth improves at the cost of exact-normalization and limited-ambiguity questions, plus direct complement/finer-resource weighting. FewP is the first class I would restore if one extra counting slot were available. This is not an objective top50.",
+  "demotions": [
+    {
+      "class_id": "AC0",
+      "qualitative_debatability": "least_debatable",
+      "scientific_loss": "Constant-depth unbounded-fan-in AND/OR/NOT circuits remain useful mathematical vocabulary, but all incident pairs in the audited context are already decided.",
+      "representative_direct_loss": "No eligible pair-resolution example is currently lost. New quantitative AC0 lower bounds were never automatically points in this class-inclusion matrix.",
+      "ordinary_credit": "No current open direct question needs a replacement.",
+      "independence": "No eligible unknown incident pair in this context, subject to the final graph check.",
+      "graph_counts": {
+        "class_id": "AC0",
+        "inactive_candidate_pairs_incident": 0,
+        "ordinary_hypotheses_tested": 0,
+        "zero_credit_by_relation": {},
+        "ordinary_hypotheses_with_surviving_credit": 0,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "coUP",
+      "qualitative_debatability": "substantial_asymmetric_bridge_loss",
+      "scientific_loss": "The exact power of efficiently certifying unique nondeterministic rejection and its asymmetric interfaces.",
+      "representative_direct_loss": "UP=coUP loses its own points but retains consequences. coUP⊆QMA loses all current credit (three full-context resolutions become zero); other quantum/proof interfaces also disappear.",
+      "ordinary_credit": "The equality implies UP⊆coNP, a retained question. A separation UP⊄coUP implies UP⊄P. Against complement-closed retained targets, complementing can preserve an exact UP mirror. Simultaneous demotion of coQMA also removes the exact UP⊆coQMA mirror of coUP⊆QMA; this is a real loss, not mere duplicate weighting.",
+      "independence": "No automatic transfer; an explicit certificate for a retained equivalent or consequent independence statement is required.",
+      "graph_counts": {
+        "class_id": "coUP",
+        "inactive_candidate_pairs_incident": 77,
+        "ordinary_hypotheses_tested": 154,
+        "zero_credit_by_relation": {
+          "inclusion": 10
+        },
+        "ordinary_hypotheses_with_surviving_credit": 144,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "coMA",
+      "qualitative_debatability": "lower_cost_but_not_alias",
+      "scientific_loss": "Complement closure of Merlin–Arthur and comparisons whose two complement mirrors are both demoted.",
+      "representative_direct_loss": "MA=coMA; coMA⊆QMA lose direct endpoint points.",
+      "ordinary_credit": "MA=coMA implies coNP⊆MA. coMA⊆QMA implies coNP⊆QMA. MA⊄coMA implies MA⊄P. These consequences retain some credit but do not preserve the exact scientific strength.",
+      "independence": "No automatic transfer; jointly pruning several co-classes removes both mirror endpoints for some statements.",
+      "graph_counts": {
+        "class_id": "coMA",
+        "inactive_candidate_pairs_incident": 82,
+        "ordinary_hypotheses_tested": 164,
+        "zero_credit_by_relation": {
+          "inclusion": 2
+        },
+        "ordinary_hypotheses_with_surviving_credit": 162,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "coAM",
+      "qualitative_debatability": "lower_cost_but_not_alias",
+      "scientific_loss": "Complement closure and asymmetric public-coin proof comparisons.",
+      "representative_direct_loss": "AM=coAM; coAM⊆QMA lose direct endpoint points.",
+      "ordinary_credit": "AM=coAM implies coNP⊆AM and, by the cited collapse rule, PH⊆AM. coAM⊆QMA implies coNP⊆QMA. Separation from coAM can retain a weaker AM separation from P.",
+      "independence": "No automatic transfer; a separately certified retained independence statement is needed.",
+      "graph_counts": {
+        "class_id": "coAM",
+        "inactive_candidate_pairs_incident": 84,
+        "ordinary_hypotheses_tested": 168,
+        "zero_credit_by_relation": {
+          "inclusion": 2
+        },
+        "ordinary_hypotheses_with_surviving_credit": 166,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "coQMA",
+      "qualitative_debatability": "lower_cost_but_not_alias",
+      "scientific_loss": "Quantum witness complement closure and cross-comparisons with demoted classical co-proof classes.",
+      "representative_direct_loss": "QMA=coQMA; coQMA⊆AM lose direct endpoint points.",
+      "ordinary_credit": "QMA=coQMA implies PH⊆QMA under the verified2019 theorem; QMA⊄coQMA implies QMA⊄BQP. coQMA⊆AM implies coNP⊆AM. Exact coQMA strength is no longer a scored endpoint.",
+      "independence": "No automatic transfer, including when the ordinary equality has strong scored consequences.",
+      "graph_counts": {
+        "class_id": "coQMA",
+        "inactive_candidate_pairs_incident": 85,
+        "ordinary_hypotheses_tested": 170,
+        "zero_credit_by_relation": {
+          "inclusion": 2
+        },
+        "ordinary_hypotheses_with_surviving_credit": 168,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "FewP",
+      "qualitative_debatability": "most_debatable_first_restore",
+      "scientific_loss": "Whether polynomially many accepting paths are more powerful than a unique accepting path.",
+      "representative_direct_loss": "The positive collapse FewP=UP has one full-context resolution and zero retained scored resolutions in the final encoded theory.",
+      "ordinary_credit": "FewP⊄UP still implies NP⊄UP. Broader collapses such as FewP⊆P imply UP⊆P. The positive intermediate collapse is the conspicuous lost case.",
+      "independence": "No automatic credit for independence of FewP⊆UP; it does not simply become independence of NP⊆UP.",
+      "graph_counts": {
+        "class_id": "FewP",
+        "inactive_candidate_pairs_incident": 69,
+        "ordinary_hypotheses_tested": 138,
+        "zero_credit_by_relation": {
+          "inclusion": 4
+        },
+        "ordinary_hypotheses_with_surviving_credit": 134,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "LWPP",
+      "qualitative_debatability": "substantial_exact_counting_loss",
+      "scientific_loss": "The effect of a normalizing value that depends only on input length, and its exact-counting/quantum connections.",
+      "representative_direct_loss": "LWPP=SPP has two full-context resolutions and zero scored resolutions; WPP=LWPP also loses its direct target.",
+      "ordinary_credit": "LWPP⊄SPP implies AWPP⊄SPP. LWPP⊆P implies SPP⊆P. Those broader consequences do not replace the distinction between length-dependent and input-dependent normalization.",
+      "independence": "No automatic transfer; a structural normalization statement may have no retained independence representative.",
+      "graph_counts": {
+        "class_id": "LWPP",
+        "inactive_candidate_pairs_incident": 87,
+        "ordinary_hypotheses_tested": 174,
+        "zero_credit_by_relation": {
+          "inclusion": 4
+        },
+        "ordinary_hypotheses_with_surviving_credit": 170,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "WPP",
+      "qualitative_debatability": "substantial_exact_counting_loss",
+      "scientific_loss": "Input-dependent exact normalization and its distinction from length-only normalization.",
+      "representative_direct_loss": "WPP=LWPP has one full-context resolution and zero scored resolutions; WPP=SPP likewise has no retained consequence in the final encoded theory.",
+      "ordinary_credit": "WPP⊄LWPP implies AWPP⊄SPP using SPP⊆LWPP⊆WPP⊆AWPP. A collapse WPP⊆P still gives SPP⊆P. Do not infer adaptive Turing closure merely from its name.",
+      "independence": "No automatic transfer, especially for the comparison with the also-demoted LWPP.",
+      "graph_counts": {
+        "class_id": "WPP",
+        "inactive_candidate_pairs_incident": 87,
+        "ordinary_hypotheses_tested": 174,
+        "zero_credit_by_relation": {
+          "inclusion": 4
+        },
+        "ordinary_hypotheses_with_surviving_credit": 170,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "coRP",
+      "qualitative_debatability": "moderate_asymmetric_randomness_loss",
+      "scientific_loss": "The other one-sided error convention as a direct algorithmic target, especially against non-self-complementary classes.",
+      "representative_direct_loss": "coRP⊆NE and coRP⊆ExistsR each lose all current encoded credit (one full-context resolution becomes zero scored resolutions).",
+      "ordinary_credit": "RP=coRP is equivalent to RP=ZPP, so the headline one-sided-error collapse remains scored. coRP=P is equivalent to RP=P. Some asymmetric comparisons have only weaker surviving consequences; the final graph experiment measures this.",
+      "independence": "Complement-equivalent retained pairs can sometimes receive a transferred certificate, but the scorer performs no such transfer automatically.",
+      "graph_counts": {
+        "class_id": "coRP",
+        "inactive_candidate_pairs_incident": 67,
+        "ordinary_hypotheses_tested": 134,
+        "zero_credit_by_relation": {
+          "inclusion": 2
+        },
+        "ordinary_hypotheses_with_surviving_credit": 132,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "E",
+      "qualitative_debatability": "moderate_fine_resource_loss",
+      "scientific_loss": "Linear-exponential deterministic time, rather than arbitrary polynomial exponents inside an exponential.",
+      "representative_direct_loss": "NP⊆E and NE⊄E lose their direct finer-resource targets.",
+      "ordinary_credit": "NP⊆E implies EXP⊄NP because EXP⊄E. NE⊄E implies P≠NP by padding the contrapositive of P=NP⇒E=NE. Outgoing regular-padding comparisons often have EXP counterparts. Therefore these examples lose precision/weight, not necessarily all ordinary credit.",
+      "independence": "An independence result about the finer scale need not transfer from an ordinary implication to an EXP/NEXP comparison.",
+      "graph_counts": {
+        "class_id": "E",
+        "inactive_candidate_pairs_incident": 84,
+        "ordinary_hypotheses_tested": 168,
+        "zero_credit_by_relation": {},
+        "ordinary_hypotheses_with_surviving_credit": 168,
+        "direct_independence_credit": 0
+      }
+    },
+    {
+      "class_id": "Pi2P",
+      "qualitative_debatability": "lower_cost_PH_reweighting",
+      "scientific_loss": "The explicit universal-second-level endpoint and asymmetric targets for that level.",
+      "representative_direct_loss": "Pi2P⊆QMA and Sigma2P=Pi2P lose their own direct points.",
+      "ordinary_credit": "Sigma2P=Pi2P implies PH⊆Sigma2P; inequality gives a retained hierarchy separation. Pi2P⊆PP is equivalent to Sigma2P⊆PP. Pi2P⊆QMA implies coNP⊆QMA. Some exact mirrors disappear with coQMA/coMA/coAM.",
+      "independence": "No automatic independence propagation; a ZFC-provable complement equivalence can be used only through an explicitly reviewed retained-pair certificate.",
+      "graph_counts": {
+        "class_id": "Pi2P",
+        "inactive_candidate_pairs_incident": 76,
+        "ordinary_hypotheses_tested": 152,
+        "zero_credit_by_relation": {},
+        "ordinary_hypotheses_with_surviving_credit": 152,
+        "direct_independence_credit": 0
+      }
+    }
+  ],
+  "qualitative_priority": [
+    {
+      "tier": "first_restore",
+      "classes": [
+        "FewP"
+      ],
+      "reason": "Positive limited-ambiguity collapse has a clear potential zero-credit loss."
+    },
+    {
+      "tier": "substantial_joint_loss",
+      "classes": [
+        "LWPP",
+        "WPP",
+        "coUP"
+      ],
+      "reason": "Exact-normalizer distinctions and asymmetric unambiguity/proof-system bridges can disappear entirely. The final graph has10 zero-credit inclusions incident to coUP, though counts do not establish importance."
+    },
+    {
+      "tier": "preference_sensitive",
+      "classes": [
+        "E",
+        "coRP"
+      ],
+      "reason": "Finer resource scales and asymmetric one-sided error have genuine scientific audiences. Every tested E outcome preserves some ordinary credit; coRP has two explicit zero-credit inclusions."
+    },
+    {
+      "tier": "lower_cost_reweighting",
+      "classes": [
+        "Pi2P",
+        "coMA",
+        "coAM",
+        "coQMA"
+      ],
+      "reason": "Headline closure/collapse questions keep ordinary retained consequences, while asymmetric interfaces and direct multiplicity are lost."
+    },
+    {
+      "tier": "easiest",
+      "classes": [
+        "AC0"
+      ],
+      "reason": "No current open incident matrix questions; retains value as background mathematics."
+    }
+  ],
+  "alternatives": [
+    {
+      "preference": "Limited ambiguity",
+      "restore": [
+        "FewP"
+      ],
+      "example_cut": [
+        "Theta2P"
+      ],
+      "cost": "Loses the dedicated parallel-versus-adaptive NP-query target; this is not a free swap."
+    },
+    {
+      "preference": "PH polarity",
+      "restore": [
+        "Pi2P"
+      ],
+      "example_cut": [
+        "UniformNC1"
+      ],
+      "cost": "Loses the separate standard-uniform NC1 versus L target while nonuniform NC1 remains a different circuit class."
+    },
+    {
+      "preference": "Exact normalization",
+      "restore": [
+        "LWPP",
+        "WPP"
+      ],
+      "example_cut": [
+        "PSharpP",
+        "CH"
+      ],
+      "cost": "Restores the exact-normalizer region but gives up adaptive exact counting and iterated-majority-versus-PSPACE endpoints; I do not prefer this under breadth."
+    },
+    {
+      "preference": "One-sided randomized symmetry",
+      "restore": [
+        "coRP"
+      ],
+      "example_cut": [
+        "BQL"
+      ],
+      "cost": "Loses the small-space quantum-versus-classical target. Keeping both is reasonable if another family gives up a slot."
+    },
+    {
+      "preference": "Deterministic linear-exponential emphasis",
+      "restore": [
+        "E"
+      ],
+      "example_cut": [
+        "NE"
+      ],
+      "cost": "Exchanges deterministic finer-scale targets for nondeterministic ones; EXP and NEXP remain but do not preserve every finer-scale comparison."
+    },
+    {
+      "preference": "Unambiguous quantum/proof interfaces",
+      "restore": [
+        "coUP"
+      ],
+      "example_cut": [
+        "BQL"
+      ],
+      "cost": "Restores several zero-credit asymmetric containment targets but sacrifices the space-limited quantum frontier. Restoring coQMA instead rescues some exact complement mirrors, illustrating why joint cuts matter."
+    }
+  ],
+  "beyond_candidate_universe": [
+    {
+      "classes": [
+        "NISZK"
+      ],
+      "missing_direction": "Whether statistical zero knowledge needs interaction, and complement closure of the noninteractive class.",
+      "scope": "Only its total-language restriction would fit this roster; common-reference-string and promise conventions must be explicit.",
+      "sources": [
+        "https://www.wisdom.weizmann.ac.il/~/oded/PSX/gsv2.pdf"
+      ]
+    },
+    {
+      "classes": [
+        "S2P"
+      ],
+      "missing_direction": "Symmetric alternation and refined PH/proof-system collapse targets.",
+      "scope": "An ordinary total-language class, self-complementary; distinct from Sigma2P and Pi2P.",
+      "sources": [
+        "https://doi.org/10.1007/s000370050007",
+        "https://doi.org/10.1016/j.jcss.2003.07.015"
+      ]
+    },
+    {
+      "classes": [
+        "QAM",
+        "QIP2"
+      ],
+      "missing_direction": "Arthur-first public randomness with quantum proofs and genuine two-message quantum interaction.",
+      "scope": "Use total restrictions and precise message order. QIP=PSPACE is already represented; QIP2 is not that known alias.",
+      "sources": [
+        "https://arxiv.org/abs/0905.1300",
+        "https://arxiv.org/abs/1610.01664v1"
+      ]
+    },
+    {
+      "classes": [
+        "QMA1",
+        "QPCP"
+      ],
+      "missing_direction": "Perfect completeness and constant-query quantum proof checking.",
+      "scope": "Total-restricted nodes are legitimate alternatives, but do not claim they completely capture the canonical promise conjectures. No promise track is being proposed under the current user constraint.",
+      "sources": [
+        "https://arxiv.org/abs/1302.0290",
+        "https://arxiv.org/abs/2403.04841v3"
+      ]
+    },
+    {
+      "classes": [
+        "RL",
+        "RNC"
+      ],
+      "missing_direction": "One-sided logspace derandomization and randomized parallel computation.",
+      "scope": "A proof L=RL need not prove L=BPL. Specify the error and uniformity convention for a parallel class.",
+      "sources": [
+        "https://people.seas.harvard.edu/~salil/pseudorandomness/",
+        "https://eccc.weizmann.ac.il/report/2022/121/download"
+      ]
+    },
+    {
+      "classes": [
+        "DP",
+        "BH"
+      ],
+      "missing_direction": "Boolean hierarchy and exact optimization/combined positive-negative certificates.",
+      "scope": "DP is not NPcapcoNP. One finite level or the whole hierarchy is a deliberate scientific choice, not interchangeable names.",
+      "sources": [
+        "https://epubs.siam.org/doi/10.1137/0217080",
+        "https://www.jucs.org/jucs_12_5/completenes_in_the_boolean/jucs_12_05_0551_0578_rothe.pdf"
+      ]
+    },
+    {
+      "classes": [
+        "PPpowerPP",
+        "Mod3P"
+      ],
+      "missing_direction": "A concrete intermediate counting level and odd-prime modular counting.",
+      "scope": "PSharpP and CH do not represent every intermediate-level collapse; parityP is modulus2, not every modulus.",
+      "sources": [
+        "https://arxiv.org/pdf/1110.6271",
+        "https://lance.fortnow.com/papers/files/counting.pdf"
+      ]
+    },
+    {
+      "classes": [
+        "CC",
+        "CL",
+        "EXPpowerNP",
+        "MAEXP"
+      ],
+      "missing_direction": "Comparator circuits, catalytic memory, and more refined exponential/oracle lower-bound targets.",
+      "scope": "These are additional total-language choices after exact model conventions. CL and CNL should not be scored as distinct after their known equality.",
+      "sources": [
+        "https://www.cs.utoronto.ca/~sacook/homepage/lfmmToct.pdf",
+        "https://eccc.weizmann.ac.il/report/2025/019/download"
+      ]
+    }
+  ],
+  "format_limits": [
+    "A famous algorithm for an individual problem is not automatically a whole-class inclusion unless the relevant completeness/reduction theorem applies.",
+    "Quantitative lower bounds, fine-grained algorithms, and disjunctions need not resolve an ordinary inclusion pair. Keeping E would not by itself score the full exponential-hardness hypothesis used in derandomization.",
+    "Promise-only, search/function, sampling, and algebraic-family targets remain outside this total-language benchmark; no untyped surrogate is silently scored."
+  ],
+  "independence_policy": {
+    "automatic_transfer": false,
+    "explanation": "Ordinary inclusion/separation closure does not propagate independence. A background-pair independence certificate earns no direct point. A separate explicit expert-reviewed certificate for a retained pair may be possible when a provable equivalence supports the metatheory; neither complement syntax nor an ordinary implication is by itself an admitted independence transfer."
+  },
+  "graph_experiment": {
+    "owner": "root",
+    "path": "research/v0.4.0/pruning-audit.json",
+    "file_sha256": "aa48c1e86e2f2eb5ad5641283dd1fa4f42a313731cbe3c7cbc4f53feed55be1a",
+    "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+    "status": "exhaustive_single_hypothesis_pruning_experiment",
+    "no_duplicate_computation_performed": true,
+    "all_context_candidate_pairs": 2049,
+    "scored_candidate_pairs": 1324,
+    "inactive_candidate_pairs": 725,
+    "ordinary_hypotheses_tested": 1450,
+    "zero_credit_hypotheses_by_relation": {
+      "inclusion": 26
+    },
+    "zero_credit_hypotheses": [
+      {
+        "relation": "inclusion",
+        "left": "FewP",
+        "right": "UP",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "FewP",
+        "right": "coAM",
+        "all_context_resolutions": 4,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 4,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "FewP",
+        "right": "coMA",
+        "all_context_resolutions": 14,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 14,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "FewP",
+        "right": "coQMA",
+        "all_context_resolutions": 4,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 4,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "LWPP",
+        "right": "SPP",
+        "all_context_resolutions": 2,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 2,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "LWPP",
+        "right": "parityP",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "UP",
+        "right": "coAM",
+        "all_context_resolutions": 3,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 3,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "UP",
+        "right": "coMA",
+        "all_context_resolutions": 11,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 11,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "UP",
+        "right": "coQMA",
+        "all_context_resolutions": 3,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 3,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "WPP",
+        "right": "LWPP",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "WPP",
+        "right": "SPP",
+        "all_context_resolutions": 5,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 5,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "WPP",
+        "right": "parityP",
+        "all_context_resolutions": 2,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 2,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "ZPP",
+        "right": "LWPP",
+        "all_context_resolutions": 2,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 2,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "ZPP",
+        "right": "WPP",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coRP",
+        "right": "ExistsR",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coRP",
+        "right": "NE",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "AM",
+        "all_context_resolutions": 3,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 3,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "ExistsR",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "MA",
+        "all_context_resolutions": 11,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 11,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "NE",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "NPpoly",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "QCMA",
+        "all_context_resolutions": 4,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 4,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "QMA",
+        "all_context_resolutions": 3,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 3,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "QMA2",
+        "all_context_resolutions": 1,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 1,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "SBP",
+        "all_context_resolutions": 4,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 4,
+        "retained_example": null
+      },
+      {
+        "relation": "inclusion",
+        "left": "coUP",
+        "right": "StoqMA",
+        "all_context_resolutions": 8,
+        "scored_resolutions": 0,
+        "resolutions_removed_by_pruning": 8,
+        "retained_example": null
+      }
+    ],
+    "interpretation": "Single ordinary hypotheses over simultaneously pruned11nodes. No-credit means no consequence in the encoded theory, not absence of every possible mathematical implication. Counts are not scientific importance, probability, or breakthrough coverage.",
+    "binding_status": "Current final 61-context/50-scored graph, including both added UniformNC1 rules; this is not a global selection optimum."
+  },
+  "source_dossiers": [
+    {
+      "path": "research/v0.4.0/classical-landscape.md",
+      "sha256": "0e2c08beb97ec63ff2b9f7f97775f68a07bae5d41916bca8d2708960d138224f"
+    },
+    {
+      "path": "research/v0.4.0/counting-and-scope-landscape.md",
+      "sha256": "81454f082f81b42b98e962449c9983d42341112f74bf08bb9b763a0ce706ecf3"
+    },
+    {
+      "path": "research/v0.4.0/quantum-randomness-landscape.md",
+      "sha256": "0cd978d7c8b7f5e88598c6ca00351e1b3f974af3580a0d91091f3e4c55e1b9a7"
+    },
+    {
+      "path": "research/v0.4.0/cross-domain-review.md",
+      "sha256": "c26d046238f2c43a5f3b9580b1919325d90021a4ffefe9b9707a9964727eee8b"
+    },
+    {
+      "path": "research/v0.4.0/counting-cross-review.md",
+      "sha256": "48f2a4bcb21bcc5fc77add44dc620c79c7e2a57a75850bdaef5b4a6b729bf759"
+    }
+  ],
+  "limitations": [
+    "The importance order is judgmental and conditional on a cross-field breadth objective.",
+    "Representative claims describe possible future results; they are not asserted as established facts.",
+    "The broader list is illustrative, not a complete census of all meaningful total-language complexity classes.",
+    "Per-class counts overlap when both endpoints are background classes and must not be added. All26 zero-credit ordinary outcomes in this experiment are inclusions; that asymmetry is not a theorem that every future compound separation or independence claim will score."
+  ],
+  "representative_graph_results": [
+    {
+      "title": "FewP = UP",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "UP"
+        }
+      ],
+      "all_context_resolutions": 1,
+      "scored_resolutions": 0,
+      "retained_examples": []
+    },
+    {
+      "title": "WPP = LWPP",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "LWPP"
+        }
+      ],
+      "all_context_resolutions": 1,
+      "scored_resolutions": 0,
+      "retained_examples": []
+    },
+    {
+      "title": "LWPP = SPP",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "SPP"
+        }
+      ],
+      "all_context_resolutions": 2,
+      "scored_resolutions": 0,
+      "retained_examples": []
+    },
+    {
+      "title": "coRP = P",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "P"
+        }
+      ],
+      "all_context_resolutions": 44,
+      "scored_resolutions": 14,
+      "retained_examples": [
+        [
+          "EXP",
+          "RP"
+        ],
+        [
+          "EXP",
+          "ZPP"
+        ],
+        [
+          "RP",
+          "CeqP"
+        ],
+        [
+          "RP",
+          "NPcapcoNP"
+        ],
+        [
+          "RP",
+          "P"
+        ],
+        [
+          "RP",
+          "SPP"
+        ],
+        [
+          "RP",
+          "UP"
+        ],
+        [
+          "RP",
+          "ZPP"
+        ]
+      ]
+    },
+    {
+      "title": "E has polynomial-size circuits",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "Ppoly"
+        }
+      ],
+      "all_context_resolutions": 707,
+      "scored_resolutions": 445,
+      "retained_examples": [
+        [
+          "AM",
+          "BPL"
+        ],
+        [
+          "AM",
+          "BQL"
+        ],
+        [
+          "AM",
+          "L"
+        ],
+        [
+          "AM",
+          "LogCFL"
+        ],
+        [
+          "AM",
+          "MA"
+        ],
+        [
+          "AM",
+          "NC"
+        ],
+        [
+          "AM",
+          "NL"
+        ],
+        [
+          "AM",
+          "P"
+        ]
+      ]
+    },
+    {
+      "title": "E has no polynomial-size circuits",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "E",
+          "right": "Ppoly"
+        }
+      ],
+      "all_context_resolutions": 26,
+      "scored_resolutions": 17,
+      "retained_examples": [
+        [
+          "EXP",
+          "ACC0"
+        ],
+        [
+          "EXP",
+          "BPP"
+        ],
+        [
+          "EXP",
+          "NC1"
+        ],
+        [
+          "EXP",
+          "Ppoly"
+        ],
+        [
+          "EXP",
+          "RP"
+        ],
+        [
+          "EXP",
+          "TC0"
+        ],
+        [
+          "EXP",
+          "ZPP"
+        ],
+        [
+          "NE",
+          "BPP"
+        ]
+      ]
+    },
+    {
+      "title": "coUP is contained in QMA",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "QMA"
+        }
+      ],
+      "all_context_resolutions": 3,
+      "scored_resolutions": 0,
+      "retained_examples": []
+    },
+    {
+      "title": "coUP is not contained in QMA",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "coUP",
+          "right": "QMA"
+        }
+      ],
+      "all_context_resolutions": 841,
+      "scored_resolutions": 508,
+      "retained_examples": [
+        [
+          "AM",
+          "BPL"
+        ],
+        [
+          "AM",
+          "BPP"
+        ],
+        [
+          "AM",
+          "BQL"
+        ],
+        [
+          "AM",
+          "BQP"
+        ],
+        [
+          "AM",
+          "L"
+        ],
+        [
+          "AM",
+          "LogCFL"
+        ],
+        [
+          "AM",
+          "NC"
+        ],
+        [
+          "AM",
+          "NL"
+        ]
+      ]
+    },
+    {
+      "title": "The polynomial hierarchy collapses to its second level",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Pi2P"
+        }
+      ],
+      "all_context_resolutions": 8,
+      "scored_resolutions": 4,
+      "retained_examples": [
+        [
+          "AM",
+          "Sigma2P"
+        ],
+        [
+          "PH",
+          "Sigma2P"
+        ],
+        [
+          "SBP",
+          "Sigma2P"
+        ],
+        [
+          "StoqMA",
+          "Sigma2P"
+        ]
+      ]
+    }
+  ],
+  "optional_larger_compromises": [
+    {
+      "scored_count": 55,
+      "restore": [
+        "FewP",
+        "LWPP",
+        "WPP",
+        "coUP",
+        "coRP"
+      ],
+      "reason": "Preserves the clean limited-ambiguity and exact-normalizer targets plus asymmetric unambiguity/randomness interfaces that account for the currently observed zero-credit inclusions.",
+      "remaining_background": [
+        "AC0",
+        "coMA",
+        "coAM",
+        "coQMA",
+        "E",
+        "Pi2P"
+      ],
+      "caveat": "All26 tested zero-credit ordinary hypotheses regain some encoded credit, but not every original direct endpoint point or independence certificate is restored. These optional comparisons exceed the original approximately40–50 target and do not establish global roster optimality.",
+      "targeted_graph_results": {
+        "scored_class_count": 55,
+        "restored_classes": [
+          "FewP",
+          "LWPP",
+          "WPP",
+          "coRP",
+          "coUP"
+        ],
+        "background_classes": [
+          "AC0",
+          "E",
+          "Pi2P",
+          "coAM",
+          "coMA",
+          "coQMA"
+        ],
+        "scored_candidate_pairs": 1655,
+        "candidate_slots_restored_relative_to_50": 331,
+        "inactive_candidate_pairs_and_direct_independence_slots": 394,
+        "former_zero_credit_hypotheses_now_scoring": 26,
+        "former_zero_credit_claims_with_direct_endpoint_point": 20
+      }
+    },
+    {
+      "scored_count": 56,
+      "restore": [
+        "FewP",
+        "LWPP",
+        "WPP",
+        "coUP",
+        "coRP",
+        "coQMA"
+      ],
+      "reason": "Adds direct quantum complement-closure and associated independence coverage to the55 compromise.",
+      "remaining_background": [
+        "AC0",
+        "coMA",
+        "coAM",
+        "E",
+        "Pi2P"
+      ],
+      "caveat": "All26 tested zero-credit ordinary hypotheses regain some encoded credit, but not every original direct endpoint point or independence certificate is restored. These optional comparisons exceed the original approximately40–50 target and do not establish global roster optimality.",
+      "targeted_graph_results": {
+        "scored_class_count": 56,
+        "restored_classes": [
+          "FewP",
+          "LWPP",
+          "WPP",
+          "coQMA",
+          "coRP",
+          "coUP"
+        ],
+        "background_classes": [
+          "AC0",
+          "E",
+          "Pi2P",
+          "coAM",
+          "coMA"
+        ],
+        "scored_candidate_pairs": 1733,
+        "candidate_slots_restored_relative_to_50": 409,
+        "inactive_candidate_pairs_and_direct_independence_slots": 316,
+        "former_zero_credit_hypotheses_now_scoring": 26,
+        "former_zero_credit_claims_with_direct_endpoint_point": 22
+      }
+    }
+  ],
+  "targeted_alternative_comparison": {
+    "path": "research/v0.4.0/pruning-alternatives.json",
+    "sha256": "02a99d7a0bc8082d93d894f65e4bc2f525b0a6c187efb5d583b035f53e025014",
+    "script": "scripts/audit_pruning_alternatives.py",
+    "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+    "distinct_assumption_sets_tested": 31,
+    "scope": "Targeted checks of all26 prior zero-credit hypotheses plus nine representative results, deduplicated to31 closure runs. Not an exhaustive alternative-roster experiment."
+  },
+  "selection_sanity_check": {
+    "scope": "Choose50 scored endpoints from exactly the current61 context definitions. This is not a return to the old50 and does not reconsider additions outside61.",
+    "recommendation": "Retain the selected50 as the breadth-first editorial recommendation, while publishing the concrete losses and optional alternatives. There is no objective community ordering or theorem that these are the most important50.",
+    "equal_criteria": [
+      "Importance of a recognizable open class-comparison question",
+      "Distinct computational resource or proof model",
+      "Coverage of major conditional implications and scientific interfaces",
+      "What direct and derived credit is lost jointly with the other cuts"
+    ],
+    "excluded_criteria": [
+      "Whether a class was in the old50",
+      "Whether its definition is already implemented",
+      "Expected ease of proving a separation or collapse",
+      "Raw candidate-pair or consequence counts as a substitute for importance"
+    ],
+    "strong_selected_additions": [
+      "BPL",
+      "UL",
+      "ExistsR",
+      "UniformNC1",
+      "PSharpP",
+      "CH"
+    ],
+    "selected_marginals_to_compare_honestly": [
+      "PL",
+      "BQL",
+      "QMA2",
+      "StoqMA",
+      "QSZK",
+      "Theta2P",
+      "NE",
+      "EXPSPACE"
+    ],
+    "comparisons": [
+      {
+        "retain": [
+          "PSharpP",
+          "CH"
+        ],
+        "rather_than": [
+          "LWPP",
+          "WPP"
+        ],
+        "judgment": "Adaptive exact counting and the iterated counting hierarchy expose distinct broad questions about PSPACE and closure. Exact-normalizer collapses remain genuine lost targets, not aliases; under breadth the counting-level pair is preferred."
+      },
+      {
+        "retain": [
+          "Theta2P"
+        ],
+        "rather_than": [
+          "FewP"
+        ],
+        "judgment": "Parallel versus adaptive NP queries supplies a different resource axis with natural complete problems. FewP=UP is the cleanest zero-credit casualty and the most reasonable contrary preference; positive residual score alone does not settle the comparison."
+      },
+      {
+        "retain": [
+          "BQL",
+          "PL"
+        ],
+        "rather_than": [
+          "coRP",
+          "coUP"
+        ],
+        "judgment": "Logspace quantum computation and logspace majority/linear algebra add new resource comparisons. Keeping the opposite randomized or unambiguous polarity would restore real asymmetric interfaces, but with greater overlap in the already represented polynomial-time family."
+      },
+      {
+        "retain": [
+          "UniformNC1"
+        ],
+        "rather_than": [
+          "Pi2P"
+        ],
+        "judgment": "Uniform NC1 versus L is an additional central parallelism question. PH and Sigma2P preserve broad second-level collapse/separation consequences, although Pi2P-specific points and independence do not transfer automatically."
+      },
+      {
+        "retain": [
+          "QMA2",
+          "StoqMA",
+          "QSZK"
+        ],
+        "rather_than": [
+          "coQMA",
+          "coMA",
+          "coAM"
+        ],
+        "judgment": "Unentangled quantum proofs, constrained nonnegative quantum verification, and quantum statistical zero knowledge introduce different verification resources. They must compete under the same total-language restriction, not receive a bonus for quantum terminology. Complement closure headlines still have scored consequences; asymmetric UP/FewP interfaces are lost."
+      },
+      {
+        "retain": [
+          "NE",
+          "EXPSPACE"
+        ],
+        "rather_than": [
+          "E"
+        ],
+        "judgment": "Retains nondeterministic linear-exponential/spectrum interfaces and explicit exponential time-space gaps. E supplies finer deterministic resource questions and remains a defensible restoration for a different emphasis; its current ordinary hypotheses all retain some scored consequence."
+      }
+    ],
+    "counterargument": "A benchmark emphasizing structural refinements over family breadth should restore FewP and potentially LWPP/WPP or coUP, even at the expense of one or more new endpoint slots. The present choice is not justified by claiming their lost results are unimportant."
+  }
+}

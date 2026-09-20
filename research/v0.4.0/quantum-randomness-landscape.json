@@ -1,0 +1,1466 @@
+{
+  "schema_version": 1,
+  "kind": "phase1_roster_landscape",
+  "release_proposal": "0.4.0",
+  "cutoff": "2026-09-01",
+  "prepared": "2026-09-20",
+  "scope_status": "typed_tracks_permission_pending; total_decision_remains_working_scope",
+  "author_role": "independent AI research proposal, not human expert endorsement",
+  "selection_basis": [
+    "Named important questions before endpoint selection",
+    "Distinct resource coverage rather than raw unknown-pair count",
+    "Exact mathematical universe and model conventions",
+    "Implementation effort and expected proof tractability excluded from importance ranking"
+  ],
+  "current_domain": {
+    "ids": [
+      "RP",
+      "coRP",
+      "ZPP",
+      "BPP",
+      "SBP",
+      "MA",
+      "coMA",
+      "AM",
+      "coAM",
+      "SZK",
+      "BQP",
+      "QCMA",
+      "QMA",
+      "coQMA"
+    ],
+    "count": 14,
+    "retain_core": [
+      "RP",
+      "coRP",
+      "ZPP",
+      "BPP",
+      "SBP",
+      "MA",
+      "AM",
+      "SZK",
+      "BQP",
+      "QCMA",
+      "QMA"
+    ],
+    "demotion_candidates": [
+      "coMA",
+      "coAM",
+      "coQMA"
+    ],
+    "demotion_caveat": "Complement satellites are not aliases. Background retention preserves inference vocabulary, not all scored endpoint coverage."
+  },
+  "candidates": [
+    {
+      "id": "QMA2",
+      "label": "QMA(2)",
+      "priority": "high",
+      "canonical_universe": "promise_decision",
+      "question": "QMA(2) ⊆ QMA? NEXP ⊆ QMA(2)?",
+      "scientific_reason": "Adds unentanglement as a distinct verification resource, with optimization and separability connections.",
+      "strongest_counterargument": "Canonical separation from QMA may have only promise witnesses; specialized short-proof results do not settle this endpoint.",
+      "definition_requirements": "Two polynomial-qubit product witnesses; polynomial-time uniform verifier; soundness against all product states; bounded gap.",
+      "total_language_recommendation": "Strong addition; NEXP containment is faithfully captured by completion. Label QMA comparison as total-restricted.",
+      "typed_track_recommendation": "Strong addition with canonical meaning.",
+      "known_anchors_for_later_audit": [
+        "QMA ⊆ QMA2 ⊆ NEXP",
+        "QMA(k)=QMA2 for 2≤k≤poly under standard error conventions"
+      ],
+      "source_ids": [
+        "hm10",
+        "sep15",
+        "lw26"
+      ],
+      "implementation_issues": [
+        "Product-state semantics; amplification and mixtures; no entangled joint witness."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "StoqMA",
+      "label": "StoqMA",
+      "priority": "high",
+      "canonical_universe": "promise_decision",
+      "question": "StoqMA ⊆ MA?",
+      "scientific_reason": "Connects sign-problem-free Hamiltonians to classical verification and randomness.",
+      "strongest_counterargument": "General equality and physical subclass algorithms are different goals; threshold normalization is itself open.",
+      "definition_requirements": "Reversible NOT/CNOT/Toffoli verifier, zero/plus ancillas, X-basis output. Union of efficient a(n),b(n) with 1/2≤b<a≤1 and inverse-polynomial gap.",
+      "total_language_recommendation": "Coherent useful total restriction; canonical promise equality implies it, reverse transfer unproved.",
+      "typed_track_recommendation": "Strong addition.",
+      "known_anchors_for_later_audit": [
+        "MA ⊆ StoqMA ⊆ SBP ⊆ AM",
+        "StoqMA ⊆ QMA"
+      ],
+      "source_ids": [
+        "agl25",
+        "bbt06",
+        "stoq26",
+        "liu21"
+      ],
+      "implementation_issues": [
+        "Do not set soundness 1/3; do not assume standard gap amplification.",
+        "The exact soundness b=1/2 boundary has an NP characterization (Liu Corollary 24); no blanket identity across all allowed parameter choices."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "QSZK",
+      "label": "QSZK",
+      "priority": "high",
+      "canonical_universe": "promise_decision",
+      "question": "QSZK ⊆ QMA? QSZK ⊆ BQP?",
+      "scientific_reason": "Adds quantum state distinguishability and statistical simulation, with cryptographic consequences.",
+      "strongest_counterargument": "Canonical complete problems are promised; some cryptographic advances do not decide any inclusion.",
+      "definition_requirements": "Quantum interactive proofs with statistical simulation against the intended verifier class; classical descriptions of circuits/states.",
+      "total_language_recommendation": "Useful total restriction; no automatic converse from a total containment to all promise instances.",
+      "typed_track_recommendation": "Strong addition; match malicious-verifier and honest-verifier equivalence theorem.",
+      "known_anchors_for_later_audit": [
+        "BQP ⊆ QSZK",
+        "SZK ⊆ QSZK",
+        "QSZK=coQSZK",
+        "QSZK ⊆ QIP2 ∩ coQIP2"
+      ],
+      "source_ids": [
+        "watrous02",
+        "proofs16",
+        "ckr10",
+        "llw26"
+      ],
+      "implementation_issues": [
+        "Trace distance, simulator uniformity, auxiliary information, circuit encodings."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "QPCP",
+      "label": "QPCP[O(1)]",
+      "priority": "high_if_promise_track",
+      "canonical_universe": "promise_decision",
+      "question": "QMA ⊆ QPCP[O(1)]?",
+      "scientific_reason": "The proof-checking quantum PCP conjecture supplies a missing major research target.",
+      "strongest_counterargument": "Total-language inclusion need not settle the canonical conjecture; Hamiltonian formulations depend on quantum versus classical reductions. One focused conjecture consumes a slot.",
+      "definition_requirements": "One polynomial-size quantum proof; polynomial-time uniform verifier; constant proof-qubit queries; fixed bounded error; union over constant query bounds.",
+      "total_language_recommendation": "Admissible as Tot(QPCP), but lower priority unless incomplete capture is accepted explicitly.",
+      "typed_track_recommendation": "Strong addition after pinning Definition 5 convention.",
+      "known_anchors_for_later_audit": [
+        "QPCP ⊆ QMA",
+        "QMA ⊆ QPCP is the proof-checking quantum PCP conjecture"
+      ],
+      "source_ids": [
+        "qpcp13",
+        "qpcp25",
+        "qpcp26talk"
+      ],
+      "implementation_issues": [
+        "Query semantics and adaptivity; no implicit classical reduction to constant-gap local Hamiltonians."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "BPL",
+      "label": "BPL",
+      "priority": "high_shared_with_space",
+      "canonical_universe": "total_decision_and_promise_variant",
+      "question": "BPL ⊆ L?",
+      "scientific_reason": "Space-bounded derandomization is not represented by P versus BPP.",
+      "strongest_counterargument": "RL offers a competing one-sided formulation; selecting many nearby logspace variants costs breadth.",
+      "definition_requirements": "Probabilistic logspace, read-only input, polynomial time, bounded error on all inputs for total track.",
+      "total_language_recommendation": "High priority.",
+      "typed_track_recommendation": "Keep classical promise counterpart explicit when used as a quantum-space anchor.",
+      "known_anchors_for_later_audit": [
+        "L ⊆ BPL ⊆ BPP",
+        "BPL ⊆ BQL"
+      ],
+      "source_ids": [
+        "vadhan12",
+        "hoza22",
+        "fr21"
+      ],
+      "implementation_issues": [
+        "Runtime convention and read-only random-bit access."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "BQL",
+      "label": "BQL",
+      "priority": "strong_space_bridge",
+      "canonical_universe": "total_decision_and_promise_variant",
+      "question": "BQL ⊆ BPL? BQL ⊆ L? NL ⊆ BQL?",
+      "scientific_reason": "Quantum space is distinct from time-bounded BQP; recent natural total-language examples support the bridge.",
+      "strongest_counterargument": "Many complete linear-algebra problems are promised, and this slot competes with BPL/UL or verification variants.",
+      "definition_requirements": "Polynomial time, logarithmic total workspace including classical control, read-only classical input, bounded error.",
+      "total_language_recommendation": "Strong addition where space breadth is desired; total example in Apers–Edenhofer Theorem 4.",
+      "typed_track_recommendation": "Strong alternative; unitary and general versions are equivalent in the specified resource model.",
+      "known_anchors_for_later_audit": [
+        "BPL ⊆ BQL",
+        "BQL=unitary BQL under the measurement-elimination theorem"
+      ],
+      "source_ids": [
+        "bql25",
+        "fr21",
+        "fl18"
+      ],
+      "implementation_issues": [
+        "Count classical control; do not use the time-only deferred-measurement argument."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "QMA1",
+      "label": "QMA₁",
+      "priority": "strong_foundational_alternative",
+      "canonical_universe": "promise_decision",
+      "question": "QMA ⊆ QMA1?",
+      "scientific_reason": "Perfect completeness is a longstanding basic question and has natural quantum satisfiability complete problems.",
+      "strongest_counterargument": "A fixed-gate version is an exact convention, not a theorem that all universal gate sets agree; the slot may buy less breadth than QSZK or QMA2.",
+      "definition_requirements": "Fixed exact gate set such as H,T,CNOT; acceptance exactly one for yes; bounded soundness for no.",
+      "total_language_recommendation": "Captures that fixed-gate total question; cannot advertise all canonical promise/gate formulations without a transfer theorem.",
+      "typed_track_recommendation": "Strong alternative if exact gates are in the task specification.",
+      "known_anchors_for_later_audit": [
+        "QMA1 ⊆ QMA"
+      ],
+      "source_ids": [
+        "gn13",
+        "qnp23"
+      ],
+      "implementation_issues": [
+        "Approximate gate compilation cannot preserve exact completeness; post-cutoff claims excluded."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "NISZK",
+      "label": "NISZK",
+      "priority": "strong_interaction_alternative",
+      "canonical_universe": "promise_decision",
+      "question": "SZK ⊆ NISZK?",
+      "scientific_reason": "Asks whether interaction is necessary for statistical zero knowledge.",
+      "strongest_counterargument": "Common random string and promise conventions are essential; less coverage of quantum computation than a QSZK slot.",
+      "definition_requirements": "One proof relative to a common random string; statistical simulation; specify reuse and verifier model.",
+      "total_language_recommendation": "Coherent total restriction; do not automatically lift its equality to all promise problems.",
+      "typed_track_recommendation": "Strong classical proof-system alternative.",
+      "known_anchors_for_later_audit": [
+        "NISZK ⊆ SZK",
+        "Promise NISZK complement closure iff promise NISZK=SZK"
+      ],
+      "source_ids": [
+        "gsv99",
+        "lz16"
+      ],
+      "implementation_issues": [
+        "No plain-model substitution; distinguish computational NIZK."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "QIP2",
+      "label": "QIP(2)",
+      "priority": "strong_interaction_alternative",
+      "canonical_universe": "promise_decision",
+      "question": "QIP2 ⊆ QMA? PSPACE ⊆ QIP2?",
+      "scientific_reason": "Represents the unresolved two-message position between witnesses and full interaction.",
+      "strongest_counterargument": "One can reasonably prefer a different field to a second quantum interaction endpoint.",
+      "definition_requirements": "Verifier sends a quantum message, prover applies arbitrary channel and replies, verifier measures; bounded gap.",
+      "total_language_recommendation": "Useful total model; PSPACE containment has a completion transfer, separation from QMA may not.",
+      "typed_track_recommendation": "Strong alternative alongside QSZK.",
+      "known_anchors_for_later_audit": [
+        "QMA ⊆ QIP2 ⊆ PSPACE"
+      ],
+      "source_ids": [
+        "juw09",
+        "proofs16"
+      ],
+      "implementation_issues": [
+        "Channels, private registers, message count rather than ambiguous round count."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "BQPadvice",
+      "label": "BQP/qpoly and BQP/poly",
+      "priority": "credible_two_slot_alternative",
+      "canonical_universe": "nonuniform_total_or_promise_decision",
+      "question": "BQP/qpoly ⊆ BQP/poly?",
+      "scientific_reason": "Tests whether quantum advice is more powerful than classical advice.",
+      "strongest_counterargument": "Direct representation costs two endpoints; a broad roster has stronger single-slot omissions.",
+      "definition_requirements": "Advice depends only on input length; polynomial classical bits or qubits; uniform polynomial-time quantum computation otherwise.",
+      "total_language_recommendation": "Mathematically legitimate nonuniform total classes; do not confuse arbitrary advice with computable advice.",
+      "typed_track_recommendation": "Promise versions require separate typing and domain conventions.",
+      "known_anchors_for_later_audit": [
+        "BQP/qpoly ⊆ PP/poly",
+        "BQP/qpoly ⊆ QMA/poly"
+      ],
+      "source_ids": [
+        "advice04",
+        "advice10",
+        "advice26"
+      ],
+      "implementation_issues": [
+        "2026 classical-oracle separation is not ordinary separation."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "DQC1",
+      "label": "DQC1 / BQ1P",
+      "priority": "credible_restricted_computation_alternative",
+      "canonical_universe": "model_dependent_total_or_promise_decision",
+      "question": "Does one-clean-qubit computation exceed classical randomized computation?",
+      "scientific_reason": "A physically distinct restricted quantum model with trace-estimation problems.",
+      "strongest_counterargument": "DQC1 does not denote one universally interchangeable controller/gap model; select a definition before adding edges.",
+      "definition_requirements": "One pure qubit, maximally mixed remainder, no free reset, final measurement; fix classical controller and input access.",
+      "total_language_recommendation": "Possible, using an explicit total-language BQ1P-style convention or another named choice.",
+      "typed_track_recommendation": "Promise trace estimation is natural; resource conventions still matter.",
+      "known_anchors_for_later_audit": [
+        "Shepherd model has no immediate P containment from its definition"
+      ],
+      "source_ids": [
+        "dqc06",
+        "clean15"
+      ],
+      "implementation_issues": [
+        "Logspace uniform input-bit control versus polynomial-time input-dependent generation; gap amplification."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "EQPZQP",
+      "label": "EQP and ZQP",
+      "priority": "secondary_exact_randomness_alternative",
+      "canonical_universe": "total_or_promise_with_runtime_conventions",
+      "question": "BQP ⊆ ZQP? ZQP ⊆ EQP?",
+      "scientific_reason": "Exposes exact and zero-error quantum computation.",
+      "strongest_counterargument": "Gate and expected-time conventions add sensitivity; surveyed proof and space questions have stronger broad-roster claims.",
+      "definition_requirements": "Exact acceptance versus zero error with explicit runtime and failure conventions; fixed gates.",
+      "total_language_recommendation": "Possible total endpoints, not currently preferred over major missing resources.",
+      "typed_track_recommendation": "Specify promises and reject silent expected-time/bounded-time identification.",
+      "known_anchors_for_later_audit": [
+        "EQP ⊆ bounded-error quantum computation under matching model"
+      ],
+      "source_ids": [
+        "watrous08"
+      ],
+      "implementation_issues": [
+        "Exact gates; expected-time versus failure-symbol variants."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "UQMA",
+      "label": "UniqueQMA / UQMA",
+      "priority": "secondary_witness_alternative",
+      "canonical_universe": "promise_decision",
+      "question": "Does quantum verification admit a useful uniqueness reduction?",
+      "scientific_reason": "Quantum analogue of the isolation/unique-witness program.",
+      "strongest_counterargument": "The central result may be a randomized promise reduction, not a class inclusion; adding a node can fail to score the intended advance.",
+      "definition_requirements": "Specify unique accepting state/subspace and spectral soundness, rather than merely a unique classical string.",
+      "total_language_recommendation": "Total restriction may miss the isolation question.",
+      "typed_track_recommendation": "Consider only with a precisely chosen inclusion or reduction task type.",
+      "known_anchors_for_later_audit": [
+        "No ordinary QMA=UQMA inferred from a randomized reduction alone"
+      ],
+      "source_ids": [
+        "proofs16"
+      ],
+      "implementation_issues": [
+        "Uniqueness conventions and reduction strength."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "QAM",
+      "label": "QAM and public-coin quantum variants",
+      "priority": "secondary_interaction_alternative",
+      "canonical_universe": "promise_decision",
+      "question": "How much does public-coin quantum interaction add?",
+      "scientific_reason": "Separates communication resources and public randomness.",
+      "strongest_counterargument": "Many incompatible quantum/classical message variants; QIP2 is a cleaner single representative for a broad roster.",
+      "definition_requirements": "Fix whether coins/messages are classical, quantum, or half-EPR states, plus message order.",
+      "total_language_recommendation": "Only after exact total model selection.",
+      "typed_track_recommendation": "An interaction-specialized roster can justify these instead of QIP2.",
+      "known_anchors_for_later_audit": [
+        "Do not conflate QAM, qqQAM, QIP2"
+      ],
+      "source_ids": [
+        "proofs16"
+      ],
+      "implementation_issues": [
+        "Different message alphabets and public-coin meanings."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "QuantumHierarchy",
+      "label": "Quantum polynomial hierarchies",
+      "priority": "secondary_structural_alternative",
+      "canonical_universe": "promise_decision",
+      "question": "Do quantum alternation hierarchies collapse?",
+      "scientific_reason": "Connects verification to alternation.",
+      "strongest_counterargument": "Several inequivalent hierarchies; one unnamed QPH endpoint cannot stand for all.",
+      "definition_requirements": "Fix classical/quantum quantifiers, entanglement permissions and consistency promises.",
+      "total_language_recommendation": "No generic endpoint recommended.",
+      "typed_track_recommendation": "Research-specific alternative after exact target selection.",
+      "known_anchors_for_later_audit": [
+        "No broad equality assumed"
+      ],
+      "source_ids": [
+        "watrous08",
+        "proofs16"
+      ],
+      "implementation_issues": [
+        "Alternating quantum witnesses and incompatible definitions."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "QuantumDepth",
+      "label": "QNC and shallow-quantum classes",
+      "priority": "secondary_parallelism_alternative",
+      "canonical_universe": "model_dependent",
+      "question": "Can shallow quantum circuits perform tasks beyond shallow classical circuits?",
+      "scientific_reason": "Quantum parallelism and geometry are distinct resources.",
+      "strongest_counterargument": "Classical preprocessing, fanout, adaptivity and geometry can dominate the comparison; proof/space omissions presently have clearer endpoints.",
+      "definition_requirements": "Fix uniformity, gate fan-in, geometry, depth, measurements and classical control.",
+      "total_language_recommendation": "Possible total class with full model declaration.",
+      "typed_track_recommendation": "Promise or sampling variants require own types.",
+      "known_anchors_for_later_audit": [
+        "No generic QNC=NC or inclusion imported by analogy"
+      ],
+      "source_ids": [
+        "watrous08"
+      ],
+      "implementation_issues": [
+        "Depth-preserving compilation and classical control costs."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "PostBPP",
+      "label": "PostBPP / BPPpath",
+      "priority": "secondary_postselection_alternative",
+      "canonical_universe": "total_or_promise_decision",
+      "question": "How does classical postselection compare with BQP or counting?",
+      "scientific_reason": "A natural classical counterpart to quantum postselection.",
+      "strongest_counterargument": "A counting-heavy roster already represents related resources; this competes with entirely absent space or physical models.",
+      "definition_requirements": "Condition on a nonzero postselection event; require conditional bounded error; explicit uniformity.",
+      "total_language_recommendation": "Coherent total endpoint if selected.",
+      "typed_track_recommendation": "Specify behavior and nonzero probability throughout the promise.",
+      "known_anchors_for_later_audit": [
+        "PostBQP is already PP, so do not add both as distinct scored names"
+      ],
+      "source_ids": [
+        "post05"
+      ],
+      "implementation_issues": [
+        "No zero-probability conditioning or uncomputable probabilities."
+      ],
+      "implementation_cost_affects_priority": false
+    },
+    {
+      "id": "Sampling",
+      "label": "SampBPP and SampBQP",
+      "priority": "high_only_in_separate_sampling_track",
+      "canonical_universe": "sampling_families",
+      "question": "Can efficient quantum sampling be classically simulated?",
+      "scientific_reason": "Captures a central version of efficient quantum advantage that decision classes need not settle.",
+      "strongest_counterargument": "Costs another object type and at least two endpoints; exact/approximate sampling and error metrics differ.",
+      "definition_requirements": "Uniform samplers for distribution families, total variation or specified metric, accuracy parameter and runtime convention.",
+      "total_language_recommendation": "Out of scope; do not rename samplers as languages.",
+      "typed_track_recommendation": "Strong separate-track case if the user authorizes sampling.",
+      "known_anchors_for_later_audit": [
+        "Sampling-search equivalence is not BPP=BQP for decision classes"
+      ],
+      "source_ids": [
+        "sample10"
+      ],
+      "implementation_issues": [
+        "Approximation accuracy; task size; classical input and output encodings."
+      ],
+      "implementation_cost_affects_priority": false
+    }
+  ],
+  "competing_domain_allocations": [
+    {
+      "id": "conservative_total",
+      "scope": "total_only",
+      "retained": [
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "SBP",
+        "MA",
+        "AM",
+        "SZK",
+        "BQP",
+        "QCMA",
+        "QMA"
+      ],
+      "additions": [
+        "BPL",
+        "BQL",
+        "QMA2",
+        "StoqMA"
+      ],
+      "demotions_to_background": [
+        "coMA",
+        "coAM",
+        "coQMA"
+      ],
+      "domain_slot_count": 15,
+      "net_increase_from_old_14": 1,
+      "major_omissions": [
+        "QSZK",
+        "QPCP",
+        "QMA1",
+        "NISZK",
+        "QIP2"
+      ],
+      "whole_roster": false,
+      "notes": "BPL/BQL count once across domain reviews. Classical/counting cuts require joint review; no family quota is inferred."
+    },
+    {
+      "id": "proof_physics",
+      "scope": "prefer_promise_for_canonical_questions",
+      "retained": [
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "SBP",
+        "MA",
+        "AM",
+        "SZK",
+        "BQP",
+        "QCMA",
+        "QMA"
+      ],
+      "additions": [
+        "BPL",
+        "QMA2",
+        "StoqMA",
+        "QSZK",
+        "QPCP",
+        "QMA1"
+      ],
+      "demotions_to_background": [
+        "coMA",
+        "coAM",
+        "coQMA"
+      ],
+      "domain_slot_count": 17,
+      "net_increase_from_old_14": 3,
+      "major_omissions": [
+        "BQL",
+        "NISZK",
+        "QIP2"
+      ],
+      "whole_roster": false,
+      "notes": "BPL/BQL count once across domain reviews. Classical/counting cuts require joint review; no family quota is inferred."
+    },
+    {
+      "id": "interaction_space",
+      "scope": "prefer_promise_for_canonical_questions",
+      "retained": [
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "SBP",
+        "MA",
+        "AM",
+        "SZK",
+        "BQP",
+        "QCMA",
+        "QMA"
+      ],
+      "additions": [
+        "BPL",
+        "BQL",
+        "QMA2",
+        "QSZK",
+        "NISZK",
+        "QIP2"
+      ],
+      "demotions_to_background": [
+        "coMA",
+        "coAM",
+        "coQMA"
+      ],
+      "domain_slot_count": 17,
+      "net_increase_from_old_14": 3,
+      "major_omissions": [
+        "StoqMA",
+        "QPCP",
+        "QMA1"
+      ],
+      "whole_roster": false,
+      "notes": "BPL/BQL count once across domain reviews. Classical/counting cuts require joint review; no family quota is inferred."
+    },
+    {
+      "id": "cross_field_compromise",
+      "scope": "total_possible_with_disclosures",
+      "retained": [
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "SBP",
+        "MA",
+        "AM",
+        "SZK",
+        "BQP",
+        "QCMA",
+        "QMA"
+      ],
+      "additions": [
+        "BPL",
+        "QMA2",
+        "StoqMA",
+        "QSZK"
+      ],
+      "demotions_to_background": [
+        "coMA",
+        "coAM",
+        "coQMA"
+      ],
+      "domain_slot_count": 15,
+      "net_increase_from_old_14": 1,
+      "major_omissions": [
+        "BQL",
+        "QPCP",
+        "QMA1",
+        "NISZK",
+        "QIP2"
+      ],
+      "whole_roster": false,
+      "notes": "BPL/BQL count once across domain reviews. Classical/counting cuts require joint review; no family quota is inferred."
+    }
+  ],
+  "preferred_starting_allocation": "cross_field_compromise",
+  "preferred_expansion_if_slots_available": "proof_physics",
+  "typed_architecture": {
+    "authorized": false,
+    "default_counting_unit": "typed_scored_endpoint",
+    "minimal_promise_example": [
+      "prP",
+      "prBPP",
+      "prNP",
+      "prMA",
+      "prPSPACE",
+      "prNEXP",
+      "prBQP",
+      "prQCMA",
+      "prQMA",
+      "prQMA2",
+      "prStoqMA",
+      "prQSZK"
+    ],
+    "minimal_example_count": 12,
+    "extended_example_additions": [
+      "prQPCP",
+      "prQMA1"
+    ],
+    "extended_example_count": 14,
+    "no_untyped_cross_edges": true,
+    "notes": [
+      "A total-to-promise restriction/completion theorem is a typed transfer, not equality of objects.",
+      "Changing every old endpoint to a promise class requires re-auditing counting, unambiguity, advice and intersections.",
+      "A sampling track is another universe and is not authorized by mere permission for promises.",
+      "Do not hide duplicated total/promise classes when reporting the 40–50 endpoint count."
+    ]
+  },
+  "promise_transfer": [
+    {
+      "id": "restriction",
+      "statement": "C⊆D for promise classes implies Tot(C)⊆Tot(D); Tot(C)⊄Tot(D) implies C⊄D.",
+      "proof": "A total language is the promise pair (L, complement L). The same verifier witnesses inclusion or separation.",
+      "kind": "direct_definition"
+    },
+    {
+      "id": "no_general_converse",
+      "statement": "Promise separation need not yield a total-language witness; total inclusion need not cover all promise problems.",
+      "proof": "Arbitrary behavior outside the promise can include intermediate probabilities and may not admit a total gap-preserving completion.",
+      "source_ids": [
+        "watrous08",
+        "dpv21"
+      ]
+    },
+    {
+      "id": "completion_sources",
+      "statement": "Every P, NP, PSPACE or NEXP promise problem has a total completion in the same resource class.",
+      "proof": "Use the deterministic acceptance language, or the existential acceptance language of the nondeterministic machine, including behavior off promise. Global resource bounds remain unchanged.",
+      "kind": "elementary_derivation"
+    },
+    {
+      "id": "nexp_qma2",
+      "statement": "Tot(NEXP)⊆Tot(QMA2) implies canonical promise NEXP⊆QMA2.",
+      "proof": "Complete the NEXP promise problem, apply the total inclusion, then restrict the resulting QMA2 verifier to the original promise.",
+      "kind": "derived_transfer"
+    }
+  ],
+  "known_equivalences_and_aliases": [
+    {
+      "names": [
+        "PostBQP",
+        "PP"
+      ],
+      "action": "background_alias",
+      "source_ids": [
+        "post05"
+      ]
+    },
+    {
+      "names": [
+        "PreciseQMA",
+        "PSPACE"
+      ],
+      "action": "background_alias_with_gap_definition",
+      "source_ids": [
+        "precise16"
+      ]
+    },
+    {
+      "names": [
+        "QIP",
+        "PSPACE"
+      ],
+      "action": "background_alias",
+      "source_ids": [
+        "proofs16"
+      ]
+    },
+    {
+      "names": [
+        "QCMA1",
+        "QCMA"
+      ],
+      "action": "background_alias_subject_to_exact_gate_theorem",
+      "source_ids": [
+        "jknn12"
+      ]
+    },
+    {
+      "names": [
+        "QMA(k), 2≤k≤poly",
+        "QMA2"
+      ],
+      "action": "single_scored_representative",
+      "source_ids": [
+        "hm10"
+      ]
+    },
+    {
+      "names": [
+        "NQP",
+        "coCeqP"
+      ],
+      "action": "counting_complement_background_unless_independent_coverage_justified",
+      "source_ids": [
+        "qnp23"
+      ]
+    },
+    {
+      "names": [
+        "QSZK",
+        "coQSZK"
+      ],
+      "action": "single_scored_representative",
+      "source_ids": [
+        "proofs16"
+      ]
+    },
+    {
+      "names": [
+        "MIP*",
+        "RE"
+      ],
+      "action": "resolved_milestone_not_automatic_new_scored_slot",
+      "source_ids": [
+        "mip20"
+      ]
+    }
+  ],
+  "open_problem_coverage": [
+    {
+      "id": "derandomization",
+      "question": "P=BPP?",
+      "needed_endpoints": [
+        "P",
+        "BPP"
+      ],
+      "canonical_track": "total_decision",
+      "total_transfer": "Directly represented; does not by itself certify every PromiseBPP problem has a P solution.",
+      "current_roster": "present",
+      "source_ids": [
+        "vadhan12",
+        "dpv21"
+      ]
+    },
+    {
+      "id": "space_derandomization",
+      "question": "L=BPL?",
+      "needed_endpoints": [
+        "L",
+        "BPL"
+      ],
+      "canonical_track": "total_decision",
+      "total_transfer": "Directly represented by new total BPL endpoint.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "vadhan12"
+      ]
+    },
+    {
+      "id": "quantum_space",
+      "question": "BQL=BPL?",
+      "needed_endpoints": [
+        "BQL",
+        "BPL"
+      ],
+      "canonical_track": "total_or_promise_specified",
+      "total_transfer": "Total equality has direct meaning; promise equality is stronger without a completion proof.",
+      "current_roster": "missing_both_endpoints",
+      "source_ids": [
+        "bql25",
+        "fr21"
+      ]
+    },
+    {
+      "id": "quantum_advantage",
+      "question": "BQP=BPP?",
+      "needed_endpoints": [
+        "BQP",
+        "BPP"
+      ],
+      "canonical_track": "total_or_promise_specified",
+      "total_transfer": "Current total statement meaningful; does not encompass all promise or sampling advantage.",
+      "current_roster": "present_total",
+      "source_ids": [
+        "watrous08",
+        "sample10"
+      ]
+    },
+    {
+      "id": "quantum_certificates",
+      "question": "QMA=QCMA?",
+      "needed_endpoints": [
+        "QMA",
+        "QCMA"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "Promise inclusion implies total inclusion; a promise separation may have no total-language witness.",
+      "current_roster": "present_total_only",
+      "source_ids": [
+        "qnp23"
+      ]
+    },
+    {
+      "id": "unentanglement",
+      "question": "QMA2=QMA?",
+      "needed_endpoints": [
+        "QMA2",
+        "QMA"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "Adding total QMA2 captures total question, not every canonical promise separation.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "hm10",
+        "qnp23"
+      ]
+    },
+    {
+      "id": "unentanglement_upper",
+      "question": "QMA2=NEXP?",
+      "needed_endpoints": [
+        "QMA2",
+        "NEXP"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "NEXP completion proves total NEXP⊆total QMA2 suffices for canonical inclusion; upper bound already known.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "qnp23",
+        "lw26"
+      ]
+    },
+    {
+      "id": "perfect_completeness",
+      "question": "QMA=QMA1?",
+      "needed_endpoints": [
+        "QMA",
+        "QMA1"
+      ],
+      "canonical_track": "promise_decision_fixed_gates",
+      "total_transfer": "A fixed-gate total inclusion is only that convention and universe; no blanket gate/promise equivalence.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "gn13"
+      ]
+    },
+    {
+      "id": "stoquastic",
+      "question": "StoqMA=MA?",
+      "needed_endpoints": [
+        "StoqMA",
+        "MA"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "Total restriction useful; canonical equality not recovered automatically from total equality.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "agl25"
+      ]
+    },
+    {
+      "id": "quantum_pcp",
+      "question": "QMA=QPCP[O(1)]?",
+      "needed_endpoints": [
+        "QMA",
+        "QPCP"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "Total QPCP inclusion is a weaker target; quantum-versus-classical reductions remain a separate caveat.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "qpcp13",
+        "qpcp25"
+      ]
+    },
+    {
+      "id": "qszk_power",
+      "question": "QSZK⊆QMA?",
+      "needed_endpoints": [
+        "QSZK",
+        "QMA"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "Promise positive result transfers; total separation transfers; converse directions not assumed.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "ckr10",
+        "llw26"
+      ]
+    },
+    {
+      "id": "zero_knowledge_interaction",
+      "question": "SZK=NISZK?",
+      "needed_endpoints": [
+        "SZK",
+        "NISZK"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "Promise equivalences and black-box barriers must not silently be applied as total equalities/separations.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "gsv99",
+        "lz16"
+      ]
+    },
+    {
+      "id": "two_message",
+      "question": "QIP2=QMA? QIP2=PSPACE?",
+      "needed_endpoints": [
+        "QIP2",
+        "QMA",
+        "PSPACE"
+      ],
+      "canonical_track": "promise_decision",
+      "total_transfer": "PSPACE-source inclusion has completion transfer; QIP2-source separation/inclusion has usual promise caveat.",
+      "current_roster": "missing_endpoint",
+      "source_ids": [
+        "juw09"
+      ]
+    },
+    {
+      "id": "advice",
+      "question": "BQP/qpoly=BQP/poly?",
+      "needed_endpoints": [
+        "BQPadvice"
+      ],
+      "canonical_track": "nonuniform_total_or_promise_specified",
+      "total_transfer": "Real ordinary question; the 2026 oracle result gives no ordinary answer.",
+      "current_roster": "missing_both_endpoints",
+      "source_ids": [
+        "advice04",
+        "advice26"
+      ]
+    },
+    {
+      "id": "sampling",
+      "question": "SampBPP=SampBQP?",
+      "needed_endpoints": [
+        "Sampling"
+      ],
+      "canonical_track": "sampling",
+      "total_transfer": "No general decision-class replacement.",
+      "current_roster": "out_of_scope",
+      "source_ids": [
+        "sample10"
+      ]
+    },
+    {
+      "id": "physical_subclass",
+      "question": "Efficient algorithm for a restricted Hamiltonian family",
+      "needed_endpoints": [
+        "StoqMA",
+        "QMA"
+      ],
+      "canonical_track": "problem_specific",
+      "total_transfer": "Can be important while implying no equality between broad classes.",
+      "current_roster": "not_guaranteed",
+      "source_ids": [
+        "stoq26"
+      ]
+    },
+    {
+      "id": "oracle_progress",
+      "question": "Classical or quantum oracle separates quantum proof classes",
+      "needed_endpoints": [
+        "QMA",
+        "QCMA",
+        "QMA2"
+      ],
+      "canonical_track": "relativized",
+      "total_transfer": "No ordinary inclusion/separation follows without additional argument.",
+      "current_roster": "out_of_scope",
+      "source_ids": [
+        "query21",
+        "advice26"
+      ]
+    },
+    {
+      "id": "quantitative",
+      "question": "Shorter proofs, sharper gaps, faster simulation, restricted circuit lower bounds",
+      "needed_endpoints": [],
+      "canonical_track": "parameterized_or_problem_specific",
+      "total_transfer": "May leave all polynomial-union class labels unchanged.",
+      "current_roster": "not_guaranteed",
+      "source_ids": [
+        "lw26",
+        "query21"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "qnp23",
+      "title": "The 7 faces of quantum NP",
+      "url": "https://arxiv.org/abs/2310.18010v1",
+      "year": 2023,
+      "locator": "Figures 1–2; sections 4–8; Open Question 6.2",
+      "role": "Author survey of distinct quantum-verification models; importance evidence predating cutoff",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "watrous08",
+      "title": "Quantum Computational Complexity",
+      "url": "https://arxiv.org/abs/0804.3401",
+      "year": 2008,
+      "locator": "II.1; sections on advice and space; open problems",
+      "role": "Promise conventions and broad quantum landscape; old open-problem statements require updates",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "proofs16",
+      "title": "Quantum Proofs",
+      "url": "https://arxiv.org/abs/1610.01664v1",
+      "year": 2016,
+      "locator": "3.4; 4.5; 5.3",
+      "role": "Author survey: quantum witnesses, two-message interaction, statistical zero knowledge",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "hm10",
+      "title": "Testing product states, quantum Merlin-Arthur games and tensor optimisation",
+      "url": "https://arxiv.org/abs/1001.0017",
+      "year": 2010,
+      "locator": "Main product-test, amplification, and QMA(k)=QMA(2) results",
+      "role": "Unentanglement importance and equivalent-class deduplication",
+      "inspection": "abstract and theorem discussion; survey cross-check",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "sep15",
+      "title": "Quantum interactive proofs and the complexity of separability testing",
+      "url": "https://arxiv.org/abs/1308.5788v2",
+      "year": 2014,
+      "locator": "Abstract; complete-problem taxonomy",
+      "role": "Natural separability-testing motivations for quantum proof classes",
+      "inspection": "primary abstract and survey cross-check; journal published 2015",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "agl25",
+      "title": "StoqMA vs. MA: the power of error reduction",
+      "url": "https://arxiv.org/abs/2010.02835v4",
+      "year": 2025,
+      "locator": "Conjectures 1.1–1.2; Definition 2.3; Remarks 2.4–2.5",
+      "role": "Exact StoqMA threshold and gate conventions; amplification problem",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "bbt06",
+      "title": "Merlin-Arthur Games and Stoquastic Complexity",
+      "url": "https://arxiv.org/abs/quant-ph/0611021",
+      "year": 2006,
+      "locator": "StoqMA definition and containment in SBP",
+      "role": "Foundational stoquastic verifier model",
+      "inspection": "abstract plus later primary definition cross-check",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "stoq26",
+      "title": "The Complexity of Stoquastic Sparse Hamiltonians",
+      "url": "https://arxiv.org/abs/2605.02845v1",
+      "year": 2026,
+      "locator": "Abstract and introduction; main completeness result",
+      "role": "Recent pre-cutoff physical-model motivation",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "lw26",
+      "title": "The power of unentanglement without destructive interference",
+      "url": "https://arxiv.org/abs/2604.27886v2",
+      "year": 2026,
+      "locator": "Abstract and introduction; version 2 July 12",
+      "role": "Distinguish StoqMA(2) from QMA(2), constant versus vanishing gaps",
+      "inspection": "primary abstract and introductory scope",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "gn13",
+      "title": "Quantum 3-SAT is QMA1-complete",
+      "url": "https://arxiv.org/abs/1302.0290",
+      "year": 2013,
+      "locator": "Section 2, gate set G and QMA1 definition",
+      "role": "Exact perfect completeness and natural complete problem",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "qpcp13",
+      "title": "The Quantum PCP Conjecture",
+      "url": "https://arxiv.org/abs/1309.7495",
+      "year": 2013,
+      "locator": "Introduction and conjecture formulations",
+      "role": "Longstanding importance across quantum complexity and many-body physics",
+      "inspection": "introductory and conjecture sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "qpcp25",
+      "title": "Quantum PCPs: on Adaptivity, Multiple Provers and Reductions to Local Hamiltonians",
+      "url": "https://arxiv.org/abs/2403.04841v3",
+      "year": 2025,
+      "locator": "Definition 5; section 1.1; quantum reduction discussion",
+      "role": "Precise QPCP model and reduction-type caveat",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "qpcp26talk",
+      "title": "Gap Amplification for Local Hamiltonians with Combinatorial Soundness",
+      "url": "https://simons.berkeley.edu/talks/quynh-t-nguyen-harvard-university-2026-07-23",
+      "year": 2026,
+      "locator": "Research talk abstract, July 23",
+      "role": "Independent pre-cutoff research-program evidence",
+      "inspection": "author workshop abstract",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "vadhan12",
+      "title": "Pseudorandomness",
+      "url": "https://people.seas.harvard.edu/~salil/pseudorandomness/",
+      "year": 2012,
+      "locator": "2.3.2; Proposition 2.28; 2.4, Open Problem 2.47",
+      "role": "BPL/RL derandomization and promise-versus-total distinction",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "hoza22",
+      "title": "Recent Progress on Derandomizing Space-Bounded Computation",
+      "url": "https://bulletin.eatcs.org/index.php/beatcs/article/view/728",
+      "year": 2022,
+      "locator": "Author survey abstract and framing",
+      "role": "Sustained space-derandomization research program",
+      "inspection": "abstract and author research-page description",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "bql25",
+      "title": "Directed st-Connectivity with Few Paths Is in Quantum Logspace",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2025.18",
+      "year": 2025,
+      "locator": "Introduction; Theorem 4; conclusion",
+      "role": "Natural total-language BQL example and BQL/BPL motivation",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "fr21",
+      "title": "Eliminating Intermediate Measurements in Space-Bounded Quantum Computation",
+      "url": "https://arxiv.org/abs/2006.03530",
+      "year": 2020,
+      "locator": "Theorem 1; BQL/BPL discussion",
+      "role": "General and unitary quantum-space equivalence; STOC 2021 publication",
+      "inspection": "primary theorem excerpt and abstract",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "fl18",
+      "title": "A Complete Characterization of Unitary Quantum Space",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2018.4",
+      "year": 2018,
+      "locator": "Main completeness characterization",
+      "role": "Promise linear-algebraic complete problems for unitary quantum space",
+      "inspection": "primary abstract and later theorem cross-check",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "dpv21",
+      "title": "Promise Problems Meet Pseudodeterminism",
+      "url": "https://eccc.weizmann.ac.il/report/2021/043/",
+      "year": 2021,
+      "locator": "Introduction; Theorem 3.1",
+      "role": "Completion of PromiseBPP linked to pseudodeterministic approximate probability estimation",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "gsv99",
+      "title": "Can Statistical Zero Knowledge Be Made Non-Interactive?",
+      "url": "https://www.wisdom.weizmann.ac.il/~/oded/PSX/gsv2.pdf",
+      "year": 1999,
+      "locator": "Theorems 1.3, 1.5, 1.6",
+      "role": "NISZK complete problems, nontriviality, complement closure",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "lz16",
+      "title": "On the impossibility of entropy reversal, and its application to zero-knowledge proofs",
+      "url": "https://eccc.weizmann.ac.il/report/2016/118/",
+      "year": 2016,
+      "locator": "Abstract and black-box reduction scope",
+      "role": "NISZK versus SZK research and relativization limitation",
+      "inspection": "primary abstract",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "watrous02",
+      "title": "Limits on the power of quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/abs/quant-ph/0202111",
+      "year": 2002,
+      "locator": "QSZK/state-distinguishability results",
+      "role": "Foundational QSZK source; later general-verifier refinements must be respected",
+      "inspection": "primary abstract plus Quantum Proofs section 5.3",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "ckr10",
+      "title": "Quantum Commitments from Complexity Assumptions",
+      "url": "https://arxiv.org/abs/1010.2793",
+      "year": 2010,
+      "locator": "Abstract and principal conditional constructions",
+      "role": "QSZK/QMA relevance to quantum cryptography",
+      "inspection": "primary abstract",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "llw26",
+      "title": "A slightly improved upper bound for quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/abs/2512.11597v2",
+      "year": 2026,
+      "locator": "Abstract; revised June 28; main prover-space bounds",
+      "role": "Recent QSZK status; refinement does not imply new small-class containment",
+      "inspection": "primary abstract and scope",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "juw09",
+      "title": "Two-message quantum interactive proofs are in PSPACE",
+      "url": "https://arxiv.org/abs/0905.1300",
+      "year": 2009,
+      "locator": "Section 3.1; main theorem",
+      "role": "QIP(2) definition and upper bound",
+      "inspection": "primary definition and theorem excerpts",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "jknn12",
+      "title": "Achieving perfect completeness in classical-witness quantum Merlin-Arthur proof systems",
+      "url": "https://arxiv.org/abs/1111.5306",
+      "year": 2011,
+      "locator": "Main theorem; exact gate assumptions",
+      "role": "QCMA1=QCMA alias; journal 2012",
+      "inspection": "primary abstract and exact gate statement",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "post05",
+      "title": "Quantum Computing, Postselection, and Probabilistic Polynomial-Time",
+      "url": "https://arxiv.org/abs/quant-ph/0412187",
+      "year": 2004,
+      "locator": "PostBQP=PP theorem",
+      "role": "Postselection is already represented by PP under matching conventions",
+      "inspection": "primary abstract and established theorem",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "precise16",
+      "title": "Quantum Merlin Arthur with Exponentially Small Gap",
+      "url": "https://arxiv.org/abs/1601.01975",
+      "year": 2016,
+      "locator": "Main PreciseQMA=PSPACE theorem",
+      "role": "Do not duplicate PSPACE or confuse inverse-exponential with bounded gaps",
+      "inspection": "primary abstract and theorem statement",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "advice04",
+      "title": "Limitations of Quantum Advice and One-Way Communication",
+      "url": "https://arxiv.org/abs/quant-ph/0402095",
+      "year": 2004,
+      "locator": "BQP/qpoly upper bound; oracle results",
+      "role": "Advice model and nonuniformity",
+      "inspection": "primary abstract and theorem discussion",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "advice10",
+      "title": "A Full Characterization of Quantum Advice",
+      "url": "https://arxiv.org/abs/1004.0377",
+      "year": 2010,
+      "locator": "BQP/qpoly contained in QMA/poly",
+      "role": "Advice cross-connections",
+      "inspection": "primary abstract",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "advice26",
+      "title": "Separating Quantum and Classical Advice with Good Codes",
+      "url": "https://arxiv.org/abs/2602.09385",
+      "year": 2026,
+      "locator": "Abstract; first submitted February 10",
+      "role": "Classical-oracle evidence only; not an ordinary pair separation",
+      "inspection": "primary abstract and submission date",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "dqc06",
+      "title": "Computation with Unitaries and One Pure Qubit",
+      "url": "https://arxiv.org/abs/quant-ph/0608132v2",
+      "year": 2006,
+      "locator": "Sections 1, 3, 4; equation 11; Lemma 1",
+      "role": "Input-bit-controlled BQ1P definition and lack of immediate P containment",
+      "inspection": "relevant full-text sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "clean15",
+      "title": "Power of Quantum Computation with Few Clean Qubits",
+      "url": "https://arxiv.org/abs/1509.07276v1",
+      "year": 2015,
+      "locator": "Abstract; clean-qubit model and error reduction",
+      "role": "Controller, initialization, gap and measurement conventions",
+      "inspection": "primary abstract and model discussion",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "sample10",
+      "title": "The Equivalence of Sampling and Searching",
+      "url": "https://arxiv.org/abs/1009.5104",
+      "year": 2010,
+      "locator": "Main equivalence and task definitions",
+      "role": "Sampling/search questions need another universe",
+      "inspection": "primary abstract and introduction",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "query21",
+      "title": "Open Problems Related to Quantum Query Complexity",
+      "url": "https://www.scottaaronson.com/papers/open.pdf",
+      "year": 2021,
+      "locator": "Open-problem collection",
+      "role": "Importance of questions outside ordinary class inclusions",
+      "inspection": "problem-list sections",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "mip20",
+      "title": "MIP*=RE",
+      "url": "https://arxiv.org/abs/2001.04383",
+      "year": 2020,
+      "locator": "Main theorem",
+      "role": "Major entangled-prover milestone is already resolved, not a reason to fabricate new open endpoints",
+      "inspection": "primary abstract and theorem",
+      "eligible_for_cutoff": true
+    },
+    {
+      "id": "liu21",
+      "title": "StoqMA Meets Distribution Testing",
+      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol197-tqc2021/LIPIcs.TQC.2021.4/LIPIcs.TQC.2021.4.pdf",
+      "year": 2021,
+      "locator": "Corollary 24",
+      "role": "Exact soundness 1/2 boundary gives NP, reinforcing threshold caveat",
+      "inspection": "Independent reviewer found source; primary PDF Corollary 24 checked in cross-review",
+      "eligible_for_cutoff": true
+    }
+  ],
+  "post_cutoff_advisories": [
+    {
+      "id": "after-qma2-oracle",
+      "url": "https://arxiv.org/abs/2609.02865",
+      "first_public_date": "2026-09-02",
+      "claim": "Quantum oracle separation between QMA(2) and QMA",
+      "use": "contamination_advisory_only",
+      "validity_reviewed": false
+    },
+    {
+      "id": "after-qma-perfect",
+      "url": "https://arxiv.org/abs/2609.13032",
+      "first_public_date": "2026-09-11",
+      "claim": "QMA has perfect completeness",
+      "use": "contamination_advisory_only",
+      "validity_reviewed": false
+    },
+    {
+      "id": "after-perfect-systems",
+      "url": "https://arxiv.org/abs/2609.15926",
+      "first_public_date": "2026-09-14",
+      "claim": "Perfect completeness for QMA and one-/two-message proof systems",
+      "use": "contamination_advisory_only",
+      "validity_reviewed": false
+    },
+    {
+      "id": "after-promise-oracle",
+      "url": "https://arxiv.org/abs/2609.07945",
+      "first_public_date": "after_2026-09-01",
+      "claim": "Promise-problem relativization distinctions",
+      "use": "excluded_from_pre_cutoff_transfer_evidence",
+      "validity_reviewed": false
+    }
+  ],
+  "limitations": [
+    "Bounded primary survey and research-chain review, not exhaustive literature census.",
+    "No numerical importance weights or likelihood claims.",
+    "No new baseline facts, final model definitions or pair labels are certified by this proposal.",
+    "A total-language inclusion only receives canonical promise credit when the specific transfer is justified.",
+    "A roster cannot guarantee points for every major algorithmic, cryptographic, quantitative, search, sampling or oracle advance."
+  ],
+  "next_phase": [
+    "Choose roster and scope before implementing definitions.",
+    "Cross-review strongest counterarguments and lost named-question coverage.",
+    "Fix exact StoqMA thresholds, QMA1 gates, QPCP queries/reductions, BQL control, and zero-knowledge simulation model.",
+    "Audit each selected model and its full incident pair classifications against the cutoff."
+  ]
+}

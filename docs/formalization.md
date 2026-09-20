@@ -1,6 +1,6 @@
 # Formalization status
 
-**Version 0.3.1 is operational: all 50 canonical class definitions compile, the inference kernel is checked, and new ordinary proofs have an isolated Lean verification route.** The Mathlib-free core supplies 46 definitions; the quantum project supplies four more and the complete interpretation. Existing cited theorems and model conventions are explicit trusted baseline inputs. Their proofs do not need to be recreated in Lean before running the benchmark.
+**Provisional v0.4.0 supplies 61 canonical class definitions for a 50-class scored roster.** The Mathlib-free core supplies 52 definitions; the Mathlib extension supplies eight quantum definitions and ∃R, together with the complete interpretation. The inference kernel is checked, and new ordinary proofs have an isolated Lean verification route. Existing cited theorems and model conventions are explicit trusted baseline inputs. Their proofs do not need to be recreated in Lean before running the benchmark.
 
 Textbook-model equivalences, quantum amplification and an automatic formal ZFC implementation remain future work. These limitations are documented rather than used as a launch gate for ordinary runs. A model still has to prove its exact new claim against the frozen class interpretation; merely compiling definitions or a conditional consequence does not establish a breakthrough. Historical review separately determines whether each resolved pair earns a point.
 
@@ -16,7 +16,7 @@ The library defines a language as `List Bool → Prop` and a complexity class as
 
 `lean/Examples.lean` checks accepted and rejected certificates and verifies that duplicate eligibility entries cannot create extra points. `lean/AxiomAudit.lean` prints the kernel dependencies of the principal theorems. The permanent core and quantum library audits contain only standard Lean foundations (`propext`, `Classical.choice`, and `Quot.sound`) where needed, with no project-specific axioms or incomplete proofs. The submission verifier separately generates explicit axioms for the cited historical baseline, as described below. Those intentional trusted inputs are not disguised as proved library theorems.
 
-## Concrete definitions: all 50
+## Concrete definitions: all 61 context classes
 
 `Machines.lean` defines finite-control deterministic and nondeterministic machines with a read-only input tape, endmarkers, a two-way work tape, finite transition tables, and explicit time and work-space bounds. Initialization cannot inspect an arbitrary language, and no oracle is hidden in the model.
 
@@ -53,13 +53,29 @@ The `quantum/` project, optional for core-only development and required by the c
 | SZK | Concrete uniform samplers with the Statistical Difference gap on every input |
 | BQP, QCMA, QMA, coQMA | Uniform finite quantum circuits and explicit classical or complex witness registers; optional Mathlib project |
 
-The core's `Definitions.lean` exposes `operationalDefinition : ClassId → Option ComplexityClass` and proves that it supplies 46 entries. Its four quantum entries remain `none` so the core does not acquire a Mathlib dependency.
+The core's `Definitions.lean` exposes `operationalDefinition : ClassId → Option ComplexityClass` and proves that it supplies 52 entries. Its eight quantum entries and ∃R remain `none` so the core does not acquire a Mathlib dependency.
 
-Import `InclusionQuantum` to obtain `InclusionBench.Quantum.completeInterpretation : Interpretation ClassId`. It explicitly assigns a concrete definition to every catalog constructor, without a default replacement class. `complete_agrees_with_core` proves agreement with all 46 core entries; `every_class_defined` and `all_fifty_defined` establish complete coverage. These are checked theorems about the supplied definitions, not proofs of textbook equivalence or of the historical class lattice.
+Import `InclusionQuantum` to obtain `InclusionBench.Quantum.completeInterpretation : Interpretation ClassId`. It explicitly assigns a concrete definition to every catalog constructor, without a default replacement class. `complete_agrees_with_core` proves agreement with all 52 core entries; `every_class_defined` and `all_catalog_classes_defined` establish complete coverage. These are checked theorems about the supplied definitions, not proofs of textbook equivalence or of the historical class lattice.
 
 These definitions fix concrete conventions; they do not prove equivalence with every textbook machine or encoding convention. Several elementary containments are proved directly: deterministic resource-bound monotonicity, SC ⊆ P, E ⊆ EXP, NE ⊆ NEXP, NC¹ ⊆ P/poly, AC⁰ ⊆ ACC⁰, UP ⊆ FewP, SPP ⊆ PP, SPP ⊆ AWPP, RP ⊆ SBP, Θ₂P ⊆ Δ₂P, and Σ₂P ⊆ PH for the supplied definitions. Deep literature results have not been recreated in Lean.
 
 The quantum project proves normalization of computational basis states, injectivity of gate records, and that applying X twice restores the state. `InclusionQuantum/Normalization.lean` proves that every H, T, X and CNOT gate preserves squared norm; any circuit and the input/witness/ancilla embedding preserve normalization; and acceptance lies between zero and one for normalized witnesses. It also checks the empty witness used by BQP. These theorems use the actual class definitions. Amplification and equivalence with conventional quantum models remain separate trusted mathematics.
+
+## Definitions added in v0.4.0
+
+`LogspaceClasses.lean` adds BPL, UL and PL over the existing concrete tape machines. BPL has fair coins, a polynomial worst-case clock and logarithmic work space. UL has at most one accepting path on every input. PL uses strict majority with a polynomial clock. Halting, path multiplicities and unequal branch depths receive explicit checks.
+
+`CountingHierarchy.lean` defines PSharpP using deterministic polynomial-time PP-oracle machines. CH is the union of fixed finite levels obtained by iterating polynomial-time majority oracle computation. Neither an arbitrary input-dependent hierarchy height nor an unjustified relativization of an unrelativized inclusion is part of this definition.
+
+`AlternatingLogtime.lean` defines UniformNC1 through ALOGTIME: a finite random-access alternating machine, a binary input-index tape, a fixed finite number of local work tapes and a logarithmic bound on every branch. The trusted correspondence is with **extended-connection** uniform NC¹. Direct-connection uniformity alone is not silently substituted.
+
+`RealSyntax.lean` gives a finite binary encoding with integer coefficients, typed postfix arithmetic and Boolean formulas, an executable decoder and proved round-trip/injectivity properties. `RealFeasibility.lean` evaluates those formulas over finite tuples of Mathlib reals. ∃R is defined through concrete polynomial-time many-one transducers. Invalid encodings reject; no oracle for arbitrary real constants, BSS real input or polynomial-bit rational witness is introduced.
+
+The quantum extension adds four modules. `Unentangled.lean` constructs the two QMA(2) witnesses as a tensor product across their proof registers. `Logspace.lean` defines BQL through input-dependent circuits emitted by a logarithmic-space, polynomial-time classical transducer, with logarithmic quantum workspace and a polynomial gate bound. `Stoquastic.lean` uses reversible classical gates, zero/plus ancillas, X measurement and a union over efficiently computed inverse-polynomial-gap thresholds with 1/2 ≤ b < a ≤ 1. Fixing soundness to exactly 1/2 would instead describe the NP boundary slice. `Statistical.lean` defines QSZK via Quantum State Distinguishability, comparing only the retained output register of two efficiently prepared states; its variational distance ranges over mathematical measurements, not an efficient oracle supplied to the sampler.
+
+The literature bridges for those models, and their remaining equivalence obligations, are recorded in the [classical design notes](../research/v0.4.0/classical-formalization.md) and [quantum dossier](../research/v0.4.0/quantum-new-baseline.md). Independent reviewers check the opposite agent's code and retain adversarial semantic invariants. Compilation alone does not prove that a formal model matches its textbook name.
+
+`Catalog.lean` distinguishes `allClasses` (61 context entries) from `scoredClasses` (50 entries). It proves duplicate-freedom, complete context coverage, scored membership and the 2,500-pair scoring bound. The Python engine uses all context nodes for deductions and only the scored list for eligibility. The original eleven demoted definitions therefore remain genuine proof targets.
 
 ## What the Python-to-Lean bridge certifies
 
@@ -79,7 +95,7 @@ The current format accepts checked theorem, definition and opaque bodies. It rej
 
 A verified report binds the dataset, source bytes, claims, checker and semantic-source hashes, and records the trusted baseline assumptions and runtime. It establishes the submitted ordinary theorem relative to those explicit historical inputs. It does not establish model authorship, budget compliance, historical novelty or ZFC independence. `review-proof` binds that evidence to a sealed model artifact; run review and recorded per-pair historical decisions are still required before scoring. The release-wide audit supplies the latter for this suite.
 
-All proof candidates in a run must be adjudicated. A genuine completed run may receive an official zero once its provenance and candidates are reviewed; the 1,378 frozen questions already have revisable historical decisions. See [the specification](SPEC.md) for subset cohorts and scoring gates.
+All proof candidates in a run must be adjudicated. A genuine completed run may receive an official zero once its provenance and candidates are reviewed; the frozen questions have release-specific, revisable historical decisions. See [the specification](SPEC.md) for subset cohorts and scoring gates.
 
 ## Independence and ZFC
 
@@ -123,7 +139,7 @@ LEAN_BIN=/absolute/path/to/lean sh lean/build.sh
 
 The core script compiles modules sequentially with one Lean worker, runs the examples, and prints the axiom audit. It does not download or build Mathlib.
 
-For all 50 definitions and the interpretation used by the proof verifier, install the quantum dependencies and run its checks:
+For all 61 definitions and the interpretation used by the proof verifier, install the quantum dependencies and run its checks:
 
 ```sh
 cd quantum

@@ -1,8 +1,13 @@
 import InclusionQuantum.Quantum
+import InclusionQuantum.Unentangled
+import InclusionQuantum.Logspace
+import InclusionQuantum.Stoquastic
+import InclusionQuantum.Statistical
+import InclusionQuantum.RealFeasibility
 
 namespace InclusionBench.Quantum
 
-/-- All fifty names have concrete operational definitions. No default class
+/-- Every catalog name has a concrete operational definition. No default class
 or opaque replacement is used for any catalog entry. -/
 noncomputable def completeInterpretation : Interpretation ClassId
   | .AC0 => Circuits.nonuniformAC0
@@ -56,6 +61,17 @@ noncomputable def completeInterpretation : Interpretation ClassId
   | .QCMA => QCMA
   | .QMA => QMA
   | .coQMA => coQMA
+  | .BPL => LogspaceClasses.BPL
+  | .UL => LogspaceClasses.UL
+  | .PL => LogspaceClasses.PL
+  | .BQL => BQL
+  | .ExistsR => RealFeasibility.ExistsR
+  | .PSharpP => CountingHierarchy.PSharpP
+  | .CH => CountingHierarchy.CH
+  | .QMA2 => QMA2
+  | .StoqMA => StoqMA
+  | .QSZK => QSZK
+  | .UniformNC1 => AlternatingLogtime.UniformNC1
 
 
 theorem complete_agrees_with_core : AgreesWithOperationalDefinitions completeInterpretation := by
@@ -69,8 +85,8 @@ theorem every_class_defined (id : ClassId) :
     ∃ definition, completeOperationalDefinition id = some definition :=
   ⟨completeInterpretation id, rfl⟩
 
-theorem all_fifty_defined :
-    (allClasses.filter (fun id => (completeOperationalDefinition id).isSome)).length = 50 := by
-  simp [completeOperationalDefinition, roster_size]
+theorem all_catalog_classes_defined :
+    allClasses.filter (fun id => (completeOperationalDefinition id).isSome) = allClasses := by
+  simp [completeOperationalDefinition]
 
 end InclusionBench.Quantum

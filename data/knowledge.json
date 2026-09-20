@@ -575,6 +575,539 @@
       "recorded_at": "2026-09-19",
       "locator": "Derivations D1 and D2; independently reconstructed in audit-round3-exact-count",
       "notes": "Explicit derivations from pre-cutoff #P, GapP, lowness and quantum simulation results. The recording date is not a claimed historical theorem publication date."
+    },
+    {
+      "id": "v040-Nisan1994",
+      "title": "RL ⊆ SC",
+      "url": "https://cris.huji.ac.il/en/publications/rl-sc-2/",
+      "year": 1994,
+      "publication_date": "1994-03",
+      "locator": "Abstract; Computational Complexity 4(1), 1–11; DOI 10.1007/BF01205052",
+      "notes": "The abstract explicitly covers polynomial-time randomized logspace with bounded two-sided error. The title’s RL notation must not be read as restricting the result to the modern one-sided class."
+    },
+    {
+      "id": "v040-BCP1983",
+      "title": "Parallel Computation for Well-Endowed Rings and Space-Bounded Probabilistic Machines",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/parallel-computation-well-endowed-rings.pdf",
+      "year": 1983,
+      "publication_date": "1983-07",
+      "locator": "§2 p.116 defines logspace-uniform NC; §6 Lemma 6.1, Proposition 6.2 and Corollary 6.3, pp.131–132",
+      "notes": "Information and Control 58(1–3),113–136, July–September1983; DOI 10.1016/S0019-9958(83)80060-6. Its NC² upper bound applies to polynomial-time PL."
+    },
+    {
+      "id": "v040-AO1996",
+      "title": "Relationships among PL, #L, and the determinant",
+      "url": "https://www.numdam.org/item/ITA_1996__30_1_1_0.pdf",
+      "year": 1996,
+      "publication_date": "1996",
+      "locator": "Propositions 2–3; Theorems 1,5–6,8; §3 oracle convention; §7 conclusion",
+      "notes": "RAIRO 30(1),1–21. GapL characterization and polynomial-clock equivalence are explicit. Oracle closure uses the Ruzzo–Simon–Tompa convention."
+    },
+    {
+      "id": "v040-Ogihara1996",
+      "title": "The PL Hierarchy Collapses",
+      "url": "https://eccc.weizmann.ac.il/report/1996/013/download/",
+      "year": 1996,
+      "publication_date": "1996-02-16",
+      "locator": "Abstract and main hierarchy-collapse theorem",
+      "notes": "ECCC TR96-013; journal SIAM J.Comput.27(5),1430–1437 (1998), DOI10.1137/S0097539795295924. PL^PL=PL here uses RST relativization; it is not an unrestricted oracle theorem."
+    },
+    {
+      "id": "v040-RA1999",
+      "title": "Making Nondeterminism Unambiguous",
+      "url": "https://people.cs.rutgers.edu/~allender/papers/nlul.pdf",
+      "year": 1999,
+      "publication_date": "1999-03-31",
+      "locator": "Introduction and §2; Theorem2.2 and Corollary2.3",
+      "notes": "Author manuscript; SIAM J.Comput.29(4),1118–1131(2000), DOI10.1137/S0097539798339041. NL⊆UL/poly does not remove advice."
+    },
+    {
+      "id": "v040-PTV2010",
+      "title": "On the Power of Unambiguity in Logspace",
+      "url": "https://arxiv.org/abs/1001.2034",
+      "year": 2010,
+      "publication_date": "2010-01-12",
+      "locator": "Abstract; unambiguity definitions and characterization of NL=UL",
+      "notes": "The min-uniqueness/optimization equivalences do not establish NL=UL unconditionally."
+    },
+    {
+      "id": "v040-CW2024",
+      "title": "BPL ⊆ L-AC¹",
+      "url": "https://eccc.weizmann.ac.il/report/2024/048/download",
+      "year": 2024,
+      "publication_date": "2024-03-10",
+      "locator": "Introduction; Theorem1.1; Definition2.6; Corollary5.2",
+      "notes": "Logspace-uniform AC¹; not the semi-unbounded SAC¹ characterization of LogCFL. Introduction explicitly says L=NL is not known to imply L=BPL."
+    },
+    {
+      "id": "v040-Hoza2022",
+      "title": "Recent progress on derandomizing space-bounded computation",
+      "url": "https://eccc.weizmann.ac.il/report/2022/121/download",
+      "year": 2022,
+      "publication_date": "2022-08-28",
+      "locator": "§1 definitions; survey of space/time tradeoffs; open directions",
+      "notes": "Author-written survey. Better space-only simulation does not imply the simultaneous bounds defining SC."
+    },
+    {
+      "id": "v040-LNY2021",
+      "title": "Quantum Logarithmic Space and Post-selection",
+      "url": "https://arxiv.org/pdf/2105.02681",
+      "year": 2021,
+      "publication_date": "2021-05-06",
+      "locator": "§2.1 and §2.3, especially displayed containments on p.5; Theorems1–2",
+      "notes": "L⊆BPL⊆BQL⊆PL; bounded-error polynomial-time and unrestricted-time classes are explicitly distinguished. DOI10.4230/LIPIcs.TQC.2021.10."
+    },
+    {
+      "id": "v040-BKLM2012",
+      "title": "The lower reaches of circuit uniformity",
+      "url": "https://eccc.weizmann.ac.il/report/2011/095/revision/1/download/",
+      "year": 2012,
+      "publication_date": "2012-05-12",
+      "locator": "§2 Remark1, p.5; Theorem6",
+      "notes": "This revision of TR11-095 distinguishes standard extended-connection U_E uniformity from direct-connection U_D. Standard DLOGTIME-uniform NC¹ equals ALOGTIME; U_D equality is not established here."
+    },
+    {
+      "id": "v040-Ruzzo1981",
+      "title": "On uniform circuit complexity",
+      "url": "https://doi.org/10.1016/0022-0000(81)90038-6",
+      "year": 1981,
+      "publication_date": "1981-06",
+      "locator": "Abstract and circuit/alternating-machine simulation theorem; JCSS22(3),365–383",
+      "notes": "Original circuit/alternation equivalence; exact U_E convention is clarified by BKLM Remark1."
+    },
+    {
+      "id": "v040-GHR1995",
+      "title": "Limits to Parallel Computation: P-Completeness Theory",
+      "url": "https://homes.cs.washington.edu/~ruzzo/papers/limits.pdf",
+      "year": 1995,
+      "publication_date": "1995",
+      "locator": "AppendixD, p.254, containment NC¹⊆DLOG; §3.2 circuit conventions",
+      "notes": "Author-hosted monograph; use only the uniform inclusion, not the benchmark’s nonuniform NC1 endpoint."
+    },
+    {
+      "id": "v040-Canny1988",
+      "title": "Some Algebraic and Geometric Computations in PSPACE",
+      "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/1988/6041.html",
+      "year": 1988,
+      "publication_date": "1988-08",
+      "locator": "Abstract, existential theory of the reals in PSPACE; UCB/CSD-88-439",
+      "notes": "Original STOC1988 publication DOI10.1145/62212.62257. Institution-hosted report and abstract verified; the scanned PDF was not text-extracted."
+    },
+    {
+      "id": "v040-MW2025",
+      "title": "Some structural complexity results for ∃R",
+      "url": "https://arxiv.org/html/2502.00680v1",
+      "year": 2025,
+      "publication_date": "2025-02-02",
+      "locator": "Abstract; Definition1; Theorem1.1; Theorem2.1",
+      "notes": "Finite-bit quadratic feasibility characterization. Relativized separation and conditional Ladner results are not ordinary pair separations."
+    },
+    {
+      "id": "v040-SCM2024",
+      "title": "The Existential Theory of the Reals as a Complexity Class: A Compendium",
+      "url": "https://arxiv.org/html/2407.18006v1",
+      "year": 2024,
+      "publication_date": "2024-07-25",
+      "locator": "§§1.1–1.2; discussion of PH, PosSLP and sum of square roots",
+      "notes": "A later book chapter appeared May1,2026, DOI10.1007/978-3-032-10503-5_5. The audited text is pinned to v1; individual problems in CH do not place all ∃R in CH."
+    },
+    {
+      "id": "v040-DG2022",
+      "title": "Evaluating Monotone Circuits on Surfaces",
+      "url": "https://eccc.weizmann.ac.il/report/2022/147/revision/2/download",
+      "year": 2022,
+      "publication_date": "2022",
+      "locator": "§2, p.6, Figure1 and paragraphs defining LogDCFL and UL",
+      "notes": "Exact displayed statements: UL⊆NL⊆LogCFL⊆NC²; UL and LogCFL are not known to be in SC. Metadata records revisions in November2022; published WALCOM2025 DOI10.1007/978-981-96-2845-2_9. Template CVIT DOI is not the publication DOI."
+    },
+    {
+      "id": "v040-AE2025",
+      "title": "Directed st-Connectivity with Few Paths Is in Quantum Logspace",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2025.18",
+      "year": 2025,
+      "publication_date": "2025-07-29",
+      "locator": "Corollary3 and Theorem4; definitions of strong fewness",
+      "notes": "Quantum co-review verified StrongFewL⊆BQL. The all-pairs path bound is stronger than ordinary UL’s accepting-path condition. Date is proceedings publication, not discovery date."
+    },
+    {
+      "id": "v040-PT2026",
+      "title": "Using Hardness vs Randomness to Design Low-Space Algorithms",
+      "url": "https://eccc.weizmann.ac.il/report/2026/045/download/",
+      "year": 2026,
+      "publication_date": "2026-04-05",
+      "locator": "Theorems1.2,3.3,3.6,3.9–3.13; §5 open questions",
+      "notes": "Contemporary primary-author survey. Catalytic, quantitative, infinitely-often and conditional statements are not unqualified ordinary class inclusions."
+    },
+    {
+      "id": "v040-ACD2026",
+      "title": "Derandomizing Isolation In Catalytic Logspace",
+      "url": "https://arxiv.org/abs/2512.09374v3",
+      "year": 2026,
+      "publication_date": "2026-02-06",
+      "locator": "Abstract and third result",
+      "notes": "Initial v1 Dec10,2025. NL simulation uses catalytic memory plus a UL oracle; it does not prove NL⊆UL."
+    },
+    {
+      "id": "v040-Stade2026",
+      "title": "Probabilistically checkable proofs for the Existential Theory of the Reals",
+      "url": "https://arxiv.org/html/2605.23517v1",
+      "year": 2026,
+      "publication_date": "2026-05-22",
+      "locator": "§1.2 Theorem2 and discussion of real-alphabet assignment testers",
+      "notes": "Gap-MAX-ETR-INV is ∃R-hard. Real-valued proof symbols and real tests do not supply an NP, MA, or QMA verifier under the benchmark’s binary models."
+    },
+    {
+      "id": "v040-ClassicalNewDerivations",
+      "title": "Classical baseline extension: elementary model transfers",
+      "url": "research/v0.4.0/classical-new-baseline.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Model conventions, primitive transfers and conditional rules",
+      "notes": "Explanations recorded after the cutoff, grounded in the dated source theorems; not a claim of a post-cutoff discovery."
+    },
+    {
+      "id": "v040-Burgisser2006",
+      "title": "On Defining Integers in the Counting Hierarchy and Proving Arithmetic Circuit Lower Bounds",
+      "authors": [
+        "Peter Bürgisser"
+      ],
+      "url": "https://eccc.weizmann.ac.il/report/2006/113/download/",
+      "year": 2006,
+      "locator": "Definition 2.3, equation (3), and Lemma 2.5; manuscript printed pp. 4–5",
+      "notes": "Standard fixed-level counting hierarchy and PP⊆P/poly⇒CH⊆P/poly. Use this manuscript numbering, not the later journal numbering."
+    },
+    {
+      "id": "v040-AllenderWagner1993",
+      "title": "Counting Hierarchies: Polynomial Time and Constant Depth Circuits",
+      "authors": [
+        "Eric Allender",
+        "Klaus W. Wagner"
+      ],
+      "url": "https://people.cs.rutgers.edu/~allender/papers/column40.pdf",
+      "year": 1993,
+      "locator": "Section 1, PDF pp. 2–5, especially the final theorem PP^PH⊆P^PP and its proof",
+      "notes": "Primary authors’ revised survey, Current Trends in Theoretical Computer Science, pp.469–483. The strengthened Toda theorem and parity-oracle simulation are used only as stated."
+    },
+    {
+      "id": "v040-FournierPerifelVerclos2014",
+      "title": "On fixed-polynomial size circuit lower bounds for uniform polynomials in the sense of Valiant",
+      "authors": [
+        "Hervé Fournier",
+        "Sylvain Perifel",
+        "Rémi de Verclos"
+      ],
+      "url": "https://webusers.imj-prg.fr/~herve.fournier/publications/vnp.pdf",
+      "year": 2014,
+      "publication_date": "2014-04-11",
+      "locator": "Theorem 2, printed p.4; Lemma 3 and proof, printed p.12",
+      "notes": "Author version dated2014-04-11; arXiv1304.5910 first submitted2013-04-22; journal Information and Computation240(2015),31–41. Lemma3: #P polynomial-size Boolean circuits imply CH=MA. That lemma does not assume GRH."
+    },
+    {
+      "id": "v040-CountingNewDerivations",
+      "title": "Counting baseline extension: fixed hierarchy and oracle transfers",
+      "url": "https://github.com/tkwa/inclusion-bench/blob/provisional-v0.4.0/research/v0.4.0/counting-new-baseline.md",
+      "year": 2026,
+      "locator": "Definitions and primitive inclusions; Conditional consequences; Rules deliberately not inferred",
+      "notes": "Audit derivations from older cited theorems, not a claim that these relations were first proved in2026. The derivations and source hypotheses require independent review before cutoff admission.",
+      "audit_recorded_at": "2026-09-20"
+    },
+    {
+      "id": "v040-q-HM2010",
+      "title": "Testing product states, quantum Merlin–Arthur games and tensor optimisation",
+      "url": "https://arxiv.org/abs/1001.0017",
+      "year": 2010,
+      "locator": "Abstract; QMA(k) application and amplification theorem; JACM60(1),2013",
+      "notes": "Polynomially many unentangled witnesses can be reduced to two with amplification. This is a promise-class theorem whose restriction to total languages is valid.",
+      "publication_date": "2010-01-04"
+    },
+    {
+      "id": "v040-q-Gharibian2023",
+      "title": "The 7 faces of quantum NP",
+      "url": "https://arxiv.org/abs/2310.18010v1",
+      "year": 2023,
+      "locator": "§6, Figure1 and discussion of the NEXP upper bound",
+      "notes": "Pre-cutoff expert survey confirms QMA(2) has no known PSPACE upper bound; the intermediate quantum hierarchy is not the ordinary CH.",
+      "publication_date": "2023-10-27"
+    },
+    {
+      "id": "v040-q-BBT2006",
+      "title": "Merlin–Arthur Games and Stoquastic Complexity",
+      "url": "https://arxiv.org/abs/quant-ph/0611021",
+      "year": 2006,
+      "locator": "Definition4 pp.4–5; §4.1.1 p.10, theorem StoqMA⊆SBP; abstract inclusion chain",
+      "notes": "Bravyi, Bessen and Terhal. Stoquastic verifier uses classical reversible gates, zero/plus ancillas and one X-basis output measurement.",
+      "publication_date": "2006-11-02"
+    },
+    {
+      "id": "v040-q-AGL2025",
+      "title": "StoqMA vs. MA: the power of error reduction",
+      "url": "https://arxiv.org/abs/2010.02835v4",
+      "year": 2025,
+      "locator": "§1 containments; Definition2.3 and Remarks2.4–2.5; Corollaries1.4–1.5",
+      "notes": "The benchmark uses a union over efficiently computable rational inverse-polynomial-gap thresholds. The conjectured amplification is not imported as a theorem. Initial manuscript2020.",
+      "publication_date": "2025"
+    },
+    {
+      "id": "v040-q-Liu2021",
+      "title": "StoqMA Meets Distribution Testing",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2021.4",
+      "year": 2021,
+      "locator": "Corollary24; §4 soundness-error reduction",
+      "notes": "The exact soundness1/2 boundary, union over a>1/2 with inverse-polynomial gap, is NP. This does not collapse the unrestricted threshold union.",
+      "publication_date": "2021"
+    },
+    {
+      "id": "v040-q-Watrous2002",
+      "title": "Quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/abs/quant-ph/0202111",
+      "year": 2002,
+      "locator": "Quantum State Distinguishability completeness; polarization; complement closure",
+      "notes": "Original honest-verifier QSZK characterization. Later quantum rewinding supplies the full verifier interpretation.",
+      "publication_date": "2002-02-20"
+    },
+    {
+      "id": "v040-q-Watrous2009",
+      "title": "Zero-Knowledge against Quantum Attacks",
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/ZeroKnowledgeAgainstQuantumAttacks.pdf",
+      "year": 2009,
+      "locator": "Main quantum-rewinding theorem and application to quantum statistical zero knowledge",
+      "notes": "SIAM J.Comput.39(1),25–58. Supplies the general-verifier bridge; do not simply assume a classical SZK protocol is automatically secure against quantum verifiers.",
+      "publication_date": "2009"
+    },
+    {
+      "id": "v040-q-VW2016",
+      "title": "Quantum Proofs",
+      "url": "https://arxiv.org/abs/1610.01664v1",
+      "year": 2016,
+      "locator": "§5.3: Close Quantum States, Theorem5.3, Corollary5.5 and complement closure; §3.4 unentangled proofs",
+      "notes": "Author monograph used to align the full-QSZK and complete-problem conventions; QSD circuit-output states may be mixed.",
+      "publication_date": "2016-10-05"
+    },
+    {
+      "id": "v040-q-JUW2009",
+      "title": "Two-message quantum interactive proofs are in PSPACE",
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QIP2inPSPACE.pdf",
+      "year": 2009,
+      "locator": "Introduction and main containment theorem",
+      "notes": "Jain, Upadhyay and Watrous. QSZK⊆QIP(2) and QIP(2)⊆PSPACE yield the stored upper bound.",
+      "publication_date": "2009"
+    },
+    {
+      "id": "v040-q-LNY2021",
+      "title": "Quantum Logarithmic Space and Post-selection",
+      "url": "https://arxiv.org/abs/2105.02681v1",
+      "year": 2021,
+      "locator": "§§2.1–2.3 displayed class containments; Theorems1–2; §3.4",
+      "notes": "Polynomial-time BPL⊆BQL⊆PL. PostBQL and unrestricted-time bounded-error quantum logspace instead equal PL.",
+      "publication_date": "2021-05-06"
+    },
+    {
+      "id": "v040-q-FR2020",
+      "title": "Eliminating Intermediate Measurements in Space-Bounded Quantum Computation",
+      "url": "https://arxiv.org/abs/2006.03530",
+      "year": 2020,
+      "locator": "Definitions4–5 (input-dependent DSPACE(s)-uniform H,CNOT,T circuits, all-zero initial state); Theorem1 measurement elimination",
+      "notes": "Fefferman and Remscrim, STOC2021. Space-preserving measurement elimination justifies the unitary logspace circuit model, with polynomial time when space is logarithmic.",
+      "publication_date": "2020-06-05"
+    },
+    {
+      "id": "v040-q-AE2025",
+      "title": "Directed st-Connectivity with Few Paths Is in Quantum Logspace",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2025.18",
+      "year": 2025,
+      "locator": "Theorems1–2, Corollary3, Theorem4 and definitions in §2",
+      "notes": "StrongFewL restricts paths between every configuration pair. Ordinary UL only bounds accepting paths and cannot be substituted.",
+      "publication_date": "2025-07-29"
+    },
+    {
+      "id": "v040-q-LGLW2026",
+      "title": "A slightly improved upper bound for quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/abs/2512.11597v2",
+      "year": 2026,
+      "locator": "Abstract; introduction, discussion of the best known QSZK upper bound",
+      "notes": "The improvement is space efficiency of the honest prover in QIP(2), not QSZK⊆QMA or QSZK⊆PP. Initial v1 December2025.",
+      "publication_date": "2026-06-28"
+    },
+    {
+      "id": "v040-q-LW2026",
+      "title": "The power of unentanglement without destructive interference",
+      "url": "https://arxiv.org/abs/2604.27886v2",
+      "year": 2026,
+      "locator": "Abstract and StoqMA(2) upper bound",
+      "notes": "The EXP upper bound concerns StoqMA(2), not ordinary QMA(2). Amplitude restrictions are substantive.",
+      "publication_date": "2026-07-12"
+    },
+    {
+      "id": "v040-q-GR2026",
+      "title": "The Complexity of Stoquastic Sparse Hamiltonians",
+      "url": "https://arxiv.org/abs/2605.02845v1",
+      "year": 2026,
+      "locator": "Abstract; main completeness theorem",
+      "notes": "Recent sparse-Hamiltonian completeness does not establish general StoqMA amplification or MA=StoqMA.",
+      "publication_date": "2026-05-04"
+    },
+    {
+      "id": "v040-q-VD2019",
+      "title": "A Simple Proof of Vyalyi’s Theorem and some Generalizations",
+      "url": "https://eccc.weizmann.ac.il/report/2019/131/download/",
+      "year": 2019,
+      "locator": "Theorem4 pp.2,4–5; Theorems10–11 and2–3 pp.6–7",
+      "notes": "Definitions are explicitly total languages. QMA∩coQMA is closed under deterministic Turing reductions; the proof controls entangled certificates.",
+      "publication_date": "2019"
+    },
+    {
+      "id": "v040-q-Aaronson2017Erratum",
+      "title": "Yet more errors in papers",
+      "url": "https://scottaaronson.blog/?p=3256",
+      "year": 2017,
+      "locator": "Item1, correction to Oracles are subtle but not malicious Theorem5",
+      "notes": "Historical correction; the qpoly counting-hierarchy statement was subsequently repaired by Yirka2025. The generic PP⊆QMA premise still does not imply the stronger advice hypothesis.",
+      "publication_date": "2017-05-24"
+    },
+    {
+      "id": "v040-q-GHM2015",
+      "title": "Quantum Interactive Proofs and the Complexity of Separability Testing",
+      "url": "https://theoryofcomputing.org/articles/v011a003/",
+      "year": 2015,
+      "locator": "Natural complete problems for QSZK, QMA(2) and other quantum proof classes",
+      "notes": "Changing the norm or separability promise changes the class; neighboring completeness results do not imply one class contains another.",
+      "publication_date": "2015"
+    },
+    {
+      "id": "v040-q-ModelDerivations",
+      "title": "Quantum baseline extension: operational bridges and elementary derivations",
+      "url": "research/v0.4.0/quantum-new-baseline.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Definitions, primitive facts, conditional rules and rejected transfers",
+      "notes": "Documentation created after cutoff from dated results and elementary model transfers; not a claim that these consequences were newly proved before cutoff."
+    },
+    {
+      "id": "v040-q-Yirka2025",
+      "title": "Even Quantum Advice is Unlikely to Solve PP",
+      "url": "https://theoryofcomputing.org/articles/v021a007/",
+      "year": 2025,
+      "publication_date": "2025-10-02",
+      "locator": "Abstract; main theorem and YQP* lowness argument",
+      "notes": "Restores the counting-hierarchy collapse under PP⊆BQP/qpoly using YQP*⊆APP. This is a stronger hypothesis than PP⊆QMA; no qpoly endpoint is selected."
+    },
+    {
+      "id": "v040-VD2019",
+      "title": "A Simple Proof of Vyalyi's Theorem and some Generalizations",
+      "authors": [
+        "Lieuwe Vinkhuijzen",
+        "André Deutz"
+      ],
+      "url": "https://eccc.weizmann.ac.il/report/2019/131/download/",
+      "year": 2019,
+      "publication_date": "2019-09-30",
+      "locator": "Section7, Theorem20, printed p.9",
+      "notes": "ECCC TR19-131 submitted2019-09-11; publication metadata2019-09-30. Theorem20 explicitly gives MA=PP⇒MA=CH. Its quantum analogue is separately identified as a conjecture, not proved."
+    },
+    {
+      "id": "v040-AaronsonErratum2017",
+      "title": "Yet more errors in papers",
+      "authors": [
+        "Scott Aaronson"
+      ],
+      "url": "https://scottaaronson.blog/?p=3256",
+      "year": 2017,
+      "publication_date": "2017-05-24",
+      "locator": "First correction, concerning Oracles are subtle but not malicious (CCC2006)",
+      "notes": "The author retracted the proof of the quantum-advice CH collapse. This is historical correction evidence, not a claim that the result remained unproved at the benchmark cutoff; Yirka2025 repairs it."
+    },
+    {
+      "id": "v040-Yirka2025",
+      "title": "Even Quantum Advice is Unlikely to Solve PP",
+      "authors": [
+        "Justin Yirka"
+      ],
+      "url": "https://theoryofcomputing.org/articles/v021a007/v021a007.pdf",
+      "year": 2025,
+      "publication_date": "2025-10-02",
+      "locator": "Introduction pp.2–3; Lemma3.1, Corollary3.2; Theorem3.3 p.10; Theorem3.4",
+      "notes": "Theory of Computing21(7),1–13, DOI10.4086/toc.2025.v021a007. Corrects the quantum-advice proof using YQP*⊆APP and PP-lowness. Fixed-polynomial-size lower bounds are not union-over-degrees P/poly separations."
+    },
+    {
+      "id": "v040-CountingCrossDerivations",
+      "title": "Independent counting-baseline cross-review",
+      "url": "research/v0.4.0/counting-cross-review.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Conditional checks and additional rules",
+      "notes": "Proof explanations based on pre-cutoff sources, not new historical-publication claims."
+    },
+    {
+      "id": "v040-Buss1987",
+      "title": "The Boolean formula value problem is in ALOGTIME",
+      "url": "https://mathweb.ucsd.edu/~sbuss/ResearchWeb/Boolean/paper.pdf",
+      "year": 1987,
+      "publication_date": "1987",
+      "locator": "Main Theorem1, p.3; §2, pp.4–5; formula representation caveat, p.18; Main Theorem9, p.20",
+      "notes": "Author-hosted full paper read at these locators. Variable-free parenthesized finite-alphabet BFV and fixed-length binary encoding; original STOC1987 pp.123–131. The hardwiring rule below uses membership, not an unspecified reduction notion."
+    },
+    {
+      "id": "v040-UniformHardwiringDerivation",
+      "title": "UniformNC1 hypotheses imply nonuniform NC1 circuit upper bounds by formula hardwiring",
+      "url": "research/v0.4.0/classical-baseline-cross-review.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Two additional circuit consequences",
+      "notes": "Explicit derived implication for ACC0 and TC0 from pre-cutoff BFV membership, formula unfolding and constant restrictions. Review date is after cutoff; no claim of a new 2026 theorem."
+    },
+    {
+      "id": "v040-Applebaum2026",
+      "title": "From Nondeterministic to Modular Branching Programs, Uniformly and in Logspace",
+      "url": "https://eccc.weizmann.ac.il/report/2026/131/revision/1/download/",
+      "year": 2026,
+      "publication_date": "2026-08-10",
+      "locator": "Theorem1; §§2.1–2.5; Remark4",
+      "notes": "Initial report July27, public posting August2; revision1 August10. Full six-page proof read. NL⊆Mod_pL is not NL⊆UL, and Mod_pL is not a context endpoint. Remark4 concerns branching-program direct connections, not the U_E=ALOGTIME theorem."
+    },
+    {
+      "id": "v040-HozaIsolation2026",
+      "title": "Deterministic, Oblivious Isolation for Space-Bounded Computation Requires Large Weights",
+      "url": "https://eccc.weizmann.ac.il/report/2026/124/",
+      "year": 2026,
+      "publication_date": "2026-07-24",
+      "locator": "Author abstract; TR26-124 submitted July23",
+      "notes": "Abstract-level scope review. Lower bound for deterministic oblivious min-isolating weights rules out a method, not NL=UL. PDF fetch failed."
+    },
+    {
+      "id": "v040-CDG2026",
+      "title": "A Forward-Backward Weight Analysis of INW for Permutation Branching Programs",
+      "url": "https://eccc.weizmann.ac.il/report/2026/123/",
+      "year": 2026,
+      "publication_date": "2026-07-21",
+      "locator": "Author abstract; TR26-123",
+      "notes": "Abstract-level scope review: restricted permutation read-once branching programs and their stated seed length. Not general BPL derandomization. PDF fetch failed."
+    },
+    {
+      "id": "v040-AsadiCleve2026Withdrawal",
+      "title": "Polynomial-Time Almost Log-Space Tree Evaluation by Catalytic Pebbling: withdrawal",
+      "url": "https://eccc.weizmann.ac.il/report/2026/044/",
+      "year": 2026,
+      "publication_date": "2026-04-07",
+      "locator": "Revision1 withdrawal notice",
+      "notes": "Authors withdrew the polynomial-time claim because of an error in the subtree degree calculation. The original April2/5 posting must not support an SC seed."
+    },
+    {
+      "id": "v040-CDKMS2026",
+      "title": "Maximum Matching and Related Problems in Catalytic Logspace",
+      "url": "https://eccc.weizmann.ac.il/report/2026/080/revision/1/download/",
+      "year": 2026,
+      "publication_date": "2026-06-01",
+      "locator": "Introduction and Theorems1.1–1.4; revision1 PDF dated May31",
+      "notes": "These sections were read. Polynomial-time catalytic algorithms use an extra restored memory resource; no ordinary L, UL or BPL upper bound is inferred."
+    },
+    {
+      "id": "v040-BDO2026",
+      "title": "The Complexity of Bisimilarity and Model Checking in Finitary Diagrams",
+      "url": "https://arxiv.org/html/2606.16744v1",
+      "year": 2026,
+      "publication_date": "2026-06-15",
+      "locator": "Theorem4.2, Corollary4.3; §8 and Corollary8.5",
+      "notes": "The RP invertible-matrix constraint problem differs from the determinant-one variant that is ∃R-complete. The theorem statements and surrounding scope/reduction text were read."
     }
   ],
   "facts": [
@@ -2083,6 +2616,322 @@
         "q-williams13"
       ],
       "justification": "Nonuniform ACC lower bound. ACC0 is the union over fixed depths and fixed moduli with polynomial size."
+    },
+    {
+      "id": "v040-l-bpl",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "BPL",
+      "source_ids": [
+        "v040-LNY2021"
+      ],
+      "justification": "§2.3 states L⊆BPL; deterministic logspace machines ignore coins.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-bpl-bpp",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "BPP",
+      "source_ids": [
+        "v040-Hoza2022",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Forget the logarithmic workspace bound while retaining worst-case polynomial time and the same all-input bounded-error gap.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-bpl-sc",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "SC",
+      "source_ids": [
+        "v040-Nisan1994"
+      ],
+      "justification": "The abstract explicitly simulates polynomial-time two-sided-error logspace in simultaneous polynomial time and O(log² n) deterministic workspace.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-bpl-pl",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "PL",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "A bounded-error polynomial-time logspace machine already satisfies strict-majority unbounded error.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-l-ul",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "UL",
+      "source_ids": [
+        "v040-RA1999",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "A deterministic accepting computation is the sole accepting path; deterministic rejection creates none.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-ul-nl",
+      "relation": "inclusion",
+      "left": "UL",
+      "right": "NL",
+      "source_ids": [
+        "v040-DG2022"
+      ],
+      "justification": "The p.6 definition and containment explicitly give UL⊆NL.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-nl-pl",
+      "relation": "inclusion",
+      "left": "NL",
+      "right": "PL",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "For a polynomial-clocked logspace nondeterministic machine, its accepting-path count f is #L. The GapL function f−0 is positive exactly when an accepting path exists. Proposition3 identifies its positive languages with PL.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-pl-nc",
+      "relation": "inclusion",
+      "left": "PL",
+      "right": "NC",
+      "source_ids": [
+        "v040-BCP1983"
+      ],
+      "justification": "Corollary6.3 gives NC² for probabilistic logspace; §2 defines logspace-uniform circuits. This embeds in the benchmark’s logspace-uniform NC.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-np-existsr",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "ExistsR",
+      "source_ids": [
+        "v040-MW2025",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "NP⊆∃R is stated in the abstract. Explicitly reduce Boolean circuit satisfiability to real quadratic constraints: z(z−1)=0 for each wire, z=xy for AND, z=1−x for NOT, and force output1.",
+      "evidence_kind": "direct_source_and_elementary_derivation"
+    },
+    {
+      "id": "v040-existsr-pspace",
+      "relation": "inclusion",
+      "left": "ExistsR",
+      "right": "PSPACE",
+      "source_ids": [
+        "v040-Canny1988"
+      ],
+      "justification": "Canny’s abstract states that the existential theory of the reals is decidable in polynomial space; polynomial-time binary many-one reductions preserve PSPACE.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-uniformnc1-l",
+      "relation": "inclusion",
+      "left": "UniformNC1",
+      "right": "L",
+      "source_ids": [
+        "v040-BKLM2012",
+        "v040-GHR1995",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Use standard U_E-uniform NC¹=ALOGTIME. A deterministic depth-first traversal of the logarithmic-depth alternating computation tree stores a path and recomputes configurations in O(log n) workspace; AppendixD of GHR records uniform NC¹⊆DLOG.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-uniformnc1-nc1",
+      "relation": "inclusion",
+      "left": "UniformNC1",
+      "right": "NC1",
+      "source_ids": [
+        "v040-BKLM2012"
+      ],
+      "justification": "Forget standard U_E uniformity of the polynomial-size logarithmic-depth circuit family.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-uniformnc1-not-ac0",
+      "relation": "separation",
+      "left": "UniformNC1",
+      "right": "AC0",
+      "source_ids": [
+        "FSS1984",
+        "v040-BKLM2012",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "PARITY has a balanced binary XOR tree with standard U_E uniformity, after replacing XOR by constant-size AND/OR/NOT gadgets. The Furst–Saxe–Sipser lower bound excludes even nonuniform AC0.",
+      "evidence_kind": "direct_lower_bound_and_elementary_transfer"
+    },
+    {
+      "id": "v040-pp-psharpp",
+      "source_ids": [
+        "v040-CountingNewDerivations",
+        "q-fr98"
+      ],
+      "justification": "A deterministic polynomial-time machine makes one query to its total PP language oracle.",
+      "relation": "inclusion",
+      "left": "PP",
+      "right": "PSharpP"
+    },
+    {
+      "id": "v040-ph-psharpp",
+      "source_ids": [
+        "Toda1991"
+      ],
+      "justification": "Toda’s theorem PH⊆P^PP.",
+      "relation": "inclusion",
+      "left": "PH",
+      "right": "PSharpP"
+    },
+    {
+      "id": "v040-parity-psharpp",
+      "source_ids": [
+        "auditCQ-OH91",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "A polynomial-length accepting-path count is reconstructed using polynomially many PP threshold queries; its parity decides the language.",
+      "relation": "inclusion",
+      "left": "parityP",
+      "right": "PSharpP"
+    },
+    {
+      "id": "v040-psharpp-ch",
+      "source_ids": [
+        "v040-Burgisser2006",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "P^PP⊆PP^PP is contained in the fixed second standard level of CH.",
+      "relation": "inclusion",
+      "left": "PSharpP",
+      "right": "CH"
+    },
+    {
+      "id": "v040-ch-pspace",
+      "source_ids": [
+        "v040-AllenderWagner1993",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "For every fixed level, enumerate counting branches and recursively answer oracle queries in polynomial space. The language chooses a fixed level and polynomial bound.",
+      "relation": "inclusion",
+      "left": "CH",
+      "right": "PSPACE"
+    },
+    {
+      "id": "v040-q-qma-qma2",
+      "relation": "inclusion",
+      "left": "QMA",
+      "right": "QMA2",
+      "source_ids": [
+        "v040-q-HM2010"
+      ],
+      "justification": "Ignore the second witness register. A zero-qubit normalized second witness suffices; the first verifier and its gap are unchanged."
+    },
+    {
+      "id": "v040-q-qma2-nexp",
+      "relation": "inclusion",
+      "left": "QMA2",
+      "right": "NEXP",
+      "source_ids": [
+        "v040-q-Gharibian2023",
+        "v040-q-HM2010",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Guess exponentially many polynomial-precision amplitudes for the two polynomial-qubit witnesses and simulate the polynomial-size verifier to constant additive accuracy. The constant gap permits normalization and rounding; nondeterministic exponential time suffices."
+    },
+    {
+      "id": "v040-q-ma-stoqma",
+      "relation": "inclusion",
+      "left": "MA",
+      "right": "StoqMA",
+      "source_ids": [
+        "v040-q-AGL2025",
+        "v040-q-BBT2006"
+      ],
+      "justification": "Use an amplified perfectly complete coherent MA verifier and an output-controlled swap of zero and plus ancillas. The X-measurement acceptance is1 on yes witnesses and at most1/2+negligible on no inputs, an allowed threshold pair in the union."
+    },
+    {
+      "id": "v040-q-stoqma-sbp",
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "SBP",
+      "source_ids": [
+        "v040-q-BBT2006"
+      ],
+      "justification": "Apply the stoquastic-verifier SBP simulation to each efficiently computable inverse-polynomial-gap threshold pair. No amplification to a single fixed threshold pair is assumed."
+    },
+    {
+      "id": "v040-q-stoqma-qma",
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "QMA",
+      "source_ids": [
+        "v040-q-AGL2025",
+        "q-mw05",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "A general quantum verifier can implement zero/plus preparation, the reversible circuit, and final X measurement. QMA amplification handles the efficiently known inverse-polynomial acceptance gap."
+    },
+    {
+      "id": "v040-q-bqp-qszk",
+      "relation": "inclusion",
+      "left": "BQP",
+      "right": "QSZK",
+      "source_ids": [
+        "v040-q-Watrous2002",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "An amplified BQP algorithm yields a classical output bit distribution with mass near1 on yes and near0 on no. Compare this distribution with a fixed zero bit, retaining the result and discarding work; the trace distance has the QSD gap on every input."
+    },
+    {
+      "id": "v040-q-szk-qszk",
+      "relation": "inclusion",
+      "left": "SZK",
+      "right": "QSZK",
+      "source_ids": [
+        "q-gsv98",
+        "v040-q-Watrous2002",
+        "v040-q-Watrous2009",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Use the complete Statistical Difference characterization of SZK, generate diagonal quantum output states coherently, and discard the randomness. Their trace distance equals classical total variation distance. The full-QSZK completeness bridge then applies."
+    },
+    {
+      "id": "v040-q-qszk-pspace",
+      "relation": "inclusion",
+      "left": "QSZK",
+      "right": "PSPACE",
+      "source_ids": [
+        "v040-q-JUW2009"
+      ],
+      "justification": "QSZK⊆QIP(2)⊆PSPACE, restricted to inputs forming a total language."
+    },
+    {
+      "id": "v040-q-bpl-bql",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "BQL",
+      "source_ids": [
+        "v040-q-LNY2021",
+        "v040-q-FR2020"
+      ],
+      "justification": "Use the standard polynomial-time, logarithmic-space quantum simulation of fair-coin computation and space-preserving measurement elimination."
+    },
+    {
+      "id": "v040-q-bql-pl",
+      "relation": "inclusion",
+      "left": "BQL",
+      "right": "PL",
+      "source_ids": [
+        "v040-q-LNY2021"
+      ],
+      "justification": "The §2.3 chain explicitly places polynomial-time bounded-error quantum logspace in PL; the benchmark retains that polynomial time bound."
     }
   ],
   "rules": [
@@ -8115,6 +8964,1287 @@
       ],
       "justification": "Discharged by D2, which only needs the exact-count language in A0PP. CeqP⊆QMA and QMA⊆A0PP supply that. Common encoded query length makes the amplified threshold independent of the guessed count. Nonnegative gaps prevent cancellations and a polynomially large exponent defeats all wrong guesses. Apply the same argument to parityP∈P^#P[1] for the second endpoint. See derivation D2 in research/audit-round2-cross-counting.md.",
       "audit_status": "independently_cross_reviewed"
+    },
+    {
+      "id": "v040-padding-regular-E-BPL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "BPL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "BPL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-Hoza2022"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. BPL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-BPL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "BPL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "BPL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-Hoza2022"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. BPL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-E-UL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "UL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "UL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-RA1999"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. UL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-UL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "UL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "UL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-RA1999"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. UL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-E-PL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-AO1996"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. PL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-PL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-AO1996"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. PL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-E-ExistsR",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "ExistsR"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "ExistsR"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-MW2025"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. ExistsR is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-ExistsR",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "ExistsR"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "ExistsR"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-MW2025"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. ExistsR is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-pp-circuits-ch-circuits",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "v040-Burgisser2006"
+      ],
+      "justification": "Lemma2.5 explicitly states this implication."
+    },
+    {
+      "id": "v040-pp-circuits-ch-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "v040-FournierPerifelVerclos2014",
+        "q-aw09",
+        "v040-AllenderWagner1993",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "PP circuits give polynomial-size Boolean circuits for #P output bits by polynomially many threshold queries, with advice for all polynomial query lengths. Lemma3 then gives CH=MA. Its proof uses LFKN and PP^PH⊆P^PP; it does not assume GRH or infer CH collapse merely from P^PP=PP."
+    },
+    {
+      "id": "v040-pp-awpp-ch-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-FR99",
+        "v040-Burgisser2006",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Fortnow–Rogers Theorem3.3 gives PP^AWPP=PP unconditionally. Induct on the fixed counting level, replacing only its oracle class using the hypothesis. No unrelativized outer-machine inclusion is relativized."
+    },
+    {
+      "id": "v040-pp-ph-ch-ph",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "PH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "PH"
+        }
+      ],
+      "source_ids": [
+        "v040-AllenderWagner1993",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "P^PP⊆P^PH⊆PH because each particular PH oracle has a fixed finite level. Induct using C[k]⊆PH ⇒ C[k+1]⊆PP^PH⊆P^PP⊆PH. The strengthened Toda theorem supplies the middle step."
+    },
+    {
+      "id": "v040-pp-parity-psharpp-parity",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Replace the PP oracle in P^PP and invoke the unconditional identity P^parityP=parityP. Only the oracle position is replaced."
+    },
+    {
+      "id": "v040-padding-regular-E-PSharpP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PSharpP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PSharpP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from EXP to E, followed by polynomial-time many-one closure of PSharpP. For CH the simulated language has a fixed finite level."
+    },
+    {
+      "id": "v040-padding-regular-NE-PSharpP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PSharpP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PSharpP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from NEXP to NE, followed by polynomial-time many-one closure of PSharpP. For CH the simulated language has a fixed finite level."
+    },
+    {
+      "id": "v040-padding-regular-E-CH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "CH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "CH"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from EXP to E, followed by polynomial-time many-one closure of CH. For CH the simulated language has a fixed finite level."
+    },
+    {
+      "id": "v040-padding-regular-NE-CH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "CH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "CH"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from NEXP to NE, followed by polynomial-time many-one closure of CH. For CH the simulated language has a fixed finite level."
+    },
+    {
+      "id": "v040-q-pp-in-qma-p-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "v040-q-VD2019"
+      ],
+      "justification": "QMA⊆PP and complement closure of PP give QMA=PP=coQMA. Theorem4 gives P^PP⊆QMA; hence PSharpP⊆PP. Equivalently use Theorem2, PH^PP=QMA. No CH collapse is asserted."
+    },
+    {
+      "id": "v040-q-qma-complement-ph-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "coQMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "QMA"
+        }
+      ],
+      "source_ids": [
+        "v040-q-VD2019"
+      ],
+      "justification": "Complementing the premise gives the reverse containment. Theorem11 then gives PH^QMA=QMA and therefore PH⊆QMA. Theorem3 states the weaker resulting PH⊆PP."
+    },
+    {
+      "id": "v040-q-padding-E-BQL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "BQL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "BQL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves BQL: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-BQL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "BQL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "BQL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves BQL: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-E-QMA2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "QMA2"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "QMA2"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves QMA2: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-QMA2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "QMA2"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "QMA2"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves QMA2: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-E-StoqMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "StoqMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "StoqMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves StoqMA: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-StoqMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "StoqMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "StoqMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves StoqMA: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-E-QSZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "QSZK"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "QSZK"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves QSZK: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-QSZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "QSZK"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "QSZK"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves QSZK: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-pp-ma-ch-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "MA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "v040-VD2019",
+        "v040-AllenderWagner1993",
+        "v040-CountingCrossDerivations"
+      ],
+      "justification": "MA⊆PP is unconditional, so the premise gives MA=PP. Vinkhuijzen–Deutz Theorem20 yields CH=MA. A direct explanation uses P^(MA∩coMA)⊆MA via amplified query-transcript certificates, followed by PP^PH⊆P^PP and induction on each fixed counting level."
+    },
+    {
+      "id": "v040-pp-parity-ch-parity",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "v040-AllenderWagner1993",
+        "auditCQ-OH91",
+        "v040-CountingCrossDerivations"
+      ],
+      "justification": "The premise and P^parityP=parityP give P^PP⊆parityP. The final proof in Allender–Wagner Section1 gives PP^parityP⊆P^PP. Starting with C0=P⊆parityP, Ck⊆parityP implies Ck+1⊆PP^parityP⊆P^PP⊆parityP. Only oracle languages are replaced; no premise is relativized on the outer machine."
+    },
+    {
+      "id": "v040-uniformnc1-hardwiring-ACC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "ACC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "ACC0"
+        }
+      ],
+      "source_ids": [
+        "v040-Buss1987",
+        "v040-BKLM2012",
+        "v040-UniformHardwiringDerivation"
+      ],
+      "justification": "BFV in fixed-width parenthesized binary syntax belongs to ALOGTIME. Unfold an arbitrary nonuniform NC1 circuit into a polynomial-size formula, substitute input values in its leaves, and restrict a hypothetical nonuniform target-class BFV circuit at that formula length. The projection preserves polynomial size and constant depth; ACC0 retains its fixed modulus set. No uniform generator for the original NC1 family is required.",
+      "evidence_kind": "derived_from_primary_theorem_and_explicit_restriction_argument",
+      "derivation_locator": "research/v0.4.0/classical-baseline-cross-review.md#two-additional-circuit-consequences"
+    },
+    {
+      "id": "v040-uniformnc1-hardwiring-TC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "TC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "TC0"
+        }
+      ],
+      "source_ids": [
+        "v040-Buss1987",
+        "v040-BKLM2012",
+        "v040-UniformHardwiringDerivation"
+      ],
+      "justification": "BFV in fixed-width parenthesized binary syntax belongs to ALOGTIME. Unfold an arbitrary nonuniform NC1 circuit into a polynomial-size formula, substitute input values in its leaves, and restrict a hypothetical nonuniform target-class BFV circuit at that formula length. The projection preserves polynomial size and constant depth; ACC0 retains its fixed modulus set. No uniform generator for the original NC1 family is required.",
+      "evidence_kind": "derived_from_primary_theorem_and_explicit_restriction_argument",
+      "derivation_locator": "research/v0.4.0/classical-baseline-cross-review.md#two-additional-circuit-consequences"
+    },
+    {
+      "id": "intersection-np-conp-BPL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BPL",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BPL",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BPL",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-BPL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BPL",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BPL",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BPL",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-UL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UL",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UL",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "UL",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-UL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UL",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UL",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "UL",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-PL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-PL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-BQL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BQL",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BQL",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BQL",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-BQL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "BQL",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "BQL",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "BQL",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-ExistsR",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-ExistsR",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-PSharpP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-PSharpP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-CH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-CH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-QMA2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-QMA2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-StoqMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "StoqMA",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "StoqMA",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "StoqMA",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-StoqMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "StoqMA",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "StoqMA",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "StoqMA",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-QSZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-QSZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
+    },
+    {
+      "id": "intersection-np-conp-UniformNC1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "NP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "coNP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "NPcapcoNP"
+        }
+      ],
+      "source_ids": [
+        "ClassicalDerivations"
+      ],
+      "justification": "Class intersection introduction."
+    },
+    {
+      "id": "intersection-rp-corp-UniformNC1",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "RP"
+        },
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "coRP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "ZPP"
+        }
+      ],
+      "source_ids": [
+        "Gill1977",
+        "AB2007"
+      ],
+      "justification": "ZPP = RP ∩ coRP."
     }
   ],
   "audit_limitations": [
@@ -8137,6 +10267,8 @@
     "parityP contained in PP is not a known seed. Exact parity and a threshold are different counting conditions.",
     "Do not encode BPP=P implies NEXP not contained in Ppoly: Kabanets–Impagliazzo gives a disjunction with an arithmetic circuit lower bound, which this pair-only rule language cannot express.",
     "The nonuniform circuit convention is essential. Nonuniform AC0 already contains undecidable length languages and must not be included in P or L. Its known reverse separations from all decidable roster classes should be provided by the classical baseline.",
-    "All source years are document/publication years, not the search engine's sometimes misleading crawl or republication date. Later revisions require a pinned historical-version audit before eligibility is frozen."
+    "All source years are document/publication years, not the search engine's sometimes misleading crawl or republication date. Later revisions require a pinned historical-version audit before eligibility is frozen.",
+    "The v0.4.0 domain dossiers extend the full context theory. Only the explicit scored roster earns points; background endpoints can still support consequences.",
+    "New model equivalences and historical classifications are audited separately from successful Lean compilation. See the versioned review and release-wide assessment."
   ]
 }

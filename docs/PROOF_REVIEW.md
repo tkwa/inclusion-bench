@@ -1,6 +1,6 @@
 # Checking submitted proofs
 
-Ordinary inclusion and noninclusion submissions have an executable Lean verifier. It checks closed theorems over all 50 operational class definitions in `InclusionBench.Quantum.completeInterpretation`. A successful report establishes the submitted statement relative to the explicitly trusted literature baseline. Benchmark points also require the separate proof, run-integrity, and cutoff-history reviews described in [EVALUATION.md](EVALUATION.md).
+Ordinary inclusion and noninclusion submissions have an executable Lean verifier. It checks closed theorems over all 61 operational class definitions in `InclusionBench.Quantum.completeInterpretation`. A successful report establishes the submitted statement relative to the explicitly trusted literature baseline. Only pairs with two of the 50 scored endpoints earn direct points; background claims can support scored consequences. Benchmark points also require the separate proof, run-integrity, and cutoff-history reviews described in [EVALUATION.md](EVALUATION.md).
 
 Existing published proofs may be trusted under the benchmark's existing-proof waiver. Each cited fact, conditional implication, and complement identity becomes a named axiom generated from the current dataset. Submitted results never become axioms. The generated file exists only in the verifier's temporary job directory; it does not weaken the core library's no-custom-axioms build.
 

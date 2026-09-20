@@ -190,7 +190,18 @@
             "NEXP",
             "EXPSPACE",
             "E",
-            "NE"
+            "NE",
+            "BPL",
+            "UL",
+            "PL",
+            "BQL",
+            "ExistsR",
+            "PSharpP",
+            "CH",
+            "QMA2",
+            "StoqMA",
+            "QSZK",
+            "UniformNC1"
           ]
         },
         "right": {
@@ -244,7 +255,18 @@
             "NEXP",
             "EXPSPACE",
             "E",
-            "NE"
+            "NE",
+            "BPL",
+            "UL",
+            "PL",
+            "BQL",
+            "ExistsR",
+            "PSharpP",
+            "CH",
+            "QMA2",
+            "StoqMA",
+            "QSZK",
+            "UniformNC1"
           ]
         }
       },

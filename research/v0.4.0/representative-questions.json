@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "version": "0.4.0",
+  "status": "illustrative new-roster questions; not a probability distribution or an importance ranking",
+  "selection_basis": "Chosen to make the scientific additions reviewable after the independent landscape comparison. Neither predicted tractability nor Lean implementation cost determines inclusion. The original50-scenario coverage stress test remains separate.",
+  "scenarios": [
+    {
+      "id": "v040-bpl-l",
+      "title": "Derandomize polynomial-time logarithmic-space computation",
+      "category": "small space",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "BPL",
+          "right": "L"
+        }
+      ],
+      "notes": "BPL keeps both a logarithmic workspace bound and a polynomial worst-case clock. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-nl-ul",
+      "title": "Make logarithmic-space nondeterminism unambiguous",
+      "category": "small space",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "NL",
+          "right": "UL"
+        }
+      ],
+      "notes": "UL permits at most one accepting path on every input. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-ul-l",
+      "title": "Deterministically simulate every unambiguous logspace language",
+      "category": "small space",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "UL",
+          "right": "L"
+        }
+      ],
+      "notes": "This does not assume a solution to a promise-only unique-path problem. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-pl-bpl",
+      "title": "Turn unbounded-error logspace computation into bounded-error computation",
+      "category": "space and counting",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "BPL"
+        }
+      ],
+      "notes": "Both endpoints have polynomial clocks; the error gap is the distinction. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-bql-bpl",
+      "title": "Classically simulate bounded-error quantum logspace",
+      "category": "space and quantum",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "BQL",
+          "right": "BPL"
+        }
+      ],
+      "notes": "The quantum computation has logarithmic workspace and polynomial running time. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-pl-bql",
+      "title": "Match quantum logspace to its unbounded-error counting upper bound",
+      "category": "space and quantum",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "PL",
+          "right": "BQL"
+        }
+      ],
+      "notes": "An unbounded-time quantum simulation does not establish this polynomial-time inclusion. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-l-uniformnc1",
+      "title": "Simulate all deterministic logspace languages in uniform logarithmic depth",
+      "category": "uniform circuits",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "L",
+          "right": "UniformNC1"
+        }
+      ],
+      "notes": "UniformNC1 uses standard extended-connection uniformity, equivalently ALOGTIME. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-uniformnc1-tc0",
+      "title": "Simulate uniform logarithmic depth by constant-depth threshold circuits",
+      "category": "circuits",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "TC0"
+        }
+      ],
+      "notes": "The target TC0 is nonuniform. This hypothesis is distinct from silently treating NC1 as uniform. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-existsr-np",
+      "title": "Give ordinary NP certificates for real feasibility",
+      "category": "real feasibility",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "NP"
+        }
+      ],
+      "notes": "The inputs are finite binary descriptions; real assignments need not have short rational encodings. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-existsr-ch",
+      "title": "Place real feasibility in the counting hierarchy",
+      "category": "real feasibility and counting",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "CH"
+        }
+      ],
+      "notes": "CH is a union of fixed finite levels, not a hierarchy whose level grows with input length. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-existsr-bqp",
+      "title": "Solve every real-feasibility language with bounded-error quantum computation",
+      "category": "real feasibility and quantum",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "ExistsR",
+          "right": "BQP"
+        }
+      ],
+      "notes": "This concerns the total binary decision class, not real-input BSS computation. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-psharpp-pp",
+      "title": "Eliminate deterministic adaptive PP-oracle queries",
+      "category": "counting",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "PP"
+        }
+      ],
+      "notes": "PSharpP is the decision class P^PP=P^#P. This alone is not encoded as a collapse of CH. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-ch-psharpp",
+      "title": "Collapse the counting hierarchy to deterministic counting-oracle computation",
+      "category": "counting",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "PSharpP"
+        }
+      ],
+      "notes": "The reverse containment is in the baseline. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-pspace-ch",
+      "title": "Place polynomial space in the counting hierarchy",
+      "category": "counting and space",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "PSPACE",
+          "right": "CH"
+        }
+      ],
+      "notes": "The reverse containment is in the baseline. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-qma2-qma",
+      "title": "Remove the extra power of two unentangled quantum proofs",
+      "category": "quantum verification",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "QMA"
+        }
+      ],
+      "notes": "The witnesses are unentangled across the two proof registers. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-qma2-pspace",
+      "title": "Simulate two unentangled quantum proofs in polynomial space",
+      "category": "quantum verification",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "QMA2",
+          "right": "PSPACE"
+        }
+      ],
+      "notes": "The ordinary baseline upper bound is NEXP, not PSPACE. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-nexp-qma2",
+      "title": "Verify nondeterministic exponential time with two unentangled proofs",
+      "category": "quantum verification",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "QMA2"
+        }
+      ],
+      "notes": "The total NEXP endpoint has the standard total-completion interpretation discussed in the roster dossier. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-stoqma-ma",
+      "title": "Classically simulate stoquastic quantum verification",
+      "category": "restricted quantum verification",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "StoqMA",
+          "right": "MA"
+        }
+      ],
+      "notes": "StoqMA uses the standard inverse-polynomial-gap threshold union; it is not the NP slice with soundness exactly one half. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-qszk-bqp",
+      "title": "Remove interaction from quantum statistical zero knowledge",
+      "category": "quantum zero knowledge",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "BQP"
+        }
+      ],
+      "notes": "Every input must satisfy the gap; a promise-only theorem needs a valid total-language transfer. Hypothetical result, not a verified model achievement."
+    },
+    {
+      "id": "v040-qszk-qma",
+      "title": "Give quantum witnesses for all quantum statistical zero-knowledge languages",
+      "category": "quantum zero knowledge",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "QSZK",
+          "right": "QMA"
+        }
+      ],
+      "notes": "No unconditional QSZK⊆QMA or QSZK⊆PP is imported merely from a common PSPACE upper bound. Hypothetical result, not a verified model achievement."
+    }
+  ]
+}

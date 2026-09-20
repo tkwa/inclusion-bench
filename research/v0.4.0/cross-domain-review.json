@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "kind": "independent_cross_domain_roster_review",
+  "cutoff": "2026-09-01",
+  "review_date": "2026-09-20",
+  "scope": "total_binary_languages_only",
+  "status": "provisional_recommendation_not_canonical_change",
+  "input_sha256": {
+    "classical-landscape.md": "0e2c08beb97ec63ff2b9f7f97775f68a07bae5d41916bca8d2708960d138224f",
+    "classical-landscape.json": "24e44482e5266f6252b7d23360b87dbd513a70b004af6afd9ef6893c3527b788",
+    "counting-and-scope-landscape.md": "81454f082f81b42b98e962449c9983d42341112f74bf08bb9b763a0ce706ecf3",
+    "counting-and-scope-landscape.json": "58780b17a705fc3718bbfb78677629735fca6aa8b6fec25a54aa1487aa2c3325",
+    "quantum-randomness-landscape.md": "0cd978d7c8b7f5e88598c6ca00351e1b3f974af3580a0d91091f3e4c55e1b9a7",
+    "quantum-randomness-landscape.json": "8483b8c1de42eb53b1b05eb1736d84b0f5454a286d3998e43376c605782c72f5"
+  },
+  "findings": [
+    {
+      "id": "BPL-runtime",
+      "severity": "definition_guard",
+      "verdict": "accept_intended_class_with_explicit_runtime",
+      "target": "classical BPL definition",
+      "finding": "Halting on every random tape should be supplemented by an explicit polynomial worst-case runtime and fresh-coin/random-tape convention. Almost-sure halting is not interchangeable.",
+      "reason": "Every-path halting implies no reachable configuration cycle only under the stated finite-configuration model.",
+      "source_ids": [
+        "space21"
+      ]
+    },
+    {
+      "id": "BQL-runtime",
+      "severity": "definition_guard",
+      "verdict": "required",
+      "target": "new BQL model",
+      "finding": "Polynomial runtime and logarithmic classical plus quantum workspace are essential. Unbounded-time bounded-error quantum logspace equals PL.",
+      "source_ids": [
+        "space21"
+      ]
+    },
+    {
+      "id": "uniform-NC1",
+      "severity": "definition_guard",
+      "verdict": "accept_dlogtime_choice",
+      "target": "possible uniform NC1 addition",
+      "finding": "DLOGTIME direct-connection uniformity is not automatically supplied by a logspace circuit-printing transducer. Retain nonuniform NC1 separately.",
+      "source_ids": [
+        "uniform90"
+      ]
+    },
+    {
+      "id": "PSharpP-meaning",
+      "severity": "definition_guard",
+      "verdict": "accept",
+      "target": "counting P^PP proposal",
+      "finding": "Use deterministic adaptive oracle access; P^PP=P^#P as decision classes does not make #P a language class or identify one Boolean PP query with a count.",
+      "source_ids": [
+        "counting95"
+      ]
+    },
+    {
+      "id": "CH-fixed-level",
+      "severity": "definition_guard",
+      "verdict": "accept",
+      "target": "counting CH proposal",
+      "finding": "Each language belongs to some fixed finite counting level; the hierarchy depth must not vary with input length. No unqualified CH-complete-language claim.",
+      "source_ids": []
+    },
+    {
+      "id": "collapse1",
+      "severity": "derivation_review",
+      "verdict": "accept",
+      "target": "PP^PP=PP iff CH=PP",
+      "finding": "Forward: induct on levels; reverse: second level lies in CH.",
+      "source_ids": []
+    },
+    {
+      "id": "collapse2",
+      "severity": "derivation_review",
+      "verdict": "accept",
+      "target": "PP^PP=P^PP iff CH=P^PP",
+      "finding": "Let D=P^PP. Inline deterministic oracle computations to show PP^D=PP^PP. Equality C2=D stabilizes C3 and every later level. Reverse is inclusion of C2 in CH.",
+      "source_ids": []
+    },
+    {
+      "id": "closure-converse",
+      "severity": "forbidden_inference",
+      "verdict": "agree_with_dossier_warning",
+      "target": "P^PP=PP implies PP^PP=PP",
+      "finding": "No converse established: the deterministic-versus-probabilistic outer machine distinction remains. Truth-table closure does not supply adaptive or probabilistic closure.",
+      "source_ids": [
+        "counting95"
+      ]
+    },
+    {
+      "id": "ExistsR-importance",
+      "severity": "selection_judgment",
+      "verdict": "high_priority_add",
+      "target": "ExistsR",
+      "finding": "Distinct NP, PH and PSPACE questions and a broad complete-problem family justify the slot. A problem-specific geometric algorithm need not resolve a whole-class pair.",
+      "source_ids": [
+        "reals24"
+      ]
+    },
+    {
+      "id": "ExistsR-encoding",
+      "severity": "definition_guard",
+      "verdict": "required",
+      "target": "ExistsR",
+      "finding": "Finite binary formulas with encoded integer/rational coefficients; arbitrary real inputs/constants or polynomial-bit rational witnesses are different targets. Real-valued quantum amplitudes give no automatic QMA containment.",
+      "source_ids": [
+        "reals24"
+      ]
+    },
+    {
+      "id": "StoqMA-boundary",
+      "severity": "definition_guard",
+      "verdict": "required",
+      "target": "StoqMA threshold choice",
+      "finding": "Corollary24 identifies the exact-soundness-1/2 union with NP. Use the intended inverse-polynomial-gap threshold union; do not assert equivalence across all fixed threshold choices.",
+      "source_ids": [
+        "stoq21"
+      ]
+    },
+    {
+      "id": "loss-nonadditivity",
+      "severity": "coverage_guard",
+      "verdict": "required",
+      "target": "demotion analysis",
+      "finding": "Single-node scenario losses do not add to simultaneous-cut losses; independence has no ordinary closure propagation.",
+      "source_ids": []
+    }
+  ],
+  "proposed_roster": {
+    "id": "cross_domain_total_50_B",
+    "classes": [
+      "ACC0",
+      "TC0",
+      "NC1",
+      "Ppoly",
+      "NPpoly",
+      "L",
+      "UL",
+      "NL",
+      "BPL",
+      "PL",
+      "LogCFL",
+      "NC",
+      "SC",
+      "BQL",
+      "PSPACE",
+      "EXPSPACE",
+      "P",
+      "NP",
+      "coNP",
+      "NPcapcoNP",
+      "ExistsR",
+      "NE",
+      "EXP",
+      "NEXP",
+      "RP",
+      "ZPP",
+      "BPP",
+      "MA",
+      "AM",
+      "SBP",
+      "SZK",
+      "UP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "PSharpP",
+      "CH",
+      "BQP",
+      "QCMA",
+      "QMA",
+      "QMA2",
+      "StoqMA",
+      "QSZK",
+      "Sigma2P",
+      "Pi2P",
+      "Delta2P",
+      "Theta2P",
+      "PH"
+    ],
+    "count": 50,
+    "groups_for_readability": {
+      "circuits_advice": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "Ppoly",
+        "NPpoly"
+      ],
+      "space_parallel": [
+        "L",
+        "UL",
+        "NL",
+        "BPL",
+        "PL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "BQL",
+        "PSPACE",
+        "EXPSPACE"
+      ],
+      "time_nondeterminism_reals": [
+        "P",
+        "NP",
+        "coNP",
+        "NPcapcoNP",
+        "ExistsR",
+        "NE",
+        "EXP",
+        "NEXP"
+      ],
+      "randomness_classical_proofs": [
+        "RP",
+        "ZPP",
+        "BPP",
+        "MA",
+        "AM",
+        "SBP",
+        "SZK"
+      ],
+      "counting_ambiguity": [
+        "UP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "PSharpP",
+        "CH"
+      ],
+      "quantum": [
+        "BQP",
+        "QCMA",
+        "QMA",
+        "QMA2",
+        "StoqMA",
+        "QSZK"
+      ],
+      "polynomial_hierarchy": [
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH"
+      ]
+    },
+    "additions": [
+      "BPL",
+      "UL",
+      "PL",
+      "BQL",
+      "ExistsR",
+      "PSharpP",
+      "CH",
+      "QMA2",
+      "StoqMA",
+      "QSZK"
+    ],
+    "demotions_to_background": [
+      "AC0",
+      "coUP",
+      "coMA",
+      "coAM",
+      "coQMA",
+      "FewP",
+      "LWPP",
+      "WPP",
+      "coRP",
+      "E"
+    ],
+    "new_ids_provisional": true,
+    "semantic_requirements": {
+      "NC1": "Existing nonuniform convention",
+      "NC": "Existing logspace-uniform NC convention",
+      "PSharpP": "P^PP=P^#P, deterministic polynomial time with adaptive access",
+      "ExistsR": "Polynomial-time many-one closure of binary-encoded existential real feasibility",
+      "QMA2": "Total restriction of bounded-gap two-unentangled-proof class",
+      "StoqMA": "Total restriction; explicit efficient inverse-polynomial-gap threshold union",
+      "QSZK": "Total restriction of the specified statistical quantum proof model",
+      "BPL": "Polynomial-time logspace randomized machine, every input bounded-error",
+      "BQL": "Polynomial-time logarithmic quantum and classical workspace, every input bounded-error"
+    }
+  },
+  "demotion_losses": [
+    {
+      "nodes": [
+        "FewP"
+      ],
+      "lost_question": "FewP=UP can lack another retained positive resolution",
+      "counterweight": "A separation still implies NP≠UP; not symmetric coverage"
+    },
+    {
+      "nodes": [
+        "LWPP",
+        "WPP"
+      ],
+      "lost_question": "LWPP=WPP and fine exact-normalizer questions",
+      "counterweight": "Keeps SPP/AWPP boundaries and adds adaptive/iterated counting"
+    },
+    {
+      "nodes": [
+        "coUP",
+        "coMA",
+        "coAM",
+        "coQMA",
+        "coRP"
+      ],
+      "lost_question": "Asymmetric complement comparisons and altered multiplicity",
+      "counterweight": "Background nodes preserve derivations but do not guarantee equal endpoint credit"
+    },
+    {
+      "nodes": [
+        "E"
+      ],
+      "lost_question": "Direct linear-exponential deterministic endpoint comparisons",
+      "counterweight": "EXP captures many padded outward comparisons; quantitative E circuit hardness remains background vocabulary and was not exactly represented by polynomial-class pairs"
+    },
+    {
+      "nodes": [
+        "AC0"
+      ],
+      "lost_question": "No current unresolved incident pair in the inherited snapshot",
+      "counterweight": "Keep as a historical and inference node; no assertion of irrelevance outside this roster"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "uniform_parallel",
+      "remove": [
+        "Pi2P"
+      ],
+      "add": [
+        "UniformNC1"
+      ],
+      "requirements": [
+        "DLOGTIME uniformity; distinct ID from current nonuniform NC1"
+      ],
+      "gain": "Exact uniform NC1/L boundary",
+      "loss": "Asymmetric Pi2 interfaces and complement weighting"
+    },
+    {
+      "id": "symmetric_verification",
+      "remove": [
+        "Pi2P"
+      ],
+      "add": [
+        "S2P"
+      ],
+      "gain": "Symmetric alternation and structural collapse target",
+      "loss": "Pi2 interfaces; still no uniform NC1"
+    },
+    {
+      "id": "ambiguity",
+      "remove": [
+        "CH"
+      ],
+      "add": [
+        "FewP"
+      ],
+      "gain": "Positive ambiguity collapse FewP=UP",
+      "loss": "Whole counting-hierarchy comparisons"
+    },
+    {
+      "id": "perfect_completeness",
+      "remove": [
+        "QSZK"
+      ],
+      "add": [
+        "QMA1"
+      ],
+      "requirements": [
+        "Fixed exact gates; total restriction explicitly stated"
+      ],
+      "gain": "Perfect completeness",
+      "loss": "Quantum statistical simulation and state-distinguishability interfaces"
+    },
+    {
+      "id": "conservative_A",
+      "remove": [
+        "PL",
+        "BQL"
+      ],
+      "add": [
+        "coRP",
+        "E"
+      ],
+      "gain": "Fewer old endpoint changes",
+      "loss": "Logspace counting and quantum space"
+    }
+  ],
+  "priority_judgments": {
+    "PSharpP_and_CH": "Prefer both over retaining every exact normalizer in a broad roster; distinct questions, not compulsory allocation",
+    "ExistsR": "High value for classical and cross-domain NP/PH/PSPACE interfaces",
+    "BPL_PL_BQL": "Distinct randomness/counting/quantum resources; no quota argument",
+    "E_or_NE": "Prefer E demotion in this package; single-cut consequence counts are only supporting evidence",
+    "UniformNC1": "Strong next alternative, never a relabeling of nonuniform NC1",
+    "QPCP": "Very high canonical importance, but lower priority under strict total-language scope because the full promise conjecture need not transfer"
+  },
+  "sources": [
+    {
+      "id": "space21",
+      "title": "Quantum Logarithmic Space and Post-selection",
+      "url": "https://arxiv.org/abs/2105.02681",
+      "locator": "Sections 2.1–2.3, main theorem, 3.4",
+      "checked": "Primary full text; polynomial time and control conventions; BPL/BQL/PL chain"
+    },
+    {
+      "id": "uniform90",
+      "title": "On uniformity within NC1",
+      "url": "https://doi.org/10.1016/0022-0000(90)90022-D",
+      "locator": "Abstract and declared small-circuit uniformity models",
+      "checked": "Primary abstract and author bibliographic records; full equivalence proof not re-audited"
+    },
+    {
+      "id": "counting95",
+      "title": "My Favorite Ten Complexity Theorems",
+      "url": "https://lance.fortnow.com/papers/files/topten.pdf",
+      "locator": "Sections 2.8–2.9, PDF pages 10–12",
+      "checked": "Primary text on P^#P versus PSPACE, P^PP identity, truth-table versus oracle distinction"
+    },
+    {
+      "id": "reals24",
+      "title": "The Existential Theory of the Reals as a Complexity Class: A Compendium",
+      "url": "https://arxiv.org/html/2407.18006v1#S1.SS1",
+      "locator": "Sections 1.1–1.3",
+      "checked": "Primary author compendium; finite-input convention and NP/PH/PSPACE interfaces"
+    },
+    {
+      "id": "stoq21",
+      "title": "StoqMA Meets Distribution Testing",
+      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol197-tqc2021/LIPIcs.TQC.2021.4/LIPIcs.TQC.2021.4.pdf",
+      "locator": "Corollary 24, page 4:13",
+      "checked": "Primary theorem statement independently read after another reviewer identified it"
+    },
+    {
+      "id": "bql25",
+      "title": "Directed st-Connectivity with Few Paths Is in Quantum Logspace",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2025.18",
+      "locator": "Theorem 4 and conclusion",
+      "checked": "Primary total-language motivation from initial dossier"
+    },
+    {
+      "id": "qpcp25",
+      "title": "Quantum PCPs: on Adaptivity, Multiple Provers and Reductions to Local Hamiltonians",
+      "url": "https://arxiv.org/abs/2403.04841v3",
+      "locator": "Definition 5 and section 1.1",
+      "checked": "Initial primary inspection; retained as semantic constraint"
+    }
+  ],
+  "checks": {
+    "unique_roster_size": 50,
+    "roster_equals_old_minus_demotions_plus_additions": true,
+    "no_canonical_files_edited": true,
+    "full_new_baseline_audit_performed": false,
+    "importance_weights_used": false,
+    "implementation_ease_used_for_selection": false
+  },
+  "limitations": [
+    "No claim of optimality or human expert consensus.",
+    "Classifications for new nodes await exact-model historical audit.",
+    "Single-demotion experiments inherited from the classical dossier were not rerun for this simultaneous package here.",
+    "Independence outcomes need separate loss accounting.",
+    "The full uniformity theorem and every reference chain were not re-proved in this bounded review.",
+    "Sampling, functions, search, algebraic polynomial families and quantitative tasks remain outside the authorized scope."
+  ]
+}

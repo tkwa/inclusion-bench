@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "status": "semantic_review_complete_no_blocking_defect_found",
+  "reviewer": {
+    "identity": "Codex classical_literature subagent",
+    "kind": "AI-assisted independent author-role review, not human expert certification"
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "scope": {
+    "new_classes": [
+      "QMA2",
+      "BQL",
+      "StoqMA",
+      "QSZK"
+    ],
+    "authored_model_edits": false,
+    "new_regression_module": "quantum/InclusionQuantum/SemanticChecks.lean",
+    "not_a_claim": "Successful compilation and these invariants do not prove complete textbook-model equivalence."
+  },
+  "reviewed_file_sha256": {
+    "quantum/InclusionQuantum/Quantum.lean": "fd174462ff36f8a6ce104f21179398749ed087a155a869ef07089b3081a13762",
+    "quantum/InclusionQuantum/Normalization.lean": "c2e67506a2fb2d0cd94c51974dc4b9ad68b95bae5fd8700b5ab3a600d0a0ebc1",
+    "quantum/InclusionQuantum/Unentangled.lean": "5fdfff013dad3af352bde4d916d3a3251cd47dd1adce79c5937c667d6a523f89",
+    "quantum/InclusionQuantum/Logspace.lean": "8db722540af3802a38781da3572b7d0643cb9b52fadd6ce127afa5e91e2ad4dc",
+    "quantum/InclusionQuantum/Stoquastic.lean": "3e39ea098b2eea7fe1e7667f345f767707b50c350d69179d6bb2134c81cf90cd",
+    "quantum/InclusionQuantum/Statistical.lean": "ef8a9015fcc8a9faabbd0f132e58ee13bd055b241d8c5b8c8672d84891ab491f",
+    "quantum/InclusionQuantum/SemanticChecks.lean": "e08ab15bb8f9368058ee7d1b158bd154cdd9516fcb089381388bec007e1ee142",
+    "lean/InclusionBench/Transducers.lean": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+    "lean/InclusionBench/Machines.lean": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d",
+    "lean/InclusionBench/UniformCircuits.lean": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2"
+  },
+  "checks": [
+    {
+      "id": "shared-finite-gates",
+      "module": "quantum/InclusionQuantum/Quantum.lean",
+      "start_line": 44,
+      "end_line": 69,
+      "question": "Can a verifier receive an unrestricted matrix, nonlocal gate or uncomputed amplitude?",
+      "verdict": "pass",
+      "reason": "Gate has exactly H,T,X,CNOT; indices are Fin width and CNOT requires distinct control/target. T is fixed algebraic (1+i)/sqrt2. H has the ordinary signed two-amplitude formula. Circuit.run applies the finite list in order. No circuit gate accepts a language, oracle, or arbitrary matrix.",
+      "source_ids": []
+    },
+    {
+      "id": "shared-complete-serialization",
+      "module": "quantum/InclusionQuantum/Quantum.lean",
+      "start_line": 78,
+      "end_line": 116,
+      "question": "Can an arbitrary circuit family or width hide nonuniform advice?",
+      "verdict": "pass",
+      "reason": "Serialization includes width, output wire, gate count and every tag/index. encodeNaturals is injective and gate records have fixed arity; the generator emits the complete word in polynomial time. A standalone compiled theorem proves that equal serializations determine the same width. Proof fields in gate constructors cannot affect the physical action.",
+      "source_ids": []
+    },
+    {
+      "id": "shared-register-embedding",
+      "module": "quantum/InclusionQuantum/Quantum.lean",
+      "start_line": 118,
+      "end_line": 148,
+      "question": "Can witness and input/ancilla registers overlap, or supply nonzero unaccounted amplitudes?",
+      "verdict": "pass",
+      "reason": "Input,witness,ancilla indices are disjoint consecutive intervals. initialState requires the input bits and every ancilla bit to match their intended fixed values, else returns zero. Normalization.lean proves the embedding preserves normSquared, including empty witness and input cases.",
+      "source_ids": []
+    },
+    {
+      "id": "shared-controller",
+      "module": "lean/InclusionBench/Transducers.lean",
+      "start_line": 26,
+      "end_line": 85,
+      "question": "Can the output tape or clock act as readable uncharged memory?",
+      "verdict": "pass",
+      "reason": "Transition reads finite state,input symbol,work symbol only. It cannot inspect output bits, output length or external evaluation time. after iterates local transitions and pads only halted machines. The output tape is append-only, each step emits at most one bit, and output_length_le_time is proved. Fixed finite tables are chosen before all inputs.",
+      "source_ids": []
+    },
+    {
+      "id": "qma2-product-domain",
+      "module": "quantum/InclusionQuantum/Unentangled.lean",
+      "start_line": 28,
+      "end_line": 115,
+      "question": "Does QMA2 accidentally admit an arbitrary entangled witness or test only a selected subset of product states?",
+      "verdict": "pass",
+      "reason": "The two state functions have separate finite registers, are independently normalized and combined by productState using a proved basis split equivalence. No joint State argument replaces them. On no inputs every normalized pair is quantified. Compiled product-minor and Bell-pattern obstruction checks witness this boundary.",
+      "source_ids": [
+        "v040-q-HM2010"
+      ]
+    },
+    {
+      "id": "qma2-length-and-total-gap",
+      "module": "quantum/InclusionQuantum/Unentangled.lean",
+      "start_line": 91,
+      "end_line": 115,
+      "question": "Are witness lengths, circuit size and every-input soundness genuinely bounded?",
+      "verdict": "pass",
+      "reason": "Both witness lengths and ancilla length are fixed finite coefficient-list polynomials. polynomialUniform binds the entire family to one total polynomial-time transducer; serialization bounds the number of gates and wires by output time. Every input receives either the yes or no obligation. Product pure states suffice for mixed separable witnesses by convexity; this last standard equivalence remains unformalized.",
+      "source_ids": [
+        "v040-q-HM2010"
+      ]
+    },
+    {
+      "id": "bql-input-controller-space",
+      "module": "quantum/InclusionQuantum/Logspace.lean",
+      "start_line": 27,
+      "end_line": 56,
+      "question": "Does BQL permit polynomial-time preprocessing with unbounded workspace, or store the full input in qubits?",
+      "verdict": "pass",
+      "reason": "Generator workSpace is bounded on every prefix through the same polynomial horizon; classical input is read-only, not part of quantum width. The circuit starts in the all-zero state on O(log n) qubits. All gate names/indices are generated in logspace. The finite input-head position contributes only O(log n) implicit address space and the output tape is not readable.",
+      "source_ids": [
+        "v040-q-FR2020"
+      ]
+    },
+    {
+      "id": "bql-arbitrary-width",
+      "module": "quantum/InclusionQuantum/Logspace.lean",
+      "start_line": 48,
+      "end_line": 53,
+      "question": "Could the existential Nat→Nat width encode an undecidable length predicate?",
+      "verdict": "pass",
+      "reason": "The width is the first serialized header field, constrained to equal a concrete logspace transducer output on every input. It is therefore recoverable from that output; the arbitrary function notation does not create extra advice. The independent width theorem checks header determinacy. A length-only width loses no standard variable-input-width algorithms because unused zero qubits can pad to a computable O(log n) upper bound.",
+      "source_ids": []
+    },
+    {
+      "id": "bql-exact-source-model",
+      "module": "quantum/InclusionQuantum/Logspace.lean",
+      "start_line": 30,
+      "end_line": 56,
+      "question": "Is the unitary input-dependent circuit convention the source convention?",
+      "verdict": "pass_with_trusted_model_bridge",
+      "reason": "Fefferman–Remscrim Definition4 explicitly uses an input-dependent DSPACE(s)-uniform generator and the fixed universal set H,CNOT,T; Definition5 starts all qubits at zero. Theorem1 identifies the unitary and general-measurement models. At logarithmic space its time/size bounds are polynomial. Exact tape/serialization normalization remains a literature bridge.",
+      "source_ids": [
+        "v040-q-FR2020",
+        "v040-q-LNY2021"
+      ]
+    },
+    {
+      "id": "stoq-gates-preparation-measurement",
+      "module": "quantum/InclusionQuantum/Stoquastic.lean",
+      "start_line": 31,
+      "end_line": 166,
+      "question": "Can StoqMA use arbitrary H/T interference inside its verifier or measure Z rather than X?",
+      "verdict": "pass",
+      "reason": "Verifier gates are exactly reversible NOT,CNOT,Toffoli; Toffoli wires are pairwise distinct. Hadamards occur only in the initial plus-state preparation and the final output X-basis measurement. plusAcceptance accepts computational zero after H, the + outcome. Extra ancillary zero and a movable output wire are harmless padding/permutation choices.",
+      "source_ids": [
+        "v040-q-AGL2025"
+      ]
+    },
+    {
+      "id": "stoq-threshold-computability",
+      "module": "quantum/InclusionQuantum/Stoquastic.lean",
+      "start_line": 172,
+      "end_line": 207,
+      "question": "Can arbitrary length-dependent real thresholds or a vanishing/noncomputable gap encode extra languages?",
+      "verdict": "pass",
+      "reason": "The two rational numerators and common denominator are integer functions with actual total polynomial-time transducers, evaluated on unary n. validity forces d>0, d≤2b, b<a≤d and d≤p(n)(a-b). This yields1/2≤b/d<a/d≤1 and an inverse-polynomial gap. The compiled integer sanity theorem also forces a positive gap polynomial. No arbitrary real threshold function is admitted.",
+      "source_ids": []
+    },
+    {
+      "id": "stoq-threshold-union",
+      "module": "quantum/InclusionQuantum/Stoquastic.lean",
+      "start_line": 197,
+      "end_line": 207,
+      "question": "Does the selected unparameterized name silently assume unproved amplification?",
+      "verdict": "pass_with_explicit_convention",
+      "reason": "The endpoint is a union over efficiently computable inverse-polynomial-gap thresholds, not an assertion that every fixed parameter pair is equivalent. General error reduction is open; exact soundness1/2 is a different special boundary. The source permits arbitrary quantum witnesses, so quantification over complex normalized states is aligned.",
+      "source_ids": [
+        "v040-q-AGL2025",
+        "v040-q-Liu2021"
+      ]
+    },
+    {
+      "id": "qszk-linear-measurement",
+      "module": "quantum/InclusionQuantum/Statistical.lean",
+      "start_line": 38,
+      "end_line": 56,
+      "question": "Is the distance an arbitrary acceptance predicate, or an efficient-measurement restriction defining another class?",
+      "verdict": "pass_with_trusted_linear_algebra_bridge",
+      "reason": "The measurement acts by an explicit finite complex matrix and sums squared amplitudes on a Boolean subset. Its matrix is norm-preserving on every vector, hence unitary in finite equal dimensions. All projective binary measurements are represented. Arbitrary measurement complexity is correct for trace distance; the sampler cannot call the measurement. Helstrom/spectral equivalence is not yet formalized.",
+      "source_ids": [
+        "v040-q-Watrous2002",
+        "v040-q-VW2016"
+      ]
+    },
+    {
+      "id": "qszk-discarded-environment",
+      "module": "quantum/InclusionQuantum/Statistical.lean",
+      "start_line": 50,
+      "end_line": 56,
+      "question": "Can a distinguisher inspect the purification rather than the retained mixed state?",
+      "verdict": "pass",
+      "reason": "matrixAction acts on output slices for each fixed environment basis state; the outer sum is incoherent over environment labels. It implements measurement probabilities after partial trace. The two environments may have different sizes but share the output dimension. The independent environment-sign theorem proves all permitted measurements are insensitive to arbitrary signs confined to discarded basis sectors.",
+      "source_ids": []
+    },
+    {
+      "id": "qszk-sampler-resource",
+      "module": "quantum/InclusionQuantum/Statistical.lean",
+      "start_line": 134,
+      "end_line": 160,
+      "question": "Can the sampler supply an arbitrary quantum state or depend on uncomputed advice?",
+      "verdict": "pass",
+      "reason": "Each state begins at the all-zero vector and runs a fixed-gate circuit emitted by a total polynomial-time transducer on the actual input. Output/environment lengths are fixed polynomials, with separate polynomial gate bound. No witness state or arbitrary amplitude table is a sampler field. The unused Circuit.output metadata is serialized but never measured by state generation.",
+      "source_ids": []
+    },
+    {
+      "id": "qszk-total-reduction-and-gap",
+      "module": "quantum/InclusionQuantum/Statistical.lean",
+      "start_line": 163,
+      "end_line": 183,
+      "question": "Does the total-language definition incorrectly accept a promise problem or reverse the trace-distance convention?",
+      "verdict": "pass_with_trusted_completeness_bridge",
+      "reason": "Every binary input has far≥2/3 on membership or close≤1/3 on nonmembership. measurementDifference is an absolute probability difference, the half-trace-norm convention. In finite dimensions the optimum is attained by a projective measurement, so existential far is correct even at equality.1/3<(2/3)^2 satisfies QSD polarization; strict-boundary source formulations can use3/8 and5/8 as interior thresholds. QSD completeness and honest-verifier/full-QSZK equivalence remain cited bridges.",
+      "source_ids": [
+        "v040-q-Watrous2002",
+        "v040-q-Watrous2009",
+        "v040-q-VW2016"
+      ]
+    }
+  ],
+  "blocking_findings": [],
+  "integration_observations": [
+    {
+      "severity": "documentation",
+      "path": "quantum/README.md",
+      "observation": "At review time still described only the old46+4/50-class project; parent owns the61-context/four-new-quantum update.",
+      "mathematical_effect": "none"
+    }
+  ],
+  "formal_regression_checks": [
+    {
+      "theorem": "InclusionBench.Quantum.Review.product_minor_vanishes",
+      "purpose": "Every two-by-two amplitude minor of a product state vanishes; detects an unrestricted joint witness substitution.",
+      "checked_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "InclusionBench.Quantum.Review.correlated_state_not_product",
+      "purpose": "A diagonal Bell-pattern state with any nonzero amplitude cannot equal productState of two one-qubit factors.",
+      "checked_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "InclusionBench.Quantum.Review.environment_sign_invisible",
+      "purpose": "Changing any signs indexed only by discarded environment basis leaves every output measurement probability unchanged.",
+      "checked_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "InclusionBench.Quantum.Review.serialized_width_determined",
+      "purpose": "Equal complete circuit serializations imply equal widths, even when the width indices differ.",
+      "checked_axioms": [
+        "propext"
+      ]
+    },
+    {
+      "theorem": "InclusionBench.Quantum.Review.stoq_threshold_integer_sanity",
+      "purpose": "Validity forces positive denominator/soundness/gap polynomial and correctly ordered integer thresholds.",
+      "checked_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "verification": {
+    "compiler": "Lean4.19.0",
+    "mathlib_commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+    "host": "tkwa-ubuntu-box-wan",
+    "resource_limits": "taskset -c0; LEAN_NUM_THREADS=1; OMP_NUM_THREADS=1; -j1; ulimit -v8388608",
+    "standalone_scratch_exit_code": 0,
+    "standalone_scratch_sha256": "6b60a89774ca972d13a302ad06e0808b8df8182ffcf7f14e510d651847033a00",
+    "tracked_module_sha256": "e08ab15bb8f9368058ee7d1b158bd154cdd9516fcb089381388bec007e1ee142",
+    "tracked_integration_status": "Exact tracked module compiled in the full combined core+quantum build, exit0; five required axiom audits passed, with no warnings/errors. Confirmed by integration owner quantum_coverage.",
+    "proof_holes_or_custom_axioms": false,
+    "tracked_full_build_exit_code": 0,
+    "build_log": "/private/tmp/inclusion-v040-reviewed-build.log",
+    "build_log_sha256": "d7a8b3dcead977f39f89d2339e0be57f51502dc29bcb603c10877d93d9b847b9"
+  },
+  "primary_sources": [
+    {
+      "id": "v040-q-FR2020",
+      "url": "https://arxiv.org/pdf/2006.03530",
+      "locator": "Definitions4–5, PDFp.6; Theorem1",
+      "reviewed_claim": "Input-dependent logspace generation, H/CNOT/T gate example, all-zero unitary computation, and measurement elimination."
+    },
+    {
+      "id": "v040-q-AGL2025",
+      "url": "https://arxiv.org/html/2010.02835v4",
+      "locator": "Definition2.3; Remarks2.4–2.5",
+      "reviewed_claim": "Reversible stoquastic verifier, quantum witness, zero/plus ancillas, X measurement, soundness floor and parameter sensitivity."
+    },
+    {
+      "id": "v040-q-Watrous2002",
+      "url": "https://arxiv.org/pdf/quant-ph/0202111",
+      "locator": "QSD definition PDFp.8; Theorems1,4–6",
+      "reviewed_claim": "Discarded registers, far/close direction, alpha<beta^2 polarization and completeness."
+    },
+    {
+      "id": "v040-q-VD2019",
+      "url": "https://eccc.weizmann.ac.il/report/2019/131/download/",
+      "locator": "Theorem4 and proof; Theorem11",
+      "reviewed_claim": "Total-language QMA∩coQMA oracle closure and complement-collapse rule independently confirmed."
+    }
+  ],
+  "quantum_baseline_rule_cross_review": [
+    {
+      "premise": "PP⊆QMA",
+      "conclusion": "PSharpP⊆PP",
+      "status": "approved",
+      "reason": "QMA⊆PP and self-complement PP give QMA=coQMA=PP; Theorem4 supplies deterministic oracle closure."
+    },
+    {
+      "premise": "QMA⊆coQMA",
+      "conclusion": "PH⊆QMA",
+      "status": "approved",
+      "reason": "Complementing the inclusion supplies equality; Theorem11 yields PH^QMA=QMA and hence PH⊆QMA."
+    }
+  ],
+  "remaining_trusted_bridges": [
+    "Finite dimensional norm-preserving complex matrix equals a unitary, and the projective variational formula equals half trace norm.",
+    "Pure-product witnesses versus separable mixed witnesses and standard QMA(2) amplification/universal-gate normalization.",
+    "Exact finite-tape/output-serialization simulations between the chosen generator models and literature uniformity; FR Definition4/5 is an especially close match.",
+    "QSZK complete-problem equivalence, polarization, and honest-verifier/full-QSZK equivalence.",
+    "StoqMA is explicitly the efficiently computable rational threshold union; no fixed-gap amplification is assumed."
+  ],
+  "residual_limits": [
+    "No claim of exhaustive semantic correctness or calibrated error probability.",
+    "No external proof is turned into a custom Lean axiom in these authored modules. Literature bridges remain part of the expressly trusted baseline policy.",
+    "The all61 interpretation and final build/import graph are integration checks owned by other agents.",
+    "The formal environment-sign check covers a strong discarded-register invariant but is not itself a full partial-trace/Helstrom theorem.",
+    "The Bell obstruction checks exact product structure; normalization at the Bell amplitude1/sqrt2 is ordinary arithmetic, not separately proved in that fixture."
+  ]
+}

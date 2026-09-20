@@ -14,4 +14,9 @@ import InclusionBench.Transducers
 import InclusionBench.UniformCircuits
 import InclusionBench.LogCFL
 import InclusionBench.Statistical
+import InclusionBench.LogspaceClasses
+import InclusionBench.CountingHierarchy
+import InclusionBench.AlternatingLogtime
+import InclusionBench.RealSyntax
+import InclusionBench.ClassicalSemanticChecks
 import InclusionBench.Definitions

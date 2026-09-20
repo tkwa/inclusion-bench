@@ -1,0 +1,990 @@
+{
+  "schema_version": 1,
+  "status": "independent_provisional_assessment_not_release_certification",
+  "reviewer": "lean_kernel",
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "scope": {
+    "unit": "distinct incorrectly classified scored ordered pair",
+    "scored_roster_size": 50,
+    "context_catalog_size": 61,
+    "included": [
+      "Current source misapplication",
+      "Missed accepted pre-cutoff results",
+      "Operational-definition or convention mismatch to the intended named classes",
+      "Additional assembly/publication mistakes after attribution"
+    ],
+    "excluded": [
+      "Future discoveries of flaws in proofs currently accepted by the literature",
+      "Missing conditional implications affecting only future hypothetical scores",
+      "Scientific portfolio omissions or question importance",
+      "Model solution probability",
+      "Submitted-proof adjudication/security errors that do not affect current baseline classifications"
+    ],
+    "candidate_semantics": "Current unreviewed records are not assertions of openness; omission estimates apply if all candidates are adopted as open at cutoff.",
+    "no_concrete_remaining_wrong_label_identified": true
+  },
+  "input_binding": {
+    "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+    "binding_status": "provisional; root must rebind final release artifacts",
+    "scored_pair_matrix_sha256": "087388ba32ac36cb19d4aaa7e0c719c17162e2448e316014846fe3351de2648a",
+    "context_pair_matrix_sha256": "19545f192122a71253154873a8e107bffd4c4ea21f9bca2eaa8d5e6d4f37100b",
+    "file_sha256": {
+      "research/audit-assessment-v0.3.1.json": "eb572f5e921e2eef794a26ffeb5ec756a22cefac19247215aeb3ce3ee03963a2",
+      "research/v0.4.0/parent-baseline.json": "7572a0a4abeedc978cfe4a42c6d6001ecb6e1349543248b3c78d6074548ec923",
+      "research/v0.4.0/classical-baseline-cross-review.json": "526b9668804c567df9a7ebd4bd07940f69f520a4e7f1b13c2c8b783133ebe09b",
+      "research/v0.4.0/classical-formalization-review.json": "2aa28209433bb91a7018e3c00b47207d2c76e963736e27d93fdbc31bddd7e083",
+      "research/v0.4.0/quantum-formalization-review.json": "468846f8682d67a00c7b8fce7bbab75c867a1b11a3fa974c5f0090ac059b5522",
+      "research/v0.4.0/counting-cross-review.json": "81ce473af7d401fd5c3669d98ecebc72611470904f631efe973ecee702b48f47",
+      "research/v0.4.0/quantum-new-baseline.json": "0ce84027279436d656f3914bee9fa17a57f390cf95699f9f1066a12e96e9343b",
+      "research/v0.4.0/classical-new-baseline.json": "0da4aadde59b2d89153c65078c453d313eb260c83388aabff93859244546d2c8",
+      "research/v0.4.0/counting-new-baseline.json": "6a6552403ced2ce2d8304382cd74753a2d42a4ce0c103f679a3d52a10268acdf",
+      "data/classes.json": "f506991a439671d532101daba47674fbf7d4e5abc72d2d55cdb303911c9b6658",
+      "data/knowledge.json": "a380cc9286aa86200023e6854a771739ee2e37a501fec7c35b6b81d4c858378e",
+      "data/policy.json": "3de60329413dc4898a3bc5decc959f1a4b0bcbb952ac17279066b34e6e61d0a7",
+      "inclusion_bench/benchmark.py": "d9b944f6ea62feae50fa5ec4fa4b1dd96c480da3d44b466433af31b2da381257",
+      "inclusion_bench/engine.py": "4175d28d78ecaeb70a4951498bd09c76b952cac9813f0b7a97a622fd4a8e65a5",
+      "scripts/audit_sat.py": "bcc0712af5773530ffacc64d7a2206f943d0e5a1bf011bbc13166ebde87cce2c",
+      "research/v0.4.0/all-context-sat.json": "996e7d191bf7e2b33a8b3aeda11d3fe7ddd0f07a19adcbcacccf4ec424ebc1fe",
+      "research/audit-final-sat.json": "27d4d60d6787242fc4d635687b8fc254f0f01f2daf173c0322ac741939219463",
+      "research/audit-final-lean-traces.json": "306bcb9b7db147b516a39929734b56ae7827e9a5089c15a456fdeb8e8ecffe7c"
+    }
+  },
+  "pair_partition": [
+    {
+      "id": "retained",
+      "class_ids": [
+        "ACC0",
+        "AM",
+        "AWPP",
+        "BPP",
+        "BQP",
+        "CeqP",
+        "Delta2P",
+        "EXP",
+        "EXPSPACE",
+        "L",
+        "LogCFL",
+        "MA",
+        "NC",
+        "NC1",
+        "NE",
+        "NEXP",
+        "NL",
+        "NP",
+        "NPcapcoNP",
+        "NPpoly",
+        "P",
+        "PH",
+        "PP",
+        "PSPACE",
+        "Ppoly",
+        "QCMA",
+        "QMA",
+        "RP",
+        "SBP",
+        "SC",
+        "SPP",
+        "SZK",
+        "Sigma2P",
+        "TC0",
+        "Theta2P",
+        "UP",
+        "ZPP",
+        "coNP",
+        "parityP"
+      ],
+      "pairs": 1521,
+      "inclusion": 482,
+      "separation": 246,
+      "candidate": 793,
+      "independence": 0
+    },
+    {
+      "id": "new_quantum",
+      "class_ids": [
+        "BQL",
+        "QMA2",
+        "QSZK",
+        "StoqMA"
+      ],
+      "pairs": 384,
+      "inclusion": 117,
+      "separation": 27,
+      "candidate": 240,
+      "independence": 0
+    },
+    {
+      "id": "new_resource_uniformity",
+      "class_ids": [
+        "BPL",
+        "PL",
+        "UL",
+        "UniformNC1"
+      ],
+      "pairs": 352,
+      "inclusion": 161,
+      "separation": 40,
+      "candidate": 151,
+      "independence": 0
+    },
+    {
+      "id": "new_counting",
+      "class_ids": [
+        "CH",
+        "PSharpP"
+      ],
+      "pairs": 164,
+      "inclusion": 69,
+      "separation": 12,
+      "candidate": 83,
+      "independence": 0
+    },
+    {
+      "id": "new_real",
+      "class_ids": [
+        "ExistsR"
+      ],
+      "pairs": 79,
+      "inclusion": 16,
+      "separation": 6,
+      "candidate": 57,
+      "independence": 0
+    }
+  ],
+  "retained_old_family_partition": {
+    "resource": {
+      "pairs": 945,
+      "inclusion": 312,
+      "separation": 246,
+      "candidate": 387,
+      "independence": 0
+    },
+    "internal_counting": {
+      "pairs": 36,
+      "inclusion": 17,
+      "separation": 0,
+      "candidate": 19,
+      "independence": 0
+    },
+    "other_counting_quantum": {
+      "pairs": 315,
+      "inclusion": 59,
+      "separation": 0,
+      "candidate": 256,
+      "independence": 0
+    },
+    "basic": {
+      "pairs": 225,
+      "inclusion": 94,
+      "separation": 0,
+      "candidate": 131,
+      "independence": 0
+    }
+  },
+  "new_endpoint_incident_counts": {
+    "BPL": {
+      "pairs": 99,
+      "inclusion": 44,
+      "separation": 10,
+      "candidate": 45,
+      "independence": 0
+    },
+    "BQL": {
+      "pairs": 99,
+      "inclusion": 43,
+      "separation": 10,
+      "candidate": 46,
+      "independence": 0
+    },
+    "CH": {
+      "pairs": 99,
+      "inclusion": 41,
+      "separation": 6,
+      "candidate": 52,
+      "independence": 0
+    },
+    "ExistsR": {
+      "pairs": 99,
+      "inclusion": 21,
+      "separation": 6,
+      "candidate": 72,
+      "independence": 0
+    },
+    "PL": {
+      "pairs": 99,
+      "inclusion": 45,
+      "separation": 10,
+      "candidate": 44,
+      "independence": 0
+    },
+    "PSharpP": {
+      "pairs": 99,
+      "inclusion": 41,
+      "separation": 6,
+      "candidate": 52,
+      "independence": 0
+    },
+    "QMA2": {
+      "pairs": 99,
+      "inclusion": 25,
+      "separation": 5,
+      "candidate": 69,
+      "independence": 0
+    },
+    "QSZK": {
+      "pairs": 99,
+      "inclusion": 21,
+      "separation": 6,
+      "candidate": 72,
+      "independence": 0
+    },
+    "StoqMA": {
+      "pairs": 99,
+      "inclusion": 32,
+      "separation": 6,
+      "candidate": 61,
+      "independence": 0
+    },
+    "UL": {
+      "pairs": 99,
+      "inclusion": 44,
+      "separation": 10,
+      "candidate": 45,
+      "independence": 0
+    },
+    "UniformNC1": {
+      "pairs": 99,
+      "inclusion": 48,
+      "separation": 10,
+      "candidate": 41,
+      "independence": 0
+    }
+  },
+  "parent_comparison": {
+    "parent_dataset_sha256": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+    "parent_document_hash_matches": true,
+    "all_parent_context_pairs_recomputed": 2500,
+    "changed_parent_classifications": [],
+    "retained_scored_pairs": 1521,
+    "old_open_pairs_losing_direct_scored_status": 585,
+    "prior_expected_wrong_pairs": 1.9822,
+    "not_a_measured_error_rate": true,
+    "not_scaled_by_retained_pair_fraction": true
+  },
+  "ledger": [
+    {
+      "id": "shared_nonuniform_contract",
+      "category": "operational",
+      "pair_scope": "all",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.0005,
+      "conditional_mean_distinct_wrong_pairs": 225,
+      "expected_wrong_pairs": 0.1125,
+      "sensitivity_expected_wrong_pairs": [
+        0.018,
+        0.45
+      ],
+      "judgment_basis": "Repeatedly explicit arbitrary-family convention; all 225 directed noninclusions from five nonuniform endpoints to recursive endpoints remain exposed to one shared interpretation error."
+    },
+    {
+      "id": "retained_resource_model",
+      "category": "operational",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.005,
+      "conditional_mean_distinct_wrong_pairs": 4,
+      "expected_wrong_pairs": 0.02,
+      "sensitivity_expected_wrong_pairs": [
+        0.002,
+        0.1
+      ],
+      "judgment_basis": "Preserve the parent resource-model event likelihood; reduce scored impact from five to four after demotions, without treating reused definitions as independent evidence."
+    },
+    {
+      "id": "retained_counting_model",
+      "category": "operational",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.006,
+      "conditional_mean_distinct_wrong_pairs": 18,
+      "expected_wrong_pairs": 0.108,
+      "sensitivity_expected_wrong_pairs": [
+        0.02,
+        0.4
+      ],
+      "judgment_basis": "Preserve the parent event likelihood; six retained counting nodes replace ten, but background exact-counting models still participate in inference."
+    },
+    {
+      "id": "retained_quantum_model",
+      "category": "operational",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.004,
+      "conditional_mean_distinct_wrong_pairs": 20,
+      "expected_wrong_pairs": 0.08,
+      "sensitivity_expected_wrong_pairs": [
+        0.02,
+        0.3
+      ],
+      "judgment_basis": "Retain the parent post-normalization event likelihood; three retained quantum endpoints and repeated model review reduce scored impact, not the need for literature bridges."
+    },
+    {
+      "id": "retained_basic_model",
+      "category": "operational",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.002,
+      "conditional_mean_distinct_wrong_pairs": 20,
+      "expected_wrong_pairs": 0.04,
+      "sensitivity_expected_wrong_pairs": [
+        0.004,
+        0.2
+      ],
+      "judgment_basis": "Basic definitions are unchanged; remove impact attributable only to demoted complementary endpoints."
+    },
+    {
+      "id": "retained_statement_application",
+      "category": "mathematical",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.005,
+      "conditional_mean_distinct_wrong_pairs": 8,
+      "expected_wrong_pairs": 0.04,
+      "sensitivity_expected_wrong_pairs": [
+        0.005,
+        0.25
+      ],
+      "judgment_basis": "Small aggregate present source-application risk beyond model conventions; old and new audits share source ancestry."
+    },
+    {
+      "id": "retained_older_resource_omission",
+      "category": "mathematical",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.05,
+      "conditional_mean_distinct_wrong_pairs": 5,
+      "expected_wrong_pairs": 0.25,
+      "sensitivity_expected_wrong_pairs": [
+        0.05,
+        0.8
+      ],
+      "judgment_basis": "387 retained resource candidates, with repeated primary hierarchy/padding checks; smaller but nonzero allowance than parent .36."
+    },
+    {
+      "id": "retained_older_internal_counting_omission",
+      "category": "mathematical",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.02,
+      "conditional_mean_distinct_wrong_pairs": 3,
+      "expected_wrong_pairs": 0.06,
+      "sensitivity_expected_wrong_pairs": [
+        0.005,
+        0.3
+      ],
+      "judgment_basis": "19 retained internal-counting candidates; substantial old census and exact-counting demotions, while retaining potential multi-edge corollaries."
+    },
+    {
+      "id": "retained_older_counting_quantum_interface_omission",
+      "category": "mathematical",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.05,
+      "conditional_mean_distinct_wrong_pairs": 4,
+      "expected_wrong_pairs": 0.2,
+      "sensitivity_expected_wrong_pairs": [
+        0.04,
+        0.8
+      ],
+      "judgment_basis": "256 retained cross-interface candidates remain a broad source-search surface; new reviews only partly repeat the old census."
+    },
+    {
+      "id": "retained_older_basic_omission",
+      "category": "mathematical",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.02,
+      "conditional_mean_distinct_wrong_pairs": 5,
+      "expected_wrong_pairs": 0.1,
+      "sensitivity_expected_wrong_pairs": [
+        0.02,
+        0.4
+      ],
+      "judgment_basis": "131 retained basic candidates; complement demotions lower affected-pair impact, not the parent omission-event likelihood."
+    },
+    {
+      "id": "retained_recent_omission",
+      "category": "mathematical",
+      "pair_scope": "retained",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.04,
+      "conditional_mean_distinct_wrong_pairs": 5,
+      "expected_wrong_pairs": 0.2,
+      "sensitivity_expected_wrong_pairs": [
+        0.04,
+        0.8
+      ],
+      "judgment_basis": "Aggregate local and uncommon broad recent omissions over retained pairs; new cutoff checks are overlapping evidence, not complete independent coverage."
+    },
+    {
+      "id": "new_shared_generator_encoding",
+      "category": "operational",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.004,
+      "conditional_mean_distinct_wrong_pairs": 25,
+      "expected_wrong_pairs": 0.1,
+      "sensitivity_expected_wrong_pairs": [
+        0.01,
+        0.6
+      ],
+      "judgment_basis": "One shared machine, serialization or generator convention defect can reach several new classes; charged here once rather than in each endpoint row."
+    },
+    {
+      "id": "new_resource_uniformity_model",
+      "category": "operational",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.008,
+      "conditional_mean_distinct_wrong_pairs": 15,
+      "expected_wrong_pairs": 0.12,
+      "sensitivity_expected_wrong_pairs": [
+        0.02,
+        0.6
+      ],
+      "judgment_basis": "Independent compiled checks cover coin weighting, unambiguity, workspace and addresses; exact textbook-model equivalences remain external."
+    },
+    {
+      "id": "new_counting_model",
+      "category": "operational",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.006,
+      "conditional_mean_distinct_wrong_pairs": 12,
+      "expected_wrong_pairs": 0.072,
+      "sensitivity_expected_wrong_pairs": [
+        0.01,
+        0.4
+      ],
+      "judgment_basis": "Adaptive PP oracle access and fixed-level CH are concretely represented and reviewed; family-level equivalence still relies on literature."
+    },
+    {
+      "id": "new_real_model",
+      "category": "operational",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.006,
+      "conditional_mean_distinct_wrong_pairs": 15,
+      "expected_wrong_pairs": 0.09,
+      "sensitivity_expected_wrong_pairs": [
+        0.01,
+        0.5
+      ],
+      "judgment_basis": "Finite parser and true real semantics inspected; complete polynomial equivalence to standard finite ETR encodings remains an external bridge."
+    },
+    {
+      "id": "new_quantum_model",
+      "category": "operational",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.012,
+      "conditional_mean_distinct_wrong_pairs": 25,
+      "expected_wrong_pairs": 0.3,
+      "sensitivity_expected_wrong_pairs": [
+        0.05,
+        1.5
+      ],
+      "judgment_basis": "Four distinct bridges remain for product witnesses, stoquastic thresholds, logspace quantum generation and mixed-state distinguishability, despite independent semantic checks."
+    },
+    {
+      "id": "new_statement_application",
+      "category": "mathematical",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.008,
+      "conditional_mean_distinct_wrong_pairs": 10,
+      "expected_wrong_pairs": 0.08,
+      "sensitivity_expected_wrong_pairs": [
+        0.01,
+        0.5
+      ],
+      "judgment_basis": "Current theorem substitution could still conflate promise/total or oracle/advice/threshold conventions; independent source passes lower but do not remove this risk."
+    },
+    {
+      "id": "new_older_resource_uniformity_omission",
+      "category": "mathematical",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.04,
+      "conditional_mean_distinct_wrong_pairs": 4,
+      "expected_wrong_pairs": 0.16,
+      "sensitivity_expected_wrong_pairs": [
+        0.02,
+        0.8
+      ],
+      "judgment_basis": "Primary PL/BPL/UL/uniformity chains were cross-reviewed; a missed older intermediate-class implication remains possible."
+    },
+    {
+      "id": "new_older_counting_omission",
+      "category": "mathematical",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.03,
+      "conditional_mean_distinct_wrong_pairs": 5,
+      "expected_wrong_pairs": 0.15,
+      "sensitivity_expected_wrong_pairs": [
+        0.02,
+        0.8
+      ],
+      "judgment_basis": "PSharpP/CH sources and oracle algebra were reconstructed; overlooked old corollaries can fan out across levels."
+    },
+    {
+      "id": "new_older_real_omission",
+      "category": "mathematical",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.035,
+      "conditional_mean_distinct_wrong_pairs": 3,
+      "expected_wrong_pairs": 0.105,
+      "sensitivity_expected_wrong_pairs": [
+        0.015,
+        0.6
+      ],
+      "judgment_basis": "ETR and Boolean-part boundaries were checked; the literature uses varied encodings and BSS conventions."
+    },
+    {
+      "id": "new_older_quantum_omission",
+      "category": "mathematical",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.05,
+      "conditional_mean_distinct_wrong_pairs": 5,
+      "expected_wrong_pairs": 0.25,
+      "sensitivity_expected_wrong_pairs": [
+        0.04,
+        1.2
+      ],
+      "judgment_basis": "Large new quantum interface surface; old intermediate-class upper bounds may not advertise roster endpoints in titles."
+    },
+    {
+      "id": "new_recent_omission",
+      "category": "mathematical",
+      "pair_scope": "new",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.04,
+      "conditional_mean_distinct_wrong_pairs": 5,
+      "expected_wrong_pairs": 0.2,
+      "sensitivity_expected_wrong_pairs": [
+        0.03,
+        1.2
+      ],
+      "judgment_basis": "Recent scans identify several tempting invalid transfers, but search retrieval and exact version coverage are imperfect."
+    },
+    {
+      "id": "baseline_assembly_publication",
+      "category": "pipeline",
+      "pair_scope": "all",
+      "event": "At least one current classification error of this cause in the assigned family, after earlier attribution priorities.",
+      "probability": 0.01,
+      "conditional_mean_distinct_wrong_pairs": 10,
+      "expected_wrong_pairs": 0.1,
+      "sensitivity_expected_wrong_pairs": [
+        0.01,
+        0.6
+      ],
+      "judgment_basis": "Conditional on final exact-input tests and bindings passing; residual parser/index/publication bugs beyond already charged mathematical causes."
+    }
+  ],
+  "working_estimate": {
+    "expected_wrong_pairs": 2.9375,
+    "display": "about 3.0",
+    "subtotals": {
+      "mathematical": 1.795,
+      "operational": 1.0425,
+      "pipeline": 0.1
+    },
+    "sensitivity_endpoint_sum": [
+      0.469,
+      14.1
+    ],
+    "is_calibrated": false,
+    "is_confidence_interval": false,
+    "is_upper_bound": false,
+    "threshold_claim": "Does not support a broad expected-error-below-two claim. The mathematical subtotal must not substitute for the broader scope."
+  },
+  "attribution": {
+    "cause_priority": [
+      "operational_or_convention",
+      "theorem_application",
+      "older_omission",
+      "recent_omission",
+      "additional_pipeline"
+    ],
+    "new_pair_family_priority": [
+      "new_quantum",
+      "new_resource_uniformity",
+      "new_counting",
+      "new_real"
+    ],
+    "event_semantics": "Each event means at least one error in the family; its conditional mean is the union of distinct affected scored pairs, possibly from multiple related omissions. Do not multiply by an additional unknown number of papers.",
+    "correlation": "No independence assumption. One missed theorem can affect disjoint retained and new pairs; those pair counts add while event probabilities remain correlated. Shared operational defects are charged once.",
+    "numeric_limit": "This is an intended attribution and sensitivity framework, not a fully elicited exact joint probability distribution."
+  },
+  "nonuniform_common_cause": {
+    "scored_nonuniform_classes": [
+      "ACC0",
+      "TC0",
+      "NC1",
+      "Ppoly",
+      "NPpoly"
+    ],
+    "recursive_target_count": 45,
+    "fanout": 225,
+    "retained_pairs": 170,
+    "new_pairs": 55,
+    "all_225_noninclusions_present": true,
+    "not_future_accepted_proof_failure": true
+  },
+  "counterfactual_fanout_checks": [
+    {
+      "assumed_inclusion": [
+        "ExistsR",
+        "PP"
+      ],
+      "resolved_current_candidates": 3,
+      "retained": 0,
+      "new": 3,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "ExistsR",
+        "PSharpP"
+      ],
+      "resolved_current_candidates": 2,
+      "retained": 0,
+      "new": 2,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "QSZK",
+        "PP"
+      ],
+      "resolved_current_candidates": 4,
+      "retained": 1,
+      "new": 3,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "StoqMA",
+        "BQP"
+      ],
+      "resolved_current_candidates": 34,
+      "retained": 20,
+      "new": 14,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "BQL",
+        "BPL"
+      ],
+      "resolved_current_candidates": 2,
+      "retained": 0,
+      "new": 2,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "UL",
+        "BQL"
+      ],
+      "resolved_current_candidates": 1,
+      "retained": 0,
+      "new": 1,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "PL",
+        "SC"
+      ],
+      "resolved_current_candidates": 4,
+      "retained": 1,
+      "new": 3,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "CH",
+        "PP"
+      ],
+      "resolved_current_candidates": 9,
+      "retained": 6,
+      "new": 3,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "PSharpP",
+        "PP"
+      ],
+      "resolved_current_candidates": 7,
+      "retained": 6,
+      "new": 1,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "QMA2",
+        "PSPACE"
+      ],
+      "resolved_current_candidates": 3,
+      "retained": 0,
+      "new": 3,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "UniformNC1",
+        "TC0"
+      ],
+      "resolved_current_candidates": 2,
+      "retained": 1,
+      "new": 1,
+      "not_a_fact_or_likelihood_estimate": true
+    },
+    {
+      "assumed_inclusion": [
+        "BPL",
+        "UL"
+      ],
+      "resolved_current_candidates": 3,
+      "retained": 0,
+      "new": 3,
+      "not_a_fact_or_likelihood_estimate": true
+    }
+  ],
+  "checks": {
+    "benchmark_unit_tests": {
+      "command": "python -m unittest tests.test_benchmark -q",
+      "passed": 20,
+      "elapsed_seconds": 5.643
+    },
+    "review_source_bindings_checked": [
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/LogspaceClasses.lean",
+        "sha256": "643de17e4b45f69fbbff0fa00fe132247b6ff4d3fb1f6bf723d9279b2bccd0e2"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/CountingHierarchy.lean",
+        "sha256": "cd1a0d11fa741df490c1e47d96c0e07c21d3fecdfc670f6f3c5e260d9c2ca3a2"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/AlternatingLogtime.lean",
+        "sha256": "5ad83f42019e1cf1223a904601bca5c435ef626fa92695aecd2f9cf048a1a959"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/RealSyntax.lean",
+        "sha256": "315e73be09cc785762337453b7f036e1e69906aa5c4a9b5dfc87169d7ed3690e"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "quantum/InclusionQuantum/RealFeasibility.lean",
+        "sha256": "ef94f6c66cf98b3d34389b00592c40e722e3b9895eb2754dd62c9d361e7c8d09"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/Machines.lean",
+        "sha256": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/Randomized.lean",
+        "sha256": "afe42aecdef48f9379a7e074140c89ce15a6fd4fed357358a11217237807d5c3"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/Counting.lean",
+        "sha256": "8552ddcbc10177f70f8315efdede3bdff38958056c72b0f40545912f9e1eb5aa"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/Oracles.lean",
+        "sha256": "df8f0a685b0b31265dfb13cce3b56f6aee58fb089f32882e2fd1e72d5715a2df"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/Transducers.lean",
+        "sha256": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/UniformCircuits.lean",
+        "sha256": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2"
+      },
+      {
+        "review": "classical-formalization-review.json",
+        "path": "lean/InclusionBench/ClassicalSemanticChecks.lean",
+        "sha256": "92ac5fa1adf2935bbce8bd0beef1818904171bc9c700185a04f498958f1cb25a"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "quantum/InclusionQuantum/Quantum.lean",
+        "sha256": "fd174462ff36f8a6ce104f21179398749ed087a155a869ef07089b3081a13762"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "quantum/InclusionQuantum/Normalization.lean",
+        "sha256": "c2e67506a2fb2d0cd94c51974dc4b9ad68b95bae5fd8700b5ab3a600d0a0ebc1"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "quantum/InclusionQuantum/Unentangled.lean",
+        "sha256": "5fdfff013dad3af352bde4d916d3a3251cd47dd1adce79c5937c667d6a523f89"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "quantum/InclusionQuantum/Logspace.lean",
+        "sha256": "8db722540af3802a38781da3572b7d0643cb9b52fadd6ce127afa5e91e2ad4dc"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "quantum/InclusionQuantum/Stoquastic.lean",
+        "sha256": "3e39ea098b2eea7fe1e7667f345f767707b50c350d69179d6bb2134c81cf90cd"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "quantum/InclusionQuantum/Statistical.lean",
+        "sha256": "ef8a9015fcc8a9faabbd0f132e58ee13bd055b241d8c5b8c8672d84891ab491f"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "quantum/InclusionQuantum/SemanticChecks.lean",
+        "sha256": "e08ab15bb8f9368058ee7d1b158bd154cdd9516fcb089381388bec007e1ee142"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "lean/InclusionBench/Transducers.lean",
+        "sha256": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "lean/InclusionBench/Machines.lean",
+        "sha256": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d"
+      },
+      {
+        "review": "quantum-formalization-review.json",
+        "path": "lean/InclusionBench/UniformCircuits.lean",
+        "sha256": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2"
+      }
+    ],
+    "current_cnf": {
+      "variables": 3721,
+      "clauses": 221345,
+      "sha256": "39172328fb3d5a6657027aecf89b91f56ee1f3ba373ddf5a58976f6c0216ba8a"
+    },
+    "sat_limit": "The initially stale snapshot was corrected by the root reviewer. Both final SAT reports match the current dataset and independently reconstructed 221345-clause CNF; they find no additional consequence. This is completeness only for the finite registered propositional theory, not completeness of the literature or a complexity-theoretic independence proof.",
+    "parent_status_reconstruction": "Rebuilt all parent facts/rules/complements in a fresh Closure and compared all 2500 statuses; zero changes.",
+    "required_before_adoption": [
+      "Assessment/dataset/pair-index/history/published-payload hash equality",
+      "Current pruning report retained with its direct and indirect losses",
+      "No failed binding check hidden inside residual probability allowance"
+    ],
+    "current_sat_reports": [
+      {
+        "path": "research/v0.4.0/all-context-sat.json",
+        "sha256": "996e7d191bf7e2b33a8b3aeda11d3fe7ddd0f07a19adcbcacccf4ec424ebc1fe",
+        "candidate_scope": "all_context_pairs",
+        "hypotheses_tested": 4098,
+        "candidate_pair_count": 2049,
+        "findings": [],
+        "dataset_and_current_cnf_match": true
+      },
+      {
+        "path": "research/audit-final-sat.json",
+        "sha256": "27d4d60d6787242fc4d635687b8fc254f0f01f2daf173c0322ac741939219463",
+        "candidate_scope": "scored_pairs",
+        "hypotheses_tested": 2648,
+        "candidate_pair_count": 1324,
+        "findings": [],
+        "dataset_and_current_cnf_match": true
+      }
+    ],
+    "conditional_lean_trace_report": {
+      "path": "research/audit-final-lean-traces.json",
+      "sha256": "306bcb9b7db147b516a39929734b56ae7827e9a5089c15a456fdeb8e8ecffe7c",
+      "declaration_count": 1672,
+      "dataset_match": true,
+      "target_set_equals_entire_current_baseline": true,
+      "scope": "Checks inference traces conditional on cited source facts/rules/complement identities, not formal proofs of all historical source results."
+    }
+  },
+  "followups": [
+    {
+      "rank": 1,
+      "title": "Quantum/counting upper-bound source chains",
+      "exact_interfaces": [
+        "QSZK versus PP/PSharpP/CH",
+        "QMA2 versus PSPACE/CH",
+        "StoqMA versus BQP"
+      ],
+      "check": "Read complete primary chains through intermediate classes and pre-cutoff 2025–2026 updates; explicitly record failed total/promise, nonnegative-witness, postselection and advice transfers.",
+      "mechanism": "An old intermediate-class theorem can resolve several labels without naming the roster endpoints in its title.",
+      "affected_rows": [
+        "new_older_quantum_omission",
+        "new_older_counting_omission",
+        "new_recent_omission",
+        "retained_older_counting_quantum_interface_omission"
+      ],
+      "success_criterion": "Exact theorem locators and valid/invalid implication derivations for this bounded interface set; no openness certification from missing search hits."
+    },
+    {
+      "rank": 2,
+      "title": "End-to-end QSZK operational equivalence",
+      "exact_interfaces": [
+        "Statistical.lean measurementProbability and reduced density matrices",
+        "far/close versus one-half trace norm, including attained boundaries",
+        "total-language QSD reductions in both directions"
+      ],
+      "check": "Derive the exact finite matrix formulas and measurement optimum, then match both directions of the cited completeness theorem to the implemented sampler/generator convention.",
+      "mechanism": "Current local environment invariants do not establish the full bridge; one mismatch can affect a family of model-bound labels without invalidating any accepted source theorem.",
+      "affected_rows": [
+        "new_quantum_model",
+        "new_shared_generator_encoding"
+      ],
+      "success_criterion": "Complete formula-level equivalence dossier or compiled lemmas with explicit remaining assumptions."
+    },
+    {
+      "rank": 3,
+      "title": "ETR finite encoding and Boolean-part boundary",
+      "exact_interfaces": [
+        "RealSyntax accepted binary words versus a primary finite ETR encoding",
+        "unary metadata, binary coefficients, Boolean negation, malformed inputs and quadratic auxiliary variables",
+        "BP(P_R^0) versus BP(NP_R^0), PosSLP and complex feasibility"
+      ],
+      "check": "Give explicit polynomial reductions both ways and inspect any proposed counting upper-bound transfer under its exact real-machine and encoding hypotheses.",
+      "mechanism": "Local parser invariants do not establish full polynomial equivalence; deterministic real computation and nondeterministic real feasibility must not be conflated.",
+      "affected_rows": [
+        "new_real_model",
+        "new_older_real_omission",
+        "new_statement_application"
+      ],
+      "success_criterion": "Both finite-encoding reductions with polynomial size/time accounting and a source-backed acceptance/rejection of the counting transfer."
+    }
+  ],
+  "limitations": [
+    "Existing proofs are trusted under the user waiver; this review still checks their hypotheses match exact operational definitions.",
+    "Source reviews share ancestry and should not be treated as statistically independent repeated evidence.",
+    "Sensitivity ranges are judgmental stress cases with no empirical calibration.",
+    "Roster demotion changes coverage and weight, not truth; direct independence credit does not propagate.",
+    "Root owns the final release-wide assessment and any historical registry decision."
+  ]
+}

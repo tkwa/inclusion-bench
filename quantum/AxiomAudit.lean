@@ -2,7 +2,7 @@ import InclusionQuantum
 
 #print axioms InclusionBench.Quantum.complete_agrees_with_core
 #print axioms InclusionBench.Quantum.every_class_defined
-#print axioms InclusionBench.Quantum.all_fifty_defined
+#print axioms InclusionBench.Quantum.all_catalog_classes_defined
 #print axioms InclusionBench.Quantum.gateFields_injective
 #print axioms InclusionBench.Quantum.basisState_normalized
 #print axioms InclusionBench.Quantum.pauliX_twice
@@ -11,3 +11,32 @@ import InclusionQuantum
 #print axioms InclusionBench.Quantum.initialState_preserves_normSquared
 #print axioms InclusionBench.Quantum.acceptance_bounded
 #print axioms InclusionBench.Quantum.empty_witness_normalized
+#print axioms InclusionBench.Quantum.productState_normSquared
+#print axioms InclusionBench.Quantum.productState_normalized
+#print axioms InclusionBench.Quantum.twoWitnessAcceptance_bounded
+#print axioms InclusionBench.Quantum.zeroState_normalized
+#print axioms InclusionBench.Quantum.logspaceAcceptance_bounded
+#print axioms InclusionBench.Quantum.toffoliBasis_twice
+#print axioms InclusionBench.Quantum.reversibleGate_preserves_normSquared
+#print axioms InclusionBench.Quantum.reversibleGateFields_injective
+#print axioms InclusionBench.Quantum.stoquasticCircuit_preserves_normSquared
+#print axioms InclusionBench.Quantum.stoquasticInitialState_preserves_normSquared
+#print axioms InclusionBench.Quantum.stoquasticAcceptance_bounded
+#print axioms InclusionBench.Quantum.measurement_probability_bounded
+#print axioms InclusionBench.Quantum.sampler_state_normalized
+#print axioms InclusionBench.Quantum.identical_quantum_samplers_close
+#print axioms InclusionBench.Quantum.quantum_far_close_disjoint
+#print axioms InclusionBench.Quantum.measurementDifference_bounded
+#print axioms InclusionBench.RealFeasibility.encoded_etr_iff
+#print axioms InclusionBench.RealFeasibility.malformed_input_rejected
+#print axioms InclusionBench.RealFeasibility.finiteAssignment_at
+#print axioms InclusionBench.RealFeasibility.squareTwo_satisfiable
+#print axioms InclusionBench.RealFeasibility.squareTwo_in_etr
+#print axioms InclusionBench.RealFeasibility.negativeSquare_not_satisfiable
+#print axioms InclusionBench.RealFeasibility.negativeSquare_not_in_etr
+
+#print axioms InclusionBench.Quantum.Review.product_minor_vanishes
+#print axioms InclusionBench.Quantum.Review.correlated_state_not_product
+#print axioms InclusionBench.Quantum.Review.environment_sign_invisible
+#print axioms InclusionBench.Quantum.Review.serialized_width_determined
+#print axioms InclusionBench.Quantum.Review.stoq_threshold_integer_sanity

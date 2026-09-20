@@ -20,7 +20,7 @@ from inclusion_bench.engine import Atom
 
 
 def encode(benchmark):
-    ids = sorted(benchmark.ids)
+    ids = sorted(benchmark.context_ids)
     variables = {(a, b): i + 1 for i, (a, b) in
                  enumerate((a, b) for a in ids for b in ids)}
     clauses = []
@@ -52,16 +52,18 @@ def encode(benchmark):
     return variables, clauses
 
 
-def audit(benchmark):
+def audit(benchmark, include_background=False):
     from pysat.solvers import Solver
     import pysat
     variables, clauses = encode(benchmark)
     findings = []
     tested = 0
+    candidates = (set(variables) - {atom.pair for atom in benchmark.baseline.proofs}
+                  if include_background else benchmark.unresolved)
     with Solver(name='g4', bootstrap_with=clauses) as solver:
         if not solver.solve():
             raise ValueError('Cited relation theory is propositionally inconsistent')
-        for a, b in sorted(benchmark.unresolved):
+        for a, b in sorted(candidates):
             for sign in (1, -1):
                 assumption = sign * variables[a, b]
                 if not solver.solve(assumptions=[assumption]):
@@ -72,6 +74,8 @@ def audit(benchmark):
                     print(json.dumps({'hypotheses_tested': tested,
                                       'findings': len(findings)}), flush=True)
     return {'schema_version': 1, 'dataset_sha256': benchmark.digest,
+            'candidate_scope': 'all_context_pairs' if include_background else 'scored_pairs',
+            'candidate_pair_count': len(candidates),
             'method': 'Complete propositional entailment in the encoded finite cited theory',
             'solver': {'package': 'python-sat', 'version': pysat.__version__, 'backend': 'Glucose4'},
             'variable_count': len(variables), 'clause_count': len(clauses),
@@ -84,7 +88,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=ROOT)
     parser.add_argument('--output', type=Path, default=ROOT / 'research/audit-round1-sat.json')
+    parser.add_argument('--all-context', action='store_true', help='Also audit unscored background pairs')
     args = parser.parse_args()
-    result = audit(Benchmark(args.root))
+    result = audit(Benchmark(args.root), include_background=args.all_context)
     args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n')
     print(json.dumps({'written': str(args.output), 'findings': len(result['findings'])}), flush=True)

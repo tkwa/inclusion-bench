@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "status": "independent_semantic_review_complete_no_blocking_defect_found",
+  "reviewer": "Codex quantum_coverage subagent; did not author the seven reviewed models",
+  "recorded_at": "2026-09-20",
+  "scope": {
+    "classes": [
+      "BPL",
+      "UL",
+      "PL",
+      "PSharpP",
+      "CH",
+      "UniformNC1",
+      "ExistsR"
+    ],
+    "focus": "Wrong-class semantic failures and model-to-literature boundaries; not a repeat of the historical baseline census."
+  },
+  "input_sha256": {
+    "lean/InclusionBench/LogspaceClasses.lean": "643de17e4b45f69fbbff0fa00fe132247b6ff4d3fb1f6bf723d9279b2bccd0e2",
+    "lean/InclusionBench/CountingHierarchy.lean": "cd1a0d11fa741df490c1e47d96c0e07c21d3fecdfc670f6f3c5e260d9c2ca3a2",
+    "lean/InclusionBench/AlternatingLogtime.lean": "5ad83f42019e1cf1223a904601bca5c435ef626fa92695aecd2f9cf048a1a959",
+    "lean/InclusionBench/RealSyntax.lean": "315e73be09cc785762337453b7f036e1e69906aa5c4a9b5dfc87169d7ed3690e",
+    "quantum/InclusionQuantum/RealFeasibility.lean": "ef94f6c66cf98b3d34389b00592c40e722e3b9895eb2754dd62c9d361e7c8d09",
+    "lean/InclusionBench/Machines.lean": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d",
+    "lean/InclusionBench/Randomized.lean": "afe42aecdef48f9379a7e074140c89ce15a6fd4fed357358a11217237807d5c3",
+    "lean/InclusionBench/Counting.lean": "8552ddcbc10177f70f8315efdede3bdff38958056c72b0f40545912f9e1eb5aa",
+    "lean/InclusionBench/Oracles.lean": "df8f0a685b0b31265dfb13cce3b56f6aee58fb089f32882e2fd1e72d5715a2df",
+    "lean/InclusionBench/Transducers.lean": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+    "lean/InclusionBench/UniformCircuits.lean": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2",
+    "lean/InclusionBench/ClassicalSemanticChecks.lean": "92ac5fa1adf2935bbce8bd0beef1818904171bc9c700185a04f498958f1cb25a"
+  },
+  "findings": [],
+  "retained_checks": {
+    "file": "lean/InclusionBench/ClassicalSemanticChecks.lean",
+    "namespace": "InclusionBench.IndependentClassicalReview",
+    "theorems": [
+      "footprint_never_decreases",
+      "footprint_step_upper",
+      "unequal_depth_fair_count",
+      "unequal_depth_total_mass",
+      "majority_tie_rejected",
+      "nondeterministic_halted_multiplicity",
+      "address_after_head_movement",
+      "high_address_bit_is_binary",
+      "nonterminal_flag_does_not_accept",
+      "query_encoding_holes",
+      "variable_count_enforced",
+      "malformed_coefficient_digit",
+      "malformed_typed_stack",
+      "unused_stack_rejected",
+      "leading_coefficient_zero_preserves_value"
+    ],
+    "count": 15,
+    "local_compile": {
+      "compiler": "Lean4.19.0 darwin_aarch64",
+      "workers": 1,
+      "exit_code": 0,
+      "forbidden_proof_markers": false
+    },
+    "scope": "Two general work-footprint lemmas plus13 concrete adversarial instances; they do not establish full model equivalence."
+  },
+  "reviewed_failure_modes": [
+    {
+      "classes": [
+        "BPL",
+        "PL"
+      ],
+      "risk": "Uniformly weighting variable-depth leaves or granting a readable random tape",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "Fresh bit per active transition;2^t padded tapes; unequal-depth example has3/4 mass; halted state is unchanged."
+    },
+    {
+      "classes": [
+        "BPL",
+        "PL",
+        "UL"
+      ],
+      "risk": "Ignoring space on rare/rejecting prefixes, or erasing visited cells to evade the bound",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "Space is quantified over every prefix/configuration. General footprint monotonicity and one-step upper bound are independently proved."
+    },
+    {
+      "classes": [
+        "UL"
+      ],
+      "risk": "US-style exact-one semantics or deduplicated accepting paths",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "Count≤1 on every input; successor lists preserve duplicates and the sum counts them; extended horizon after halting keeps count2."
+    },
+    {
+      "classes": [
+        "BPL",
+        "PL",
+        "UL",
+        "PSharpP",
+        "CH"
+      ],
+      "risk": "Uncomputable runtime bound or early-halting reachability loophole changes the language",
+      "judgment": "no_defect_found",
+      "evidence": "The bound certifies an all-branch polynomial clock. Any active path reaches the forbidden nonterminal horizon; acceptance and counts stabilize after all branches terminate. An explicit dominating polynomial can replace the bound."
+    },
+    {
+      "classes": [
+        "PSharpP",
+        "CH"
+      ],
+      "risk": "Oracle chosen by input length, integer answers at unit cost, or hidden query encoding",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "One fixed total oracle; one Boolean per query action; finite query word built locally. Blank compression is explicit and polynomial-time, with no added branches."
+    },
+    {
+      "classes": [
+        "CH"
+      ],
+      "risk": "Input-dependent hierarchy depth or unrelativized outer-class substitution",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "One existential Nat level per language, recursively defined PP oracle classes; no closure/collapse theorem is part of the definition."
+    },
+    {
+      "classes": [
+        "UniformNC1"
+      ],
+      "risk": "Free input advice, arbitrary index arithmetic, shifted significance or wrong terminal alternation",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "Fixed blank initialization and finite transition table; one-cell local writes; only input port is random access; independent address and fuel checks; explicit terminal answer."
+    },
+    {
+      "classes": [
+        "UniformNC1"
+      ],
+      "risk": "Confusing U_E with direct-connection U_D uniformity or nonuniform NC1",
+      "judgment": "explicit_trusted_bridge_required",
+      "evidence": "Operational endpoint is ALOGTIME. Buss§2 matches the random-access model; Behle etal2011 Remark1 is the explicit U_E/U_D warning."
+    },
+    {
+      "classes": [
+        "ExistsR"
+      ],
+      "risk": "Arbitrary predicates, real coefficients, hidden infinite assignments or malformed variables",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "Finite ring/Boolean syntax; binary integer constants; Fin variableCount real witness; all references validated; malformed inputs rejected; real square-root and negative-square examples."
+    },
+    {
+      "classes": [
+        "ExistsR"
+      ],
+      "risk": "Noncomputable many-one reduction or exponentially succinct formula grammar",
+      "judgment": "discharged_for_this_definition",
+      "evidence": "Concrete total polynomial-time output transducer. Each instruction consumes operands, no DUP/macros, coefficient bits retain bit length; output-length theorem bounds encoding size."
+    },
+    {
+      "classes": [
+        "UniformNC1"
+      ],
+      "risk": "Blank LSB-first index tape might require superlogarithmic input-length discovery",
+      "judgment": "discharged_by_explicit_linear_head_traversal_argument",
+      "evidence": "Query zero for emptiness; shift a single1 right in two local transitions per exponent until out of range; clear it and greedily descend through lower bits once to compute n−1; synchronized ordinary-tape origin marker detects index position zero; one carry pass and return compute n. Constantly many traversals of O(log n) cells; no repeated rescanning or free arithmetic. This construction is mathematical, not a new kernel theorem."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Boolean Formula Value Problem Is in ALOGTIME",
+      "url": "https://mathweb.ucsd.edu/~sbuss/ResearchWeb/Boolean/paper.pdf",
+      "year": 1987,
+      "locator": "§2 pp.4–5; primary author PDF read from local cache after browser fetch timeout"
+    },
+    {
+      "title": "The lower reaches of circuit uniformity",
+      "url": "https://eccc.weizmann.ac.il/report/2011/095/revision/1/download/",
+      "year": 2011,
+      "locator": "Remark1 and uniformity definitions"
+    }
+  ],
+  "trusted_unproved_bridges": [
+    "Finite-control one-/multitape and binary-branching normalizations with the stated time/space resources",
+    "Fair-coin PL equals the positive-GapL characterization",
+    "P^PP=P^#P with polynomially many threshold queries, not one query",
+    "Standard fixed finite counting hierarchy and PP^P=PP",
+    "ALOGTIME equals U_E DLOGTIME-uniform NC1; binary address-convention simulations",
+    "Polynomial equivalence of the concrete postfix ETR language and standard finite-bit existential-real encodings"
+  ],
+  "limitations": [
+    "No calibrated probability of semantic error is derived from the number of checks.",
+    "No new inclusion/class separation or historical openness certification follows merely from this review.",
+    "The independent review module uses only core model imports and does not introduce an import cycle."
+  ],
+  "combined_build": {
+    "host": "tkwa-ubuntu-box-wan",
+    "compiler": "Lean4.19.0",
+    "cpu_cores": 1,
+    "virtual_memory_limit_gib": 8,
+    "exit_code": 0,
+    "required_extension_and_review_audits": 54,
+    "all_required_audits_present": true,
+    "unexpected_axioms": [],
+    "warnings_or_errors": false,
+    "log_sha256": "d7a8b3dcead977f39f89d2339e0be57f51502dc29bcb603c10877d93d9b847b9"
+  }
+}

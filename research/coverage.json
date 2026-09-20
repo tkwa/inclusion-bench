@@ -44,7 +44,7 @@
       "notes": "Chen, Tal and Wang. Actual pre-cutoff frontier advance invisible to the union-over-size-and-depth TC0 target. Included as evidence of the limitation, not as a new scoring claim."
     }
   ],
-  "external_source_registry": "q-* source IDs are defined in research/quantum.json",
+  "external_source_registry": "Referenced baseline source IDs are defined in data/knowledge.json; coverage-only source records are listed here.",
   "scenarios": [
     {
       "id": "advance-01",
@@ -738,9 +738,9 @@
     "A finite sample cannot support a claim to cover the 50 most likely advances without a separately elicited and versioned forecast distribution."
   ],
   "roster_recommendation": {
-    "accepted_choice": "Use the agreed 50-class roster, with nonuniform AC0/ACC0/TC0/NC1 and uniform NC. NISZK is omitted.",
-    "benefit": "The nonuniform convention represents central circuit-lower-bound questions directly. P/poly and NP/poly retain arbitrary advice, including undecidable languages.",
-    "tradeoff": "Dropping NISZK omits a recognized zero-knowledge question; adding it back alone would not repair the promise-language distinction. E and NE retain some padding structure but do not capture most quantitative exponential-time advances.",
+    "accepted_choice": "Provisional v0.4.0 uses50 scored classes and61 context classes. The eleven additions and eleven demotions are documented in research/v0.4.0/roster-decision.md. UniformNC1 is separate from nonuniform NC1; NC remains logspace-uniform.",
+    "benefit": "The revised roster adds small-space randomness and counting, unambiguity, quantum logspace, real feasibility, counting-oracle computation and CH, two unentangled proofs, stoquastic verification and quantum zero knowledge.",
+    "tradeoff": "Eleven previous endpoints become background proof vocabulary. Some positive collapses, and direct independence results involving those endpoints, can lose credit. The loss audit is explicit; complements are not treated as interchangeable aliases.",
     "possible_future_tracks": [
       "A separately typed promise-problem roster",
       "Problem-specific algorithm and explicit-construction targets",

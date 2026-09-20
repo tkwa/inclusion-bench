@@ -1,0 +1,1933 @@
+{
+  "schema_version": 1,
+  "status": "independent_cross_review_complete_for_stated_scope",
+  "reviewer": {
+    "identity": "Codex classical_literature subagent",
+    "kind": "AI-assisted; not human expert certification"
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "scope": {
+    "focus_classes": [
+      "CH",
+      "PSharpP"
+    ],
+    "context_count": 61,
+    "incident_pair_count": 240
+  },
+  "input_sha256": {
+    "data/classes.json": "a670253a11cfd3f80137216d3c2344a47b629b151dee2eeeb67a9c881fae352f",
+    "data/knowledge.json": "bc8b03891cfab9ae3b2c1785410e40b2fb8e79fab85a1b29e4f399bb348122e2",
+    "research/v0.4.0/counting-new-baseline.json": "6a6552403ced2ce2d8304382cd74753a2d42a4ce0c103f679a3d52a10268acdf",
+    "research/v0.4.0/classical-new-baseline.json": "0da4aadde59b2d89153c65078c453d313eb260c83388aabff93859244546d2c8",
+    "inclusion_bench/engine.py": "4175d28d78ecaeb70a4951498bd09c76b952cac9813f0b7a97a622fd4a8e65a5"
+  },
+  "model_checks": {
+    "PSharpP": "P^PP total decision class; P^#P is the cited equivalent presentation, not function #P.",
+    "CH": "One fixed finite oracle-counting level per language; neither input-dependent levels nor unrestricted PSPACE iteration.",
+    "complements": "Both self-complement assertions approved under the standard models; these are literature bridges, not silently formalized machine theorems."
+  },
+  "sources": [
+    {
+      "id": "v040-VD2019",
+      "title": "A Simple Proof of Vyalyi's Theorem and some Generalizations",
+      "authors": [
+        "Lieuwe Vinkhuijzen",
+        "André Deutz"
+      ],
+      "url": "https://eccc.weizmann.ac.il/report/2019/131/download/",
+      "year": 2019,
+      "publication_date": "2019-09-30",
+      "locator": "Section7, Theorem20, printed p.9",
+      "notes": "ECCC TR19-131 submitted2019-09-11; publication metadata2019-09-30. Theorem20 explicitly gives MA=PP⇒MA=CH. Its quantum analogue is separately identified as a conjecture, not proved."
+    },
+    {
+      "id": "v040-AaronsonErratum2017",
+      "title": "Yet more errors in papers",
+      "authors": [
+        "Scott Aaronson"
+      ],
+      "url": "https://scottaaronson.blog/?p=3256",
+      "year": 2017,
+      "publication_date": "2017-05-24",
+      "locator": "First correction, concerning Oracles are subtle but not malicious (CCC2006)",
+      "notes": "The author retracted the proof of the quantum-advice CH collapse. This is historical correction evidence, not a claim that the result remained unproved at the benchmark cutoff; Yirka2025 repairs it."
+    },
+    {
+      "id": "v040-Yirka2025",
+      "title": "Even Quantum Advice is Unlikely to Solve PP",
+      "authors": [
+        "Justin Yirka"
+      ],
+      "url": "https://theoryofcomputing.org/articles/v021a007/v021a007.pdf",
+      "year": 2025,
+      "publication_date": "2025-10-02",
+      "locator": "Introduction pp.2–3; Lemma3.1, Corollary3.2; Theorem3.3 p.10; Theorem3.4",
+      "notes": "Theory of Computing21(7),1–13, DOI10.4086/toc.2025.v021a007. Corrects the quantum-advice proof using YQP*⊆APP and PP-lowness. Fixed-polynomial-size lower bounds are not union-over-degrees P/poly separations."
+    },
+    {
+      "id": "v040-CountingCrossDerivations",
+      "title": "Independent counting-baseline cross-review",
+      "url": "research/v0.4.0/counting-cross-review.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Conditional checks and additional rules",
+      "notes": "Proof explanations based on pre-cutoff sources, not new historical-publication claims."
+    }
+  ],
+  "external_source_ids": [
+    "v040-Burgisser2006",
+    "v040-AllenderWagner1993",
+    "v040-FournierPerifelVerclos2014",
+    "Toda1991",
+    "q-aw09",
+    "auditCQ-OH91",
+    "auditCQ-FR99",
+    "auditCQ-STT05",
+    "auditCQ-FFK94",
+    "AuditPadding"
+  ],
+  "facts": [],
+  "rules": [
+    {
+      "id": "v040-pp-ma-ch-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "MA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "v040-VD2019",
+        "v040-AllenderWagner1993",
+        "v040-CountingCrossDerivations"
+      ],
+      "justification": "MA⊆PP is unconditional, so the premise gives MA=PP. Vinkhuijzen–Deutz Theorem20 yields CH=MA. A direct explanation uses P^(MA∩coMA)⊆MA via amplified query-transcript certificates, followed by PP^PH⊆P^PP and induction on each fixed counting level."
+    },
+    {
+      "id": "v040-pp-parity-ch-parity",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "v040-AllenderWagner1993",
+        "auditCQ-OH91",
+        "v040-CountingCrossDerivations"
+      ],
+      "justification": "The premise and P^parityP=parityP give P^PP⊆parityP. The final proof in Allender–Wagner Section1 gives PP^parityP⊆P^PP. Starting with C0=P⊆parityP, Ck⊆parityP implies Ck+1⊆PP^parityP⊆P^PP⊆parityP. Only oracle languages are replaced; no premise is relativized on the outer machine."
+    }
+  ],
+  "approved_fact_ids": [
+    "v040-pp-psharpp",
+    "v040-ph-psharpp",
+    "v040-parity-psharpp",
+    "v040-psharpp-ch",
+    "v040-ch-pspace"
+  ],
+  "approved_rule_ids": [
+    "v040-pp-circuits-ch-circuits",
+    "v040-pp-circuits-ch-ma",
+    "v040-pp-awpp-ch-pp",
+    "v040-pp-ph-ch-ph",
+    "v040-pp-parity-psharpp-parity",
+    "v040-padding-regular-E-PSharpP",
+    "v040-padding-regular-NE-PSharpP",
+    "v040-padding-regular-E-CH",
+    "v040-padding-regular-NE-CH"
+  ],
+  "approved_complements": [
+    {
+      "left": "PSharpP",
+      "right": "PSharpP",
+      "source_ids": [
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Swap the deterministic oracle machine’s accepting and rejecting outcomes."
+    },
+    {
+      "left": "CH",
+      "right": "CH",
+      "source_ids": [
+        "v040-Burgisser2006",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Every PP oracle level is complement closed by the standard integer-gap transformation; the fixed-level union is complement closed."
+    }
+  ],
+  "pair_status_counts": {
+    "separation": 16,
+    "inclusion": 99,
+    "candidate_unresolved": 125
+  },
+  "family_reviews": {
+    "nonuniform": {
+      "review": "All six nonuniform classes contain arbitrary unary languages and hence are not included in the recursive PSharpP or CH. Both counting endpoints contain P and hence PARITY, so neither is contained in AC0. All remaining outgoing circuit/advice directions require union-over-degrees lower bounds; fixed-degree PP/P^PP lower bounds do not settle them. PP⊆Ppoly consequences were checked directly, including aggregation of advice across polynomially many query lengths.",
+      "pair_count": 24,
+      "status_counts": {
+        "separation": 14,
+        "candidate_unresolved": 10
+      }
+    },
+    "logspace_parallelism": {
+      "review": "All ten endpoints lie in P⊆PSharpP⊆CH. Reverse questions inherit only cited signed consequences; no upper simulation of unrestricted counting by GapL, determinant, SC, or NC is introduced. PSPACE⊄NC does not on its own separate CH from NC. UniformNC1 is U_E/ALOGTIME and must not be identified with nonuniform NC1.",
+      "pair_count": 40,
+      "status_counts": {
+        "inclusion": 20,
+        "candidate_unresolved": 20
+      }
+    },
+    "counting": {
+      "review": "All ten classes enter PSharpP through PP or parityP and hence enter CH. Reverse directions remain open candidates unless closure proves otherwise. The review checked AWPP lowness and parity closure separately. WPP is not assumed closed under adaptive polynomial-time Turing reductions. No new unconditional relation absent from the five root seeds was found.",
+      "pair_count": 40,
+      "status_counts": {
+        "inclusion": 20,
+        "candidate_unresolved": 20
+      }
+    },
+    "basic_proofs_randomness_PH": {
+      "review": "These endpoints enter through PH or PP. The PP⊆MA collapse has an explicit primary theorem. PP⊆AM already yields CH⊆AM from the PP⊆PH rule and the baseline coNP⊆AM⇒PH⊆AM rule. Total BPP cannot replace promise-BPP inside an arbitrary MA verifier. Strong Toda is used at the level actually stated.",
+      "pair_count": 76,
+      "status_counts": {
+        "inclusion": 38,
+        "candidate_unresolved": 38
+      }
+    },
+    "quantum": {
+      "review": "BQP,QCMA,QMA,coQMA and StoqMA enter through PP; QMA2 and QSZK have only their separately reviewed bounds and are not presumed contained in PP or CH. Classical query-transcript consequences under PP⊆QMA or QCMA are being documented by the quantum reviewer; they do not imply CH collapse. Quantum-advice results use advice classes absent from the roster.",
+      "pair_count": 28,
+      "status_counts": {
+        "inclusion": 10,
+        "candidate_unresolved": 18
+      }
+    },
+    "real": {
+      "review": "NP⊆ExistsR⊆PSPACE supplies neither ExistsR⊆PSharpP/CH nor PSharpP/CH⊆ExistsR. PosSLP and square-root-sum membership in CH do not establish containment of all real feasibility. No new ordinary relation is proposed.",
+      "pair_count": 4,
+      "status_counts": {
+        "candidate_unresolved": 4
+      }
+    },
+    "larger_resources": {
+      "review": "Both endpoints lie in PSPACE, so E/NE/EXP/NEXP comparisons retain the standard time-versus-space uncertainty and only inherit actual baseline separations. EXPSPACE⊄PSPACE propagates to both. Polynomial padding is valid for their union-over-polynomial-time models and fixed hierarchy levels. MAEXP, PP-time hierarchy and fixed-query theorems do not automatically settle these ordinary pair labels.",
+      "pair_count": 24,
+      "status_counts": {
+        "candidate_unresolved": 14,
+        "inclusion": 8,
+        "separation": 2
+      }
+    },
+    "internal": {
+      "review": "PSharpP⊆CH is immediate via the second counting level. CH⊆PSharpP remains a candidate. Neither equality PSharpP=PP nor deterministic adaptive closure alone collapses higher PP-oracle levels without another theorem.",
+      "pair_count": 4,
+      "status_counts": {
+        "inclusion": 3,
+        "candidate_unresolved": 1
+      }
+    }
+  },
+  "incident_pairs": [
+    {
+      "left": "AC0",
+      "right": "CH",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:AC0:CH"
+    },
+    {
+      "left": "AC0",
+      "right": "PSharpP",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:AC0:PSharpP"
+    },
+    {
+      "left": "ACC0",
+      "right": "CH",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:ACC0:CH"
+    },
+    {
+      "left": "ACC0",
+      "right": "PSharpP",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:ACC0:PSharpP"
+    },
+    {
+      "left": "AM",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:AM:CH"
+    },
+    {
+      "left": "AM",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:AM:PSharpP"
+    },
+    {
+      "left": "AWPP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:AWPP:CH"
+    },
+    {
+      "left": "AWPP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:AWPP:PSharpP"
+    },
+    {
+      "left": "BPL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:BPL:CH"
+    },
+    {
+      "left": "BPL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:BPL:PSharpP"
+    },
+    {
+      "left": "BPP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:BPP:CH"
+    },
+    {
+      "left": "BPP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:BPP:PSharpP"
+    },
+    {
+      "left": "BQL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:BQL:CH"
+    },
+    {
+      "left": "BQL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:BQL:PSharpP"
+    },
+    {
+      "left": "BQP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BQP:CH"
+    },
+    {
+      "left": "BQP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BQP:PSharpP"
+    },
+    {
+      "left": "CH",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:CH:AC0"
+    },
+    {
+      "left": "CH",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "CH",
+      "right": "AM",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "AWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "BPP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "BQP",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "internal",
+      "proof_key": "inclusion:CH:CH"
+    },
+    {
+      "left": "CH",
+      "right": "CeqP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "Delta2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "E",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "CH",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:CH:EXP"
+    },
+    {
+      "left": "CH",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:CH:EXPSPACE"
+    },
+    {
+      "left": "CH",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "real"
+    },
+    {
+      "left": "CH",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "MA",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "NC",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "CH",
+      "right": "NE",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "CH",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:CH:NEXP"
+    },
+    {
+      "left": "CH",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "NP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "NPcapcoNP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "NPpoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "CH",
+      "right": "P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "PH",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "PP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:CH:PSPACE"
+    },
+    {
+      "left": "CH",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "internal"
+    },
+    {
+      "left": "CH",
+      "right": "Pi2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "Ppoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "CH",
+      "right": "QCMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "QMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "QMA2",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "QSZK",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "RP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "SBP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "SZK",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "Sigma2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "StoqMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "CH",
+      "right": "Theta2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "CH",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "ZPP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "coAM",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "coMA",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "coNP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "coQMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "coRP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "CH",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CeqP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:CeqP:CH"
+    },
+    {
+      "left": "CeqP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:CeqP:PSharpP"
+    },
+    {
+      "left": "Delta2P",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Delta2P:CH"
+    },
+    {
+      "left": "Delta2P",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Delta2P:PSharpP"
+    },
+    {
+      "left": "E",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "E",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "EXP",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "EXP",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "CH",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:CH"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "PSharpP",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:PSharpP"
+    },
+    {
+      "left": "ExistsR",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "real"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "real"
+    },
+    {
+      "left": "FewP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:FewP:CH"
+    },
+    {
+      "left": "FewP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:FewP:PSharpP"
+    },
+    {
+      "left": "L",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:L:CH"
+    },
+    {
+      "left": "L",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:L:PSharpP"
+    },
+    {
+      "left": "LWPP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:LWPP:CH"
+    },
+    {
+      "left": "LWPP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:LWPP:PSharpP"
+    },
+    {
+      "left": "LogCFL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:LogCFL:CH"
+    },
+    {
+      "left": "LogCFL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:LogCFL:PSharpP"
+    },
+    {
+      "left": "MA",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:MA:CH"
+    },
+    {
+      "left": "MA",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:MA:PSharpP"
+    },
+    {
+      "left": "NC",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:NC:CH"
+    },
+    {
+      "left": "NC",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:NC:PSharpP"
+    },
+    {
+      "left": "NC1",
+      "right": "CH",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:NC1:CH"
+    },
+    {
+      "left": "NC1",
+      "right": "PSharpP",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:NC1:PSharpP"
+    },
+    {
+      "left": "NE",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "NE",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "NEXP",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "NEXP",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "NL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:NL:CH"
+    },
+    {
+      "left": "NL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:NL:PSharpP"
+    },
+    {
+      "left": "NP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:NP:CH"
+    },
+    {
+      "left": "NP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:NP:PSharpP"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:NPcapcoNP:CH"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:NPcapcoNP:PSharpP"
+    },
+    {
+      "left": "NPpoly",
+      "right": "CH",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:NPpoly:CH"
+    },
+    {
+      "left": "NPpoly",
+      "right": "PSharpP",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:NPpoly:PSharpP"
+    },
+    {
+      "left": "P",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:P:CH"
+    },
+    {
+      "left": "P",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:P:PSharpP"
+    },
+    {
+      "left": "PH",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:PH:CH"
+    },
+    {
+      "left": "PH",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:PH:PSharpP"
+    },
+    {
+      "left": "PL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:PL:CH"
+    },
+    {
+      "left": "PL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:PL:PSharpP"
+    },
+    {
+      "left": "PP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PP:CH"
+    },
+    {
+      "left": "PP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PP:PSharpP"
+    },
+    {
+      "left": "PSPACE",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "PSPACE",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "PSharpP",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:PSharpP:AC0"
+    },
+    {
+      "left": "PSharpP",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "PSharpP",
+      "right": "AM",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "AWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "BPP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "BQP",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "PSharpP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "internal",
+      "proof_key": "inclusion:PSharpP:CH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "CeqP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "Delta2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "E",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "PSharpP",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PSharpP:EXP"
+    },
+    {
+      "left": "PSharpP",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PSharpP:EXPSPACE"
+    },
+    {
+      "left": "PSharpP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "real"
+    },
+    {
+      "left": "PSharpP",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "MA",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NC",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NE",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PSharpP:NEXP"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NPcapcoNP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "NPpoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "PSharpP",
+      "right": "P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PH",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PSharpP:PSPACE"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "internal",
+      "proof_key": "inclusion:PSharpP:PSharpP"
+    },
+    {
+      "left": "PSharpP",
+      "right": "Pi2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "Ppoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "PSharpP",
+      "right": "QCMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "PSharpP",
+      "right": "QMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "PSharpP",
+      "right": "QMA2",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "PSharpP",
+      "right": "QSZK",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "PSharpP",
+      "right": "RP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "SBP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "SZK",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "Sigma2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "StoqMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "PSharpP",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform"
+    },
+    {
+      "left": "PSharpP",
+      "right": "Theta2P",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "logspace_parallelism"
+    },
+    {
+      "left": "PSharpP",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "ZPP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "coAM",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "coMA",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "coNP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "coQMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "PSharpP",
+      "right": "coRP",
+      "status": "candidate_unresolved",
+      "review_group": "basic_proofs_randomness_PH"
+    },
+    {
+      "left": "PSharpP",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "Pi2P",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Pi2P:CH"
+    },
+    {
+      "left": "Pi2P",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Pi2P:PSharpP"
+    },
+    {
+      "left": "Ppoly",
+      "right": "CH",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:Ppoly:CH"
+    },
+    {
+      "left": "Ppoly",
+      "right": "PSharpP",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:Ppoly:PSharpP"
+    },
+    {
+      "left": "QCMA",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:QCMA:CH"
+    },
+    {
+      "left": "QCMA",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:QCMA:PSharpP"
+    },
+    {
+      "left": "QMA",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:QMA:CH"
+    },
+    {
+      "left": "QMA",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:QMA:PSharpP"
+    },
+    {
+      "left": "QMA2",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA2",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QSZK",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QSZK",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "RP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:RP:CH"
+    },
+    {
+      "left": "RP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:RP:PSharpP"
+    },
+    {
+      "left": "SBP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:SBP:CH"
+    },
+    {
+      "left": "SBP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:SBP:PSharpP"
+    },
+    {
+      "left": "SC",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:SC:CH"
+    },
+    {
+      "left": "SC",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:SC:PSharpP"
+    },
+    {
+      "left": "SPP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:SPP:CH"
+    },
+    {
+      "left": "SPP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:SPP:PSharpP"
+    },
+    {
+      "left": "SZK",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:SZK:CH"
+    },
+    {
+      "left": "SZK",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:SZK:PSharpP"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Sigma2P:CH"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Sigma2P:PSharpP"
+    },
+    {
+      "left": "StoqMA",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:StoqMA:CH"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:StoqMA:PSharpP"
+    },
+    {
+      "left": "TC0",
+      "right": "CH",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:TC0:CH"
+    },
+    {
+      "left": "TC0",
+      "right": "PSharpP",
+      "status": "separation",
+      "review_group": "nonuniform",
+      "proof_key": "separation:TC0:PSharpP"
+    },
+    {
+      "left": "Theta2P",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Theta2P:CH"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:Theta2P:PSharpP"
+    },
+    {
+      "left": "UL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:UL:CH"
+    },
+    {
+      "left": "UL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:UL:PSharpP"
+    },
+    {
+      "left": "UP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UP:CH"
+    },
+    {
+      "left": "UP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UP:PSharpP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:UniformNC1:CH"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "logspace_parallelism",
+      "proof_key": "inclusion:UniformNC1:PSharpP"
+    },
+    {
+      "left": "WPP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:WPP:CH"
+    },
+    {
+      "left": "WPP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:WPP:PSharpP"
+    },
+    {
+      "left": "ZPP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:ZPP:CH"
+    },
+    {
+      "left": "ZPP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:ZPP:PSharpP"
+    },
+    {
+      "left": "coAM",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coAM:CH"
+    },
+    {
+      "left": "coAM",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coAM:PSharpP"
+    },
+    {
+      "left": "coMA",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coMA:CH"
+    },
+    {
+      "left": "coMA",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coMA:PSharpP"
+    },
+    {
+      "left": "coNP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coNP:CH"
+    },
+    {
+      "left": "coNP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coNP:PSharpP"
+    },
+    {
+      "left": "coQMA",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:coQMA:CH"
+    },
+    {
+      "left": "coQMA",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:coQMA:PSharpP"
+    },
+    {
+      "left": "coRP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coRP:CH"
+    },
+    {
+      "left": "coRP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "basic_proofs_randomness_PH",
+      "proof_key": "inclusion:coRP:PSharpP"
+    },
+    {
+      "left": "coUP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:coUP:CH"
+    },
+    {
+      "left": "coUP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:coUP:PSharpP"
+    },
+    {
+      "left": "parityP",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:parityP:CH"
+    },
+    {
+      "left": "parityP",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:parityP:PSharpP"
+    }
+  ],
+  "quantum_overlay": [
+    {
+      "relation": "inclusion",
+      "left": "QMA",
+      "right": "QMA2"
+    },
+    {
+      "relation": "inclusion",
+      "left": "QMA2",
+      "right": "NEXP"
+    },
+    {
+      "relation": "inclusion",
+      "left": "MA",
+      "right": "StoqMA"
+    },
+    {
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "SBP"
+    },
+    {
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "QMA"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BQP",
+      "right": "QSZK"
+    },
+    {
+      "relation": "inclusion",
+      "left": "SZK",
+      "right": "QSZK"
+    },
+    {
+      "relation": "inclusion",
+      "left": "QSZK",
+      "right": "PSPACE"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "BQL"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BQL",
+      "right": "PL"
+    }
+  ],
+  "additional_safe_transfer": {
+    "targets": [
+      "P",
+      "BPP",
+      "BQP",
+      "SPP",
+      "LWPP",
+      "AWPP",
+      "parityP"
+    ],
+    "statement": "PP⊆T⇒PSharpP⊆T",
+    "reason": "P^T=T for these targets, with the cited exact closure results. For the first six targets, their inclusion in AWPP plus PP-lowness already gives the stronger CH⊆PP⊆T. Parity uses the separate stronger rule proposed above.",
+    "excluded_target": "WPP; only truth-table closure is available without extra hypotheses.",
+    "source_ids": [
+      "auditCQ-FR99",
+      "auditCQ-STT05",
+      "auditCQ-FFK94",
+      "auditCQ-OH91"
+    ]
+  },
+  "erratum_and_repair": [
+    {
+      "date": "2017-05-24",
+      "source_id": "v040-AaronsonErratum2017",
+      "event": "Original proof of PP⊆BQP/qpoly⇒CH=QMA withdrawn; classical-advice version survives."
+    },
+    {
+      "date": "2025-10-02",
+      "source_id": "v040-Yirka2025",
+      "event": "Theorem3.3 repairs the quantum-advice result, proving CH=QMA=YQP* under PP⊆BQP/qpoly. Uses PP-low YQP*, not quantum-state hard-coding into a classical oracle query."
+    },
+    {
+      "date": "2026-09-01",
+      "event": "At cutoff the repaired theorem is available. Neither the absence of a proof after2017 nor the original invalid proof should determine admission. No advice endpoint is selected, so no new matrix fact follows directly."
+    }
+  ],
+  "landscape_scan": [
+    {
+      "path": "research/v0.4.0/quantum-randomness-landscape.json",
+      "sha256": "8483b8c1de42eb53b1b05eb1736d84b0f5454a286d3998e43376c605782c72f5",
+      "outcome": "No assertion of the old invalid CH-collapse proof; quantum-advice candidates and valid upper bounds are distinguished from the selected roster."
+    },
+    {
+      "path": "research/v0.4.0/quantum-randomness-landscape.md",
+      "sha256": "0cd978d7c8b7f5e88598c6ca00351e1b3f974af3580a0d91091f3e4c55e1b9a7",
+      "outcome": "No assertion of the old invalid CH-collapse proof; quantum-advice candidates and valid upper bounds are distinguished from the selected roster."
+    }
+  ],
+  "rejected_transfers": [
+    {
+      "claim": "PSharpP⊆PP⇒CH⊆PP",
+      "reason": "Deterministic PP-oracle closure does not supply PP^PP=PP. No such rule admitted."
+    },
+    {
+      "claim": "PP⊆QMA⇒CH⊆QMA",
+      "reason": "Quantum counterpart of Theorem20 is a conjecture in the2019 paper; its later advice repair assumes stronger advice containment. Transcript certification only settles the deterministic oracle endpoint."
+    },
+    {
+      "claim": "PP fixed-degree circuit lower bounds⇒PP⊄Ppoly",
+      "reason": "The quantifiers differ: each fixed exponent may have a different hard language."
+    },
+    {
+      "claim": "WPP is closed under polynomial-time adaptive Turing reductions",
+      "reason": "Existing primary literature gives truth-table closure and an oracle obstruction to unrestricted closure."
+    },
+    {
+      "claim": "∃R⊆CH from PosSLP or square-root-sum",
+      "reason": "Those individual problems are not a known complete encoding of all ∃R under these reductions."
+    }
+  ],
+  "limitations": [
+    "All240 incident pairs were screened through explicit family arguments; this is not240 independent literature searches or a blanket historical-open certificate.",
+    "The overlay is explicit and provisional; regenerate its statuses after the quantum dossier and the complete imported baseline are merged.",
+    "No new unconditional primitive relation beyond the root five seeds was identified; absence of a found theorem is not a proof of openness.",
+    "Operational machine equivalence and proofchecker trust are separate semantic-review tasks.",
+    "These checks use pre-cutoff literature statements; proof explanations recorded now are not backdated publications."
+  ]
+}

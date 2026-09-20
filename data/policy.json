@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "benchmark": "InclusionBench",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "cutoff": "2026-09-01",
   "cutoff_convention": "Results publicly available before 2026-09-02 00:00:00 UTC count as pre-cutoff. Historical decisions check exact public versions and are revisable.",
   "release_stage": "operational",
@@ -21,5 +21,9 @@
     "unconditional": "No additional consistency or soundness premise.",
     "zfc_consistency": "Con(ZFC): ZFC derives no contradiction.",
     "zfc_arithmetic_soundness": "Every closed first-order arithmetic sentence whose standard translation is provable in ZFC is true in standard N."
-  }
+  },
+  "release_status": "provisional",
+  "release_note": "Provisional v0.4.0 for pull-request review; not a published release.",
+  "repository_ref": "provisional-v0.4.0",
+  "scored_roster": "Only ordered pairs of scored_class_ids earn points. Background classes retain their definitions and cited implications and may appear in accepted supporting claims."
 }

@@ -1,0 +1,4071 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_independent_cross_review_and_import",
+  "reviewer": {
+    "identity": "Codex quantum_coverage subagent",
+    "kind": "AI-assisted; not human expert certification"
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "base_commit": "5e4addcddd40f1a75a02b83dc26aaee2ac54b1cd",
+  "base_dataset_digest": "d4bad51f85fab61dc06f75aca88c5a60d7416cf0738ca68cf0c2c3c21c0bc64e",
+  "input_file_sha256": {
+    "data/classes.json": "a670253a11cfd3f80137216d3c2344a47b629b151dee2eeeb67a9c881fae352f",
+    "data/knowledge.json": "bc8b03891cfab9ae3b2c1785410e40b2fb8e79fab85a1b29e4f399bb348122e2",
+    "research/v0.4.0/classical-new-baseline.json": "0da4aadde59b2d89153c65078c453d313eb260c83388aabff93859244546d2c8"
+  },
+  "scope": {
+    "focus_classes": [
+      "BQL",
+      "QMA2",
+      "QSZK",
+      "StoqMA"
+    ],
+    "context_count": 61,
+    "incident_pair_count": 472,
+    "universe": "Total decision languages; every input must satisfy the verifier/sampler gap."
+  },
+  "model_specifications": {
+    "QMA2": {
+      "module": "quantum/InclusionQuantum/Unentangled.lean",
+      "endpoint": "InclusionBench.Quantum.QMA2",
+      "definition": "A polynomial-time uniform polynomial-size H,T,X,CNOT verifier with two separately normalized, polynomial-length pure quantum witnesses. Completeness2/3 and soundness1/3 hold on every input, with soundness quantified over every product pair.",
+      "formal_sanity": [
+        "productState_normSquared",
+        "productState_normalized",
+        "twoWitnessAcceptance_bounded"
+      ],
+      "trusted_bridges": [
+        "Pure product witnesses suffice for arbitrary separable mixtures by linearity/convexity.",
+        "The fixed universal gate set and constant gap agree with the usual bounded-error model.",
+        "Harrow–Montanaro supplies gap amplification and equivalence with polynomially many unentangled witnesses."
+      ],
+      "pitfalls": [
+        "A single arbitrary joint witness would define QMA, not QMA2.",
+        "State quantification is part of witness semantics, not uncomputable advice available to the verifier.",
+        "The promise-complete problems are not silently added to the total-language universe."
+      ]
+    },
+    "StoqMA": {
+      "module": "quantum/InclusionQuantum/Stoquastic.lean",
+      "endpoint": "InclusionBench.Quantum.StoqMA",
+      "definition": "A concrete polynomial-time uniform NOT/CNOT/Toffoli circuit receives input, a quantum witness, zero ancillas and plus ancillas, then measures one output in the X basis. Union over FP rational length-dependent1/2≤b<a≤1 with an explicit inverse-polynomial gap.",
+      "formal_sanity": [
+        "toffoliBasis_twice",
+        "reversibleGate_preserves_normSquared",
+        "reversibleGateFields_injective",
+        "stoquasticCircuit_preserves_normSquared",
+        "stoquasticInitialState_preserves_normSquared",
+        "stoquasticAcceptance_bounded"
+      ],
+      "trusted_bridges": [
+        "Explicit unary circuit serialization has polynomial overhead.",
+        "The rational threshold union is the endpoint intended by unparameterized StoqMA here; no all-threshold equivalence theorem is assumed."
+      ],
+      "pitfalls": [
+        "Fixed2/3 versus1/3 is incompatible with the stoquastic soundness floor.",
+        "The exact b=1/2 boundary has an NP characterization and is not the whole threshold union.",
+        "Completeness amplification toward1 is an open problem in the general model."
+      ]
+    },
+    "BQL": {
+      "module": "quantum/InclusionQuantum/Logspace.lean",
+      "endpoint": "InclusionBench.Quantum.BQL",
+      "definition": "On actual input x, a concrete deterministic transducer with simultaneous logarithmic work space and polynomial running time emits a polynomial-size circuit C_x on O(log|x|) qubits. The qubits start at zero, and every input has gap2/3 versus1/3.",
+      "formal_sanity": [
+        "zeroState_normalized",
+        "logspaceAcceptance_bounded"
+      ],
+      "trusted_bridges": [
+        "Definitions4–5 of Fefferman–Remscrim directly use input-dependent DSPACE(s)-uniform circuits over H,CNOT,T with all-zero initial state; Theorem1 identifies them with the intermediate-measurement model.",
+        "Classical input access belongs to the bounded classical controller; the entire n-bit input is not copied into counted quantum workspace."
+      ],
+      "pitfalls": [
+        "Without polynomial time the class equals PL, a different endpoint.",
+        "Postselection also gives PL.",
+        "A polynomial-time rather than logspace circuit generator would accidentally supply P-level preprocessing.",
+        "StrongFewL is not UL; an all-pairs fewness hypothesis cannot be dropped."
+      ]
+    },
+    "QSZK": {
+      "module": "quantum/InclusionQuantum/Statistical.lean",
+      "endpoint": "InclusionBench.Quantum.QSZK",
+      "definition": "Two concrete polynomial-time quantum samplers produce mixed states by discarding explicit environment registers. On every yes input their output trace distance is≥2/3; on every no input it is≤1/3. The implementation uses the variational maximum over projective binary measurements.",
+      "formal_sanity": [
+        "measurement_probability_bounded",
+        "sampler_state_normalized",
+        "identical_quantum_samplers_close",
+        "quantum_far_close_disjoint",
+        "measurementDifference_bounded"
+      ],
+      "trusted_bridges": [
+        "The finite-dimensional variational projective-measurement formula equals half the trace norm by the Helstrom theorem.",
+        "QSD completeness, polarization and honest-verifier/full-QSZK equivalence identify this total reduction class with interactive QSZK.",
+        "Weak endpoints are harmless:1/3<3/8<(5/8)^2<2/3 with the middle inequality3/8<25/64; polarization provides arbitrary slack for the reverse encoding."
+      ],
+      "pitfalls": [
+        "The mathematical measurement in the distance definition is unrestricted; it is not an efficient oracle given to a sampler.",
+        "Measurements access only retained output qubits, never discarded environment.",
+        "Different normalizations of trace distance require the factor1/2.",
+        "Interchanging the two samplers leaves distance unchanged and does not establish complement closure."
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "v040-q-HM2010",
+      "title": "Testing product states, quantum Merlin–Arthur games and tensor optimisation",
+      "url": "https://arxiv.org/abs/1001.0017",
+      "year": 2010,
+      "locator": "Abstract; QMA(k) application and amplification theorem; JACM60(1),2013",
+      "notes": "Polynomially many unentangled witnesses can be reduced to two with amplification. This is a promise-class theorem whose restriction to total languages is valid.",
+      "publication_date": "2010-01-04"
+    },
+    {
+      "id": "v040-q-Gharibian2023",
+      "title": "The 7 faces of quantum NP",
+      "url": "https://arxiv.org/abs/2310.18010v1",
+      "year": 2023,
+      "locator": "§6, Figure1 and discussion of the NEXP upper bound",
+      "notes": "Pre-cutoff expert survey confirms QMA(2) has no known PSPACE upper bound; the intermediate quantum hierarchy is not the ordinary CH.",
+      "publication_date": "2023-10-27"
+    },
+    {
+      "id": "v040-q-BBT2006",
+      "title": "Merlin–Arthur Games and Stoquastic Complexity",
+      "url": "https://arxiv.org/abs/quant-ph/0611021",
+      "year": 2006,
+      "locator": "Definition4 pp.4–5; §4.1.1 p.10, theorem StoqMA⊆SBP; abstract inclusion chain",
+      "notes": "Bravyi, Bessen and Terhal. Stoquastic verifier uses classical reversible gates, zero/plus ancillas and one X-basis output measurement.",
+      "publication_date": "2006-11-02"
+    },
+    {
+      "id": "v040-q-AGL2025",
+      "title": "StoqMA vs. MA: the power of error reduction",
+      "url": "https://arxiv.org/abs/2010.02835v4",
+      "year": 2025,
+      "locator": "§1 containments; Definition2.3 and Remarks2.4–2.5; Corollaries1.4–1.5",
+      "notes": "The benchmark uses a union over efficiently computable rational inverse-polynomial-gap thresholds. The conjectured amplification is not imported as a theorem. Initial manuscript2020.",
+      "publication_date": "2025"
+    },
+    {
+      "id": "v040-q-Liu2021",
+      "title": "StoqMA Meets Distribution Testing",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2021.4",
+      "year": 2021,
+      "locator": "Corollary24; §4 soundness-error reduction",
+      "notes": "The exact soundness1/2 boundary, union over a>1/2 with inverse-polynomial gap, is NP. This does not collapse the unrestricted threshold union.",
+      "publication_date": "2021"
+    },
+    {
+      "id": "v040-q-Watrous2002",
+      "title": "Quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/abs/quant-ph/0202111",
+      "year": 2002,
+      "locator": "Quantum State Distinguishability completeness; polarization; complement closure",
+      "notes": "Original honest-verifier QSZK characterization. Later quantum rewinding supplies the full verifier interpretation.",
+      "publication_date": "2002-02-20"
+    },
+    {
+      "id": "v040-q-Watrous2009",
+      "title": "Zero-Knowledge against Quantum Attacks",
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/ZeroKnowledgeAgainstQuantumAttacks.pdf",
+      "year": 2009,
+      "locator": "Main quantum-rewinding theorem and application to quantum statistical zero knowledge",
+      "notes": "SIAM J.Comput.39(1),25–58. Supplies the general-verifier bridge; do not simply assume a classical SZK protocol is automatically secure against quantum verifiers.",
+      "publication_date": "2009"
+    },
+    {
+      "id": "v040-q-VW2016",
+      "title": "Quantum Proofs",
+      "url": "https://arxiv.org/abs/1610.01664v1",
+      "year": 2016,
+      "locator": "§5.3: Close Quantum States, Theorem5.3, Corollary5.5 and complement closure; §3.4 unentangled proofs",
+      "notes": "Author monograph used to align the full-QSZK and complete-problem conventions; QSD circuit-output states may be mixed.",
+      "publication_date": "2016-10-05"
+    },
+    {
+      "id": "v040-q-JUW2009",
+      "title": "Two-message quantum interactive proofs are in PSPACE",
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QIP2inPSPACE.pdf",
+      "year": 2009,
+      "locator": "Introduction and main containment theorem",
+      "notes": "Jain, Upadhyay and Watrous. QSZK⊆QIP(2) and QIP(2)⊆PSPACE yield the stored upper bound.",
+      "publication_date": "2009"
+    },
+    {
+      "id": "v040-q-LNY2021",
+      "title": "Quantum Logarithmic Space and Post-selection",
+      "url": "https://arxiv.org/abs/2105.02681v1",
+      "year": 2021,
+      "locator": "§§2.1–2.3 displayed class containments; Theorems1–2; §3.4",
+      "notes": "Polynomial-time BPL⊆BQL⊆PL. PostBQL and unrestricted-time bounded-error quantum logspace instead equal PL.",
+      "publication_date": "2021-05-06"
+    },
+    {
+      "id": "v040-q-FR2020",
+      "title": "Eliminating Intermediate Measurements in Space-Bounded Quantum Computation",
+      "url": "https://arxiv.org/abs/2006.03530",
+      "year": 2020,
+      "locator": "Definitions4–5 (input-dependent DSPACE(s)-uniform H,CNOT,T circuits, all-zero initial state); Theorem1 measurement elimination",
+      "notes": "Fefferman and Remscrim, STOC2021. Space-preserving measurement elimination justifies the unitary logspace circuit model, with polynomial time when space is logarithmic.",
+      "publication_date": "2020-06-05"
+    },
+    {
+      "id": "v040-q-AE2025",
+      "title": "Directed st-Connectivity with Few Paths Is in Quantum Logspace",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2025.18",
+      "year": 2025,
+      "locator": "Theorems1–2, Corollary3, Theorem4 and definitions in §2",
+      "notes": "StrongFewL restricts paths between every configuration pair. Ordinary UL only bounds accepting paths and cannot be substituted.",
+      "publication_date": "2025-07-29"
+    },
+    {
+      "id": "v040-q-LGLW2026",
+      "title": "A slightly improved upper bound for quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/abs/2512.11597v2",
+      "year": 2026,
+      "locator": "Abstract; introduction, discussion of the best known QSZK upper bound",
+      "notes": "The improvement is space efficiency of the honest prover in QIP(2), not QSZK⊆QMA or QSZK⊆PP. Initial v1 December2025.",
+      "publication_date": "2026-06-28"
+    },
+    {
+      "id": "v040-q-LW2026",
+      "title": "The power of unentanglement without destructive interference",
+      "url": "https://arxiv.org/abs/2604.27886v2",
+      "year": 2026,
+      "locator": "Abstract and StoqMA(2) upper bound",
+      "notes": "The EXP upper bound concerns StoqMA(2), not ordinary QMA(2). Amplitude restrictions are substantive.",
+      "publication_date": "2026-07-12"
+    },
+    {
+      "id": "v040-q-GR2026",
+      "title": "The Complexity of Stoquastic Sparse Hamiltonians",
+      "url": "https://arxiv.org/abs/2605.02845v1",
+      "year": 2026,
+      "locator": "Abstract; main completeness theorem",
+      "notes": "Recent sparse-Hamiltonian completeness does not establish general StoqMA amplification or MA=StoqMA.",
+      "publication_date": "2026-05-04"
+    },
+    {
+      "id": "v040-q-VD2019",
+      "title": "A Simple Proof of Vyalyi’s Theorem and some Generalizations",
+      "url": "https://eccc.weizmann.ac.il/report/2019/131/download/",
+      "year": 2019,
+      "locator": "Theorem4 pp.2,4–5; Theorems10–11 and2–3 pp.6–7",
+      "notes": "Definitions are explicitly total languages. QMA∩coQMA is closed under deterministic Turing reductions; the proof controls entangled certificates.",
+      "publication_date": "2019"
+    },
+    {
+      "id": "v040-q-Aaronson2017Erratum",
+      "title": "Yet more errors in papers",
+      "url": "https://scottaaronson.blog/?p=3256",
+      "year": 2017,
+      "locator": "Item1, correction to Oracles are subtle but not malicious Theorem5",
+      "notes": "Historical correction; the qpoly counting-hierarchy statement was subsequently repaired by Yirka2025. The generic PP⊆QMA premise still does not imply the stronger advice hypothesis.",
+      "publication_date": "2017-05-24"
+    },
+    {
+      "id": "v040-q-GHM2015",
+      "title": "Quantum Interactive Proofs and the Complexity of Separability Testing",
+      "url": "https://theoryofcomputing.org/articles/v011a003/",
+      "year": 2015,
+      "locator": "Natural complete problems for QSZK, QMA(2) and other quantum proof classes",
+      "notes": "Changing the norm or separability promise changes the class; neighboring completeness results do not imply one class contains another.",
+      "publication_date": "2015"
+    },
+    {
+      "id": "v040-q-ModelDerivations",
+      "title": "Quantum baseline extension: operational bridges and elementary derivations",
+      "url": "research/v0.4.0/quantum-new-baseline.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Definitions, primitive facts, conditional rules and rejected transfers",
+      "notes": "Documentation created after cutoff from dated results and elementary model transfers; not a claim that these consequences were newly proved before cutoff."
+    },
+    {
+      "id": "v040-q-Yirka2025",
+      "title": "Even Quantum Advice is Unlikely to Solve PP",
+      "url": "https://theoryofcomputing.org/articles/v021a007/",
+      "year": 2025,
+      "publication_date": "2025-10-02",
+      "locator": "Abstract; main theorem and YQP* lowness argument",
+      "notes": "Restores the counting-hierarchy collapse under PP⊆BQP/qpoly using YQP*⊆APP. This is a stronger hypothesis than PP⊆QMA; no qpoly endpoint is selected."
+    }
+  ],
+  "external_source_ids": [
+    "q-mw05",
+    "q-gsv98",
+    "AuditPadding"
+  ],
+  "facts": [
+    {
+      "id": "v040-q-qma-qma2",
+      "relation": "inclusion",
+      "left": "QMA",
+      "right": "QMA2",
+      "source_ids": [
+        "v040-q-HM2010"
+      ],
+      "justification": "Ignore the second witness register. A zero-qubit normalized second witness suffices; the first verifier and its gap are unchanged."
+    },
+    {
+      "id": "v040-q-qma2-nexp",
+      "relation": "inclusion",
+      "left": "QMA2",
+      "right": "NEXP",
+      "source_ids": [
+        "v040-q-Gharibian2023",
+        "v040-q-HM2010",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Guess exponentially many polynomial-precision amplitudes for the two polynomial-qubit witnesses and simulate the polynomial-size verifier to constant additive accuracy. The constant gap permits normalization and rounding; nondeterministic exponential time suffices."
+    },
+    {
+      "id": "v040-q-ma-stoqma",
+      "relation": "inclusion",
+      "left": "MA",
+      "right": "StoqMA",
+      "source_ids": [
+        "v040-q-AGL2025",
+        "v040-q-BBT2006"
+      ],
+      "justification": "Use an amplified perfectly complete coherent MA verifier and an output-controlled swap of zero and plus ancillas. The X-measurement acceptance is1 on yes witnesses and at most1/2+negligible on no inputs, an allowed threshold pair in the union."
+    },
+    {
+      "id": "v040-q-stoqma-sbp",
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "SBP",
+      "source_ids": [
+        "v040-q-BBT2006"
+      ],
+      "justification": "Apply the stoquastic-verifier SBP simulation to each efficiently computable inverse-polynomial-gap threshold pair. No amplification to a single fixed threshold pair is assumed."
+    },
+    {
+      "id": "v040-q-stoqma-qma",
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "QMA",
+      "source_ids": [
+        "v040-q-AGL2025",
+        "q-mw05",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "A general quantum verifier can implement zero/plus preparation, the reversible circuit, and final X measurement. QMA amplification handles the efficiently known inverse-polynomial acceptance gap."
+    },
+    {
+      "id": "v040-q-bqp-qszk",
+      "relation": "inclusion",
+      "left": "BQP",
+      "right": "QSZK",
+      "source_ids": [
+        "v040-q-Watrous2002",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "An amplified BQP algorithm yields a classical output bit distribution with mass near1 on yes and near0 on no. Compare this distribution with a fixed zero bit, retaining the result and discarding work; the trace distance has the QSD gap on every input."
+    },
+    {
+      "id": "v040-q-szk-qszk",
+      "relation": "inclusion",
+      "left": "SZK",
+      "right": "QSZK",
+      "source_ids": [
+        "q-gsv98",
+        "v040-q-Watrous2002",
+        "v040-q-Watrous2009",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Use the complete Statistical Difference characterization of SZK, generate diagonal quantum output states coherently, and discard the randomness. Their trace distance equals classical total variation distance. The full-QSZK completeness bridge then applies."
+    },
+    {
+      "id": "v040-q-qszk-pspace",
+      "relation": "inclusion",
+      "left": "QSZK",
+      "right": "PSPACE",
+      "source_ids": [
+        "v040-q-JUW2009"
+      ],
+      "justification": "QSZK⊆QIP(2)⊆PSPACE, restricted to inputs forming a total language."
+    },
+    {
+      "id": "v040-q-bpl-bql",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "BQL",
+      "source_ids": [
+        "v040-q-LNY2021",
+        "v040-q-FR2020"
+      ],
+      "justification": "Use the standard polynomial-time, logarithmic-space quantum simulation of fair-coin computation and space-preserving measurement elimination."
+    },
+    {
+      "id": "v040-q-bql-pl",
+      "relation": "inclusion",
+      "left": "BQL",
+      "right": "PL",
+      "source_ids": [
+        "v040-q-LNY2021"
+      ],
+      "justification": "The §2.3 chain explicitly places polynomial-time bounded-error quantum logspace in PL; the benchmark retains that polynomial time bound."
+    }
+  ],
+  "rules": [
+    {
+      "id": "v040-q-pp-in-qma-p-counting-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "QMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "v040-q-VD2019"
+      ],
+      "justification": "QMA⊆PP and complement closure of PP give QMA=PP=coQMA. Theorem4 gives P^PP⊆QMA; hence PSharpP⊆PP. Equivalently use Theorem2, PH^PP=QMA. No CH collapse is asserted."
+    },
+    {
+      "id": "v040-q-qma-complement-ph-collapse",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "QMA",
+          "right": "coQMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "QMA"
+        }
+      ],
+      "source_ids": [
+        "v040-q-VD2019"
+      ],
+      "justification": "Complementing the premise gives the reverse containment. Theorem11 then gives PH^QMA=QMA and therefore PH⊆QMA. Theorem3 states the weaker resulting PH⊆PP."
+    },
+    {
+      "id": "v040-q-padding-E-BQL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "BQL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "BQL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves BQL: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-BQL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "BQL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "BQL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves BQL: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-E-QMA2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "QMA2"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "QMA2"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves QMA2: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-QMA2",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "QMA2"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "QMA2"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves QMA2: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-E-StoqMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "StoqMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "StoqMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves StoqMA: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-StoqMA",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "StoqMA"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "StoqMA"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves StoqMA: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-E-QSZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "QSZK"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "QSZK"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a EXP language to E. The inverse-padding simulation preserves QSZK: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    },
+    {
+      "id": "v040-q-padding-NE-QSZK",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "QSZK"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "QSZK"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Length-regular polynomial padding sends a NEXP language to NE. The inverse-padding simulation preserves QSZK: see the class-specific argument in the dossier. For BQL both the classical transducer and quantum workspace remain logarithmic; time remains polynomial."
+    }
+  ],
+  "complements": [
+    {
+      "left": "BQL",
+      "right": "BQL",
+      "source_ids": [
+        "v040-q-LNY2021",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Complement a bounded-error computation by flipping its final output bit; the logspace uniformity, workspace and polynomial clock remain bounded."
+    },
+    {
+      "left": "QSZK",
+      "right": "QSZK",
+      "source_ids": [
+        "v040-q-Watrous2002",
+        "v040-q-Watrous2009",
+        "v040-q-VW2016"
+      ],
+      "justification": "Use the quantum statistical zero-knowledge complement theorem and the full-verifier equivalence. Swapping the two samplers alone does not complement a distance problem."
+    }
+  ],
+  "cross_dossier_overlay": [
+    {
+      "relation": "inclusion",
+      "left": "L",
+      "right": "BPL",
+      "owner": "classical_literature",
+      "origin_id": "v040-l-bpl"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "BPP",
+      "owner": "classical_literature",
+      "origin_id": "v040-bpl-bpp"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "SC",
+      "owner": "classical_literature",
+      "origin_id": "v040-bpl-sc"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "PL",
+      "owner": "classical_literature",
+      "origin_id": "v040-bpl-pl"
+    },
+    {
+      "relation": "inclusion",
+      "left": "L",
+      "right": "UL",
+      "owner": "classical_literature",
+      "origin_id": "v040-l-ul"
+    },
+    {
+      "relation": "inclusion",
+      "left": "UL",
+      "right": "NL",
+      "owner": "classical_literature",
+      "origin_id": "v040-ul-nl"
+    },
+    {
+      "relation": "inclusion",
+      "left": "NL",
+      "right": "PL",
+      "owner": "classical_literature",
+      "origin_id": "v040-nl-pl"
+    },
+    {
+      "relation": "inclusion",
+      "left": "PL",
+      "right": "NC",
+      "owner": "classical_literature",
+      "origin_id": "v040-pl-nc"
+    },
+    {
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "ExistsR",
+      "owner": "classical_literature",
+      "origin_id": "v040-np-existsr"
+    },
+    {
+      "relation": "inclusion",
+      "left": "ExistsR",
+      "right": "PSPACE",
+      "owner": "classical_literature",
+      "origin_id": "v040-existsr-pspace"
+    },
+    {
+      "relation": "inclusion",
+      "left": "UniformNC1",
+      "right": "L",
+      "owner": "classical_literature",
+      "origin_id": "v040-uniformnc1-l"
+    },
+    {
+      "relation": "inclusion",
+      "left": "UniformNC1",
+      "right": "NC1",
+      "owner": "classical_literature",
+      "origin_id": "v040-uniformnc1-nc1"
+    },
+    {
+      "relation": "separation",
+      "left": "UniformNC1",
+      "right": "AC0",
+      "owner": "classical_literature",
+      "origin_id": "v040-uniformnc1-not-ac0"
+    },
+    {
+      "relation": "inclusion",
+      "left": "PP",
+      "right": "PSharpP",
+      "owner": "counting_extension",
+      "status": "pending_final_counting_dossier"
+    },
+    {
+      "relation": "inclusion",
+      "left": "PH",
+      "right": "PSharpP",
+      "owner": "counting_extension",
+      "status": "pending_final_counting_dossier"
+    },
+    {
+      "relation": "inclusion",
+      "left": "parityP",
+      "right": "PSharpP",
+      "owner": "counting_extension",
+      "status": "pending_final_counting_dossier"
+    },
+    {
+      "relation": "inclusion",
+      "left": "PSharpP",
+      "right": "CH",
+      "owner": "counting_extension",
+      "status": "pending_final_counting_dossier"
+    },
+    {
+      "relation": "inclusion",
+      "left": "CH",
+      "right": "PSPACE",
+      "owner": "counting_extension",
+      "status": "pending_final_counting_dossier"
+    }
+  ],
+  "cross_dossier_complements": [
+    {
+      "left": "BPL",
+      "right": "BPL"
+    },
+    {
+      "left": "PL",
+      "right": "PL"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PSharpP"
+    },
+    {
+      "left": "CH",
+      "right": "CH"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UniformNC1"
+    }
+  ],
+  "pair_status_counts": {
+    "separation": 36,
+    "candidate_unknown": 303,
+    "inclusion": 133
+  },
+  "family_reviews": [
+    {
+      "family": "Circuits",
+      "other_endpoints": [
+        "AC0",
+        "ACC0",
+        "TC0",
+        "NC1",
+        "Ppoly",
+        "NPpoly",
+        "UniformNC1"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "All four classes are uniform and recursive. Existing nonuniform undecidable-unary witnesses and lower bounds propagate through the cited upper bounds. No quantum advice endpoint is substituted."
+    },
+    {
+      "family": "Counting",
+      "other_endpoints": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "PL",
+        "PSharpP",
+        "CH"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "QSZK and QMA2 are not put in PP, PSharpP or CH by a shared PSPACE/NEXP upper bound. StoqMA reaches PP via SBP; BQL reaches P via PL. Exact-counting and postselection characterizations remain distinct."
+    },
+    {
+      "family": "Deterministic / nondeterministic",
+      "other_endpoints": [
+        "P",
+        "NP",
+        "coNP",
+        "NPcapcoNP"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "P and NP enter QMA2/StoqMA by existing QMA/MA paths; BQL⊆P follows from PL. NPcapcoNP is not identified with UPcapcoUP or a quantum witness class."
+    },
+    {
+      "family": "Exponential resources",
+      "other_endpoints": [
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "E",
+        "NE"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "QMA2⊆NEXP; QSZK⊆PSPACE; BQL and StoqMA inherit smaller upper bounds. Baseline hierarchy negatives and regular-padding consequences propagate; no independent new ordinary quantum separation is proposed."
+    },
+    {
+      "family": "Polynomial hierarchy",
+      "other_endpoints": [
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "No general PH containment of QSZK or QMA2 is inferred. StoqMA enters PH through AM. New QMA complement-collapse rule is conditional and does not assert QMA complement closure."
+    },
+    {
+      "family": "Proof systems",
+      "other_endpoints": [
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "SZK"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "SZK transfers through complete classical Statistical Difference, not an unsupported assertion about quantum security of every classical protocol. MA⊆StoqMA⊆SBP⊆AM. QSZK/QMA and QSZK/QMA2 remain unresolved where closure does not decide them."
+    },
+    {
+      "family": "Quantum",
+      "other_endpoints": [
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "BQL",
+        "QMA2",
+        "StoqMA",
+        "QSZK"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "QMA2 uses product witnesses; StoqMA has restricted gates and threshold union; QSZK has two samplers and output-only distance; BQL has simultaneous polynomial-time/logspace control. No oracle or restricted-amplitude result is an ordinary separation."
+    },
+    {
+      "family": "Randomness",
+      "other_endpoints": [
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "SBP",
+        "BPL"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "BPL⊆BQL, BPP⊆BQP⊆QSZK and MA⊆StoqMA supply the ordinary paths. No BQL⊆BPL or BQP⊆StoqMA simulation is inferred."
+    },
+    {
+      "family": "Real feasibility",
+      "other_endpoints": [
+        "ExistsR"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "ExistsR is binary-language ETR reducibility. Real-valued PCP symbols and nonlinear witness optimization do not yield a finite-qubit verifier or quantum class containment."
+    },
+    {
+      "family": "Space / parallelism",
+      "other_endpoints": [
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "UL"
+      ],
+      "reviewed_orientations": "both; duplicates with two focus endpoints appear only once in incident_pairs",
+      "notes": "BQL upper bounds factor through PL, and lower bounds through BPL. StrongFewL/ReachFewL/catalytic models do not establish UL or NL containment. QMA2 has no inferred PSPACE upper bound."
+    }
+  ],
+  "incident_pairs": [
+    {
+      "left": "AC0",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:AC0:BQL"
+    },
+    {
+      "left": "AC0",
+      "right": "QMA2",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:AC0:QMA2"
+    },
+    {
+      "left": "AC0",
+      "right": "QSZK",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:AC0:QSZK"
+    },
+    {
+      "left": "AC0",
+      "right": "StoqMA",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:AC0:StoqMA"
+    },
+    {
+      "left": "ACC0",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:ACC0:BQL"
+    },
+    {
+      "left": "ACC0",
+      "right": "QMA2",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:ACC0:QMA2"
+    },
+    {
+      "left": "ACC0",
+      "right": "QSZK",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:ACC0:QSZK"
+    },
+    {
+      "left": "ACC0",
+      "right": "StoqMA",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:ACC0:StoqMA"
+    },
+    {
+      "left": "AM",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "AM",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "AM",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "AM",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "AWPP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BPL",
+      "right": "BQL",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BPL:BQL"
+    },
+    {
+      "left": "BPL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BPL:QMA2"
+    },
+    {
+      "left": "BPL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BPL:QSZK"
+    },
+    {
+      "left": "BPL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BPL:StoqMA"
+    },
+    {
+      "left": "BPP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BPP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BPP:QMA2"
+    },
+    {
+      "left": "BPP",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BPP:QSZK"
+    },
+    {
+      "left": "BPP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BPP:StoqMA"
+    },
+    {
+      "left": "BQL",
+      "right": "AC0",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:BQL:AC0"
+    },
+    {
+      "left": "BQL",
+      "right": "ACC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "AM",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:AM"
+    },
+    {
+      "left": "BQL",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:AWPP"
+    },
+    {
+      "left": "BQL",
+      "right": "BPL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "BPP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:BPP"
+    },
+    {
+      "left": "BQL",
+      "right": "BQL",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:BQL"
+    },
+    {
+      "left": "BQL",
+      "right": "BQP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:BQP"
+    },
+    {
+      "left": "BQL",
+      "right": "CH",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:CH"
+    },
+    {
+      "left": "BQL",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:CeqP"
+    },
+    {
+      "left": "BQL",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:Delta2P"
+    },
+    {
+      "left": "BQL",
+      "right": "E",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:E"
+    },
+    {
+      "left": "BQL",
+      "right": "EXP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:EXP"
+    },
+    {
+      "left": "BQL",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:EXPSPACE"
+    },
+    {
+      "left": "BQL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:ExistsR"
+    },
+    {
+      "left": "BQL",
+      "right": "FewP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:FewP"
+    },
+    {
+      "left": "BQL",
+      "right": "L",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:LWPP"
+    },
+    {
+      "left": "BQL",
+      "right": "LogCFL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "MA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:MA"
+    },
+    {
+      "left": "BQL",
+      "right": "NC",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:NC"
+    },
+    {
+      "left": "BQL",
+      "right": "NC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "NE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:NE"
+    },
+    {
+      "left": "BQL",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:NEXP"
+    },
+    {
+      "left": "BQL",
+      "right": "NL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "NP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:NP"
+    },
+    {
+      "left": "BQL",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:NPcapcoNP"
+    },
+    {
+      "left": "BQL",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:NPpoly"
+    },
+    {
+      "left": "BQL",
+      "right": "P",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:P"
+    },
+    {
+      "left": "BQL",
+      "right": "PH",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:PH"
+    },
+    {
+      "left": "BQL",
+      "right": "PL",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:PL"
+    },
+    {
+      "left": "BQL",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:PP"
+    },
+    {
+      "left": "BQL",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:PSPACE"
+    },
+    {
+      "left": "BQL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:PSharpP"
+    },
+    {
+      "left": "BQL",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:Pi2P"
+    },
+    {
+      "left": "BQL",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:Ppoly"
+    },
+    {
+      "left": "BQL",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:QCMA"
+    },
+    {
+      "left": "BQL",
+      "right": "QMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:QMA"
+    },
+    {
+      "left": "BQL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:QMA2"
+    },
+    {
+      "left": "BQL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:QSZK"
+    },
+    {
+      "left": "BQL",
+      "right": "RP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:RP"
+    },
+    {
+      "left": "BQL",
+      "right": "SBP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:SBP"
+    },
+    {
+      "left": "BQL",
+      "right": "SC",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "SPP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:SPP"
+    },
+    {
+      "left": "BQL",
+      "right": "SZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:SZK"
+    },
+    {
+      "left": "BQL",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:Sigma2P"
+    },
+    {
+      "left": "BQL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:StoqMA"
+    },
+    {
+      "left": "BQL",
+      "right": "TC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:Theta2P"
+    },
+    {
+      "left": "BQL",
+      "right": "UL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "UP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:UP"
+    },
+    {
+      "left": "BQL",
+      "right": "UniformNC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQL",
+      "right": "WPP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:WPP"
+    },
+    {
+      "left": "BQL",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:ZPP"
+    },
+    {
+      "left": "BQL",
+      "right": "coAM",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:coAM"
+    },
+    {
+      "left": "BQL",
+      "right": "coMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:coMA"
+    },
+    {
+      "left": "BQL",
+      "right": "coNP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:coNP"
+    },
+    {
+      "left": "BQL",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:coQMA"
+    },
+    {
+      "left": "BQL",
+      "right": "coRP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:coRP"
+    },
+    {
+      "left": "BQL",
+      "right": "coUP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:coUP"
+    },
+    {
+      "left": "BQL",
+      "right": "parityP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQL:parityP"
+    },
+    {
+      "left": "BQP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "BQP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQP:QMA2"
+    },
+    {
+      "left": "BQP",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:BQP:QSZK"
+    },
+    {
+      "left": "BQP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CH",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CH",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CH",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CH",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "CeqP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Delta2P",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Delta2P",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Delta2P",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Delta2P",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "E",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:E:BQL"
+    },
+    {
+      "left": "E",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "E",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "E",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "EXP",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:EXP:BQL"
+    },
+    {
+      "left": "EXP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "EXP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "EXP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:EXPSPACE:BQL"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "QSZK",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:EXPSPACE:QSZK"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "StoqMA",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:EXPSPACE:StoqMA"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "ExistsR",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "FewP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "FewP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:FewP:QMA2"
+    },
+    {
+      "left": "FewP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "FewP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:FewP:StoqMA"
+    },
+    {
+      "left": "L",
+      "right": "BQL",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:L:BQL"
+    },
+    {
+      "left": "L",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:L:QMA2"
+    },
+    {
+      "left": "L",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:L:QSZK"
+    },
+    {
+      "left": "L",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:L:StoqMA"
+    },
+    {
+      "left": "LWPP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "LWPP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "LogCFL",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "LogCFL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:LogCFL:QMA2"
+    },
+    {
+      "left": "LogCFL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:LogCFL:QSZK"
+    },
+    {
+      "left": "LogCFL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:LogCFL:StoqMA"
+    },
+    {
+      "left": "MA",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "MA",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:MA:QMA2"
+    },
+    {
+      "left": "MA",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "MA",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:MA:StoqMA"
+    },
+    {
+      "left": "NC",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NC",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NC:QMA2"
+    },
+    {
+      "left": "NC",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NC:QSZK"
+    },
+    {
+      "left": "NC",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NC:StoqMA"
+    },
+    {
+      "left": "NC1",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NC1:BQL"
+    },
+    {
+      "left": "NC1",
+      "right": "QMA2",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NC1:QMA2"
+    },
+    {
+      "left": "NC1",
+      "right": "QSZK",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NC1:QSZK"
+    },
+    {
+      "left": "NC1",
+      "right": "StoqMA",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NC1:StoqMA"
+    },
+    {
+      "left": "NE",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NE:BQL"
+    },
+    {
+      "left": "NE",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NE",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NE",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NEXP",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NEXP:BQL"
+    },
+    {
+      "left": "NEXP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NEXP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NEXP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NL",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NL:QMA2"
+    },
+    {
+      "left": "NL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NL:QSZK"
+    },
+    {
+      "left": "NL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NL:StoqMA"
+    },
+    {
+      "left": "NP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NP:QMA2"
+    },
+    {
+      "left": "NP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NP:StoqMA"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NPcapcoNP:QMA2"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:NPcapcoNP:StoqMA"
+    },
+    {
+      "left": "NPpoly",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NPpoly:BQL"
+    },
+    {
+      "left": "NPpoly",
+      "right": "QMA2",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NPpoly:QMA2"
+    },
+    {
+      "left": "NPpoly",
+      "right": "QSZK",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NPpoly:QSZK"
+    },
+    {
+      "left": "NPpoly",
+      "right": "StoqMA",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:NPpoly:StoqMA"
+    },
+    {
+      "left": "P",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "P",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:P:QMA2"
+    },
+    {
+      "left": "P",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:P:QSZK"
+    },
+    {
+      "left": "P",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:P:StoqMA"
+    },
+    {
+      "left": "PH",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PH",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PH",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PH",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PL",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:PL:QMA2"
+    },
+    {
+      "left": "PL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:PL:QSZK"
+    },
+    {
+      "left": "PL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:PL:StoqMA"
+    },
+    {
+      "left": "PP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PSPACE",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:PSPACE:BQL"
+    },
+    {
+      "left": "PSPACE",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PSPACE",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PSPACE",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PSharpP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PSharpP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PSharpP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "PSharpP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Pi2P",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Pi2P",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Pi2P",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Pi2P",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Ppoly",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:Ppoly:BQL"
+    },
+    {
+      "left": "Ppoly",
+      "right": "QMA2",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:Ppoly:QMA2"
+    },
+    {
+      "left": "Ppoly",
+      "right": "QSZK",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:Ppoly:QSZK"
+    },
+    {
+      "left": "Ppoly",
+      "right": "StoqMA",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:Ppoly:StoqMA"
+    },
+    {
+      "left": "QCMA",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QCMA",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QCMA:QMA2"
+    },
+    {
+      "left": "QCMA",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QCMA",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QMA:QMA2"
+    },
+    {
+      "left": "QMA",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "AC0",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:QMA2:AC0"
+    },
+    {
+      "left": "QMA2",
+      "right": "ACC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "AM",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "AWPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "BPL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "BPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "BQP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "CH",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "CeqP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "Delta2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "E",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "EXP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QMA2:EXPSPACE"
+    },
+    {
+      "left": "QMA2",
+      "right": "ExistsR",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "FewP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "L",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "LWPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "LogCFL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "MA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "NC",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "NC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "NE",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QMA2:NEXP"
+    },
+    {
+      "left": "QMA2",
+      "right": "NL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "NP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "NPcapcoNP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "NPpoly",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "PH",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "PL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "PP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "PSPACE",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "PSharpP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "Pi2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "Ppoly",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "QCMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "QMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QMA2:QMA2"
+    },
+    {
+      "left": "QMA2",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "RP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "SBP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "SC",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "SPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "SZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "Sigma2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "TC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "Theta2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "UL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "UP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "UniformNC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "WPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "ZPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "coAM",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "coMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "coNP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "coQMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "coRP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "coUP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QMA2",
+      "right": "parityP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "AC0",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:QSZK:AC0"
+    },
+    {
+      "left": "QSZK",
+      "right": "ACC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "AM",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "AWPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "BPL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "BPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "BQP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "CH",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "CeqP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "Delta2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "E",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "EXP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QSZK:EXP"
+    },
+    {
+      "left": "QSZK",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QSZK:EXPSPACE"
+    },
+    {
+      "left": "QSZK",
+      "right": "ExistsR",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "FewP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "L",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "LWPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "LogCFL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "MA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "NC",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "NC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "NE",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QSZK:NEXP"
+    },
+    {
+      "left": "QSZK",
+      "right": "NL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "NP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "NPcapcoNP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "NPpoly",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "PH",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "PL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "PP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QSZK:PSPACE"
+    },
+    {
+      "left": "QSZK",
+      "right": "PSharpP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "Pi2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "Ppoly",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "QCMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "QMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:QSZK:QSZK"
+    },
+    {
+      "left": "QSZK",
+      "right": "RP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "SBP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "SC",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "SPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "SZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "Sigma2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "TC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "Theta2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "UL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "UP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "UniformNC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "WPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "ZPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "coAM",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "coMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "coNP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "coQMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "coRP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "coUP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "QSZK",
+      "right": "parityP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "RP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "RP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:RP:QMA2"
+    },
+    {
+      "left": "RP",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:RP:QSZK"
+    },
+    {
+      "left": "RP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:RP:StoqMA"
+    },
+    {
+      "left": "SBP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SBP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SBP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SBP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SC",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SC",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:SC:QMA2"
+    },
+    {
+      "left": "SC",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:SC:QSZK"
+    },
+    {
+      "left": "SC",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:SC:StoqMA"
+    },
+    {
+      "left": "SPP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SPP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SPP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SPP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SZK",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SZK",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "SZK",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:SZK:QSZK"
+    },
+    {
+      "left": "SZK",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "AC0",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:StoqMA:AC0"
+    },
+    {
+      "left": "StoqMA",
+      "right": "ACC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "AM",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:AM"
+    },
+    {
+      "left": "StoqMA",
+      "right": "AWPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "BPL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "BPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "BQP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "CH",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:CH"
+    },
+    {
+      "left": "StoqMA",
+      "right": "CeqP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "Delta2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "E",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "EXP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:EXP"
+    },
+    {
+      "left": "StoqMA",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:EXPSPACE"
+    },
+    {
+      "left": "StoqMA",
+      "right": "ExistsR",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "FewP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "L",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "LWPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "LogCFL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "MA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NC",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NE",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:NEXP"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NPcapcoNP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:NPpoly"
+    },
+    {
+      "left": "StoqMA",
+      "right": "P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PH",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:PH"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:PP"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:PSPACE"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:PSharpP"
+    },
+    {
+      "left": "StoqMA",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:Pi2P"
+    },
+    {
+      "left": "StoqMA",
+      "right": "Ppoly",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "QCMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "QMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:QMA"
+    },
+    {
+      "left": "StoqMA",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:QMA2"
+    },
+    {
+      "left": "StoqMA",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "RP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "SBP",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:SBP"
+    },
+    {
+      "left": "StoqMA",
+      "right": "SC",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "SPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "SZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "Sigma2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:StoqMA:StoqMA"
+    },
+    {
+      "left": "StoqMA",
+      "right": "TC0",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "Theta2P",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "UL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "UP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "UniformNC1",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "WPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "ZPP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "coAM",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "coMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "coNP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "coQMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "coRP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "coUP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "StoqMA",
+      "right": "parityP",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "TC0",
+      "right": "BQL",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:TC0:BQL"
+    },
+    {
+      "left": "TC0",
+      "right": "QMA2",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:TC0:QMA2"
+    },
+    {
+      "left": "TC0",
+      "right": "QSZK",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:TC0:QSZK"
+    },
+    {
+      "left": "TC0",
+      "right": "StoqMA",
+      "status": "separation",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "separation:TC0:StoqMA"
+    },
+    {
+      "left": "Theta2P",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Theta2P",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Theta2P",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "Theta2P",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "UL",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "UL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UL:QMA2"
+    },
+    {
+      "left": "UL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UL:QSZK"
+    },
+    {
+      "left": "UL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UL:StoqMA"
+    },
+    {
+      "left": "UP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "UP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UP:QMA2"
+    },
+    {
+      "left": "UP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "UP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UP:StoqMA"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BQL",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UniformNC1:BQL"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UniformNC1:QMA2"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UniformNC1:QSZK"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:UniformNC1:StoqMA"
+    },
+    {
+      "left": "WPP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "WPP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "WPP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "WPP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "ZPP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "ZPP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:ZPP:QMA2"
+    },
+    {
+      "left": "ZPP",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:ZPP:QSZK"
+    },
+    {
+      "left": "ZPP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:ZPP:StoqMA"
+    },
+    {
+      "left": "coAM",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coAM",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coAM",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coAM",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coMA",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coMA",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coMA",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coMA",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coNP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coNP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coNP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coNP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coQMA",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coQMA",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coQMA",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coQMA",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coRP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coRP",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:coRP:QMA2"
+    },
+    {
+      "left": "coRP",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:coRP:QSZK"
+    },
+    {
+      "left": "coRP",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness",
+      "proof_key": "inclusion:coRP:StoqMA"
+    },
+    {
+      "left": "coUP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coUP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coUP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "coUP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "parityP",
+      "right": "BQL",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "parityP",
+      "right": "QMA2",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "parityP",
+      "right": "QSZK",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    },
+    {
+      "left": "parityP",
+      "right": "StoqMA",
+      "status": "candidate_unknown",
+      "review": "source_chain_and_model_scope_review; not an assertion of proven openness"
+    }
+  ],
+  "rejected_transfers": [
+    {
+      "candidate": "UL⊆BQL",
+      "reason": "Apers–Edenhofer proves StrongFewL⊆BQL; ordinary UL can have many paths to rejecting/intermediate configurations.",
+      "source_ids": [
+        "v040-q-AE2025"
+      ]
+    },
+    {
+      "candidate": "NL⊆BQL",
+      "reason": "All-pairs or endpoint path-count promises are required. Checking strong fewness gives one total language, not all directed reachability.",
+      "source_ids": [
+        "v040-q-AE2025"
+      ]
+    },
+    {
+      "candidate": "BQL=PL",
+      "reason": "This equality is known for postselection or unrestricted-time BQL, not the polynomial-time model.",
+      "source_ids": [
+        "v040-q-LNY2021"
+      ]
+    },
+    {
+      "candidate": "BQL⊆SC",
+      "reason": "BQL⊆PL⊆NC does not imply SC; simultaneous resource bounds require a separate algorithm.",
+      "source_ids": [
+        "v040-q-LNY2021"
+      ]
+    },
+    {
+      "candidate": "QMA2⊆PSPACE or CH",
+      "reason": "The generic upper bound is NEXP. A quantum polynomial hierarchy and special verifier families cannot be identified with the classical counting hierarchy.",
+      "source_ids": [
+        "v040-q-Gharibian2023"
+      ]
+    },
+    {
+      "candidate": "QMA2⊆EXP",
+      "reason": "The2026 EXP upper bound applies to restricted StoqMA(2), not unrestricted product-witness QMA(2).",
+      "source_ids": [
+        "v040-q-LW2026"
+      ]
+    },
+    {
+      "candidate": "StoqMA=NP",
+      "reason": "The exact b=1/2 boundary equals NP; the roster uses the entire admissible inverse-polynomial-gap threshold union.",
+      "source_ids": [
+        "v040-q-Liu2021"
+      ]
+    },
+    {
+      "candidate": "StoqMA=MA",
+      "reason": "Error reduction would imply this, but that error reduction remains a conjecture.",
+      "source_ids": [
+        "v040-q-AGL2025"
+      ]
+    },
+    {
+      "candidate": "QSZK⊆QMA or PP",
+      "reason": "A space-efficient honest prover still participates in a two-message interactive protocol. No corresponding single-message or PP upper bound is proved.",
+      "source_ids": [
+        "v040-q-LGLW2026"
+      ]
+    },
+    {
+      "candidate": "QSZK⊆QMA2",
+      "reason": "Different separability testing problems are complete for these classes; their distinct norms/promises do not yield a reduction between them.",
+      "source_ids": [
+        "v040-q-GHM2015"
+      ]
+    },
+    {
+      "candidate": "PP⊆QMA⇒CH⊆QMA",
+      "reason": "Classical adaptive PP queries collapse under the premise; replacing outer PP by QMA under arbitrary oracles is not justified. Yirka2025 repaired the separate, stronger quantum-advice theorem, so that result is not described as open at the cutoff.",
+      "source_ids": [
+        "v040-q-Aaronson2017Erratum",
+        "v040-q-Yirka2025"
+      ]
+    }
+  ],
+  "recent_triage": {
+    "reviewed": [
+      "v040-q-AE2025",
+      "v040-q-AGL2025",
+      "v040-q-LGLW2026",
+      "v040-q-LW2026",
+      "v040-q-GR2026"
+    ],
+    "post_cutoff_exclusions": [
+      "arXiv2609.02865 (September2; oracle result)",
+      "arXiv2609.13032 (September11; perfect-completeness claim)",
+      "arXiv2609.15926 (September14; perfect-completeness claims)"
+    ],
+    "finding": "No additional ordinary incident-pair seed identified. Claimed post-cutoff results are not part of the baseline and were not validated here."
+  },
+  "limitations": [
+    "The472-pair index is a provisional merged overlay. Recompute after the final counting dossier, root SAT audit and source integration.",
+    "Candidate_unknown means this audit did not locate a qualifying theorem, not independence or a proof of historical openness.",
+    "Model-to-literature correspondences are trusted, explicit bridges; the new sanity theorems do not formalize completeness, amplification or space-preserving simulation.",
+    "No quantitative residual-error estimate is inferred solely from this bounded extension review. Independent adversarial review of the new definitions remains required."
+  ],
+  "definition_source_ids": {
+    "QMA2": [
+      "v040-q-HM2010",
+      "v040-q-Gharibian2023"
+    ],
+    "StoqMA": [
+      "v040-q-BBT2006",
+      "v040-q-AGL2025",
+      "v040-q-Liu2021"
+    ],
+    "BQL": [
+      "v040-q-LNY2021",
+      "v040-q-FR2020"
+    ],
+    "QSZK": [
+      "v040-q-Watrous2002",
+      "v040-q-Watrous2009",
+      "v040-q-VW2016"
+    ]
+  },
+  "independent_rule_review": {
+    "reviewer": "classical_literature",
+    "result": "accepted both Vinkhuijzen–Deutz rules after primary PDF review",
+    "scope": "Theorem4 and Theorem11 with total-language oracle semantics; no CH collapse asserted."
+  }
+}

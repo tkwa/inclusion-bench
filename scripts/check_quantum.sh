@@ -109,14 +109,64 @@ for match in re.finditer(r"depends on axioms:\s*\[([^\]]*)\]", output):
     unexpected = dependencies - allowed
     if unexpected:
         raise SystemExit("Unexpected axiom dependencies: " + ", ".join(sorted(unexpected)))
-for theorem in ("complete_agrees_with_core", "every_class_defined", "all_fifty_defined",
-                "gateFields_injective", "basisState_normalized", "pauliX_twice",
-                "gate_preserves_normSquared", "circuit_preserves_normSquared",
-                "initialState_preserves_normSquared", "acceptance_bounded",
-                "empty_witness_normalized"):
-    qualified = "InclusionBench.Quantum." + theorem
+for qualified in (
+    'InclusionBench.Quantum.complete_agrees_with_core',
+    'InclusionBench.Quantum.every_class_defined',
+    'InclusionBench.Quantum.all_catalog_classes_defined',
+    'InclusionBench.Quantum.gateFields_injective',
+    'InclusionBench.Quantum.basisState_normalized',
+    'InclusionBench.Quantum.pauliX_twice',
+    'InclusionBench.Quantum.gate_preserves_normSquared',
+    'InclusionBench.Quantum.circuit_preserves_normSquared',
+    'InclusionBench.Quantum.initialState_preserves_normSquared',
+    'InclusionBench.Quantum.acceptance_bounded',
+    'InclusionBench.Quantum.empty_witness_normalized',
+    'InclusionBench.Quantum.productState_normSquared',
+    'InclusionBench.Quantum.productState_normalized',
+    'InclusionBench.Quantum.twoWitnessAcceptance_bounded',
+    'InclusionBench.Quantum.zeroState_normalized',
+    'InclusionBench.Quantum.logspaceAcceptance_bounded',
+    'InclusionBench.Quantum.toffoliBasis_twice',
+    'InclusionBench.Quantum.reversibleGate_preserves_normSquared',
+    'InclusionBench.Quantum.reversibleGateFields_injective',
+    'InclusionBench.Quantum.stoquasticCircuit_preserves_normSquared',
+    'InclusionBench.Quantum.stoquasticInitialState_preserves_normSquared',
+    'InclusionBench.Quantum.stoquasticAcceptance_bounded',
+    'InclusionBench.Quantum.measurement_probability_bounded',
+    'InclusionBench.Quantum.sampler_state_normalized',
+    'InclusionBench.Quantum.identical_quantum_samplers_close',
+    'InclusionBench.Quantum.quantum_far_close_disjoint',
+    'InclusionBench.Quantum.measurementDifference_bounded',
+    'InclusionBench.RealFeasibility.encoded_etr_iff',
+    'InclusionBench.RealFeasibility.malformed_input_rejected',
+    'InclusionBench.RealFeasibility.finiteAssignment_at',
+    'InclusionBench.RealFeasibility.squareTwo_satisfiable',
+    'InclusionBench.RealFeasibility.squareTwo_in_etr',
+    'InclusionBench.RealFeasibility.negativeSquare_not_satisfiable',
+    'InclusionBench.RealFeasibility.negativeSquare_not_in_etr',
+    'InclusionBench.IndependentClassicalReview.footprint_never_decreases',
+    'InclusionBench.IndependentClassicalReview.footprint_step_upper',
+    'InclusionBench.IndependentClassicalReview.unequal_depth_fair_count',
+    'InclusionBench.IndependentClassicalReview.unequal_depth_total_mass',
+    'InclusionBench.IndependentClassicalReview.majority_tie_rejected',
+    'InclusionBench.IndependentClassicalReview.nondeterministic_halted_multiplicity',
+    'InclusionBench.IndependentClassicalReview.address_after_head_movement',
+    'InclusionBench.IndependentClassicalReview.high_address_bit_is_binary',
+    'InclusionBench.IndependentClassicalReview.nonterminal_flag_does_not_accept',
+    'InclusionBench.IndependentClassicalReview.query_encoding_holes',
+    'InclusionBench.IndependentClassicalReview.variable_count_enforced',
+    'InclusionBench.IndependentClassicalReview.malformed_coefficient_digit',
+    'InclusionBench.IndependentClassicalReview.malformed_typed_stack',
+    'InclusionBench.IndependentClassicalReview.unused_stack_rejected',
+    'InclusionBench.IndependentClassicalReview.leading_coefficient_zero_preserves_value',
+    'InclusionBench.Quantum.Review.product_minor_vanishes',
+    'InclusionBench.Quantum.Review.correlated_state_not_product',
+    'InclusionBench.Quantum.Review.environment_sign_invisible',
+    'InclusionBench.Quantum.Review.serialized_width_determined',
+    'InclusionBench.Quantum.Review.stoq_threshold_integer_sanity',
+):
     pattern = re.escape("'" + qualified + "'") + r" (?:depends on axioms:|does not depend on any axioms)"
     if not re.search(pattern, output):
         raise SystemExit("Missing required quantum axiom audit: " + qualified)
-print("Quantum definitions and all fifty class mappings checked without proof holes or custom axioms.")
+print("All catalog class mappings, quantum definitions and real-feasibility semantics checked without proof holes or custom axioms.")
 PY

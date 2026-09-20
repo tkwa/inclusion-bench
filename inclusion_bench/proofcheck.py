@@ -93,6 +93,46 @@ def trusted_baseline(benchmark, claims: list[dict]) -> tuple[str, list[dict], li
     return "\n".join(lines), entries, targets
 
 
+def trusted_verification_inputs(benchmark, claims):
+    """Reconstruct the exact trusted inputs used by verification and admission.
+
+    The baseline includes the report's entire ordered target list. A review
+    may accept a subset of those claims, but cannot reuse their verification
+    under different definitions, trusted axioms, or checker code.
+    """
+    claims = validate_claims(benchmark, claims)
+    baseline, entries, targets = trusted_baseline(benchmark, claims)
+    support = benchmark.root / "scripts" / "proofcheck"
+    files = {p.name: p.read_text() for p in support.glob("*.lean")}
+    if not {"ProofCodec.lean", "ProofExport.lean", "ProofAudit.lean"} <= files.keys():
+        raise InvalidEvidence("Trusted proof-checker sources are missing")
+    runner = (support / "remote_runner.py").read_text()
+    trusted_hashes = {}
+    semantic_sources = {}
+    for subdir in ("lean", "quantum"):
+        for p in sorted((benchmark.root / subdir).rglob("*.lean")):
+            if ".lake" not in p.parts:
+                trusted_hashes[str(p.relative_to(benchmark.root))] = sha256(p.read_bytes())
+                semantic_sources[str(p.relative_to(benchmark.root))] = p.read_text()
+    lock = benchmark.root / "quantum" / "lake-manifest.json"
+    trusted_hashes[str(lock.relative_to(benchmark.root))] = sha256(lock.read_bytes())
+    bindings = {
+        "baseline_sha256": sha256(baseline.encode()),
+        "checker_sha256": canonical_hash({**files, "remote_runner.py": runner,
+                                           "proofcheck.py": Path(__file__).read_text()}),
+        "semantics_sha256": canonical_hash(trusted_hashes),
+    }
+    return {"claims": claims, "baseline": baseline, "entries": entries,
+            "targets": targets, "files": files, "runner": runner,
+            "trusted_hashes": trusted_hashes, "semantic_sources": semantic_sources,
+            "bindings": bindings}
+
+
+def verification_bindings(benchmark, claims):
+    """Current identity required of a report for this exact ordered claim list."""
+    return trusted_verification_inputs(benchmark, claims)["bindings"]
+
+
 def verify_proof(benchmark, proof_path, claims, *, report_path=None,
                  host="tkwa-ubuntu-box-wan",
                  remote_root="/home/tkwa/code/inclusion-quantum-build",
@@ -121,36 +161,23 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
         body = source.decode("utf-8")
     except UnicodeError as error:
         raise InvalidEvidence("Proof source must be UTF-8") from error
-    baseline, entries, targets = trusted_baseline(benchmark, claims)
-    support = benchmark.root / "scripts" / "proofcheck"
-    files = {p.name: p.read_text() for p in support.glob("*.lean")}
+    trusted = trusted_verification_inputs(benchmark, claims)
+    baseline, entries, targets = (trusted[key] for key in ("baseline", "entries", "targets"))
+    files = dict(trusted["files"])
     files["TrustedBaseline.lean"] = baseline
     # These comments are not security checks. The kernel replays the exported
     # declarations in a clean environment, with no candidate module imported.
     files["Candidate.lean"] = "import ProofExport\nimport TrustedBaseline\n\n" + body + "\n\n#proofcheck_export\n"
     files["targets.json"] = json.dumps(targets)
-    trusted_hashes = {}
-    semantic_sources = {}
-    for subdir in ("lean", "quantum"):
-        for p in sorted((benchmark.root / subdir).rglob("*.lean")):
-            if ".lake" not in p.parts:
-                trusted_hashes[str(p.relative_to(benchmark.root))] = sha256(p.read_bytes())
-                semantic_sources[str(p.relative_to(benchmark.root))] = p.read_text()
-    lock = benchmark.root / "quantum" / "lake-manifest.json"
-    trusted_hashes[str(lock.relative_to(benchmark.root))] = sha256(lock.read_bytes())
-    packet = {"files": files, "trusted_hashes": trusted_hashes, "semantic_sources": semantic_sources,
+    packet = {"files": files, "trusted_hashes": trusted["trusted_hashes"], "semantic_sources": trusted["semantic_sources"],
               "remote_root": str(remote_root), "timeout_seconds": timeout_seconds,
               "image": image, "toolchain_path": str(toolchain_path) if toolchain_path is not None else None}
-    runner = (support / "remote_runner.py").read_text()
+    runner = trusted["runner"]
     command = (["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=15", host,
                 "python3 -c " + shlex.quote(runner)] if host else ["python3", "-c", runner])
     report = {"schema_version": 1, "dataset_sha256": benchmark.digest,
               "proof_sha256": sha256(source), "claims": claims,
-              "baseline_sha256": sha256(baseline.encode()), "baseline_axioms": entries,
-              "checker_sha256": canonical_hash({**{k: v for k, v in files.items()
-                    if k not in {"Candidate.lean", "TrustedBaseline.lean", "targets.json"}},
-                    "remote_runner.py": runner, "proofcheck.py": Path(__file__).read_text()}),
-              "semantics_sha256": canonical_hash(trusted_hashes),
+              **trusted["bindings"], "baseline_axioms": entries,
               "method": "lean4-data-only-fresh-kernel-replay", "official_points": 0}
     try:
         # Only the trusted remote runner writes this pipe; candidate stdout is

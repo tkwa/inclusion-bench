@@ -31,11 +31,21 @@ class Benchmark:
         self.policy = self.documents["policy"]
         self.digest = canonical_hash(self.documents)
         self.classes = self.catalog["classes"]
-        self.ids = [c["id"] for c in self.classes]
-        if len(self.ids) != len(set(self.ids)):
+        self.context_ids = [c["id"] for c in self.classes]
+        if len(self.context_ids) != len(set(self.context_ids)):
             raise InvalidEvidence("Duplicate class identifiers")
-        if any(not re.fullmatch(r"[A-Za-z][A-Za-z0-9]*", name) for name in self.ids):
+        if any(not re.fullmatch(r"[A-Za-z][A-Za-z0-9]*", name) for name in self.context_ids):
             raise InvalidEvidence("Class identifiers must be safe ASCII Lean/Python names")
+        # Background classes preserve cited implication paths without occupying
+        # scored roster slots. Older releases score every catalog class.
+        self.ids = self.catalog.get("scored_class_ids", self.context_ids)
+        if (not isinstance(self.ids, list) or not self.ids or
+                any(not isinstance(name, str) for name in self.ids) or
+                len(self.ids) != len(set(self.ids)) or not set(self.ids) <= set(self.context_ids)):
+            raise InvalidEvidence("Scored class identifiers must be a nonempty distinct subset of the catalog")
+        by_id = {c["id"]: c for c in self.classes}
+        self.scored_classes = [by_id[name] for name in self.ids]
+        self.background_classes = [c for c in self.classes if c["id"] not in self.ids]
         self.sources = {s["id"]: s for s in self.knowledge["sources"]}
         if len(self.sources) != len(self.knowledge["sources"]):
             raise InvalidEvidence("Duplicate source identifiers")
@@ -74,7 +84,7 @@ class Benchmark:
         self.unresolved = {(a, b) for a in self.ids for b in self.ids if not any(Atom(r, a, b) in self.baseline.proofs for r in ("inclusion", "separation", "independence"))}
 
     def closure(self, claims=()) -> Closure:
-        closure = Closure(self.ids, self.rules, self.complements)
+        closure = Closure(self.context_ids, self.rules, self.complements)
         for raw in self.knowledge["facts"]:
             closure.add(Atom.read(raw), "baseline:" + raw["id"], source_ids=raw["source_ids"])
         # Complete baseline first so explanations don't credit known facts to a submission.

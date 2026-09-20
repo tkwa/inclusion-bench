@@ -1,69 +1,66 @@
-# September 2026 historical audit
+# Provisional v0.4.0 historical audit
 
-The audit corrects **eight classifications** and adds **106 implication rules**. Version 0.3.0 has 50 classes and 2,500 ordered pairs: **709 known inclusions, 413 known noninclusions and 1,378 remaining questions**. The cutoff includes results publicly available before September 2, 2026, 00:00 UTC.
+> **Draft assembly:** this document describes the proposed current audit. The machine-readable release index and historical registry still identify the parent release until final v0.4.0 binding is completed.
 
-Version 0.3.1 carries these classifications and the original residual-error assessment forward unchanged. It broadens the permitted independence premise to arithmetic soundness of ZFC. The [policy adoption record](audit-assessment.json) binds that decision to the unchanged class definitions, knowledge base and cutoff; a [targeted literature check](v0.3.1-independence-policy-review.json) addresses the expanded independence scope. This is not a repeat of the full audit. The [original assessment](audit-assessment-v0.3.0.json) and version 0.3.0 release history remain available.
+The proposed 50-class roster has **845 known inclusions, 331 known noninclusions and 1,324 questions assessed as open at the cutoff**. The cutoff includes results publicly available before September 2, 2026, 00:00 UTC. The full proof vocabulary contains 61 classes; eleven background classes retain their definitions and implications but supply no scored pairs.
 
-The audit is AI-assisted. Domain reviewers searched primary literature, then exchanged scopes for independent checks. It does not represent a human expert endorsement. Existing accepted mathematical results remain trusted inputs; their proofs were not reconstructed in Lean.
+This is an AI-assisted, revisable literature assessment prepared for the v0.4.0 review branch. It is not human expert certification. Existing accepted theorems remain trusted inputs, as requested; their proofs were not all reconstructed in Lean. A missed accepted pre-cutoff result earns no point and requires a recorded correction.
 
-## Corrections
+## What changed
 
-Both **NE and NEXP are not contained in Θ₂P, coNP, coRP or coUP**. These eight directions were candidates in version 0.2.0 and now earn zero.
+The [roster decision](v0.4.0/roster-decision.md) selects 50 endpoints from the current pool of 61. Eleven endpoints replace eleven from v0.3.1. The [migration report](v0.4.0/roster-migration.json) checks that all parent facts, rules, sources and complement identities remain intact and that **all 2,500 classifications among the old classes are unchanged**.
 
-[Buhrman–Fortnow–Santhanam, Theorem 6](https://eccc.weizmann.ac.il/report/2009/064/download/) excludes NEXP from polynomial time with a fixed polynomial bound on NP queries and advice. Its c=1 case covers logarithmically many queries without advice. The [regular-padding argument](audit-padding.md) transfers this exclusion to NE. Complement and hierarchy reasoning independently establish the six coNP/coRP/coUP consequences. The fixed query exponent matters: the theorem does not establish NEXP ⊄ Δ₂P.
+The new library has 163 cited facts and 302 conditional rules, adding 28 facts and 53 rules to the parent theory. The rules include new resource-padding and counting/proof-system consequences, standard intersection instances for the new classes, and two uniform-circuit hardwiring implications. A conditional rule does not assert its open premise.
 
-The additional rules comprise 81 regular-padding instances, three classical consequences and 22 counting/quantum consequences. They include stronger propagation from hypothetical exact-counting collapses. The latter constructions received a [separate third review](audit-round3-exact-count.md). These are implications used to score future answers; adding them does not assert their open premises.
+| Scored pair block | Pairs | Known inclusion | Known noninclusion | Open candidates |
+| --- | ---: | ---: | ---: | ---: |
+| Both endpoints retained from v0.3.1 | 1,521 | 482 | 246 | 793 |
+| At least one newly added endpoint | 979 | 363 | 85 | 531 |
+| **Total** | **2,500** | **845** | **331** | **1,324** |
 
-## What was checked
+The earlier eight corrections involving NE/NEXP and Θ₂P, coNP, coRP and coUP remain in the context theory. Their original evidence and judgment are preserved in the [v0.3.1 assessment](audit-assessment-v0.3.1.json) and [archived audit](baseline-audit-v0.3.1.md). Historical snapshots should be read at their corresponding release tag; shared filenames such as `audit-final-sat.json` now describe this revision.
 
-| Check | Coverage and result |
+The arithmetic-soundness policy from v0.3.1 is unchanged. An independence certificate may be unconditional or conditional on Con(ZFC) or arithmetic soundness of ZFC. Its premise and both unprovability arguments must remain explicit. Independence supplies no ordinary inclusion or noninclusion premise and receives no automatic propagation.
+
+## Evidence and verification
+
+| Check | Scope and result |
 | --- | --- |
-| Domain literature review | All 50 class entries and all 2,500 ordered pairs indexed through overlapping domain and theorem-family reviews |
-| Independent cross-review | Classical/circuit/space seeds, counting/quantum seeds, model conventions and proposed implications |
-| External inclusion census | 582 existing inclusions confirmed; no missing inclusion found in the matched portion of the cited census |
-| Independent SAT encoding | Both polarities tested for all 1,378 candidates; no additional forced resolution in the finite cited theory |
-| Lean inference replay | All 1,122 known-label derivations checked with literature facts and rules as explicit hypotheses |
-| Recent title screening | 1,488 conference entries and 580 ECCC submission-window records, with 32 closer primary-source scope checks |
-| Additional quantum literature | 984 cutoff-eligible Quantum journal entries inventoried, 94 selected by the recorded title filter; TQC/QIC indexes and 27 closer primary-source checks |
-| Quantum semantics | Exact gates, complete circuits and register embedding preserve normalization; acceptance probabilities are proved between zero and one |
-| Operational verification | All 50 Lean definitions compile; isolated proof admission accepts valid proofs and rejects the tested forged evidence |
+| Literature review | The inherited three domain reviews and three new endpoint dossiers cover all 61 context classes; the current pair index links all 2,500 scored pairs to their dossiers |
+| Independent source checks | Classical, counting and quantum statements were checked against exact models, oracle conventions, uniformity, promise restrictions and public versions |
+| Operational definitions | All 61 classes have concrete Lean interpretations; the core supplies 52 and the pinned Mathlib extension supplies nine |
+| Independent semantic checks | Twenty retained checks address branch weighting, ambiguity, tape space, random access, real encodings, product witnesses, discarded environments and threshold conventions |
+| Complete propositional check | Both polarities of all 1,324 scored candidates and all 2,049 full-context candidates were tested; no further classification follows from the encoded finite theory |
+| Conditional Lean replay | All 1,672 known context-label derivations were kernel checked with cited facts, rules and complements as explicit premises |
+| Roster pruning | All 1,450 ordinary hypotheses on the 725 inactive candidate pairs were tested for surviving scored consequences |
+| Integration review | Six identified defects were fixed, including omitted verifier modules, stale semantic-report admission, source-manifest coverage and outdated claim schemas |
 
-The title counts overlap across venues and repositories; they are not a count of distinct papers or full-paper reviews. ECCC submission dates are not publication dates. Relevant reports and revisions were checked for actual public availability. FOCS 2026 titles require individually dated preprints because the conference occurs after the cutoff.
+The [classical dossier](v0.4.0/classical-new-baseline.md), [counting dossier](v0.4.0/counting-new-baseline.md) and [quantum dossier](v0.4.0/quantum-new-baseline.md) record the new evidence. The [classical cross-review](v0.4.0/classical-baseline-cross-review.md) and [counting cross-review](v0.4.0/counting-cross-review.md) inspect the supporting arguments. The [classical model review](v0.4.0/classical-formalization-review.md), [quantum model review](v0.4.0/quantum-formalization-review.md) and [integration review](v0.4.0/integration-review.md) distinguish what was checked from what remains trusted.
 
-A SAT model is not a model of complexity theory or ZFC. The SAT check establishes completeness only for literal consequences of its finite encoding. Likewise, a Lean trace proves the deduction from its stated hypotheses, not the literature theorem supplied as a hypothesis. No-result literature searches supply revisable historical judgments, not proofs that a problem was open.
+Some domain reports retain counts and hashes for the partial overlays they actually reviewed. They are not mislabeled as final merged runs. The [final SAT report](audit-final-sat.json), [full-context SAT report](v0.4.0/all-context-sat.json), [Lean trace report](audit-final-lean-traces.json), and [migration report](v0.4.0/roster-migration.json) bind the complete current theory.
 
-## Residual-error assessment
+A SAT assignment is not a model of complexity theory or ZFC. SAT establishes completeness only for literal consequences of the finite registered theory. A Lean consequence trace proves a deduction from its stated hypotheses, not the cited theorem supplied as a hypothesis. Neither check proves historical openness, textbook equivalence of every operational model, or correctness of a new model submission.
 
-The final working expectation is **1.98 incorrectly classified pairs** (unrounded ledger sum 1.9822), slightly below the requested threshold of two. The research pass stopped after **4,584,652 tracked goal tokens**, before release assembly and publication. This is a subjective judgment with little margin to the threshold; it is not a calibrated bound.
+## Residual uncertainty
 
-| Cause group | Working expected wrong pairs |
-| --- | ---: |
-| Definition and theorem-application errors | 0.602 |
-| Missed older results | 1.0302 |
-| Missed recent results | 0.30 |
-| Software and final assembly | 0.05 |
-| **Total** | **1.9822** |
+The independent review's broad working estimate is **about three incorrectly classified scored pairs**: approximately 1.8 from mathematical application or historical omissions, 1.0 from operational interpretation, and 0.1 from assembly or publication. The unrounded ledger is 2.9375. It does **not** meet the earlier audit's below-two criterion, and the old 1.98 estimate is not carried over to the enlarged set of class definitions.
 
-The recorded sensitivity endpoints sum to **0.31–12.33 expected errors**. They illustrate how different probability and consequence assumptions change the answer; they are not a confidence interval. More than two actual errors remains plausible.
+The [risk review](v0.4.0/residual-risk-review.md) and [structured ledger](v0.4.0/residual-risk-review.json) make the assumptions visible. Their sensitivity endpoints sum to approximately 0.47–14.1 expected wrong pairs. These are subjective stress scenarios, not a confidence interval, calibrated posterior or rigorous bound. Future discoveries of flaws in currently accepted proofs are excluded, as requested. Present misquotations, wrong model transfers, missed results and pipeline mistakes remain included.
 
-The final assessment is recorded in `audit-assessment.json` and bound to the pair index. Its unit is an incorrectly classified ordered pair. A shared mistake can affect many pairs, so the ledger counts the distinct affected pairs conditional on each error event, rather than assigning an independent probability to every matrix cell. It excludes future discoveries of flaws in currently accepted proofs, as requested.
+Shared causes can affect many pairs. The ledger allocates distinct affected pairs by cause and scope rather than pretending that each cell or each review is an independent trial. Reviewer agreement and repeated negative searches do not supply an empirical omission-detection rate. Missing conditional rules that affect only future scores are separate from errors in current classifications.
 
-The estimate is subjective. Its sensitivity scenarios are not confidence intervals, and a broad upper scenario can exceed two even when the working expectation is below two. Reviewer agreement is not treated as independent statistical evidence. Missing conditional implications that change no current classification do not contribute to the current-label error count, though they can affect future scores.
+No concrete remaining incorrect label has been identified. The decision is to present a bounded, revisable provisional benchmark for human review, with these limits exposed. The roster's scientific value is an editorial judgment, not a consequence of the numerical risk estimate.
 
-## Historical decisions and corrections
+## Coverage lost by selecting 50
 
-The [historical registry](../data/history_reviews.json) records each admitted question's decision, reviewer identity, evidence and rationale against the exact dataset hash. Model runs reuse those decisions. New ordinary results still require proof verification, mathematical review and sealed run provenance; independence follows the separate metatheory-review protocol.
+The full 61-class context has 2,049 candidate pairs. Selecting 50 leaves 725 without direct points. Of the 1,450 tested inclusion/noninclusion hypotheses on those pairs, **26 inclusions have no scored consequence**; every tested noninclusion retains at least one. These counts describe the encoded implication engine, not the proportion of important breakthroughs covered.
 
-If an earlier accepted result was missed, record the evidence, mark the pair known at the cutoff and revise any affected score. Preserve the original run and review history. Changes to the mathematical baseline create a new benchmark version. Version 0.2.0 remains available in Git history and its release tag.
+Examples losing all ordinary credit include FewP=UP, WPP=LWPP, LWPP=SPP and coUP ⊆ QMA. The cuts also remove direct independence credit for all 725 inactive candidate pairs. Preserving the background definitions does not preserve that scoring coverage. The [pruning review](v0.4.0/pruning-tradeoffs.md) lists every cut's scientific cost and compares optional 55- and 56-class alternatives.
 
-## Evidence
+## Historical admission and later corrections
 
-The [machine-readable index](baseline-audit.json) links all 2,500 pairs to their domain dossiers, known-result sources and final checks. It hashes the supporting reports and the structured assessment.
+The [machine-readable index](baseline-audit.json) binds the assessment and supporting reports to every scored pair. The [history registry](../data/history_reviews.json) preserves previous release records and records the current candidates' decisions against their exact dataset and audit hashes. These decisions are reusable by model runs; they do not accept a model's proposed proof.
 
-- Domain reviews: [classical](audit-round1-classical.md), [circuits and space](audit-round1-circuits-space.md), [counting and quantum](audit-round1-counting-quantum.md).
-- Cross-reviews: [classical/circuit/space](audit-round2-cross-classical.md), [counting consequences](audit-round2-cross-counting.md), [exact-count constructions](audit-round3-exact-count.md).
-- Later literature checks: [recent publications](audit-round2-recent.md), [counting interfaces](audit-round4-interfaces.md), [older classical results](audit-round4-classical-risk.md), [recent quantum and zero knowledge](audit-round5-recent-quantum.md), [internal counting classes](audit-round6-internal-counting.md).
-- Risk and method checks: [counting/quantum risk](audit-round3-counting-risk.md), [independent audit-method review](audit-round4-audit-method.md).
-- Reproduction evidence: [final SAT report](audit-final-sat.json), [all known-label Lean traces](audit-final-lean-traces.json), [external census](audit-round1-external-census.json), and the [development instructions](../docs/DEVELOPMENT.md#reproduce-the-historical-audit-checks).
+New ordinary claims still require mathematical review, isolated fresh-kernel verification, a matching sealed artifact and accepted run provenance. Independence follows its separate metatheory-review route. Infrastructure fixtures and hypothetical consequence experiments are never AI achievements.
 
-One plausible pre-cutoff NL-versus-LogCFL manuscript was withheld because the reviewers found a concrete counterexample to a closure lemma and separate gaps in its entropy argument. The [cross-review](audit-round2-cross-classical.md#independent-review-of-the-may-2026-separation-claim) states those objections. This decision concerns an error visible now; it is not a charge for a hypothetical future flaw in an accepted proof.
+When an overlooked accepted pre-cutoff result is found, record its evidence, mark the direction known at cutoff, and identify any affected rescore. Preserve sealed runs and prior review history. Changing the mathematical taskset requires a new versioned snapshot. The published v0.3.1 release and tkwa.me are not changed by this provisional PR.

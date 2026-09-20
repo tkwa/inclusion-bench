@@ -1,0 +1,5223 @@
+{
+  "schema_version": 1,
+  "status": "independent_cross_review_complete_supplement_ready_for_import",
+  "reviewer": {
+    "identity": "Codex lean_kernel subagent",
+    "kind": "AI-assisted independent statement/source review; not human expert certification",
+    "independence_boundary": "Reviewer did not author the original classical-new-baseline dossier, but did author the new classical Lean definitions. This is not an independent semantic review of those definitions."
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "reviewed_dossier": {
+    "path": "research/v0.4.0/classical-new-baseline.json",
+    "sha256": "0da4aadde59b2d89153c65078c453d313eb260c83388aabff93859244546d2c8",
+    "markdown_path": "research/v0.4.0/classical-new-baseline.md",
+    "markdown_sha256": "bd86ea07ddf4d0ea2d5de334bda610a8efb15b6b72dbee7a6cedcbb862032c89",
+    "base_commit": "5e4addcddd40f1a75a02b83dc26aaee2ac54b1cd",
+    "base_dataset_digest": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742"
+  },
+  "current_reproduction_input_sha256": {
+    "data/classes.json": "f506991a439671d532101daba47674fbf7d4e5abc72d2d55cdb303911c9b6658",
+    "data/knowledge.json": "0b44b8c29742c53a0f8e612eb8665f55d81ee217e83bc90c36d6957ff41225e9",
+    "inclusion_bench/engine.py": "4175d28d78ecaeb70a4951498bd09c76b952cac9813f0b7a97a622fd4a8e65a5"
+  },
+  "scope": {
+    "focus_classes": [
+      "BPL",
+      "ExistsR",
+      "PL",
+      "UL",
+      "UniformNC1"
+    ],
+    "context_count": 61,
+    "incident_pair_count": 585,
+    "interpretation": "All ordered context pairs with at least one focus endpoint. Background nodes included; this is not the scored-roster count."
+  },
+  "decision_summary": {
+    "accepted_original_facts": 13,
+    "accepted_original_rules": 8,
+    "accepted_original_complements": 3,
+    "held_original_items": 0,
+    "rejected_original_items": 0,
+    "additional_unconditional_facts": 0,
+    "additional_conditional_rules": 2,
+    "baseline_changes_in_reproduced_overlay": 0
+  },
+  "sources": [
+    {
+      "id": "v040-Buss1987",
+      "title": "The Boolean formula value problem is in ALOGTIME",
+      "url": "https://mathweb.ucsd.edu/~sbuss/ResearchWeb/Boolean/paper.pdf",
+      "year": 1987,
+      "publication_date": "1987",
+      "locator": "Main Theorem1, p.3; §2, pp.4–5; formula representation caveat, p.18; Main Theorem9, p.20",
+      "notes": "Author-hosted full paper read at these locators. Variable-free parenthesized finite-alphabet BFV and fixed-length binary encoding; original STOC1987 pp.123–131. The hardwiring rule below uses membership, not an unspecified reduction notion."
+    },
+    {
+      "id": "v040-UniformHardwiringDerivation",
+      "title": "UniformNC1 hypotheses imply nonuniform NC1 circuit upper bounds by formula hardwiring",
+      "url": "research/v0.4.0/classical-baseline-cross-review.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Two additional circuit consequences",
+      "notes": "Explicit derived implication for ACC0 and TC0 from pre-cutoff BFV membership, formula unfolding and constant restrictions. Review date is after cutoff; no claim of a new 2026 theorem."
+    },
+    {
+      "id": "v040-Applebaum2026",
+      "title": "From Nondeterministic to Modular Branching Programs, Uniformly and in Logspace",
+      "url": "https://eccc.weizmann.ac.il/report/2026/131/revision/1/download/",
+      "year": 2026,
+      "publication_date": "2026-08-10",
+      "locator": "Theorem1; §§2.1–2.5; Remark4",
+      "notes": "Initial report July27, public posting August2; revision1 August10. Full six-page proof read. NL⊆Mod_pL is not NL⊆UL, and Mod_pL is not a context endpoint. Remark4 concerns branching-program direct connections, not the U_E=ALOGTIME theorem."
+    },
+    {
+      "id": "v040-HozaIsolation2026",
+      "title": "Deterministic, Oblivious Isolation for Space-Bounded Computation Requires Large Weights",
+      "url": "https://eccc.weizmann.ac.il/report/2026/124/",
+      "year": 2026,
+      "publication_date": "2026-07-24",
+      "locator": "Author abstract; TR26-124 submitted July23",
+      "notes": "Abstract-level scope review. Lower bound for deterministic oblivious min-isolating weights rules out a method, not NL=UL. PDF fetch failed."
+    },
+    {
+      "id": "v040-CDG2026",
+      "title": "A Forward-Backward Weight Analysis of INW for Permutation Branching Programs",
+      "url": "https://eccc.weizmann.ac.il/report/2026/123/",
+      "year": 2026,
+      "publication_date": "2026-07-21",
+      "locator": "Author abstract; TR26-123",
+      "notes": "Abstract-level scope review: restricted permutation read-once branching programs and their stated seed length. Not general BPL derandomization. PDF fetch failed."
+    },
+    {
+      "id": "v040-AsadiCleve2026Withdrawal",
+      "title": "Polynomial-Time Almost Log-Space Tree Evaluation by Catalytic Pebbling: withdrawal",
+      "url": "https://eccc.weizmann.ac.il/report/2026/044/",
+      "year": 2026,
+      "publication_date": "2026-04-07",
+      "locator": "Revision1 withdrawal notice",
+      "notes": "Authors withdrew the polynomial-time claim because of an error in the subtree degree calculation. The original April2/5 posting must not support an SC seed."
+    },
+    {
+      "id": "v040-CDKMS2026",
+      "title": "Maximum Matching and Related Problems in Catalytic Logspace",
+      "url": "https://eccc.weizmann.ac.il/report/2026/080/revision/1/download/",
+      "year": 2026,
+      "publication_date": "2026-06-01",
+      "locator": "Introduction and Theorems1.1–1.4; revision1 PDF dated May31",
+      "notes": "These sections were read. Polynomial-time catalytic algorithms use an extra restored memory resource; no ordinary L, UL or BPL upper bound is inferred."
+    },
+    {
+      "id": "v040-BDO2026",
+      "title": "The Complexity of Bisimilarity and Model Checking in Finitary Diagrams",
+      "url": "https://arxiv.org/html/2606.16744v1",
+      "year": 2026,
+      "publication_date": "2026-06-15",
+      "locator": "Theorem4.2, Corollary4.3; §8 and Corollary8.5",
+      "notes": "The RP invertible-matrix constraint problem differs from the determinant-one variant that is ∃R-complete. The theorem statements and surrounding scope/reduction text were read."
+    }
+  ],
+  "external_source_ids": [
+    "AuditPadding",
+    "FSS1984",
+    "v040-AO1996",
+    "v040-BCP1983",
+    "v040-BKLM2012",
+    "v040-CW2024",
+    "v040-Canny1988",
+    "v040-ClassicalNewDerivations",
+    "v040-DG2022",
+    "v040-GHR1995",
+    "v040-Hoza2022",
+    "v040-LNY2021",
+    "v040-MW2025",
+    "v040-Nisan1994",
+    "v040-PT2026",
+    "v040-RA1999",
+    "v040-SCM2024",
+    "v040-Stade2026"
+  ],
+  "facts": [],
+  "rules": [
+    {
+      "id": "v040-uniformnc1-hardwiring-ACC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "ACC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "ACC0"
+        }
+      ],
+      "source_ids": [
+        "v040-Buss1987",
+        "v040-BKLM2012",
+        "v040-UniformHardwiringDerivation"
+      ],
+      "justification": "BFV in fixed-width parenthesized binary syntax belongs to ALOGTIME. Unfold an arbitrary nonuniform NC1 circuit into a polynomial-size formula, substitute input values in its leaves, and restrict a hypothetical nonuniform target-class BFV circuit at that formula length. The projection preserves polynomial size and constant depth; ACC0 retains its fixed modulus set. No uniform generator for the original NC1 family is required.",
+      "evidence_kind": "derived_from_primary_theorem_and_explicit_restriction_argument",
+      "derivation_locator": "research/v0.4.0/classical-baseline-cross-review.md#two-additional-circuit-consequences"
+    },
+    {
+      "id": "v040-uniformnc1-hardwiring-TC0",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "TC0"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "TC0"
+        }
+      ],
+      "source_ids": [
+        "v040-Buss1987",
+        "v040-BKLM2012",
+        "v040-UniformHardwiringDerivation"
+      ],
+      "justification": "BFV in fixed-width parenthesized binary syntax belongs to ALOGTIME. Unfold an arbitrary nonuniform NC1 circuit into a polynomial-size formula, substitute input values in its leaves, and restrict a hypothetical nonuniform target-class BFV circuit at that formula length. The projection preserves polynomial size and constant depth; ACC0 retains its fixed modulus set. No uniform generator for the original NC1 family is required.",
+      "evidence_kind": "derived_from_primary_theorem_and_explicit_restriction_argument",
+      "derivation_locator": "research/v0.4.0/classical-baseline-cross-review.md#two-additional-circuit-consequences"
+    }
+  ],
+  "fact_reviews": [
+    {
+      "id": "v040-l-bpl",
+      "claim": {
+        "relation": "inclusion",
+        "left": "L",
+        "right": "BPL"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-LNY2021"
+      ],
+      "review": "Deterministic logspace simulation ignores coins. LNY §2.3 also displays the inclusion.",
+      "read_or_proof_depth": "primary_display_and_definition_transfer"
+    },
+    {
+      "id": "v040-bpl-bpp",
+      "claim": {
+        "relation": "inclusion",
+        "left": "BPL",
+        "right": "BPP"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-Hoza2022",
+        "v040-ClassicalNewDerivations"
+      ],
+      "review": "Forget space, retaining the same clock and bounded-error gap.",
+      "read_or_proof_depth": "definition_transfer"
+    },
+    {
+      "id": "v040-bpl-sc",
+      "claim": {
+        "relation": "inclusion",
+        "left": "BPL",
+        "right": "SC"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-Nisan1994"
+      ],
+      "review": "Nisan original abstract explicitly states two-sided error, polynomial time and O(log² n) space simultaneously. Abstract checked; underlying proof not reconstructed.",
+      "read_or_proof_depth": "primary_original_abstract"
+    },
+    {
+      "id": "v040-bpl-pl",
+      "claim": {
+        "relation": "inclusion",
+        "left": "BPL",
+        "right": "PL"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-ClassicalNewDerivations"
+      ],
+      "review": "The same fair machine has strict-majority acceptance on exactly the members.",
+      "read_or_proof_depth": "definition_transfer_and_existing_lean_lemma"
+    },
+    {
+      "id": "v040-l-ul",
+      "claim": {
+        "relation": "inclusion",
+        "left": "L",
+        "right": "UL"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-RA1999",
+        "v040-ClassicalNewDerivations"
+      ],
+      "review": "The deterministic path is unique on all inputs, and accepting multiplicity is at most one.",
+      "read_or_proof_depth": "definition_transfer"
+    },
+    {
+      "id": "v040-ul-nl",
+      "claim": {
+        "relation": "inclusion",
+        "left": "UL",
+        "right": "NL"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-DG2022"
+      ],
+      "review": "Forgetting accepting-path uniqueness leaves a clocked NL machine.",
+      "read_or_proof_depth": "definition_transfer"
+    },
+    {
+      "id": "v040-nl-pl",
+      "claim": {
+        "relation": "inclusion",
+        "left": "NL",
+        "right": "PL"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-ClassicalNewDerivations"
+      ],
+      "review": "NL path count minus zero is GapL; AO Proposition3 gives the positive-GapL characterization.",
+      "read_or_proof_depth": "primary_theorem_and_definition_transfer"
+    },
+    {
+      "id": "v040-pl-nc",
+      "claim": {
+        "relation": "inclusion",
+        "left": "PL",
+        "right": "NC"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-BCP1983"
+      ],
+      "review": "BCP Corollary6.3 gives NC²; §2 defines logspace uniformity, matching the catalog NC endpoint.",
+      "read_or_proof_depth": "primary_theorem_and_uniformity_definition"
+    },
+    {
+      "id": "v040-np-existsr",
+      "claim": {
+        "relation": "inclusion",
+        "left": "NP",
+        "right": "ExistsR"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-MW2025",
+        "v040-ClassicalNewDerivations"
+      ],
+      "review": "Boolean wire constraints z(z−1)=0, AND z=xy, NOT z=1−x encode circuit satisfiability in polynomial-size real feasibility.",
+      "read_or_proof_depth": "primary_definition_and_explicit_reduction"
+    },
+    {
+      "id": "v040-existsr-pspace",
+      "claim": {
+        "relation": "inclusion",
+        "left": "ExistsR",
+        "right": "PSPACE"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-Canny1988"
+      ],
+      "review": "Canny original report abstract states ETR in PSPACE; the finite binary reduction composes in PSPACE. Abstract checked, not full scanned proof.",
+      "read_or_proof_depth": "primary_original_abstract"
+    },
+    {
+      "id": "v040-uniformnc1-l",
+      "claim": {
+        "relation": "inclusion",
+        "left": "UniformNC1",
+        "right": "L"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-BKLM2012",
+        "v040-GHR1995",
+        "v040-ClassicalNewDerivations"
+      ],
+      "review": "ALOGTIME computation trees admit deterministic traversal using the short branch description plus configuration recomputation. Uses U_E, not merely direct-connection U_D.",
+      "read_or_proof_depth": "primary_convention_and_explicit_simulation"
+    },
+    {
+      "id": "v040-uniformnc1-nc1",
+      "claim": {
+        "relation": "inclusion",
+        "left": "UniformNC1",
+        "right": "NC1"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "v040-BKLM2012"
+      ],
+      "review": "Forget U_E uniformity; do not equate the two endpoints in the converse direction.",
+      "read_or_proof_depth": "primary_convention_and_definition_transfer"
+    },
+    {
+      "id": "v040-uniformnc1-not-ac0",
+      "claim": {
+        "relation": "separation",
+        "left": "UniformNC1",
+        "right": "AC0"
+      },
+      "decision": "accept",
+      "source_ids": [
+        "FSS1984",
+        "v040-BKLM2012",
+        "v040-ClassicalNewDerivations"
+      ],
+      "review": "The parity witness has U_E-uniform logarithmic-depth circuits; the old FSS nonuniform AC0 lower bound applies.",
+      "read_or_proof_depth": "existing_lower_bound_and_explicit_witness_transfer"
+    }
+  ],
+  "rule_reviews": [
+    {
+      "id": "v040-padding-regular-E-BPL",
+      "decision": "accept",
+      "scope_note": "Virtual padded-input simulation uses log m(n)=O(log n) space and polynomial time. Deterministic extra work leaves the random-outcome distribution unchanged; ignored coin positions are harmless.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "BPL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "BPL"
+        }
+      ]
+    },
+    {
+      "id": "v040-padding-regular-NE-BPL",
+      "decision": "accept",
+      "scope_note": "Virtual padded-input simulation uses log m(n)=O(log n) space and polynomial time. Deterministic extra work leaves the random-outcome distribution unchanged; ignored coin positions are harmless.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "BPL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "BPL"
+        }
+      ]
+    },
+    {
+      "id": "v040-padding-regular-E-UL",
+      "decision": "accept",
+      "scope_note": "Virtual padding is deterministic and makes no new nondeterministic choices, so accepting-path multiplicity and the all-branch clock are preserved.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "UL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "UL"
+        }
+      ]
+    },
+    {
+      "id": "v040-padding-regular-NE-UL",
+      "decision": "accept",
+      "scope_note": "Virtual padding is deterministic and makes no new nondeterministic choices, so accepting-path multiplicity and the all-branch clock are preserved.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "UL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "UL"
+        }
+      ]
+    },
+    {
+      "id": "v040-padding-regular-E-PL",
+      "decision": "accept",
+      "scope_note": "Compose either the probability distribution or the two #L functions in a GapL representation. Do not claim equality of raw padded fair-coin counts: ignored coins can multiply numerator and denominator equally.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PL"
+        }
+      ]
+    },
+    {
+      "id": "v040-padding-regular-NE-PL",
+      "decision": "accept",
+      "scope_note": "Compose either the probability distribution or the two #L functions in a GapL representation. Do not claim equality of raw padded fair-coin counts: ignored coins can multiply numerator and denominator equally.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PL"
+        }
+      ]
+    },
+    {
+      "id": "v040-padding-regular-E-ExistsR",
+      "decision": "accept",
+      "scope_note": "Closure under ordinary polynomial-time many-one reductions gives the transfer by composition.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "ExistsR"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "ExistsR"
+        }
+      ]
+    },
+    {
+      "id": "v040-padding-regular-NE-ExistsR",
+      "decision": "accept",
+      "scope_note": "Closure under ordinary polynomial-time many-one reductions gives the transfer by composition.",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "ExistsR"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "ExistsR"
+        }
+      ]
+    }
+  ],
+  "complement_reviews": [
+    {
+      "left": "BPL",
+      "right": "BPL",
+      "decision": "accept",
+      "review": "Swap terminal bits, keeping bounded error, all-prefix space and worst-case time."
+    },
+    {
+      "left": "PL",
+      "right": "PL",
+      "decision": "accept",
+      "review": "For integer GapL g with g>0 as acceptance, use 1−g, not simply −g; equality is handled correctly."
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UniformNC1",
+      "decision": "accept",
+      "review": "Dualize alternating node types and terminal answers on the same all-branch clock."
+    }
+  ],
+  "source_checks": [
+    {
+      "source_id": "v040-Nisan1994",
+      "read_depth_or_locator": "original institutional abstract",
+      "finding": "Exact simultaneous time/space and two-sided-error scope confirmed."
+    },
+    {
+      "source_id": "v040-BCP1983",
+      "read_depth_or_locator": "§2 p.116 and §6 Proposition6.2/Corollary6.3 p.132",
+      "finding": "Logspace-uniform NC² target confirmed."
+    },
+    {
+      "source_id": "v040-AO1996",
+      "read_depth_or_locator": "Propositions2–3, Theorem6, §3 oracle model and §7",
+      "finding": "GapL characterization, clock equivalence and restricted RST oracle convention confirmed."
+    },
+    {
+      "source_id": "v040-RA1999",
+      "read_depth_or_locator": "§§1–3, Theorem2.2/Corollary2.3",
+      "finding": "Advice remains in NL/poly=UL/poly; accepting uniqueness is not strong all-pairs uniqueness."
+    },
+    {
+      "source_id": "v040-DG2022",
+      "read_depth_or_locator": "§2 p.6",
+      "finding": "LogDCFL/LogCFL distinction and SC uncertainty explicitly checked."
+    },
+    {
+      "source_id": "v040-CW2024",
+      "read_depth_or_locator": "Introduction and theorem scope",
+      "finding": "L-AC1 is not SAC1/LogCFL; no BPL⊆NL transfer."
+    },
+    {
+      "source_id": "v040-LNY2021",
+      "read_depth_or_locator": "§§2.1–2.3; displayed inclusions on PDFp.6",
+      "finding": "Polynomial-time BPL/BQL and unrestricted/postselected variants distinguished."
+    },
+    {
+      "source_id": "v040-BKLM2012",
+      "read_depth_or_locator": "§2 Remark1, PDFp.5",
+      "finding": "U_E standard uniformity versus U_D direct-connection distinction confirmed."
+    },
+    {
+      "source_id": "v040-Canny1988",
+      "read_depth_or_locator": "institution-hosted original abstract",
+      "finding": "ETR PSPACE claim confirmed; scanned full proof not reconstructed."
+    },
+    {
+      "source_id": "v040-MW2025",
+      "read_depth_or_locator": "Definition1 and stated structural results",
+      "finding": "Finite-bit quadratic feasibility and relativized/conditional scope checked."
+    },
+    {
+      "source_id": "v040-SCM2024",
+      "read_depth_or_locator": "§§1.1–1.2",
+      "finding": "No transfer of PosSLP/SSQR CH bounds to all ∃R; NP^PosSLP=∃R is conjectural there."
+    },
+    {
+      "source_id": "v040-Stade2026",
+      "read_depth_or_locator": "Theorem2 and real-RAM interpretation",
+      "finding": "Real proof symbols and unit-cost real arithmetic do not give a binary MA/NP verifier."
+    },
+    {
+      "source_id": "v040-PT2026",
+      "read_depth_or_locator": "Theorems1.2,3.5–3.6,3.9–3.11",
+      "finding": "Quantitative, infinitely-often, simultaneous-resource and inputwise-alternative restrictions retained."
+    }
+  ],
+  "hardwiring_proof": {
+    "decision": "accept",
+    "targets": [
+      "ACC0",
+      "TC0"
+    ],
+    "left_premise": "UniformNC1",
+    "left_conclusion": "NC1",
+    "source_language": "Well-formed true variable-free Boolean formulas in parenthesized fixed-width binary syntax",
+    "steps": [
+      "BFV belongs to ALOGTIME by Buss MainTheorem1; fixed-width binary coding is explicit in §2.",
+      "Unfold each bounded-fan-in logarithmic-depth nonuniform circuit into a polynomial-size formula.",
+      "Replace leaf variables by their bits using equal-width 0/1 tokens. The resulting formula has length depending only on n, and each encoded bit is a constant or input literal.",
+      "Restrict the target-class BFV circuit at that length. Constant depth and polynomial size are preserved; ACC0 introduces no new moduli."
+    ],
+    "scope_guards": [
+      "No uniform generation of the original nonuniform NC1 family is required.",
+      "No U_D-to-U_E conversion is asserted.",
+      "Do not replace the parenthesized syntax by a pointer-table formula representation.",
+      "Derived mathematical rule, not a kernel-checked circuit-simulation theorem."
+    ],
+    "reverse_direction": "Already follows from UniformNC1⊆NC1.",
+    "unconditional_labels_added": 0
+  },
+  "reproduction": {
+    "expected_pair_count": 585,
+    "actual_unique_pair_count": 585,
+    "pair_membership_mismatches": 0,
+    "label_mismatches": 0,
+    "contradictions": 0,
+    "status_counts": {
+      "separation": 60,
+      "candidate_unresolved": 291,
+      "inclusion": 234
+    },
+    "extra_rule_unconditional_atoms": 0,
+    "extra_rule_lost_atoms": 0,
+    "conditional_regressions": [
+      {
+        "assumption": {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "ACC0"
+        },
+        "required_consequence": {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "ACC0"
+        },
+        "derived": true,
+        "derivation_reason": "v040-uniformnc1-hardwiring-ACC0/0"
+      },
+      {
+        "assumption": {
+          "relation": "inclusion",
+          "left": "UniformNC1",
+          "right": "TC0"
+        },
+        "required_consequence": {
+          "relation": "inclusion",
+          "left": "NC1",
+          "right": "TC0"
+        },
+        "derived": true,
+        "derivation_reason": "v040-uniformnc1-hardwiring-TC0/0"
+      }
+    ],
+    "contrapositive_regressions_passed": 2,
+    "method": "Rebuild Closure from current unchanged old knowledge, original13 facts/eight rules/three complements, and exactly the14 overlay facts/four overlay complements listed in the original dossier. Compare every original pair; repeat with the two supplemental rules. No SAT-completeness claim is made.",
+    "later_integration_required": "Recompute after importing all independently reviewed dossiers. This overlay intentionally does not anticipate their additional conditional rules."
+  },
+  "family_reviews": [
+    {
+      "group": "counting",
+      "pair_count": 120,
+      "status_counts": {
+        "candidate_unresolved": 70,
+        "inclusion": 50
+      },
+      "review": "Four small focus classes are in P, so their outward counting inclusions are inherited. ∃R versus CH/PSharpP/PP remains candidate where not already implied; no PosSLP-to-entire-class transfer."
+    },
+    {
+      "group": "larger_resources",
+      "pair_count": 60,
+      "status_counts": {
+        "inclusion": 28,
+        "separation": 25,
+        "candidate_unresolved": 7
+      },
+      "review": "The small four are below P. Seven surviving large-resource candidates involve ExistsR; PSPACE upper bounds do not settle those directions."
+    },
+    {
+      "group": "new_internal",
+      "pair_count": 25,
+      "status_counts": {
+        "inclusion": 14,
+        "candidate_unresolved": 11
+      },
+      "review": "Use the explicit L/UL/NL/PL and UniformNC1 chains; do not silently add BPL↔UL or PL↔BPL."
+    },
+    {
+      "group": "nonuniform_circuits_advice",
+      "pair_count": 60,
+      "status_counts": {
+        "separation": 35,
+        "candidate_unresolved": 16,
+        "inclusion": 9
+      },
+      "review": "All five focus endpoints are in PSPACE. Arbitrary unary languages witness the thirty incoming nonuniform exclusions; parity gives five outgoing AC0 exclusions. The two new conditional rules do not change baseline statuses."
+    },
+    {
+      "group": "other_space_parallelism",
+      "pair_count": 60,
+      "status_counts": {
+        "inclusion": 24,
+        "candidate_unresolved": 36
+      },
+      "review": "Check PL/LogCFL/SC in both directions; NC² does not imply simultaneous SC, AC¹ is not SAC¹, and polynomial-clocked BQL does not inherit postselection."
+    },
+    {
+      "group": "polynomial_time_randomness_proofs",
+      "pair_count": 190,
+      "status_counts": {
+        "candidate_unresolved": 109,
+        "inclusion": 81
+      },
+      "review": "Use P for small focus classes, NP⊆ExistsR and complement propagation as applicable. Real-valued PCPs and complex feasibility theorems do not give binary proof-class bounds for real feasibility."
+    },
+    {
+      "group": "quantum",
+      "pair_count": 70,
+      "status_counts": {
+        "inclusion": 28,
+        "candidate_unresolved": 42
+      },
+      "review": "Review BPL⊆BQL⊆PL directly. StrongFewL is not ordinary UL; postselection is not BQL. Quantum amplitudes do not yield a polynomial-size real-feasibility encoding for general witnesses."
+    }
+  ],
+  "incident_pairs": [
+    {
+      "left": "AC0",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "AC0",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "AC0",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "AC0",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "AC0",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ACC0",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ACC0",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ACC0",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ACC0",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ACC0",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "AM",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AM",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AM",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AM",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AM",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AWPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AWPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AWPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AWPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "AWPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:BPL:AC0",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:AM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:AWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "BPL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:BPL:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:BPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "BQL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BPL:BQL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:BQP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:CH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:CeqP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Delta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:E",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:EXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:EXPSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:BPL:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:FewP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:LWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:MA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BPL:NC",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:NE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:NEXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:NP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:NPcapcoNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:BPL:NPpoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:PH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:BPL:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:PP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:PSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:PSharpP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Pi2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:BPL:Ppoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QCMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QMA2",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QSZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:RP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:SBP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "SC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BPL:SC",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:SPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:SZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Sigma2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:StoqMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Theta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:UP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPL",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:WPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:ZPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coAM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:coQMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coRP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:coUP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPL",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:parityP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BQL:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BQL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BQL:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "BQL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "BQP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CH",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CH",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CH",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CH",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CH",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CeqP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CeqP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CeqP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CeqP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "CeqP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Delta2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Delta2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Delta2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Delta2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Delta2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "E",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "E",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "E",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "E",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "E",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXP",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "EXP",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXP",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXP",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ExistsR",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ExistsR:AC0",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ExistsR",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "AM",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "AWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BPP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BQP",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "CeqP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Delta2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "E",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:EXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ExistsR",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:EXPSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ExistsR",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:ExistsR:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ExistsR",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "MA",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NE",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:NEXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NPcapcoNP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NPpoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PH",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:PSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Pi2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Ppoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QCMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QMA2",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QSZK",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "RP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SBP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SZK",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Sigma2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "StoqMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Theta2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "ZPP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coAM",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coMA",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coNP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coQMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coRP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ExistsR",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "FewP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "FewP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:FewP:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "FewP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "FewP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "FewP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "L",
+      "right": "BPL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "L",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "L",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "L",
+      "right": "UL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "L",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LWPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LWPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LWPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LWPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LWPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LogCFL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LogCFL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:LogCFL:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "LogCFL",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LogCFL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "LogCFL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "MA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "MA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "MA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "MA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "MA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NC",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NC",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:NC:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NC",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NC",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NC",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NC1",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NC1",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NC1",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NC1",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NC1",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NE",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NE",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NE",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NE",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NE",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NEXP",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NEXP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NEXP",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NEXP",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NEXP",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:NL:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:NL:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:NP:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:NPcapcoNP:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "NPpoly",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NPpoly",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NPpoly",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NPpoly",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "NPpoly",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "P",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:P:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PH",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PH",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PH",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PH",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PH",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:PL:AC0",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:AM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:AWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:BPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:BQP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:CH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:CeqP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Delta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:E",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:EXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:EXPSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:PL:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:FewP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:LWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:MA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:PL:NC",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:NE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:NEXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:NP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:NPcapcoNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:PL:NPpoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:PH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:PL:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:PP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:PSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:PSharpP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Pi2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:PL:Ppoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QCMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QMA2",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QSZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:RP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:SBP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:SPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:SZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Sigma2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:StoqMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Theta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:UP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PL",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:WPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:ZPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coAM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:coQMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coRP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:coUP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PL",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:parityP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PSPACE",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PSPACE",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PSPACE",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PSPACE",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PSPACE",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "PSharpP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PSharpP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PSharpP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "PSharpP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Pi2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Pi2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Pi2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Pi2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Pi2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Ppoly",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "Ppoly",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "Ppoly",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "Ppoly",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "Ppoly",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "QCMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QCMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QCMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QCMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QCMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA2",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA2",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA2",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA2",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QMA2",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QSZK",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QSZK",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QSZK",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QSZK",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "QSZK",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "RP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "RP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:RP:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "RP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "RP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "RP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SBP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SBP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SBP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SBP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SBP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SC",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SC",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:SC:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "SC",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SC",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SC",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SZK",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SZK",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SZK",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SZK",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "SZK",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "StoqMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "StoqMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "StoqMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "StoqMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "TC0",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "TC0",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "TC0",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "TC0",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "TC0",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "Theta2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Theta2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Theta2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "Theta2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:UL:AC0",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:AM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:AWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:BPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:BQP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:CH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:CeqP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Delta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:E",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:EXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:EXPSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UL:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:FewP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:LWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "LogCFL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UL:LogCFL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:MA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UL:NC",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:NE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:NEXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "NL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UL:NL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:NP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:NPcapcoNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UL:NPpoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:PH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UL:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:PP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:PSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:PSharpP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Pi2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UL:Ppoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QCMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QMA2",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QSZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:RP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:SBP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:SPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:SZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Sigma2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:StoqMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Theta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "UL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UL:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:UP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UL",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:WPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:ZPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coAM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:coQMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coRP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:coUP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UL",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:parityP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UP:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:UniformNC1:AC0",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:AM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:AWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BPL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:BPL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:BPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BQL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:BQL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:BQP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:CH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:CeqP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Delta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:E",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:EXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:EXPSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:FewP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "L",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:L",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:LWPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "LogCFL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:LogCFL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:MA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:NC",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NC1",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UniformNC1:NC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:NE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:NEXP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:NL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:NP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:NPcapcoNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UniformNC1:NPpoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:PH",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:PL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:PP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:PSPACE",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:PSharpP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Pi2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UniformNC1:Ppoly",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QCMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QMA2",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QSZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:RP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:SBP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:SC",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:SPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:SZK",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Sigma2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:StoqMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Theta2P",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:UL",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:UP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UniformNC1",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:UniformNC1",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:WPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:ZPP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coAM",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coNP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:coQMA",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coRP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:coUP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:parityP",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "WPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "WPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "WPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "WPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "WPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ZPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ZPP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:ZPP:ExistsR",
+      "review_decision": "accept_derived_label"
+    },
+    {
+      "left": "ZPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ZPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "ZPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coAM",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coAM",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coAM",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coAM",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coAM",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coNP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coNP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coNP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coNP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coNP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coQMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coQMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coQMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coQMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coQMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coRP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coRP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coRP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coRP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coRP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coUP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coUP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coUP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coUP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "coUP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "parityP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "parityP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "parityP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "parityP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    },
+    {
+      "left": "parityP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting",
+      "review_decision": "retain_candidate_no_resolution_found"
+    }
+  ],
+  "recent_triage": [
+    {
+      "source_id": "v040-Applebaum2026",
+      "decision": "no_new_context_label",
+      "finding": "NL⊆Mod_pL is explicit. Neither Mod_pL nor parity logspace is a context endpoint; the ordinary NL⊆parityP consequence is already known through P. Not an unambiguous or bounded-error simulation."
+    },
+    {
+      "source_id": "v040-HozaIsolation2026",
+      "decision": "do_not_import_class_separation",
+      "finding": "The negative result concerns deterministic oblivious isolation weights, not arbitrary algorithms for NL or UL."
+    },
+    {
+      "source_id": "v040-CDG2026",
+      "decision": "do_not_import_general_derandomization",
+      "finding": "Permutation read-once branching programs and the stated seed bound do not establish general BPL=L."
+    },
+    {
+      "source_id": "v040-AsadiCleve2026Withdrawal",
+      "decision": "exclude_withdrawn_claim",
+      "finding": "Polynomial-time TreeEval claim withdrawn before cutoff; no SC upper bound accepted from it."
+    },
+    {
+      "source_id": "v040-CDKMS2026",
+      "decision": "no_ordinary_resource_transfer",
+      "finding": "Catalytic memory is outside the five reviewed endpoint models."
+    },
+    {
+      "source_id": "v040-BDO2026",
+      "decision": "do_not_infer_ExistsR_in_RP",
+      "finding": "RP algorithm is for invertible-matrix constraints; determinant-one feasibility is a different ∃R-complete problem."
+    },
+    {
+      "source_id": "v040-Stade2026",
+      "decision": "no_binary_proof_class_transfer",
+      "finding": "Real-alphabet PCP verifier does not supply an ordinary binary NP/MA/QMA procedure."
+    },
+    {
+      "source_id": "v040-PT2026",
+      "decision": "no_unqualified_collapse",
+      "finding": "Preserve quantitative hardness, infinitely-often and inputwise alternatives; do not substitute bare E⊄Ppoly or infer all-input SC/NL algorithms from a per-input win-win."
+    }
+  ],
+  "research_queries": [
+    "PL LogCFL complexity 2025 2026",
+    "BPL UL logspace 2025 2026",
+    "existential theory of the reals counting hierarchy",
+    "BQL SC quantum logspace polynomial time",
+    "site:eccc.weizmann.ac.il/report/2026/ logspace",
+    "site:eccc.weizmann.ac.il/report/2026/ unambiguous",
+    "site:arxiv.org/abs/ PL logspace 2026",
+    "site:arxiv.org/abs/ Uniform NC1 2026"
+  ],
+  "discovery_sweep": {
+    "url": "https://eccc.weizmann.ac.il/year/2026/",
+    "scope": "Targeted title/abstract discovery for logspace, isolation, uniformity and real feasibility; individually dated primary results read at declared depths. Not a full conference census.",
+    "post_cutoff_handling": "Only versions available by2026-09-01 are used; current index also contains later papers, which do not support pre-cutoff labels."
+  },
+  "limitations": [
+    "AI-assisted finite literature review is not an exhaustive historical-openness certificate.",
+    "All585 incident directions are enumerated, but review is grouped by mathematical families rather than585 independent searches.",
+    "Original source proofs may be trusted under user waiver; source statement and operational-model bridges still require the stated semantic review.",
+    "Nisan and Canny were checked at original-abstract depth. HozaIsolation2026/CDG2026 PDF retrieval failed and are only abstract-level scope checks.",
+    "Candidate retention means no supported resolution was found, not that absence of literature hits proves openness.",
+    "The strongest remaining omission risks are PL/SC/LogCFL, ordinary unambiguity versus randomized/quantum logspace, and ExistsR versus counting/proof classes.",
+    "No independence-from-ZFC conclusion follows from candidate status.",
+    "Final merged baseline counts may change after other reviewed conditionals are imported; preserve this exact source-overlay binding."
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "conventions": {
     "universe": "All classes consist of total decision languages over {0,1}*. A language is a set of finite binary strings.",
     "inclusion": "A ⊆ B is set inclusion of language classes, never a reduction between classes.",
@@ -7,7 +7,9 @@
     "strict_inclusion": "A ⊊ B abbreviates A ⊆ B and B ⊄ A; these are two different ordered-pair claims.",
     "nonuniformity": "AC0, ACC0, TC0, NC1, Ppoly and NPpoly allow arbitrary families/advice. They can contain undecidable languages. NC is logspace-uniform.",
     "quantum": "Quantum and interactive classes here contain total languages. Promise-problem variants are a separate possible track.",
-    "gates": "Quantum gate-set precision and exact machine encodings must be fixed in the semantic Lean completion; these are mathematical class specifications, not completed operational formalizations."
+    "gates": "Operational Lean definitions fix finite machine encodings, exact H/T/X/CNOT quantum gates, and reversible NOT/CNOT/Toffoli gates for StoqMA. The literature bridges for gate-set, encoding and model equivalence remain explicit trusted inputs; compilation does not itself prove those equivalences.",
+    "scored_roster": "Only scored_class_ids are matrix endpoints. Every class in classes remains available in cited facts, accepted claims and inference traces. Background pairs earn no direct point; their consequences can resolve scored pairs.",
+    "uniform_nc1": "UniformNC1 uses standard U_E/extended-connection DLOGTIME uniformity, operationally ALOGTIME. NC1 remains nonuniform; NC remains logspace-uniform."
   },
   "classes": [
     {
@@ -660,6 +662,210 @@
         "AB2007"
       ],
       "lean_definition_file": "lean/InclusionBench/Definitions.lean"
+    },
+    {
+      "id": "BPL",
+      "label": "BPL",
+      "family": "Randomness",
+      "definition": "Languages decided with two-sided bounded error by one fair-coin machine with a polynomial worst-case running-time bound and logarithmic work space on every input and coin sequence. Input is read-only; random bits are fresh.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "randomness",
+        "space"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-LNY2021",
+        "v040-Hoza2022"
+      ],
+      "lean_definition_file": "lean/InclusionBench/Definitions.lean"
+    },
+    {
+      "id": "UL",
+      "label": "UL",
+      "family": "Space / parallelism",
+      "definition": "Languages recognized by a logarithmic-space nondeterministic machine with at most one accepting computation on every input; path multiplicity is counted. One polynomial clock bounds all branches.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "space",
+        "unambiguity"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-RA1999",
+        "v040-PTV2010"
+      ],
+      "lean_definition_file": "lean/InclusionBench/Definitions.lean"
+    },
+    {
+      "id": "PL",
+      "label": "PL",
+      "family": "Counting",
+      "definition": "Languages decided by an unbounded-error probabilistic logarithmic-space machine with a polynomial worst-case time bound: acceptance probability is strictly greater than one half exactly on members.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "counting",
+        "space"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-AO1996"
+      ],
+      "lean_definition_file": "lean/InclusionBench/Definitions.lean"
+    },
+    {
+      "id": "BQL",
+      "label": "BQL",
+      "family": "Quantum",
+      "definition": "Total languages decided with bounded error in polynomial time and logarithmic quantum and classical work space, with read-only classical input and space-bounded uniform control.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "quantum",
+        "space"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-q-LNY2021",
+        "v040-q-FR2020"
+      ],
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
+    },
+    {
+      "id": "ExistsR",
+      "label": "∃R",
+      "family": "Real feasibility",
+      "definition": "Polynomial-time many-one closure of the existential theory of the reals on finite binary encodings of formulas with integer coefficients. Quantified variables range over genuine real numbers; arbitrary real input constants and a polynomial-bit rational-witness restriction are excluded.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "real feasibility",
+        "algebraic decision",
+        "nondeterminism"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-SCM2024",
+        "v040-Canny1988"
+      ],
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
+    },
+    {
+      "id": "PSharpP",
+      "label": "P^#P",
+      "family": "Counting",
+      "definition": "Deterministic polynomial time with adaptive access to one fixed PP oracle language; the established identity P^PP = P^#P names the same decision-language class. This is not the function class #P or the search class PPP.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "counting",
+        "oracle computation"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "q-fr98",
+        "v040-Burgisser2006"
+      ],
+      "lean_definition_file": "lean/InclusionBench/Definitions.lean"
+    },
+    {
+      "id": "CH",
+      "label": "CH",
+      "family": "Counting",
+      "definition": "The union of the fixed finite counting-hierarchy levels C_0=P and C_(k+1)=PP^(C_k), with one fixed oracle language for each machine. The level k is fixed independently of input length.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "counting",
+        "hierarchies"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-Burgisser2006",
+        "v040-AllenderWagner1993"
+      ],
+      "lean_definition_file": "lean/InclusionBench/Definitions.lean"
+    },
+    {
+      "id": "QMA2",
+      "label": "QMA(2)",
+      "family": "Quantum",
+      "definition": "Total languages with a uniform polynomial-time quantum verifier receiving two unentangled polynomial-size quantum witnesses, with completeness at least 2/3 and soundness at most 1/3 on every input. Soundness quantifies over all product states across the two witness registers.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "quantum",
+        "proof systems"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-q-HM2010",
+        "v040-q-Gharibian2023"
+      ],
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
+    },
+    {
+      "id": "StoqMA",
+      "label": "StoqMA",
+      "family": "Quantum",
+      "definition": "Total-language stoquastic Merlin-Arthur verification using classical reversible gates, zero and plus ancillas and an X-basis output measurement. Take the union over uniformly polynomial-time computable rational completeness/soundness thresholds in [1/2,1] separated by an inverse polynomial; no general amplification or normalization to soundness 1/2 is assumed.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "quantum",
+        "randomness",
+        "proof systems",
+        "Hamiltonian complexity"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-q-BBT2006",
+        "v040-q-AGL2025",
+        "v040-q-Liu2021"
+      ],
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
+    },
+    {
+      "id": "QSZK",
+      "label": "QSZK",
+      "family": "Quantum",
+      "definition": "The total decision-language restriction of quantum statistical zero knowledge, specified through uniform quantum state-distinguishability circuits with the standard separated trace-distance thresholds and polynomial-time many-one reductions. The QSD characterization and threshold conventions are explicit trusted equivalence inputs.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "quantum",
+        "zero knowledge",
+        "proof systems"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-q-Watrous2002",
+        "v040-q-Watrous2009",
+        "v040-q-VW2016"
+      ],
+      "lean_definition_file": "quantum/InclusionQuantum/Complete.lean"
+    },
+    {
+      "id": "UniformNC1",
+      "label": "uniform NC¹",
+      "family": "Circuits",
+      "definition": "Standard DLOGTIME-uniform NC¹ using extended-connection (U_E) uniformity, equivalently alternating logarithmic time with random access to the input. Distinct from the nonuniform NC1 endpoint and from direct-connection-only U_D uniformity.",
+      "universe": "total binary languages",
+      "uniformity": "uniform",
+      "areas": [
+        "circuits",
+        "parallelism",
+        "space"
+      ],
+      "formalization_status": "operational_model_defined_equivalence_unproved",
+      "definition_source_ids": [
+        "v040-BKLM2012",
+        "v040-Ruzzo1981"
+      ],
+      "lean_definition_file": "lean/InclusionBench/Definitions.lean"
     }
   ],
   "complements": [
@@ -949,6 +1155,120 @@
         "q-watrous08"
       ],
       "justification": "coQMA is defined as the set of complements of QMA languages; this is not a claim QMA=coQMA."
+    },
+    {
+      "left": "BPL",
+      "right": "BPL",
+      "source_ids": [
+        "v040-LNY2021",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Swap accepting and rejecting halts; preserve the all-input gap, polynomial clock, and space bound."
+    },
+    {
+      "left": "PL",
+      "right": "PL",
+      "source_ids": [
+        "v040-AO1996"
+      ],
+      "justification": "After Proposition3, integer GapL gap g>0 is complemented by gap 1−g>0. Proposition2 supplies the GapL arithmetic; the text also explicitly records complement closure."
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UniformNC1",
+      "source_ids": [
+        "v040-BKLM2012",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Swap existential/universal states and accepting/rejecting leaves of the time-bounded alternating machine; by U_E=ALOGTIME the class is unchanged."
+    },
+    {
+      "left": "PSharpP",
+      "right": "PSharpP",
+      "source_ids": [
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Swap the deterministic oracle machine’s accepting and rejecting outcomes."
+    },
+    {
+      "left": "CH",
+      "right": "CH",
+      "source_ids": [
+        "v040-Burgisser2006",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Every PP oracle level is complement closed by the standard integer-gap transformation; the fixed-level union is complement closed."
+    },
+    {
+      "left": "BQL",
+      "right": "BQL",
+      "source_ids": [
+        "v040-q-LNY2021",
+        "v040-q-ModelDerivations"
+      ],
+      "justification": "Complement a bounded-error computation by flipping its final output bit; the logspace uniformity, workspace and polynomial clock remain bounded."
+    },
+    {
+      "left": "QSZK",
+      "right": "QSZK",
+      "source_ids": [
+        "v040-q-Watrous2002",
+        "v040-q-Watrous2009",
+        "v040-q-VW2016"
+      ],
+      "justification": "Use the quantum statistical zero-knowledge complement theorem and the full-verifier equivalence. Swapping the two samplers alone does not complement a distance problem."
     }
+  ],
+  "scored_class_ids": [
+    "ACC0",
+    "TC0",
+    "NC1",
+    "L",
+    "NL",
+    "LogCFL",
+    "NC",
+    "SC",
+    "P",
+    "RP",
+    "ZPP",
+    "BPP",
+    "UP",
+    "NP",
+    "coNP",
+    "SPP",
+    "CeqP",
+    "PP",
+    "parityP",
+    "AWPP",
+    "MA",
+    "AM",
+    "QCMA",
+    "QMA",
+    "BQP",
+    "SBP",
+    "SZK",
+    "NPcapcoNP",
+    "Sigma2P",
+    "Delta2P",
+    "Theta2P",
+    "PH",
+    "Ppoly",
+    "NPpoly",
+    "PSPACE",
+    "EXP",
+    "NEXP",
+    "EXPSPACE",
+    "NE",
+    "BPL",
+    "UL",
+    "PL",
+    "BQL",
+    "ExistsR",
+    "PSharpP",
+    "CH",
+    "QMA2",
+    "StoqMA",
+    "QSZK",
+    "UniformNC1"
   ]
 }

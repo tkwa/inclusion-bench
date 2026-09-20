@@ -1,0 +1,1861 @@
+{
+  "schema_version": "1.0",
+  "status": "independent phase1 scientific roster proposal; not a new baseline audit",
+  "reviewer": {
+    "identity": "AI-assisted classical-landscape reviewer /root/classical_literature",
+    "human_expert_review": false
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "worktree": "inclusion-bench-v040",
+  "base_commit": "5e4addcddd40f1a75a02b83dc26aaee2ac54b1cd",
+  "base_dataset_digest": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+  "input_file_sha256": {
+    "classes": "cbbecfb324d1315fad12dd6c9abc556146ee458e8c9894bc9f68537add02da6a",
+    "knowledge": "bc8b03891cfab9ae3b2c1785410e40b2fb8e79fab85a1b29e4f399bb348122e2",
+    "policy": "83e9c803c4e5b6a08c5aceb47ea0a056ee731d86c279f4236660fa9d82e449e6"
+  },
+  "scope": [
+    "classical structural complexity",
+    "circuits and nonuniform lower bounds",
+    "space and parallelism",
+    "exponential resources"
+  ],
+  "selection_principles": [
+    "Importance and incremental problem-family coverage; no tractability or Lean-definition-ease criterion.",
+    "40–50 scored endpoints can coexist with a larger explicitly unscored inference vocabulary.",
+    "A promise/search/algebraic track is a separate policy choice, not assumed authorized by this report.",
+    "Do not claim a calibrated top50 breakthrough distribution."
+  ],
+  "sources": [
+    {
+      "id": "Hoza2022",
+      "title": "Recent Progress on Derandomizing Space-Bounded Computation",
+      "url": "https://eccc.weizmann.ac.il/report/2022/121/download",
+      "publication_date": "2022-08-28",
+      "locator": "Section1, pp1–4; Section6",
+      "kind": "author_survey"
+    },
+    {
+      "id": "PyneTell2026",
+      "title": "Using Hardness vs Randomness to Design Low-Space Algorithms",
+      "url": "https://eccc.weizmann.ac.il/report/2026/045/download/",
+      "publication_date": "2026-03-30",
+      "locator": "Sections3.1,3.2,3.4.3; Theorems3.3,3.12,3.13; Section5",
+      "kind": "author_survey"
+    },
+    {
+      "id": "ReinhardtAllender2000",
+      "title": "Making Nondeterminism Unambiguous",
+      "url": "https://people.cs.rutgers.edu/~allender/papers/nlul.pdf",
+      "publication_date": "1999-03-31",
+      "locator": "Introduction; Theorem2.2; Corollary2.3; Proposition3.1",
+      "kind": "primary_research",
+      "scope_note": "Author manuscript dated1999; SIAM J Computing29(4),2000. Distinguish NL/poly=UL/poly from unresolved uniform equality."
+    },
+    {
+      "id": "SCM2024",
+      "title": "The Existential Theory of the Reals as a Complexity Class: A Compendium",
+      "url": "https://arxiv.org/html/2407.18006v1",
+      "publication_date": "2024-07-25",
+      "locator": "Sections1.1,1.2,1.5 and3.1",
+      "kind": "author_survey"
+    },
+    {
+      "id": "AllenderOgihara1996",
+      "title": "Relationships among PL, #L, and the determinant",
+      "url": "https://www.numdam.org/item/ITA_1996__30_1_1_0.pdf",
+      "publication_date": "1996",
+      "locator": "Sections3–5; Theorem6; Definition2; Section8 open questions",
+      "kind": "primary_research"
+    },
+    {
+      "id": "CookFilmusLe2014",
+      "title": "The Complexity of the Comparator Circuit Value Problem",
+      "url": "https://www.cs.utoronto.ca/~sacook/homepage/lfmmToct.pdf",
+      "publication_date": "2014",
+      "locator": "Abstract; Theorem3.10; Corollary6.17; Section7",
+      "kind": "primary_research",
+      "scope_note": "Author PDF has publisher-template placeholders; title/author identity and arXiv:1208.2721 establish pre-cutoff provenance. No date inferred from crawl."
+    },
+    {
+      "id": "BIS1990",
+      "title": "On uniformity within NC1",
+      "url": "https://www.sciencedirect.com/science/article/pii/002200009090022D",
+      "publication_date": "1990-12",
+      "locator": "Abstract; JCSS41(3),274–306",
+      "kind": "primary_research"
+    },
+    {
+      "id": "Rossman2024",
+      "title": "Formula Size-Depth Tradeoffs for Iterated Sub-Permutation Matrix Multiplication",
+      "url": "https://eccc.weizmann.ac.il/report/2024/107/download/",
+      "publication_date": "2024-06-23",
+      "locator": "Introduction, motivating formula lower-bound discussion",
+      "kind": "primary_research",
+      "scope_note": "Circuit lower bounds are nonuniform. Do not transfer the introductory NC1⊆L shorthand without fixing uniformity conventions."
+    },
+    {
+      "id": "Cai2007",
+      "title": "S2p is contained in ZPPNP",
+      "url": "https://doi.org/10.1016/j.jcss.2003.07.015",
+      "publication_date": "2007-02",
+      "locator": "Abstract; JCSS73(1),25–35",
+      "kind": "primary_research",
+      "scope_note": "Publisher abstract retrieved in search; direct webpage fetch403. S2P containment and Karp–Lipton application used here, not a new baseline import."
+    },
+    {
+      "id": "RussellSundaram1998",
+      "title": "Symmetric Alternation Captures BPP",
+      "url": "https://doi.org/10.1007/s000370050007",
+      "publication_date": "1998-11",
+      "locator": "Abstract; Computational Complexity7(2),152–162",
+      "kind": "primary_research",
+      "scope_note": "Author bibliographic page confirmed; accessible author thesis Chapter6 gives definitions and containment proofs: https://www.ccs.neu.edu/home/koods/papers/sundaram96thesis.pdf"
+    },
+    {
+      "id": "RiegeRothe2006",
+      "title": "Completeness in the Boolean Hierarchy: Exact-Four-Colorability, Minimal Graph Uncolorability, and Exact Domatic Number Problems",
+      "url": "https://www.jucs.org/jucs_12_5/completenes_in_the_boolean/jucs_12_05_0551_0578_rothe.pdf",
+      "publication_date": "2006",
+      "locator": "Definition4; Theorem5; completeness examples",
+      "kind": "author_survey"
+    },
+    {
+      "id": "Kadin1988",
+      "title": "The Polynomial Time Hierarchy Collapses If the Boolean Hierarchy Collapses",
+      "url": "https://epubs.siam.org/doi/10.1137/0217080",
+      "publication_date": "1988-12",
+      "locator": "Main collapse theorem; SIAM J Computing17(6),1263–1282",
+      "kind": "primary_research"
+    },
+    {
+      "id": "AvM2012",
+      "title": "Nondeterministic Circuit Lower Bounds from Mildly Derandomizing Arthur-Merlin Games",
+      "url": "https://pages.cs.wisc.edu/~dieter/Papers/r-nlb-eccc.pdf",
+      "publication_date": "2012-06-18",
+      "locator": "Theorem1; discussion after Theorem1; Theorems2,6,7",
+      "kind": "primary_research",
+      "scope_note": "Research by Baris Aydinlioglu and Dieter van Melkebeek. Promise-AM and advice/infinitely-often qualifiers are essential."
+    },
+    {
+      "id": "Aaronson2016",
+      "title": "P=?NP",
+      "url": "https://www.scottaaronson.com/papers/pvsnp.pdf",
+      "publication_date": "2016",
+      "locator": "Section2.2.7; Conjecture16; Proposition17; Theorems39–41",
+      "kind": "author_survey",
+      "scope_note": "Author survey first circulated2016; source is used for standard hierarchy/padding and circuit-counting discussion, not a claim that its historical frontier is still current."
+    },
+    {
+      "id": "DurandEtAl2012",
+      "title": "Fifty Years of the Spectrum Problem: Survey and New Results",
+      "url": "https://arxiv.org/pdf/0907.5495",
+      "publication_date": "2012",
+      "locator": "Open Question21; Theorem5.5; Corollary5.6; Section5.5",
+      "kind": "author_survey",
+      "scope_note": "First arXiv version2009. Binary spectrum characterization is NE, not NEXP; journal2012."
+    },
+    {
+      "id": "DPTW2025",
+      "title": "When Connectivity Is Hard, Random Walks Are Easy With Non-Determinism",
+      "url": "https://eccc.weizmann.ac.il/report/2025/077/",
+      "publication_date": "2025-06-18",
+      "locator": "Abstract; Theorem1 in linked PDF",
+      "kind": "primary_research",
+      "scope_note": "Per-input algorithmic disjunction is not a fixed whole-class inclusion."
+    },
+    {
+      "id": "KMPS2025",
+      "title": "Collapsing Catalytic Classes",
+      "url": "https://eccc.weizmann.ac.il/report/2025/019/download",
+      "publication_date": "2025-02-27",
+      "locator": "Theorem1; Section3.2",
+      "kind": "primary_research",
+      "scope_note": "CL=CNL; avoid adding both as distinct endpoints."
+    },
+    {
+      "id": "CGGRT2026",
+      "title": "Bipartite Matching is in NC",
+      "url": "https://eccc.weizmann.ac.il/report/2026/100/revision/2/download/",
+      "publication_date": "2026-07-15",
+      "locator": "Theorem1.1; introduction; extensions to weighted/search versions",
+      "kind": "primary_research",
+      "scope_note": "Historical coverage stress test, not an open problem at the cutoff. First report June14."
+    },
+    {
+      "id": "KoppartySaraf2026",
+      "title": "On the CGGRT Criterion for Detecting Bipartite Perfect Matchings in NC",
+      "url": "https://arxiv.org/abs/2607.15554",
+      "publication_date": "2026-07-17",
+      "locator": "Abstract and main criterion",
+      "kind": "primary_research",
+      "scope_note": "Independent primary follow-up to CGGRT2026."
+    },
+    {
+      "id": "CTW2026",
+      "title": "Super-quadratic Lower Bounds for Depth-2 Linear Threshold Circuits",
+      "url": "https://eccc.weizmann.ac.il/report/2026/039/",
+      "publication_date": "2026-03-15",
+      "locator": "Abstract; linked PDF main theorem",
+      "kind": "primary_research",
+      "scope_note": "Fixed depth and quantitative gate bounds must not be promoted to full TC0 separation."
+    },
+    {
+      "id": "Li2024",
+      "title": "Symmetric Exponential Time Requires Near-Maximum Circuit Size: Simplified, Truly Uniform",
+      "url": "https://eccc.weizmann.ac.il/report/2023/156/revision/1/download/",
+      "publication_date": "2024-04-04",
+      "locator": "Abstract and main lower bound",
+      "kind": "primary_research",
+      "scope_note": "Near-maximum almost-everywhere lower bound is already known for S2E; merely adding S2E does not score a new quantitative improvement to a known P/poly separation."
+    },
+    {
+      "id": "ChenLiLiang2026",
+      "title": "Maximum Circuit Lower Bounds for Exponential-time Arthur Merlin",
+      "url": "https://eccc.weizmann.ac.il/report/2024/182/revision/2/download/",
+      "publication_date": "2026-06-12",
+      "locator": "Abstract and main theorem",
+      "kind": "primary_research",
+      "scope_note": "Subexponential advice is part of the endpoint; it is not plain AMEXP."
+    },
+    {
+      "id": "RenWilliams2026",
+      "title": "Near-Maximum Circuit Lower Bounds for Exponential Time with Merlin-Arthur Queries",
+      "url": "https://eccc.weizmann.ac.il/report/2026/118/revision/1/download/",
+      "publication_date": "2026-07-12",
+      "locator": "Abstract and main theorem",
+      "kind": "primary_research",
+      "scope_note": "Endpoint E^promiseMA/1 has both promise-oracle and one-bit-advice qualifiers."
+    },
+    {
+      "id": "DPS2009",
+      "title": "Polynomial Time with Restricted Use of Randomness",
+      "url": "https://eccc.weizmann.ac.il/report/2009/039/",
+      "publication_date": "2009-05-05",
+      "locator": "Abstract and restricted-randomness hierarchy",
+      "kind": "primary_research",
+      "scope_note": "RNC error convention must be specified; source treats one-sided-error parallel derandomization."
+    },
+    {
+      "id": "KrishanSarma2026",
+      "title": "On CC0 Lower Bounds for AND via Torus Polynomials",
+      "url": "https://eccc.weizmann.ac.il/report/2026/116/",
+      "publication_date": "2026-07",
+      "locator": "Abstract",
+      "kind": "primary_research",
+      "scope_note": "CC0 here means constant-depth modular-only circuits, not comparator class CC."
+    },
+    {
+      "id": "ALR2012",
+      "title": "Complexity Theory",
+      "url": "https://www.cs.rutgers.edu/~allender/papers/ALR12.pdf",
+      "publication_date": "2012-01-25",
+      "locator": "Section on future directions, p30, core research questions",
+      "kind": "author_survey"
+    },
+    {
+      "id": "SU2008",
+      "title": "Completeness in the Polynomial-Time Hierarchy: A Compendium",
+      "url": "https://ovid.cs.depaul.edu/documents/phcom.pdf",
+      "publication_date": "2008-10-05",
+      "locator": "Introduction; Sections 2–3, especially L1 and L6",
+      "kind": "author_survey",
+      "scope_note": "Revision of 2002 survey; used for importance and natural complete problems, not a current all-pairs certification."
+    },
+    {
+      "id": "HHR1997",
+      "title": "Exact Analysis of Dodgson Elections: Lewis Carroll’s 1876 Voting System is Complete for Parallel Access to NP",
+      "url": "https://www.ccc.cs.uni-duesseldorf.de/~rothe/PDF/JACM-carroll-44-6-pp806-825.pdf",
+      "publication_date": "1997-11",
+      "locator": "Theorems 3.1 and 3.8; Corollary 3.9",
+      "kind": "primary_research"
+    },
+    {
+      "id": "Jurdzinski1998",
+      "title": "Deciding the Winner in Parity Games Is in UP ∩ co-UP",
+      "url": "https://www.dcs.warwick.ac.uk/~mju/Papers/Jur98-IPL.pdf",
+      "publication_date": "1998-11-15",
+      "locator": "Theorem 8 and introduction",
+      "kind": "primary_research",
+      "scope_note": "Supports natural problems within NP∩coNP, not completeness for that class or the claim that solving parity games alone collapses it."
+    },
+    {
+      "id": "IW1997",
+      "title": "P=BPP unless E has sub-exponential circuits: Derandomizing the XOR Lemma",
+      "url": "https://www.math.ias.edu/~avi/PUBLICATIONS/MYPAPERS/IW97/proc.pdf",
+      "publication_date": "1997-05-04",
+      "locator": "Abstract and Section 1",
+      "kind": "primary_research",
+      "scope_note": "The exponential circuit-size hypothesis is stronger than E not⊆P/poly; do not erase its quantitative bound."
+    },
+    {
+      "id": "FS2010",
+      "title": "Infeasibility of Instance Compression and Succinct PCPs for NP",
+      "url": "https://lance.fortnow.com/papers/files/compress.pdf",
+      "publication_date": "2010-03-19",
+      "locator": "Theorem 1.2; Theorem 3.1; Section 4",
+      "kind": "primary_research",
+      "scope_note": "Manuscript date; conference 2008 and journal 2011. NP⊆coNP/poly is equivalent by complementation to the roster pair coNP⊆NP/poly."
+    },
+    {
+      "id": "Yap1983",
+      "title": "Some consequences of non-uniform conditions on uniform classes",
+      "url": "https://www.sciencedirect.com/science/article/pii/0304397583900208",
+      "publication_date": "1983-10",
+      "locator": "Abstract item 1; Theorem 2 as used by later primary research",
+      "kind": "primary_research",
+      "scope_note": "Publisher abstract confirms nonuniform-hierarchy collapse consequence; exact specialized coNP⊆NP/poly use is also anchored by FS2010. This review did not retrieve the full original PDF."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "BPL",
+      "label": "BPL",
+      "priority": "highest",
+      "family": "space_and_randomness",
+      "definition_scope": "Total binary languages; halting randomized O(log n)-space machines with bounded error on every input.",
+      "representative_questions": [
+        "BPL=L",
+        "BPL⊆NL"
+      ],
+      "source_ids": [
+        "Hoza2022",
+        "PyneTell2026",
+        "DPTW2025"
+      ],
+      "selection_judgment": "Adds a central derandomization axis with no faithful current endpoint.",
+      "caveat": "Keep halting/expected-time conventions explicit; this proposal is not a full new-pair baseline audit."
+    },
+    {
+      "id": "UL",
+      "label": "UL",
+      "priority": "highest",
+      "family": "space_and_unambiguity",
+      "definition_scope": "Total languages accepted by O(log n)-space nondeterministic machines with at most one accepting computation on every input.",
+      "representative_questions": [
+        "NL=UL",
+        "UL=L"
+      ],
+      "source_ids": [
+        "ReinhardtAllender2000",
+        "PyneTell2026"
+      ],
+      "selection_judgment": "Represents uniform isolation directly.",
+      "caveat": "NL/poly=UL/poly is already known and does not settle NL=UL."
+    },
+    {
+      "id": "ExistsR",
+      "label": "∃R",
+      "priority": "highest",
+      "family": "real_algebra_and_geometry",
+      "definition_scope": "Polynomial-time many-one closure of finite encodings of existential real formulas, using integer/rational constants.",
+      "representative_questions": [
+        "∃R=NP",
+        "∃R⊆PH",
+        "PSPACE⊆∃R"
+      ],
+      "source_ids": [
+        "SCM2024"
+      ],
+      "selection_judgment": "Adds a substantial computational geometry and real-algebra family within ordinary decision languages.",
+      "caveat": "Not arbitrary-real-input BSS NP_R. Do not replace exact real feasibility by approximate or promise feasibility."
+    },
+    {
+      "id": "PL",
+      "label": "PL",
+      "priority": "strong_next_tier",
+      "family": "logspace_counting",
+      "definition_scope": "Polynomial-time logspace probabilistic machines with unbounded-error acceptance, equivalently positive GapL.",
+      "representative_questions": [
+        "PL=NL",
+        "PL⊆LogCFL",
+        "PL=BPL"
+      ],
+      "source_ids": [
+        "AllenderOgihara1996"
+      ],
+      "selection_judgment": "A compact representative of determinant/linear-algebra complexity, currently absent.",
+      "caveat": "CeqL and parityL are alternative representatives, not aliases. No broad new-edge audit performed."
+    },
+    {
+      "id": "S2P",
+      "label": "S₂P",
+      "priority": "strong_next_tier",
+      "family": "symmetric_alternation",
+      "definition_scope": "Polynomial-time predicate with polynomial yes-witness defeating every no-witness and no-witness defeating every yes-witness, according to input membership.",
+      "representative_questions": [
+        "S₂P=Delta2P",
+        "S₂P⊆AM",
+        "Sigma2P⊆S₂P"
+      ],
+      "source_ids": [
+        "RussellSundaram1998",
+        "Cai2007"
+      ],
+      "selection_judgment": "Represents a standard strengthened PH-collapse target and symmetric proof systems.",
+      "caveat": "Self-complementary. Keep total-language decision version distinct from finding winning witnesses."
+    },
+    {
+      "id": "uNC1",
+      "label": "DLOGTIME-uniform NC¹",
+      "priority": "strong_next_tier",
+      "family": "uniform_parallelism",
+      "definition_scope": "Polynomial-size logarithmic-depth bounded-fan-in circuits with a specified DLOGTIME uniformity convention.",
+      "representative_questions": [
+        "uNC¹=L",
+        "L⊄uNC¹"
+      ],
+      "source_ids": [
+        "BIS1990",
+        "Rossman2024"
+      ],
+      "selection_judgment": "Exposes exact uniform parallelism below logspace without sacrificing nonuniform formula questions.",
+      "caveat": "Do not silently replace current nonuniform NC1. Equality uNC1=L would already imply scored L⊆nonuniformNC1; a uniform-only separation need not."
+    },
+    {
+      "id": "DP",
+      "label": "DP",
+      "priority": "consider",
+      "family": "boolean_hierarchy",
+      "definition_scope": "Languages L1∩L2 with L1∈NP and L2∈coNP.",
+      "representative_questions": [
+        "DP=coDP",
+        "Theta2P⊆DP"
+      ],
+      "source_ids": [
+        "RiegeRothe2006",
+        "Kadin1988"
+      ],
+      "selection_judgment": "Expert-familiar home for exact optimization; compelling if Boolean-hierarchy collapse is a target family.",
+      "caveat": "DP is not NP∩coNP. The first listed comparison also requires a coDP endpoint or an explicit complement-question mechanism."
+    },
+    {
+      "id": "RL",
+      "label": "RL",
+      "priority": "consider",
+      "family": "one_sided_space_randomness",
+      "definition_scope": "Halting randomized logarithmic space with one-sided error.",
+      "representative_questions": [
+        "RL=L",
+        "BPL=RL"
+      ],
+      "source_ids": [
+        "Hoza2022"
+      ],
+      "selection_judgment": "Captures partial derandomization that BPL alone misses.",
+      "caveat": "Do not assume L=RL iff L=BPL; choose error convention explicitly."
+    },
+    {
+      "id": "RNC",
+      "label": "one-sided RNC",
+      "priority": "consider",
+      "family": "parallel_randomness",
+      "definition_scope": "Uniform polynomial-size polylog-depth randomized circuits, one-sided error on all inputs.",
+      "representative_questions": [
+        "RNC=NC"
+      ],
+      "source_ids": [
+        "DPS2009",
+        "CGGRT2026"
+      ],
+      "selection_judgment": "Adds parallel derandomization independently of sequential BPP.",
+      "caveat": "Some literature uses RNC differently. A two-sided variant should use an explicit label such as BPNC, and should not be inferred equal."
+    },
+    {
+      "id": "CC",
+      "label": "CC",
+      "priority": "consider",
+      "family": "comparator_parallelism",
+      "definition_scope": "AC0 many-one closure of comparator-circuit value; equivalently the suitably uniform comparator-circuit class.",
+      "representative_questions": [
+        "CC⊆NC",
+        "NC⊆CC",
+        "CC=NL"
+      ],
+      "source_ids": [
+        "CookFilmusLe2014"
+      ],
+      "selection_judgment": "Adds a distinct sub-P branch tied to stable marriage and lexicographic maximal matching.",
+      "caveat": "Lower priority than BPL/UL/ExistsR for this50-slot benchmark; not CC0 modular circuits."
+    },
+    {
+      "id": "CL",
+      "label": "CL",
+      "priority": "consider_emerging",
+      "family": "catalytic_space",
+      "definition_scope": "Logarithmic clean workspace with polynomial catalytic workspace restored exactly for every initial catalyst content.",
+      "representative_questions": [
+        "CL=L",
+        "CL⊆P"
+      ],
+      "source_ids": [
+        "KMPS2025",
+        "PyneTell2026"
+      ],
+      "selection_judgment": "Recent results make catalytic computation a serious alternative space resource.",
+      "caveat": "CNL and randomized catalytic logspace are known to coincide with CL; do not add duplicate names. Full current-class relationships need separate audit."
+    },
+    {
+      "id": "EXPNP",
+      "label": "EXP^NP",
+      "priority": "consider_circuit_focused",
+      "family": "exponential_oracle_time",
+      "definition_scope": "Deterministic exponential time with an ordinary NP oracle, with query length charged to runtime.",
+      "representative_questions": [
+        "EXP^NP⊆P/poly",
+        "EXP^NP=NEXP"
+      ],
+      "source_ids": [
+        "AvM2012"
+      ],
+      "selection_judgment": "Would expose a circuit lower-bound frontier above NEXP not settled by existing NEXP/Ppoly rows.",
+      "caveat": "Use EXP^NP, not NP^EXP; do not transfer results with a promise-MA oracle or advice. Author2012 discussion explicitly gives linear-exponential NP-oracle version as open."
+    },
+    {
+      "id": "coNE",
+      "label": "coNE",
+      "priority": "consider_logic_focused",
+      "family": "finite_model_theory",
+      "definition_scope": "Complements of NE languages.",
+      "representative_questions": [
+        "NE=coNE"
+      ],
+      "source_ids": [
+        "DurandEtAl2012"
+      ],
+      "selection_judgment": "Directly represents Asser’s spectrum complement problem.",
+      "caveat": "Its separation already implies NP≠coNP and P≠NP. Its equality need not settle those. The binary spectrum theorem uses NE, not NEXP."
+    },
+    {
+      "id": "coNEXP",
+      "label": "coNEXP",
+      "priority": "consider",
+      "family": "exponential_complementation",
+      "definition_scope": "Complements of NEXP languages.",
+      "representative_questions": [
+        "NEXP=coNEXP"
+      ],
+      "source_ids": [
+        "Aaronson2016",
+        "DurandEtAl2012"
+      ],
+      "selection_judgment": "Direct higher-time complementation endpoint, but adds complement multiplicity.",
+      "caveat": "Do not conflate with coNE or cite the binary-spectrum equivalence for NEXP. Full importance case is weaker than for the highest-priority adds."
+    },
+    {
+      "id": "CeqL",
+      "label": "C=L",
+      "priority": "alternative_to_PL",
+      "family": "logspace_counting",
+      "definition_scope": "Zero tests of GapL functions.",
+      "representative_questions": [
+        "C=L=NL",
+        "C=L=coC=L"
+      ],
+      "source_ids": [
+        "AllenderOgihara1996"
+      ],
+      "selection_judgment": "Integer-matrix singularity gives a natural complete problem.",
+      "caveat": "Complement question needs both endpoints; PL and CeqL are distinct candidates."
+    },
+    {
+      "id": "parityL",
+      "label": "⊕L",
+      "priority": "alternative_to_PL",
+      "family": "logspace_counting",
+      "definition_scope": "Parity of accepting polynomial-time nondeterministic logarithmic-space computations.",
+      "representative_questions": [
+        "NL⊆⊕L",
+        "⊕L⊆L"
+      ],
+      "source_ids": [
+        "ReinhardtAllender2000",
+        "AllenderOgihara1996"
+      ],
+      "selection_judgment": "Adds finite-field linear algebra, with strong exact-counting distinctions.",
+      "caveat": "Do not add as another counting name without identifying the extra target family."
+    },
+    {
+      "id": "S2E",
+      "label": "S₂E",
+      "priority": "background_or_quantitative_track",
+      "family": "exponential_circuit_frontier",
+      "definition_scope": "Symmetric alternation with2^O(n) time/witness bounds.",
+      "representative_questions": [
+        "Near-maximum circuit lower bounds at lower uniform complexity"
+      ],
+      "source_ids": [
+        "Li2024",
+        "RenWilliams2026"
+      ],
+      "selection_judgment": "Valuable frontier reference, but its ordinary P/poly separation is already known.",
+      "caveat": "A quantitative improvement to a known separation earns no pair point. Adding a known-hard class does not repair that mismatch."
+    },
+    {
+      "id": "MAEXP",
+      "label": "MAEXP",
+      "priority": "background_or_circuit_focused",
+      "family": "exponential_proof_systems",
+      "definition_scope": "Exponential-time Merlin–Arthur total-language class with explicit witness/randomness bounds.",
+      "representative_questions": [
+        "NEXP versus MAEXP",
+        "Quantitative general-circuit lower bounds"
+      ],
+      "source_ids": [
+        "Aaronson2016",
+        "ChenLiLiang2026",
+        "RenWilliams2026"
+      ],
+      "selection_judgment": "Useful boundary between known general-circuit lower bounds and NEXP.",
+      "caveat": "Recent cited AMEXP/advice and E^promiseMA/1 theorems are not plain MAEXP theorems."
+    },
+    {
+      "id": "CC0",
+      "label": "modular-only CC⁰",
+      "priority": "specialized_alternative",
+      "family": "restricted_circuits",
+      "definition_scope": "Polynomial-size constant-depth circuits whose internal gates are MOD_m for fixed m.",
+      "representative_questions": [
+        "AND requires superpolynomial CC⁰ circuits"
+      ],
+      "source_ids": [
+        "KrishanSarma2026"
+      ],
+      "selection_judgment": "A real restricted-circuit frontier, but too specialized to displace the three highest-priority adds.",
+      "caveat": "Distinct from comparator CC and from ACC0. A scored AC0 source endpoint would matter if this target were admitted."
+    }
+  ],
+  "current_metrics": {
+    "current_class_count": 50,
+    "current_pairs": 2500,
+    "known_inclusions": 709,
+    "known_separations": 413,
+    "candidate_pairs": 1378,
+    "complement_orbits": 1065,
+    "two_member_complement_orbits": 313,
+    "nonuniform_to_recursive_separations": 264,
+    "nonuniform_classes": [
+      "AC0",
+      "ACC0",
+      "TC0",
+      "NC1",
+      "Ppoly",
+      "NPpoly"
+    ],
+    "incident_candidates": {
+      "AC0": 0,
+      "ACC0": 45,
+      "TC0": 47,
+      "NC1": 47,
+      "L": 40,
+      "NL": 41,
+      "LogCFL": 41,
+      "NC": 41,
+      "SC": 43,
+      "P": 41,
+      "RP": 55,
+      "coRP": 55,
+      "ZPP": 51,
+      "BPP": 60,
+      "UP": 57,
+      "coUP": 62,
+      "NP": 60,
+      "coNP": 64,
+      "FewP": 57,
+      "SPP": 71,
+      "CeqP": 69,
+      "PP": 57,
+      "parityP": 76,
+      "AWPP": 68,
+      "LWPP": 72,
+      "WPP": 72,
+      "MA": 63,
+      "coMA": 67,
+      "AM": 66,
+      "coAM": 69,
+      "QCMA": 68,
+      "QMA": 68,
+      "coQMA": 70,
+      "BQP": 71,
+      "SBP": 66,
+      "SZK": 70,
+      "NPcapcoNP": 58,
+      "Sigma2P": 63,
+      "Pi2P": 62,
+      "Delta2P": 67,
+      "Theta2P": 64,
+      "PH": 60,
+      "Ppoly": 37,
+      "NPpoly": 29,
+      "PSPACE": 44,
+      "EXP": 42,
+      "NEXP": 29,
+      "EXPSPACE": 2,
+      "E": 72,
+      "NE": 57
+    },
+    "single_demotion_complement_orbit_losses": {
+      "AC0": 0,
+      "ACC0": 38,
+      "TC0": 40,
+      "NC1": 40,
+      "L": 33,
+      "NL": 34,
+      "LogCFL": 34,
+      "NC": 34,
+      "SC": 36,
+      "P": 34,
+      "RP": 7,
+      "coRP": 7,
+      "ZPP": 43,
+      "BPP": 51,
+      "UP": 5,
+      "coUP": 10,
+      "NP": 6,
+      "coNP": 10,
+      "FewP": 57,
+      "SPP": 58,
+      "CeqP": 69,
+      "PP": 48,
+      "parityP": 63,
+      "AWPP": 56,
+      "LWPP": 59,
+      "WPP": 59,
+      "MA": 9,
+      "coMA": 13,
+      "AM": 10,
+      "coAM": 13,
+      "QCMA": 68,
+      "QMA": 11,
+      "coQMA": 13,
+      "BQP": 59,
+      "SBP": 66,
+      "SZK": 59,
+      "NPcapcoNP": 49,
+      "Sigma2P": 12,
+      "Pi2P": 11,
+      "Delta2P": 57,
+      "Theta2P": 54,
+      "PH": 52,
+      "Ppoly": 31,
+      "NPpoly": 29,
+      "PSPACE": 37,
+      "EXP": 35,
+      "NEXP": 29,
+      "EXPSPACE": 2,
+      "E": 58,
+      "NE": 57
+    },
+    "EXPSPACE_candidates": [
+      [
+        "EXPSPACE",
+        "EXP"
+      ],
+      [
+        "EXPSPACE",
+        "NEXP"
+      ]
+    ],
+    "padding_duplicates": {
+      "E_EXP": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "coUP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE"
+      ],
+      "NE_NEXP": [
+        "TC0",
+        "NC1",
+        "BPP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP"
+      ]
+    },
+    "interpretation": "Mechanical counts under the existing cited theory. They do not estimate independent conjectures, significance, probability, or scientific value. Complement orbits are not full logical-equivalence classes."
+  },
+  "competing_packages": [
+    {
+      "id": "minimal_preserve_resource_gaps",
+      "demote": [
+        "AC0",
+        "coUP",
+        "coMA"
+      ],
+      "add": [
+        "BPL",
+        "UL",
+        "ExistsR"
+      ],
+      "preference": "Conservative scientific minimum; retain all time/space endpoints.",
+      "tradeoff": "CoUP/coMA interface questions lose direct weight; complement mirrors preserve many but not all questions.",
+      "scored_count": 50,
+      "retained_current_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "E",
+        "NE"
+      ],
+      "raw_old_candidate_pairs_demoted": 128,
+      "old_complement_orbits_without_retained_representative": 25
+    },
+    {
+      "id": "minimal_preserve_proof_complements",
+      "demote": [
+        "AC0",
+        "EXPSPACE",
+        "coUP"
+      ],
+      "add": [
+        "BPL",
+        "UL",
+        "ExistsR"
+      ],
+      "preference": "Alternative minimal50 preserving coMA.",
+      "tradeoff": "Drops the two direct exponential-space versus exponential-time questions.",
+      "scored_count": 50,
+      "retained_current_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "MA",
+        "coMA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "E",
+        "NE"
+      ],
+      "raw_old_candidate_pairs_demoted": 64,
+      "old_complement_orbits_without_retained_representative": 12
+    },
+    {
+      "id": "classical_breadth",
+      "demote": [
+        "AC0",
+        "coUP",
+        "coMA",
+        "FewP",
+        "LWPP",
+        "WPP"
+      ],
+      "add": [
+        "BPL",
+        "UL",
+        "ExistsR",
+        "PL",
+        "S2P",
+        "uNC1"
+      ],
+      "preference": "Domain-only six-slot breadth alternative, requiring counting/proof-family cross-review.",
+      "tradeoff": "Loses exact-counting and ambiguity refinements; this is not a whole-team optimal roster.",
+      "scored_count": 50,
+      "retained_current_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "MA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "E",
+        "NE"
+      ],
+      "raw_old_candidate_pairs_demoted": 316,
+      "old_complement_orbits_without_retained_representative": 193
+    },
+    {
+      "id": "circuit_weighted_variant",
+      "demote": [
+        "AC0",
+        "coUP",
+        "coMA",
+        "FewP",
+        "LWPP",
+        "WPP"
+      ],
+      "add": [
+        "BPL",
+        "UL",
+        "ExistsR",
+        "PL",
+        "uNC1",
+        "EXPNP"
+      ],
+      "preference": "Swap S2P for EXP^NP if higher-time general-circuit lower bounds receive more weight.",
+      "tradeoff": "Sacrifices symmetric polynomial-time alternation; no claim that circuit advances are easier or more likely.",
+      "scored_count": 50,
+      "retained_current_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "MA",
+        "AM",
+        "coAM",
+        "QCMA",
+        "QMA",
+        "coQMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "E",
+        "NE"
+      ],
+      "raw_old_candidate_pairs_demoted": 316,
+      "old_complement_orbits_without_retained_representative": 193
+    },
+    {
+      "id": "cross_domain_conservative_A",
+      "demote": [
+        "AC0",
+        "coUP",
+        "coMA",
+        "coAM",
+        "coQMA",
+        "FewP",
+        "LWPP",
+        "WPP"
+      ],
+      "add": [
+        "BPL",
+        "UL",
+        "ExistsR",
+        "PpowerPP",
+        "CH",
+        "QMA2",
+        "StoqMA",
+        "QSZK"
+      ],
+      "preference": "Defensible conservative full50 starting point, not a final selection.",
+      "tradeoff": "Leaves logspace counting and quantum logspace absent; sacrifices finer positive ambiguity/normalizer collapses and complement interfaces.",
+      "retained_current_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "MA",
+        "AM",
+        "QCMA",
+        "QMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "E",
+        "NE"
+      ],
+      "full_scored_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "coRP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "MA",
+        "AM",
+        "QCMA",
+        "QMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "E",
+        "NE",
+        "BPL",
+        "UL",
+        "ExistsR",
+        "PpowerPP",
+        "CH",
+        "QMA2",
+        "StoqMA",
+        "QSZK"
+      ],
+      "scored_count": 50,
+      "raw_old_candidate_pairs_demoted": 437,
+      "old_complement_orbits_without_retained_representative": 225,
+      "cross_domain_provenance": [
+        "counting-and-scope-landscape.md",
+        "quantum-randomness-landscape.md"
+      ],
+      "conventions": "PpowerPP means P^PP=P^#P, not the total-search class PPP. New quantum nodes denote total-language restrictions; their canonical promise questions are not automatically equivalent. IDs remain provisional.",
+      "strongest_counterarguments": [
+        "Positive FewP=UP and LWPP=WPP collapses can lose all direct representatives.",
+        "Complement demotion changes score weighting and can lose distinct asymmetric interfaces.",
+        "Counting CH and P^PP still consume two slots; alternatives PL/BQL/uNC1 have serious importance claims.",
+        "Total QMA(2), StoqMA and QSZK only partly represent canonical promise-class questions.",
+        "No new all-pairs baseline has been certified; source-led importance selection comes first."
+      ]
+    },
+    {
+      "id": "cross_domain_space_breadth_B",
+      "demote": [
+        "AC0",
+        "coUP",
+        "coMA",
+        "coAM",
+        "coQMA",
+        "FewP",
+        "LWPP",
+        "WPP",
+        "coRP",
+        "E"
+      ],
+      "add": [
+        "BPL",
+        "UL",
+        "ExistsR",
+        "PpowerPP",
+        "CH",
+        "QMA2",
+        "StoqMA",
+        "QSZK",
+        "PL",
+        "BQL"
+      ],
+      "preference": "My broader-coverage alternative to A under a strict50 total-language budget.",
+      "tradeoff": "Loses direct linear-exponential deterministic targets and one-sided complement weighting to represent space counting and quantum space. Retains NE, Θ₂P, NP∩coNP, NP/poly and EXPSPACE.",
+      "retained_current_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "MA",
+        "AM",
+        "QCMA",
+        "QMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "NE"
+      ],
+      "full_scored_ids": [
+        "ACC0",
+        "TC0",
+        "NC1",
+        "L",
+        "NL",
+        "LogCFL",
+        "NC",
+        "SC",
+        "P",
+        "RP",
+        "ZPP",
+        "BPP",
+        "UP",
+        "NP",
+        "coNP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "MA",
+        "AM",
+        "QCMA",
+        "QMA",
+        "BQP",
+        "SBP",
+        "SZK",
+        "NPcapcoNP",
+        "Sigma2P",
+        "Pi2P",
+        "Delta2P",
+        "Theta2P",
+        "PH",
+        "Ppoly",
+        "NPpoly",
+        "PSPACE",
+        "EXP",
+        "NEXP",
+        "EXPSPACE",
+        "NE",
+        "BPL",
+        "UL",
+        "ExistsR",
+        "PpowerPP",
+        "CH",
+        "QMA2",
+        "StoqMA",
+        "QSZK",
+        "PL",
+        "BQL"
+      ],
+      "scored_count": 50,
+      "raw_old_candidate_pairs_demoted": 537,
+      "old_complement_orbits_without_retained_representative": 287,
+      "cross_domain_provenance": [
+        "counting-and-scope-landscape.md",
+        "quantum-randomness-landscape.md"
+      ],
+      "conventions": "PpowerPP means P^PP=P^#P, not the total-search class PPP. New quantum nodes denote total-language restrictions; their canonical promise questions are not automatically equivalent. IDs remain provisional.",
+      "strongest_counterarguments": [
+        "Positive FewP=UP and LWPP=WPP collapses can lose all direct representatives.",
+        "Complement demotion changes score weighting and can lose distinct asymmetric interfaces.",
+        "Counting CH and P^PP still consume two slots; alternatives PL/BQL/uNC1 have serious importance claims.",
+        "Total QMA(2), StoqMA and QSZK only partly represent canonical promise-class questions.",
+        "No new all-pairs baseline has been certified; source-led importance selection comes first."
+      ]
+    }
+  ],
+  "retain_priorities": [
+    "P",
+    "NP",
+    "coNP",
+    "L",
+    "NL",
+    "NC",
+    "SC",
+    "LogCFL",
+    "ACC0",
+    "TC0",
+    "NC1",
+    "Ppoly",
+    "PSPACE",
+    "EXP",
+    "NEXP"
+  ],
+  "demotion_judgments": [
+    {
+      "id": "AC0",
+      "judgment": "strongest background-only candidate",
+      "reason": "No unresolved incident pairs in current50; retains historical lower-bound context as background."
+    },
+    {
+      "id": "EXPSPACE",
+      "judgment": "optional breadth tradeoff",
+      "reason": "Only two unresolved incident pairs, both genuine resource gaps. Not mathematically redundant."
+    },
+    {
+      "id": "coUP",
+      "judgment": "candidate complement satellite",
+      "reason": "Many mirrors;10 complement-orbit losses if demoted alone. Scientific audit must examine the residual interfaces."
+    },
+    {
+      "id": "coMA",
+      "judgment": "candidate complement satellite",
+      "reason": "Many mirrors;13 complement-orbit losses if demoted alone. Must cross-review proof systems."
+    },
+    {
+      "id": "coAM",
+      "judgment": "candidate complement satellite",
+      "reason": "Many mirrors;13 complement-orbit losses if demoted alone. Must cross-review proof systems."
+    },
+    {
+      "id": "FewP/LWPP/WPP",
+      "judgment": "possible family rebalance, not proven dispensable",
+      "reason": "A dense ambiguity/exact-counting allocation competes with wholly absent space and real-algebra families; defer exact retention to counting reviewer."
+    },
+    {
+      "id": "E/NE",
+      "judgment": "do not automatically remove",
+      "reason": "38 and28 outbound candidate questions respectively duplicate EXP/NEXP under regular padding; incoming relations and linear-exponential questions remain distinct."
+    }
+  ],
+  "historical_stress_tests": [
+    {
+      "result": "Bipartite matching in deterministic NC",
+      "date": "2026-07-15",
+      "source_ids": [
+        "CGGRT2026",
+        "KoppartySaraf2026"
+      ],
+      "current_pair_coverage": "No general current-class containment follows merely from this individual-problem algorithm.",
+      "lesson": "Even an improved50-class total-language roster cannot honestly cover all major advances."
+    },
+    {
+      "result": "Super-quadratic depth2 threshold-circuit lower bound",
+      "date": "2026-03-15",
+      "source_ids": [
+        "CTW2026"
+      ],
+      "current_pair_coverage": "A quantitative restricted-depth lower bound need not settle a polynomial-union TC0 pair.",
+      "lesson": "A separate quantitative target format would be needed for faithful coverage."
+    },
+    {
+      "result": "CL=CNL",
+      "date": "2025-02-27",
+      "source_ids": [
+        "KMPS2025"
+      ],
+      "current_pair_coverage": "Neither endpoint currently present.",
+      "lesson": "If catalytic computation is added now, add one known-equivalence representative, not both."
+    },
+    {
+      "result": "S2E near-maximum circuit lower bounds",
+      "date": "2024-04-04",
+      "source_ids": [
+        "Li2024"
+      ],
+      "current_pair_coverage": "S2E absent; its P/poly separation is already pre-cutoff known.",
+      "lesson": "Do not choose newly added rows merely to reproduce already-solved milestones."
+    }
+  ],
+  "representation_constraints": [
+    "NPcapcoNP is intersection of classes; DP is a class of intersections of possibly different languages.",
+    "Fixed-degree lower bounds for every k do not imply one language outside the polynomial-size union.",
+    "Keep nonuniform NC1 for formula-size questions; any uniform variant needs a separate ID and explicit uniformity.",
+    "Keep promise oracles, advice length, error gaps, infinitely-often qualifiers, and exact quantum/real input types.",
+    "RNC one-sided and bounded-error parallel classes must not be silently identified.",
+    "CL and CNL are not two distinct post-2025 classes.",
+    "SL and coNL add no distinct class; IP, QIP and AP are PSPACE aliases; MIP is a NEXP alias.",
+    "Do not add #P as a language class by an arbitrary output-graph encoding; use a typed function track or P^PP for its oracle decision closure."
+  ],
+  "limitations": [
+    "This dossier argues roster value, not all known relations involving proposed additions. Each chosen class requires a later primary-source baseline/semantics audit.",
+    "Relative importance judgments are reviewer judgments, not community polling or likelihood estimates.",
+    "Present class-count metrics overweight large uniform/nonuniform and complement blocks if read naively.",
+    "Recent papers cited are pre-cutoff; claims retain their qualifiers and no contested headline is silently imported.",
+    "Potential new tracks remain conditional on the user’s representation decision."
+  ],
+  "research_queries": [
+    "L=BPL primary survey Hoza and Pyne Tell2026",
+    "NL=UL Reinhardt Allender and recent uniform isolation",
+    "Existential theory of reals compendium NP PSPACE",
+    "PL GapL determinant Allender Ogihara",
+    "Comparator Circuit Value Problem CC NC Cook Filmus Le",
+    "S2P Cai Russell Sundaram Boolean hierarchy DP Kadin Riege Rothe",
+    "Uniform NC1 L formula lower bounds Rossman2024",
+    "Exponential circuit lower bounds E^NP S2E AMEXP2024–2026",
+    "Bipartite matching deterministic NC2026 primary paper",
+    "Catalytic classes CL CNL2025",
+    "Schaefer Umans polynomial hierarchy compendium primary PDF",
+    "Hemaspaandra Hemaspaandra Rothe Dodgson Θ₂P completeness primary PDF",
+    "Jurdzinski1998 parity games UP coUP primary PDF",
+    "Fortnow Santhanam instance compression NP coNP/poly primary PDF",
+    "Yap1983 nonuniform conditions publisher abstract",
+    "Impagliazzo Wigderson1997 exponential E circuit hardness primary PDF"
+  ],
+  "focused_demotion_tradeoffs": [
+    {
+      "id": "coRP",
+      "recommendation": "Reasonable demotion after preserving RP, ZPP, BPP and the background complement node.",
+      "meaningful_loss": [
+        "Direct coRP⊆NE question; comparisons with non-self-complementary endpoints change weight.",
+        "A result stated only as independence of a demoted ordered pair does not automatically receive ordinary implication credit."
+      ],
+      "preserved_coverage": [
+        "coRP=P iff RP=P; coRP=BPP iff RP=BPP; RP=coRP iff RP=ZPP.",
+        "Many mirror comparisons survive with RP and self-complementary targets."
+      ],
+      "caveat": "These equivalences concern full classes. A particular coRP algorithm such as a polynomial identity test is not known to be complete for coRP, so no assertion of complete PIT coverage follows.",
+      "source_ids": [
+        "Hoza2022",
+        "ALR2012"
+      ]
+    },
+    {
+      "id": "NPcapcoNP",
+      "recommendation": "Retain in a conservative language-only roster.",
+      "meaningful_loss": [
+        "NP∩coNP⊆BQP can be a substantial quantum upper bound without implying NP⊆BQP.",
+        "The broad NP∩coNP=P problem is distinct from the full P=NP equality.",
+        "Removing the node loses positive containments into BPP, ZPP, SZK, AWPP and P/poly unless other new consequences are proved."
+      ],
+      "preserved_coverage": [
+        "A separation NP∩coNP⊄P implies NP⊄P and still scores."
+      ],
+      "caveat": "Parity/mean-payoff games give natural members; a polynomial-time algorithm for one member need not prove NP∩coNP=P. A typed TFNP portfolio is also not identical to this language class.",
+      "source_ids": [
+        "Jurdzinski1998",
+        "ALR2012"
+      ]
+    },
+    {
+      "id": "NPpoly",
+      "recommendation": "Retain unless nonuniform nondeterminism and compression are intentionally deemphasized.",
+      "meaningful_loss": [
+        "coNP⊆NP/poly is the complement of the central NP⊆coNP/poly hypothesis used for instance compression and kernel lower bounds.",
+        "Positive containments such as QMA⊆NP/poly and PSPACE⊆NP/poly ask for nondeterministic nonuniform simulation, not merely deterministic circuits."
+      ],
+      "preserved_coverage": [
+        "For every currently unresolved C⊆NP/poly, C⊆P/poly is also unresolved; proving C⊄NP/poly therefore has a retained general-circuit consequence if P/poly stays.",
+        "NP/poly⊆P/poly is equivalent to NP⊆P/poly by ordinary advice composition."
+      ],
+      "caveat": "The first preservation statement is a mechanical property of the current snapshot, not a universal theorem about arbitrary future endpoints. Arbitrary polynomial advice remains genuinely nonuniform.",
+      "source_ids": [
+        "FS2010",
+        "Yap1983",
+        "AvM2012"
+      ]
+    },
+    {
+      "id": "E",
+      "recommendation": "A defensible scored-slot demotion to background when buying PL or BQL, with a clear quantitative loss notice.",
+      "meaningful_loss": [
+        "Incoming comparisons ask for time 2^{O(n)}, not arbitrary 2^{n^{O(1)}}.",
+        "E is the natural source in exponential hardness-versus-randomness theorems; future quantitative targets need it even if its broad row is unscored."
+      ],
+      "preserved_coverage": [
+        "Thirty-eight common outgoing unknown inclusions match EXP under regular polynomial padding.",
+        "Under the current ordinary rule library, every single E-incident candidate inclusion or noninclusion has another candidate consequence not incident to E."
+      ],
+      "caveat": "This encoded-theory observation is not full mathematical redundancy and does not cover independence, changed rosters, or exact quantitative hypotheses. E⊄P/poly alone is not the exponential lower bound used by IW1997.",
+      "source_ids": [
+        "IW1997",
+        "Aaronson2016",
+        "ALR2012"
+      ]
+    },
+    {
+      "id": "NE",
+      "recommendation": "Plausible demotion, but slightly less conservative than E under the current single-result coverage test.",
+      "meaningful_loss": [
+        "coNP⊆NE, coRP⊆NE, coUP⊆NE and Θ₂P⊆NE have no other surviving ordinary consequence when NE alone is removed from the old scored roster.",
+        "Linear-exponential nondeterminism is the descriptive-complexity class of finite first-order spectra; substituting NEXP changes that characterization."
+      ],
+      "preserved_coverage": [
+        "Twenty-eight outgoing unknown inclusions match NEXP under regular padding.",
+        "NE⊆E implies NEXP⊆EXP and hence has a retained consequence, although the reverse statement is not asserted."
+      ],
+      "caveat": "Asser’s direct complement-closure question requires coNE or an appropriately typed complement assertion; current NE alone does not fully expose it.",
+      "source_ids": [
+        "DurandEtAl2012",
+        "Aaronson2016"
+      ]
+    }
+  ],
+  "ph_allocation": {
+    "current_related_endpoints": [
+      "NP",
+      "coNP",
+      "Sigma2P",
+      "Pi2P",
+      "Delta2P",
+      "Theta2P",
+      "PH"
+    ],
+    "preferred_core": [
+      "NP",
+      "coNP",
+      "Sigma2P",
+      "Delta2P",
+      "PH"
+    ],
+    "prefer_retain_if_possible": [
+      "Theta2P"
+    ],
+    "mirror_demotion_candidate": "Pi2P",
+    "additional_candidate": "S2P",
+    "reasons": {
+      "Sigma2P": "Alternating quantifiers, natural minimization/completeness problems, and Karp–Lipton targets. Retain at least one second alternating level.",
+      "Delta2P": "Adaptive polynomial-time access to NP; not interchangeable with nondeterministic alternation.",
+      "Theta2P": "Nonadaptive polynomially many NP queries or logarithmically many adaptive queries. Δ₂P⊆Θ₂P asks whether adaptivity can be removed, and Θ₂P has natural exact-ranking problems.",
+      "PH": "The whole hierarchy is needed for counting, quantum and real-feasibility comparisons and finite-level collapse questions.",
+      "Pi2P": "Not an alias of Σ₂P. Many questions mirror Σ₂P after complementing both endpoints. Σ₂P=Π₂P implies PH=Σ₂P; inequality implies separation from the self-complementary Δ₂P.",
+      "S2P": "A self-complementary symmetric-alternation refinement and stronger collapse target. Adding it while retaining every current related endpoint allocates eight slots to this block."
+    },
+    "recommendation": "Retain Θ₂P before adding S₂P if the goal is preserving the current oracle-query dimension. If buying S₂P or another absent resource, consider demoting Π₂P before Θ₂P, while retaining Π₂P as background. Neither is mathematically redundant.",
+    "source_ids": [
+      "SU2008",
+      "HHR1997",
+      "RussellSundaram1998",
+      "Cai2007"
+    ]
+  },
+  "single_demotion_scenario_test": {
+    "method": "For each old unresolved ordered pair incident to C, separately assume inclusion and separation, saturate Benchmark.closure, and ask whether any resolved old candidate has neither endpoint C. Background inference retains every original class.",
+    "base_dataset_digest": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+    "interpretation": "A nonzero remaining point is not equal scientific fidelity or equal weighting. Tests are single demotions; simultaneous removals and new endpoints need separate checks. Only encoded ordinary implications are counted; independence is excluded and cannot be propagated as an ordinary edge.",
+    "results": [
+      {
+        "demoted": "coRP",
+        "ordinary_assumptions_tested": 110,
+        "assumptions_without_another_old_candidate_consequence": [
+          {
+            "relation": "inclusion",
+            "left": "coRP",
+            "right": "NE"
+          }
+        ]
+      },
+      {
+        "demoted": "NPcapcoNP",
+        "ordinary_assumptions_tested": 116,
+        "assumptions_without_another_old_candidate_consequence": [
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "AWPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "BPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "BQP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "Ppoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "RP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "SZK"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "ZPP"
+          },
+          {
+            "relation": "inclusion",
+            "left": "NPcapcoNP",
+            "right": "coRP"
+          }
+        ]
+      },
+      {
+        "demoted": "NPpoly",
+        "ordinary_assumptions_tested": 58,
+        "assumptions_without_another_old_candidate_consequence": [
+          {
+            "relation": "inclusion",
+            "left": "AWPP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "BQP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "CeqP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Delta2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "LWPP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PH",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "PP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Pi2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QCMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "QMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "SPP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Sigma2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "WPP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coAM",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coQMA",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coUP",
+            "right": "NPpoly"
+          },
+          {
+            "relation": "inclusion",
+            "left": "parityP",
+            "right": "NPpoly"
+          }
+        ]
+      },
+      {
+        "demoted": "E",
+        "ordinary_assumptions_tested": 144,
+        "assumptions_without_another_old_candidate_consequence": []
+      },
+      {
+        "demoted": "NE",
+        "ordinary_assumptions_tested": 114,
+        "assumptions_without_another_old_candidate_consequence": [
+          {
+            "relation": "inclusion",
+            "left": "Theta2P",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coNP",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coRP",
+            "right": "NE"
+          },
+          {
+            "relation": "inclusion",
+            "left": "coUP",
+            "right": "NE"
+          }
+        ]
+      },
+      {
+        "demoted": "Theta2P",
+        "ordinary_assumptions_tested": 128,
+        "assumptions_without_another_old_candidate_consequence": []
+      },
+      {
+        "demoted": "Pi2P",
+        "ordinary_assumptions_tested": 124,
+        "assumptions_without_another_old_candidate_consequence": []
+      }
+    ]
+  },
+  "full_roster_recommendation": {
+    "conservative_start": "cross_domain_conservative_A",
+    "breadth_preference": "cross_domain_space_breadth_B",
+    "not_selected_alternatives": [
+      "A minus Pi2P plus S2P buys symmetric alternation with less mirror allocation.",
+      "A minus E plus BQL is an intermediate nine-change package.",
+      "A minus coRP plus PL is an intermediate nine-change package.",
+      "DLOGTIME-uniform NC1 remains a strong next slot, never a relabeling of nonuniform NC1."
+    ],
+    "approval_status": "Provisional research recommendation for user review; no canonical changes authorized by this dossier."
+  }
+}

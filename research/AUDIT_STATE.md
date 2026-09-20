@@ -1,3 +1,9 @@
+# Current audit: provisional v0.4.0
+
+The current roster revision, validation state and remaining release tasks are recorded in [v0.4.0/STATE.md](v0.4.0/STATE.md). The [current audit](baseline-audit.md) supersedes the scope and counts below. The following record preserves the completed v0.3.0 research pass; its original report files are available at that release tag.
+
+---
+
 # Completed historical audit: version 0.3.0
 
 The research pass stopped under the user's expected-error criterion. Its final
