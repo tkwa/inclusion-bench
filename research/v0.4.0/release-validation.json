@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "status": "completed_local_release_and_installed_package_checks",
+  "recorded_at": "2026-09-20T18:53:02.231675+00:00",
+  "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+  "taskset_sha256": "3f9dd499d077a000ad8f5d8c9ca86008d577dbb47736f836af8ef90e76df1fd5",
+  "formalization_bundle_sha256": "1112fce53be8258912ea58c02714c095fc5746fd5e46bb7eb306d2baa3507e81",
+  "baseline_audit_sha256": "24ed84fb2aa5de9a997b260aa40600ff4f82757e1edd8f32fa50619ba857394c",
+  "file_sha256": {
+    "data/freeze.json": "ac5d6f3985e16668f240136efaa4246d5b21e9dd3c42f8d5f1db2402bc3bee59",
+    "data/history_reviews.json": "c16301b9f164d77ee89dba65dbea2e6db363167f27d110f5648e2160f8035772",
+    "research/audit-assessment.json": "c9e0efab330b685a59e03b53531a9a4c92be9bda16c176da7a65b43f83eb43fd",
+    "research/baseline-audit.json": "24ed84fb2aa5de9a997b260aa40600ff4f82757e1edd8f32fa50619ba857394c",
+    "evaluation/tasks.json": "06bce0c2fcf8cb4bf3495aefa569294196b084b39f65a79c39ce5ddf9d2544b5",
+    "web/benchmark.json": "a683ee431402939f316c6a853331458547f89d9e9a0bad99bfc810dd2347d61f"
+  },
+  "generated_reproducibility": {
+    "status": "passed",
+    "command": "python3 scripts/check_generated.py",
+    "scope": "Generated artifacts, frozen mathematical data, complete pair index, all supporting report hashes, preserved parent classification comparison, history-record digests and full candidate history coverage."
+  },
+  "preflight": {
+    "repository": "passed",
+    "installed_wheel": "passed",
+    "provider_generation_requests": 0,
+    "credential_requirement_disabled": true,
+    "model_id": "MODEL",
+    "scope": "Configuration and frozen-source validation only; no claim of provider model availability."
+  },
+  "fixtures": {
+    "repository": "passed",
+    "installed_wheel": "passed",
+    "track": "smoke-test",
+    "model": "Infrastructure fixture / not-an-AI",
+    "official_score": null,
+    "status": "not-rankable",
+    "history_pending_pairs": 0,
+    "run_records_committed": false
+  },
+  "wheel": {
+    "name": "inclusion_bench-0.4.0-py3-none-any.whl",
+    "sha256": "4a161700a826e1926fb046bbd189ab9cebf9355131ff29fb31d316d4aec4a82c",
+    "installed_outside_checkout": true,
+    "formalization_files_exact": 35,
+    "tasks": 1324,
+    "published": false
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8766/",
+    "surface": "local provisional preview; not tkwa.me",
+    "checks": [
+      "Provisional banner, 50 scored classes,2500 pairs,1176 known labels,1324 candidate questions and empty genuine-model leaderboard render correctly.",
+      "BQL class search filters the matrix to one cell; selecting it shows its concrete total-language, polynomial-time and logspace convention.",
+      "Quantum-logspace simulation scenario offers BQL⊆BPL and BQL⊆SC, with a trace through the cited BPL⊆SC inclusion.",
+      "After rebuilding and reloading, NP⊆P displays Audited open at cutoff with the revisable-literature explanation and cutoff-audit link.",
+      "Screenshot inspection of the responsive header, provisional notice, counts and leaderboard found no visible layout issue."
+    ]
+  },
+  "source_and_isolated_checks": "research/v0.4.0/validation-pre-freeze.json",
+  "ci": "Latest-head GitHub checks are tracked on draft PR#1; this local report does not assert their outcome.",
+  "limitations": [
+    "This report is separate from the frozen historical evidence manifest to avoid circular hashes.",
+    "Fixtures and UI examples are not AI achievements.",
+    "Package installation tested frozen runtime and semantic data; this wheel is not a published release."
+  ],
+  "independent_final_binding_review": {
+    "reviewer": "quantum_coverage",
+    "status": "passed",
+    "repository_writes": false,
+    "checks": [
+      "Assessment, index, freeze, all1324 history decisions, taskset and web payload agree.",
+      "All90 supporting evidence hashes and35 semantic files match.",
+      "All2500 scored statuses,1672 baseline proof references and58 scenario traces agree.",
+      "Both earlier history records and archived parent evidence are preserved.",
+      "All2500 parent context classifications reproduce unchanged.",
+      "Decimal ledger sum2.9375, rounded3, threshold_met=false."
+    ]
+  }
+}

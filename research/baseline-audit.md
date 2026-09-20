@@ -1,7 +1,5 @@
 # Provisional v0.4.0 historical audit
 
-> **Draft assembly:** this document describes the proposed current audit. The machine-readable release index and historical registry still identify the parent release until final v0.4.0 binding is completed.
-
 The proposed 50-class roster has **845 known inclusions, 331 known noninclusions and 1,324 questions assessed as open at the cutoff**. The cutoff includes results publicly available before September 2, 2026, 00:00 UTC. The full proof vocabulary contains 61 classes; eleven background classes retain their definitions and implications but supply no scored pairs.
 
 This is an AI-assisted, revisable literature assessment prepared for the v0.4.0 review branch. It is not human expert certification. Existing accepted theorems remain trusted inputs, as requested; their proofs were not all reconstructed in Lean. A missed accepted pre-cutoff result earns no point and requires a recorded correction.
@@ -36,6 +34,8 @@ The arithmetic-soundness policy from v0.3.1 is unchanged. An independence certif
 | Integration review | Six identified defects were fixed, including omitted verifier modules, stale semantic-report admission, source-manifest coverage and outdated claim schemas |
 
 The [classical dossier](v0.4.0/classical-new-baseline.md), [counting dossier](v0.4.0/counting-new-baseline.md) and [quantum dossier](v0.4.0/quantum-new-baseline.md) record the new evidence. The [classical cross-review](v0.4.0/classical-baseline-cross-review.md) and [counting cross-review](v0.4.0/counting-cross-review.md) inspect the supporting arguments. The [classical model review](v0.4.0/classical-formalization-review.md), [quantum model review](v0.4.0/quantum-formalization-review.md) and [integration review](v0.4.0/integration-review.md) distinguish what was checked from what remains trusted.
+
+Three bounded follow-ups inspect the [full QSZK operational bridge](v0.4.0/qszk-bridge-review.md), [finite ETR encoding in both directions](v0.4.0/etr-bridge-review.md), and [quantum/counting upper-bound chains](v0.4.0/quantum-counting-interface-review.md). A cross-review corrected omitted truth-constant constraints in the written ETR reduction; no canonical definition or baseline label changed. These are explicit mathematical arguments and source checks, not new Lean proofs of all model equivalences. The [source and verifier validation record](v0.4.0/validation-pre-freeze.json) binds the completed Python, core/extension and eight isolated proof-admission checks.
 
 Some domain reports retain counts and hashes for the partial overlays they actually reviewed. They are not mislabeled as final merged runs. The [final SAT report](audit-final-sat.json), [full-context SAT report](v0.4.0/all-context-sat.json), [Lean trace report](audit-final-lean-traces.json), and [migration report](v0.4.0/roster-migration.json) bind the complete current theory.
 

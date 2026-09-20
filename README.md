@@ -1,6 +1,6 @@
 # InclusionBench
 
-> **Draft PR checkpoint:** the proposed roster and implementation are available for review. Final v0.4.0 audit/history binding and the release freeze are still being assembled; use the published v0.3.1 tag for model runs until this notice is removed.
+> **Draft PR:** [Review provisional v0.4.0](https://github.com/tkwa/inclusion-bench/pull/1). This branch has its own frozen question set and historical decisions. It remains a proposal; the published v0.3.1 release and tkwa.me are unchanged.
 
 **An AI mathematics benchmark built from open questions in complexity theory.**
 

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "benchmark_version": "0.3.1",
-  "frozen_at": "2026-09-20T08:33:01.244051+00:00",
-  "dataset_sha256": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
-  "taskset_sha256": "107bc54c99cf2d27c970324e582ed625db59e3566cf57be7096e9880db472a89",
-  "formalization_bundle_sha256": "f7694d684818aac192dfa39e2bfdc64014c143bf9556df168e2eb95d2c9461f7",
-  "candidate_question_count": 1378,
+  "benchmark_version": "0.4.0",
+  "frozen_at": "2026-09-20T18:49:07.416809+00:00",
+  "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+  "taskset_sha256": "3f9dd499d077a000ad8f5d8c9ca86008d577dbb47736f836af8ef90e76df1fd5",
+  "formalization_bundle_sha256": "1112fce53be8258912ea58c02714c095fc5746fd5e46bb7eb306d2baa3507e81",
+  "candidate_question_count": 1324,
   "ordered_pair_count": 2500,
-  "baseline_audit_sha256": "8f13f92a374d1c43b8ce80aa89e5a8f18db0d903b9d956e012ee4ca2d1675e2f",
+  "baseline_audit_sha256": "24ed84fb2aa5de9a997b260aa40600ff4f82757e1edd8f32fa50619ba857394c",
   "trust_policy": "Cited existing results and canonical model conventions are trusted inputs. New ordinary proofs are checked; every awarded pair receives historical review.",
   "eligibility_policy": "Freezing fixes candidate questions; it does not certify them all open."
 }

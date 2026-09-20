@@ -1,3 +1,17 @@
+# Current checkpoint — provisional v0.4.0 draft PR
+
+[Draft PR #1](https://github.com/tkwa/inclusion-bench/pull/1) is open on `provisional-v0.4.0`. The first review commit is `39f6ccf`. Thomas requested the draft first so he could inspect the additions and cuts; the PR description lists all eleven of each and the selection of the best 50 from the current 61 rationale. Keep the PR draft. Do not merge, tag, publish a release, or deploy tkwa.me.
+
+The final source reviews are complete. QSZK and ETR each have an explicit mathematical bridge dossier; a rotated cross-read corrected missing Boolean constant equations in the written ETR reduction. No canonical definition or class-pair label changed. The quantum/counting follow-up records 27 primary sources, 21 chains and 12 directed comparisons, with no baseline change. The broad subjective risk ledger remains 2.9375, published as about 3; it does not establish the earlier below-two target.
+
+The revised assessment and 2,500-pair index now bind 90 supporting reports. The provisional freeze fixes 1,324 candidate questions. A new accepted AI-assisted historical review covers all 1,324 and preserves both old records; it is not human expert certification and does not accept any model proof. Dataset remains e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5.
+
+All 98 ordinary Python tests and 8 separately executed isolated Lean tests passed. All 61 definitions, 20 independent semantic checks and 1,672 conditional traces passed; the scored and full-context SAT checks and pruning/migration reports are final. The original approximately 1.02M-token pass was resumed with Thomas's additional allowance; no new roster expansion is authorized or needed.
+
+Generated artifacts and audit/history bindings reproduce. Repository and installed-wheel preflight and fixture runs pass with no provider requests; the fixtures remain unrankable. Browser interactions and the post-history display pass. The separate release-validation report records these checks. An independent final binding review also passed, including all 90 evidence hashes, 35 source files and preservation of every parent classification and review record. Follow the latest-head GitHub checks on the draft PR for CI status. The previous checkpoint text below is retained as history and is superseded by this section.
+
+---
+
 # Provisional v0.4.0 roster review
 
 User request: revise the class list to reflect important open problems and a sensible balance across complexity areas, without favoring tractable problems. Work for approximately one million tokens, implement justified changes to the established quality standard, and open a PR with a changelist for human review.

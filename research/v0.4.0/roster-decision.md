@@ -76,5 +76,4 @@ Several conventions are essential to the proposed names:
 
 Decision pairs still miss many important advances in sampling, search, algebraic circuit families, fine-grained complexity, communication, proof complexity and individual algorithms. The user relaxed the requirement that every top candidate advance score. Separate typed or quantitative tracks remain a possible later revision, with their own definitions and audits.
 
-Implementation and classification audit are in progress. This selection report does not certify the proposed new pair labels; the provisional release must bind their evidence, definitions, inference checks and historical decisions before it is presented as ready for runs.
-
+The provisional implementation and classification audit are recorded in the [release assessment](../baseline-audit.md). The frozen snapshot binds its definitions, evidence and historical decisions. This roster remains a proposal for PR review; the audit is revisable and does not certify that every literature judgment is correct.

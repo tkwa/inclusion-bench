@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "status": "independent_bridge_review_complete_no_blocking_defect_found",
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "reviewer": "Codex quantum_coverage; independent of the RealSyntax and RealFeasibility author",
+  "scope": {
+    "endpoint": "ExistsR",
+    "input_universe": "all finite binary words; malformed encodings rejected",
+    "type": "total-language polynomial-time many-one equivalence and primary-theorem scope audit"
+  },
+  "input_sha256": {
+    "lean/InclusionBench/RealSyntax.lean": "315e73be09cc785762337453b7f036e1e69906aa5c4a9b5dfc87169d7ed3690e",
+    "quantum/InclusionQuantum/RealFeasibility.lean": "ef94f6c66cf98b3d34389b00592c40e722e3b9895eb2754dd62c9d361e7c8d09",
+    "lean/InclusionBench/Transducers.lean": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+    "lean/InclusionBench/Machines.lean": "39e4b73b79b3ab757445a83d78d659ab31b4d5688bcfa3a25a98aa271130df6d"
+  },
+  "findings": [],
+  "proposed_model_changes": [],
+  "proposed_baseline_changes": [],
+  "sources": [
+    {
+      "id": "etr-bridge-SS2017",
+      "title": "Fixed Points, Nash Equilibria, and the Existential Theory of the Reals",
+      "authors": [
+        "Marcus Schaefer",
+        "Daniel Štefankovič"
+      ],
+      "year": 2017,
+      "url": "https://www.cs.rochester.edu/u/stefanko/Publications-new/J35.pdf",
+      "locators": [
+        "§2, PDF page 3: finite ETR syntax",
+        "Remark 2.1 and footnote 2, PDF page 4: BP(NP_R^0)",
+        "Lemma 3.2, PDF pages 6–7: quadratic projection",
+        "Theorem 4.1, PDF page 10; Corollary 4.2, PDF page 11"
+      ],
+      "version_note": "Final 22-page author manuscript; older preprint has different numbering."
+    },
+    {
+      "id": "etr-bridge-ABKPM2009",
+      "title": "On the Complexity of Numerical Analysis",
+      "authors": [
+        "Eric Allender",
+        "Peter Bürgisser",
+        "Johan Kjeldgaard-Pedersen",
+        "Peter Bro Miltersen"
+      ],
+      "year": 2009,
+      "url": "https://people.cs.rutgers.edu/~allender/papers/slp.pdf",
+      "locators": [
+        "Proposition 1.1: deterministic Boolean part equals polynomial time with PosSLP",
+        "Theorem 1.4: PosSLP is in CH",
+        "§4, after Theorem 4.1, PDF page 11: digital versus arbitrary-real nondeterminism"
+      ]
+    },
+    {
+      "id": "etr-bridge-AGS2026",
+      "title": "Hilbert’s Nullstellensatz is in the Counting Hierarchy",
+      "authors": [
+        "Robert Andrews",
+        "Abhibhav Garg",
+        "Éric Schost"
+      ],
+      "year": 2026,
+      "public_date": "2026-02-20",
+      "url": "https://eccc.weizmann.ac.il/report/2026/024/download",
+      "locators": [
+        "Theorem 1.1, PDF page 5: algebraic-closure feasibility",
+        "Theorem 1.4, PDF page 6: cardinality of the algebraic variety"
+      ],
+      "scope_warning": "Does not establish real feasibility in CH."
+    }
+  ],
+  "native_encoding": {
+    "exact_length": "d+1 + sum_variable(j+4) + sum_natural(3+2L+popcount(bits)) + sum_other(tag+2)",
+    "valid_upper_bound": "d+1+(d+3)V+3C+3B+13O",
+    "metadata": "Unary tags, payload lengths, variable count and indices.",
+    "coefficients": "Binary magnitude bits individually encoded; unary term negation supplies signed integers.",
+    "rejection_conditions": [
+      "Noncanonical/truncated unary record spelling",
+      "Unknown opcode or malformed payload",
+      "Coefficient payload digit other than 0 or 1",
+      "Variable index outside declared finite tuple",
+      "Typed stack failure or final stack not exactly one formula"
+    ],
+    "allowed_nonunique_arithmetic_spelling": [
+      "Leading zero coefficient bits",
+      "Empty magnitude denoting zero"
+    ],
+    "no_exponential_assembly": "No duplication instruction; each operand subtree is consumed once."
+  },
+  "reductions": [
+    {
+      "id": "native_to_conventional_etr",
+      "direction": "RealFeasibility.ETR <=p conventional finite ETR",
+      "algorithm": [
+        "Validate all finite syntax and map malformed words to 0=1.",
+        "Emit the assembled formula and explicit existential prefix with binary variable names.",
+        "Preserve Boolean negation. Compile binary constants by linear-size Horner terms if only 0,1 are allowed.",
+        "For absent unary minus, use fresh uniquely determined value variables and conjoin arithmetic gate equations."
+      ],
+      "output_bits": "O(N log(N+2))",
+      "multitape_bit_time": "O((N+1)^3)",
+      "concrete_single_work_tape_time": "O((N+1)^6), via fixed-tape simulation",
+      "all_input_correctness": "For every binary word w, native ETR(w) iff ordinary ETR(f(w))."
+    },
+    {
+      "id": "conventional_etr_to_native",
+      "direction": "conventional finite ETR <=p RealFeasibility.ETR",
+      "algorithm": [
+        "Validate syntax/binding and map malformed source words to the native zero-variable falsum instance.",
+        "Drop unused variables and rename used identifiers densely; never expand a large binary label numerically into unary.",
+        "Normalize comparisons, signed constants and subtraction; compile to typed postfix.",
+        "Eliminate rational literals by fresh uniquely defined variables with nonzero-denominator equations conjoined outside all original Boolean contexts.",
+        "For explicit sparse exponents or arithmetic DAGs, add gate variables; repeated squaring costs O(log(e+1)) per exponent."
+      ],
+      "output_bits": "O((m+1)^2)",
+      "multitape_bit_time": "O((m+1)^3)",
+      "concrete_single_work_tape_time": "O((m+1)^6), via fixed-tape simulation",
+      "all_input_correctness": "For every conventional source word s, ordinary ETR(s) iff native ETR(g(s))."
+    },
+    {
+      "id": "quadratic_system_bridge",
+      "direction": "finite ETR <=>p real quadratic-system feasibility",
+      "construction": "Fresh arithmetic gate values and Boolean truth bits; truth-equivalent gadgets for equality and strict positivity; product intermediates reduce every constraint to degree at most two.",
+      "equality_atom": [
+        "b(b-1)=0",
+        "b*p=0",
+        "(1-b)*(p*t-1)=0"
+      ],
+      "strict_positive_atom": [
+        "b(b-1)=0",
+        "b*(p*s^2-1)=0",
+        "(1-b)*(p+t^2)=0"
+      ],
+      "boolean_gates": [
+        "b_verum=1",
+        "b_falsum=0",
+        "b_not=1-b",
+        "b_and=b1*b2",
+        "b_or=b1+b2-b1*b2",
+        "b_root=1"
+      ],
+      "auxiliary_variables_and_equations": "O(m)",
+      "sparse_binary_output_bits": "O(m log(m+2))",
+      "native_output_bits": "O((m+1)^2)",
+      "correctness": "For each original assignment, truth iff existence of auxiliary real values satisfying all equations; both atom polarities are enforced.",
+      "source_ids": [
+        "etr-bridge-SS2017"
+      ],
+      "warning": "Displayed gated products must be flattened; before flattening they are not all quadratic. A single sum-of-squares equation is quartic, not quadratic."
+    }
+  ],
+  "boundary_checks": [
+    {
+      "id": "large_identifier",
+      "input": "One occurrence of source label x_(2^k)",
+      "result": "Dense renaming avoids exponential unary-index expansion."
+    },
+    {
+      "id": "large_binary_coefficient",
+      "input": "Coefficient 2^k",
+      "result": "Its native natural record has exactly 2k+6 bits."
+    },
+    {
+      "id": "negated_atom",
+      "input": "Boolean negation around an equality or inequality",
+      "result": "Direct syntax preserves it; quadratic gadgets enforce both truth polarities."
+    },
+    {
+      "id": "real_vs_complex",
+      "input": "x^2+1=0",
+      "result": "False in native ETR, true for complex feasibility; existing negativeSquare theorem covers native rejection."
+    },
+    {
+      "id": "invalid_word",
+      "input": "Truncated unary suffix, bad payload, out-of-range variable or ill-typed program",
+      "result": "Native rejection; reduction emits a fixed unsatisfiable target."
+    },
+    {
+      "id": "zero_variable_case",
+      "input": "Zero-variable verum/falsum",
+      "result": "The empty real tuple exists; truth is exactly the formula truth value."
+    },
+    {
+      "id": "sharing",
+      "input": "Explicit arithmetic DAG or binary exponent",
+      "result": "Use polynomially many gate variables; do not unfold exponentially large trees."
+    }
+  ],
+  "accepted_primary_boundaries": [
+    {
+      "statement": "ExistsR corresponds to BP(NP_R^0), with actual real guesses and constants 0,1.",
+      "source_ids": [
+        "etr-bridge-SS2017"
+      ]
+    },
+    {
+      "statement": "BP(P_R^0)=P^PosSLP is in CH; digital nondeterminism does not provide arbitrary real witnesses.",
+      "source_ids": [
+        "etr-bridge-ABKPM2009"
+      ]
+    },
+    {
+      "statement": "AGS2026 HN and variety-counting upper bounds concern algebraic closures, including complex roots for rational coefficients.",
+      "source_ids": [
+        "etr-bridge-AGS2026"
+      ]
+    }
+  ],
+  "rejected_transfers": [
+    {
+      "claim": "ExistsR <= CH",
+      "reason": "Neither deterministic real computation nor algebraic-closure feasibility covers existential real witnesses."
+    },
+    {
+      "claim": "ExistsR = NP^PosSLP",
+      "reason": "No such theorem is established by the cited PosSLP argument."
+    },
+    {
+      "claim": "Real-solution counting is in FP^CH by AGS2026",
+      "reason": "Their counted variety is over the relevant algebraic closure; real solutions are a different restriction."
+    },
+    {
+      "claim": "Arbitrary real constants are permitted in the BSS identity",
+      "reason": "The superscript 0 fixes the machine constants to 0,1."
+    },
+    {
+      "claim": "Succinct descriptions of exponentially many constraints are covered",
+      "reason": "The reductions apply to explicitly finite polynomial-size input syntax, not succinct-ETR."
+    }
+  ],
+  "existing_lean_evidence": [
+    "deserialize_serialize",
+    "serialize_injective",
+    "run_term_program",
+    "run_formula_program",
+    "assemble_formula_program",
+    "reduction_output_polynomial_length",
+    "encoded_etr_iff",
+    "malformed_input_rejected",
+    "finiteAssignment_at",
+    "squareTwo_in_etr",
+    "negativeSquare_not_in_etr"
+  ],
+  "formalization_status": {
+    "new_lean_theorems": false,
+    "compiler_run_in_this_review": false,
+    "remaining_trusted_bridges": [
+      "Both explicit syntax reductions and their finite-machine time bounds",
+      "Fixed-multitape to concrete single-work-tape simulation",
+      "Textbook BSS and ETR complexity-class identification"
+    ]
+  },
+  "risk_assessment": {
+    "blocking_issue_found": false,
+    "judgment": "The identified encoding and scope pitfalls have explicit resolutions. This is a bounded mathematical audit, not a calibrated probability estimate or a new formal equivalence proof."
+  }
+}
