@@ -7,10 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from inclusion_bench.benchmark import Benchmark, read_json
-from inclusion_bench.engine import Atom
+from inclusion_bench.engine import Atom, InvalidEvidence
 from inclusion_bench.lean_export import export_theorem
-from inclusion_bench.evaluation import taskset, leaderboard
+from inclusion_bench.evaluation import taskset, leaderboard, sha256_file
 from inclusion_bench.reviews import history_status
+from inclusion_bench.runner import frozen_release
 
 
 def write(path, value, compact=False):
@@ -19,6 +20,42 @@ def write(path, value, compact=False):
 
 def proof_steps(closure, exclude=()):
     return [{"id": atom.key, **atom.json(), **record} for atom, record in closure.proofs.items() if atom not in exclude]
+
+
+def publication_metadata(benchmark, suite):
+    """Promote display metadata without rewriting a frozen benchmark policy."""
+    metadata = {
+        "release_status": benchmark.policy.get("release_status", "published"),
+        "release_note": benchmark.policy.get("release_note"),
+        "repository_ref": benchmark.policy.get("repository_ref", "main"),
+        "publication": None,
+    }
+    path = benchmark.root / "data/publication.json"
+    if not path.exists():
+        return metadata
+    record = read_json(path)
+    freeze = frozen_release(benchmark)
+    expected = {
+        "benchmark_version": benchmark.policy["version"],
+        "dataset_sha256": benchmark.digest,
+        "taskset_sha256": suite["taskset_sha256"],
+        "formalization_bundle_sha256": suite["formalization_bundle"]["bundle_sha256"],
+        "freeze_sha256": sha256_file(benchmark.root / "data/freeze.json"),
+        "baseline_audit_sha256": sha256_file(benchmark.root / "research/baseline-audit.json"),
+    }
+    if (not isinstance(record, dict) or record.get("schema_version") != 1 or
+            record.get("status") != "published" or
+            any(record.get(key) != value for key, value in expected.items()) or
+            freeze["baseline_audit_sha256"] != expected["baseline_audit_sha256"]):
+        raise InvalidEvidence("Publication record does not bind this exact frozen release")
+    # Published documentation links use the immutable version tag. Keep the
+    # provisional branch alive for links sealed in the original policy.
+    if record.get("repository_ref") != "v" + benchmark.policy["version"]:
+        raise InvalidEvidence("Publication record requires the release's version tag")
+    if not isinstance(record.get("note"), str) or not record["note"].strip():
+        raise InvalidEvidence("Publication record requires a release note")
+    return {"release_status": record["status"], "release_note": record["note"],
+            "repository_ref": record["repository_ref"], "publication": record}
 
 
 def build():
@@ -61,7 +98,8 @@ def build():
             if atom in benchmark.baseline.proofs:
                 entry["proof"] = {"target": atom.key}
         pairs.append(entry)
-    repository_ref = benchmark.policy.get("repository_ref", "main")
+    publication = publication_metadata(benchmark, suite)
+    repository_ref = publication["repository_ref"]
     source_base = "https://github.com/tkwa/inclusion-bench/blob/" + repository_ref + "/"
     sources = []
     for original in benchmark.knowledge["sources"]:
@@ -72,9 +110,7 @@ def build():
     payload = {
         "name": "InclusionBench", "version": benchmark.policy["version"], "stage": benchmark.policy["release_stage"], "repository_url": "https://github.com/tkwa/inclusion-bench",
         "website_url": "https://tkwa.me",
-        "release_status": benchmark.policy.get("release_status", "published"),
-        "release_note": benchmark.policy.get("release_note"),
-        "repository_ref": repository_ref,
+        **publication,
         "independence_policy": benchmark.policy["independence"],
         "independence_premises": benchmark.policy["independence_premises"],
         "cutoff": benchmark.policy["cutoff"], "class_count": len(benchmark.ids), "ordered_pairs": len(benchmark.ids) ** 2,

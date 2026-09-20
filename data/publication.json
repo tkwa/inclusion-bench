@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "published",
+  "benchmark_version": "0.4.0",
+  "approved_at": "2026-09-20",
+  "approval_pr": "https://github.com/tkwa/inclusion-bench/pull/1",
+  "reviewed_commit": "39f99bf94540fdfc054d28dd6054eac0b1ac302e",
+  "merge_commit": "585c93ca7caead0af07a2279310d3794629581e2",
+  "repository_ref": "v0.4.0",
+  "note": "Version 0.4.0 approved for publication. The reviewed roster, taskset, definitions and historical decisions retain their exact frozen identities. The provisional fields in the frozen policy record the snapshot's original review state.",
+  "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+  "taskset_sha256": "3f9dd499d077a000ad8f5d8c9ca86008d577dbb47736f836af8ef90e76df1fd5",
+  "formalization_bundle_sha256": "1112fce53be8258912ea58c02714c095fc5746fd5e46bb7eb306d2baa3507e81",
+  "baseline_audit_sha256": "24ed84fb2aa5de9a997b260aa40600ff4f82757e1edd8f32fa50619ba857394c",
+  "freeze_sha256": "ac5d6f3985e16668f240136efaa4246d5b21e9dd3c42f8d5f1db2402bc3bee59"
+}

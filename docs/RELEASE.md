@@ -1,9 +1,12 @@
-# Provisional release 0.4.0
+# Release 0.4.0
 
-This branch proposes a revised InclusionBench roster for review. It keeps 50
-scored total decision-language classes, adds 11 endpoints and retains the 11
-demoted endpoints as unscored proof vocabulary. The published v0.3.1 release and
-[tkwa.me](https://tkwa.me) are separate; this branch does not deploy either site.
+The approved v0.4.0 roster keeps 50 scored total decision-language classes,
+adds 11 endpoints and retains the 11 demoted endpoints as unscored proof
+vocabulary. The review is recorded in [PR #1](https://github.com/tkwa/inclusion-bench/pull/1);
+the immutable [v0.4.0 tag](https://github.com/tkwa/inclusion-bench/tree/v0.4.0)
+identifies this release. Current publication state comes from the separate,
+hash-bound [publication record](../data/publication.json). The
+[tkwa.me](https://tkwa.me) frontend is maintained separately.
 
 The [roster decision](../research/v0.4.0/roster-decision.md) explains the scientific
 choices. The [pruning audit](../research/v0.4.0/pruning-audit.json) measures losses
@@ -25,9 +28,9 @@ and implementation difficulty are not selection criteria.
 | Separate context and scored classes | Prevent background pairs from earning direct points without deleting supporting mathematics |
 | Extend definitions, baseline and audits | Bind the new targets, cited implications, historical review and proof checker to a distinct snapshot |
 | Add independent semantic checks | Test specific model risks beyond successful compilation |
-| Mark the explorer provisional | Make the review status and cross-version score limits visible |
+| Add a separate publication record | Record approved publication without changing the audited frozen snapshot |
 
-The provisional matrix has 845 known inclusions and 331 known noninclusions,
+The v0.4.0 matrix has 845 known inclusions and 331 known noninclusions,
 leaving 1,324 candidate questions. The [migration audit](../research/v0.4.0/roster-migration.json)
 checks that every parent fact, rule, source and complement identity remains
 present and that all 2,500 parent context classifications are unchanged.
@@ -81,12 +84,14 @@ from explicit cited premises; SAT checks the finite encoded theory. Neither
 proves that no paper was missed. The release-wide assessment records its
 residual uncertainty without treating a subjective estimate as a guarantee.
 
-## Promotion and future changes
+## Publication and future changes
 
-This is a review branch, not a published v0.4.0 release. Before promotion, review
-the changelist, scientific losses, exact class conventions and remaining trust
-boundaries. Publication and the separately developed tkwa.me integration are
-outside this PR's deployment scope.
+The frozen `data/policy.json` and some audit records retain their original
+provisional labels. These are historical fields from the reviewed snapshot,
+not the current publication status. Rewriting them would change the identities
+bound by the freeze and downstream evidence. Instead, `data/publication.json`
+records publication against that snapshot. The tag and PR preserve the release
+and its review history; frontend deployment remains a separate operation.
 
 Changes to the roster, definitions, baseline or rules require a new versioned
 freeze. Preserve previous history records and their dataset hashes. Later

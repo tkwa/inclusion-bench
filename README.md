@@ -1,6 +1,6 @@
 # InclusionBench
 
-> **Draft PR:** [Review provisional v0.4.0](https://github.com/tkwa/inclusion-bench/pull/1). This branch has its own frozen question set and historical decisions. It remains a proposal; the published v0.3.1 release and tkwa.me are unchanged.
+> **v0.4.0 publication:** approved through [PR #1](https://github.com/tkwa/inclusion-bench/pull/1). Use the immutable [v0.4.0 tag](https://github.com/tkwa/inclusion-bench/tree/v0.4.0) to reproduce this release. Current publication state comes from [`data/publication.json`](data/publication.json).
 
 **An AI mathematics benchmark built from open questions in complexity theory.**
 
@@ -8,9 +8,11 @@ Give a model a frozen set of complexity-class inclusion questions and a declared
 
 [Public site](https://tkwa.me) · [Leaderboard and task explorer mirror](https://tkwa.github.io/inclusion-bench/) · [Evaluation protocol](docs/EVALUATION.md) · [Scoring specification](docs/SPEC.md) · [Formalization status](docs/formalization.md)
 
-**Provisional v0.4.0 is a roster revision for review.** It proposes 50 scored classes, backed by 61 canonical operational definitions, a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
+**v0.4.0 scores 50 classes, backed by 61 canonical operational definitions.** It supplies a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
 
-The provisional suite contains **1,324 questions at the September 1, 2026 cutoff**. The [release audit](research/baseline-audit.md) records historical eligibility for every question, so model runs reuse those decisions. The [roster decision](research/v0.4.0/roster-decision.md) explains eleven additions, eleven demotions, alternatives and lost coverage. This branch is separate from the published v0.3.1 release; its scores are not directly comparable. These are revisable literature judgments: a missed pre-cutoff result earns no point and triggers a recorded correction. A real run that resolves nothing can receive an official zero after run-integrity review and disposition of all proof candidates. No paid model run or model score was invented for this release.
+The suite contains **1,324 questions at the September 1, 2026 cutoff**. The [release audit](research/baseline-audit.md) records historical eligibility for every question, so model runs reuse those decisions. The [roster decision](research/v0.4.0/roster-decision.md) explains eleven additions, eleven demotions, alternatives and lost coverage. Scores are not directly comparable with v0.3.1. These are revisable literature judgments: a missed pre-cutoff result earns no point and triggers a recorded correction. A real run that resolves nothing can receive an official zero after run-integrity review and disposition of all proof candidates. No paid model run or model score was invented for this release.
+
+Some frozen policy and audit fields still say “provisional”: they describe the snapshot reviewed in PR #1 and remain unchanged to preserve its audited identities. The separate, hash-bound [publication record](data/publication.json) records the current publication state without changing the frozen questions, definitions or historical decisions. The tkwa.me frontend is maintained separately.
 
 ## Run a model
 
@@ -129,6 +131,7 @@ The [original coverage stress test](research/coverage.json) and [twenty examples
 - [`data/classes.json`](data/classes.json): stable IDs, class specifications, uniformity and complement identities.
 - [`data/knowledge.json`](data/knowledge.json): cited baseline facts and conditional implications.
 - [`data/freeze.json`](data/freeze.json): the release's dataset and taskset hashes.
+- [`data/publication.json`](data/publication.json): current publication state bound to the frozen snapshot; historical provisional fields are not rewritten.
 - [`evaluation/tasks.json`](evaluation/tasks.json): the fixed public candidate questions.
 - [`research/baseline-audit.md`](research/baseline-audit.md): audit findings, coverage, residual-error estimate and versioned corrections.
 - [`data/history_reviews.json`](data/history_reviews.json): dated historical decisions for the frozen questions.
