@@ -42,7 +42,7 @@ def audit(benchmark):
     for left, right in sorted(benchmark.unresolved):
         for relation in ('inclusion', 'separation'):
             hypothesis = Atom(relation, left, right)
-            closure = AuditClosure(benchmark.ids, benchmark.rules, benchmark.complements)
+            closure = AuditClosure(benchmark.context_ids, benchmark.rules, benchmark.complements)
             closure.proofs = dict(benchmark.baseline.proofs)
             try:
                 closure.add(hypothesis, 'audit-temporary-assumption')

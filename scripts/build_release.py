@@ -22,7 +22,7 @@ def proof_steps(closure, exclude=()):
 
 
 def build():
-    runpy.run_path(str(ROOT / "scripts/import_research.py"))
+    runpy.run_path(str(ROOT / "scripts/import_research.py"), run_name="__main__")
     benchmark = Benchmark(ROOT)
     if benchmark.policy["release_stage"] == "certified":
         benchmark.certified_eligibility()
@@ -35,11 +35,13 @@ def build():
     suite = taskset(benchmark)
     write("evaluation/tasks.json", suite)
     coverage = read_json(ROOT / "research/coverage.json")
+    roster_examples = read_json(ROOT / "research/v0.4.0/representative-questions.json")
     scenarios = []
     cases = [
         {"id": "bpp-strictly-below-np", **read_json(ROOT / "examples/bpp-strictly-below-np.json")},
         {"id": "p-equals-np", **read_json(ROOT / "examples/p-equals-np.json")},
         *[s for s in coverage["scenarios"] if s["claims"]],
+        *roster_examples["scenarios"],
     ]
     for case in cases:
         result = benchmark.score(case)
@@ -59,19 +61,26 @@ def build():
             if atom in benchmark.baseline.proofs:
                 entry["proof"] = {"target": atom.key}
         pairs.append(entry)
+    repository_ref = benchmark.policy.get("repository_ref", "main")
+    source_base = "https://github.com/tkwa/inclusion-bench/blob/" + repository_ref + "/"
     sources = []
     for original in benchmark.knowledge["sources"]:
         source = dict(original)
         if not source["url"].startswith("https://"):
-            source["url"] = "https://github.com/tkwa/inclusion-bench/blob/main/" + source["url"]
+            source["url"] = source_base + source["url"]
         sources.append(source)
     payload = {
         "name": "InclusionBench", "version": benchmark.policy["version"], "stage": benchmark.policy["release_stage"], "repository_url": "https://github.com/tkwa/inclusion-bench",
         "website_url": "https://tkwa.me",
+        "release_status": benchmark.policy.get("release_status", "published"),
+        "release_note": benchmark.policy.get("release_note"),
+        "repository_ref": repository_ref,
         "independence_policy": benchmark.policy["independence"],
         "independence_premises": benchmark.policy["independence_premises"],
         "cutoff": benchmark.policy["cutoff"], "class_count": len(benchmark.ids), "ordered_pairs": len(benchmark.ids) ** 2,
-        "dataset_sha256": benchmark.digest, "counts": matrix["counts"], "classes": benchmark.classes,
+        "dataset_sha256": benchmark.digest, "counts": matrix["counts"], "classes": benchmark.scored_classes,
+        "background_classes": benchmark.background_classes,
+        "context_class_count": len(benchmark.context_ids),
         "pairs": pairs, "baseline_proof_steps": proof_steps(benchmark.baseline),
         "leaderboard": leaderboard(benchmark, read_json(ROOT / "data/leaderboard_runs.json")),
         "baseline": {"name": "Pre-cutoff public knowledge", "score": 0, "date": benchmark.policy["cutoff"], "kind": "Historical reference; not an evaluated model"},
@@ -82,7 +91,7 @@ def build():
             "reviewed_open_count": len(opened),
             "reviewed_known_count": len(historically_known),
             "all_candidates_reviewed": benchmark.unresolved <= opened | historically_known,
-            "report_url": "https://github.com/tkwa/inclusion-bench/blob/main/research/baseline-audit.md",
+            "report_url": source_base + "research/baseline-audit.md",
         },
     }
     write("web/benchmark.json", payload, compact=True)

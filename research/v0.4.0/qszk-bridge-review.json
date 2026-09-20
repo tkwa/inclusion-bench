@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "status": "formula_level_bridge_review_complete_no_concrete_definition_defect_found",
+  "reviewer": {
+    "kind": "AI-assisted independent code-and-literature review",
+    "agent": "classical_literature",
+    "not_human_expert_certification": true
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "scope": {
+    "endpoint": "InclusionBench.Quantum.QSZK",
+    "language_type": "Total binary decision languages",
+    "context_class_count": 61,
+    "scored_class_count": 50,
+    "roster_changes": [],
+    "baseline_deltas": []
+  },
+  "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+  "reviewed_files": [
+    {
+      "path": "quantum/InclusionQuantum/Statistical.lean",
+      "sha256": "ef8a9015fcc8a9faabbd0f132e58ee13bd055b241d8c5b8c8672d84891ab491f",
+      "reviewed_line_regions": [
+        [
+          38,
+          56
+        ],
+        [
+          134,
+          183
+        ]
+      ]
+    },
+    {
+      "path": "quantum/InclusionQuantum/Quantum.lean",
+      "sha256": "fd174462ff36f8a6ce104f21179398749ed087a155a869ef07089b3081a13762",
+      "reviewed_line_regions": [
+        [
+          29,
+          90
+        ]
+      ]
+    },
+    {
+      "path": "quantum/InclusionQuantum/Unentangled.lean",
+      "sha256": "5fdfff013dad3af352bde4d916d3a3251cd47dd1adce79c5937c667d6a523f89",
+      "reviewed_line_regions": [
+        [
+          28,
+          61
+        ]
+      ]
+    },
+    {
+      "path": "quantum/InclusionQuantum/Logspace.lean",
+      "sha256": "8db722540af3802a38781da3572b7d0643cb9b52fadd6ce127afa5e91e2ad4dc",
+      "reviewed_line_regions": [
+        [
+          27,
+          42
+        ]
+      ]
+    },
+    {
+      "path": "quantum/InclusionQuantum/Normalization.lean",
+      "sha256": "c2e67506a2fb2d0cd94c51974dc4b9ad68b95bae5fd8700b5ab3a600d0a0ebc1",
+      "reviewed_line_regions": [
+        [
+          16,
+          131
+        ]
+      ]
+    },
+    {
+      "path": "quantum/InclusionQuantum/SemanticChecks.lean",
+      "sha256": "e08ab15bb8f9368058ee7d1b158bd154cdd9516fcb089381388bec007e1ee142",
+      "reviewed_line_regions": [
+        [
+          55,
+          91
+        ]
+      ]
+    },
+    {
+      "path": "lean/InclusionBench/Transducers.lean",
+      "sha256": "2fcd77b22f0721592877e53b20f9be36b60f92e6e6f672818daf9cda4bd11c61",
+      "reviewed_line_regions": [
+        [
+          23,
+          59
+        ],
+        [
+          120,
+          139
+        ]
+      ]
+    },
+    {
+      "path": "lean/InclusionBench/UniformCircuits.lean",
+      "sha256": "316a038fda82c5a5705605ac8380ef873498db45c04bd325ab9eb882e96c71d2",
+      "reviewed_line_regions": [
+        [
+          18,
+          47
+        ]
+      ]
+    },
+    {
+      "path": "lean/InclusionBench/Counting.lean",
+      "sha256": "8552ddcbc10177f70f8315efdede3bdff38958056c72b0f40545912f9e1eb5aa",
+      "reviewed_line_regions": [
+        [
+          85,
+          88
+        ]
+      ]
+    }
+  ],
+  "verdict": {
+    "mathematical_identification": "The operational class agrees with the standard total-language restriction of full QSZK using the cited completeness/equivalence theorems and explicit routine simulation bridges.",
+    "formal_identification": "Not a Lean theorem; no blanket kernel-verification claim.",
+    "blocking_findings": [],
+    "canonical_edits_required": false
+  },
+  "formulas": [
+    {
+      "id": "reduced_state",
+      "equation": "rho[a,b]=sum_z psi[a,z]*conj(psi[b,z])",
+      "meaning": "Partial trace over the explicit discarded register"
+    },
+    {
+      "id": "probability",
+      "equation": "sum_z sum_(r in S) |sum_a U[r,a]*psi[a,z]|^2 = Tr(U† D_S U rho)",
+      "meaning": "Projective Born probability on the reduced output"
+    },
+    {
+      "id": "maximum",
+      "equation": "max_M |p(M,rho0)-p(M,rho1)| = max_P |Tr(P*(rho0-rho1))| = (1/2)*||rho0-rho1||_1",
+      "attainer": "Projector onto strictly positive eigenspaces of rho0-rho1"
+    },
+    {
+      "id": "thresholds",
+      "equation": "quantumFar iff distance>=2/3; quantumClose iff distance<=1/3",
+      "boundary": "The maximum is attained, so the existential far condition includes equality."
+    }
+  ],
+  "checks": [
+    {
+      "id": "reduced-density",
+      "lines": "Statistical.lean:50–56,152–161;Unentangled.lean:28–61",
+      "finding": "For amplitudes psi[a,z], rho[a,b]=sum_z psi[a,z]*conj(psi[b,z])=AA†; positive semidefinite, Hermitian, trace1. Environment sizes may differ across samplers.",
+      "status": "manual_formula_derivation"
+    },
+    {
+      "id": "linear-unitary-measurement",
+      "lines": "Statistical.lean:38–48",
+      "finding": "Explicit complex-linear square matrix action plus norm preservation for every vector gives U†U=I by polarization; finite square dimension gives UU†=I.",
+      "status": "manual_linear_algebra_proof"
+    },
+    {
+      "id": "born-probability",
+      "lines": "Statistical.lean:50–56",
+      "finding": "The finite double sum equals Tr(D_S U rho U†)=Tr(P rho) with P=U†D_SU. The trace is real, matching the Real-valued definition.",
+      "status": "manual_formula_derivation"
+    },
+    {
+      "id": "all-projectors",
+      "lines": "Statistical.lean:44–48",
+      "finding": "Every orthogonal projector has an orthonormal image/kernel basis, giving an allowed U and Boolean accepts subset. Includes rank0/full rank and outputLength0.",
+      "status": "manual_linear_algebra_proof"
+    },
+    {
+      "id": "discarded-information",
+      "lines": "Statistical.lean:52–56;SemanticChecks.lean:63–82",
+      "finding": "Square modulus precedes the environment sum; no coherent cross-terms between distinct environment labels. Existing environment-sign-invariance theorem tests this.",
+      "status": "manual_derivation_and_existing_regression_theorem"
+    },
+    {
+      "id": "trace-distance-optimum",
+      "lines": "Statistical.lean:163–177",
+      "finding": "For traceless Hermitian Delta=rho0-rho1, max_P |Tr(P Delta)|=sum_positive_eigenvalues=one_half*||Delta||_1, attained by the positive-eigenspace projector.",
+      "status": "manual_spectral_proof_with_primary_crosscheck"
+    },
+    {
+      "id": "attained-far-boundary",
+      "lines": "Statistical.lean:169–172",
+      "finding": "If trace distance equals2/3, the exact spectral projector witnesses the existential far condition. Arbitrary complex matrices are appropriate for distance, not a permitted sampler oracle.",
+      "status": "manual_exact_boundary_proof"
+    },
+    {
+      "id": "closed-close-boundary",
+      "lines": "Statistical.lean:174–177",
+      "finding": "All projectors have difference<=1/3 iff trace distance<=1/3, including equality.",
+      "status": "manual_exact_boundary_proof"
+    },
+    {
+      "id": "fixed-gates-and-zero-input",
+      "lines": "Quantum.lean:43–70;Logspace.lean:39–42;Statistical.lean:152–161",
+      "finding": "Only fixed H,T,X,CNOT gates; distinct CNOT indices; zero initial state; Circuit.output does not affect run. Gate normalization is already formally proved.",
+      "status": "source_code_inspection"
+    },
+    {
+      "id": "uniformity-no-advice",
+      "lines": "Statistical.lean:134–150;Transducers.lean:23–59",
+      "finding": "One concrete finite-control transducer emits the entire family circuit on every input, with finite-polynomial runtime. No arbitrary length advice, density-matrix oracle, or distinguishability oracle.",
+      "status": "source_code_inspection"
+    },
+    {
+      "id": "serialization-polynomial",
+      "lines": "Quantum.lean:76–90;UniformCircuits.lean:18–47",
+      "finding": "Unary-delimited complete width/gate/index data are injective. For polynomial width w and gates g, length O(w+gw+g) stays polynomial.",
+      "status": "manual_resource_bound_with_existing_encoding_theorems"
+    },
+    {
+      "id": "forward-total-language",
+      "lines": "Statistical.lean:179–183",
+      "finding": "Every total input maps into far-yes QSD(1/3,2/3). QSD membership and full/HV equivalence yield standard QSZK. Pad target description to length>=|x| so negligible target-size simulation error remains negligible in|x|.",
+      "status": "literature_theorems_plus_explicit_composition"
+    },
+    {
+      "id": "forward-basis-and-strict-gap",
+      "lines": "Statistical.lean:169–183",
+      "finding": "If reference gate compilation is needed, state error<=1/96 each gives close<=17/48<3/8 and far>=31/48>5/8;3/8<(5/8)^2. Thus neither gate robustness nor strict polarization requires approximate attainment of the2/3 boundary.",
+      "status": "manual_error_budget"
+    },
+    {
+      "id": "reverse-total-language",
+      "lines": "Statistical.lean:134–183",
+      "finding": "Use standard QSD(1/8,7/8) completeness on the total language, then state error<=1/24 each. Resulting distances<=5/24 and>=19/24 strictly meet the required1/3 and2/3 thresholds.",
+      "status": "literature_theorem_plus_explicit_error_budget"
+    },
+    {
+      "id": "gate-compilation-resource",
+      "lines": "Quantum.lean:43–63",
+      "finding": "Synthesize each of at mostM constant-arity gates to error1/(24*max(1,M)); telescoping and partial-trace contraction give state error<=1/24. T inverse is T^7; phase is irrelevant. Polynomial-size/time synthesis is only claimed gate by gate.",
+      "status": "standard_synthesis_plus_manual_bound"
+    },
+    {
+      "id": "register-padding",
+      "lines": "Statistical.lean:144–156",
+      "finding": "Relabel output wires first; append common zero output qubits to exact polynomial length; pad each environment and add the spare wire. Common output isometry preserves trace distance; discarded zeros change nothing.",
+      "status": "manual_polynomial_construction"
+    },
+    {
+      "id": "machine-model-equivalence",
+      "lines": "Transducers.lean:31–59;Statistical.lean:134–138",
+      "finding": "The fixed reduction/compiler/padder/serializer has a polynomial-time implementation by the concrete finite-control transducer via standard deterministic simulation. This equivalence is not yet a Lean theorem.",
+      "status": "explicit_remaining_trusted_model_bridge"
+    }
+  ],
+  "literature_sources": [
+    {
+      "id": "qszk-review-Watrous2002",
+      "title": "Quantum statistical zero-knowledge",
+      "authors": [
+        "John Watrous"
+      ],
+      "url": "https://arxiv.org/pdf/quant-ph/0202111",
+      "version": "arXiv quant-ph/0202111v1",
+      "version_date": "2002-02-20",
+      "locators": [
+        "Section2.2: polynomial-time preparation by all-zero circuits and partial trace",
+        "Section2.4,p.7: non-strict far-yes QSD promise",
+        "Theorem1,p.7: polarization; its displayed conclusions use strict inequalities",
+        "Theorem4,p.9: QSD membership",
+        "Theorem6,p.12: QSD completeness for0<alpha<beta^2<1",
+        "AppendixA,pp.20–21: input-dependent uniform circuits and half-trace-norm convention"
+      ],
+      "use": "Honest-verifier complete-problem theorem; full-verifier equality is a separate source. Author preprint title differs from the FOCS proceedings title."
+    },
+    {
+      "id": "qszk-review-Watrous2009",
+      "title": "Zero-Knowledge Against Quantum Attacks",
+      "authors": [
+        "John Watrous"
+      ],
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/ZeroKnowledgeAgainstQuantum.pdf",
+      "version": "Author version, April24,2008, minor corrections April14,2009",
+      "version_date": "2009-04-14",
+      "journal_publication_date": "2009-05-28",
+      "journal_metadata_url": "https://epubs.siam.org/doi/10.1137/060670997",
+      "locators": [
+        "Section5.2.1,Definitions10–11: preparation and honest-verifier conventions",
+        "Section5.2.2,Theorems12–13,pp.24–25: complete-problem reduction and QSZK=QSZK_HV",
+        "Figure6: unitary circuit purifications and extra-qubit padding"
+      ],
+      "use": "Full quantum statistical zero-knowledge including arbitrary polynomial-time quantum verifier and auxiliary quantum information; no cryptographic hypothesis is required for this equality."
+    },
+    {
+      "id": "qszk-review-WatrousTQI2018",
+      "title": "The Theory of Quantum Information",
+      "authors": [
+        "John Watrous"
+      ],
+      "url": "https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf",
+      "version": "Author pre-publication book draft, copyright2018",
+      "year": 2018,
+      "locators": [
+        "Section2.1.3,equation2.34,p.68: partial-trace matrix entries",
+        "Theorem3.4,pp.128–129: Holevo–Helstrom optimum achieved by a projective measurement"
+      ],
+      "use": "Independent source cross-check of the standard finite-dimensional identities. The dossier supplies its own component derivation specialized to the actual code."
+    },
+    {
+      "id": "qszk-review-DawsonNielsen2005",
+      "title": "The Solovay-Kitaev algorithm",
+      "authors": [
+        "Christopher M. Dawson",
+        "Michael A. Nielsen"
+      ],
+      "url": "https://arxiv.org/pdf/quant-ph/0505030",
+      "version": "arXiv quant-ph/0505030v2",
+      "version_date": "2005-08-23",
+      "locators": [
+        "Definition1: finite inverse-closed instruction set",
+        "Theorem1 and algorithmic paragraph immediately following,p.3",
+        "Section4.1 discussion of Hadamard,pi/8 and inverse instruction set"
+      ],
+      "use": "Efficient classical synthesis for fixed-dimensional gates. Applied gate by gate to polynomial-size circuits, never to an arbitrary many-qubit unitary at claimed polynomial cost."
+    },
+    {
+      "id": "qszk-review-VidickWatrous2016",
+      "title": "Quantum Proofs",
+      "authors": [
+        "Thomas Vidick",
+        "John Watrous"
+      ],
+      "url": "https://arxiv.org/pdf/1610.01664",
+      "year": 2016,
+      "locators": [
+        "Section5.3.1: close-yes CQS orientation differs from far-yes QSD",
+        "Section5.3.2: honest-verifier complete problem",
+        "Section5.3.3,Figure5.7: unitary purification and register padding",
+        "Theorem5.4,Corollary5.5: full-QSZK membership and honest-verifier equality"
+      ],
+      "use": "Independent convention cross-check. The review explicitly keeps far-yes QSD polarity and half-trace norm rather than copying CQS orientation."
+    }
+  ],
+  "remaining_trusted_steps": [
+    {
+      "id": "finite_linear_algebra",
+      "content": "Spectral theorem and ordinary finite-dimensional matrix algebra connecting the current finite-sum representation to density matrices/projectors. The dossier derives the specialized formulas; Lean has not checked those derivations."
+    },
+    {
+      "id": "qsd_completeness",
+      "content": "Watrous2002 far-yes QSD completeness with0<alpha<beta^2<1, plus deterministic polynomial-time reduction closure."
+    },
+    {
+      "id": "full_qszk",
+      "content": "Watrous2009 Theorem13, full QSZK equals honest-verifier QSZK; this is separate from the2002 result."
+    },
+    {
+      "id": "synthesis_and_purification",
+      "content": "Efficient constant-arity universal-gate synthesis and polynomial unitary purification for general mixed-state circuit conventions. Error and padding bounds are explicit in the dossier."
+    },
+    {
+      "id": "concrete_machine_simulation",
+      "content": "Equivalence between conventional deterministic polynomial-time algorithms and the concrete Transducers.Transducer model, with polynomial overhead."
+    }
+  ],
+  "existing_lean_theorems_relevant": [
+    "InclusionBench.Quantum.sampler_state_normalized",
+    "InclusionBench.Quantum.environment_sum_normSquared",
+    "InclusionBench.Quantum.measurement_probability_nonnegative",
+    "InclusionBench.Quantum.measurement_probability_le_normSquared",
+    "InclusionBench.Quantum.measurement_probability_bounded",
+    "InclusionBench.Quantum.measurementDifference_bounded",
+    "InclusionBench.Quantum.identical_quantum_samplers_close",
+    "InclusionBench.Quantum.quantum_far_close_disjoint",
+    "InclusionBench.Quantum.Review.environment_sign_invisible",
+    "InclusionBench.Quantum.Review.serialized_width_determined",
+    "InclusionBench.Transducers.output_length_le_time",
+    "InclusionBench.UniformCircuits.decode_encode_naturals",
+    "InclusionBench.UniformCircuits.encode_naturals_injective"
+  ],
+  "verification": {
+    "new_lean_source_or_axiom_added": false,
+    "new_compilation_performed": false,
+    "method": "Read exact current source; independently derive formulas; check primary theorem statements and conventions; exact rational arithmetic for all displayed threshold margins.",
+    "rational_error_budgets_checked": true
+  },
+  "rejected_misreadings": [
+    "Comparing the full pure-state purifications instead of their mixed output states.",
+    "Coherently summing different environment amplitudes before taking squared modulus.",
+    "Treating the half trace norm as the unnormalized Schatten1 norm.",
+    "Claiming a supremum suffices for the existential far condition at exact2/3.",
+    "Restricting the mathematical distinguishing measurement to efficient H/T/CNOT circuits.",
+    "Reading the2002 honest-verifier result as the later full-QSZK theorem.",
+    "Using close-yes CQS statements without changing the polarity to far-yes QSD.",
+    "Compiling boundary-gap circuits without first leaving a quantitative margin.",
+    "Assuming negligible error in a possibly much shorter target instance is automatically negligible in the original input.",
+    "Claiming polynomial synthesis for an arbitrary many-qubit matrix rather than each constant-arity gate.",
+    "Allowing arbitrary polynomially bounded register-length functions to act as advice."
+  ],
+  "limitations": [
+    "This is a bounded end-to-end bridge review, not another cutoff literature census.",
+    "No source is post-cutoff. The review date is later than the cutoff because it checks existing definitions against established mathematics.",
+    "The listed standard literature and machine-model results are trusted under the benchmark policy; none is newly asserted as a Lean theorem.",
+    "No candidate status, score, roster choice, or historical independence decision is changed."
+  ],
+  "report": {
+    "path": "research/v0.4.0/qszk-bridge-review.md",
+    "sha256": "977f429cf540fa103ecc95831a6ba7089f10770d0189c237d35a59090eb55873"
+  }
+}

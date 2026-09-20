@@ -1,4 +1,4 @@
-**Coverage audit — draft for the 2026-09-01 cutoff**
+**Coverage audit for the September 1, 2026 cutoff**
 
 The roster can measure broad progress on relationships between complexity classes. It cannot guarantee a point for every major complexity-theory advance. The accompanying [50-scenario stress test](coverage.json) maps 35 scenarios directly to an ordered pair and one through a short reduction. Fourteen have no guaranteed scoring implication. These are design examples, not a ranking of the 50 most likely discoveries. Their order carries no forecast probability.
 
@@ -7,11 +7,11 @@ The roster can measure broad progress on relationships between complexity classe
 | Direct | 35 | The proposed theorem is an inclusion or noninclusion between roster classes. |
 | Consequence | 1 | A short argument turns the proposed theorem into a roster inclusion. |
 | Unsupported | 14 | No scored implication is established in this release. |
-| Certified eligible | 0 | Historical eligibility still requires a cutoff audit. |
+| Historical eligibility | Separate review | The release-wide audit and registry determine which mapped pairs are eligible. |
 
-The distinction between a mapped pair and an eligible point matters. A traversal that cannot derive an inclusion does not establish that the inclusion was open on September 1, 2026. The source records in [quantum.json](quantum.json) support particular baseline facts; they do not certify the absence of other results. Freeze an eligibility manifest only after review of both directions, relevant class conventions and pre-cutoff literature versions.
+The distinction between a mapped pair and an eligible point matters. A traversal that cannot derive an inclusion does not establish that the inclusion was open on September 1, 2026. The source records in [quantum.json](quantum.json) support particular baseline facts; they do not certify the absence of other results. The release-wide audit reviews both directions, relevant class conventions and pre-cutoff literature versions; model claims do not supply their own historical decisions.
 
-The four small circuit classes are nonuniform. That choice represents questions such as whether NEXP has polynomial-size threshold circuits and whether NC¹ exceeds TC⁰. It also means these classes contain undecidable languages determined solely by input length. Edges from nonuniform NC¹ to L, or from nonuniform AC⁰ to P, would therefore be false. NC is a separate, logspace-uniform class. Arbitrary advice in P/poly and NP/poly must remain arbitrary throughout the definitions and scorer.
+AC⁰, ACC⁰, TC⁰ and NC¹ are nonuniform. AC⁰ is background vocabulary in v0.4.0. The separate UniformNC1 endpoint uses standard extended-connection uniformity, equivalently ALOGTIME. That choice represents questions such as whether NEXP has polynomial-size threshold circuits and whether NC¹ exceeds TC⁰. It also means these classes contain undecidable languages determined solely by input length. Edges from nonuniform NC¹ to L, or from nonuniform AC⁰ to P, would therefore be false. NC is a separate, logspace-uniform class. Arbitrary advice in P/poly and NP/poly must remain arbitrary throughout the definitions and scorer.
 
 The main coverage gaps are mathematical, rather than a matter of adding a few more class names:
 
@@ -23,4 +23,4 @@ The main coverage gaps are mathematical, rather than a matter of adding a few mo
 
 Two tempting implication rules are deliberately absent. Total-language BPP=P does not automatically derandomize the promise problem faced by an MA verifier. Also, [Kabanets–Impagliazzo](https://www.cs.sfu.ca/~kabanets/Research/poly.html) derive a disjunction of Boolean and arithmetic circuit lower bounds from PIT derandomization; the arithmetic branch need not settle a Boolean roster pair. The scorer should preserve such disjunctions if a future version supports them, and must not select a convenient branch.
 
-The accepted 50-class roster omits NISZK. That trades away a recognized zero-knowledge question, although restoring its name alone would not fix the promise-language gap. Future expansions should use separate typed tracks for promise problems, algorithms and explicit constructions, quantitative bounds, total search, and algebraic complexity. Those tracks need independently defined points; mixing them into this matrix would change what an inclusion means.
+The provisional v0.4.0 roster adds eleven endpoints and demotes eleven to background vocabulary. It expands small-space, real-feasibility, counting-hierarchy and quantum coverage while losing some direct questions about complements and exact-counting subclasses. The [roster decision](v0.4.0/roster-decision.md) and [migration audit](v0.4.0/roster-migration.json) describe that tradeoff. The original 50 scenarios remain a separate fixed comparison sample; [twenty additional examples](v0.4.0/representative-questions.json) explain the new endpoints. NISZK remains omitted; adding it alone would not repair the promise-language gap. Future expansions should use separate typed tracks for promise problems, algorithms and explicit constructions, quantitative bounds, total search, and algebraic complexity. Those tracks need independently defined points; mixing them into this matrix would change what an inclusion means.

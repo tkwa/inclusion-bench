@@ -15,10 +15,45 @@ class BenchmarkTests(unittest.TestCase):
 
     def test_roster_and_baseline(self):
         self.assertEqual(len(self.b.ids), 50)
+        self.assertEqual(len(self.b.context_ids), 61)
         self.assertEqual(sum(self.b.matrix()["counts"].values()), 2500)
         self.assertIn(Atom("inclusion", "P", "NP"), self.b.baseline.proofs)
         self.assertNotIn(Atom("inclusion", "Ppoly", "EXP"), self.b.baseline.proofs)
         self.assertIn(Atom("separation", "AC0", "EXP"), self.b.baseline.proofs)
+
+    def test_background_nodes_preserve_implications_but_cannot_earn_direct_points(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            shutil.copytree(self.b.root / "data", root / "data")
+            catalog = json.loads((root / "data/classes.json").read_text())
+            catalog['scored_class_ids'] = ['P', 'NP', 'coNP', 'RP']
+            (root / "data/classes.json").write_text(json.dumps(catalog))
+            b = Benchmark(root)
+            self.assertEqual(b.ids, ['P', 'NP', 'coNP', 'RP'])
+            self.assertEqual(b.context_ids, self.b.context_ids)
+            self.assertEqual(set(b.baseline.proofs), set(self.b.baseline.proofs))
+            self.assertEqual(len(b.matrix()['pairs']), 16)
+            self.assertIn('BPP', {c['id'] for c in b.background_classes})
+            claims = [{'relation': 'inclusion', 'left': 'BPP', 'right': 'NP'},
+                      {'relation': 'separation', 'left': 'NP', 'right': 'BPP'}]
+            result = b.score({'claims': claims})
+            pairs = {(r['left'], r['right']) for r in result['resolutions']}
+            self.assertIn(('NP', 'P'), pairs)
+            self.assertTrue(all(a in b.ids and z in b.ids for a,z in pairs))
+            self.assertNotIn(('NP', 'BPP'), pairs)
+            self.assertEqual(result['score'], len(pairs))
+
+    def test_scored_roster_rejects_invalid_membership(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            shutil.copytree(self.b.root / "data", root / "data")
+            catalog = json.loads((root / "data/classes.json").read_text())
+            for ids in ([], ['P', 'P'], ['UNKNOWN'], 'P', [None]):
+                with self.subTest(ids=ids):
+                    catalog['scored_class_ids'] = ids
+                    (root / "data/classes.json").write_text(json.dumps(catalog))
+                    with self.assertRaisesRegex(InvalidEvidence, 'Scored class identifiers'):
+                        Benchmark(root)
 
     def test_known_facts_and_empty_submission_score_zero(self):
         for claims in [[], [{"relation": "inclusion", "left": "P", "right": "NP"}]]:
@@ -37,13 +72,50 @@ class BenchmarkTests(unittest.TestCase):
     def test_regular_padding_preserves_both_exponential_families(self):
         cases = [("E", "EXP", "PSPACE"), ("NE", "NEXP", "WPP")]
         for small, large, target in cases:
-            self.assertIn((small, target), self.b.unresolved)
+            # A background hypothesis remains usable even when its own pair
+            # no longer belongs to the scored question suite.
+            self.assertFalse(any(Atom(r, small, target) in self.b.baseline.proofs
+                                 for r in ("inclusion", "separation")))
             result = self.b.closure([{"relation": "inclusion", "left": small, "right": target}])
             self.assertIn(Atom("inclusion", large, target), result.proofs)
         # Linear-exponential target bounds are not preserved by arbitrary
         # polynomial padding; the generic family deliberately excludes them.
         self.assertFalse(any(r.id.startswith("padding-regular-") and
                              r.conclusion.right in {"E", "NE"} for r in self.b.rules))
+
+    def test_background_independence_has_no_direct_or_propagated_credit(self):
+        result = self.b.score({'claims': [
+            {'relation': 'independence', 'left': 'WPP', 'right': 'LWPP'}]})
+        self.assertEqual(result['score'], 0)
+        self.assertEqual(result['resolutions'], [])
+
+    def test_counting_oracle_collapse_does_not_silently_collapse_ch(self):
+        result = self.b.closure([{'relation': 'inclusion', 'left': 'PP', 'right': 'QMA'}])
+        self.assertIn(Atom('inclusion', 'PSharpP', 'PP'), result.proofs)
+        self.assertNotIn(Atom('inclusion', 'CH', 'PP'), result.proofs)
+        low = self.b.closure([{'relation': 'inclusion', 'left': 'PP', 'right': 'AWPP'}])
+        self.assertIn(Atom('inclusion', 'CH', 'PP'), low.proofs)
+        parity = self.b.closure([{'relation': 'inclusion', 'left': 'PP', 'right': 'parityP'}])
+        self.assertIn(Atom('inclusion', 'CH', 'parityP'), parity.proofs)
+
+    def test_new_roster_does_not_import_unsupported_model_transfers(self):
+        for left, right in [('BQL', 'BPL'), ('UL', 'BQL'), ('BPL', 'LogCFL'),
+                            ('PL', 'SC'), ('ExistsR', 'NP'), ('ExistsR', 'CH'),
+                            ('QMA2', 'PSPACE'), ('QSZK', 'QMA'), ('QSZK', 'PP'),
+                            ('StoqMA', 'NP')]:
+            with self.subTest(left=left, right=right):
+                self.assertIn((left, right), self.b.unresolved)
+        # Standard uniform NC1 is separate from the nonuniform NC1 endpoint.
+        self.assertIn(Atom('inclusion', 'UniformNC1', 'L'), self.b.baseline.proofs)
+        self.assertIn(Atom('inclusion', 'UniformNC1', 'NC1'), self.b.baseline.proofs)
+        self.assertIn(Atom('separation', 'NC1', 'L'), self.b.baseline.proofs)
+
+    def test_new_endpoint_claims_earn_only_active_pair_credit(self):
+        result = self.b.score({'claims': [
+            {'relation': 'inclusion', 'left': 'StoqMA', 'right': 'MA'}]})
+        pairs = {(row['left'], row['right']) for row in result['resolutions']}
+        self.assertIn(('StoqMA', 'MA'), pairs)
+        self.assertTrue(all(a in self.b.ids and b in self.b.ids for a, b in pairs))
 
     def test_few_witnesses_collapse_am_to_sbp(self):
         result = self.b.closure([{"relation": "inclusion", "left": "NP", "right": "FewP"}])

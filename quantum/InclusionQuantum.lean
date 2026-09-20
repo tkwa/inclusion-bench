@@ -1,2 +1,3 @@
 import InclusionQuantum.Complete
 import InclusionQuantum.Normalization
+import InclusionQuantum.SemanticChecks

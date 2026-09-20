@@ -34,7 +34,7 @@ class EvaluationTests(unittest.TestCase):
         suite = self.suite
         self.assertEqual({(t['left'], t['right']) for t in suite['tasks']}, self.b.unresolved)
         self.assertEqual(suite['taskset_sha256'], canonical_hash({k: v for k, v in suite.items() if k != 'taskset_sha256'}))
-        self.assertEqual(suite['formalization_bundle']['definition_count'], 50)
+        self.assertEqual(suite['formalization_bundle']['definition_count'], 61)
         self.assertEqual({t['eligibility'] for t in suite['tasks']}, {'candidate_open_at_cutoff'})
 
     def test_unsolved_adapter_end_to_end(self):

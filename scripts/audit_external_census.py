@@ -53,7 +53,9 @@ def compare(benchmark, raw):
     edges = extract(raw.decode())
     extracted = set(edges)
     original_nodes = {v for edge in edges for v in edge}
-    mapping = {name: OVERRIDES.get(name, name) for name in benchmark.ids}
+    # Complement identities and inference paths retain the entire vocabulary,
+    # including classes demoted from the scored roster.
+    mapping = {name: OVERRIDES.get(name, name) for name in benchmark.context_ids}
     comp = {mapping[a]: mapping[b] for a, b in benchmark.complements.items()}
 
     def co(name):

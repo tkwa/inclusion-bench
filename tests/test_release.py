@@ -16,6 +16,9 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(self.site["counts"], self.b.matrix()["counts"])
         self.assertEqual(self.site["leaderboard"], [])
         self.assertEqual(self.site["baseline"]["score"], 0)
+        self.assertEqual([c["id"] for c in self.site["classes"]], self.b.ids)
+        self.assertEqual(self.site["context_class_count"], len(self.b.context_ids))
+        self.assertEqual(self.site["background_classes"], self.b.background_classes)
         suite = json.loads((ROOT / "evaluation/tasks.json").read_text())
         self.assertEqual(len(suite["tasks"]), len(self.b.unresolved))
         self.assertEqual(self.site["taskset_sha256"], suite["taskset_sha256"])
@@ -44,8 +47,18 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(len(coverage["scenarios"]), 50)
         for scenario in coverage["scenarios"]:
             for claim in scenario["claims"]:
-                self.assertIn(claim["left"], self.b.ids)
-                self.assertIn(claim["right"], self.b.ids)
+                self.assertIn(claim["left"], self.b.context_ids)
+                self.assertIn(claim["right"], self.b.context_ids)
+
+    def test_all_proof_classes_have_display_metadata(self):
+        display_ids = {c["id"] for c in self.site["classes"] + self.site["background_classes"]}
+        self.assertEqual(display_ids, set(self.b.context_ids))
+        nodes = self.site["baseline_proof_steps"] + [
+            step for scenario in self.site["scenarios"] for step in scenario["proof_steps"]
+        ]
+        for node in nodes:
+            self.assertIn(node["left"], display_ids)
+            self.assertIn(node["right"], display_ids)
 
 
 if __name__ == "__main__":

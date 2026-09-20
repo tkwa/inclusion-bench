@@ -1,0 +1,1963 @@
+{
+  "schema_version": 1,
+  "status": "targeted_alternative_roster_experiment",
+  "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+  "source_exhaustive_experiment": {
+    "path": "research/v0.4.0/pruning-audit.json",
+    "sha256": "aa48c1e86e2f2eb5ad5641283dd1fa4f42a313731cbe3c7cbc4f53feed55be1a"
+  },
+  "context_class_count": 61,
+  "all_context_candidate_pairs": 2049,
+  "distinct_assumption_sets_tested": 31,
+  "rosters": {
+    "selected50": {
+      "scored_class_count": 50,
+      "restored_classes": [],
+      "background_classes": [
+        "AC0",
+        "E",
+        "FewP",
+        "LWPP",
+        "Pi2P",
+        "WPP",
+        "coAM",
+        "coMA",
+        "coQMA",
+        "coRP",
+        "coUP"
+      ],
+      "scored_candidate_pairs": 1324,
+      "candidate_slots_restored_relative_to_50": 0,
+      "inactive_candidate_pairs_and_direct_independence_slots": 725,
+      "former_zero_credit_hypotheses_now_scoring": 0,
+      "former_zero_credit_claims_with_direct_endpoint_point": 0
+    },
+    "optional55": {
+      "scored_class_count": 55,
+      "restored_classes": [
+        "FewP",
+        "LWPP",
+        "WPP",
+        "coRP",
+        "coUP"
+      ],
+      "background_classes": [
+        "AC0",
+        "E",
+        "Pi2P",
+        "coAM",
+        "coMA",
+        "coQMA"
+      ],
+      "scored_candidate_pairs": 1655,
+      "candidate_slots_restored_relative_to_50": 331,
+      "inactive_candidate_pairs_and_direct_independence_slots": 394,
+      "former_zero_credit_hypotheses_now_scoring": 26,
+      "former_zero_credit_claims_with_direct_endpoint_point": 20
+    },
+    "optional56": {
+      "scored_class_count": 56,
+      "restored_classes": [
+        "FewP",
+        "LWPP",
+        "WPP",
+        "coQMA",
+        "coRP",
+        "coUP"
+      ],
+      "background_classes": [
+        "AC0",
+        "E",
+        "Pi2P",
+        "coAM",
+        "coMA"
+      ],
+      "scored_candidate_pairs": 1733,
+      "candidate_slots_restored_relative_to_50": 409,
+      "inactive_candidate_pairs_and_direct_independence_slots": 316,
+      "former_zero_credit_hypotheses_now_scoring": 26,
+      "former_zero_credit_claims_with_direct_endpoint_point": 22
+    }
+  },
+  "former_zero_credit_hypotheses": [
+    {
+      "relation": "inclusion",
+      "left": "FewP",
+      "right": "UP",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "FewP",
+            "UP"
+          ]
+        ],
+        "optional56": [
+          [
+            "FewP",
+            "UP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "FewP",
+      "right": "coAM",
+      "all_context_resolutions": 4,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 2
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": false,
+        "optional56": false
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "FewP",
+      "right": "coMA",
+      "all_context_resolutions": 14,
+      "scores": {
+        "selected50": 0,
+        "optional55": 8,
+        "optional56": 10
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "MA"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ],
+          [
+            "coUP",
+            "StoqMA"
+          ]
+        ],
+        "optional56": [
+          [
+            "FewP",
+            "coQMA"
+          ],
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "MA"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": false,
+        "optional56": false
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "FewP",
+      "right": "coQMA",
+      "all_context_resolutions": 4,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 4
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ],
+        "optional56": [
+          [
+            "FewP",
+            "coQMA"
+          ],
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": false,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "LWPP",
+      "right": "SPP",
+      "all_context_resolutions": 2,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 2
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "LWPP",
+            "SPP"
+          ],
+          [
+            "LWPP",
+            "parityP"
+          ]
+        ],
+        "optional56": [
+          [
+            "LWPP",
+            "SPP"
+          ],
+          [
+            "LWPP",
+            "parityP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "LWPP",
+      "right": "parityP",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "LWPP",
+            "parityP"
+          ]
+        ],
+        "optional56": [
+          [
+            "LWPP",
+            "parityP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "UP",
+      "right": "coAM",
+      "all_context_resolutions": 3,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 2
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": false,
+        "optional56": false
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "UP",
+      "right": "coMA",
+      "all_context_resolutions": 11,
+      "scores": {
+        "selected50": 0,
+        "optional55": 8,
+        "optional56": 9
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "MA"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ],
+          [
+            "coUP",
+            "StoqMA"
+          ]
+        ],
+        "optional56": [
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "MA"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": false,
+        "optional56": false
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "UP",
+      "right": "coQMA",
+      "all_context_resolutions": 3,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 3
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ],
+        "optional56": [
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": false,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "WPP",
+      "right": "LWPP",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "WPP",
+            "LWPP"
+          ]
+        ],
+        "optional56": [
+          [
+            "WPP",
+            "LWPP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "WPP",
+      "right": "SPP",
+      "all_context_resolutions": 5,
+      "scores": {
+        "selected50": 0,
+        "optional55": 5,
+        "optional56": 5
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "LWPP",
+            "SPP"
+          ],
+          [
+            "LWPP",
+            "parityP"
+          ],
+          [
+            "WPP",
+            "LWPP"
+          ],
+          [
+            "WPP",
+            "SPP"
+          ],
+          [
+            "WPP",
+            "parityP"
+          ]
+        ],
+        "optional56": [
+          [
+            "LWPP",
+            "SPP"
+          ],
+          [
+            "LWPP",
+            "parityP"
+          ],
+          [
+            "WPP",
+            "LWPP"
+          ],
+          [
+            "WPP",
+            "SPP"
+          ],
+          [
+            "WPP",
+            "parityP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "WPP",
+      "right": "parityP",
+      "all_context_resolutions": 2,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 2
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "LWPP",
+            "parityP"
+          ],
+          [
+            "WPP",
+            "parityP"
+          ]
+        ],
+        "optional56": [
+          [
+            "LWPP",
+            "parityP"
+          ],
+          [
+            "WPP",
+            "parityP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "ZPP",
+      "right": "LWPP",
+      "all_context_resolutions": 2,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 2
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "ZPP",
+            "LWPP"
+          ],
+          [
+            "ZPP",
+            "WPP"
+          ]
+        ],
+        "optional56": [
+          [
+            "ZPP",
+            "LWPP"
+          ],
+          [
+            "ZPP",
+            "WPP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "ZPP",
+      "right": "WPP",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "ZPP",
+            "WPP"
+          ]
+        ],
+        "optional56": [
+          [
+            "ZPP",
+            "WPP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coRP",
+      "right": "ExistsR",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coRP",
+            "ExistsR"
+          ]
+        ],
+        "optional56": [
+          [
+            "coRP",
+            "ExistsR"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coRP",
+      "right": "NE",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coRP",
+            "NE"
+          ]
+        ],
+        "optional56": [
+          [
+            "coRP",
+            "NE"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "AM",
+      "all_context_resolutions": 3,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 2
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "ExistsR",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "ExistsR"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "ExistsR"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "MA",
+      "all_context_resolutions": 11,
+      "scores": {
+        "selected50": 0,
+        "optional55": 8,
+        "optional56": 9
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "MA"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ],
+          [
+            "coUP",
+            "StoqMA"
+          ]
+        ],
+        "optional56": [
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "MA"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "NE",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "NE"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "NE"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "NPpoly",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "NPpoly"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "QCMA",
+      "all_context_resolutions": 4,
+      "scores": {
+        "selected50": 0,
+        "optional55": 3,
+        "optional56": 4
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ],
+        "optional56": [
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "QCMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "QMA",
+      "all_context_resolutions": 3,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 3
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ],
+        "optional56": [
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "QMA2",
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "SBP",
+      "all_context_resolutions": 4,
+      "scores": {
+        "selected50": 0,
+        "optional55": 3,
+        "optional56": 3
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ]
+        ],
+        "optional56": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    },
+    {
+      "relation": "inclusion",
+      "left": "coUP",
+      "right": "StoqMA",
+      "all_context_resolutions": 8,
+      "scores": {
+        "selected50": 0,
+        "optional55": 6,
+        "optional56": 7
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ],
+          [
+            "coUP",
+            "StoqMA"
+          ]
+        ],
+        "optional56": [
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "AM"
+          ],
+          [
+            "coUP",
+            "NPpoly"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ],
+          [
+            "coUP",
+            "SBP"
+          ],
+          [
+            "coUP",
+            "StoqMA"
+          ]
+        ]
+      },
+      "direct_pair_scored": {
+        "selected50": false,
+        "optional55": true,
+        "optional56": true
+      }
+    }
+  ],
+  "representative_results": [
+    {
+      "title": "FewP = UP",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "FewP",
+          "right": "UP"
+        }
+      ],
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "FewP",
+            "UP"
+          ]
+        ],
+        "optional56": [
+          [
+            "FewP",
+            "UP"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "WPP = LWPP",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "WPP",
+          "right": "LWPP"
+        }
+      ],
+      "all_context_resolutions": 1,
+      "scores": {
+        "selected50": 0,
+        "optional55": 1,
+        "optional56": 1
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "WPP",
+            "LWPP"
+          ]
+        ],
+        "optional56": [
+          [
+            "WPP",
+            "LWPP"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "LWPP = SPP",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "LWPP",
+          "right": "SPP"
+        }
+      ],
+      "all_context_resolutions": 2,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 2
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "LWPP",
+            "SPP"
+          ],
+          [
+            "LWPP",
+            "parityP"
+          ]
+        ],
+        "optional56": [
+          [
+            "LWPP",
+            "SPP"
+          ],
+          [
+            "LWPP",
+            "parityP"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "coRP = P",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "P"
+        }
+      ],
+      "all_context_resolutions": 44,
+      "scores": {
+        "selected50": 14,
+        "optional55": 38,
+        "optional56": 38
+      },
+      "retained_examples": {
+        "selected50": [
+          [
+            "EXP",
+            "RP"
+          ],
+          [
+            "EXP",
+            "ZPP"
+          ],
+          [
+            "RP",
+            "CeqP"
+          ],
+          [
+            "RP",
+            "NPcapcoNP"
+          ],
+          [
+            "RP",
+            "P"
+          ],
+          [
+            "RP",
+            "SPP"
+          ],
+          [
+            "RP",
+            "UP"
+          ],
+          [
+            "RP",
+            "ZPP"
+          ]
+        ],
+        "optional55": [
+          [
+            "EXP",
+            "RP"
+          ],
+          [
+            "EXP",
+            "ZPP"
+          ],
+          [
+            "EXP",
+            "coRP"
+          ],
+          [
+            "RP",
+            "CeqP"
+          ],
+          [
+            "RP",
+            "FewP"
+          ],
+          [
+            "RP",
+            "LWPP"
+          ],
+          [
+            "RP",
+            "NPcapcoNP"
+          ],
+          [
+            "RP",
+            "P"
+          ]
+        ],
+        "optional56": [
+          [
+            "EXP",
+            "RP"
+          ],
+          [
+            "EXP",
+            "ZPP"
+          ],
+          [
+            "EXP",
+            "coRP"
+          ],
+          [
+            "RP",
+            "CeqP"
+          ],
+          [
+            "RP",
+            "FewP"
+          ],
+          [
+            "RP",
+            "LWPP"
+          ],
+          [
+            "RP",
+            "NPcapcoNP"
+          ],
+          [
+            "RP",
+            "P"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "E has polynomial-size circuits",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "Ppoly"
+        }
+      ],
+      "all_context_resolutions": 707,
+      "scores": {
+        "selected50": 445,
+        "optional55": 477,
+        "optional56": 526
+      },
+      "retained_examples": {
+        "selected50": [
+          [
+            "AM",
+            "BPL"
+          ],
+          [
+            "AM",
+            "BQL"
+          ],
+          [
+            "AM",
+            "L"
+          ],
+          [
+            "AM",
+            "LogCFL"
+          ],
+          [
+            "AM",
+            "MA"
+          ],
+          [
+            "AM",
+            "NC"
+          ],
+          [
+            "AM",
+            "NL"
+          ],
+          [
+            "AM",
+            "P"
+          ]
+        ],
+        "optional55": [
+          [
+            "AM",
+            "BPL"
+          ],
+          [
+            "AM",
+            "BQL"
+          ],
+          [
+            "AM",
+            "L"
+          ],
+          [
+            "AM",
+            "LogCFL"
+          ],
+          [
+            "AM",
+            "MA"
+          ],
+          [
+            "AM",
+            "NC"
+          ],
+          [
+            "AM",
+            "NL"
+          ],
+          [
+            "AM",
+            "P"
+          ]
+        ],
+        "optional56": [
+          [
+            "AM",
+            "BPL"
+          ],
+          [
+            "AM",
+            "BQL"
+          ],
+          [
+            "AM",
+            "L"
+          ],
+          [
+            "AM",
+            "LogCFL"
+          ],
+          [
+            "AM",
+            "MA"
+          ],
+          [
+            "AM",
+            "NC"
+          ],
+          [
+            "AM",
+            "NL"
+          ],
+          [
+            "AM",
+            "P"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "E has no polynomial-size circuits",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "E",
+          "right": "Ppoly"
+        }
+      ],
+      "all_context_resolutions": 26,
+      "scores": {
+        "selected50": 17,
+        "optional55": 18,
+        "optional56": 18
+      },
+      "retained_examples": {
+        "selected50": [
+          [
+            "EXP",
+            "ACC0"
+          ],
+          [
+            "EXP",
+            "BPP"
+          ],
+          [
+            "EXP",
+            "NC1"
+          ],
+          [
+            "EXP",
+            "Ppoly"
+          ],
+          [
+            "EXP",
+            "RP"
+          ],
+          [
+            "EXP",
+            "TC0"
+          ],
+          [
+            "EXP",
+            "ZPP"
+          ],
+          [
+            "NE",
+            "BPP"
+          ]
+        ],
+        "optional55": [
+          [
+            "EXP",
+            "ACC0"
+          ],
+          [
+            "EXP",
+            "BPP"
+          ],
+          [
+            "EXP",
+            "NC1"
+          ],
+          [
+            "EXP",
+            "Ppoly"
+          ],
+          [
+            "EXP",
+            "RP"
+          ],
+          [
+            "EXP",
+            "TC0"
+          ],
+          [
+            "EXP",
+            "ZPP"
+          ],
+          [
+            "EXP",
+            "coRP"
+          ]
+        ],
+        "optional56": [
+          [
+            "EXP",
+            "ACC0"
+          ],
+          [
+            "EXP",
+            "BPP"
+          ],
+          [
+            "EXP",
+            "NC1"
+          ],
+          [
+            "EXP",
+            "Ppoly"
+          ],
+          [
+            "EXP",
+            "RP"
+          ],
+          [
+            "EXP",
+            "TC0"
+          ],
+          [
+            "EXP",
+            "ZPP"
+          ],
+          [
+            "EXP",
+            "coRP"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "coUP is contained in QMA",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "coUP",
+          "right": "QMA"
+        }
+      ],
+      "all_context_resolutions": 3,
+      "scores": {
+        "selected50": 0,
+        "optional55": 2,
+        "optional56": 3
+      },
+      "retained_examples": {
+        "selected50": [],
+        "optional55": [
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ],
+        "optional56": [
+          [
+            "UP",
+            "coQMA"
+          ],
+          [
+            "coUP",
+            "QMA"
+          ],
+          [
+            "coUP",
+            "QMA2"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "coUP is not contained in QMA",
+      "claims": [
+        {
+          "relation": "separation",
+          "left": "coUP",
+          "right": "QMA"
+        }
+      ],
+      "all_context_resolutions": 841,
+      "scores": {
+        "selected50": 508,
+        "optional55": 664,
+        "optional56": 716
+      },
+      "retained_examples": {
+        "selected50": [
+          [
+            "AM",
+            "BPL"
+          ],
+          [
+            "AM",
+            "BPP"
+          ],
+          [
+            "AM",
+            "BQL"
+          ],
+          [
+            "AM",
+            "BQP"
+          ],
+          [
+            "AM",
+            "L"
+          ],
+          [
+            "AM",
+            "LogCFL"
+          ],
+          [
+            "AM",
+            "NC"
+          ],
+          [
+            "AM",
+            "NL"
+          ]
+        ],
+        "optional55": [
+          [
+            "AM",
+            "BPL"
+          ],
+          [
+            "AM",
+            "BPP"
+          ],
+          [
+            "AM",
+            "BQL"
+          ],
+          [
+            "AM",
+            "BQP"
+          ],
+          [
+            "AM",
+            "L"
+          ],
+          [
+            "AM",
+            "LogCFL"
+          ],
+          [
+            "AM",
+            "NC"
+          ],
+          [
+            "AM",
+            "NL"
+          ]
+        ],
+        "optional56": [
+          [
+            "AM",
+            "BPL"
+          ],
+          [
+            "AM",
+            "BPP"
+          ],
+          [
+            "AM",
+            "BQL"
+          ],
+          [
+            "AM",
+            "BQP"
+          ],
+          [
+            "AM",
+            "L"
+          ],
+          [
+            "AM",
+            "LogCFL"
+          ],
+          [
+            "AM",
+            "NC"
+          ],
+          [
+            "AM",
+            "NL"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "The polynomial hierarchy collapses to its second level",
+      "claims": [
+        {
+          "relation": "inclusion",
+          "left": "PH",
+          "right": "Pi2P"
+        }
+      ],
+      "all_context_resolutions": 8,
+      "scores": {
+        "selected50": 4,
+        "optional55": 4,
+        "optional56": 4
+      },
+      "retained_examples": {
+        "selected50": [
+          [
+            "AM",
+            "Sigma2P"
+          ],
+          [
+            "PH",
+            "Sigma2P"
+          ],
+          [
+            "SBP",
+            "Sigma2P"
+          ],
+          [
+            "StoqMA",
+            "Sigma2P"
+          ]
+        ],
+        "optional55": [
+          [
+            "AM",
+            "Sigma2P"
+          ],
+          [
+            "PH",
+            "Sigma2P"
+          ],
+          [
+            "SBP",
+            "Sigma2P"
+          ],
+          [
+            "StoqMA",
+            "Sigma2P"
+          ]
+        ],
+        "optional56": [
+          [
+            "AM",
+            "Sigma2P"
+          ],
+          [
+            "PH",
+            "Sigma2P"
+          ],
+          [
+            "SBP",
+            "Sigma2P"
+          ],
+          [
+            "StoqMA",
+            "Sigma2P"
+          ]
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Only the full 50-endpoint pruning experiment was exhaustive; this adjunct tests its zero-credit hypotheses and nine representative results.",
+    "Scores count consequences in the same encoded theory and are neither importance weights nor breakthrough probabilities.",
+    "Restoring a consequence does not restore a removed claim's direct point or independence certificate.",
+    "Candidate slot counts cover this 61-class context only, not the full landscape of important total-language complexity classes.",
+    "The 55/56 options exceed the user's original approximate 40–50 target and are optional comparisons, not adopted rosters."
+  ]
+}

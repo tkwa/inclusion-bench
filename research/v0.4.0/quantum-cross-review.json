@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "review_id": "v0.4.0-quantum-cross-review",
+  "review_date": "2026-09-20",
+  "mathematical_cutoff": "2026-09-01",
+  "reviewed_file": "research/v0.4.0/quantum-randomness-landscape.md",
+  "reviewed_sha256": "0cd978d7c8b7f5e88598c6ca00351e1b3f974af3580a0d91091f3e4c55e1b9a7",
+  "overall_verdict": "accept scientific cases with definition safeguards; no new baseline certification",
+  "canonical_files_modified": false,
+  "importance_or_tractability_probabilities": null,
+  "candidate_reviews": [
+    {
+      "class_id": "QMA2",
+      "judgment": "strong addition",
+      "strongest_counterargument": "Total restriction does not fully capture QMA2 versus QMA; restricted protocols can progress without resolving the class."
+    },
+    {
+      "class_id": "StoqMA",
+      "judgment": "strong with explicit parameter union",
+      "strongest_counterargument": "Restricted Hamiltonian results need not resolve whole-class simulation."
+    },
+    {
+      "class_id": "QSZK",
+      "judgment": "strong alternative/addition",
+      "strongest_counterargument": "Promise-complete and cryptographic motivations are only partly represented by a total row."
+    },
+    {
+      "class_id": "BPL",
+      "judgment": "strong cross-field addition",
+      "strongest_counterargument": "Logspace error variants compete for the same scientific program."
+    },
+    {
+      "class_id": "BQL",
+      "judgment": "strong, especially total-only",
+      "strongest_counterargument": "Uses a cross-field slot; individual numerical algorithms need not settle BQL versus BPL."
+    },
+    {
+      "class_id": "QPCP",
+      "judgment": "strong promise-track; conditional total-track",
+      "strongest_counterargument": "The total inclusion is weaker than the canonical promise conjecture; reduction choice matters."
+    },
+    {
+      "class_id": "QMA1",
+      "judgment": "foundational alternative",
+      "strongest_counterargument": "Exact gate convention is part of the question, not a harmless implementation choice."
+    },
+    {
+      "class_id": "NISZK",
+      "judgment": "interaction-focused alternative",
+      "strongest_counterargument": "Protocol/setup variants can crowd out other computational resources."
+    },
+    {
+      "class_id": "QIP2",
+      "judgment": "interaction-focused alternative",
+      "strongest_counterargument": "Nearby existing anchors already capture some questions; two-message refinement has opportunity cost."
+    }
+  ],
+  "findings": [
+    {
+      "id": "stoqma-perfect-soundness",
+      "severity": "definition-critical",
+      "verdict": "strengthen specification before implementation",
+      "statement": "Union over a>1/2 of StoqMA(a,1/2)=NP.",
+      "source_ids": [
+        "liu21"
+      ],
+      "impact": "A fixed perfect-soundness slice cannot be substituted for the intended general StoqMA endpoint.",
+      "action": "Use an explicit efficiently computable inverse-polynomial-gap parameter union, or cite an equivalence for a different chosen parameter convention."
+    },
+    {
+      "id": "stoqma-gates-and-amplification",
+      "severity": "definition-critical",
+      "verdict": "accept existing caution",
+      "statement": "NOT/CNOT/Toffoli, zero/plus ancillas, one final X-basis measurement; generic QMA amplification is not licensed.",
+      "source_ids": [
+        "agl25"
+      ],
+      "impact": "Choosing 2/3 versus 1/3 or claiming arbitrary parameter equivalence changes the class.",
+      "action": "Bind allowed gates, measurements, rational threshold representation, and quantifier order."
+    },
+    {
+      "id": "promise-total-transfer",
+      "severity": "scope-critical",
+      "verdict": "accept",
+      "statement": "Promise inclusion implies total inclusion; total separation implies promise separation. The converse directions need extra arguments.",
+      "source_ids": [
+        "watrous08"
+      ],
+      "impact": "Canonical QMA/QCMA/QPCP promise questions are not fully represented by total restrictions.",
+      "action": "Use typed bridge theorems rather than erasing promise annotations."
+    },
+    {
+      "id": "nexp-completion",
+      "severity": "scope-critical",
+      "verdict": "accept with global resource convention",
+      "statement": "Total NEXP inclusion in total QMA2 gives the corresponding promise inclusion via the acceptance language of the bounded NEXP machine.",
+      "source_ids": [
+        "watrous08",
+        "hm13"
+      ],
+      "impact": "The NEXP versus QMA2 extreme comparison is faithfully represented by the total pair.",
+      "action": "Require the standard all-input exponential machine bound; do not generalize completion to gapped quantum classes."
+    },
+    {
+      "id": "qpcp-query-model",
+      "severity": "definition-critical",
+      "verdict": "accept with explicit query protocol",
+      "statement": "The cited model measures successive proof indices and restricts operations to workspace and already accessed proof qubits.",
+      "source_ids": [
+        "bhw25"
+      ],
+      "impact": "An unspecified global quantum query gate is not the cited constant-access verifier.",
+      "action": "Fix one proof, constant-query union, uniformity, bounded error, and the reduction convention."
+    },
+    {
+      "id": "qma1-exact-gates",
+      "severity": "definition-critical",
+      "verdict": "accept",
+      "statement": "The cited QMA1 model fixes H,T,CNOT; approximate universality does not establish exact-completeness equivalence.",
+      "source_ids": [
+        "gn13"
+      ],
+      "impact": "Different gate conventions can name a different target.",
+      "action": "Gate model and projector input encoding must precede cutoff audit."
+    },
+    {
+      "id": "bql-language-evidence",
+      "severity": "scientific-selection",
+      "verdict": "accept and give greater total-track weight",
+      "statement": "Theorem4 in Apers–Edenhofer is a total language with the path-bound condition checked, not just promised.",
+      "source_ids": [
+        "ae25",
+        "fr21"
+      ],
+      "impact": "BQL has direct total-language motivation separate from BQP.",
+      "action": "Preserve polynomial runtime, logarithmic total work/control space, and space-bounded uniformity."
+    },
+    {
+      "id": "qma2-products-and-gaps",
+      "severity": "definition-critical",
+      "verdict": "accept",
+      "statement": "Two product witness registers, polynomial size, and standard gap; amplification theorem must be matched to its regime.",
+      "source_ids": [
+        "hm13"
+      ],
+      "impact": "Short-witness, vanishing-gap, or different bipartition variants cannot be transferred by name.",
+      "action": "Keep product-state soundness; do not assume arbitrary entangled repetition is independent."
+    }
+  ],
+  "counting_algebra_cross_check": {
+    "identity": "PP^(P^PP)=PP^PP",
+    "proof": "Fix A in P^PP and its fixed B in PP. Inline the deterministic B-oracle decider for each A-query in the outer PP machine. Query lengths and compositions remain polynomial; no fresh random branches appear; acceptance is unchanged on every original random tape.",
+    "accepted_equivalences": [
+      "PP^PP=PP iff CH=PP",
+      "PP^PP=P^PP iff CH=P^PP"
+    ],
+    "second_equivalence_detail": "With D=P^PP and C2=PP^PP, C2=D gives C3=PP^D=C2, hence all higher levels stabilize. Reverse follows from D subset C2 subset CH.",
+    "not_established": "P^PP=PP implies PP^PP=PP",
+    "proof_status": "independently reasoned mathematical derivation; not yet a Lean certificate or canonical rule"
+  },
+  "sources": [
+    {
+      "id": "liu21",
+      "title": "StoqMA Meets Distribution Testing",
+      "authors": "Yupan Liu",
+      "year": 2021,
+      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol197-tqc2021/LIPIcs.TQC.2021.4/LIPIcs.TQC.2021.4.pdf",
+      "locators": "Corollary 24; Proposition 23; Appendix A.3",
+      "read_depth": "Original theorem and matching-witness proof text",
+      "pre_cutoff": true
+    },
+    {
+      "id": "agl25",
+      "title": "StoqMA vs. MA: The Power of Error Reduction",
+      "authors": "Dorit Aharonov; Alex Grilo; Yupan Liu",
+      "year": 2025,
+      "url": "https://arxiv.org/pdf/2010.02835v4",
+      "locators": "Definition 2.3; Remarks 2.4–2.5; Conjectures 1.1–1.2",
+      "read_depth": "Exact model and parameter discussion; boundary checked independently against Liu",
+      "pre_cutoff": true
+    },
+    {
+      "id": "bhw25",
+      "title": "Quantum PCPs: on Adaptivity, Multiple Provers and Reductions to Local Hamiltonians",
+      "authors": "Harry Buhrman; Jonas Helsen; Jordi Weggemans",
+      "year": 2025,
+      "url": "https://arxiv.org/pdf/2403.04841v3",
+      "locators": "Definitions 4–5; Theorems 1 and 3; Corollary 1",
+      "read_depth": "Model, query protocol, thresholds, and reduction statements",
+      "pre_cutoff": true
+    },
+    {
+      "id": "gn13",
+      "title": "Quantum 3-SAT is QMA1-Complete",
+      "authors": "David Gosset; Daniel Nagaj",
+      "year": 2013,
+      "url": "https://arxiv.org/pdf/1302.0290",
+      "locators": "Section 2; Definition 2; projector-encoding discussion",
+      "read_depth": "Gate-dependent definition and exact-measurement boundary",
+      "pre_cutoff": true
+    },
+    {
+      "id": "fr21",
+      "title": "Eliminating Intermediate Measurements in Space-Bounded Quantum Computation",
+      "authors": "Bill Fefferman; Zachary Remscrim",
+      "year": 2021,
+      "url": "https://arxiv.org/pdf/2006.03530",
+      "locators": "Theorem 1; Section 2; Appendix B",
+      "read_depth": "Model definitions, time/space bounds, equivalence statement",
+      "pre_cutoff": true
+    },
+    {
+      "id": "ae25",
+      "title": "Directed st-Connectivity with Few Paths Is in Quantum Logspace",
+      "authors": "Simon Apers; Roman Edenhofer",
+      "year": 2025,
+      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol339-ccc2025/LIPIcs.CCC.2025.18/LIPIcs.CCC.2025.18.pdf",
+      "locators": "Theorem 4; Section 3.2",
+      "read_depth": "Total-language definition and structural-condition checking argument",
+      "pre_cutoff": true
+    },
+    {
+      "id": "hm13",
+      "title": "Testing Product States, Quantum Merlin–Arthur Games and Tensor Optimisation",
+      "authors": "Aram Harrow; Ashley Montanaro",
+      "year": 2013,
+      "url": "https://arxiv.org/pdf/1001.0017",
+      "locators": "Theorem 9; Section 3.1",
+      "read_depth": "Amplification scope and NEXP upper-bound discussion",
+      "pre_cutoff": true
+    },
+    {
+      "id": "watrous08",
+      "title": "Quantum Computational Complexity",
+      "authors": "John Watrous",
+      "year": 2008,
+      "url": "https://arxiv.org/pdf/0804.3401",
+      "locators": "Section II.1; QSZK section",
+      "read_depth": "Promise definitions and QSZK scope",
+      "pre_cutoff": true
+    },
+    {
+      "id": "gharibian23",
+      "title": "The 7 Faces of Quantum NP",
+      "authors": "Sevag Gharibian",
+      "year": 2023,
+      "url": "https://arxiv.org/pdf/2310.18010v1",
+      "locators": "Sections 4–7",
+      "read_depth": "Verification-model overview, product optimization, and stoquastic caveats",
+      "pre_cutoff": true
+    }
+  ],
+  "limits": [
+    "Not a full repeat of the first reviewer literature census",
+    "Not all 2026 source claims independently checked",
+    "No new all-pairs historical classification audit",
+    "No post-cutoff theorem adjudication",
+    "Selection judgments are editorial rather than community consensus"
+  ],
+  "required_followups": [
+    "Resolve StoqMA threshold union before defining the class",
+    "Require typed promise/total transfer certificates",
+    "Pin QPCP query semantics and QMA1 gate identity",
+    "Audit selected new endpoints through cutoff",
+    "Preserve lost-target list when comparing portfolios"
+  ]
+}

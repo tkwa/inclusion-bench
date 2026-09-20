@@ -1,6 +1,6 @@
 # Development, evaluation and embedding
 
-Version 0.3.1 is operational. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 50 canonical definitions. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
+This branch prepares provisional v0.4.0 for review. The Python runner and consequence scorer use the standard library. The complete Lean proof target includes all 61 canonical definitions, with 50 scored endpoints. Historical results are trusted, cited inputs; new ordinary model claims use the isolated proof verifier. See [the evaluation protocol](EVALUATION.md) for run policy and [formalization status](formalization.md) for the trust boundary.
 
 Run commands from the repository root. An editable installation (`python3 -m pip install -e .`) also exposes the `inclusion-bench` command.
 
@@ -27,7 +27,7 @@ Local adapters default to one CPU and 4 GiB, and configuration rejects limits ab
 
 `research/classical.json` and `research/quantum.json` are the literature inputs. The importer assembles them into `data/knowledge.json`; editing generated data alone fails the reproducibility check. Edit class specifications in `data/classes.json`, then rerun the importer and release build. `scripts/catalog_seed.py` is an authoring utility, not a routine build step.
 
-Keep exact source locators, historical dates, model conventions and uncertainties with each change. The [baseline audit](../research/baseline-audit.md) links family-level source checks, all-pair status indexing and per-pair historical decisions. The current baseline has 709 inclusions, 413 noninclusions and 1,378 candidate questions.
+Keep exact source locators, historical dates, model conventions and uncertainties with each change. The [baseline audit](../research/baseline-audit.md) links family-level source checks, all-pair status indexing and per-pair historical decisions. The current baseline has 845 inclusions, 331 noninclusions and 1,324 candidate questions.
 
 After intentionally changing the versioned dataset, refresh the literature assessment and logical audit reports against the new digest, rebuild the all-pair audit index, and record the new release's historical decisions. Earlier records remain in the registry with their original dataset hashes; they do not automatically apply to a changed version. Once those records are ready, rebuild and freeze it:
 

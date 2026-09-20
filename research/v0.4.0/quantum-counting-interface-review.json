@@ -1,0 +1,930 @@
+{
+  "schema_version": 1,
+  "status": "completed_bounded_source_chain_review",
+  "reviewer": "lean_kernel",
+  "reviewed_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "scope": {
+    "focus_classes": [
+      "QSZK",
+      "QMA2",
+      "StoqMA"
+    ],
+    "comparison_classes": [
+      "PP",
+      "PSharpP",
+      "CH",
+      "PSPACE",
+      "BQP"
+    ],
+    "directed_pairs": 12,
+    "domain": "ordinary total languages",
+    "excluded": [
+      "Future discoveries of flaws in currently accepted proofs",
+      "Exhaustive proof revalidation",
+      "Model-to-literature equivalence proof",
+      "Post-cutoff results"
+    ]
+  },
+  "input_binding": {
+    "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+    "scored_roster_size": 50,
+    "context_catalog_size": 61,
+    "scored_counts": {
+      "inclusion": 845,
+      "separation": 331,
+      "candidate": 1324
+    },
+    "file_sha256": {
+      "research/v0.4.0/residual-risk-review.md": "c9e6ba06f618fc463fb7189c2d3627a4357de3bb0eab701ca299f929f7f1b938",
+      "research/v0.4.0/residual-risk-review.json": "1d174bbe94392b2f7e5a5f30c69bc4134bf72d8e4740393ae89ce7c04961137d",
+      "research/v0.4.0/quantum-new-baseline.json": "0ce84027279436d656f3914bee9fa17a57f390cf95699f9f1066a12e96e9343b",
+      "research/v0.4.0/counting-cross-review.json": "81ce473af7d401fd5c3669d98ecebc72611470904f631efe973ecee702b48f47",
+      "data/classes.json": "f506991a439671d532101daba47674fbf7d4e5abc72d2d55cdb303911c9b6658",
+      "data/knowledge.json": "a380cc9286aa86200023e6854a771739ee2e37a501fec7c35b6b81d4c858378e",
+      "data/policy.json": "3de60329413dc4898a3bc5decc959f1a4b0bcbb952ac17279066b34e6e61d0a7",
+      "quantum/InclusionQuantum/Unentangled.lean": "5fdfff013dad3af352bde4d916d3a3251cd47dd1adce79c5937c667d6a523f89",
+      "quantum/InclusionQuantum/Stoquastic.lean": "3e39ea098b2eea7fe1e7667f345f767707b50c350d69179d6bb2134c81cf90cd",
+      "quantum/InclusionQuantum/Statistical.lean": "ef8a9015fcc8a9faabbd0f132e58ee13bd055b241d8c5b8c8672d84891ab491f"
+    }
+  },
+  "result": {
+    "new_inclusions": 0,
+    "new_separations": 0,
+    "new_independence_results": 0,
+    "canonical_changes_proposed": false,
+    "all_reviewed_pairs_currently_candidates": true,
+    "openness_not_inferred_from_absence_of_hits": true
+  },
+  "facts": [],
+  "rules": [],
+  "sources": [
+    {
+      "id": "watrous2002",
+      "title": "Limits on the power of quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/pdf/quant-ph/0202111",
+      "version_reviewed": "2002 preprint",
+      "locators": [
+        "Theorems 4–6",
+        "Corollaries 8–10",
+        "Proposition 11; printed pp.15–16"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "juw2009",
+      "title": "Two-message quantum interactive proofs are in PSPACE",
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/QIP2inPSPACE.pdf",
+      "version_reviewed": "2009-05-07",
+      "locators": [
+        "Main theorem",
+        "Sections 2.2, 3.1, 4; parallel SDP simulation"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "llw2026",
+      "title": "A slightly improved upper bound for quantum statistical zero-knowledge",
+      "url": "https://arxiv.org/html/2512.11597v2",
+      "version_reviewed": "v2 2026-06-28; v1 2025-12-12; MFCS2026",
+      "locators": [
+        "Theorems 3.3–3.4, 4.2, 4.4",
+        "Sections 1.2–1.4 and 4.2–4.3"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "bchTV2017",
+      "title": "On the Power of Statistical Zero Knowledge",
+      "url": "https://arxiv.org/pdf/1609.02888v4",
+      "version_reviewed": "v4 2017-05-08",
+      "locators": [
+        "Section 1.1; Theorem 1.1"
+      ],
+      "read_depth": "Primary oracle theorem and model scope inspected; lower-bound proof not independently re-proved",
+      "pre_cutoff": true
+    },
+    {
+      "id": "mw2018",
+      "title": "Oracle Separations for Quantum Statistical Zero-Knowledge",
+      "url": "https://cs.uwaterloo.ca/~watrous/Papers/OraclesQSZK.pdf",
+      "version_reviewed": "2018-01-26",
+      "locators": [
+        "Section 2; Theorem 1",
+        "Section 4.1; Theorem 4"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "aaronson2005",
+      "title": "Quantum computing, postselection, and probabilistic polynomial-time",
+      "url": "https://arxiv.org/pdf/quant-ph/0412187",
+      "version_reviewed": "2004 preprint / 2005 publication",
+      "locators": [
+        "Definition 1",
+        "Proposition 2 and Theorem 4"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "yirka2025",
+      "title": "Even Quantum Advice is Unlikely to Solve PP",
+      "url": "https://theoryofcomputing.org/articles/v021a007/v021a007.pdf",
+      "version_reviewed": "Published 2025-10-02",
+      "locators": [
+        "Theorem 3.3 and its advice-dependent proof"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "gsssy2019",
+      "title": "Quantum generalizations of the polynomial hierarchy with applications to QMA(2)",
+      "url": "https://arxiv.org/pdf/1805.11139v2",
+      "version_reviewed": "v2 2019-09-23; journal2022",
+      "locators": [
+        "Theorem 1.2; Corollary 1.3",
+        "Theorem 1.5; Corollaries 1.9–1.10",
+        "Section 1.3 promise/oracle caveats"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "gr2025",
+      "title": "On the Pure Quantum Polynomial Hierarchy and Quantified Hamiltonian Complexity",
+      "url": "https://arxiv.org/html/2510.06522v1",
+      "version_reviewed": "v1 2025-10-07; ICALP2026",
+      "locators": [
+        "Theorems 1.1–1.2; Corollary 1.3",
+        "Theorems 3.1–3.2 and 4.1; level blowup and pure/mixed quantifiers"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "kr2025",
+      "title": "On the Complexity of Pure-State Consistency of Local Density Matrices",
+      "url": "https://arxiv.org/html/2411.03096v2",
+      "version_reviewed": "v2 2025-04-08; ITCS2026",
+      "locators": [
+        "Proposition 1.6",
+        "Theorem 1.9; Corollaries 1.10–1.11",
+        "Section 6: polynomially many quadratic constraints"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "sw2011",
+      "title": "Epsilon-net method for optimizations over separable states",
+      "url": "https://arxiv.org/pdf/1112.0808",
+      "version_reviewed": "v1 2011-12-04",
+      "locators": [
+        "Corollaries 1–2 in introduction",
+        "Section 4: interaction-gate and decomposition restrictions"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "hm2013",
+      "title": "Testing product states, quantum Merlin–Arthur games and tensor optimization",
+      "url": "https://arxiv.org/pdf/1001.0017",
+      "version_reviewed": "2010 preprint / 2013 JACM",
+      "locators": [
+        "Section 3; Theorem 9 and Lemmas 6–8",
+        "Witness-size increase in repetition"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "abdfs2009",
+      "title": "The Power of Unentanglement",
+      "url": "https://theoryofcomputing.org/articles/v005a001/v005a001.pdf",
+      "version_reviewed": "2009 journal version",
+      "locators": [
+        "Introduction printed pp.3–4: removed Strong Amplification implication",
+        "Open problems, printed p.37"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "jw2024",
+      "title": "The Power of Unentangled Quantum Proofs with Non-negative Amplitudes",
+      "url": "https://arxiv.org/pdf/2402.18790v1",
+      "version_reviewed": "v1 2024-02-29; STOC2023 precursor",
+      "locators": [
+        "Definition 2.5; Theorem 1.4; Corollary 1.5",
+        "Section 8: witness restriction and gap-sensitive conversions"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "miyamoto2026",
+      "title": "Near-Optimal Gap Amplification for Nonnegative Unentangled Quantum Proofs",
+      "url": "https://arxiv.org/html/2608.07986v1",
+      "version_reviewed": "v1 2026-08-08",
+      "locators": [
+        "Theorem 1; Corollaries 2–3",
+        "Propositions 5–6, equations (2)–(3)",
+        "Abstract/body scope discrepancy"
+      ],
+      "read_depth": "Formal statements and sign/phase-removal proof inspected; new amplification proof not independently re-proved",
+      "pre_cutoff": true
+    },
+    {
+      "id": "kinoshita2018",
+      "title": "The computational power of postselected quantum Merlin-Arthur proof systems",
+      "url": "https://arxiv.org/pdf/1806.09732",
+      "version_reviewed": "2018 preprint",
+      "locators": [
+        "Definition 2",
+        "Theorem 1 in Section 3; Lemma 1"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "gk2025",
+      "title": "Unentanglement and Post-Measurement Branching in Quantum Interactive Proofs",
+      "url": "https://eccc.weizmann.ac.il/report/2025/145/download/",
+      "version_reviewed": "ECCC TR25-145 (2025)",
+      "locators": [
+        "Theorem 1.1; three-message protocol",
+        "Theorems 1.2–1.3; interaction/advice distinctions"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "bbt2006",
+      "title": "Merlin–Arthur games and stoquastic complexity",
+      "url": "https://arxiv.org/pdf/quant-ph/0611021",
+      "version_reviewed": "2006",
+      "locators": [
+        "Definition 4",
+        "Section 4.1.1: StoqMA in SBP"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "agl2025",
+      "title": "StoqMA vs. MA: the power of error reduction",
+      "url": "https://arxiv.org/pdf/2010.02835v4",
+      "version_reviewed": "v4 / Quantum2025",
+      "locators": [
+        "Corollaries 1.4–1.5",
+        "Definition 2.3 and Remark 2.4"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "gj2026",
+      "title": "The Collapse of Unentangled Stoquastic Merlin–Arthur Proof Systems",
+      "url": "https://arxiv.org/html/2605.16249v1",
+      "version_reviewed": "v1 2026-05-15",
+      "locators": [
+        "Theorem 3.2; Proposition 4.1",
+        "Theorem 5.1 and gap 11Delta/32",
+        "Corollaries 5.1–6.2; Section 6 positivity restriction"
+      ],
+      "read_depth": "Formal collapse and gap calculation inspected; analytic de Finetti proof not independently re-proved",
+      "pre_cutoff": true
+    },
+    {
+      "id": "lw2026",
+      "title": "The power of unentanglement without destructive interference",
+      "url": "https://arxiv.org/html/2604.27886v2",
+      "version_reviewed": "v2 2026-07-12; v1 2026-04-30",
+      "locators": [
+        "Theorems 6.1–6.2, 7.1–7.2, 8.2",
+        "Appendix A, Theorem A.1",
+        "Section 1.4 recognizes subsequent StoqMA(k) collapse"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "gro2026",
+      "title": "The complexity of Stoquastic Sparse Hamiltonians",
+      "url": "https://arxiv.org/html/2605.02845v1",
+      "version_reviewed": "v1 2026-05-04",
+      "locators": [
+        "Theorems 1.1–1.2",
+        "Definitions 2.8–2.9; Sections 3–4"
+      ],
+      "read_depth": "Primary theorem statements and relevant proof interface inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "rt2026",
+      "title": "Spectral gap of Lee-Yang Hamiltonians",
+      "url": "https://arxiv.org/html/2607.10765v1",
+      "version_reviewed": "v1 2026-07-12",
+      "locators": [
+        "Theorem 11; Section 1.1 algorithm application"
+      ],
+      "read_depth": "Algorithm statement and Hamiltonian-family restriction inspected; spectral proof not independently re-proved",
+      "pre_cutoff": true
+    },
+    {
+      "id": "bglw2026",
+      "title": "Efficient quantum algorithm for Heisenberg spin systems",
+      "url": "https://arxiv.org/html/2607.14401v1",
+      "version_reviewed": "v1 2026-07-15",
+      "locators": [
+        "Theorem 1",
+        "Corollary 2; weighted bipartite Quantum Max-Cut"
+      ],
+      "read_depth": "Algorithm statement and Hamiltonian-family restriction inspected; spectral proof not independently re-proved",
+      "pre_cutoff": true
+    },
+    {
+      "id": "kh2026",
+      "title": "Dismantling the Stoquastic Dichotomy",
+      "url": "https://arxiv.org/html/2607.18596v1",
+      "version_reviewed": "v1 2026-07-21; rendered manuscript dated2026-08-24",
+      "locators": [
+        "Theorems 4 and 6",
+        "VGP recognition versus promised energy problem"
+      ],
+      "read_depth": "Primary theorem scope inspected; gadget and recognition proofs not independently re-proved",
+      "pre_cutoff": true
+    },
+    {
+      "id": "jcsh2024",
+      "title": "Positive bias makes tensor-network contraction tractable",
+      "url": "https://arxiv.org/html/2410.05414v1",
+      "version_reviewed": "v1 2024-10-07; STOC2025",
+      "locators": [
+        "Theorems 3–4",
+        "Formal Theorems 27 and 31; Section 6"
+      ],
+      "read_depth": "Primary algorithm/hardness statements and approximation conventions inspected",
+      "pre_cutoff": true
+    },
+    {
+      "id": "hbs2026",
+      "title": "Dequantization Barriers for Guided Stoquastic Hamiltonians",
+      "url": "https://arxiv.org/html/2602.23183v1",
+      "version_reviewed": "v1 2026-02-26",
+      "locators": [
+        "Section 1: trusted versus untrusted guiding states",
+        "Definition 2.12: adjacency-list oracle",
+        "Proposition 3.1; Theorem 3.2"
+      ],
+      "read_depth": "Primary query/sampling theorem and supplied-state assumptions inspected",
+      "pre_cutoff": true
+    }
+  ],
+  "chains": [
+    {
+      "id": "qszk_explicit_trace",
+      "source_ids": [
+        "watrous2002",
+        "juw2009"
+      ],
+      "valid_statement_or_chain": "QSZK subset QIP(2) intersect coQIP(2) subset PSPACE.",
+      "unsupported_endpoint_transfer": "Neither PP nor PSharpP nor CH follows from an NC algorithm on exponential-size explicit matrices.",
+      "restrictions": [
+        "exponential state dimension",
+        "succinct versus explicit matrices",
+        "two-message interaction"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "qszk_2026_prover",
+      "source_ids": [
+        "llw2026"
+      ],
+      "valid_statement_or_chain": "QSZK protocols admit quantum linear-space honest provers using single-exponential time in transcript qubits.",
+      "unsupported_endpoint_transfer": "Linear space for an interactive honest prover does not give a polynomial-time or finite-counting-level decider.",
+      "restrictions": [
+        "runtime measured in qubits rather than dimension",
+        "interaction retained"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "qszk_oracles",
+      "source_ids": [
+        "bchTV2017",
+        "mw2018"
+      ],
+      "valid_statement_or_chain": "Different oracles obstruct QSZK subset PP and PP subset QSZK through NISZK and UP intersect coUP respectively.",
+      "unsupported_endpoint_transfer": "No ordinary separation or ZFC independence; the QSZK-versus-PP oracle does not automatically separate QSZK from larger PSharpP or CH.",
+      "restrictions": [
+        "relativization",
+        "direction of superclass transfer"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "postselection",
+      "source_ids": [
+        "aaronson2005"
+      ],
+      "valid_statement_or_chain": "PostBQP equals PP.",
+      "unsupported_endpoint_transfer": "Discarding a possibly exponentially unlikely conditioning event does not yield BQP=PP or PP subset QSZK.",
+      "restrictions": [
+        "postselection"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "advice",
+      "source_ids": [
+        "yirka2025"
+      ],
+      "valid_statement_or_chain": "If PP subset BQP/qpoly then CH=QMA=YQP*.",
+      "unsupported_endpoint_transfer": "No unconditional comparison; the nonuniform quantum advice and the premise cannot be removed.",
+      "restrictions": [
+        "quantum advice",
+        "conditional collapse"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "classical_quantum_hierarchies",
+      "source_ids": [
+        "gsssy2019"
+      ],
+      "valid_statement_or_chain": "QCPH subset P^(PP^PP); QCPH=QPH implies QMA2 subset CH.",
+      "unsupported_endpoint_transfer": "No unconditional QMA2 subset CH; mixed second-level PSPACE containment is insufficient for a hierarchy collapse.",
+      "restrictions": [
+        "classical versus quantum proofs",
+        "promise oracle convention",
+        "conditional premise"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "pure_mixed_levels",
+      "source_ids": [
+        "gr2025",
+        "gsssy2019"
+      ],
+      "valid_statement_or_chain": "QMA2 subset pureQΣ2 subset mixedQΣ3 subset NEXP; pureQPH=QPH as unions.",
+      "unsupported_endpoint_transfer": "Union equality with a level increase does not imply pureQΣ2=mixedQΣ2 or identify QPH with QCPH.",
+      "restrictions": [
+        "pure versus mixed quantifiers",
+        "level blowup",
+        "nonconvex versus convex strategy sets"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "pure_super",
+      "source_ids": [
+        "kr2025"
+      ],
+      "valid_statement_or_chain": "PureSuperQMA subset PSPACE and PureSuperQMA subset QMA2.",
+      "unsupported_endpoint_transfer": "The upper bound of a subclass is not an upper bound of QMA2; polynomial constraint count is essential.",
+      "restrictions": [
+        "polynomially many quadratic constraints",
+        "unproved reverse inclusion"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "restricted_interaction",
+      "source_ids": [
+        "sw2011"
+      ],
+      "valid_statement_or_chain": "QMA2 with logarithmically many gates crossing proof registers is in PSPACE.",
+      "unsupported_endpoint_transfer": "General polynomial-size verification may have polynomially many such gates.",
+      "restrictions": [
+        "cross-register gate bound",
+        "operator decomposition size"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "amplification_versions",
+      "source_ids": [
+        "abdfs2009",
+        "hm2013"
+      ],
+      "valid_statement_or_chain": "Ordinary QMA2 admits amplification with increased witness size; an earlier stronger conjectural implication was withdrawn.",
+      "unsupported_endpoint_transfer": "Modern amplification does not discharge the older witness-size-preserving Strong Amplification premise.",
+      "restrictions": [
+        "witness length",
+        "superseded version",
+        "different amplification definitions"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "nonnegative_witnesses",
+      "source_ids": [
+        "jw2024",
+        "miyamoto2026"
+      ],
+      "valid_statement_or_chain": "Theorem1 reaches QMA+(2,1−1/p,1/4+1/p)=NEXP; Corollary2 embeds other inverse-gap parameters into this regime.",
+      "unsupported_endpoint_transfer": "At s=1/4+1/p, both min(1,4s) and min(1,8s) are1; no ordinary QMA2=NEXP.",
+      "restrictions": [
+        "nonnegative adversarial witnesses",
+        "real versus complex amplitudes",
+        "soundness loss",
+        "formal statement narrower than abstract"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "postqma",
+      "source_ids": [
+        "kinoshita2018"
+      ],
+      "valid_statement_or_chain": "postQMA2 with perfect completeness and constant soundness captures NEXP.",
+      "unsupported_endpoint_transfer": "An exponentially rare postselection event and exponentially small source gap cannot be omitted.",
+      "restrictions": [
+        "postselection",
+        "gap preservation"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "interactive_unentangled",
+      "source_ids": [
+        "gk2025"
+      ],
+      "valid_statement_or_chain": "QIP_unent[3]=NEXP; QMA2 embeds by ignoring an exchange.",
+      "unsupported_endpoint_transfer": "The reverse simulation would have to remove adaptive interaction.",
+      "restrictions": [
+        "three-message interaction",
+        "post-measurement branching"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "stoq_basic",
+      "source_ids": [
+        "bbt2006",
+        "agl2025"
+      ],
+      "valid_statement_or_chain": "MA subset StoqMA subset SBP intersect QMA; near-perfect-completeness StoqMA is in MA.",
+      "unsupported_endpoint_transfer": "Common QMA/PP bounds do not compare StoqMA with BQP; perfect completeness/general amplification is not automatic.",
+      "restrictions": [
+        "restricted gate set",
+        "threshold union",
+        "near-perfect completeness"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "stoq_collapse",
+      "source_ids": [
+        "gj2026"
+      ],
+      "valid_statement_or_chain": "StoqMA(k)=StoqMA for polynomial k and inverse-polynomial gap; Theorem5.1 retains gap11Delta/32.",
+      "unsupported_endpoint_transfer": "Entrywise nonnegative acceptance matrices are essential; general QMA2 and QMA+ verifiers need not have them.",
+      "restrictions": [
+        "stoquastic verifier",
+        "nonnegative matrix versus nonnegative witness",
+        "arbitrary inverse-polynomial gap retained"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "stoq_restricted_algorithms",
+      "source_ids": [
+        "lw2026",
+        "gj2026"
+      ],
+      "valid_statement_or_chain": "StoqMA_log=BPP; precise-gap stoquastic variants have PSPACE/NEXP characterizations.",
+      "unsupported_endpoint_transfer": "Neither logarithmic witness length nor exponentially small gaps describe ordinary StoqMA; the earlier EXP bound is superseded by the May collapse.",
+      "restrictions": [
+        "witness size",
+        "precise gap",
+        "subsequent source"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "sparse_energy",
+      "source_ids": [
+        "gro2026",
+        "gj2026"
+      ],
+      "valid_statement_or_chain": "Stoquastic sparse energy is StoqMA-complete; its separable version becomes StoqMA-complete through the May collapse.",
+      "unsupported_endpoint_transfer": "Completeness is not a BQP algorithm and does not prove hardness of every restricted physical subfamily.",
+      "restrictions": [
+        "sparse input representation",
+        "separable optimization",
+        "promise gap"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "restricted_physical_algorithms",
+      "source_ids": [
+        "rt2026",
+        "bglw2026"
+      ],
+      "valid_statement_or_chain": "Lee-Yang/Heisenberg families including weighted bipartite Quantum Max-Cut have quantum energy algorithms.",
+      "unsupported_endpoint_transfer": "No reduction from arbitrary StoqMA instances to these specified families was established by the checked results.",
+      "restrictions": [
+        "Hamiltonian subfamily",
+        "polynomial coupling and precision parameters"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "vgp_recognition",
+      "source_ids": [
+        "kh2026"
+      ],
+      "valid_statement_or_chain": "VGP-promised energy is StoqMA-complete; recognizing VGP is PSPACE-complete in the stated general setting.",
+      "unsupported_endpoint_transfer": "A hard recognition problem does not make the promised energy task PSPACE-hard or BQP-hard.",
+      "restrictions": [
+        "recognition versus promise task"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "tensor_error_norm",
+      "source_ids": [
+        "jcsh2024"
+      ],
+      "valid_statement_or_chain": "Positive tensor contraction has a BPP additive-1-norm approximation and StoqMA-hard multiplicative approximation.",
+      "unsupported_endpoint_transfer": "A polynomial bound connecting the two errors is required; it is not supplied by positivity.",
+      "restrictions": [
+        "additive versus multiplicative error",
+        "input normalization",
+        "worst-case versus biased ensembles"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    },
+    {
+      "id": "guided_sampling",
+      "source_ids": [
+        "hbs2026"
+      ],
+      "valid_statement_or_chain": "A quantum guided ground-state sampler beats classical query algorithms for the constructed oracle family.",
+      "unsupported_endpoint_transfer": "This is not ordinary decision hardness, BQP completeness of stoquastic energy, or a separation of the roster endpoints.",
+      "restrictions": [
+        "adjacency-list oracle",
+        "sampling output",
+        "supplied guiding state",
+        "different trusted/untrusted tasks"
+      ],
+      "result": "no_new_ordinary_endpoint_classification"
+    }
+  ],
+  "pair_reviews": [
+    {
+      "left": "QSZK",
+      "right": "PP",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "qszk_explicit_trace",
+        "qszk_2026_prover",
+        "qszk_oracles",
+        "postselection",
+        "advice"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 4
+    },
+    {
+      "left": "PP",
+      "right": "QSZK",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "qszk_explicit_trace",
+        "qszk_2026_prover",
+        "qszk_oracles",
+        "postselection",
+        "advice"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 14
+    },
+    {
+      "left": "QSZK",
+      "right": "PSharpP",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "qszk_explicit_trace",
+        "qszk_2026_prover",
+        "qszk_oracles",
+        "postselection",
+        "advice"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 2
+    },
+    {
+      "left": "PSharpP",
+      "right": "QSZK",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "qszk_explicit_trace",
+        "qszk_2026_prover",
+        "qszk_oracles",
+        "postselection",
+        "advice"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 20
+    },
+    {
+      "left": "QSZK",
+      "right": "CH",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "qszk_explicit_trace",
+        "qszk_2026_prover",
+        "qszk_oracles",
+        "postselection",
+        "advice"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 1
+    },
+    {
+      "left": "CH",
+      "right": "QSZK",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "qszk_explicit_trace",
+        "qszk_2026_prover",
+        "qszk_oracles",
+        "postselection",
+        "advice"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 21
+    },
+    {
+      "left": "QMA2",
+      "right": "PSPACE",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "classical_quantum_hierarchies",
+        "pure_mixed_levels",
+        "pure_super",
+        "restricted_interaction",
+        "amplification_versions",
+        "nonnegative_witnesses",
+        "postqma",
+        "interactive_unentangled",
+        "stoq_collapse"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 3
+    },
+    {
+      "left": "PSPACE",
+      "right": "QMA2",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "classical_quantum_hierarchies",
+        "pure_mixed_levels",
+        "pure_super",
+        "restricted_interaction",
+        "amplification_versions",
+        "nonnegative_witnesses",
+        "postqma",
+        "interactive_unentangled",
+        "stoq_collapse"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 28
+    },
+    {
+      "left": "QMA2",
+      "right": "CH",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "classical_quantum_hierarchies",
+        "pure_mixed_levels",
+        "pure_super",
+        "restricted_interaction",
+        "amplification_versions",
+        "nonnegative_witnesses",
+        "postqma",
+        "interactive_unentangled",
+        "stoq_collapse"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 4
+    },
+    {
+      "left": "CH",
+      "right": "QMA2",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "classical_quantum_hierarchies",
+        "pure_mixed_levels",
+        "pure_super",
+        "restricted_interaction",
+        "amplification_versions",
+        "nonnegative_witnesses",
+        "postqma",
+        "interactive_unentangled",
+        "stoq_collapse"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 15
+    },
+    {
+      "left": "StoqMA",
+      "right": "BQP",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "stoq_basic",
+        "stoq_collapse",
+        "stoq_restricted_algorithms",
+        "sparse_energy",
+        "restricted_physical_algorithms",
+        "vgp_recognition",
+        "tensor_error_norm",
+        "guided_sampling",
+        "nonnegative_witnesses"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 34
+    },
+    {
+      "left": "BQP",
+      "right": "StoqMA",
+      "baseline_status": "unreviewed",
+      "review_verdict": "retain_candidate_no_resolution_identified",
+      "chain_ids": [
+        "stoq_basic",
+        "stoq_collapse",
+        "stoq_restricted_algorithms",
+        "sparse_energy",
+        "restricted_physical_algorithms",
+        "vgp_recognition",
+        "tensor_error_norm",
+        "guided_sampling",
+        "nonnegative_witnesses"
+      ],
+      "hypothetical_inclusion_unknown_pairs_resolved": 6
+    }
+  ],
+  "transfer_policy": [
+    "A promise-class inclusion transfers to total-language restrictions only with the source promise respected on every reduced input.",
+    "A separating promise problem need not yield a total-language separation.",
+    "Oracle/query and sampling results are not ordinary decision-class results or ZFC independence.",
+    "Keep advice, postselection, all-witness soundness, gap, register length, and exact verifier restrictions.",
+    "Do not infer membership in a subclass from a common superclass or an upper bound on an embedded subclass.",
+    "Counting levels are fixed before taking their union; polynomial-time PP access is distinct from PP with a PP oracle.",
+    "Counterfactual point counts are raw closure consequences among current candidates, not official eligibility or awarded points."
+  ],
+  "search_and_read_method": {
+    "search_date": "2026-09-20",
+    "queries": [
+      "QSZK PP counting hierarchy upper bound",
+      "QMA(2) PSPACE upper bound 2025 2026",
+      "StoqMA BQP containment 2025 2026",
+      "QSZK P^PP",
+      "QMA2 strong amplification conjecture PSPACE",
+      "postselected QMA(2) NEXP",
+      "nonnegative unentangled quantum proofs amplification",
+      "bipartite Quantum Max-Cut BQP 2026",
+      "Positive Bias Makes Tensor-Network Contraction Tractable"
+    ],
+    "forward_chains_followed": [
+      "Liu–Wu to Gay–Jeronimo May2026 collapse",
+      "Liu–Wu to Grewal–Rudolph pure hierarchy",
+      "Stoquastic Hamiltonian papers to guided-sampling dequantization barrier",
+      "Jeronimo–Wu to Miyamoto August2026 gap regime",
+      "Watrous trace algorithm to JUW two-message SDP to LLW2026 prover-space refinement"
+    ],
+    "scope_limit": "Targeted primary theorem and proof-interface reading, not a systematic census of every 2025–2026 publication or a re-proof of all analytic lemmas."
+  },
+  "risk_assessment": {
+    "action": "no_numeric_revision",
+    "original_report_unchanged": true,
+    "retained_broad_working_expected_pair_errors": 2.9375,
+    "calibrated": false,
+    "reason": "Specific failed transfers are now better documented, but this bounded search does not calibrate a reduction of an event probability for any unseen theorem. Shared source chains and recent-paper searches overlap the original ledger.",
+    "new_evidence": [
+      "Pure/mixed hierarchy equality increases levels and cannot invoke the mixed second-level PSPACE bound.",
+      "May2026 StoqMA(k) collapse strengthens an intermediate bound without changing a scored comparison.",
+      "August2026 amplification formal body has a narrower claim than its abstract; sign/phase loss blocks ordinary QMA2 transfer.",
+      "Guided stoquastic oracle sampling and restricted Hamiltonian algorithms do not compare general decision endpoints."
+    ]
+  },
+  "limitations": [
+    "No proof of openness or literature completeness.",
+    "No independent validation of every new analytic proof; accepted-proof flaws remain outside the requested residual-error target.",
+    "Separate reviewers own QSZK and real-feasibility semantic bridges.",
+    "Current candidate status may later be replaced by a release-level historical-review decision; this report records the reviewed snapshot."
+  ]
+}

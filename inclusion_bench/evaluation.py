@@ -348,7 +348,8 @@ def leaderboard(benchmark: Benchmark, manifests: list[str]) -> list[dict]:
                         'kind': 'official-model-run',
                         'independence_results': {key: evidence for key, evidence in result['verified_claim_provenance'].items()
                                                  if any('independence_review' in item for item in evidence)},
-                        'report_url': 'https://github.com/tkwa/inclusion-bench/blob/main/' + relative})
+                        'report_url': 'https://github.com/tkwa/inclusion-bench/blob/' +
+                                      benchmark.policy.get('repository_ref', 'main') + '/' + relative})
     records.sort(key=lambda r: (r['cohort_sha256'], -r['score'], r['run_id']))
     cohorts = {}
     for record in records:

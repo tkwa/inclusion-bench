@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "status": "review_complete_fixes_applied_pending_parent_release_checks",
+  "reviewer": "independent quantum_coverage integration review",
+  "recorded_at": "2026-09-20T18:25:18.009691+00:00",
+  "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+  "taskset_sha256": "3f9dd499d077a000ad8f5d8c9ca86008d577dbb47736f836af8ef90e76df1fd5",
+  "scope": {
+    "scored_class_count": 50,
+    "context_class_count": 61,
+    "scored_pairs": 2500,
+    "candidate_questions": 1324,
+    "reviewed_boundaries": [
+      "scored-versus-context inference",
+      "run assignment and resume identity",
+      "proof targets and fresh checker build",
+      "proof/run/history admission",
+      "Lean scoring vocabulary",
+      "source import and generated artifacts",
+      "website proof graphs and endpoints",
+      "wheel source inclusion",
+      "SAT/refutation/census/pruning audit scope"
+    ],
+    "selection_constraint": "Latest user instruction restricts selection to the current61-class context; no outside candidates were added in this integration pass."
+  },
+  "findings": [
+    {
+      "id": "I1",
+      "severity": "high",
+      "status": "fixed",
+      "kind": "v0.4.0_regression",
+      "title": "Isolated verifier omitted new dependencies",
+      "location": "scripts/proofcheck/remote_runner.py",
+      "before": "Hardcoded old core order and Quantum/Normalization/Complete omitted the new imported modules, preventing a fresh trusted sandbox build.",
+      "fix": "Derive deterministic dependency order from hash-checked trusted first-party source headers. Validate paths, source/hash-set equality, missing imports and cycles. Keep candidate imports out of discovery and keep explicit checker/baseline stages.",
+      "validation": "Actual shipped graph includes all33 first-party modules; missing root/dependency, cycles, invalid paths and hashes fail closed. Final remote replay belongs to parent integration checks."
+    },
+    {
+      "id": "I2",
+      "severity": "medium",
+      "status": "fixed",
+      "kind": "v0.4.0_regression",
+      "title": "External inclusion census indexed background complements through a scored-only map",
+      "location": "scripts/audit_external_census.py",
+      "before": "Mapping only scored IDs made retained background complement identities raise KeyError.",
+      "fix": "Build discovery mapping from context_ids; report scope retains context paths.",
+      "validation": "Tiny local HTML inclusion graph processes all61 IDs and confirms P subset NP without a network request."
+    },
+    {
+      "id": "I3",
+      "severity": "high",
+      "status": "fixed",
+      "kind": "preexisting_binding_gap_exercised_during_migration",
+      "title": "Proof review ignored trusted semantic/checker/baseline report identities",
+      "location": "inclusion_bench/reviews.py",
+      "before": "A maintainer-supplied report with matching dataset, claims and proof-source hash could carry stale or incorrect semantics_sha256, checker_sha256 and baseline_sha256.",
+      "fix": "Generation and admission now share trusted_verification_inputs. Admission requires the actual method and all three exact current bindings, including the report's full ordered target list. Missing legacy identities are rejected.",
+      "validation": "All three mismatches and omissions reject; changing a real semantic file or checker support file rejects an otherwise matching report; exactly matching report passes.",
+      "boundary": "This prevents accidental stale report reuse. Reports and review registries remain explicit trusted maintainer inputs; no cryptographic signature authenticates arbitrary JSON supplied by a malicious maintainer."
+    },
+    {
+      "id": "I4",
+      "severity": "medium",
+      "status": "fixed_by_parent",
+      "kind": "preexisting_manifest_coverage_gap",
+      "title": "Root Lean imports absent from frozen formalization manifest",
+      "location": "scripts/import_research.py",
+      "before": "Changing either shipped root entry point did not change or invalidate the formalization bundle.",
+      "fix": "Parent included lean/InclusionBench.lean and quantum/InclusionQuantum.lean.",
+      "validation": "Mutating either root in a temporary frozen fixture now makes frozen_release reject; restoring both passes."
+    },
+    {
+      "id": "I5",
+      "severity": "low",
+      "status": "fixed_by_parent",
+      "kind": "provisional_branch_link_error",
+      "title": "Published model evidence URL always selected main",
+      "location": "inclusion_bench/evaluation.py",
+      "before": "The public row could link branch-specific published evidence to main.",
+      "fix": "Parent uses policy.repository_ref.",
+      "validation": "Read the updated construction; no real model evaluation was fabricated or published."
+    },
+    {
+      "id": "I6",
+      "severity": "medium",
+      "status": "fixed",
+      "kind": "v0.4.0_regression",
+      "title": "Descriptive JSONSchemas rejected every new endpoint",
+      "location": "schemas/ai-run.schema.json; schemas/adapter-response.schema.json; schemas/submission.schema.json",
+      "before": "All six endpoint enums retained the old50 identifiers, even though runtime and provider schema accepted the full61 context.",
+      "fix": "generate_schemas.py refreshes endpoint enums from all catalog classes during import/release generation. Reproducibility checking includes the three files.",
+      "validation": "Equality tests compare every left/right enum with context_ids, retain background coRP and accept QMA2/ExistsR; future-node fixture verifies generation is not hardcoded to61."
+    }
+  ],
+  "open_blocking_code_findings": [],
+  "validation": {
+    "runner": {
+      "passed": 15
+    },
+    "integration_boundaries": {
+      "passed": 9
+    },
+    "proofcheck_unit": {
+      "passed": 7,
+      "isolated_skipped": 8
+    },
+    "benchmark": {
+      "passed": 20
+    },
+    "release": {
+      "passed": 4
+    },
+    "end_to_end_synthetic_fixture": {
+      "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+      "counts": {
+        "scored": 50,
+        "context": 61,
+        "questions": 1324
+      },
+      "request_context_and_new_models": "pass",
+      "background_claim_transport": [
+        {
+          "relation": "inclusion",
+          "left": "coRP",
+          "right": "P"
+        }
+      ],
+      "background_proof_target": "pass",
+      "stale_report_binding": "rejected: Proof report has stale or mismatched trusted input: baseline_sha256",
+      "background_consequences": {
+        "direct": 0,
+        "consequence": 14,
+        "provisional": 14
+      },
+      "background_only_scored_consequences": "pass",
+      "old_dataset_rejected": "pass",
+      "old_taskset_rejected": "pass",
+      "changed_roster_rejected": "pass",
+      "background_independence_score": 0
+    },
+    "actual_wheel": {
+      "wheel": "inclusion_bench-0.4.0-py3-none-any.whl",
+      "formalization_manifest_files_present_and_exact": 35,
+      "first_party_build_order_count": 33,
+      "packaged_semantic_sources": 41,
+      "missing_files": [],
+      "mismatched_files": [],
+      "version": "0.4.0"
+    },
+    "network_and_model_calls": "None; all execution fixtures use local synthetic adapters and temporary directories.",
+    "proof_evidence_note": "Synthetic trusted report fixtures test admission and transport, not mathematical proof correctness. Actual fresh-kernel replay is separate."
+  },
+  "reviewed_source_sha256": {
+    "scripts/proofcheck/remote_runner.py": "881e8161f04777dbfda868fb2a39fe7e8b422a3a1ec9187e6b7a226fecd23349",
+    "scripts/audit_external_census.py": "1668adabe83562cf9b3f6c3d490941c15a0776d7e253d1a7176fbec06a1af0d2",
+    "inclusion_bench/proofcheck.py": "98b62a96efda651e27c28246043b9689e5050a0500e80b4abcdbc3790738d20d",
+    "inclusion_bench/reviews.py": "d616a6456f022a0a8642445d3f3344bd7300c92cb097e5182661cc51b6831f8c",
+    "tests/test_runner.py": "9be82fbc283c0476f5366a01cf266f610c1ee2d817dbdd51193925fe05b7a2be",
+    "tests/test_integration_boundaries.py": "7a9333d04accaca91079dec62e640a396aba6e71b998becf14f71506dd09cf98",
+    "scripts/generate_schemas.py": "6bf817b1a47832968db085fb382d262df977d044b1627689bd728415a0304f47",
+    "schemas/ai-run.schema.json": "0d28bed27b3ffc5605d41d5507b0229ef0f5438f4392949a7b5288c286874a2a",
+    "schemas/adapter-response.schema.json": "5be205fc373ce5670f8886a5f657fdeec6fbe9deeef43b86e250455ddeeadb44",
+    "schemas/submission.schema.json": "ab31be58e90b4f171a8300ac27d7276479776bbdd63d9ea59f4aaff0131945c5",
+    "inclusion_bench/benchmark.py": "d9b944f6ea62feae50fa5ec4fa4b1dd96c480da3d44b466433af31b2da381257",
+    "inclusion_bench/engine.py": "4175d28d78ecaeb70a4951498bd09c76b952cac9813f0b7a97a622fd4a8e65a5",
+    "inclusion_bench/runner.py": "fbcbc2bdda91f819cef310d1562f225e216abf44cd3761eaa24365b0386a55ec",
+    "inclusion_bench/evaluation.py": "808d6dcd96f58302c93a8f575ca30809f7e2361e4375e1bbc9695bbb1d4205a9",
+    "inclusion_bench/lean_export.py": "cc57c1d5e97be806635eca9721fbb825f4913d16ce4de967ba4b34f4dab9350a",
+    "lean/InclusionBench/Catalog.lean": "6b2f548c59b86aaa1881cf70ba0d4bd0a1fb7637c4a81b17a94a031898e1e2c7",
+    "lean/InclusionBench/Scoring.lean": "2cff83c24a59959eb58ee76742fced9fd0a192b1d777226ec0da8e0e974f4bf6",
+    "quantum/InclusionQuantum/Complete.lean": "fafb1dde4c53f7541df41db6a492e5a8b15fd23ae200aeb0f5d4092862183eda",
+    "scripts/import_research.py": "3fbc43613657b0f1457877c71561f5d4ed6526d4dcde9000e85d4bcff0451cf8",
+    "scripts/build_release.py": "d2eb5e2976b278a740c707b97568cfcf5369c2957f46c68960c5962695b42ad1",
+    "scripts/check_generated.py": "488c4f0c8efd949a94a0287a020d3d3803ea27491b89d409986fbe4aaad41b22",
+    "scripts/audit_sat.py": "bcc0712af5773530ffacc64d7a2206f943d0e5a1bf011bbc13166ebde87cce2c",
+    "scripts/audit_failed_literals.py": "f6913210dae0517c8bc3b83ac08b9d82995660e28bb6a9fe014bdc08c9f4c1e4",
+    "scripts/audit_pruning.py": "49a87f86cd044f42df2bf399158fb0c11029c011a3f20fd321812d80ad54fbad",
+    "scripts/audit_roster_migration.py": "939853173c9be503108cf1f3a4775ba6ac043861ca9c271c349a881657953da0",
+    "scripts/build_audit_index.py": "474074171f8766e04fc8ded72080aa9191577bab23298df3faf8909a6ce7d356",
+    "web/app.js": "d8077f536fed2523c9a5808d445a51accef27e5f7225473864c23ebc6b123bee",
+    "pyproject.toml": "c6b7790d75a9446ec49681a3b5313fa7e9501569ade81c643483033671b9e927",
+    ".github/workflows/verify-and-publish.yml": "6bd4416508a3634f9da2164085d94edab592975b23d8f27805acd5ea93290f47",
+    "data/formalization.json": "199f5c8ecfe694f76b49d2fd7482ddc87bfe0815b5994b86d29c1858957de165"
+  },
+  "expected_remaining_work": [
+    "Parent final isolated Lean verification after syncing fixed checker; eight real-kernel tests were not run by this audit.",
+    "Rebuild final audit/history/generated artifacts and freeze the final version; the presently pending freeze/history is intentional, not an integration defect."
+  ],
+  "risk_assessment": {
+    "judgment": "No unresolved blocking defect found in the exercised integration boundaries after these fixes. This is a bounded code/fixture review, not a calibrated probability of zero bugs.",
+    "high_fanout_paths_examined": "A background scoring leak, a truncated inference vocabulary, or a stale semantic report could affect many pairs; tests exercise these paths explicitly rather than inferring safety from the matrix dimensions.",
+    "residual_risks": [
+      "The trusted literature/model-equivalence boundary and quality of historical review remain external to these software checks.",
+      "Maintainers can fabricate or manually edit trusted registries; this design does not defend against a malicious maintainer.",
+      "Future trusted Lean header syntax outside the documented restricted parser fails closed and needs a corresponding parser/test update.",
+      "Actual Docker/Lean execution of the new topological order remains a required release integration check.",
+      "No whole-application browser replay was repeated here; source inspection and generated graph tests cover the data/UI boundary."
+    ]
+  }
+}

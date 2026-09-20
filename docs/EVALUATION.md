@@ -2,11 +2,11 @@
 
 InclusionBench evaluates an AI model's ability to resolve complexity-theory questions. One entry identifies a model configuration, an assigned set of questions, a declared budget and a single recorded run. Its accepted proofs and their consequences determine its score.
 
-Version 0.3.1 is open for runs. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite contains 1,378 frozen questions with recorded open-at-cutoff decisions from the [release audit](../research/baseline-audit.md). Runs reuse these revisable historical judgments; they still need proof and run-integrity review.
+This provisional v0.4.0 snapshot is prepared for runs and review; it is not the published release. Existing cited mathematics is trusted; re-formalizing those proofs is not required. The suite contains 1,324 frozen questions with recorded open-at-cutoff decisions from the [release audit](../research/baseline-audit.md). Runs reuse these revisable historical judgments; they still need proof and run-integrity review.
 
 ## 1. Freeze the benchmark
 
-The release fixes the 50 class identifiers, their canonical operational definitions, uniformity conventions, baseline facts, implication rules, cutoff and candidate task list. A candidate is an ordered pair absent from the baseline's resolution closure. Its absence does not by itself establish historical openness.
+The release fixes 50 scored class identifiers within a 61-class context catalog, their canonical operational definitions, uniformity conventions, baseline facts, implication rules, cutoff and candidate task list. Supporting proofs may mention any context class; only pairs with two scored endpoints earn points. A candidate is an ordered pair absent from the baseline's resolution closure. Its absence does not by itself establish historical openness.
 
 A task asks whether A ⊆ B, A ⊄ B, or the encoded inclusion is independent of ZFC. Reversing the classes creates a different task. Equalities and strict containments can resolve several directions. The targets are classes of total binary decision languages; a promise problem or relativized question does not silently replace them.
 

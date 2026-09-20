@@ -89,11 +89,12 @@
       const data = await response.json();
       if (!Array.isArray(data.classes) || !Array.isArray(data.pairs)) throw new Error("The dataset must contain classes and pairs arrays.");
       state.data = data;
-      state.classes = new Map(data.classes.map((c) => [c.id, c]));
+      // Background classes can occur inside a proof without becoming matrix endpoints.
+      state.classes = new Map([...data.classes, ...(data.background_classes || [])].map((c) => [c.id, c]));
       state.sources = new Map((data.sources || []).map((s) => [s.id, s]));
       state.pairs = new Map(data.pairs.map((p) => [key(p.left, p.right), p]));
       state.baselineSteps = new Map((data.baseline_proof_steps || []).map((step) => [step.id, step]));
-      if (!state.classes.has("NP") || !state.classes.has("P")) {
+      if (!data.classes.some((c) => c.id === "NP") || !data.classes.some((c) => c.id === "P")) {
         state.selectedPair = { left: data.classes[0]?.id, right: data.classes[1]?.id || data.classes[0]?.id };
       }
       renderMetadata();
@@ -141,6 +142,27 @@
       document.querySelector(".draft-banner p").replaceChildren(
         element("strong", "", "The cutoff audit is recorded."),
         document.createTextNode(" Start a model run on the audited questions. New proofs and run integrity are reviewed before publication; historical decisions remain revisable."));
+    }
+    if (d.release_status === "provisional") {
+      $("version").textContent = `Provisional v${d.version}`;
+      document.querySelector(".hero .tag-dark").textContent = "Provisional roster";
+      document.querySelector(".draft-banner>.tag").textContent = "Under review";
+      document.querySelector(".draft-banner p").replaceChildren(
+        element("strong", "", `Provisional v${d.version}.`),
+        document.createTextNode(" The proposed roster and scoring changes are under review. This is a separate taskset from the published release."));
+      const reviewLink = document.querySelector(".draft-banner>a");
+      reviewLink.textContent = "Review the roster ↗";
+      reviewLink.href = "https://github.com/tkwa/inclusion-bench/blob/provisional-v0.4.0/research/v0.4.0/roster-decision.md";
+    }
+    if (d.repository_ref && /^[A-Za-z0-9._/-]+$/.test(d.repository_ref)) {
+      for (const link of document.querySelectorAll('a[href^="https://github.com/tkwa/inclusion-bench/blob/main/"]')) {
+        link.href = link.href.replace("/blob/main/", `/blob/${d.repository_ref}/`);
+      }
+    }
+    const backgroundCount = d.background_classes?.length || 0;
+    $("roster-scope").hidden = backgroundCount === 0;
+    if (backgroundCount) {
+      $("roster-scope").textContent = `${number(d.classes.length)} classes supply scored questions. ${number(backgroundCount)} additional classes remain available inside proofs and implication chains; their own pairs earn no points. Scores from different roster versions are not directly comparable.`;
     }
     $("dataset-hash").textContent = d.dataset_sha256 || "Not provided";
     const repo = safeLink(d.repository_url || d.repo_url || d.repository || "");

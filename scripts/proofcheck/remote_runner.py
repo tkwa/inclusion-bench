@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import selectors
 import shutil
 import subprocess
@@ -14,7 +15,114 @@ import tempfile
 import time
 import uuid
 
-CORE = "Semantics Derivation Certificate Independence Scoring Catalog Machines Circuits Counting Randomized Oracles ProofSystems Transducers UniformCircuits LogCFL Statistical Definitions".split()
+MODULE_NAME = r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*"
+SOURCE_PATH = re.compile(r"(?:lean|quantum)/(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean")
+FIRST_PARTY = {"InclusionBench": "lean", "InclusionQuantum": "quantum"}
+
+
+def header_imports(source):
+    """Read the deliberately restricted import headers of trusted sources.
+
+    Comments may nest. Only ASCII module names on the import line are
+    accepted; this is not a parser for candidate Lean programs. Unsupported
+    trusted header syntax fails closed instead of silently losing an edge.
+    """
+    position = 0
+    imports = []
+    while position < len(source):
+        if source[position].isspace():
+            position += 1
+            continue
+        if source.startswith("--", position):
+            end = source.find("\n", position)
+            position = len(source) if end < 0 else end + 1
+            continue
+        if source.startswith("/-", position):
+            depth = 1
+            position += 2
+            while depth and position < len(source):
+                if source.startswith("/-", position):
+                    depth += 1
+                    position += 2
+                elif source.startswith("-/", position):
+                    depth -= 1
+                    position += 2
+                else:
+                    position += 1
+            if depth:
+                raise RuntimeError("Unterminated trusted Lean header comment")
+            continue
+        match = re.match(r"(import|prelude)\b([^\n]*)", source[position:])
+        if not match:
+            break
+        directive, rest = match.groups()
+        rest = rest.split("--", 1)[0].strip()
+        if directive == "prelude":
+            if rest or imports:
+                raise RuntimeError("Unsupported trusted Lean prelude header")
+        else:
+            names = rest.split()
+            if not names or any(not re.fullmatch(MODULE_NAME, name) for name in names):
+                raise RuntimeError("Unsupported trusted Lean import header")
+            imports.extend(names)
+        position += match.end()
+    return imports
+
+
+def semantic_build_order(sources, trusted_hashes):
+    """Validate the supplied first-party graph and order the root imports.
+
+    Every path is a trusted packet source, never a path or import extracted
+    from Candidate.lean. Auxiliary examples/audits are carried in the packet
+    but do not become dependencies merely by being present.
+    """
+    expected = {path for path in trusted_hashes if path.endswith(".lean")}
+    if set(sources) != expected:
+        raise RuntimeError("Trusted semantic source set does not match its hash manifest")
+    modules = {}
+    for path, source in sources.items():
+        if not SOURCE_PATH.fullmatch(path) or not isinstance(source, str):
+            raise RuntimeError("Unsafe trusted semantic source path or contents")
+        if hashlib.sha256(source.encode()).hexdigest() != trusted_hashes[path]:
+            raise RuntimeError("Semantic source hash mismatch")
+        directory, relative = path.split("/", 1)
+        module = relative[:-5].replace("/", ".")
+        family = module.split(".", 1)[0]
+        if family in FIRST_PARTY:
+            if directory != FIRST_PARTY[family] or module in modules:
+                raise RuntimeError("Ambiguous first-party Lean module path")
+            modules[module] = path
+    dependencies = {}
+    for module, path in modules.items():
+        dependencies[module] = []
+        for imported in header_imports(sources[path]):
+            if imported.split(".", 1)[0] in FIRST_PARTY:
+                if imported not in modules:
+                    raise RuntimeError(f"Missing trusted first-party import: {module} imports {imported}")
+                dependencies[module].append(imported)
+    order, visiting, visited = [], set(), set()
+
+    def visit(module):
+        if module in visiting:
+            raise RuntimeError("Cyclic trusted first-party imports: " + module)
+        if module in visited:
+            return
+        visiting.add(module)
+        for dependency in sorted(set(dependencies[module])):
+            visit(dependency)
+        visiting.remove(module)
+        visited.add(module)
+        order.append(modules[module])
+
+    for root in FIRST_PARTY:
+        if root not in modules:
+            raise RuntimeError("Missing trusted root module: " + root)
+        visit(root)
+    required = list(order)
+    # Also reject a malformed orphan graph, without compiling unused examples.
+    for module in sorted(modules):
+        visit(module)
+    return required
 
 
 def digest(path):
@@ -59,6 +167,7 @@ def capture(command, timeout, limit=40 * 1024 * 1024):
 
 
 def main(packet):
+    build_order = semantic_build_order(packet["semantic_sources"], packet["trusted_hashes"])
     if not shutil.which("docker"):
         return {"status": "unavailable", "reason": "Docker is required; there is no unsandboxed fallback"}
     root = Path(packet["remote_root"]).expanduser().resolve(strict=True)
@@ -129,10 +238,9 @@ def main(packet):
                 subprocess.run(["docker", "rm", "-f", name], stdout=subprocess.DEVNULL,
                                stderr=subprocess.DEVNULL, timeout=20)
 
-        compile_steps = [f"lean -j1 -o /config/lean/InclusionBench/{m}.olean /config/lean/InclusionBench/{m}.lean" for m in CORE]
-        compile_steps += ["lean -j1 -o /config/lean/InclusionBench.olean /config/lean/InclusionBench.lean"]
-        compile_steps += [f"lean -j1 -o /config/quantum/InclusionQuantum/{m}.olean /config/quantum/InclusionQuantum/{m}.lean" for m in ("Quantum", "Normalization", "Complete")]
-        compile_steps += ["lean -j1 -o /config/quantum/InclusionQuantum.olean /config/quantum/InclusionQuantum.lean"]
+        # Paths have been restricted to ASCII module components above. Their
+        # dependency order is derived only from hash-checked trusted sources.
+        compile_steps = [f"lean -j1 -o /config/{path[:-5]}.olean /config/{path}" for path in build_order]
         compile_steps += [f"lean -j1 -o /config/{m}.olean /config/{m}.lean" for m in ("ProofCodec", "ProofExport", "TrustedBaseline")]
         code, output, error = run("set -eu\ncd /config\n" + "\n".join(compile_steps), writable=True)
         if code:
@@ -166,9 +274,10 @@ def main(packet):
         return report
 
 
-try:
-    request = json.load(__import__("sys").stdin)
-    result = main(request)
-except Exception as error:
-    result = {"status": "unavailable", "reason": str(error)}
-print(json.dumps(result))
+if __name__ == "__main__":
+    try:
+        request = json.load(__import__("sys").stdin)
+        result = main(request)
+    except Exception as error:
+        result = {"status": "unavailable", "reason": str(error)}
+    print(json.dumps(result))

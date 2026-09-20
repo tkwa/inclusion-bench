@@ -1,0 +1,845 @@
+{
+  "schema_version": 1,
+  "review_id": "v0.4.0-counting-and-scope-landscape",
+  "status": "phase-1 scientific proposal; no canonical changes",
+  "review_date": "2026-09-20",
+  "mathematical_cutoff": "2026-09-01",
+  "scope": {
+    "owned_files": [
+      "research/v0.4.0/counting-and-scope-landscape.md",
+      "research/v0.4.0/counting-and-scope-landscape.json"
+    ],
+    "branch": "provisional-v0.4.0",
+    "scored_endpoint_budget": [
+      40,
+      50
+    ],
+    "implementation_difficulty_used": false,
+    "expected_tractability_used": false,
+    "human_expert_endorsement": false,
+    "complete_new_baseline_audit": false
+  },
+  "baseline_binding": {
+    "version": "0.3.1",
+    "dataset_sha256": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+    "profile": "research/v0.4.0/baseline-roster-profile.json"
+  },
+  "current_profile": {
+    "counting_ids": [
+      "UP",
+      "coUP",
+      "FewP",
+      "SPP",
+      "CeqP",
+      "PP",
+      "parityP",
+      "AWPP",
+      "LWPP",
+      "WPP"
+    ],
+    "counting_class_count": 10,
+    "all_class_count": 50,
+    "incident_matrix_pairs": 900,
+    "all_matrix_pairs": 2500,
+    "counting_open_endpoint_incidences": 661,
+    "counting_internal_open_pairs": 53,
+    "counting_distinct_incident_open_pairs": 608,
+    "all_open_pairs": 1378,
+    "unknown_pair_counts_are_importance_metrics": false
+  },
+  "recommended_comparison": [
+    "hierarchy-eight",
+    "ambiguity-nine"
+  ],
+  "portfolios": [
+    {
+      "id": "conservative-ten",
+      "scored_counting_ids": [
+        "UP",
+        "coUP",
+        "FewP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP"
+      ],
+      "count": 10,
+      "net_slots_vs_current_ten": 0,
+      "demoted_existing_ids": [],
+      "rationale": "Preserve fine exact-counting and complement weighting",
+      "main_lost_question_families": [
+        "No direct counting-oracle or whole-CH endpoint"
+      ],
+      "importance_measurement": false,
+      "tractability_assessment": null
+    },
+    {
+      "id": "hierarchy-eight",
+      "scored_counting_ids": [
+        "UP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "PpowerPP",
+        "CH"
+      ],
+      "count": 8,
+      "net_slots_vs_current_ten": -2,
+      "demoted_existing_ids": [
+        "coUP",
+        "FewP",
+        "LWPP",
+        "WPP"
+      ],
+      "rationale": "Broaden counting models while freeing two slots",
+      "main_lost_question_families": [
+        "Positive FewP=UP collapse",
+        "Positive LWPP=WPP collapse",
+        "Individual coUP and exact-normalizer comparisons"
+      ],
+      "importance_measurement": false,
+      "tractability_assessment": null
+    },
+    {
+      "id": "ambiguity-nine",
+      "scored_counting_ids": [
+        "UP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "FewP",
+        "PpowerPP",
+        "CH"
+      ],
+      "count": 9,
+      "net_slots_vs_current_ten": -1,
+      "demoted_existing_ids": [
+        "coUP",
+        "LWPP",
+        "WPP"
+      ],
+      "rationale": "Retain bounded-ambiguity question with oracle additions",
+      "main_lost_question_families": [
+        "Exact-normalizer comparisons",
+        "Individual coUP comparisons"
+      ],
+      "importance_measurement": false,
+      "tractability_assessment": null
+    },
+    {
+      "id": "compact-seven",
+      "scored_counting_ids": [
+        "UP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "CH"
+      ],
+      "count": 7,
+      "net_slots_vs_current_ten": -3,
+      "demoted_existing_ids": [
+        "coUP",
+        "FewP",
+        "LWPP",
+        "WPP"
+      ],
+      "rationale": "Free three slots for omitted scientific families",
+      "main_lost_question_families": [
+        "P^PP=PP adaptive closure",
+        "P^PP=PSPACE counting versus alternation",
+        "Fine ambiguity and normalization comparisons"
+      ],
+      "importance_measurement": false,
+      "tractability_assessment": null
+    },
+    {
+      "id": "concrete-level-eight",
+      "scored_counting_ids": [
+        "UP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "PpowerPP",
+        "PPpowerPP"
+      ],
+      "count": 8,
+      "net_slots_vs_current_ten": -2,
+      "demoted_existing_ids": [
+        "coUP",
+        "FewP",
+        "LWPP",
+        "WPP"
+      ],
+      "rationale": "Favor a natural complete intermediate counting level",
+      "main_lost_question_families": [
+        "Whole CH versus PSPACE",
+        "Higher counting-level collapse endpoints",
+        "Fine ambiguity and normalization comparisons"
+      ],
+      "importance_measurement": false,
+      "tractability_assessment": null
+    },
+    {
+      "id": "modular-nine",
+      "scored_counting_ids": [
+        "UP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "PpowerPP",
+        "CH",
+        "Mod3P"
+      ],
+      "count": 9,
+      "net_slots_vs_current_ten": -1,
+      "demoted_existing_ids": [
+        "coUP",
+        "FewP",
+        "LWPP",
+        "WPP"
+      ],
+      "rationale": "Represent two different prime characteristics",
+      "main_lost_question_families": [
+        "Bounded ambiguity and exact normalization fine comparisons"
+      ],
+      "importance_measurement": false,
+      "tractability_assessment": null
+    },
+    {
+      "id": "exact-normalizer-ten",
+      "scored_counting_ids": [
+        "UP",
+        "SPP",
+        "CeqP",
+        "PP",
+        "parityP",
+        "AWPP",
+        "LWPP",
+        "WPP",
+        "PpowerPP",
+        "CH"
+      ],
+      "count": 10,
+      "net_slots_vs_current_ten": 0,
+      "demoted_existing_ids": [
+        "coUP",
+        "FewP"
+      ],
+      "rationale": "Preserve normalization distinctions and fill oracle gap",
+      "main_lost_question_families": [
+        "FewP endpoint",
+        "coUP endpoint",
+        "No slots freed for other areas"
+      ],
+      "importance_measurement": false,
+      "tractability_assessment": null
+    }
+  ],
+  "class_reviews": [
+    {
+      "class_id": "UP",
+      "judgment": "retain",
+      "scientific_program": "Unambiguous computation",
+      "questions": "P versus UP; NP versus UP",
+      "pitfall": "Promise uniqueness is different from all-input ambiguity",
+      "primary_source_ids": [
+        "rh99"
+      ]
+    },
+    {
+      "class_id": "coUP",
+      "judgment": "background",
+      "scientific_program": "Complement closure of UP",
+      "questions": "UP versus coUP; asymmetric coUP comparisons",
+      "pitfall": "Complement-related endpoints can duplicate credit without being equal classes",
+      "primary_source_ids": [
+        "rh99"
+      ]
+    },
+    {
+      "class_id": "FewP",
+      "judgment": "optional ninth slot",
+      "scientific_program": "Bounded versus unique ambiguity",
+      "questions": "FewP versus UP; FewP versus NP",
+      "pitfall": "Demotion can lose a positive FewP=UP collapse; Few is a different class",
+      "primary_source_ids": [
+        "hjnp24"
+      ]
+    },
+    {
+      "class_id": "SPP",
+      "judgment": "retain",
+      "scientific_program": "Exact 0/1 gaps and structural applications",
+      "questions": "SPP versus P, AWPP, and BQP",
+      "pitfall": "A GI algorithm alone does not settle SPP inclusion",
+      "primary_source_ids": [
+        "ak06"
+      ]
+    },
+    {
+      "class_id": "CeqP",
+      "judgment": "retain",
+      "scientific_program": "Exact zero tests",
+      "questions": "CeqP versus PP and parityP",
+      "pitfall": "CeqP and coCeqP have opposite gap predicates",
+      "primary_source_ids": [
+        "fmm12"
+      ]
+    },
+    {
+      "class_id": "PP",
+      "judgment": "retain",
+      "scientific_program": "Majority counting and exact-counting collapse",
+      "questions": "P versus PP; PP versus PSPACE",
+      "pitfall": "Adaptive Turing closure is not known truth-table closure",
+      "primary_source_ids": [
+        "fortnow-topten"
+      ]
+    },
+    {
+      "class_id": "parityP",
+      "judgment": "retain",
+      "scientific_program": "Modular counting",
+      "questions": "Parity counting versus threshold counting",
+      "pitfall": "Input-bit parity is not the whole class",
+      "primary_source_ids": [
+        "bg92"
+      ]
+    },
+    {
+      "class_id": "AWPP",
+      "judgment": "retain",
+      "scientific_program": "Approximate gaps and quantum upper bounds",
+      "questions": "AWPP versus BQP or PP",
+      "pitfall": "Normalizer and global [0,1] bounds matter",
+      "primary_source_ids": [
+        "fr99"
+      ]
+    },
+    {
+      "class_id": "LWPP",
+      "judgment": "background",
+      "scientific_program": "Length-normalized exact gaps",
+      "questions": "LWPP versus SPP or WPP",
+      "pitfall": "Its Turing closure does not identify WPP with LWPP",
+      "primary_source_ids": [
+        "hhsv18"
+      ]
+    },
+    {
+      "class_id": "WPP",
+      "judgment": "background",
+      "scientific_program": "Input-normalized exact gaps",
+      "questions": "WPP versus LWPP or AWPP",
+      "pitfall": "Closure theorem and equality theorem are different targets",
+      "primary_source_ids": [
+        "hhsv18"
+      ]
+    },
+    {
+      "class_id": "PpowerPP",
+      "judgment": "add",
+      "scientific_program": "Deterministic adaptive counting",
+      "questions": "P^PP versus PP or PSPACE",
+      "pitfall": "P^PP=P^#P, but not the name PP^PP",
+      "primary_source_ids": [
+        "fortnow-topten"
+      ]
+    },
+    {
+      "class_id": "CH",
+      "judgment": "add",
+      "scientific_program": "Fixed-depth iterated majority",
+      "questions": "CH versus PP, P^PP, or PSPACE",
+      "pitfall": "Depth is fixed for each language, not input dependent",
+      "primary_source_ids": [
+        "burgisser06"
+      ]
+    },
+    {
+      "class_id": "PPpowerPP",
+      "judgment": "alternative extra slot",
+      "scientific_program": "Second counting level and natural complete problems",
+      "questions": "C2 versus CH or other intermediate endpoints",
+      "pitfall": "C2=PP and C2=P^PP already reflected by CH pairs when those endpoints retained",
+      "primary_source_ids": [
+        "fmm12"
+      ]
+    },
+    {
+      "class_id": "Mod3P",
+      "judgment": "alternative extra slot",
+      "scientific_program": "Odd-prime characteristic dependence",
+      "questions": "Mod3P versus parityP or PP",
+      "pitfall": "Fixed prime; nonzero residue criterion; not composite or variable modulus",
+      "primary_source_ids": [
+        "bg92"
+      ]
+    }
+  ],
+  "proposed_consequence_lemmas": [
+    {
+      "id": "C2-collapse-to-PP",
+      "statement": "PP^PP = PP iff CH = PP",
+      "derivation": "Forward induction on C_kP=PP^(C_(k-1)P); reverse containment C_2P subset CH.",
+      "kind": "derived here from standard oracle definitions",
+      "status": "proposed for independent review, not added to canonical rules"
+    },
+    {
+      "id": "C2-collapse-to-PpowerPP",
+      "statement": "PP^PP = P^PP iff CH = P^PP",
+      "derivation": "Let D=P^PP. Flattening gives PP^D=PP^PP=C_2P. If C_2P=D, the next and all higher levels stay C_2P. Reverse uses D subset C_2P subset CH.",
+      "kind": "derived here from standard oracle definitions",
+      "status": "proposed for independent review, not added to canonical rules"
+    },
+    {
+      "id": "adaptive-versus-counting-closure",
+      "statement": "PP^PP=PP implies P^PP=PP",
+      "warning": "No converse is supplied or to be encoded without a theorem. PP truth-table closure is insufficient.",
+      "kind": "containment consequence with explicit non-converse boundary",
+      "status": "proposed for independent review"
+    },
+    {
+      "id": "sharpP-collapse",
+      "statement": "SharpP subset FP_N iff PP=P",
+      "derivation": "Forward evaluate accepting counts and compare thresholds; reverse recover polynomial-bit counts by polynomially many PP threshold queries. Nonnegative FP functions belong to SharpP.",
+      "kind": "elementary standard simulation",
+      "status": "scope explanation; ordinary binary output required"
+    }
+  ],
+  "demotion_coverage_cases": [
+    {
+      "theorem": "UP=coUP",
+      "retained_consequence": "UP subset coNP",
+      "loss": "Direct pair removed; some positive consequence remains"
+    },
+    {
+      "theorem": "UP!=coUP",
+      "retained_consequence": "UP not subset P",
+      "loss": "Direct pair removed; some separation consequence remains"
+    },
+    {
+      "theorem": "FewP=UP",
+      "retained_consequence": null,
+      "loss": "No retained-pair consequence established by this review"
+    },
+    {
+      "theorem": "FewP!=UP",
+      "retained_consequence": "NP not subset UP",
+      "loss": "Finer direct separation point removed"
+    },
+    {
+      "theorem": "LWPP=WPP",
+      "retained_consequence": null,
+      "loss": "No retained-pair consequence established by this review"
+    },
+    {
+      "theorem": "LWPP!=WPP",
+      "retained_consequence": "AWPP not subset P",
+      "loss": "Finer direct separation point removed"
+    },
+    {
+      "theorem": "WPP is closed under polynomial-time Turing reductions",
+      "retained_consequence": null,
+      "loss": "Closure itself is not a pair target and is not equated here with WPP=LWPP"
+    }
+  ],
+  "typed_track_options": [
+    {
+      "id": "function",
+      "universe": "Functions Word -> Nat (or a separately specified signed codomain)",
+      "candidate_endpoints": [
+        "FP_N",
+        "SharpP"
+      ],
+      "important_questions": [
+        "Exact counting in polynomial time",
+        "Closure/composition questions under a stated function reduction"
+      ],
+      "not_covered_by_language_substitute": [
+        "Approximate counting guarantees",
+        "Output-sensitive quantitative improvements"
+      ],
+      "pitfalls": [
+        "Do not compare integer GapP and natural-valued SharpP without a typed embedding",
+        "Graph, bit, and threshold language encodings are not interchangeable",
+        "The basic SharpP=FP_N collapse duplicates P=PP coverage"
+      ],
+      "authorization": "pending"
+    },
+    {
+      "id": "search",
+      "universe": "Polynomially balanced, polynomial-time verifiable total relations on finite strings",
+      "candidate_endpoints": [
+        "FP-search",
+        "TFNP",
+        "PPAD",
+        "PLS",
+        "PPA",
+        "PPP"
+      ],
+      "optional_endpoint": "CLS",
+      "important_questions": [
+        "Total search versus efficient selectors",
+        "Relations among parity, pigeonhole, and local-search principles"
+      ],
+      "reduction_contract": "Polynomial-time f,g with every S-witness y for f(x) mapping to an R-witness g(x,y).",
+      "pitfalls": [
+        "The existential decision language of a total search relation is trivial",
+        "CLS=PPAD intersection PLS is already known",
+        "Exact multiplayer Nash, small-regret equilibrium, and approximation to an actual equilibrium differ"
+      ],
+      "authorization": "pending"
+    },
+    {
+      "id": "algebraic",
+      "universe": "Polynomial families over a fixed field, with fixed constants and uniformity conventions",
+      "candidate_endpoints": [
+        "VP_Q",
+        "VNP_Q"
+      ],
+      "alternatives": [
+        "Constant-free VP0/VNP0 as a distinct convention"
+      ],
+      "important_questions": [
+        "Polynomial versus exponential-sum algebraic circuit complexity"
+      ],
+      "pitfalls": [
+        "Arithmetic size is not Boolean bit complexity",
+        "Characteristic 2 invalidates transferring permanent slogans unchanged",
+        "PIT derandomization may give a disjunction, which a pair-only score does not award automatically"
+      ],
+      "authorization": "pending"
+    },
+    {
+      "id": "quantitative_problem",
+      "universe": "Named problems with explicit resource bound, size parameter, and computational model",
+      "candidate_targets": [
+        "ETH",
+        "SETH",
+        "APSP exponent",
+        "3SUM exponent"
+      ],
+      "important_questions": [
+        "Exponent improvements invisible to polynomial-class inclusions"
+      ],
+      "pitfalls": [
+        "Variables, clauses, input bits, and RAM word width are distinct parameters",
+        "SUBEXP or E alone is not a replacement for ETH or SETH",
+        "Requires a broader target policy than class-pair inclusion"
+      ],
+      "authorization": "pending"
+    },
+    {
+      "id": "approximation_and_sampling",
+      "universe": "Functions with an error contract, or indexed output distributions with a specified distance",
+      "candidate_targets": [
+        "Relative approximate counting",
+        "Exact or approximate sampling"
+      ],
+      "important_questions": [
+        "Approximation algorithms that do not collapse exact counting"
+      ],
+      "pitfalls": [
+        "Relative versus additive error",
+        "Zero-valued inputs",
+        "Probability of failure and inverse-accuracy running time",
+        "Nonnegative versus signed weights"
+      ],
+      "authorization": "pending"
+    }
+  ],
+  "architecture_requirements": [
+    "Keep background classes available to closure before filtering scored pairs",
+    "Only compare endpoints in the same explicitly specified object universe",
+    "Cross-type bridges require mathematical theorems; never infer them by label",
+    "Report per-track eligible denominators and changed aggregate weighting",
+    "Keep 40–50 total scored endpoints if that remains policy",
+    "Compound propositions and quantitative problems are a separate scope extension"
+  ],
+  "sources": [
+    {
+      "id": "fortnow-counting",
+      "authors": "Lance Fortnow",
+      "title": "Counting Complexity",
+      "date": "author chapter, pre-cutoff",
+      "url": "https://lance.fortnow.com/papers/files/counting.pdf",
+      "locators": "Definition 3.1; Theorem 3.5; Sections 3–4",
+      "read_depth": "Definitions and selected theorem text",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "fortnow-topten",
+      "authors": "Lance Fortnow",
+      "title": "My Favorite Ten Complexity Theorems of the Past Decade",
+      "date": "1994 invited presentation / mid-1990s paper",
+      "url": "https://lance.fortnow.com/papers/files/topten.pdf",
+      "locators": "Sections 2.8–2.9; Theorems 8–9; printed pages 10–12",
+      "read_depth": "Relevant sections read; importance evidence, not current-status certification",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "burgisser06",
+      "authors": "Peter Bürgisser",
+      "title": "On Defining Integers in the Counting Hierarchy and Proving Arithmetic Circuit Lower Bounds",
+      "date": "2006",
+      "url": "https://eccc.weizmann.ac.il/report/2006/113/download/",
+      "locators": "Definition 2.3; equation (3); Section 2.2; Theorem 1.1",
+      "read_depth": "Relevant definitions, introduction, and theorem statements",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "fmm12",
+      "authors": "Hervé Fournier; Guillaume Malod; Stefan Mengel",
+      "title": "Monomials in arithmetic circuits: Complete problems in the counting hierarchy",
+      "date": "2011 preprint / STACS 2012",
+      "url": "https://arxiv.org/pdf/1110.6271",
+      "locators": "Definition 2.1; Lemma 2.3; Theorem 3.1; Proposition 4.2; Theorem 4.3",
+      "read_depth": "Relevant definitions, theorem statements, and Lemma 2.3 proof",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "ffkl02",
+      "authors": "Stephen Fenner; Lance Fortnow; Stuart Kurtz; Lide Li",
+      "title": "An Oracle Builder's Toolkit",
+      "date": "2002",
+      "url": "https://lance.fortnow.com/papers/files/obt.pdf",
+      "locators": "Definition 6.1; Lemma 6.3; Corollary 6.4",
+      "read_depth": "AWPP definition and normalization equivalence",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "hhsv18",
+      "authors": "Edith Hemaspaandra; Lane Hemaspaandra; Holger Spakowski; Osamu Watanabe",
+      "title": "The Robustness of LWPP and WPP, with an Application to Graph Reconstruction",
+      "date": "2017-11-03 v1; 2018-07-06 v3",
+      "url": "https://arxiv.org/pdf/1711.01250v3",
+      "locators": "Definitions 2.3–2.5; Theorems 3.1, 3.7; Section 4",
+      "read_depth": "Definitions, selected proof text, robustness and application statements",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "hjnp24",
+      "authors": "Lane Hemaspaandra; Mandar Juvekar; Arian Nadjimzadah; Patrick Phillips",
+      "title": "Gaps, Ambiguity, and Establishing Complexity-Class Containments via Iterative Constant-Setting",
+      "date": "2021-09-29 v1; 2024-02-09 v5",
+      "url": "https://arxiv.org/pdf/2109.14764v5",
+      "locators": "Table 1; Section 4",
+      "read_depth": "Table, definitions, and selected metatheorem statements",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "ak06",
+      "authors": "V. Arvind; Piyush Kurur",
+      "title": "Graph Isomorphism is in SPP",
+      "date": "FOCS 2002 / journal 2006",
+      "url": "https://www.cse.iitk.ac.in/users/ppk/research/publication/AK2006GI.pdf",
+      "locators": "Abstract; main GI and FIND-GROUP constructions",
+      "read_depth": "Abstract and relevant main result",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "fr99",
+      "authors": "Lance Fortnow; John Rogers",
+      "title": "Complexity Limitations on Quantum Computation",
+      "date": "1999",
+      "url": "https://lance.fortnow.com/papers/files/quantum.pdf",
+      "locators": "Theorems 3.1 and 3.8",
+      "read_depth": "Theorem statements and BQP-to-AWPP proof text",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "mn16",
+      "authors": "Tomoyuki Morimae; Harumichi Nishimura",
+      "title": "Quantum Interpretations of AWPP and APP",
+      "date": "2016",
+      "url": "https://www.rintonpress.com/xxqic16/qic-16-56/0498-0514.pdf",
+      "locators": "Abstract; AWPP characterization",
+      "read_depth": "Abstract and characterization scope; no new quantum inclusion proposed here",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "rh99",
+      "authors": "Jörg Rothe; Lane Hemaspaandra",
+      "title": "Characterizations of the Existence of Partial and Total One-Way Permutations",
+      "date": "1999-07-26 preprint",
+      "url": "https://arxiv.org/pdf/cs/9907040",
+      "locators": "Sections 1–2; Definition 2.3; Corollary 3.2",
+      "read_depth": "Relevant definitions and theorem text; worst-case versus cryptographic caveat checked",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "bg92",
+      "authors": "Richard Beigel; John Gill",
+      "title": "Counting Classes: Thresholds, Parity, Mods, and Fewness",
+      "date": "1992",
+      "url": "https://cis.temple.edu/~beigel/papers/bg-mods-tcs.html",
+      "locators": "Author abstract; prime-power result",
+      "read_depth": "Author abstract read; linked full-paper retrieval failed, so not used alone for a complete baseline",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "williams-mod",
+      "authors": "Ryan Williams",
+      "title": "Time-Space Tradeoffs for Counting NP Solutions Modulo Integers",
+      "date": "pre-cutoff author journal manuscript",
+      "url": "https://people.csail.mit.edu/rrw/mod-lbs-journal-final.pdf",
+      "locators": "Section 1.2; MOD Combination rule; reference BG92",
+      "read_depth": "Relevant modular definitions and closure discussion",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "mp91",
+      "authors": "Nimrod Megiddo; Christos Papadimitriou",
+      "title": "On Total Functions, Existence Theorems and Computational Complexity",
+      "date": "1991",
+      "url": "https://www.sciencedirect.com/science/article/pii/030439759190200L",
+      "locators": "Abstract; Section 1",
+      "read_depth": "Publisher abstract and indexed original first-page definition",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "pap94",
+      "authors": "Christos Papadimitriou",
+      "title": "On the Complexity of the Parity Argument and Other Inefficient Proofs of Existence",
+      "date": "1994",
+      "url": "https://kam.mff.cuni.cz/~matousek/cla/papadimitriou-parityarguments-complexity.pdf",
+      "locators": "Abstract; search-class setup",
+      "read_depth": "Original-paper abstract and indexed setup; full new-track classification not audited",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "fghs21",
+      "authors": "John Fearnley; Paul Goldberg; Alexandros Hollender; Rahul Savani",
+      "title": "The Complexity of Gradient Descent: CLS = PPAD ∩ PLS",
+      "date": "2021",
+      "url": "https://www.cs.ox.ac.uk/people/paul.goldberg/papers/STOC2021-FGHS.pdf",
+      "locators": "Abstract; Section 1.1; main equality theorem",
+      "read_depth": "Relevant setup and main result, not a replay of the hardness proof",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "dgp09",
+      "authors": "Constantinos Daskalakis; Paul Goldberg; Christos Papadimitriou",
+      "title": "The Complexity of Computing a Nash Equilibrium",
+      "date": "2009",
+      "url": "https://epubs.siam.org/doi/abs/10.1137/070699652",
+      "locators": "Publisher abstract",
+      "read_depth": "Importance/completeness context only; exact output model requires original theorem review",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "ey10",
+      "authors": "Kousha Etessami; Mihalis Yannakakis",
+      "title": "On the Complexity of Nash Equilibria and Other Fixed Points",
+      "date": "2010",
+      "url": "https://epubs.siam.org/doi/10.1137/080720826",
+      "locators": "Abstract; FIXP and actual-equilibrium approximation distinctions",
+      "read_depth": "Publisher original abstract; paired with explicit scope caveat",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "valiant79",
+      "authors": "Leslie Valiant",
+      "title": "Completeness Classes in Algebra",
+      "date": "1979",
+      "url": "https://doi.org/10.1145/800135.804419",
+      "locators": "Bibliographic foundation reference",
+      "read_depth": "Publisher retrieval returned 403; not used as the sole support for a technical theorem",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "ki04",
+      "authors": "Valentine Kabanets; Russell Impagliazzo",
+      "title": "Derandomizing Polynomial Identity Tests Means Proving Circuit Lower Bounds",
+      "date": "2003 conference / 2004 journal",
+      "url": "https://www2.cs.sfu.ca/~kabanets/papers/poly_derand.pdf",
+      "locators": "Abstract; main derandomization-to-lower-bound theorem",
+      "read_depth": "Original author PDF abstract and main theorem statement",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "ip01",
+      "authors": "Russell Impagliazzo; Ramamohan Paturi",
+      "title": "On the Complexity of k-SAT",
+      "date": "2001",
+      "url": "https://cseweb.ucsd.edu/~paturi/myPapers/pubs/ImpagliazzoPaturi_2001_jcss.pdf",
+      "locators": "Pages 367–369; Theorem 1",
+      "read_depth": "Definitions, exponent quantifiers, and initial theorem statements",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "cygan11",
+      "authors": "Marek Cygan et al.",
+      "title": "On Problems as Hard as CNFSAT",
+      "date": "2011 preprint / 2016 journal",
+      "url": "https://arxiv.org/abs/1112.2275",
+      "locators": "Abstract and SETH setup",
+      "read_depth": "Primary author abstract",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    },
+    {
+      "id": "jsv04",
+      "authors": "Mark Jerrum; Alistair Sinclair; Eric Vigoda",
+      "title": "A Polynomial-Time Approximation Algorithm for the Permanent of a Matrix with Non-negative Entries",
+      "date": "2001 conference / 2003 author manuscript / 2004 journal",
+      "url": "https://www.dcs.ed.ac.uk/home/mrj/PermanentRev.pdf",
+      "locators": "Abstract; Section 1",
+      "read_depth": "Author manuscript abstract and error/output scope",
+      "role": "primary research or author exposition",
+      "pre_cutoff": true
+    }
+  ],
+  "open_review_obligations": [
+    "Human decision on typed-track scope",
+    "Independent check of hierarchy collapse equivalences",
+    "Historical all-pairs audit for every new endpoint",
+    "Exact prime-modulus closure audit if Mod3P is selected",
+    "Full semantics audit of new endpoints against operational definitions",
+    "Loss and migration record alongside additions",
+    "Human scientific review of final family balance"
+  ],
+  "limitations": [
+    "Primary research was used for evidence, but not every cited proof was replayed",
+    "Some original full papers were unavailable; read-depth records identify those cases",
+    "The review is not a census of all important advances",
+    "No top-fifty guarantee or forecast is made",
+    "Unknown-pair density and family slots are descriptive, not calibrated importance weights",
+    "Typed tracks are options pending authorization, not canonical additions"
+  ]
+}

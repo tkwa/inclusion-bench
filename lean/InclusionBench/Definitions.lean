@@ -8,6 +8,9 @@ import InclusionBench.Transducers
 import InclusionBench.UniformCircuits
 import InclusionBench.LogCFL
 import InclusionBench.Statistical
+import InclusionBench.LogspaceClasses
+import InclusionBench.CountingHierarchy
+import InclusionBench.AlternatingLogtime
 
 namespace InclusionBench
 
@@ -20,11 +23,15 @@ def operationalDefinition : ClassId → Option ComplexityClass
   | .ACC0 => some Circuits.nonuniformACC0
   | .TC0 => some Circuits.nonuniformTC0
   | .NC1 => some Circuits.nonuniformNC1
+  | .UniformNC1 => some AlternatingLogtime.UniformNC1
   | .NC => some UniformCircuits.NC
   | .LogCFL => some LogCFL.contextFreeLogspace
   | .Ppoly => some Circuits.polynomialCircuits
   | .L => some Machines.logarithmicSpace
   | .NL => some Machines.nondeterministicLogarithmicSpace
+  | .BPL => some LogspaceClasses.BPL
+  | .UL => some LogspaceClasses.UL
+  | .PL => some LogspaceClasses.PL
   | .SC => some Machines.simultaneousPolytimePolylogspace
   | .P => some Machines.polynomialTime
   | .RP => some Randomized.oneSidedPolynomialTime
@@ -37,6 +44,8 @@ def operationalDefinition : ClassId → Option ComplexityClass
   | .SPP => some Counting.SPP
   | .CeqP => some Counting.CeqP
   | .PP => some Counting.PP
+  | .PSharpP => some CountingHierarchy.PSharpP
+  | .CH => some CountingHierarchy.CH
   | .parityP => some Counting.parityP
   | .AWPP => some Counting.AWPP
   | .LWPP => some Transducers.LWPP
@@ -68,7 +77,7 @@ def operationalDefinition : ClassId → Option ComplexityClass
 def classesWithOperationalDefinitions : List ClassId :=
   allClasses.filter (fun id => (operationalDefinition id).isSome)
 
-theorem operational_definition_count : classesWithOperationalDefinitions.length = 46 := by decide
+theorem operational_definition_count : classesWithOperationalDefinitions.length = 52 := by decide
 
 /-- A complete model must agree with every concrete definition already supplied.
 This proposition is a compatibility requirement, not a supplied complete model. -/

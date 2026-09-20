@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "audit_id": "cutoff-audit-v0.3.1-policy-adoption-2026-09-20",
+  "recorded_at": "2026-09-20",
+  "dataset_sha256": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+  "reviewer": {
+    "identity": "Codex /root with classical_literature, lean_kernel and quantum_coverage",
+    "review_type": "AI-assisted domain literature audit, rotated cross-review and executable verification",
+    "human_expert_certification": false
+  },
+  "candidate_decision": "open_at_cutoff",
+  "corrections": {
+    "previous_version": "0.2.0",
+    "previous_counts": {
+      "inclusion": 709,
+      "separation": 405,
+      "candidates": 1386
+    },
+    "new_counts": {
+      "inclusion": 709,
+      "separation": 413,
+      "candidates": 1378
+    },
+    "new_known_pairs": [
+      {
+        "left": "NE",
+        "right": "Theta2P",
+        "relation": "separation"
+      },
+      {
+        "left": "NE",
+        "right": "coNP",
+        "relation": "separation"
+      },
+      {
+        "left": "NE",
+        "right": "coRP",
+        "relation": "separation"
+      },
+      {
+        "left": "NE",
+        "right": "coUP",
+        "relation": "separation"
+      },
+      {
+        "left": "NEXP",
+        "right": "Theta2P",
+        "relation": "separation"
+      },
+      {
+        "left": "NEXP",
+        "right": "coNP",
+        "relation": "separation"
+      },
+      {
+        "left": "NEXP",
+        "right": "coRP",
+        "relation": "separation"
+      },
+      {
+        "left": "NEXP",
+        "right": "coUP",
+        "relation": "separation"
+      }
+    ],
+    "additional_rules": 106,
+    "total_rules": 249
+  },
+  "residual_error_assessment": {
+    "kind": "Subjective working expectation, not a calibrated posterior or rigorous bound",
+    "unit": "An incorrectly classified ordered pair in the full2500-pair matrix",
+    "working_expected_wrong_pairs": 1.9822,
+    "rounded_for_publication": 1.98,
+    "sensitivity_endpoint_sum": [
+      0.3114,
+      12.325
+    ],
+    "sensitivity_meaning": "Illustrative endpoint products, not a confidence interval or bound; more than two errors remains plausible.",
+    "excluded": "Future discoveries of flaws in currently accepted mathematical proofs. Present misquotation, scope/model transfer, missed results, and pipeline errors remain included.",
+    "rows": [
+      {
+        "id": "shared-nonuniform-contract-error",
+        "probability": 0.0005,
+        "conditional_mean_distinct_wrong_pairs": 264,
+        "expected_wrong_pairs": 0.132,
+        "sensitivity": [
+          0.0264,
+          0.528
+        ],
+        "evidence": "research/audit-round2-cross-classical.json",
+        "basis": "Both exact class maps and nonuniform family quantifiers were independently read, and an explicit constant-gate witness matches a primary-source paragraph. A remaining common-contract error would require overlooking a direct definitional conflict, so I assign a much smaller subjective chance than to missing literature."
+      },
+      {
+        "id": "specific-operational-model-transfer",
+        "probability": 0.005,
+        "conditional_mean_distinct_wrong_pairs": 5,
+        "expected_wrong_pairs": 0.025,
+        "sensitivity": [
+          0.002,
+          0.12
+        ],
+        "evidence": "research/audit-round2-cross-classical.json",
+        "basis": "Read concrete code and checked finite transition domains, head bounds, workspace accounting, circuit encoding, uniformity, same-machine SC, and advice quantifiers. Remaining risk is a localized overlooked interpretation issue; no concrete suspect remains."
+      },
+      {
+        "id": "seed-theorem-application",
+        "probability": 0.005,
+        "conditional_mean_distinct_wrong_pairs": 4,
+        "expected_wrong_pairs": 0.02,
+        "sensitivity": [
+          0.002,
+          0.16
+        ],
+        "evidence": "research/audit-round2-cross-classical.json",
+        "basis": "Exact hierarchy union quantifiers, fixed-query theorem, and benchmark-specific diagonalization were reconstructed. Accepted theorem failure is excluded; this risk covers an overlooked application or transcription error."
+      },
+      {
+        "id": "counting_definition_application",
+        "probability": 0.006,
+        "conditional_mean_distinct_wrong_pairs": 30,
+        "expected_wrong_pairs": 0.18,
+        "sensitivity": [
+          0.06,
+          0.6
+        ],
+        "evidence": "research/audit-round3-counting-risk.json",
+        "basis": "Concrete transition multiplicities, global halting, exact SPP/zero/positive/parity tests, nonnegative AWPP bounds, and computed signed WPP/LWPP normalizers were independently inspected. No mismatch found."
+      },
+      {
+        "id": "quantum_definition_application",
+        "probability": 0.004,
+        "conditional_mean_distinct_wrong_pairs": 35,
+        "expected_wrong_pairs": 0.14,
+        "sensitivity": [
+          0.035,
+          0.525
+        ],
+        "evidence": "research/audit-round5-recent-quantum.json",
+        "basis": "The new exact proofs discharge a concrete family of normalization, support-multiplicity and acceptance-bound defects that the prior row covered. Most uncertainty still concerns textbook-to-code transfer rather than these identities. A modest one-third reduction, with unchanged conditional impact, is warranted; zero risk or a dramatic reduction is not."
+      },
+      {
+        "id": "remaining_seed_statement_transfer",
+        "probability": 0.003,
+        "conditional_mean_distinct_wrong_pairs": 15,
+        "expected_wrong_pairs": 0.045,
+        "sensitivity": [
+          0.015,
+          0.15
+        ],
+        "evidence": "research/audit-round3-counting-risk.json",
+        "basis": "Twenty-three relevant inclusion seed statements and the complement conventions were reread against primary passages. QMA⊆PP, BQP⊆AWPP and WPP⊆AWPP have exact primary theorem locators. Oracle separations are not ordinary facts."
+      },
+      {
+        "id": "missed_old_internal_counting_inclusion",
+        "probability": 0.03,
+        "conditional_mean_distinct_wrong_pairs": 5,
+        "expected_wrong_pairs": 0.15,
+        "sensitivity": [
+          0.03,
+          0.96
+        ],
+        "evidence": "research/audit-round6-internal-counting.json",
+        "basis": "Recovered the previously inaccessible BGM TR299 full taxonomy and Figure1; checked 2018 LWPP/WPP robustness and 2024 restricted-counting/ambiguity followups; independently reproduced all47 existing internal inclusions from ten basis edges and enumerated all53 candidates. These close identified source gaps and warrant a modest4% to3% revision, with conditional impact5 unchanged. The final2006 taxonomy text remains unretrieved; this is not exhaustive or statistically calibrated."
+      },
+      {
+        "id": "missed_old_quantum_counting_interfaces",
+        "probability": 0.06,
+        "conditional_mean_distinct_wrong_pairs": 6,
+        "expected_wrong_pairs": 0.36,
+        "sensitivity": [
+          0.06,
+          1.8
+        ],
+        "evidence": "research/audit-round4-interfaces.json",
+        "basis": "The inspected older source chains cover several plausible high-fanout shortcuts and independently confirm that the tempting claims use different models. This warrants a modest downward revision, not multiplying independent no-finding probabilities: sources share ancestry, no omission-detection rate is calibrated, and141 of the broader526 candidate interfaces lie outside the exact counting-by-other slice. The mean fanout remains6 because an unnoticed nonrelativizing or intermediate-class result could still propagate to several labels."
+      },
+      {
+        "id": "missed_old_noninclusion_or_independence",
+        "probability": 0.0001,
+        "conditional_mean_distinct_wrong_pairs": 2,
+        "expected_wrong_pairs": 0.0002,
+        "sensitivity": [
+          0.0,
+          0.002
+        ],
+        "evidence": "research/audit-round3-counting-risk.json",
+        "basis": "This is a residual allowance, not a proposed separation. Recent claimed breakthroughs and their acceptance history are excluded and owned by the recent-paper census."
+      },
+      {
+        "id": "older_exponential_query_advice",
+        "probability": 0.06,
+        "conditional_mean_distinct_wrong_pairs": 6,
+        "expected_wrong_pairs": 0.36,
+        "sensitivity": [
+          0.04,
+          2.4
+        ],
+        "evidence": "research/audit-round4-classical-risk.json",
+        "basis": "Recovery of original older author manuscripts, all major theorem scopes in the 2009 advice paper, advice-preserving hierarchy followups, and the original MAEXP paper reduce the particular reference-chain gap that yielded the earlier Theta2P omission. The evidence overlaps and does not warrant treating each negative paper as an independent trial. Obscure corollaries and journals remain a real residual."
+      },
+      {
+        "id": "incremental_basic_older_omission",
+        "probability": 0.02,
+        "conditional_mean_distinct_wrong_pairs": 8,
+        "expected_wrong_pairs": 0.16,
+        "sensitivity": [
+          0.01,
+          1.2
+        ],
+        "evidence": "research/audit-round4-classical-risk.json",
+        "basis": "Round-one complete class-entry census, primary implication checks, no missing ordinary edge in later interface passes, and the fact that any basic-block separation implies P≠NP. The largest residual is an unnoticed known inclusion involving auxiliary classes or a specialized proof-system characterization."
+      },
+      {
+        "id": "incremental_basic_model_application",
+        "probability": 0.002,
+        "conditional_mean_distinct_wrong_pairs": 30,
+        "expected_wrong_pairs": 0.06,
+        "sensitivity": [
+          0.005,
+          0.8
+        ],
+        "evidence": "research/audit-round4-classical-risk.json",
+        "basis": "Concrete finite randomness and verifier/oracle definitions plus selected quantifier-order and budget checks reduce obvious mismatches; textbook equivalence proofs are incomplete, so a shared interpretation error with many basic-pair consequences remains possible."
+      },
+      {
+        "id": "recent_classical_0",
+        "probability": 0.02,
+        "conditional_mean_distinct_wrong_pairs": 5,
+        "expected_wrong_pairs": 0.1,
+        "sensitivity": [
+          0.01,
+          0.48
+        ],
+        "evidence": "research/audit-round2-recent.json",
+        "basis": "The title census covers the main venues and ECCC, and likely candidates received scope checks. Abstract/title screening can still miss an unobvious corollary or an obscure journal-only theorem."
+      },
+      {
+        "id": "recent_classical_1",
+        "probability": 0.002,
+        "conditional_mean_distinct_wrong_pairs": 25,
+        "expected_wrong_pairs": 0.05,
+        "sensitivity": [
+          0.005,
+          0.6
+        ],
+        "evidence": "research/audit-round2-recent.json",
+        "basis": "Major results have many publication/discovery routes; no ordinary new edge appeared. A single overlooked time/proof-system theorem could nevertheless propagate to many correlated ordered pairs."
+      },
+      {
+        "id": "recent_quantum_szk_local_omission",
+        "probability": 0.025,
+        "conditional_mean_distinct_wrong_pairs": 4,
+        "expected_wrong_pairs": 0.1,
+        "sensitivity": [
+          0.005,
+          0.8
+        ],
+        "evidence": "research/audit-round5-recent-quantum.json",
+        "basis": "The searched primary venues and exact model checks make a routine missed containment less likely, but abstract/title filtering can miss a specialized bridge, unlisted preprint, or journal-only corollary. This remains a material uncalibrated chance."
+      },
+      {
+        "id": "recent_quantum_szk_broad_omission",
+        "probability": 0.002,
+        "conditional_mean_distinct_wrong_pairs": 25,
+        "expected_wrong_pairs": 0.05,
+        "sensitivity": [
+          0.002,
+          0.6
+        ],
+        "evidence": "research/audit-round5-recent-quantum.json",
+        "basis": "A broad ordinary collapse/separation would usually be conspicuous in these overlapping venues and reference chains. The index search still does not logically exclude one."
+      },
+      {
+        "id": "software_and_assembly",
+        "probability": 0.01,
+        "conditional_mean_distinct_wrong_pairs": 5,
+        "expected_wrong_pairs": 0.05,
+        "sensitivity": [
+          0.004,
+          0.6
+        ],
+        "evidence": "research/audit-round4-audit-method.json",
+        "basis": "All1122 current proof records were independently checked against actual seeds, structural endpoints, complement maps and registered rules. All2500 published matrix rows and1378 task memberships match. CNF and generated Lean source hashes reproduce final reports. Twenty-five relevant tests pass. Remaining risk is a shared parser/binding/assembly mistake or a later publication regression; these checks do not supply empirical calibration."
+      }
+    ],
+    "older_omission_scope_partition": {
+      "resource_circuit_advice_endpoint": {
+        "ordered_pairs": 1411,
+        "candidates": 584
+      },
+      "counting_quantum_without_resource_endpoint": {
+        "ordered_pairs": 728,
+        "candidates": 579
+      },
+      "basic_classical_only": {
+        "ordered_pairs": 361,
+        "candidates": 215
+      }
+    },
+    "cause_attribution": [
+      "Charge an erroneous label once to the first applicable definition/application cause; later causes count additional distinct labels only.",
+      "For older omissions, assign resource/circuit/advice endpoints first; then counting/quantum endpoints; then the basic-classical block. Internal-counting and other counting interfaces are disjoint subgroups.",
+      "Recent quantum/SZK allowances are incremental after the recent classical allowance. Do not add both reviewers' earlier recent totals.",
+      "Software/assembly covers additional errors after mathematical and historical causes.",
+      "Each event means at least one error in its whole family. Its impact is the union of affected pairs over all such errors, not a per-paper multiplier. No independence of events or reviews is assumed."
+    ],
+    "aggregation_caution": "Source reviewers' unconditional estimates are approximations to the stated incremental counts. Remaining overlap would conservatively overcount; the ledger is an explicit judgment, not a fitted statistical model."
+  },
+  "stopping_decision": {
+    "criterion": "working_expected_wrong_pairs_below2",
+    "expected_error_threshold": 2,
+    "audit_token_budget": 5000000,
+    "goal_tokens_used_at_decision": 4584652,
+    "decision": "Stop this audit pass and publish the revisable benchmark. No concrete remaining incorrect label is known."
+  },
+  "limitations": [
+    "All pairs are indexed through domain and theorem-family reviews, not2500 independent literature searches.",
+    "Negative searches do not prove openness; no statistical omission-detection rate is known.",
+    "The full scholarly literature, every journal or language, and unpublished arguments were not exhaustively searched.",
+    "SAT concerns only the finite encoded theory; Lean inference traces assume cited mathematical premises.",
+    "Operational textbook-equivalence and deep literature proofs remain trusted inputs; the user waived re-formalizing existing proofs.",
+    "Historical eligibility admits a question, not a model answer. Proof and run-integrity review remain required.",
+    "An overlooked accepted pre-cutoff result earns zero and triggers a recorded correction and any versioned rescore."
+  ],
+  "supporting_reports": [
+    "research/audit-final-lean-traces.json",
+    "research/audit-final-sat.json",
+    "research/audit-padding.json",
+    "research/audit-round1-circuits-space.json",
+    "research/audit-round1-classical.json",
+    "research/audit-round1-counting-quantum.json",
+    "research/audit-round1-external-census.json",
+    "research/audit-round1-logical.json",
+    "research/audit-round1-sat.json",
+    "research/audit-round2-cross-classical.json",
+    "research/audit-round2-cross-counting.json",
+    "research/audit-round2-lean-traces.json",
+    "research/audit-round2-recent.json",
+    "research/audit-round2-sat.json",
+    "research/audit-round3-counting-risk.json",
+    "research/audit-round3-exact-count.json",
+    "research/audit-round3-sat.json",
+    "research/audit-round4-audit-method.json",
+    "research/audit-round4-classical-risk.json",
+    "research/audit-round4-interfaces.json",
+    "research/audit-round5-recent-quantum.json",
+    "research/audit-round6-internal-counting.json",
+    "research/audit-padding.md",
+    "research/audit-round1-circuits-space.md",
+    "research/audit-round1-classical.md",
+    "research/audit-round1-counting-quantum.md",
+    "research/audit-round2-cross-classical.md",
+    "research/audit-round2-cross-counting.md",
+    "research/audit-round2-recent.md",
+    "research/audit-round3-counting-risk.md",
+    "research/audit-round3-exact-count.md",
+    "research/audit-round4-audit-method.md",
+    "research/audit-round4-classical-risk.md",
+    "research/audit-round4-interfaces.md",
+    "research/audit-round5-recent-quantum.md",
+    "research/audit-round6-internal-counting.md",
+    "research/audit-assessment-v0.3.0.json",
+    "research/v0.3.1-independence-policy-review.json"
+  ],
+  "policy_adoption": {
+    "kind": "Carry-forward of the v0.3.0 historical audit for a policy and formalization patch; not a repeated full literature audit",
+    "previous_version": "0.3.0",
+    "previous_dataset_sha256": "e09e6cf8dfa1233f754dc4ecf935ea7db6831f24046cde0cbb1eebfedf4349c3",
+    "previous_commit": "2e3b3806389845d0458cddf207d477c44e70d6d3",
+    "previous_audit_url": "https://github.com/tkwa/inclusion-bench/blob/v0.3.0/research/baseline-audit.json",
+    "previous_audit_sha256": "5b7993998b8f69786db9826e3d17b24d9a4531c7ff09d25c2a0bee2cf4a89ead",
+    "previous_assessment_file": "research/audit-assessment-v0.3.0.json",
+    "previous_assessment_sha256": "24de3c04b64b0da578fb6ac640af6e0a2329163669ebf77f93853956bc094d7e",
+    "previous_history_review_sha256": "ac7e5cd00e6c4e3b0716ca5e89971532f22ab4ab75569bb54b29c31971793ce8",
+    "unchanged": {
+      "classes_sha256": "54a298e5a1f27b2395bcbad3b3c049952424d0639f5da1045f9fc3cb0eb1f048",
+      "knowledge_sha256": "85bbfec5a1414e5be1c8409b2ba82ace1bcf4f908966f3a0fdb594dc7c5455f1",
+      "cutoff": "2026-09-01",
+      "all_2500_classifications": true,
+      "candidate_questions": 1378
+    },
+    "new_policy_scope": "Independence conditional on arithmetic soundness of ZFC is admitted, with explicit per-pair certificates and retained premises. Any such result already public by the cutoff earns zero.",
+    "targeted_policy_review": "research/v0.3.1-independence-policy-review.json",
+    "inherited_assessment": "The residual-error ledger and stopping decision below describe the v0.3.0 audit. They are preserved historical judgments, not a newly calibrated estimate for this patch.",
+    "mechanical_checks": "The SAT audit and all 1122 Lean inference traces were rerun against the new dataset hash; no mathematical classifications changed."
+  }
+}

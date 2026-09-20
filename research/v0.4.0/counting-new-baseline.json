@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "status": "primitive extension proposed; independent cross-review in progress",
+  "reviewer": "Codex /root",
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "base_commit": "5e4addcddd40f1a75a02b83dc26aaee2ac54b1cd",
+  "base_dataset_digest": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+  "scope": {
+    "focus_classes": [
+      "PSharpP",
+      "CH"
+    ],
+    "context_count": 61,
+    "incident_pair_count": 240
+  },
+  "model_specifications": {
+    "PSharpP": "Total decision languages in deterministic polynomial time with an oracle language in PP; equivalent to decision P^#P, not function #P or search PPP.",
+    "CH": "Union over a fixed finite level k of C0=P and C[k+1]=PP^[Ck]; k is independent of input length."
+  },
+  "sources": [
+    {
+      "id": "v040-Burgisser2006",
+      "title": "On Defining Integers in the Counting Hierarchy and Proving Arithmetic Circuit Lower Bounds",
+      "authors": [
+        "Peter Bürgisser"
+      ],
+      "url": "https://eccc.weizmann.ac.il/report/2006/113/download/",
+      "year": 2006,
+      "locator": "Definition 2.3, equation (3), and Lemma 2.5; manuscript printed pp. 4–5",
+      "notes": "Standard fixed-level counting hierarchy and PP⊆P/poly⇒CH⊆P/poly. Use this manuscript numbering, not the later journal numbering."
+    },
+    {
+      "id": "v040-AllenderWagner1993",
+      "title": "Counting Hierarchies: Polynomial Time and Constant Depth Circuits",
+      "authors": [
+        "Eric Allender",
+        "Klaus W. Wagner"
+      ],
+      "url": "https://people.cs.rutgers.edu/~allender/papers/column40.pdf",
+      "year": 1993,
+      "locator": "Section 1, PDF pp. 2–5, especially the final theorem PP^PH⊆P^PP and its proof",
+      "notes": "Primary authors’ revised survey, Current Trends in Theoretical Computer Science, pp.469–483. The strengthened Toda theorem and parity-oracle simulation are used only as stated."
+    },
+    {
+      "id": "v040-FournierPerifelVerclos2014",
+      "title": "On fixed-polynomial size circuit lower bounds for uniform polynomials in the sense of Valiant",
+      "authors": [
+        "Hervé Fournier",
+        "Sylvain Perifel",
+        "Rémi de Verclos"
+      ],
+      "url": "https://webusers.imj-prg.fr/~herve.fournier/publications/vnp.pdf",
+      "year": 2014,
+      "publication_date": "2014-04-11",
+      "locator": "Theorem 2, printed p.4; Lemma 3 and proof, printed p.12",
+      "notes": "Author version dated2014-04-11; arXiv1304.5910 first submitted2013-04-22; journal Information and Computation240(2015),31–41. Lemma3: #P polynomial-size Boolean circuits imply CH=MA. That lemma does not assume GRH."
+    },
+    {
+      "id": "v040-CountingNewDerivations",
+      "title": "Counting baseline extension: fixed hierarchy and oracle transfers",
+      "url": "https://github.com/tkwa/inclusion-bench/blob/provisional-v0.4.0/research/v0.4.0/counting-new-baseline.md",
+      "year": 2026,
+      "locator": "Definitions and primitive inclusions; Conditional consequences; Rules deliberately not inferred",
+      "notes": "Audit derivations from older cited theorems, not a claim that these relations were first proved in2026. The derivations and source hypotheses require independent review before cutoff admission.",
+      "audit_recorded_at": "2026-09-20"
+    }
+  ],
+  "external_source_ids": [
+    "Toda1991",
+    "q-fr98",
+    "q-aw09",
+    "auditCQ-OH91",
+    "auditCQ-FR99",
+    "AuditPadding"
+  ],
+  "facts": [
+    {
+      "id": "v040-pp-psharpp",
+      "source_ids": [
+        "v040-CountingNewDerivations",
+        "q-fr98"
+      ],
+      "justification": "A deterministic polynomial-time machine makes one query to its total PP language oracle.",
+      "relation": "inclusion",
+      "left": "PP",
+      "right": "PSharpP"
+    },
+    {
+      "id": "v040-ph-psharpp",
+      "source_ids": [
+        "Toda1991"
+      ],
+      "justification": "Toda’s theorem PH⊆P^PP.",
+      "relation": "inclusion",
+      "left": "PH",
+      "right": "PSharpP"
+    },
+    {
+      "id": "v040-parity-psharpp",
+      "source_ids": [
+        "auditCQ-OH91",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "A polynomial-length accepting-path count is reconstructed using polynomially many PP threshold queries; its parity decides the language.",
+      "relation": "inclusion",
+      "left": "parityP",
+      "right": "PSharpP"
+    },
+    {
+      "id": "v040-psharpp-ch",
+      "source_ids": [
+        "v040-Burgisser2006",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "P^PP⊆PP^PP is contained in the fixed second standard level of CH.",
+      "relation": "inclusion",
+      "left": "PSharpP",
+      "right": "CH"
+    },
+    {
+      "id": "v040-ch-pspace",
+      "source_ids": [
+        "v040-AllenderWagner1993",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "For every fixed level, enumerate counting branches and recursively answer oracle queries in polynomial space. The language chooses a fixed level and polynomial bound.",
+      "relation": "inclusion",
+      "left": "CH",
+      "right": "PSPACE"
+    }
+  ],
+  "rules": [
+    {
+      "id": "v040-pp-circuits-ch-circuits",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "Ppoly"
+        }
+      ],
+      "source_ids": [
+        "v040-Burgisser2006"
+      ],
+      "justification": "Lemma2.5 explicitly states this implication."
+    },
+    {
+      "id": "v040-pp-circuits-ch-ma",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "Ppoly"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "MA"
+        }
+      ],
+      "source_ids": [
+        "v040-FournierPerifelVerclos2014",
+        "q-aw09",
+        "v040-AllenderWagner1993",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "PP circuits give polynomial-size Boolean circuits for #P output bits by polynomially many threshold queries, with advice for all polynomial query lengths. Lemma3 then gives CH=MA. Its proof uses LFKN and PP^PH⊆P^PP; it does not assume GRH or infer CH collapse merely from P^PP=PP."
+    },
+    {
+      "id": "v040-pp-awpp-ch-pp",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "AWPP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "PP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-FR99",
+        "v040-Burgisser2006",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Fortnow–Rogers Theorem3.3 gives PP^AWPP=PP unconditionally. Induct on the fixed counting level, replacing only its oracle class using the hypothesis. No unrelativized outer-machine inclusion is relativized."
+    },
+    {
+      "id": "v040-pp-ph-ch-ph",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "PH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "CH",
+          "right": "PH"
+        }
+      ],
+      "source_ids": [
+        "v040-AllenderWagner1993",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "P^PP⊆P^PH⊆PH because each particular PH oracle has a fixed finite level. Induct using C[k]⊆PH ⇒ C[k+1]⊆PP^PH⊆P^PP⊆PH. The strengthened Toda theorem supplies the middle step."
+    },
+    {
+      "id": "v040-pp-parity-psharpp-parity",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "PP",
+          "right": "parityP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "PSharpP",
+          "right": "parityP"
+        }
+      ],
+      "source_ids": [
+        "auditCQ-OH91",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Replace the PP oracle in P^PP and invoke the unconditional identity P^parityP=parityP. Only the oracle position is replaced."
+    },
+    {
+      "id": "v040-padding-regular-E-PSharpP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PSharpP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PSharpP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from EXP to E, followed by polynomial-time many-one closure of PSharpP. For CH the simulated language has a fixed finite level."
+    },
+    {
+      "id": "v040-padding-regular-NE-PSharpP",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PSharpP"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PSharpP"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from NEXP to NE, followed by polynomial-time many-one closure of PSharpP. For CH the simulated language has a fixed finite level."
+    },
+    {
+      "id": "v040-padding-regular-E-CH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "CH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "CH"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from EXP to E, followed by polynomial-time many-one closure of CH. For CH the simulated language has a fixed finite level."
+    },
+    {
+      "id": "v040-padding-regular-NE-CH",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "CH"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "CH"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Apply the existing length-regular polynomial padding from NEXP to NE, followed by polynomial-time many-one closure of CH. For CH the simulated language has a fixed finite level."
+    }
+  ],
+  "complements": [
+    {
+      "left": "PSharpP",
+      "right": "PSharpP",
+      "source_ids": [
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Swap the deterministic oracle machine’s accepting and rejecting outcomes."
+    },
+    {
+      "left": "CH",
+      "right": "CH",
+      "source_ids": [
+        "v040-Burgisser2006",
+        "v040-CountingNewDerivations"
+      ],
+      "justification": "Every PP oracle level is complement closed by the standard integer-gap transformation; the fixed-level union is complement closed."
+    }
+  ],
+  "limitations": [
+    "No promise/function/algebraic endpoint is implicitly identified with these total binary language classes.",
+    "Primitive seed correctness and all incident pair classifications require the independent cross-review and final merged audit.",
+    "SAT consistency cannot prove that an unresolved pair was historically open.",
+    "No calibrated residual-error estimate is supplied by this preliminary dossier."
+  ]
+}

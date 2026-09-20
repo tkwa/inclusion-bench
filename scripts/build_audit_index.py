@@ -36,11 +36,20 @@ def build():
             set(lean['allowed_axiom_dependencies']) != {'propext', 'Classical.choice', 'Quot.sound'}):
         raise ValueError('Lean report is not a completed trace and axiom audit')
     scopes = {}
-    for name in ('classical', 'circuits-space', 'counting-quantum'):
-        path = f'research/audit-round1-{name}.json'
-        scopes[path] = set(read_json(ROOT / path)['scope'])
-    if set.union(*scopes.values()) != set(benchmark.ids):
-        raise ValueError('Literature review scopes do not cover the roster')
+    scope_paths = assessment.get('literature_scope_reports', [
+        f'research/audit-round1-{name}.json'
+        for name in ('classical', 'circuits-space', 'counting-quantum')
+    ])
+    if not isinstance(scope_paths, list) or not scope_paths or len(scope_paths) != len(set(scope_paths)):
+        raise ValueError('Literature scope reports must be an explicit nonempty distinct list')
+    for path in scope_paths:
+        scope = read_json(ROOT / path)['scope']
+        ids = scope['focus_classes'] if isinstance(scope, dict) else scope
+        if not ids or not set(ids) <= set(benchmark.context_ids):
+            raise ValueError('Literature review has empty or unknown class scope: ' + path)
+        scopes[path] = set(ids)
+    if set.union(*scopes.values()) != set(benchmark.context_ids):
+        raise ValueError('Literature review scopes do not cover the full context catalog')
     reports = sorted(set(assessment['supporting_reports']) | set(scopes))
     manifest = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in reports}
     matrix = benchmark.matrix()
@@ -81,6 +90,8 @@ def build():
             'assessment_sha256': hashlib.sha256((ROOT / 'research/audit-assessment.json').read_bytes()).hexdigest(),
         },
         'coverage': {'class_count': len(benchmark.ids), 'ordered_pair_count': len(pairs),
+                     'context_class_count': len(benchmark.context_ids),
+                     'background_class_count': len(benchmark.background_classes),
                      'counts': matrix['counts'], 'candidate_historical_decisions': len(benchmark.unresolved),
                      'known_inference_traces_kernel_checked': len(lean['targets']),
                      'literature_review_method': 'Domain and theorem-family review indexed to every pair; not 2500 independent searches.'},
@@ -89,6 +100,7 @@ def build():
         'stopping_decision': assessment['stopping_decision'],
         'limitations': assessment['limitations'],
         **({'policy_adoption': assessment['policy_adoption']} if 'policy_adoption' in assessment else {}),
+        **({'roster_migration': assessment['roster_migration']} if 'roster_migration' in assessment else {}),
         'supporting_report_sha256': manifest,
         'pair_index': pairs,
     }

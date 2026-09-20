@@ -174,6 +174,12 @@ def record_proof_review(benchmark: Benchmark, manifest: Path, review: dict) -> d
             report = read_json(report_path)
             if report.get('status') != 'verified' or report.get('dataset_sha256') != benchmark.digest:
                 raise InvalidEvidence('Proof report is not verified for this dataset')
+            from .proofcheck import verification_bindings
+            if report.get('method') != 'lean4-data-only-fresh-kernel-replay':
+                raise InvalidEvidence('Proof report does not identify the trusted verification method')
+            for key, expected in verification_bindings(benchmark, report.get('claims', [])).items():
+                if report.get(key) != expected:
+                    raise InvalidEvidence('Proof report has stale or mismatched trusted input: ' + key)
             reported = {Atom.read(c) for c in report.get('claims', [])}
             if not ordinary <= reported:
                 raise InvalidEvidence('Proof report does not verify every accepted ordinary claim')

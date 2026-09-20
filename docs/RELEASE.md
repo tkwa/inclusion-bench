@@ -1,58 +1,101 @@
-# Release 0.3.1
+# Provisional release 0.4.0
 
-InclusionBench is open for AI model runs. The release freezes the class definitions, cited mathematical baseline, implication rules and candidate questions. Existing cited proofs are trusted premises; formalizing them is not a condition of running the benchmark or admitting a new result.
+This branch proposes a revised InclusionBench roster for review. It keeps 50
+scored total decision-language classes, adds 11 endpoints and retains the 11
+demoted endpoints as unscored proof vocabulary. The published v0.3.1 release and
+[tkwa.me](https://tkwa.me) are separate; this branch does not deploy either site.
 
-Version 0.3.1 extends the independence policy to admit arithmetic soundness of ZFC as an external premise, alongside unconditional and Con(ZFC)-conditional metatheorems. It adds explicit arithmetic syntax and standard-natural-number semantics to the Lean interface, restricts admitted premise categories, and requires a separate encoded sentence and both nonderivability arguments for every accepted independence pair. Evaluation and public reporting retain each result's premise and certificate. The complete ZFC encoding and metatheorem remain expert-reviewed.
+The [roster decision](../research/v0.4.0/roster-decision.md) explains the scientific
+choices. The [pruning audit](../research/v0.4.0/pruning-audit.json) measures losses
+against the full 61-class context, including cases that keep some consequence
+credit and cases that lose all credit. These are explicit tradeoffs, not an
+objective ranking of the field's most important classes. Expected tractability
+and implementation difficulty are not selection criteria.
 
-The mathematical baseline comes from version 0.3.0, which corrected eight questions already settled before the cutoff: NE and NEXP are each not contained in Θ₂P, coNP, coRP and coUP. That release recorded **709 inclusions and 413 noninclusions**, leaving **1,378 questions audited as open at the cutoff**, and added 106 implication rules for a total of 249. The 0.3.1 policy extension preserves that historical audit record; its adoption and the additional policy check are recorded separately. See the [audit report](../research/baseline-audit.md) for evidence, the residual-error assessment and its limits.
+## Changelist
 
-The official leaderboard is evidence-driven. A real sealed run can receive zero after run-integrity review and disposition of its proof candidates. Every positive point additionally requires an accepted proof and a historical decision that its ordered pair was open at the cutoff. The repository's empty model leaderboard is intentional: infrastructure fixtures and mock provider tests are not AI evaluations, and no paid model run was performed to manufacture a result.
-
-## What is ready
-
-| Component | Operational contract |
+| Change | Purpose |
 | --- | --- |
-| Class roster | 50 canonical operational definitions with explicit total-language and uniformity conventions |
-| Frozen release | Dataset, taskset and formalization hashes; changed mathematics requires a new release |
-| Question suite | 1,378 frozen questions with revisable open-at-cutoff decisions from the release audit |
-| Mathematical baseline | Cited facts and substantive implication rules are explicit trusted premises |
-| Model execution | OpenAI Responses and Anthropic Messages adapters, explicit model IDs, input counting, output caps, cumulative token budgets and wall-time limits |
-| Evidence | Isolated attempts, checkpoints, sealed manifests, artifact hashes, provider records, partial answers and usage accounting |
-| Proof admission | Exact artifact and statement review; sandboxed Lean checking for new ordinary claims; a separate expert lane for independence |
-| Run admission | Model/configuration provenance, declared tools, budgets, transcripts and human-assistance review |
-| Historical admission | The release-wide decisions satisfy the history gate; later corrections remain possible |
-| Scoring | Union of a run's resolved pairs, implications included, contradictions rejected, no duplicate credit |
-| Comparisons | Subsets are allowed; ranks compare matching assignment, track and budget cohorts |
-| Website | Reviewed model leaderboard, separate historical zero, interactive matrix, citations and hypothetical scoring examples |
+| Add BPL, UL, PL, BQL | Represent space-bounded randomness, ambiguity, counting and quantum computation |
+| Add uniform NC¹ | Represent the uniform NC¹-versus-L boundary separately from nonuniform formula lower bounds |
+| Add ∃R | Represent real feasibility within the existing binary decision-language universe |
+| Add P^#P and CH | Represent deterministic counting-oracle computation and the counting hierarchy |
+| Add QMA(2), StoqMA, QSZK | Represent unentangled proofs, restricted quantum verification and quantum zero knowledge |
+| Demote AC⁰, coUP, coMA, coAM, coQMA, FewP, LWPP, WPP, coRP, E, Π₂P | Keep the scored roster at 50 while preserving their definitions and implication paths |
+| Separate context and scored classes | Prevent background pairs from earning direct points without deleting supporting mathematics |
+| Extend definitions, baseline and audits | Bind the new targets, cited implications, historical review and proof checker to a distinct snapshot |
+| Add independent semantic checks | Test specific model risks beyond successful compilation |
+| Mark the explorer provisional | Make the review status and cross-version score limits visible |
+
+The provisional matrix has 845 known inclusions and 331 known noninclusions,
+leaving 1,324 candidate questions. The [migration audit](../research/v0.4.0/roster-migration.json)
+checks that every parent fact, rule, source and complement identity remains
+present and that all 2,500 parent context classifications are unchanged.
+Historical admission is recorded separately in the [release audit](../research/baseline-audit.md).
+A missing pre-cutoff result earns no point and requires a recorded correction.
+
+The arithmetic-soundness policy introduced in v0.3.1 is preserved. Independence
+metatheorems may be unconditional or conditional on Con(ZFC) or arithmetic
+soundness of ZFC. Every accepted pair needs its exact encoded sentence and
+both nonderivability arguments under the recorded premise. The full ZFC
+encoding and metatheorem remain expert-reviewed; independence supplies no
+ordinary implication premise.
+
+## Running and comparing evaluations
+
+The runner, provider adapters, sealed evidence, review commands, isolated Lean
+proof checker and leaderboard remain available. Existing cited mathematical
+results are trusted inputs; recreating their proofs in Lean is not a condition
+for running the benchmark.
+
+Scores belong to the exact frozen taskset. A v0.3.1 score cannot be copied into
+the v0.4.0 leaderboard: the candidate universe and implication library differ.
+Subset runs are allowed, but ranks compare the same assignment, access track
+and resource budget. A reviewed real run with no accepted solutions can score
+zero. Infrastructure fixtures and mock-provider tests do not enter the AI
+leaderboard, and no paid run was performed for this revision.
+
+Accepted supporting claims may mention any of the 61 context classes. Only
+newly resolved, historically eligible pairs with two scored endpoints count.
+An inactive pair never earns a direct point, even for independence. Preserving
+its definition therefore does not preserve all of its former scoring weight.
 
 ## Trust boundary
 
-The release's cited existing mathematics is trusted. The Lean operational definitions are the benchmark targets. The dependency-free core covers 46 classes; the pinned quantum extension supplies the other four and agrees with the core interpretation. Further textbook-equivalence theorems, aliases and mathematical invariants can improve the library without being prerequisites for model runs.
+The core defines 52 classes. The pinned Mathlib extension supplies eight quantum
+classes and ∃R, and proves agreement with every core interpretation. The new
+models use finite operational machines, circuits or encodings; no new class is
+an unconstrained axiom. Independent reviews inspect the literature bridges and
+retain adversarial checks. Compilation alone does not prove equivalence with
+every textbook convention or certify historical openness.
 
-New model assertions receive no trust merely because they are syntactically valid. Ordinary new claims must pass the proof checker and mathematical review; accepted source hashes must identify sealed model artifacts. The verifier's approved cited premises are distinct from arbitrary user-supplied axioms. An inference trace that assumes the submitted statement does not prove it.
+New ordinary claims must pass mathematical review and the isolated Lean proof
+checker. A consequence trace with an assumed submission is not a proof of that
+submission. The verifier permits only the exact release's cited baseline
+assumptions and standard Lean foundations. Source, statement, dataset and
+artifact hashes remain part of admission.
 
-An independence result requires an expert report about both unprovability directions for each exact sentence, the ZFC proof system, metatheory and assumptions. Arithmetic soundness means that every first-order arithmetic sentence whose ZFC translation is provable is true in standard N. This is stronger than consistency, so using it permits a weaker conditional theorem. The target theory remains ZFC itself; the premise is external, and expert review rejects stronger unapproved assumptions hidden in the metatheory. Both directions must hold under the recorded premise. Conditions remain visible in review and public results, and independence never supplies an ordinary inclusion, separation or Horn-rule premise. The ordinary checker does not implement full ZFC verification. See the [independence review format](PROOF_REVIEW.md#independence-review).
+The historical audit is AI-assisted, with domain reviews and independent
+cross-reviews. It is not human expert endorsement. Lean replay checks inference
+from explicit cited premises; SAT checks the finite encoded theory. Neither
+proves that no paper was missed. The release-wide assessment records its
+residual uncertainty without treating a subjective estimate as a guarantee.
 
-## Historical corrections and versioning
+## Promotion and future changes
 
-A frozen question suite can contain omissions from the literature database. The audit records an explicit decision for each question; a run does not need to repeat those literature checks. If a question is later found to have been settled before the cutoff, it earns no point. This also applies to qualifying conditional independence metatheorems already public before the cutoff, including those conditional on arithmetic soundness. Record the corrected decision and any versioned rescore. Do not silently alter an in-progress run's questions or implication rules.
+This is a review branch, not a published v0.4.0 release. Before promotion, review
+the changelist, scientific losses, exact class conventions and remaining trust
+boundaries. Publication and the separately developed tkwa.me integration are
+outside this PR's deployment scope.
 
-The historical audit is AI-assisted, with independent domain and cross-reviews. It is not a human expert endorsement or a proof that no paper was missed. All 1,122 known-label inference traces passed Lean checking with cited mathematical premises explicit. A separate SAT encoding found no additional forced candidate resolution within the recorded finite theory. Neither check establishes completeness of the literature.
+Changes to the roster, definitions, baseline or rules require a new versioned
+freeze. Preserve previous history records and their dataset hashes. Later
+historical corrections can disqualify a question without silently changing a
+sealed run's mathematical taskset; any published rescore must identify its
+review state.
 
-Changes to the roster, definitions, baseline or inference rules require a new version and `freeze`. Review registries retain the frozen dataset hashes and their own recorded revisions. Published results must identify the snapshot and review state used for scoring.
-
-The public site is [tkwa.me](https://tkwa.me), developed and deployed separately. This repository also supplies the [Pages leaderboard and task explorer mirror](https://tkwa.github.io/inclusion-bench/).
-
-## Further work
-
-These improvements can proceed alongside real evaluations:
-
-- More historical research, additional cited implications and independent audit of the baseline.
-- Formal proofs of existing literature results and equivalences with alternative class definitions.
-- Aliases for equivalent names, such as IP and QIP for PSPACE, without adding duplicate scored columns.
-- Broader promise, search, algebraic or fixed-exponent tracks, each with its own explicit targets.
-- A fuller formal treatment of ZFC independence and automated metatheorem checking.
-- Additional provider and agent configurations, with declared tools and comparable resource budgets.
-- Auxiliary family-level analyses of the score's sensitivity to the chosen roster.
-
-The primary metric remains one point per eligible ordered pair. Improvements must not silently change that metric or turn a hypothetical scenario into a measured model result. See the [evaluation protocol](EVALUATION.md), [provider adapters](../evaluation/adapters/README.md), and [formalization notes](formalization.md).
+Promise, search/function and algebraic tracks are outside this revision at
+Thomas's explicit request. They remain possible future work with their own
+objects and scoring rules. The primary metric remains one point per eligible
+ordered pair. See the [evaluation protocol](EVALUATION.md),
+[formalization notes](formalization.md) and [proof-review format](PROOF_REVIEW.md).

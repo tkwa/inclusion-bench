@@ -12,6 +12,7 @@ from inclusion_bench.engine import InvalidEvidence
 from inclusion_bench.evaluation import evaluate_run, sha256_file, validate_run, leaderboard
 from inclusion_bench.reviews import record_run_review, record_proof_review, record_history_review, review_packet, publish_run
 from inclusion_bench.runner import freeze_release, frozen_release, normalize_config, preflight, run_config
+from inclusion_bench.proofcheck import verification_bindings
 
 
 class RunnerTests(unittest.TestCase):
@@ -19,6 +20,7 @@ class RunnerTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory()
         self.root = Path(self.temporary.name)
         shutil.copytree(ROOT / 'data', self.root / 'data')
+        shutil.copytree(ROOT / 'scripts/proofcheck', self.root / 'scripts/proofcheck')
         # Exercise pending/accepted/corrected history in isolation from any
         # release-wide audit decisions included in the real repository.
         (self.root / 'data/history_reviews.json').write_text('[]\n')
@@ -158,8 +160,11 @@ class RunnerTests(unittest.TestCase):
             record_proof_review(self.b, manifest, review)
         # The real checker is tested independently against actual Lean in test_proofcheck.
         # This isolated fake report only exercises the trusted-review/data flow.
-        report = {'status': 'verified', 'dataset_sha256': self.b.digest, 'claims': attempt['claims'],
-                  'source_sha256': attempt['artifacts'][0]['sha256'], 'test_only': True}
+        report_claims = [{**claim, 'theorem': f'test_only_{i}'} for i, claim in enumerate(attempt['claims'])]
+        report = {'status': 'verified', 'dataset_sha256': self.b.digest, 'claims': report_claims,
+                  'source_sha256': attempt['artifacts'][0]['sha256'], 'test_only': True,
+                  'method': 'lean4-data-only-fresh-kernel-replay',
+                  **verification_bindings(self.b, report_claims)}
         report_file = self.root / 'TEST-ONLY-report.json'
         report_file.write_text(json.dumps(report))
         review['proof_report'] = str(report_file)
@@ -181,6 +186,60 @@ class RunnerTests(unittest.TestCase):
         review['status'] = 'rejected'
         record_proof_review(self.b, manifest, review)
         self.assertEqual(evaluate_run(self.b, manifest)['official_score'], 0)
+
+    def test_proof_review_rejects_stale_trusted_semantics_checker_and_baseline(self):
+        manifest = self.candidate()
+        run = read_json(manifest)
+        attempt = run['attempts'][0]
+        claims = [{**claim, 'theorem': f'test_only_{i}'} for i, claim in enumerate(attempt['claims'])]
+        report = {'status': 'verified', 'dataset_sha256': self.b.digest,
+                  'claims': claims, 'proof_sha256': attempt['artifacts'][0]['sha256'],
+                  'method': 'lean4-data-only-fresh-kernel-replay', 'test_only': True,
+                  **verification_bindings(self.b, claims)}
+        report_path = self.root / 'TEST-ONLY-bindings.json'
+        review = {'run_sha256': canonical_hash(run), 'attempt_id': attempt['attempt_id'],
+                  'attempt_sha256': canonical_hash(attempt), 'status': 'accepted',
+                  'reviewer': 'TEST ONLY', 'rationale': 'Synthetic binding regression, not a proof',
+                  'verified_claims': attempt['claims'], 'proof_report': str(report_path)}
+        for field in ('semantics_sha256', 'checker_sha256', 'baseline_sha256'):
+            for omitted in (False, True):
+                bad = dict(report)
+                if omitted:
+                    bad.pop(field)
+                else:
+                    bad[field] = '0' * 64
+                report_path.write_text(json.dumps(bad))
+                with self.subTest(field=field, omitted=omitted), self.assertRaisesRegex(InvalidEvidence, field):
+                    record_proof_review(self.b, manifest, review)
+        report_path.write_text(json.dumps(report))
+        for relative, field in (
+            ('lean/InclusionBench/Counting.lean', 'semantics_sha256'),
+            ('scripts/proofcheck/ProofAudit.lean', 'checker_sha256'),
+        ):
+            path = self.root / relative
+            original = path.read_bytes()
+            try:
+                path.write_bytes(original + b'\n-- synthetic stale-source probe\n')
+                with self.subTest(source=relative), self.assertRaisesRegex(InvalidEvidence, field):
+                    record_proof_review(self.b, manifest, review)
+            finally:
+                path.write_bytes(original)
+        # A pre-taskset-field report is usable only when all its trusted
+        # identities match exactly; missing digests above never get a waiver.
+        accepted = record_proof_review(self.b, manifest, review)
+        self.assertEqual(accepted['proof_verification']['semantics_sha256'], report['semantics_sha256'])
+
+    def test_root_import_entrypoints_are_part_of_the_frozen_semantic_bundle(self):
+        for relative in ('lean/InclusionBench.lean', 'quantum/InclusionQuantum.lean'):
+            path = self.root / relative
+            original = path.read_bytes()
+            try:
+                path.write_bytes(original + b'\n-- changed trusted root import entrypoint\n')
+                with self.subTest(source=relative), self.assertRaisesRegex(InvalidEvidence, 'Frozen formalization source'):
+                    frozen_release(self.b)
+            finally:
+                path.write_bytes(original)
+        frozen_release(self.b)
 
     def test_budget_stops_later_tasks_and_preserves_usage(self):
         config = copy.deepcopy(self.config)

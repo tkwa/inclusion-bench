@@ -34,6 +34,14 @@ class ProofcheckTests(unittest.TestCase):
         self.assertTrue(source.count("def TrustedBaseline.expected_0") == 1)
         self.assertFalse(any(e["statement"] == "Includes (Quantum.completeInterpretation .NP) (Quantum.completeInterpretation .P)" for e in entries))
 
+    def test_background_proof_targets_remain_available(self):
+        claim = {'relation': 'inclusion', 'left': 'LWPP', 'right': 'WPP',
+                 'theorem': 'background_result'}
+        validate_claims(self.benchmark, [claim])
+        source, _, _ = trusted_baseline(self.benchmark, [claim])
+        self.assertIn('Includes (Quantum.completeInterpretation .LWPP) (Quantum.completeInterpretation .WPP)', source)
+        self.assertEqual(self.benchmark.score({'claims': [claim]})['score'], 0)
+
     def test_rejects_invalid_claims_and_independence(self):
         for claims in ([], [self.claim, self.claim], [{**self.claim, "left": "invented"}],
                        [{**self.claim, "theorem": "x\naxiom bad : False"}],
@@ -101,6 +109,26 @@ class IsolatedProofcheckTests(unittest.TestCase):
         source = f"open InclusionBench\ntheorem submitted : Includes (Quantum.completeInterpretation .{fact['left']}) (Quantum.completeInterpretation .{fact['right']}) := {name}"
         report = self.check_source(source, "verified", claim)
         self.assertIn(name, report["targets"][0]["axioms"])
+
+    def test_all_new_context_targets_replay_in_the_isolated_kernel(self):
+        names = ('BPL', 'UL', 'PL', 'BQL', 'ExistsR', 'PSharpP', 'CH',
+                 'QMA2', 'StoqMA', 'QSZK', 'UniformNC1')
+        claims = [{'relation': 'inclusion', 'left': name, 'right': name,
+                   'theorem': 'target_' + name} for name in names]
+        source = 'open InclusionBench\n' + '\n'.join(
+            f'theorem target_{name} : Includes (Quantum.completeInterpretation .{name}) '
+            f'(Quantum.completeInterpretation .{name}) := includes_refl _'
+            for name in names)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'new-targets.lean'
+            path.write_text(source)
+            report = verify_proof(self.benchmark, path, claims,
+                                  timeout_seconds=180, **self.runtime)
+        self.assertEqual(report['status'], 'verified', report.get('reason', '') + report.get('log', ''))
+        self.assertEqual(len(report['targets']), len(names))
+        self.assertEqual(report['official_points'], 0)
+        for target in report['targets']:
+            self.assertLessEqual(set(target['axioms']), {'propext', 'Classical.choice', 'Quot.sound'})
 
     def test_wrong_target(self):
         self.check_source("theorem submitted : True := True.intro", "rejected")

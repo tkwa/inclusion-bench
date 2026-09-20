@@ -1,12 +1,12 @@
 # AI benchmark scoring specification
 
-**Version 0.3.1 is operational.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require a recorded historical decision for each resolved pair. The release-wide audit supplies those decisions for the current suite.
+**Version 0.4.0 is provisional and prepared for review.** Model runs may start against the frozen suite. Existing cited theorems are explicit trusted baseline inputs; re-formalizing their proofs is not a launch requirement. New ordinary claims require isolated Lean verification, and points require a recorded historical decision for each resolved pair. The release-wide audit supplies those decisions for the current suite.
 
 ## Target universe and freeze
 
 The evaluated system is one fixed AI model and configuration in one budgeted run. See [the evaluation protocol](EVALUATION.md) for prompts, adapters, evidence and admission. An instance asks whether one class is included in another. Languages are subsets of finite binary strings, classes are sets of languages, and inclusion means ordinary set inclusion.
 
-The 50-class catalog has 2,500 ordered pairs, including 50 reflexive pairs. The 0.3.0 baseline settles 709 inclusions and 413 noninclusions, leaving **1,378 frozen questions audited as open at the cutoff**. The historical decisions are revisable; they do not prove the absence of an overlooked paper. All 50 classes have concrete Lean definitions under the catalog conventions. AC0, ACC0, TC0, NC1, P/poly and NP/poly are nonuniform; NC is logspace-uniform.
+The scored roster has 50 classes and 2,500 ordered pairs, including 50 reflexive pairs. Its baseline settles 845 inclusions and 331 noninclusions, leaving **1,324 candidate questions**. The full inference catalog has 61 concretely defined classes: eleven background endpoints remain available in proofs but do not supply scored pairs. Historical decisions are revisable; they do not prove the absence of an overlooked paper. AC0, ACC0, TC0, NC1, P/poly and NP/poly are nonuniform; NC is logspace-uniform, and the separate UniformNC1 endpoint uses standard extended-connection uniformity (ALOGTIME).
 
 The cutoff is September 1, 2026, inclusive: a result publicly available before September 2, 2026 at 00:00 UTC is pre-cutoff. Historical review checks original versions, corrections, the exact statement and publication evidence. A later exposition can explain an older result but does not alone establish its earlier availability.
 
@@ -24,7 +24,7 @@ score(run) = | R ∩ H |
 
 An official score is published only after the run-admission requirements below are satisfied. Every pair in R must have a historical decision, including one supplied by the release-wide audit; a pair reviewed as already known earns zero. Each ordered pair contributes at most one point, regardless of how many proofs resolve it. Accepted answers to different tasks in the same run may combine through implications. Different runs are never pooled.
 
-Implication credit ranges over the frozen candidate universe, including consequences outside a run's assigned subset. Exact run, attempt and artifact hashes bind accepted proofs to their originating run. The standalone `score` command assumes mathematical claims for diagnosis and reports hypothetical consequences. Operational official scores use `evaluate-run`; `score --official` is not the operational admission route.
+Implication credit ranges over the frozen candidate universe, including consequences outside a run's assigned subset. The universe contains only pairs from `scored_class_ids`. Accepted supporting claims may use any context endpoint. Demoting a class preserves its proof paths but removes direct credit, including direct independence credit, for pairs containing it. Different roster versions define different cohorts and denominators. Exact run, attempt and artifact hashes bind accepted proofs to their originating run. The standalone `score` command assumes mathematical claims for diagnosis and reports hypothetical consequences. Operational official scores use `evaluate-run`; `score --official` is not the operational admission route.
 
 A contradiction with the baseline, another accepted claim, or a derived resolution rejects that inconsistent claim set. Logical explosion earns no points. A stronger accepted result earns at least as many points when it entails all the weaker result's accepted consequences under the same baseline and historical eligibility decisions. The engine need not discover every implication in mathematics.
 

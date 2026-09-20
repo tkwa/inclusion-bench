@@ -1,14 +1,16 @@
 # InclusionBench
 
+> **Draft PR:** [Review provisional v0.4.0](https://github.com/tkwa/inclusion-bench/pull/1). This branch has its own frozen question set and historical decisions. It remains a proposal; the published v0.3.1 release and tkwa.me are unchanged.
+
 **An AI mathematics benchmark built from open questions in complexity theory.**
 
 Give a model a frozen set of complexity-class inclusion questions and a declared budget. Verify its answers, then award one point for each eligible ordered pair they resolve. Proven consequences count; duplicate resolutions count once within the run. The leaderboard entry identifies a model version and a single run.
 
 [Public site](https://tkwa.me) · [Leaderboard and task explorer mirror](https://tkwa.github.io/inclusion-bench/) · [Evaluation protocol](docs/EVALUATION.md) · [Scoring specification](docs/SPEC.md) · [Formalization status](docs/formalization.md)
 
-**Version 0.3.1 is open for model runs.** The release includes 50 canonical operational class definitions, a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
+**Provisional v0.4.0 is a roster revision for review.** It proposes 50 scored classes, backed by 61 canonical operational definitions, a cited baseline and implication scorer, OpenAI and Anthropic adapters, token and time budgets, sealed run records, proof checking, review commands, and a static leaderboard. Existing cited mathematical results are trusted premises; formalizing their proofs is not a prerequisite to running or scoring.
 
-The frozen suite contains **1,378 questions audited as open at the September 1, 2026 cutoff**. The [release audit](research/baseline-audit.md) records historical eligibility for every question, so model runs reuse those decisions. These are revisable literature judgments: a missed pre-cutoff result earns no point and triggers a recorded correction. A real run that resolves nothing can receive an official zero after run-integrity review and disposition of all proof candidates. No paid model run or model score was invented for this release.
+The provisional suite contains **1,324 questions at the September 1, 2026 cutoff**. The [release audit](research/baseline-audit.md) records historical eligibility for every question, so model runs reuse those decisions. The [roster decision](research/v0.4.0/roster-decision.md) explains eleven additions, eleven demotions, alternatives and lost coverage. This branch is separate from the published v0.3.1 release; its scores are not directly comparable. These are revisable literature judgments: a missed pre-cutoff result earns no point and triggers a recorded correction. A real run that resolves nothing can receive an official zero after run-integrity review and disposition of all proof candidates. No paid model run or model score was invented for this release.
 
 ## Run a model
 
@@ -102,21 +104,25 @@ python3 -m inclusion_bench explain separation PSPACE P --assuming examples/bpp-s
 
 These are scoring examples, not AI achievements. Pre-cutoff public knowledge scores zero by definition and appears separately from the model leaderboard. The suite is public: training exposure and retrieval of later solutions are possible. A valid score measures resolved questions under the declared access conditions; it does not establish independent discovery.
 
-## The 50 classes
+## The 50 scored classes
 
 | Area | Classes |
 | --- | --- |
-| Nonuniform circuits and advice | AC⁰, ACC⁰, TC⁰, NC¹, P/poly, NP/poly |
-| Space and parallel computation | L, NL, LogCFL, **uniform NC**, SC |
-| Polynomial computation | P, NP, coNP, NP ∩ coNP |
-| Randomness | RP, coRP, ZPP, BPP, SBP |
-| Counting | UP, coUP, FewP, SPP, C₌P, PP, ⊕P, AWPP, LWPP, WPP |
-| Proof systems | MA, coMA, AM, coAM, SZK |
-| Quantum | BQP, QCMA, QMA, coQMA |
-| Polynomial hierarchy | Θ₂P, Δ₂P, Σ₂P, Π₂P, PH |
-| Exponential resources | E, NE, EXP, NEXP, PSPACE, EXPSPACE |
+| Circuits and advice | ACC⁰, TC⁰, NC¹, **uniform NC¹**, P/poly, NP/poly |
+| Space and parallel computation | L, UL, NL, BPL, PL, BQL, LogCFL, uniform NC, SC, PSPACE, EXPSPACE |
+| Time, nondeterminism and real feasibility | P, NP, coNP, NP ∩ coNP, ∃R, NE, EXP, NEXP |
+| Randomness and classical proof systems | RP, ZPP, BPP, MA, AM, SBP, SZK |
+| Polynomial-time counting | UP, SPP, C₌P, PP, ⊕P, AWPP, P^#P, CH |
+| Quantum computation and proof systems | BQP, QCMA, QMA, QMA(2), StoqMA, QSZK |
+| Polynomial hierarchy | Θ₂P, Δ₂P, Σ₂P, PH |
 
-The [catalog](data/classes.json) fixes every convention. Nonuniform classes can contain undecidable languages and must not be silently included in EXP. Promise-only, fixed-exponent, search or algebraic advances need not resolve these total-language targets. The [coverage audit](research/coverage.json) documents examples and gaps; exhaustive coverage of every plausible breakthrough is not required.
+These display groups overlap scientifically: BQL is both quantum and space-bounded, PL is a counting class, and unambiguity connects space and counting. They are not separate weighted scores. Selection considers important research questions and model diversity, without predicting which questions an AI will solve first.
+
+The eleven demoted endpoints remain **unscored background classes**: AC⁰, coUP, coMA, coAM, coQMA, FewP, LWPP, WPP, coRP, E and Π₂P. Their definitions, facts and implication rules remain available. A proof about a background pair can score through an eligible consequence on two scored endpoints; that background pair itself earns no point. An independence result earns credit only for its exact scored pair.
+
+The [catalog](data/classes.json) fixes every convention. ACC⁰, TC⁰, NC¹, P/poly and NP/poly are nonuniform; background AC⁰ is too. These classes may contain undecidable languages and must not be silently included in EXP. UniformNC1 uses standard extended-connection uniformity, equivalently ALOGTIME; it is distinct from nonuniform NC¹. PSharpP is the **decision** class P^PP = P^#P, not the function class #P or the search class PPP.
+
+The [original coverage stress test](research/coverage.json) and [twenty examples for the additions](research/v0.4.0/representative-questions.json) document coverage without claiming a forecast distribution. Promise-only, fixed-exponent, search and algebraic advances need not resolve these total-language targets. Exhaustive coverage of every plausible breakthrough is not required.
 
 ## Frozen data and Lean
 
@@ -127,9 +133,9 @@ The [catalog](data/classes.json) fixes every convention. Nonuniform classes can 
 - [`research/baseline-audit.md`](research/baseline-audit.md): audit findings, coverage, residual-error estimate and versioned corrections.
 - [`data/history_reviews.json`](data/history_reviews.json): dated historical decisions for the frozen questions.
 - [`research/`](research/): primary-source records, theorem locators and independent review dossiers.
-- [`lean/`](lean/) and [`quantum/`](quantum/): all 50 operational definitions and Lean inference/scoring foundations.
+- [`lean/`](lean/) and [`quantum/`](quantum/): all 61 operational definitions and Lean inference/scoring foundations.
 
-The definitions are the benchmark's canonical targets. The core covers 46 classes; the pinned Mathlib extension supplies the four quantum classes and agrees with the core interpretation. Alternative textbook characterizations, aliases such as IP for PSPACE, and further invariants can be added with documented equivalences. They are useful future work rather than launch requirements.
+The definitions are the benchmark's canonical targets. The core covers 52 classes; the pinned Mathlib extension supplies eight quantum classes and ∃R, and agrees with every core definition. Alternative textbook characterizations, aliases such as IP for PSPACE, and further invariants can be added with documented equivalences. They are useful future work rather than launch requirements.
 
 Existing cited theorems and substantive implication rules are explicitly trusted. New ordinary claims must pass the proof-admission checks. A generated consequence trace verifies a deduction from its stated premises; it does not verify a new premise merely by assuming it.
 

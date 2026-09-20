@@ -1,72 +1,82 @@
-# Quantum definitions
+# Quantum and real-number definitions
 
-This optional Lean project completes the benchmark's operational definitions
-for BQP, QCMA, QMA, and coQMA. It imports the 46 definitions in `../lean` and
-uses Mathlib for exact real and complex arithmetic. The core library remains
-independent of Mathlib.
+This Mathlib project completes the provisional v 0.4.0 interpretation: eight
+quantum classes and ∃R supplement the 52 definitions in `../lean`. The full
+catalog has 61 concrete definitions, of which 50 supply scored endpoints. The
+core remains independent of Mathlib.
 
-The full interpretation is `InclusionBench.Quantum.completeInterpretation`.
-The theorem `complete_agrees_with_core` proves agreement with every supplied
-core definition; `all_fifty_defined` checks coverage of the entire roster.
-Import `InclusionQuantum` to use both.
+Import `InclusionQuantum` for
+`InclusionBench.Quantum.completeInterpretation`.
+`complete_agrees_with_core` proves agreement with every core definition;
+`all_catalog_classes_defined` checks complete context coverage. Background
+classes remain valid proof targets without earning points for their own pairs.
 
-## Model
+## Models
 
-A state is a complex amplitude for each finite computational basis string.
-Normalization is a finite sum of squared complex magnitudes equal to one.
-The available gates are H, T, X, and CNOT. CNOT requires distinct control and
-target wires. The T phase is exactly `(1 + i) / sqrt(2)`.
+`Quantum.lean` and `Normalization.lean` define BQP, QCMA, QMA and coQMA.
+States are complex amplitudes on finite computational basis strings. H, T,
+X and CNOT have explicit actions; the T phase is `(1 + i) / sqrt(2)`.
+Finite-control polynomial-time transducers generate complete circuits on unary
+input length. Input, witness and zero-ancilla registers have explicit bounds.
+Acceptance is a finite sum of squared amplitudes, with a gap on every input.
 
-A concrete finite-control transducer, running in polynomial time, outputs
-each complete circuit on unary input length. The serialization contains the
-width, measured output wire, gate count, and fixed-width records holding every
-gate tag and wire index. Witness and ancilla lengths are explicit polynomials.
+The new modules supply these targets:
 
-Input bits occupy a computational basis register. Witnesses occupy a separate
-register, and ancillary bits start at zero. QCMA quantifies over classical
-basis witnesses; QMA quantifies over normalized complex witness states. BQP
-has an empty witness register. Acceptance is the finite sum of squared
-amplitudes whose output bit is one. Each class imposes the usual total-language
-completeness and soundness gaps of 2/3 and 1/3 on every input.
+| Module | Target and convention |
+| --- | --- |
+| `Unentangled.lean` | QMA(2), with an explicit tensor product of two separately normalized witnesses |
+| `Logspace.lean` | BQL, with a logspace polynomial-time generator reading the actual input, logarithmic quantum workspace and a polynomial gate bound |
+| `Stoquastic.lean` | StoqMA, with reversible classical gates, zero/plus ancillas, X measurement and the standard union over efficiently computed inverse-polynomial-gap thresholds |
+| `Statistical.lean` | QSZK through Quantum State Distinguishability on retained outputs, after discarding environment registers |
+| `RealFeasibility.lean` | ∃R over finitely encoded integer-coefficient formulas and finite real assignments, closed under concrete polynomial-time many-one reductions |
+
+QSZK's distance uses the finite-dimensional variational characterization of
+trace distance. Its optimizing measurement defines a mathematical quantity;
+it is not a free efficient subroutine. StoqMA does not normalize its thresholds
+to the exact soundness-1/2 slice, which would describe NP instead. BQL does not
+permit polynomial-time classical preprocessing with unrestricted workspace.
+
+The [design and literature dossiers](../research/v 0.4.0/quantum-new-baseline.md)
+and [formalization notes](../docs/formalization.md) document these choices and
+the trusted textbook-equivalence bridges. All endpoints are total binary
+languages; promise-only conclusions require a separate valid transfer.
 
 ## Build
 
-Install Lean `leanprover/lean4:v4.19.0`. Mathlib is pinned to `v4.19.0`, commit
-`c44e0c8ee63ca166450922a373c7409c5d26b00b`; `lake-manifest.json` locks its
-dependencies.
-
-Run from this directory:
+Both projects pin Lean 4.19.0. Mathlib is pinned to commit
+`c44e0c8ee63ca166450922a373c7409c5d26b00b`, with its dependencies locked in
+`lake-manifest.json`. From this directory:
 
 ```sh
 sh setup.sh
 sh build.sh
 ```
 
-The compiler checks modules serially with one Lean worker. Cache downloads
-request only four modules and their transitive dependencies, rather than all
-of Mathlib. The cache decompressor may create workers independently of Lean.
-On Linux, restrict the entire setup and build to one available CPU when
-resource limits matter:
+Compilation is serial with one Lean worker. Setup requests four Mathlib
+modules and their transitive dependencies; the cache decompressor may create
+its own workers. On Linux, `bash ../scripts/check_quantum.sh` constrains the
+whole setup and build to one available CPU and 8GiB of address space. It checks
+the core, the complete interpretation and the required axiom-audit output.
+Mathlib setup and compilation for this revision ran on the authorized Ubuntu
+host, not the local Mac.
 
-```sh
-taskset -c 0 sh setup.sh
-taskset -c 0 sh build.sh
-```
+## What is proved
 
-The project was checked on the authorized Ubuntu host with this one-CPU
-configuration. No Mathlib dependency download or compilation ran locally.
+The library checks normalization, gate and circuit norm preservation,
+acceptance bounds, product-witness normalization, state preparation and
+measurement bounds, serialization injectivity, and the full interpretation's
+coverage and agreement. Real-feasibility checks include an executable encoding
+round trip, malformed-input rejection, and satisfiable and unsatisfiable
+real equations.
 
-## What the proofs establish
+`SemanticChecks.lean` preserves independent adversarial checks, including a
+Bell-pattern state that cannot be a product witness and invariance of retained
+output measurements under phase changes confined to the discarded environment.
+The complementary core semantic checks cover clocks, branch weights, work
+space, index tapes, counting multiplicities and formula decoding.
 
-The checked theorems include coverage of all 50 classes, compatibility with
-the core interpretation, normalized computational basis states, injectivity
-of gate records, and the fact that applying X twice restores the state.
-`InclusionQuantum/Normalization.lean` proves squared-norm preservation by
-every concrete gate and circuit, preservation by the input/witness/ancilla
-embedding, and acceptance bounds between zero and one for normalized witnesses.
-The empty witness used by BQP is also proved normalized. The audit file prints
-their Lean axiom dependencies.
-
-Amplification, textbook model equivalence, and the literature's inclusion and
-separation theorems remain unproved here. Having all definitions available does not certify the
-historical baseline or prove any open complexity-class relation.
+The audits permit only standard Lean foundations: `propext`,
+`Classical.choice` and `Quot.sound`. They do not prove every textbook-model
+equivalence, reconstruct the cited literature, establish historical openness,
+or solve any open class inclusion. Existing results remain explicit trusted
+inputs; new model claims use the separate isolated proof checker.

@@ -1,0 +1,4737 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_independent_cross_review_and_import",
+  "reviewer": {
+    "identity": "Codex classical_literature subagent",
+    "kind": "AI-assisted; not human expert certification"
+  },
+  "recorded_at": "2026-09-20",
+  "cutoff": "2026-09-01",
+  "base_commit": "5e4addcddd40f1a75a02b83dc26aaee2ac54b1cd",
+  "base_dataset_digest": "6cf78ea6cf5edd43e5c327a90ba54765871cfd552800637cbecfbc646eef7742",
+  "input_file_sha256": {
+    "data/classes.json": "46e87fe5999fa9b2b5c2cf3de668a9ad70248056c6c833697484488f7c079c12",
+    "data/knowledge.json": "bc8b03891cfab9ae3b2c1785410e40b2fb8e79fab85a1b29e4f399bb348122e2",
+    "inclusion_bench/engine.py": "4175d28d78ecaeb70a4951498bd09c76b952cac9813f0b7a97a622fd4a8e65a5"
+  },
+  "scope": {
+    "focus_classes": [
+      "BPL",
+      "ExistsR",
+      "PL",
+      "UL",
+      "UniformNC1"
+    ],
+    "context_count": 61,
+    "incident_pair_count": 585,
+    "interpretation": "All ordered context pairs with at least one focus endpoint, including diagonals and background nodes."
+  },
+  "model_specifications": {
+    "BPL": {
+      "definition": "A finite probabilistic Turing machine with a read-only binary input and fresh independent fair coins, using O(log(n+2)) work cells on every prefix of every random computation and halting within one fixed polynomial on every input and coin sequence. Yes acceptance≥2/3; no acceptance≤1/3.",
+      "critical_exclusions": [
+        "Two-way access to an uncounted random tape",
+        "Almost-sure halting without a worst-case polynomial clock",
+        "Separate time and space algorithms instead of simultaneous bounds"
+      ],
+      "complement": "self"
+    },
+    "UL": {
+      "definition": "A finite binary nondeterministic machine uses O(log(n+2)) workspace and one polynomial all-branch clock. Every input has at most one accepting computation path; membership means exactly one. Count paths with transition-list multiplicity, not distinct reachable configurations.",
+      "critical_exclusions": [
+        "US-style exact-one tests allowing multiple accepting paths on no inputs",
+        "StrongUL/StrongFewL restrictions on all configuration pairs",
+        "Polynomial advice"
+      ],
+      "complement": "not asserted; coUL is not presently a context node"
+    },
+    "PL": {
+      "definition": "Polynomial-time logarithmic-space fair-coin computation with acceptance probability strictly greater than1/2 exactly on members (≤1/2 on nonmembers). Equivalently positive GapL, where GapL is a difference of two polynomial-clocked #L accepting-path counts.",
+      "critical_exclusions": [
+        "Constant bounded error",
+        "Arbitrary branch-degree acceptance fractions without a fair-coin or GapL equivalence",
+        "Counting configurations instead of paths",
+        "Identification with every bit of determinant/#L",
+        "Unrestricted oracle hierarchy closure"
+      ],
+      "complement": "self; use integer gap shift to handle equality at1/2"
+    },
+    "ExistsR": {
+      "definition": "All total binary languages polynomial-time many-one reducible to finite binary encodings of existential real formulas with integer/rational coefficients, Boolean combinations of polynomial equality/inequality tests, and finitely many real variables. Fix an ordinary explicit syntax, reject malformed encodings. Equivalent implementation: finite binary systems of quadratic polynomial equations over the reals.",
+      "critical_exclusions": [
+        "Arbitrary real constants in the machine",
+        "Polynomial-bit rational witnesses",
+        "A succinct encoding that denotes exponentially many constraints",
+        "Unit-cost real inputs as the benchmark universe"
+      ],
+      "complement": "not asserted"
+    },
+    "UniformNC1": {
+      "definition": "Standard U_E-uniform polynomial-size logarithmic-depth bounded-fan-in Boolean circuits; equivalently ALOGTIME on a finite random-access-input alternating Turing machine with O(log(n+2)) time on every branch. The address tape, branching and query conventions must be explicit.",
+      "critical_exclusions": [
+        "DLOGTIME recognition of only the direct-connection language U_D",
+        "The existing nonuniform NC1 node",
+        "An arbitrary polynomial-time circuit generator",
+        "Replacing random access by a one-way sequential input"
+      ],
+      "complement": "self"
+    }
+  },
+  "sources": [
+    {
+      "id": "v040-Nisan1994",
+      "title": "RL ⊆ SC",
+      "url": "https://cris.huji.ac.il/en/publications/rl-sc-2/",
+      "year": 1994,
+      "publication_date": "1994-03",
+      "locator": "Abstract; Computational Complexity 4(1), 1–11; DOI 10.1007/BF01205052",
+      "notes": "The abstract explicitly covers polynomial-time randomized logspace with bounded two-sided error. The title’s RL notation must not be read as restricting the result to the modern one-sided class."
+    },
+    {
+      "id": "v040-BCP1983",
+      "title": "Parallel Computation for Well-Endowed Rings and Space-Bounded Probabilistic Machines",
+      "url": "https://www.cs.toronto.edu/~bor/Papers/parallel-computation-well-endowed-rings.pdf",
+      "year": 1983,
+      "publication_date": "1983-07",
+      "locator": "§2 p.116 defines logspace-uniform NC; §6 Lemma 6.1, Proposition 6.2 and Corollary 6.3, pp.131–132",
+      "notes": "Information and Control 58(1–3),113–136, July–September1983; DOI 10.1016/S0019-9958(83)80060-6. Its NC² upper bound applies to polynomial-time PL."
+    },
+    {
+      "id": "v040-AO1996",
+      "title": "Relationships among PL, #L, and the determinant",
+      "url": "https://www.numdam.org/item/ITA_1996__30_1_1_0.pdf",
+      "year": 1996,
+      "publication_date": "1996",
+      "locator": "Propositions 2–3; Theorems 1,5–6,8; §3 oracle convention; §7 conclusion",
+      "notes": "RAIRO 30(1),1–21. GapL characterization and polynomial-clock equivalence are explicit. Oracle closure uses the Ruzzo–Simon–Tompa convention."
+    },
+    {
+      "id": "v040-Ogihara1996",
+      "title": "The PL Hierarchy Collapses",
+      "url": "https://eccc.weizmann.ac.il/report/1996/013/download/",
+      "year": 1996,
+      "publication_date": "1996-02-16",
+      "locator": "Abstract and main hierarchy-collapse theorem",
+      "notes": "ECCC TR96-013; journal SIAM J.Comput.27(5),1430–1437 (1998), DOI10.1137/S0097539795295924. PL^PL=PL here uses RST relativization; it is not an unrestricted oracle theorem."
+    },
+    {
+      "id": "v040-RA1999",
+      "title": "Making Nondeterminism Unambiguous",
+      "url": "https://people.cs.rutgers.edu/~allender/papers/nlul.pdf",
+      "year": 1999,
+      "publication_date": "1999-03-31",
+      "locator": "Introduction and §2; Theorem2.2 and Corollary2.3",
+      "notes": "Author manuscript; SIAM J.Comput.29(4),1118–1131(2000), DOI10.1137/S0097539798339041. NL⊆UL/poly does not remove advice."
+    },
+    {
+      "id": "v040-PTV2010",
+      "title": "On the Power of Unambiguity in Logspace",
+      "url": "https://arxiv.org/abs/1001.2034",
+      "year": 2010,
+      "publication_date": "2010-01-12",
+      "locator": "Abstract; unambiguity definitions and characterization of NL=UL",
+      "notes": "The min-uniqueness/optimization equivalences do not establish NL=UL unconditionally."
+    },
+    {
+      "id": "v040-CW2024",
+      "title": "BPL ⊆ L-AC¹",
+      "url": "https://eccc.weizmann.ac.il/report/2024/048/download",
+      "year": 2024,
+      "publication_date": "2024-03-10",
+      "locator": "Introduction; Theorem1.1; Definition2.6; Corollary5.2",
+      "notes": "Logspace-uniform AC¹; not the semi-unbounded SAC¹ characterization of LogCFL. Introduction explicitly says L=NL is not known to imply L=BPL."
+    },
+    {
+      "id": "v040-Hoza2022",
+      "title": "Recent progress on derandomizing space-bounded computation",
+      "url": "https://eccc.weizmann.ac.il/report/2022/121/download",
+      "year": 2022,
+      "publication_date": "2022-08-28",
+      "locator": "§1 definitions; survey of space/time tradeoffs; open directions",
+      "notes": "Author-written survey. Better space-only simulation does not imply the simultaneous bounds defining SC."
+    },
+    {
+      "id": "v040-LNY2021",
+      "title": "Quantum Logarithmic Space and Post-selection",
+      "url": "https://arxiv.org/pdf/2105.02681",
+      "year": 2021,
+      "publication_date": "2021-05-06",
+      "locator": "§2.1 and §2.3, especially displayed containments on p.5; Theorems1–2",
+      "notes": "L⊆BPL⊆BQL⊆PL; bounded-error polynomial-time and unrestricted-time classes are explicitly distinguished. DOI10.4230/LIPIcs.TQC.2021.10."
+    },
+    {
+      "id": "v040-BKLM2012",
+      "title": "The lower reaches of circuit uniformity",
+      "url": "https://eccc.weizmann.ac.il/report/2011/095/revision/1/download/",
+      "year": 2012,
+      "publication_date": "2012-05-12",
+      "locator": "§2 Remark1, p.5; Theorem6",
+      "notes": "This revision of TR11-095 distinguishes standard extended-connection U_E uniformity from direct-connection U_D. Standard DLOGTIME-uniform NC¹ equals ALOGTIME; U_D equality is not established here."
+    },
+    {
+      "id": "v040-Ruzzo1981",
+      "title": "On uniform circuit complexity",
+      "url": "https://doi.org/10.1016/0022-0000(81)90038-6",
+      "year": 1981,
+      "publication_date": "1981-06",
+      "locator": "Abstract and circuit/alternating-machine simulation theorem; JCSS22(3),365–383",
+      "notes": "Original circuit/alternation equivalence; exact U_E convention is clarified by BKLM Remark1."
+    },
+    {
+      "id": "v040-GHR1995",
+      "title": "Limits to Parallel Computation: P-Completeness Theory",
+      "url": "https://homes.cs.washington.edu/~ruzzo/papers/limits.pdf",
+      "year": 1995,
+      "publication_date": "1995",
+      "locator": "AppendixD, p.254, containment NC¹⊆DLOG; §3.2 circuit conventions",
+      "notes": "Author-hosted monograph; use only the uniform inclusion, not the benchmark’s nonuniform NC1 endpoint."
+    },
+    {
+      "id": "v040-Canny1988",
+      "title": "Some Algebraic and Geometric Computations in PSPACE",
+      "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/1988/6041.html",
+      "year": 1988,
+      "publication_date": "1988-08",
+      "locator": "Abstract, existential theory of the reals in PSPACE; UCB/CSD-88-439",
+      "notes": "Original STOC1988 publication DOI10.1145/62212.62257. Institution-hosted report and abstract verified; the scanned PDF was not text-extracted."
+    },
+    {
+      "id": "v040-MW2025",
+      "title": "Some structural complexity results for ∃R",
+      "url": "https://arxiv.org/html/2502.00680v1",
+      "year": 2025,
+      "publication_date": "2025-02-02",
+      "locator": "Abstract; Definition1; Theorem1.1; Theorem2.1",
+      "notes": "Finite-bit quadratic feasibility characterization. Relativized separation and conditional Ladner results are not ordinary pair separations."
+    },
+    {
+      "id": "v040-SCM2024",
+      "title": "The Existential Theory of the Reals as a Complexity Class: A Compendium",
+      "url": "https://arxiv.org/html/2407.18006v1",
+      "year": 2024,
+      "publication_date": "2024-07-25",
+      "locator": "§§1.1–1.2; discussion of PH, PosSLP and sum of square roots",
+      "notes": "A later book chapter appeared May1,2026, DOI10.1007/978-3-032-10503-5_5. The audited text is pinned to v1; individual problems in CH do not place all ∃R in CH."
+    },
+    {
+      "id": "v040-DG2022",
+      "title": "Evaluating Monotone Circuits on Surfaces",
+      "url": "https://eccc.weizmann.ac.il/report/2022/147/revision/2/download",
+      "year": 2022,
+      "publication_date": "2022",
+      "locator": "§2, p.6, Figure1 and paragraphs defining LogDCFL and UL",
+      "notes": "Exact displayed statements: UL⊆NL⊆LogCFL⊆NC²; UL and LogCFL are not known to be in SC. Metadata records revisions in November2022; published WALCOM2025 DOI10.1007/978-981-96-2845-2_9. Template CVIT DOI is not the publication DOI."
+    },
+    {
+      "id": "v040-AE2025",
+      "title": "Directed st-Connectivity with Few Paths Is in Quantum Logspace",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2025.18",
+      "year": 2025,
+      "publication_date": "2025-07-29",
+      "locator": "Corollary3 and Theorem4; definitions of strong fewness",
+      "notes": "Quantum co-review verified StrongFewL⊆BQL. The all-pairs path bound is stronger than ordinary UL’s accepting-path condition. Date is proceedings publication, not discovery date."
+    },
+    {
+      "id": "v040-PT2026",
+      "title": "Using Hardness vs Randomness to Design Low-Space Algorithms",
+      "url": "https://eccc.weizmann.ac.il/report/2026/045/download/",
+      "year": 2026,
+      "publication_date": "2026-04-05",
+      "locator": "Theorems1.2,3.3,3.6,3.9–3.13; §5 open questions",
+      "notes": "Contemporary primary-author survey. Catalytic, quantitative, infinitely-often and conditional statements are not unqualified ordinary class inclusions."
+    },
+    {
+      "id": "v040-ACD2026",
+      "title": "Derandomizing Isolation In Catalytic Logspace",
+      "url": "https://arxiv.org/abs/2512.09374v3",
+      "year": 2026,
+      "publication_date": "2026-02-06",
+      "locator": "Abstract and third result",
+      "notes": "Initial v1 Dec10,2025. NL simulation uses catalytic memory plus a UL oracle; it does not prove NL⊆UL."
+    },
+    {
+      "id": "v040-Stade2026",
+      "title": "Probabilistically checkable proofs for the Existential Theory of the Reals",
+      "url": "https://arxiv.org/html/2605.23517v1",
+      "year": 2026,
+      "publication_date": "2026-05-22",
+      "locator": "§1.2 Theorem2 and discussion of real-alphabet assignment testers",
+      "notes": "Gap-MAX-ETR-INV is ∃R-hard. Real-valued proof symbols and real tests do not supply an NP, MA, or QMA verifier under the benchmark’s binary models."
+    },
+    {
+      "id": "v040-ClassicalNewDerivations",
+      "title": "Classical baseline extension: elementary model transfers",
+      "url": "research/v0.4.0/classical-new-baseline.md",
+      "kind": "benchmark_derivation",
+      "recorded_at": "2026-09-20",
+      "locator": "Model conventions, primitive transfers and conditional rules",
+      "notes": "Explanations recorded after the cutoff, grounded in the dated source theorems; not a claim of a post-cutoff discovery."
+    }
+  ],
+  "external_source_ids": [
+    "FSS1984",
+    "AB2007",
+    "AuditPadding"
+  ],
+  "facts": [
+    {
+      "id": "v040-l-bpl",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "BPL",
+      "source_ids": [
+        "v040-LNY2021"
+      ],
+      "justification": "§2.3 states L⊆BPL; deterministic logspace machines ignore coins.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-bpl-bpp",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "BPP",
+      "source_ids": [
+        "v040-Hoza2022",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Forget the logarithmic workspace bound while retaining worst-case polynomial time and the same all-input bounded-error gap.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-bpl-sc",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "SC",
+      "source_ids": [
+        "v040-Nisan1994"
+      ],
+      "justification": "The abstract explicitly simulates polynomial-time two-sided-error logspace in simultaneous polynomial time and O(log² n) deterministic workspace.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-bpl-pl",
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "PL",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "A bounded-error polynomial-time logspace machine already satisfies strict-majority unbounded error.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-l-ul",
+      "relation": "inclusion",
+      "left": "L",
+      "right": "UL",
+      "source_ids": [
+        "v040-RA1999",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "A deterministic accepting computation is the sole accepting path; deterministic rejection creates none.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-ul-nl",
+      "relation": "inclusion",
+      "left": "UL",
+      "right": "NL",
+      "source_ids": [
+        "v040-DG2022"
+      ],
+      "justification": "The p.6 definition and containment explicitly give UL⊆NL.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-nl-pl",
+      "relation": "inclusion",
+      "left": "NL",
+      "right": "PL",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "For a polynomial-clocked logspace nondeterministic machine, its accepting-path count f is #L. The GapL function f−0 is positive exactly when an accepting path exists. Proposition3 identifies its positive languages with PL.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-pl-nc",
+      "relation": "inclusion",
+      "left": "PL",
+      "right": "NC",
+      "source_ids": [
+        "v040-BCP1983"
+      ],
+      "justification": "Corollary6.3 gives NC² for probabilistic logspace; §2 defines logspace-uniform circuits. This embeds in the benchmark’s logspace-uniform NC.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-np-existsr",
+      "relation": "inclusion",
+      "left": "NP",
+      "right": "ExistsR",
+      "source_ids": [
+        "v040-MW2025",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "NP⊆∃R is stated in the abstract. Explicitly reduce Boolean circuit satisfiability to real quadratic constraints: z(z−1)=0 for each wire, z=xy for AND, z=1−x for NOT, and force output1.",
+      "evidence_kind": "direct_source_and_elementary_derivation"
+    },
+    {
+      "id": "v040-existsr-pspace",
+      "relation": "inclusion",
+      "left": "ExistsR",
+      "right": "PSPACE",
+      "source_ids": [
+        "v040-Canny1988"
+      ],
+      "justification": "Canny’s abstract states that the existential theory of the reals is decidable in polynomial space; polynomial-time binary many-one reductions preserve PSPACE.",
+      "evidence_kind": "direct_source"
+    },
+    {
+      "id": "v040-uniformnc1-l",
+      "relation": "inclusion",
+      "left": "UniformNC1",
+      "right": "L",
+      "source_ids": [
+        "v040-BKLM2012",
+        "v040-GHR1995",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Use standard U_E-uniform NC¹=ALOGTIME. A deterministic depth-first traversal of the logarithmic-depth alternating computation tree stores a path and recomputes configurations in O(log n) workspace; AppendixD of GHR records uniform NC¹⊆DLOG.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-uniformnc1-nc1",
+      "relation": "inclusion",
+      "left": "UniformNC1",
+      "right": "NC1",
+      "source_ids": [
+        "v040-BKLM2012"
+      ],
+      "justification": "Forget standard U_E uniformity of the polynomial-size logarithmic-depth circuit family.",
+      "evidence_kind": "definition_transfer"
+    },
+    {
+      "id": "v040-uniformnc1-not-ac0",
+      "relation": "separation",
+      "left": "UniformNC1",
+      "right": "AC0",
+      "source_ids": [
+        "FSS1984",
+        "v040-BKLM2012",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "PARITY has a balanced binary XOR tree with standard U_E uniformity, after replacing XOR by constant-size AND/OR/NOT gadgets. The Furst–Saxe–Sipser lower bound excludes even nonuniform AC0.",
+      "evidence_kind": "direct_lower_bound_and_elementary_transfer"
+    }
+  ],
+  "rules": [
+    {
+      "id": "v040-padding-regular-E-BPL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "BPL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "BPL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-Hoza2022"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. BPL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-BPL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "BPL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "BPL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-Hoza2022"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. BPL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-E-UL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "UL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "UL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-RA1999"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. UL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-UL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "UL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "UL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-RA1999"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. UL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-E-PL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "PL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "PL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-AO1996"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. PL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-PL",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "PL"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "PL"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-AO1996"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. PL is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-E-ExistsR",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "E",
+          "right": "ExistsR"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "EXP",
+          "right": "ExistsR"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-MW2025"
+      ],
+      "justification": "Use exact length-regular polynomial padding from EXP to E, then inverse padding. ExistsR is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    },
+    {
+      "id": "v040-padding-regular-NE-ExistsR",
+      "premises": [
+        {
+          "relation": "inclusion",
+          "left": "NE",
+          "right": "ExistsR"
+        }
+      ],
+      "conclusions": [
+        {
+          "relation": "inclusion",
+          "left": "NEXP",
+          "right": "ExistsR"
+        }
+      ],
+      "source_ids": [
+        "AuditPadding",
+        "v040-ClassicalNewDerivations",
+        "v040-MW2025"
+      ],
+      "justification": "Use exact length-regular polynomial padding from NEXP to NE, then inverse padding. ExistsR is closed under the required deterministic logspace many-one reductions (polynomial-time reductions for ExistsR). Virtual padded-input simulation preserves the clock, workspace and path/coin semantics."
+    }
+  ],
+  "complements": [
+    {
+      "left": "BPL",
+      "right": "BPL",
+      "source_ids": [
+        "v040-LNY2021",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Swap accepting and rejecting halts; preserve the all-input gap, polynomial clock, and space bound."
+    },
+    {
+      "left": "PL",
+      "right": "PL",
+      "source_ids": [
+        "v040-AO1996"
+      ],
+      "justification": "After Proposition3, integer GapL gap g>0 is complemented by gap 1−g>0. Proposition2 supplies the GapL arithmetic; the text also explicitly records complement closure."
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UniformNC1",
+      "source_ids": [
+        "v040-BKLM2012",
+        "v040-ClassicalNewDerivations"
+      ],
+      "justification": "Swap existential/universal states and accepting/rejecting leaves of the time-bounded alternating machine; by U_E=ALOGTIME the class is unchanged."
+    }
+  ],
+  "cross_dossier_overlay": [
+    {
+      "relation": "inclusion",
+      "left": "QMA",
+      "right": "QMA2",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "QMA2",
+      "right": "NEXP",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "MA",
+      "right": "StoqMA",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "SBP",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "StoqMA",
+      "right": "QMA",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BQP",
+      "right": "QSZK",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "SZK",
+      "right": "QSZK",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "QSZK",
+      "right": "PSPACE",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BPL",
+      "right": "BQL",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "BQL",
+      "right": "PL",
+      "owner": "quantum_coverage",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "PP",
+      "right": "PSharpP",
+      "owner": "lean_kernel/root",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "PH",
+      "right": "PSharpP",
+      "owner": "lean_kernel/root",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "PSharpP",
+      "right": "CH",
+      "owner": "lean_kernel/root",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    },
+    {
+      "relation": "inclusion",
+      "left": "CH",
+      "right": "PSPACE",
+      "owner": "lean_kernel/root",
+      "status": "cross_dossier_overlay_not_imported_by_this_file"
+    }
+  ],
+  "cross_dossier_complements": [
+    "BQL",
+    "QSZK",
+    "PSharpP",
+    "CH"
+  ],
+  "pair_status_counts": {
+    "separation": 60,
+    "candidate_unresolved": 291,
+    "inclusion": 234
+  },
+  "family_reviews": {
+    "nonuniform_circuits_advice": {
+      "review": "All five new classes are recursive and lie in PSPACE. Every nonuniform endpoint contains arbitrary unary languages via one advice bit/constant circuit per length; old AC0⊄PSPACE therefore propagates to all30 incoming pairs. Each new class contains uniform PARITY, so all five outgoing AC0 directions are false. Other outgoing small-circuit/advice questions need actual lower-bound theorems.",
+      "source_ids": [
+        "v040-BKLM2012",
+        "FSS1984",
+        "v040-ClassicalNewDerivations"
+      ],
+      "pair_count": 60,
+      "status_counts": {
+        "separation": 35,
+        "candidate_unresolved": 16,
+        "inclusion": 9
+      }
+    },
+    "other_space_parallelism": {
+      "review": "Checked exact NC² uniformity, SC simultaneity, logspace randomness, ordinary versus strong unambiguity and BQL polynomial time. Neither BPL⊆LogCFL nor PL⊆LogCFL/SC nor UL⊆SC/BPL/BQL follows from the admitted chains. UniformNC1=L remains a distinct candidate.",
+      "source_ids": [
+        "v040-BCP1983",
+        "v040-Nisan1994",
+        "v040-CW2024",
+        "v040-DG2022",
+        "v040-AE2025",
+        "v040-LNY2021"
+      ],
+      "pair_count": 60,
+      "status_counts": {
+        "inclusion": 24,
+        "candidate_unresolved": 36
+      }
+    },
+    "counting": {
+      "review": "The four new small-resource endpoints lie in P, so their outward counting inclusions follow the old baseline; ExistsR does not inherit a CH/PSharpP upper bound from PosSLP or square-root-sum membership. PL is GapL, not GapP or PP, and the RST PL hierarchy does not identify arbitrary determinant bits with PL.",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-Ogihara1996",
+        "v040-SCM2024"
+      ],
+      "pair_count": 120,
+      "status_counts": {
+        "candidate_unresolved": 70,
+        "inclusion": 50
+      }
+    },
+    "polynomial_time_randomness_proofs": {
+      "review": "Small-resource inclusions follow P and the old baseline. NP⊆ExistsR supplies only the transitive lower side of the real class; no general PH upper or lower inclusion was supplied. ETR-PCP real-alphabet proofs do not instantiate the binary MA/AM interfaces.",
+      "source_ids": [
+        "v040-MW2025",
+        "v040-SCM2024",
+        "v040-Stade2026"
+      ],
+      "pair_count": 190,
+      "status_counts": {
+        "candidate_unresolved": 109,
+        "inclusion": 81
+      }
+    },
+    "quantum": {
+      "review": "Use separately reviewed quantum primitives. Quantum witnesses have exponentially many amplitudes; an exponential-dimensional real feasibility encoding does not establish QMA⊆ExistsR. Real witnesses are not automatically quantum proofs. Ordinary UL is not covered by StrongFewL⊆BQL.",
+      "source_ids": [
+        "v040-LNY2021",
+        "v040-AE2025",
+        "v040-SCM2024"
+      ],
+      "cross_review_owner": "quantum_coverage",
+      "pair_count": 70,
+      "status_counts": {
+        "inclusion": 28,
+        "candidate_unresolved": 42
+      }
+    },
+    "larger_resources": {
+      "review": "The four small-resource endpoints lie in NC and hence P. Time hierarchy and the old PSPACE⊄NC fact propagate the corresponding separations. ExistsR⊆PSPACE gives EXPSPACE⊄ExistsR, but does not separate NEXP or EXP from ExistsR when their PSPACE relationship is unknown. Polynomial reduction closure provides the two new real-class padding implications.",
+      "source_ids": [
+        "v040-BCP1983",
+        "v040-Canny1988",
+        "AB2007",
+        "AuditPadding"
+      ],
+      "pair_count": 60,
+      "status_counts": {
+        "inclusion": 28,
+        "separation": 25,
+        "candidate_unresolved": 7
+      }
+    },
+    "new_internal": {
+      "review": "Every ordered pair among the five audited nodes was enumerated. UL and BPL both embed in PL, all four small-resource nodes embed in ExistsR through P⊆NP, and UniformNC1 embeds in the other four through L. Reverse directions are retained unless supported by the signed closure.",
+      "source_ids": [
+        "v040-AO1996",
+        "v040-LNY2021",
+        "v040-BKLM2012",
+        "v040-MW2025"
+      ],
+      "pair_count": 25,
+      "status_counts": {
+        "inclusion": 14,
+        "candidate_unresolved": 11
+      }
+    }
+  },
+  "incident_pairs": [
+    {
+      "left": "AC0",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:BPL"
+    },
+    {
+      "left": "AC0",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:ExistsR"
+    },
+    {
+      "left": "AC0",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:PL"
+    },
+    {
+      "left": "AC0",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:UL"
+    },
+    {
+      "left": "AC0",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:AC0:UniformNC1"
+    },
+    {
+      "left": "ACC0",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:BPL"
+    },
+    {
+      "left": "ACC0",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:ExistsR"
+    },
+    {
+      "left": "ACC0",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:PL"
+    },
+    {
+      "left": "ACC0",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:UL"
+    },
+    {
+      "left": "ACC0",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ACC0:UniformNC1"
+    },
+    {
+      "left": "AM",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "AM",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "AM",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "AM",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "AM",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "AWPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "AWPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "AWPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "AWPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "AWPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "BPL",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:BPL:AC0"
+    },
+    {
+      "left": "BPL",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "BPL",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:AM"
+    },
+    {
+      "left": "BPL",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:AWPP"
+    },
+    {
+      "left": "BPL",
+      "right": "BPL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:BPL:BPL"
+    },
+    {
+      "left": "BPL",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:BPP"
+    },
+    {
+      "left": "BPL",
+      "right": "BQL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BPL:BQL"
+    },
+    {
+      "left": "BPL",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:BQP"
+    },
+    {
+      "left": "BPL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:CH"
+    },
+    {
+      "left": "BPL",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:CeqP"
+    },
+    {
+      "left": "BPL",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Delta2P"
+    },
+    {
+      "left": "BPL",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:E"
+    },
+    {
+      "left": "BPL",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:EXP"
+    },
+    {
+      "left": "BPL",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:EXPSPACE"
+    },
+    {
+      "left": "BPL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:BPL:ExistsR"
+    },
+    {
+      "left": "BPL",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:FewP"
+    },
+    {
+      "left": "BPL",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "BPL",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:LWPP"
+    },
+    {
+      "left": "BPL",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "BPL",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:MA"
+    },
+    {
+      "left": "BPL",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BPL:NC"
+    },
+    {
+      "left": "BPL",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "BPL",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:NE"
+    },
+    {
+      "left": "BPL",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:NEXP"
+    },
+    {
+      "left": "BPL",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "BPL",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:NP"
+    },
+    {
+      "left": "BPL",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:NPcapcoNP"
+    },
+    {
+      "left": "BPL",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:BPL:NPpoly"
+    },
+    {
+      "left": "BPL",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:P"
+    },
+    {
+      "left": "BPL",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:PH"
+    },
+    {
+      "left": "BPL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:BPL:PL"
+    },
+    {
+      "left": "BPL",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:PP"
+    },
+    {
+      "left": "BPL",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:BPL:PSPACE"
+    },
+    {
+      "left": "BPL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:PSharpP"
+    },
+    {
+      "left": "BPL",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Pi2P"
+    },
+    {
+      "left": "BPL",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:BPL:Ppoly"
+    },
+    {
+      "left": "BPL",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QCMA"
+    },
+    {
+      "left": "BPL",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QMA"
+    },
+    {
+      "left": "BPL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QMA2"
+    },
+    {
+      "left": "BPL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:QSZK"
+    },
+    {
+      "left": "BPL",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:RP"
+    },
+    {
+      "left": "BPL",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:SBP"
+    },
+    {
+      "left": "BPL",
+      "right": "SC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BPL:SC"
+    },
+    {
+      "left": "BPL",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:SPP"
+    },
+    {
+      "left": "BPL",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:SZK"
+    },
+    {
+      "left": "BPL",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Sigma2P"
+    },
+    {
+      "left": "BPL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:StoqMA"
+    },
+    {
+      "left": "BPL",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "BPL",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:Theta2P"
+    },
+    {
+      "left": "BPL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "BPL",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:UP"
+    },
+    {
+      "left": "BPL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "BPL",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:WPP"
+    },
+    {
+      "left": "BPL",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:ZPP"
+    },
+    {
+      "left": "BPL",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coAM"
+    },
+    {
+      "left": "BPL",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coMA"
+    },
+    {
+      "left": "BPL",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coNP"
+    },
+    {
+      "left": "BPL",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:BPL:coQMA"
+    },
+    {
+      "left": "BPL",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:BPL:coRP"
+    },
+    {
+      "left": "BPL",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:coUP"
+    },
+    {
+      "left": "BPL",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:BPL:parityP"
+    },
+    {
+      "left": "BPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "BPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "BPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "BPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "BPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "BQL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "BQL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BQL:ExistsR"
+    },
+    {
+      "left": "BQL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:BQL:PL"
+    },
+    {
+      "left": "BQL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "BQL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "BQP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "BQP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "BQP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "BQP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "BQP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "CH",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CH",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CeqP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CeqP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CeqP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CeqP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "CeqP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "Delta2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Delta2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Delta2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Delta2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Delta2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "E",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:BPL"
+    },
+    {
+      "left": "E",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "E",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:PL"
+    },
+    {
+      "left": "E",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:UL"
+    },
+    {
+      "left": "E",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:E:UniformNC1"
+    },
+    {
+      "left": "EXP",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:BPL"
+    },
+    {
+      "left": "EXP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "EXP",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:PL"
+    },
+    {
+      "left": "EXP",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:UL"
+    },
+    {
+      "left": "EXP",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXP:UniformNC1"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:BPL"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:ExistsR"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:PL"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:UL"
+    },
+    {
+      "left": "EXPSPACE",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:EXPSPACE:UniformNC1"
+    },
+    {
+      "left": "ExistsR",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:ExistsR:AC0"
+    },
+    {
+      "left": "ExistsR",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "ExistsR",
+      "right": "AM",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "AWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BPP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "ExistsR",
+      "right": "BQP",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "ExistsR",
+      "right": "CH",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "CeqP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Delta2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "E",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "ExistsR",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:EXP"
+    },
+    {
+      "left": "ExistsR",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:EXPSPACE"
+    },
+    {
+      "left": "ExistsR",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:ExistsR:ExistsR"
+    },
+    {
+      "left": "ExistsR",
+      "right": "FewP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "ExistsR",
+      "right": "LWPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "ExistsR",
+      "right": "MA",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NE",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:NEXP"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NPcapcoNP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "NPpoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "ExistsR",
+      "right": "P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PH",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:ExistsR:PSPACE"
+    },
+    {
+      "left": "ExistsR",
+      "right": "PSharpP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Pi2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Ppoly",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QCMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QMA2",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "ExistsR",
+      "right": "QSZK",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "ExistsR",
+      "right": "RP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SBP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "SZK",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Sigma2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "StoqMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "ExistsR",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "ExistsR",
+      "right": "Theta2P",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "ExistsR",
+      "right": "UP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "ExistsR",
+      "right": "WPP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "ZPP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coAM",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coMA",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coNP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coQMA",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coRP",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ExistsR",
+      "right": "coUP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ExistsR",
+      "right": "parityP",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "FewP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "FewP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:FewP:ExistsR"
+    },
+    {
+      "left": "FewP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "FewP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "FewP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "L",
+      "right": "BPL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:BPL"
+    },
+    {
+      "left": "L",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:ExistsR"
+    },
+    {
+      "left": "L",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:PL"
+    },
+    {
+      "left": "L",
+      "right": "UL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:L:UL"
+    },
+    {
+      "left": "L",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "LWPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "LWPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "LWPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "LWPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "LWPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "LogCFL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "LogCFL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:LogCFL:ExistsR"
+    },
+    {
+      "left": "LogCFL",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "LogCFL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "LogCFL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "MA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "MA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "MA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "MA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "MA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NC",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "NC",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:NC:ExistsR"
+    },
+    {
+      "left": "NC",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "NC",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "NC",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "NC1",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:BPL"
+    },
+    {
+      "left": "NC1",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:ExistsR"
+    },
+    {
+      "left": "NC1",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:PL"
+    },
+    {
+      "left": "NC1",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:UL"
+    },
+    {
+      "left": "NC1",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NC1:UniformNC1"
+    },
+    {
+      "left": "NE",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:BPL"
+    },
+    {
+      "left": "NE",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "NE",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:PL"
+    },
+    {
+      "left": "NE",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:UL"
+    },
+    {
+      "left": "NE",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NE:UniformNC1"
+    },
+    {
+      "left": "NEXP",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:BPL"
+    },
+    {
+      "left": "NEXP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "NEXP",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:PL"
+    },
+    {
+      "left": "NEXP",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:UL"
+    },
+    {
+      "left": "NEXP",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:NEXP:UniformNC1"
+    },
+    {
+      "left": "NL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "NL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:NL:ExistsR"
+    },
+    {
+      "left": "NL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:NL:PL"
+    },
+    {
+      "left": "NL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "NL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "NP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:NP:ExistsR"
+    },
+    {
+      "left": "NP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:NPcapcoNP:ExistsR"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NPcapcoNP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "NPpoly",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:BPL"
+    },
+    {
+      "left": "NPpoly",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:ExistsR"
+    },
+    {
+      "left": "NPpoly",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:PL"
+    },
+    {
+      "left": "NPpoly",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:UL"
+    },
+    {
+      "left": "NPpoly",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:NPpoly:UniformNC1"
+    },
+    {
+      "left": "P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "P",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:P:ExistsR"
+    },
+    {
+      "left": "P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "PH",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "PH",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "PH",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "PH",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "PH",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "PL",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:PL:AC0"
+    },
+    {
+      "left": "PL",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "PL",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:AM"
+    },
+    {
+      "left": "PL",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:AWPP"
+    },
+    {
+      "left": "PL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "PL",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:BPP"
+    },
+    {
+      "left": "PL",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "PL",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:BQP"
+    },
+    {
+      "left": "PL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:CH"
+    },
+    {
+      "left": "PL",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:CeqP"
+    },
+    {
+      "left": "PL",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Delta2P"
+    },
+    {
+      "left": "PL",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:E"
+    },
+    {
+      "left": "PL",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:EXP"
+    },
+    {
+      "left": "PL",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:EXPSPACE"
+    },
+    {
+      "left": "PL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:PL:ExistsR"
+    },
+    {
+      "left": "PL",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:FewP"
+    },
+    {
+      "left": "PL",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "PL",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:LWPP"
+    },
+    {
+      "left": "PL",
+      "right": "LogCFL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "PL",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:MA"
+    },
+    {
+      "left": "PL",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:PL:NC"
+    },
+    {
+      "left": "PL",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "PL",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:NE"
+    },
+    {
+      "left": "PL",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:NEXP"
+    },
+    {
+      "left": "PL",
+      "right": "NL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "PL",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:NP"
+    },
+    {
+      "left": "PL",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:NPcapcoNP"
+    },
+    {
+      "left": "PL",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:PL:NPpoly"
+    },
+    {
+      "left": "PL",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:P"
+    },
+    {
+      "left": "PL",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:PH"
+    },
+    {
+      "left": "PL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:PL:PL"
+    },
+    {
+      "left": "PL",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:PP"
+    },
+    {
+      "left": "PL",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:PL:PSPACE"
+    },
+    {
+      "left": "PL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:PSharpP"
+    },
+    {
+      "left": "PL",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Pi2P"
+    },
+    {
+      "left": "PL",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:PL:Ppoly"
+    },
+    {
+      "left": "PL",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QCMA"
+    },
+    {
+      "left": "PL",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QMA"
+    },
+    {
+      "left": "PL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QMA2"
+    },
+    {
+      "left": "PL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:QSZK"
+    },
+    {
+      "left": "PL",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:RP"
+    },
+    {
+      "left": "PL",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:SBP"
+    },
+    {
+      "left": "PL",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "PL",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:SPP"
+    },
+    {
+      "left": "PL",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:SZK"
+    },
+    {
+      "left": "PL",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Sigma2P"
+    },
+    {
+      "left": "PL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:StoqMA"
+    },
+    {
+      "left": "PL",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "PL",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:Theta2P"
+    },
+    {
+      "left": "PL",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "PL",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:UP"
+    },
+    {
+      "left": "PL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "PL",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:WPP"
+    },
+    {
+      "left": "PL",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:ZPP"
+    },
+    {
+      "left": "PL",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coAM"
+    },
+    {
+      "left": "PL",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coMA"
+    },
+    {
+      "left": "PL",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coNP"
+    },
+    {
+      "left": "PL",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:PL:coQMA"
+    },
+    {
+      "left": "PL",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:PL:coRP"
+    },
+    {
+      "left": "PL",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:coUP"
+    },
+    {
+      "left": "PL",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:PL:parityP"
+    },
+    {
+      "left": "PP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSPACE",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:BPL"
+    },
+    {
+      "left": "PSPACE",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "larger_resources"
+    },
+    {
+      "left": "PSPACE",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:PL"
+    },
+    {
+      "left": "PSPACE",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:UL"
+    },
+    {
+      "left": "PSPACE",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "larger_resources",
+      "proof_key": "separation:PSPACE:UniformNC1"
+    },
+    {
+      "left": "PSharpP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "PSharpP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "Pi2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Pi2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Pi2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Pi2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Pi2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Ppoly",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:BPL"
+    },
+    {
+      "left": "Ppoly",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:ExistsR"
+    },
+    {
+      "left": "Ppoly",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:PL"
+    },
+    {
+      "left": "Ppoly",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:UL"
+    },
+    {
+      "left": "Ppoly",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:Ppoly:UniformNC1"
+    },
+    {
+      "left": "QCMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QCMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QCMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QCMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QCMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA2",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA2",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA2",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA2",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QMA2",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QSZK",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QSZK",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QSZK",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QSZK",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "QSZK",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "RP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "RP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:RP:ExistsR"
+    },
+    {
+      "left": "RP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "RP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "RP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SBP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SBP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SBP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SBP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SBP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SC",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "SC",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:SC:ExistsR"
+    },
+    {
+      "left": "SC",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "SC",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "SC",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "SPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "SPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "SPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "SPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "SPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "SZK",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SZK",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SZK",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SZK",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "SZK",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Sigma2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "StoqMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "StoqMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "StoqMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "StoqMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "StoqMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "TC0",
+      "right": "BPL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:BPL"
+    },
+    {
+      "left": "TC0",
+      "right": "ExistsR",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:ExistsR"
+    },
+    {
+      "left": "TC0",
+      "right": "PL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:PL"
+    },
+    {
+      "left": "TC0",
+      "right": "UL",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:UL"
+    },
+    {
+      "left": "TC0",
+      "right": "UniformNC1",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:TC0:UniformNC1"
+    },
+    {
+      "left": "Theta2P",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Theta2P",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Theta2P",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Theta2P",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "Theta2P",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "UL",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:UL:AC0"
+    },
+    {
+      "left": "UL",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "UL",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:AM"
+    },
+    {
+      "left": "UL",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:AWPP"
+    },
+    {
+      "left": "UL",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "UL",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:BPP"
+    },
+    {
+      "left": "UL",
+      "right": "BQL",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "UL",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:BQP"
+    },
+    {
+      "left": "UL",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:CH"
+    },
+    {
+      "left": "UL",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:CeqP"
+    },
+    {
+      "left": "UL",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Delta2P"
+    },
+    {
+      "left": "UL",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:E"
+    },
+    {
+      "left": "UL",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:EXP"
+    },
+    {
+      "left": "UL",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:EXPSPACE"
+    },
+    {
+      "left": "UL",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UL:ExistsR"
+    },
+    {
+      "left": "UL",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:FewP"
+    },
+    {
+      "left": "UL",
+      "right": "L",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "UL",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:LWPP"
+    },
+    {
+      "left": "UL",
+      "right": "LogCFL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UL:LogCFL"
+    },
+    {
+      "left": "UL",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:MA"
+    },
+    {
+      "left": "UL",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UL:NC"
+    },
+    {
+      "left": "UL",
+      "right": "NC1",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "UL",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:NE"
+    },
+    {
+      "left": "UL",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:NEXP"
+    },
+    {
+      "left": "UL",
+      "right": "NL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UL:NL"
+    },
+    {
+      "left": "UL",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:NP"
+    },
+    {
+      "left": "UL",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:NPcapcoNP"
+    },
+    {
+      "left": "UL",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UL:NPpoly"
+    },
+    {
+      "left": "UL",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:P"
+    },
+    {
+      "left": "UL",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:PH"
+    },
+    {
+      "left": "UL",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UL:PL"
+    },
+    {
+      "left": "UL",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:PP"
+    },
+    {
+      "left": "UL",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UL:PSPACE"
+    },
+    {
+      "left": "UL",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:PSharpP"
+    },
+    {
+      "left": "UL",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Pi2P"
+    },
+    {
+      "left": "UL",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UL:Ppoly"
+    },
+    {
+      "left": "UL",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QCMA"
+    },
+    {
+      "left": "UL",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QMA"
+    },
+    {
+      "left": "UL",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QMA2"
+    },
+    {
+      "left": "UL",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:QSZK"
+    },
+    {
+      "left": "UL",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:RP"
+    },
+    {
+      "left": "UL",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:SBP"
+    },
+    {
+      "left": "UL",
+      "right": "SC",
+      "status": "candidate_unresolved",
+      "review_group": "other_space_parallelism"
+    },
+    {
+      "left": "UL",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:SPP"
+    },
+    {
+      "left": "UL",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:SZK"
+    },
+    {
+      "left": "UL",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Sigma2P"
+    },
+    {
+      "left": "UL",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:StoqMA"
+    },
+    {
+      "left": "UL",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "UL",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:Theta2P"
+    },
+    {
+      "left": "UL",
+      "right": "UL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UL:UL"
+    },
+    {
+      "left": "UL",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:UP"
+    },
+    {
+      "left": "UL",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "new_internal"
+    },
+    {
+      "left": "UL",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:WPP"
+    },
+    {
+      "left": "UL",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:ZPP"
+    },
+    {
+      "left": "UL",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coAM"
+    },
+    {
+      "left": "UL",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coMA"
+    },
+    {
+      "left": "UL",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coNP"
+    },
+    {
+      "left": "UL",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UL:coQMA"
+    },
+    {
+      "left": "UL",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UL:coRP"
+    },
+    {
+      "left": "UL",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:coUP"
+    },
+    {
+      "left": "UL",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UL:parityP"
+    },
+    {
+      "left": "UP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "UP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UP:ExistsR"
+    },
+    {
+      "left": "UP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "UP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "UP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "AC0",
+      "status": "separation",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "separation:UniformNC1:AC0"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "ACC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "AM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:AM"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "AWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:AWPP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BPL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:BPL"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:BPP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BQL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:BQL"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "BQP",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:BQP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "CH",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:CH"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "CeqP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:CeqP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Delta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Delta2P"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "E",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:E"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "EXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:EXP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "EXPSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:EXPSPACE"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:ExistsR"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "FewP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:FewP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "L",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:L"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "LWPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:LWPP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "LogCFL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:LogCFL"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "MA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:MA"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:NC"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NC1",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UniformNC1:NC1"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:NE"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NEXP",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:NEXP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NL",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:NL"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:NP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NPcapcoNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:NPcapcoNP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "NPpoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UniformNC1:NPpoly"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:P"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PH",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:PH"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:PL"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:PP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PSPACE",
+      "status": "inclusion",
+      "review_group": "larger_resources",
+      "proof_key": "inclusion:UniformNC1:PSPACE"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "PSharpP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:PSharpP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Pi2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Pi2P"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Ppoly",
+      "status": "inclusion",
+      "review_group": "nonuniform_circuits_advice",
+      "proof_key": "inclusion:UniformNC1:Ppoly"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QCMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QCMA"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QMA"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QMA2",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QMA2"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "QSZK",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:QSZK"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "RP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:RP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SBP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:SBP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SC",
+      "status": "inclusion",
+      "review_group": "other_space_parallelism",
+      "proof_key": "inclusion:UniformNC1:SC"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:SPP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "SZK",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:SZK"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Sigma2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Sigma2P"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "StoqMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:StoqMA"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "TC0",
+      "status": "candidate_unresolved",
+      "review_group": "nonuniform_circuits_advice"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "Theta2P",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:Theta2P"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UL",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:UL"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:UP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "UniformNC1",
+      "status": "inclusion",
+      "review_group": "new_internal",
+      "proof_key": "inclusion:UniformNC1:UniformNC1"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "WPP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:WPP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "ZPP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:ZPP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coAM",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coAM"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coMA",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coMA"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coNP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coNP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coQMA",
+      "status": "inclusion",
+      "review_group": "quantum",
+      "proof_key": "inclusion:UniformNC1:coQMA"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coRP",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:UniformNC1:coRP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "coUP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:coUP"
+    },
+    {
+      "left": "UniformNC1",
+      "right": "parityP",
+      "status": "inclusion",
+      "review_group": "counting",
+      "proof_key": "inclusion:UniformNC1:parityP"
+    },
+    {
+      "left": "WPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "WPP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "WPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "WPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "WPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "ZPP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ZPP",
+      "right": "ExistsR",
+      "status": "inclusion",
+      "review_group": "polynomial_time_randomness_proofs",
+      "proof_key": "inclusion:ZPP:ExistsR"
+    },
+    {
+      "left": "ZPP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ZPP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "ZPP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coAM",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coAM",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coAM",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coAM",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coAM",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coNP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coNP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coNP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coNP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coNP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coQMA",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "coQMA",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "coQMA",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "coQMA",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "coQMA",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "quantum"
+    },
+    {
+      "left": "coRP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coRP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coRP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coRP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coRP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "polynomial_time_randomness_proofs"
+    },
+    {
+      "left": "coUP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "coUP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "coUP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "coUP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "coUP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "parityP",
+      "right": "BPL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "parityP",
+      "right": "ExistsR",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "parityP",
+      "right": "PL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "parityP",
+      "right": "UL",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    },
+    {
+      "left": "parityP",
+      "right": "UniformNC1",
+      "status": "candidate_unresolved",
+      "review_group": "counting"
+    }
+  ],
+  "conditional_scope_notes": [
+    {
+      "result": "PL RST-oracle hierarchy collapses to PL",
+      "source_ids": [
+        "v040-Ogihara1996"
+      ],
+      "encoded_rule": null,
+      "reason": "No RST oracle endpoint is in this context; unrestricted oracle substitution would change the theorem."
+    },
+    {
+      "result": "Quantitative hardness can imply BPL=L or near-logarithmic unambiguous simulation",
+      "source_ids": [
+        "v040-PT2026"
+      ],
+      "encoded_rule": null,
+      "reason": "The exact quantitative/space/uniformity hypotheses are not simple roster inclusions. Do not substitute E⊄Ppoly or PSPACE⊄Ppoly."
+    },
+    {
+      "result": "P or NP included in any new small-resource class implies EXP or NEXP included in PSPACE",
+      "source_ids": [
+        "AuditPadding"
+      ],
+      "encoded_rule": null,
+      "reason": "Already follows through NC/SC and the old padding-p-nc/padding-np-nc rules; duplicate special cases are unnecessary."
+    }
+  ],
+  "recent_triage": [
+    {
+      "source_id": "v040-CW2024",
+      "outcome": "New BPL logspace-uniform AC¹ upper bound; implied roster upper NC already covered; not LogCFL."
+    },
+    {
+      "source_id": "v040-MW2025",
+      "outcome": "Relativization and conditional intermediate degrees; no ordinary NP/ExistsR separation."
+    },
+    {
+      "source_id": "v040-Stade2026",
+      "outcome": "∃R-hardness of real constraint approximation; no ordinary binary proof-class upper bound."
+    },
+    {
+      "source_id": "v040-ACD2026",
+      "outcome": "Extra catalytic memory/oracles; no NL⊆UL."
+    },
+    {
+      "source_id": "v040-PT2026",
+      "outcome": "2026 source still discusses BPL=L and NL=UL as unresolved; parameterized progress does not establish selected class equalities."
+    },
+    {
+      "source_id": "v040-AE2025",
+      "outcome": "StrongFewL quantum simulation and a total-language candidate; no ordinary UL⊆BQL."
+    }
+  ],
+  "research_queries": [
+    "PL hierarchy collapses Ogihara logspace PL PL theorem",
+    "UL SC logspace Evaluating Monotone Circuits on Surfaces 2022",
+    "existential theory reals complexity class CH PP inclusion 2025 2026",
+    "DLOGTIME uniform NC1 contained L Ruzzo 1981 primary ALOGTIME",
+    "BPL UL PL SC LogCFL inclusion 2025 2026",
+    "site.eccc.weizmann.ac.il BPL 2026",
+    "site.arxiv.org UL NL unambiguous 2025 2026",
+    "BPL PL LogCFL complexity",
+    "PL SC not known complexity",
+    "UL BPL containment complexity",
+    "On uniformity within NC1 Barrington Immerman Straubing pdf"
+  ],
+  "limitations": [
+    "This is AI-assisted literature review, not a human expert certificate and not a proof that every unresolved pair was historically open.",
+    "All585 incident pairs are enumerated and screened through the stated family arguments; searches and primary statements are selective, not585 independent literature searches.",
+    "The overlay assumes the cross-dossier quantum and counting seeds listed explicitly. It must be recomputed after the complete merged baseline and conditional rules are imported.",
+    "No automatic independence-from-ZFC literature conclusion is inferred from failure to find an ordinary containment.",
+    "Canonical Lean models still need an independent equivalence/encoding review. Literature facts are valid for the specified standard models, not arbitrary implementations with similarly named predicates.",
+    "UniformNC1 regular-padding closure was deliberately not imported. Its E/NE inclusion premises already contradict known facts through P; a direct U_E uniformity argument should accompany any future generic template.",
+    "Complexity Zoo live pages repeatedly failed; BPL and PL discovery mirrors were read, UL retrieval failed, and ExistsR discovery entry had no additional usable evidence. Primary papers, not mirror absence, determine the proposed labels.",
+    "No calibrated expected-error figure is supplied for this new extension. Largest remaining omission risks are the PL/LogCFL/SC interfaces, uniformity transfers, and ExistsR versus counting/proof systems; all need independent cross-review before release."
+  ]
+}
