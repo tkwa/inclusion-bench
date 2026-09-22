@@ -1,5 +1,7 @@
 # Release 0.4.0
 
+The [v0.4.1 software patch](RELEASE-0.4.1.md) adds shared proof serialization while preserving this frozen benchmark snapshot.
+
 The approved v0.4.0 roster keeps 50 scored total decision-language classes,
 adds 11 endpoints and retains the 11 demoted endpoints as unscored proof
 vocabulary. The review is recorded in [PR #1](https://github.com/tkwa/inclusion-bench/pull/1);

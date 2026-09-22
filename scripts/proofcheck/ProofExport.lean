@@ -31,7 +31,7 @@ elab_rules : command
           | .ok next =>
               seen := next.1
               result := next.2
-      let payload := Json.mkObj [("schema_version", toJson (1 : Nat)), ("declarations", .arr result)]
+      let payload := Json.mkObj [("schema_version", toJson (2 : Nat)), ("declarations", .arr result)]
       liftIO <| IO.FS.writeFile "/work/proof-export.json" payload.compress
 
 end InclusionProofcheck

@@ -34,6 +34,8 @@ jobs:
           curl --fail --location --retry 3 https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst --output "$RUNNER_TEMP/lean.tar.zst"
           tar --use-compress-program=unzstd -xf "$RUNNER_TEMP/lean.tar.zst" -C "$RUNNER_TEMP"
           echo "LEAN_BIN=$RUNNER_TEMP/lean-4.19.0-linux/bin/lean" >> "$GITHUB_ENV"
+      - name: Check shared proof codec with pinned Lean
+        run: python3 -m unittest tests.test_proofcodec -v
       - name: Check Lean library and actual scorer traces
         run: python3 scripts/check_lean.py
       - name: Validate website script

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "inclusion-bench"
-version = "0.4.0"
+version = "0.4.1"
 description = "An AI mathematics benchmark of open complexity-class inclusion problems"
 requires-python = ">=3.11"
 license = {text = "MIT"}

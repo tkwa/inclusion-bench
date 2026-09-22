@@ -162,5 +162,35 @@ class IsolatedProofcheckTests(unittest.TestCase):
         self.assertIn("Kernel rejected declaration", report.get("reason", ""), report)
 
 
+    def test_forged_dag_export_is_rechecked_by_kernel(self):
+        # All references are structurally valid; the proof has the wrong type.
+        payload = {"schema_version": 2, "declarations": [{
+            "kind": "theorem", "name": 1, "levels": [], "type": 0, "value": 1,
+            "names": [["a"], ["s", 0, "submitted"], ["s", 0, "InclusionBench"],
+                      ["s", 2, "TrustedBaseline"], ["s", 3, "expected_0"],
+                      ["s", 0, "True"], ["s", 5, "intro"]],
+            "universes": [], "expressions": [["c", 4, []], ["c", 6, []]]}]}
+        literal = json.dumps(json.dumps(payload))
+        source = f'#eval do\n  IO.FS.writeFile "/work/proof-export.json" {literal}\n  (IO.Process.exit 0 : IO Unit)'
+        report = self.check_source(source, "rejected")
+        self.assertIn("Kernel rejected declaration", report.get("reason", ""), report)
+
+    def test_legacy_export_still_verifies(self):
+        # Generate a real legacy payload using the retained v1 codec, then
+        # bypass the v2 export command to exercise audit version dispatch.
+        source = """open InclusionBench Lean Elab Command InclusionProofcheck
+ theorem submitted : Includes (Quantum.completeInterpretation .P) (Quantum.completeInterpretation .P) := includes_refl _
+ run_cmd do
+   let env ← getEnv
+   let some info := env.find? `submitted | throwError "missing theorem"
+   let .ok declaration := encodeDeclarationV1 info | throwError "legacy export failed"
+   let payload := Json.mkObj [("schema_version", toJson (1 : Nat)),
+     ("declarations", Json.arr #[declaration])]
+   liftIO <| IO.FS.writeFile "/work/proof-export.json" payload.compress
+   liftIO <| (IO.Process.exit 0 : IO Unit)
+"""
+        self.check_source(source, "verified")
+
+
 if __name__ == "__main__":
     unittest.main()

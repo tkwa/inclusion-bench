@@ -1,5 +1,7 @@
 # InclusionBench
 
+**Software v0.4.1** deduplicates shared proof subexpressions in exported JSON. It uses the unchanged v0.4.0 benchmark snapshot. See the [patch release notes](docs/RELEASE-0.4.1.md) and [proof format](docs/PROOF_REVIEW.md#current-proof-format-limits).
+
 > **v0.4.0 publication:** approved through [PR #1](https://github.com/tkwa/inclusion-bench/pull/1). Use the immutable [v0.4.0 tag](https://github.com/tkwa/inclusion-bench/tree/v0.4.0) to reproduce this release. Current publication state comes from [`data/publication.json`](data/publication.json).
 
 **An AI mathematics benchmark built from open questions in complexity theory.**

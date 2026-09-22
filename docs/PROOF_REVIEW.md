@@ -54,7 +54,7 @@ To inspect the available trusted facts and their exact declaration names, call `
 
 1. It hashes the proof bytes, dataset, semantic sources, checker sources, and generated baseline. It checks the remote Mathlib lock file and records manifests of the actual Mathlib objects, Lean executable/objects/shared libraries, and Docker image ID. These fingerprints identify the trusted installation; they do not independently attest to its provenance.
 2. A trusted build reconstructs the repository's core and quantum libraries from the submitted verifier package's **trusted repository sources**, then compiles the generated baseline and export helper. Candidate source is not executed during this stage.
-3. A separate container elaborates the candidate and exports declaration types and proof terms as bounded JSON. The candidate cannot write host files or change the trusted imports. Its compiled objects are discarded.
+3. A separate container elaborates the candidate and exports declaration types and proof terms as bounded JSON. Shared names, universe levels, and subexpressions are stored once per declaration and referenced by index. The candidate cannot write host files or change the trusted imports. Its compiled objects are discarded.
 4. A fresh container reads only the JSON. The trusted decoder constructs Lean names, universes, expressions, and declarations, then calls the synchronous kernel declaration checker with checking enabled. It imports no candidate module and executes no candidate initializer or native library.
 5. For each requested theorem, the kernel checks its use at a server-generated exact target type. Changing notation, reporting a different claim, or printing a successful diagnostic cannot change that target.
 6. The verifier collects actual axiom dependencies of every reconstructed declaration. The allowlist contains only `propext`, `Classical.choice`, `Quot.sound`, and the generated cited baseline axioms. `sorryAx`, new axioms, and native-compiler trust axioms are rejected.
@@ -99,7 +99,11 @@ Verification requires the chosen image to be installed already; it never pulls a
 
 ## Current proof-format limits
 
-Version 1 accepts ordinary theorem declarations, safe definitions, and opaque declarations with bodies, using types already present in the trusted imports. Newly declared inductive types, structures, constructors, recursors, unsafe declarations, and partial definitions are unsupported. Such a proof requires extending and reviewing the data-only codec before it can be admitted. This limitation is a verifier-format limitation, not evidence that the mathematics is false. Imported trusted libraries remain available through the fixed `ProofExport` and `TrustedBaseline` imports; arbitrary additional imports are outside the submission format.
+Software v0.4.1 exports proof format version 2. Each declaration has tables of names, universe levels, and expressions, shared by its type and value. Repeated subexpressions use integer references into those tables. References within a table must point backward, so the decoder rejects cycles, forward references, and out-of-range indices. The JSON stays a tree of objects and arrays; the indices preserve sharing when Lean reconstructs the proof. The decoder also accepts legacy version 1 tree exports.
+
+Both formats accept ordinary theorem declarations, safe definitions, and opaque declarations with bodies, using types already present in the trusted imports. Every reconstructed declaration still passes the Lean kernel, exact target check, and axiom allowlist described above. Sharing changes only the serialization and reconstruction of proof objects.
+
+Newly declared inductive types, structures, constructors, recursors, unsafe declarations, and partial definitions remain unsupported. Such a proof requires extending and reviewing the data-only codec before it can be admitted. This limitation is a verifier-format limitation, not evidence that the mathematics is false. Imported trusted libraries remain available through the fixed `ProofExport` and `TrustedBaseline` imports; arbitrary additional imports are outside the submission format.
 
 Proof source is limited to 2 MiB, exported JSON to 32 MiB, and reconstructed declarations to 100,000. Reports have one of three statuses: `verified`, `rejected`, or `unavailable`. Only `verified` is positive proof evidence. A report always contains `official_points: 0`: the verifier itself cannot award points or certify that a statement was open at the cutoff.
 
@@ -148,6 +152,13 @@ Run the local input-validation tests with:
 
 ```sh
 python -m unittest tests.test_proofcheck -v
+```
+
+Run codec round-trip and malformed-reference checks with the pinned Lean 4.19.0 compiler:
+
+```sh
+LEAN_BIN=/path/to/lean-4.19.0/bin/lean \
+  python3 -m unittest tests.test_proofcodec -v
 ```
 
 Run the actual isolated positive and adversarial tests using the generated local runtime configuration:

@@ -22,14 +22,14 @@ def runAudit (payloadPath targetsPath : System.FilePath) : IO Json := do
   let payload ← parseOrFail (Json.parse (← IO.FS.readFile payloadPath))
   let targets ← parseOrFail (Json.parse (← IO.FS.readFile targetsPath))
   let version ← parseOrFail (payload.getObjValAs? Nat "schema_version")
-  if version != 1 then auditFailure "Unknown proof export version"
+  if version != 1 && version != 2 then auditFailure "Unknown proof export version"
   let declarations ← parseOrFail ((← parseOrFail (payload.getObjVal? "declarations")).getArr?)
   if declarations.size > 100000 then auditFailure "Too many declarations"
   let mut env ← importModules #[{module := `TrustedBaseline}, {module := `ProofExport}] {}
   let allowed := InclusionBench.TrustedBaseline.allowedAxiomNames
   let mut newNames : Array Name := #[]
   for json in declarations do
-    let declaration ← parseOrFail (decodeDeclaration json)
+    let declaration ← parseOrFail (if version == 1 then decodeDeclaration json else decodeDeclarationV2 json)
     for name in declaration.getNames do
       if env.contains name then auditFailure s!"Attempt to replace trusted declaration: {name}"
       if "InclusionBench.TrustedBaseline".isPrefixOf name.toString then

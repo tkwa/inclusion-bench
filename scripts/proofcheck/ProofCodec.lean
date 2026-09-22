@@ -77,7 +77,7 @@ partial def decodeExpr (json : Json) : Except String Expr := do
   | "p" => return .proj (← decodeName (← item json 1)) (← (← item json 2).getNat?) (← decodeExpr (← item json 3))
   | _ => throw "Invalid or unresolved expression"
 
-def encodeDeclaration (info : ConstantInfo) : Except String Json := do
+def encodeDeclarationV1 (info : ConstantInfo) : Except String Json := do
   if info.isUnsafe then throw s!"Unsafe declaration is unsupported: {info.name}"
   let kind ← match info with
     | .thmInfo _ => pure "theorem"
@@ -98,6 +98,198 @@ def decodeDeclaration (json : Json) : Except String Declaration := do
   let levels ← (← (← json.getObjVal? "levels").getArr?).toList.mapM decodeName
   let type ← decodeExpr (← json.getObjVal? "type")
   let value ← decodeExpr (← json.getObjVal? "value")
+  match kind with
+  | "theorem" => return .thmDecl {name, levelParams := levels, type, value}
+  | "definition" | "opaque" => return .defnDecl {
+      name, levelParams := levels, type, value, hints := .regular 0, safety := .safe}
+  | _ => throw "Only checked theorem and definition bodies are accepted"
+
+/- Version 2 stores a declaration-local DAG. Children are interned before their
+parents, and the type and value share the same tables. Source-expression
+memoization happens before recursion so sharing is never expanded into a tree. -/
+structure EncodeState where
+  names : Array Json := #[]
+  nameIds : Std.HashMap Name Nat := {}
+  universes : Array Json := #[]
+  universeIds : Std.HashMap Level Nat := {}
+  expressions : Array Json := #[]
+  expressionIds : ExprStructMap Nat := {}
+
+abbrev EncodeM := StateT EncodeState (Except String)
+
+partial def internName (name : Name) : EncodeM Nat := do
+  if let some index := (← get).nameIds[name]? then return index
+  let node ← match name with
+    | .anonymous => pure (array [tag "a"])
+    | .str parent value => do pure (array [tag "s", nat (← internName parent), tag value])
+    | .num parent value => do pure (array [tag "n", nat (← internName parent), nat value])
+  let index := (← get).names.size
+  modify fun s => { s with names := s.names.push node, nameIds := s.nameIds.insert name index }
+  return index
+
+partial def internLevel (level : Level) : EncodeM Nat := do
+  if let some index := (← get).universeIds[level]? then return index
+  let node ← match level with
+    | .zero => pure (array [tag "z"])
+    | .succ l => do pure (array [tag "s", nat (← internLevel l)])
+    | .max a b => do pure (array [tag "m", nat (← internLevel a), nat (← internLevel b)])
+    | .imax a b => do pure (array [tag "i", nat (← internLevel a), nat (← internLevel b)])
+    | .param name => do pure (array [tag "p", nat (← internName name)])
+    | .mvar _ => throw "Unresolved universe"
+  let index := (← get).universes.size
+  modify fun s => { s with
+    universes := s.universes.push node
+    universeIds := s.universeIds.insert level index }
+  return index
+
+partial def internExpr (expr : Expr) : EncodeM Nat := do
+  if let some index := (← get).expressionIds[ExprStructEq.mk expr]? then return index
+  -- Metadata has no kernel meaning; remember its alias as well as the body.
+  if let .mdata _ body := expr then
+    let index ← internExpr body
+    modify fun s => { s with expressionIds := s.expressionIds.insert ⟨expr⟩ index }
+    return index
+  let node ← match expr with
+    | .bvar index => pure (array [tag "b", nat index])
+    | .sort level => do pure (array [tag "s", nat (← internLevel level)])
+    | .const name levels => do
+        let name ← internName name
+        let levels ← levels.mapM internLevel
+        pure (array [tag "c", nat name, array (levels.map nat)])
+    | .app function argument => do
+        pure (array [tag "a", nat (← internExpr function), nat (← internExpr argument)])
+    | .lam name type body _ => do
+        pure (array [tag "l", nat (← internName name), nat (← internExpr type), nat (← internExpr body)])
+    | .forallE name type body _ => do
+        pure (array [tag "f", nat (← internName name), nat (← internExpr type), nat (← internExpr body)])
+    | .letE name type value body _ => do
+        pure (array [tag "e", nat (← internName name), nat (← internExpr type),
+          nat (← internExpr value), nat (← internExpr body)])
+    | .lit (.natVal value) => pure (array [tag "n", nat value])
+    | .lit (.strVal value) => pure (array [tag "t", tag value])
+    | .proj type index body => do
+        pure (array [tag "p", nat (← internName type), nat index, nat (← internExpr body)])
+    | .fvar _ | .mvar _ | .mdata .. => throw "Invalid or unresolved expression"
+  let index := (← get).expressions.size
+  modify fun s => { s with
+    expressions := s.expressions.push node
+    expressionIds := s.expressionIds.insert ⟨expr⟩ index }
+  return index
+
+def encodeDeclaration (info : ConstantInfo) : Except String Json := do
+  -- Canonicalize separately allocated equal DAGs before hash-map equality.
+  -- In particular, Level equality can otherwise rewalk an exponential tree.
+  let info := Lean.ShareCommon.shareCommon info
+  if info.isUnsafe then throw s!"Unsafe declaration is unsupported: {info.name}"
+  let kind ← match info with
+    | .thmInfo _ => pure "theorem"
+    | .defnInfo value =>
+        if value.safety == .safe then pure "definition" else throw "Partial/unsafe definition"
+    | .opaqueInfo _ => pure "opaque"
+    | .axiomInfo _ => throw s!"New axiom is forbidden: {info.name}"
+    | _ => throw s!"New inductive/constructor/recursor is unsupported: {info.name}"
+  let value ← requireSome (info.value? (allowOpaque := true)) "Missing declaration body"
+  let (roots, tables) ← (do
+    let name ← internName info.name
+    let levels ← info.levelParams.mapM internName
+    let type ← internExpr info.type
+    let value ← internExpr value
+    pure (name, levels, type, value) : EncodeM (Nat × List Nat × Nat × Nat)).run {}
+  let (name, levels, type, value) := roots
+  return Json.mkObj [
+    ("kind", tag kind), ("name", nat name), ("levels", array (levels.map nat)),
+    ("type", nat type), ("value", nat value), ("names", .arr tables.names),
+    ("universes", .arr tables.universes), ("expressions", .arr tables.expressions)]
+
+/-- References can only access nodes already constructed. In particular, no
+self/forward references or cycles can be decoded, even in unused nodes. -/
+def reference (table : Array α) (json : Json) (label : String) : Except String α := do
+  let index ← json.getNat?
+  requireSome table[index]? s!"Invalid {label} reference {index}"
+
+def nodeTag (node : Json) : Except String String := do
+  (← item node 0).getStr?
+
+def arity (node : Json) (size : Nat) : Except String Unit := do
+  unless (← node.getArr?).size == size do throw "Invalid node arity"
+
+def decodeNameNode (names : Array Name) (node : Json) : Except String Name := do
+  match ← nodeTag node with
+  | "a" => arity node 1; return .anonymous
+  | "s" =>
+      arity node 3
+      return .str (← reference names (← item node 1) "name") (← (← item node 2).getStr?)
+  | "n" =>
+      arity node 3
+      return .num (← reference names (← item node 1) "name") (← (← item node 2).getNat?)
+  | _ => throw "Invalid name tag"
+
+def decodeLevelNode (names : Array Name) (levels : Array Level) (node : Json) : Except String Level := do
+  match ← nodeTag node with
+  | "z" => arity node 1; return .zero
+  | "s" =>
+      arity node 2
+      return .succ (← reference levels (← item node 1) "universe")
+  | "m" | "i" =>
+      arity node 3
+      let a ← reference levels (← item node 1) "universe"
+      let b ← reference levels (← item node 2) "universe"
+      return if (← nodeTag node) == "m" then .max a b else .imax a b
+  | "p" =>
+      arity node 2
+      return .param (← reference names (← item node 1) "name")
+  | _ => throw "Invalid or unresolved universe"
+
+def decodeExprNode (names : Array Name) (levels : Array Level) (exprs : Array Expr)
+    (node : Json) : Except String Expr := do
+  match ← nodeTag node with
+  | "b" => arity node 2; return .bvar (← (← item node 1).getNat?)
+  | "s" => arity node 2; return .sort (← reference levels (← item node 1) "universe")
+  | "c" =>
+      arity node 3
+      let name ← reference names (← item node 1) "name"
+      let levels ← (← (← item node 2).getArr?).toList.mapM fun j => reference levels j "universe"
+      return .const name levels
+  | "a" =>
+      arity node 3
+      return .app (← reference exprs (← item node 1) "expression")
+        (← reference exprs (← item node 2) "expression")
+  | "l" | "f" =>
+      arity node 4
+      let name ← reference names (← item node 1) "name"
+      let type ← reference exprs (← item node 2) "expression"
+      let body ← reference exprs (← item node 3) "expression"
+      return if (← nodeTag node) == "l" then .lam name type body .default
+        else .forallE name type body .default
+  | "e" =>
+      arity node 5
+      return .letE (← reference names (← item node 1) "name")
+        (← reference exprs (← item node 2) "expression")
+        (← reference exprs (← item node 3) "expression")
+        (← reference exprs (← item node 4) "expression") false
+  | "n" => arity node 2; return .lit (.natVal (← (← item node 1).getNat?))
+  | "t" => arity node 2; return .lit (.strVal (← (← item node 1).getStr?))
+  | "p" =>
+      arity node 4
+      return .proj (← reference names (← item node 1) "name") (← (← item node 2).getNat?)
+        (← reference exprs (← item node 3) "expression")
+  | _ => throw "Invalid or unresolved expression"
+
+def decodeDeclarationV2 (json : Json) : Except String Declaration := do
+  let kind ← json.getObjValAs? String "kind"
+  let mut names := #[]
+  for node in ← (← json.getObjVal? "names").getArr? do
+    names := names.push (← decodeNameNode names node)
+  let mut universes := #[]
+  for node in ← (← json.getObjVal? "universes").getArr? do
+    universes := universes.push (← decodeLevelNode names universes node)
+  let mut expressions := #[]
+  for node in ← (← json.getObjVal? "expressions").getArr? do
+    expressions := expressions.push (← decodeExprNode names universes expressions node)
+  let name ← reference names (← json.getObjVal? "name") "name"
+  let levels ← (← (← json.getObjVal? "levels").getArr?).toList.mapM fun j => reference names j "name"
+  let type ← reference expressions (← json.getObjVal? "type") "expression"
+  let value ← reference expressions (← json.getObjVal? "value") "expression"
   match kind with
   | "theorem" => return .thmDecl {name, levelParams := levels, type, value}
   | "definition" | "opaque" => return .defnDecl {

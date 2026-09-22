@@ -143,7 +143,7 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
 
     `host=None` runs the same Docker driver on the local Linux host. The source
     is a Lean body under fixed trusted imports; arbitrary new imports are not
-    part of the v1 format. The submitted file's exact bytes are hash-bound.
+    part of the proof format. The submitted file's exact bytes are hash-bound.
     """
     claims = validate_claims(benchmark, claims)
     if not isinstance(image, str) or not image.strip() or image.startswith("-"):
