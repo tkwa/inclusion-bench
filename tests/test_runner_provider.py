@@ -14,9 +14,10 @@ import threading
 import unittest
 from unittest.mock import patch
 
-from inclusion_bench.benchmark import Benchmark, ROOT, read_json
+from inclusion_bench.benchmark import Benchmark, ROOT, canonical_hash, read_json
+from inclusion_bench.engine import InvalidEvidence
 from inclusion_bench.evaluation import evaluate_run, sha256_file, validate_run
-from inclusion_bench.runner import freeze_release, run_config
+from inclusion_bench.runner import _validate_response, freeze_release, run_config
 
 
 def unsolved_response(*, complete=True, include_usage=True):
@@ -43,6 +44,9 @@ class RunnerProviderTests(unittest.TestCase):
             shutil.copyfile(ROOT / relative, target)
         shutil.copytree(ROOT / 'evaluation/adapters', self.root / 'evaluation/adapters',
                         ignore=shutil.ignore_patterns('__pycache__'))
+        if (ROOT / 'support').exists():
+            shutil.copytree(ROOT / 'support', self.root / 'support',
+                            ignore=shutil.ignore_patterns('__pycache__', '.lake'))
         self.benchmark = Benchmark(self.root)
         freeze_release(self.benchmark)
         self.config = {'provider': 'openai', 'track': 'closed-book',
@@ -149,11 +153,55 @@ class RunnerProviderTests(unittest.TestCase):
         for relative in bundle['files']:
             if relative.endswith('.lean'):
                 self.assertEqual(sources[relative], (self.root / relative).read_text())
+        support = material['submission_support']
+        self.assertTrue(support['theorems'])
+        self.assertEqual(support['cutoff'], self.benchmark.policy['cutoff'])
+        for relative, body in support['lean_sources'].items():
+            self.assertTrue(relative.startswith('support/'))
+            self.assertEqual(body, (self.root / relative).read_text())
+        config = read_json(manifest.parent / 'config.json')
+        self.assertEqual(config['submission_support_sha256'], canonical_hash(support))
         files = self.assert_evidence_preserved(manifest, run, attempt)
         self.assertIn('generation-response.json', files)
         self.assertIn('model-output.txt', files)
         self.assertIn('transcript.json', files)
         self.assertEqual(read_json(files['generation-response.json'])['id'], 'resp_loopback_fixture')
+
+    def test_literature_request_is_sealed_and_forwarded_to_explicit_proof_check(self):
+        dependency = {'name': 'Literature.fixture', 'statement': 'True',
+                      'sources': [{'title': 'Infrastructure fixture', 'url': 'https://example.com/paper',
+                                   'locator': 'Theorem 1', 'publication_date': '1994'}],
+                      'rationale': 'Fixture only; this is not a real submitted mathematical result.'}
+        proof = {'status': 'proof_candidate',
+                 'claims': [{'relation': 'inclusion', 'left': 'NP', 'right': 'P'}],
+                 'proof_markdown': 'Infrastructure fixture only.',
+                 'lean_sources': [{'filename': 'Result.lean', 'content': 'axiom Literature.fixture : True\n-- fixture only'}],
+                 'literature_requests': [dependency], 'notes': 'No real proof is asserted.'}
+        response = unsolved_response()
+        response['output'][0]['content'][0]['text'] = json.dumps(proof)
+        self.replies = [(200, {'input_tokens': 100}), (200, response)]
+        manifest, run, attempt = self.run_provider()
+        self.assertEqual(attempt['status'], 'proof_candidate')
+        self.assertEqual(attempt['literature_requests'], [dependency])
+        files = self.assert_evidence_preserved(manifest, run, attempt)
+        self.assertEqual(read_json(files['literature.json']), {'requests': [dependency]})
+        from inclusion_bench.submissions import check_submission
+        with patch('inclusion_bench.submissions.verify_proof', return_value={'status': 'needs_literature_review'}) as verify:
+            result = check_submission(self.benchmark, files['proof.lean'].parent)
+        self.assertEqual(result['status'], 'needs_literature_review')
+        self.assertEqual(verify.call_args.kwargs['literature_requests'], [dependency])
+        self.assertIn(sha256_file(verify.call_args.args[1]), {item['sha256'] for item in attempt['artifacts']})
+
+    def test_runner_rejects_post_cutoff_literature_before_sealing_an_attempt(self):
+        request = {'name': 'Literature.future', 'statement': 'True',
+                   'sources': [{'title': 'Future fixture', 'url': 'https://example.com/paper',
+                                'locator': 'Theorem 1', 'publication_date': '2099'}],
+                   'rationale': 'Fixture only'}
+        response = {'status': 'proof_candidate',
+                    'claims': [{'relation': 'inclusion', 'left': 'NP', 'right': 'P'}],
+                    'artifacts': ['proof.lean'], 'literature_requests': [request]}
+        with self.assertRaisesRegex(InvalidEvidence, 'cutoff'):
+            _validate_response(self.benchmark, response, self.root, self.root, 100, 'openai')
 
     def test_token_count_exhaustion_stops_without_a_generation_charge(self):
         self.replies = [(200, {'input_tokens': 176})]

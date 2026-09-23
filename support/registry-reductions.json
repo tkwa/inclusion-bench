@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "support-ab2007",
+      "title": "Computational Complexity: A Modern Approach (author-hosted draft)",
+      "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+      "publication_date": "2007-01-08",
+      "notes": "Sanjeev Arora and Boaz Barak. Locators use the numbered pages and theorem numbers in the January 2007 author draft, not the later book edition."
+    }
+  ],
+  "theorems": [
+    {
+      "id": "reduction-polytime-identity",
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.polytime_identity",
+      "module": "InclusionSupport.Reductions",
+      "statement": "InclusionBench.RealSyntax.PolynomialTimeComputable (fun word => word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Chapter 1 Turing-machine computation conventions and Section 2.2, Definition 2.7, printed p.43: polynomial-time mapping reductions; the identity mapping is the input-copy computation.",
+      "model_alignment": "One finite deterministic transducer scans the read-only binary input, copies each bit to its append-only output, and halts. Input endmarkers add only constant overhead; an explicit coefficient-list polynomial bounds the runtime on all inputs. This imports the elementary identity-computation model bridge, not arbitrary computability or any class containment."
+    },
+    {
+      "id": "reduction-polytime-composition",
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.polytime_compose",
+      "module": "InclusionSupport.Reductions",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word}, InclusionBench.RealSyntax.PolynomialTimeComputable first → InclusionBench.RealSyntax.PolynomialTimeComputable second → InclusionBench.RealSyntax.PolynomialTimeComputable (fun word => second (first word))",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 2.2, Theorem 2.8(1) and its proof, printed p.44: polynomial-time maps compose because polynomial growth bounds compose.",
+      "model_alignment": "Both functions are total word-output transducers. The first output has polynomial length, already guaranteed by the core output-length theorem. Store it on work tape and simulate the second transducer; the finite-tape simulation and composition of the two runtime polynomials give a polynomial bound. No unit-cost treatment of arbitrarily long output or unbounded loop is assumed."
+    },
+    {
+      "id": "reduction-p-preprocessing",
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.p_precompose",
+      "module": "InclusionSupport.Reductions",
+      "statement": "∀ {language : InclusionBench.Language} {preprocess : InclusionBench.Word → InclusionBench.Word}, InclusionBench.Machines.polynomialTime language → InclusionBench.RealSyntax.PolynomialTimeComputable preprocess → InclusionBench.Machines.polynomialTime (fun word => language (preprocess word))",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 2.2, Definition 2.7 and Figure 2.1 discussion, printed p.43; Theorem 2.8 and its polynomial-composition proof, printed p.44.",
+      "model_alignment": "A deterministic polynomial-time machine first computes the total polynomial-length transformed input, then simulates the target decider. The output transducer and decision machine use the repository's fixed finite-control tape conventions. Their simulations have polynomial overhead; this concerns ordinary total languages and polynomial many-one preprocessing, not oracle or randomized reductions."
+    },
+    {
+      "id": "formulation-p-decider",
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.p_iff_decider",
+      "module": "InclusionSupport.Reductions",
+      "statement": "∀ language : InclusionBench.Language, InclusionBench.Machines.polynomialTime language ↔ ∃ decider : InclusionBench.ProofSystems.Verifier, ∀ input, decider.result input = true ↔ language input",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5, Definitions 1.19 (DTIME) and 1.20 (P), printed p.27; Section 2.1, Definition 2.1 and Claim 2.3, printed pp.40–41, use total polynomial-time verifiers.",
+      "model_alignment": "Both sides use the same concrete DMachine. The left permits an existential polynomial majorant and a halting time below it; the right evaluates at an explicit coefficient-list polynomial horizon and carries total halting on all binary inputs. Halting configurations remain fixed, so padding the horizon preserves the answer. A nonnegative coefficient-list polynomial can majorize every bound of the form c*(n+1)^k, and its evaluation is polynomially bounded. No change to the decided language is made."
+    },
+    {
+      "id": "formulation-np-verifier",
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.np_iff_verifier",
+      "module": "InclusionSupport.Reductions",
+      "statement": "∀ language : InclusionBench.Language, InclusionBench.Machines.nondeterministicPolynomialTime language ↔ ∃ verifier : InclusionBench.ProofSystems.Verifier, ∃ witnessLength : List Nat, ∀ input, language input ↔ ∃ witness : InclusionBench.Word, witness.length = InclusionBench.Counting.polynomialValue witnessLength input.length ∧ verifier.acceptsTriple input [] witness = true",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 2.1, Definition 2.1 (polynomial-size certificates), printed p.40; Theorem 2.6 and its two-direction proof, printed pp.42-43.",
+      "model_alignment": "A fixed nondeterministic machine has finitely many choices at each step and a polynomial bound on every branch. Encode its choice sequence as a polynomial-length binary witness, rejecting invalid choice codes and padding unused choices after halting. In the other direction, guess the witness and run the verifier. ProofSystems.encodeTriple is a proved injective linear-size encoding; its middle argument is the empty word, so no randomness or advice is supplied. The verifier is total on all binary words, with malformed triples rejected. Natural-coefficient polynomial lengths may pad any polynomial majorant without changing existence of an accepting certificate."
+    }
+  ]
+}

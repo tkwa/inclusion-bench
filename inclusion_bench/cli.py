@@ -43,10 +43,30 @@ def main():
     publish.add_argument("manifest", type=Path)
     history = sub.add_parser("review-history")
     history.add_argument("review", type=Path)
+    initialize = sub.add_parser("submission-init", help="Create exact proof targets and a literature request file")
+    initialize.add_argument("directory", type=Path)
+    initialize.add_argument("--claim", nargs=3, metavar=("RELATION", "LEFT", "RIGHT"), action="append", required=True)
+    theorems = sub.add_parser("theorems", help="Find trusted theorem names, types, and citations")
+    theorems.add_argument("--search")
+    theorems.add_argument("--json", action="store_true", help="Return the complete theorem records as JSON")
+    check = sub.add_parser("check-submission", help="Check proof.lean and cited dependencies in a submission directory")
+    check.add_argument("directory", type=Path)
+    check.add_argument("--runtime", type=Path)
+    check.add_argument("--report", type=Path)
+    runtime_host = check.add_mutually_exclusive_group()
+    runtime_host.add_argument("--host")
+    runtime_host.add_argument("--local", action="store_true")
+    check.add_argument("--image")
+    check.add_argument("--toolchain-path")
+    check.add_argument("--remote-root")
+    check.add_argument("--timeout-seconds", type=int)
+    literature_review = sub.add_parser("review-literature", help="Record maintainer review of a cited result and its exact Lean type")
+    literature_review.add_argument("review", type=Path)
     verify = sub.add_parser("verify-proof")
     verify.add_argument("source", type=Path)
     verify.add_argument("--claims", type=Path, required=True)
     verify.add_argument("--report", type=Path, required=True)
+    verify.add_argument("--literature", type=Path, help="JSON file containing cited dependency requests")
     verify.add_argument("--host", default="tkwa-ubuntu-box-wan")
     verify.add_argument("--local", action="store_true", help="Use Docker on this Linux host")
     verify.add_argument("--image", default="nvidia/cuda:12.4.1-devel-ubuntu22.04")
@@ -122,14 +142,40 @@ def main():
         elif args.command == "review-history":
             review = read_json(args.review)
             result = record_history_review(benchmark, review.get('history_review', review))
+        elif args.command == "submission-init":
+            from .submissions import init_submission
+            claims = [dict(zip(("relation", "left", "right"), values)) for values in args.claim]
+            result = init_submission(benchmark, args.directory, claims)
+        elif args.command == "theorems":
+            from .submissions import find_theorems, format_theorems
+            result = find_theorems(benchmark, args.search)
+            if not args.json:
+                print(format_theorems(result))
+                return 0
+        elif args.command == "check-submission":
+            from .submissions import check_submission
+            overrides = {key: getattr(args, key) for key in
+                         ("host", "image", "toolchain_path", "remote_root", "timeout_seconds")
+                         if getattr(args, key) is not None}
+            if args.local:
+                overrides["host"] = None
+            result = check_submission(benchmark, args.directory, runtime_path=args.runtime,
+                                      report_path=args.report, runtime_overrides=overrides)
+        elif args.command == "review-literature":
+            from .literature import record_literature_review
+            result = record_literature_review(benchmark, read_json(args.review))
         elif args.command == "publish-run":
             result = publish_run(benchmark, args.manifest)
         elif args.command == "verify-proof":
             from .proofcheck import verify_proof
             claims = read_json(args.claims)
+            literature = read_json(args.literature) if args.literature else {"requests": []}
+            if not isinstance(literature, dict) or set(literature) != {"requests"}:
+                raise InvalidEvidence("Literature file must contain a requests list")
             result = verify_proof(benchmark, args.source, claims.get("claims", []) if isinstance(claims, dict) else claims,
                                   report_path=args.report, host=None if args.local else args.host, remote_root=args.remote_root,
-                                  image=args.image, toolchain_path=args.toolchain_path, timeout_seconds=args.timeout_seconds)
+                                  image=args.image, toolchain_path=args.toolchain_path, timeout_seconds=args.timeout_seconds,
+                                  literature_requests=literature["requests"])
         elif args.command == "tasks":
             result = taskset(benchmark)
             if args.output:
@@ -155,7 +201,7 @@ def main():
             claims = read_json(args.assuming)["claims"] if args.assuming else []
             result = benchmark.closure(claims).explanation(Atom(args.relation, args.left, args.right))
         print(json.dumps(result, indent=2, ensure_ascii=False))
-        if args.command == "verify-proof" and result.get("status") != "verified":
+        if args.command in {"verify-proof", "check-submission"} and result.get("status") != "verified":
             return 1
     except (InvalidEvidence, ValueError, KeyError, TypeError, OSError) as exc:
         print(json.dumps({"error": str(exc)}, ensure_ascii=False), file=sys.stderr)

@@ -89,6 +89,76 @@
     "max_output_tokens_sent": {
       "type": "integer",
       "minimum": 0
+    },
+    "literature_requests": {
+      "type": "array",
+      "maxItems": 128,
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "statement",
+          "sources",
+          "rationale"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^Literature\\.[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$",
+            "maxLength": 240
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 16,
+            "items": {
+              "type": "object",
+              "required": [
+                "title",
+                "url",
+                "locator",
+                "publication_date"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4000
+                },
+                "url": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4000
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4000
+                },
+                "publication_date": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4000
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Published mathematical dependencies declared under Literature.* in the proof. Citations request review; they are not approvals. Dates and source conventions are validated separately."
     }
   },
   "allOf": [

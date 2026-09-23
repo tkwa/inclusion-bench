@@ -201,6 +201,30 @@ def encodeDeclaration (info : ConstantInfo) : Except String Json := do
     ("type", nat type), ("value", nat value), ("names", .arr tables.names),
     ("universes", .arr tables.universes), ("expressions", .arr tables.expressions)]
 
+/-- Literature declarations are proposals for separate human review, never
+automatically trusted proof evidence. Test the structured namespace, not a
+string prefix that could also match `LiteratureForgery` or an escaped name. -/
+def isLiteratureName (name : Name) : Bool :=
+  (`Literature).isPrefixOf name && name != `Literature
+
+/-- Version 3 extends the exporter only. Ordinary callers of
+`encodeDeclaration` still cannot export any new axiom. -/
+def encodeExportDeclaration (info : ConstantInfo) : Except String Json := do
+  let .axiomInfo value := info | encodeDeclaration info
+  if value.isUnsafe then throw s!"Unsafe declaration is unsupported: {value.name}"
+  unless isLiteratureName value.name do throw s!"New axiom is forbidden: {value.name}"
+  let value := Lean.ShareCommon.shareCommon value
+  let (roots, tables) ← (do
+    let name ← internName value.name
+    let levels ← value.levelParams.mapM internName
+    let type ← internExpr value.type
+    pure (name, levels, type) : EncodeM (Nat × List Nat × Nat)).run {}
+  let (name, levels, type) := roots
+  return Json.mkObj [
+    ("kind", tag "axiom"), ("name", nat name), ("levels", array (levels.map nat)),
+    ("type", nat type), ("names", .arr tables.names),
+    ("universes", .arr tables.universes), ("expressions", .arr tables.expressions)]
+
 /-- References can only access nodes already constructed. In particular, no
 self/forward references or cycles can be decoded, even in unused nodes. -/
 def reference (table : Array α) (json : Json) (label : String) : Except String α := do
@@ -275,7 +299,7 @@ def decodeExprNode (names : Array Name) (levels : Array Level) (exprs : Array Ex
         (← reference exprs (← item node 3) "expression")
   | _ => throw "Invalid or unresolved expression"
 
-def decodeDeclarationV2 (json : Json) : Except String Declaration := do
+private def decodeDeclarationDAG (json : Json) (allowLiterature : Bool) : Except String Declaration := do
   let kind ← json.getObjValAs? String "kind"
   let mut names := #[]
   for node in ← (← json.getObjVal? "names").getArr? do
@@ -289,11 +313,24 @@ def decodeDeclarationV2 (json : Json) : Except String Declaration := do
   let name ← reference names (← json.getObjVal? "name") "name"
   let levels ← (← (← json.getObjVal? "levels").getArr?).toList.mapM fun j => reference names j "name"
   let type ← reference expressions (← json.getObjVal? "type") "expression"
+  if kind == "axiom" then
+    unless allowLiterature && isLiteratureName name do
+      throw s!"New axiom is forbidden: {name}"
+    if (json.getObjVal? "value").isOk then throw "Literature axioms must not contain a body"
+    return .axiomDecl {name, levelParams := levels, type, isUnsafe := false}
   let value ← reference expressions (← json.getObjVal? "value") "expression"
   match kind with
   | "theorem" => return .thmDecl {name, levelParams := levels, type, value}
   | "definition" | "opaque" => return .defnDecl {
       name, levelParams := levels, type, value, hints := .regular 0, safety := .safe}
   | _ => throw "Only checked theorem and definition bodies are accepted"
+
+def decodeDeclarationV2 (json : Json) : Except String Declaration :=
+  decodeDeclarationDAG json false
+
+/-- Decoding is not authorization: ProofAudit additionally requires an exact
+request-manifest match and reports literature-dependent results as conditional. -/
+def decodeDeclarationV3 (json : Json) : Except String Declaration :=
+  decodeDeclarationDAG json true
 
 end InclusionProofcheck

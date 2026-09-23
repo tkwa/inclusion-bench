@@ -1,4 +1,4 @@
-import ProofCodec
+import ProofExport
 
 /- Run via tests/test_proofcodec.py with two separate depth arguments. -/
 
@@ -8,6 +8,8 @@ namespace ProofCodecTests
 
 def check (condition : Bool) (message : String) : IO Unit :=
   unless condition do throw (IO.userError message)
+
+def failed (value : Except ε α) : Bool := !value.isOk
 
 def unwrap (value : Except String α) : IO α :=
   match value with
@@ -239,6 +241,77 @@ def testInvalidShapes : IO Unit := do
   rejected "invalid unreachable node" (dag (expressions := array [
     array [tag "n", nat 0], array [tag "invalid"]]))
 
+def testLiteratureCodec : IO Unit := do
+  let info : ConstantInfo := .axiomInfo {
+    name := `Literature.example, levelParams := [`u], type := mkConst ``True, isUnsafe := false}
+  check (encodeDeclaration info |> failed) "Default encoder accepted a literature axiom"
+  check (encodeDeclarationV1 info |> failed) "Legacy encoder accepted a literature axiom"
+  let encoded ← unwrap (encodeExportDeclaration info)
+  check (failed (encoded.getObjVal? "value")) "Axiom wire payload contains a body"
+  check (decodeDeclarationV2 encoded |> failed) "Version 2 accepted a literature axiom"
+  let decoded ← unwrap (decodeDeclarationV3 (← unwrap (Json.parse encoded.compress)))
+  let .axiomDecl value := decoded | throw (IO.userError "Version 3 lost the axiom kind")
+  check (value.name == info.name && value.levelParams == [`u] &&
+    Expr.equal value.type info.type && !value.isUnsafe) "Literature declaration changed"
+  check (decodeDeclarationV3 (encoded.setObjVal! "value" (nat 0)) |> failed)
+    "Accepted an axiom with a body"
+  for name in [`Unauthorized, `Literature, `LiteratureForgery.example,
+      Name.str .anonymous "Literature.example", `InclusionBench.TrustedBaseline.fake] do
+    let forbidden : ConstantInfo := .axiomInfo {
+      name, levelParams := [], type := mkConst ``True, isUnsafe := false}
+    check (encodeExportDeclaration forbidden |> failed)
+      s!"Exported an axiom outside the structured Literature namespace: {name}"
+  -- Change only the declaration name; every table reference remains valid.
+  let names ← unwrap ((← unwrap (encoded.getObjVal? "names")).getArr?)
+  let forged := encoded.setObjVal! "name" (nat names.size) |>.setObjVal! "names"
+    (.arr (names.push (array [tag "s", nat 0, tag "Unauthorized"])))
+  check (decodeDeclarationV3 forged |> failed) "Decoded an unauthorized axiom namespace"
+  let unsafeInfo : ConstantInfo := .axiomInfo {
+    name := `Literature.unsafeExample, levelParams := [], type := mkConst ``True, isUnsafe := true}
+  check (encodeExportDeclaration unsafeInfo |> failed) "Exported an unsafe literature axiom"
+  let env ← importModules #[{module := `Init}] {}
+  match env.addDeclCore 1000000 decoded none true with
+  | .ok _ => pure ()
+  | .error _ => throw (IO.userError "Kernel rejected a well-typed literature declaration")
+  let invalid : ConstantInfo := .axiomInfo {
+    name := `Literature.invalid, levelParams := [], type := mkNatLit 0, isUnsafe := false}
+  let invalid ← unwrap (decodeDeclarationV3 (← unwrap (encodeExportDeclaration invalid)))
+  match env.addDeclCore 1000000 invalid none true with
+  | .error _ => pure ()
+  | .ok _ => throw (IO.userError "Kernel accepted a literature declaration with a non-type")
+
+def addTestDeclaration (env : Environment) (declaration : Declaration) : IO Environment := do
+  match env.addDeclCore 1000000 declaration none true with
+  | .ok next => return next
+  | .error _ => throw (IO.userError "Failed to construct exporter test environment")
+
+def testTargetClosure : IO Unit := do
+  let mut env ← importModules #[{module := `Init}] {}
+  env ← addTestDeclaration env (.axiomDecl {
+    name := `Literature.used, levelParams := [], type := mkConst ``True, isUnsafe := false})
+  env ← addTestDeclaration env (.axiomDecl {
+    name := `UnusedForbidden, levelParams := [], type := mkConst ``False, isUnsafe := false})
+  env ← addTestDeclaration env (.defnDecl {
+    name := `unusedTactic, levelParams := [], type := mkConst ``Nat, value := mkNatLit 0,
+    hints := .regular 0, safety := .unsafe})
+  env ← addTestDeclaration env (.thmDecl {
+    name := `Submission.result_1, levelParams := [], type := mkConst ``True,
+    value := mkConst `Literature.used})
+  let payload ← unwrap (exportDeclarationRoots env #[`Submission.result_1, `Submission.result_1])
+  check ((← unwrap (payload.getObjValAs? Nat "schema_version")) == 3) "Wrong export version"
+  let declarations ← unwrap ((← unwrap (payload.getObjVal? "declarations")).getArr?)
+  check (declarations.size == 2) "Target closure included unrelated declarations or duplicate roots"
+  let .axiomDecl dependency ← unwrap (decodeDeclarationV3 declarations[0]!)
+    | throw (IO.userError "Dependency did not precede the target")
+  check (dependency.name == `Literature.used) "Wrong literature dependency"
+  let .thmDecl target ← unwrap (decodeDeclarationV3 declarations[1]!)
+    | throw (IO.userError "Target was not exported")
+  check (target.name == `Submission.result_1) "Wrong target"
+  check (exportDeclarationRoots env #[`UnusedForbidden] |> failed)
+    "Exported an arbitrary requested axiom"
+  check (exportDeclarationRoots env #[`missingTarget] |> failed)
+    "Exported a missing target"
+
 end ProofCodecTests
 
 def main (arguments : List String) : IO Unit := do
@@ -251,4 +324,6 @@ def main (arguments : List String) : IO Unit := do
   ProofCodecTests.testUnresolvedExport
   ProofCodecTests.testInvalidReferences
   ProofCodecTests.testInvalidShapes
+  ProofCodecTests.testLiteratureCodec
+  ProofCodecTests.testTargetClosure
   IO.println "ProofCodec tests passed"

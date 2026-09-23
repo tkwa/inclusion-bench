@@ -57,14 +57,16 @@ class SemanticBuildOrderTests(unittest.TestCase):
 
     def test_actual_repository_graph_includes_every_new_definition_and_check(self):
         sources = {str(path.relative_to(ROOT)): path.read_text()
-                   for folder in ('lean', 'quantum') for path in (ROOT / folder).rglob('*.lean')
+                   for folder in ('lean', 'quantum', 'support') for path in (ROOT / folder).rglob('*.lean')
                    if '.lake' not in path.parts}
         order = self.order(sources)
         for name in ('LogspaceClasses', 'CountingHierarchy', 'AlternatingLogtime', 'RealSyntax', 'ClassicalSemanticChecks'):
             self.assertIn(f'lean/InclusionBench/{name}.lean', order)
         for name in ('Unentangled', 'Logspace', 'Stoquastic', 'Statistical', 'RealFeasibility', 'SemanticChecks'):
             self.assertIn(f'quantum/InclusionQuantum/{name}.lean', order)
-        self.assertEqual(order[-1], 'quantum/InclusionQuantum.lean')
+        self.assertEqual(order[-1], 'support/InclusionSupport.lean')
+        for name in ('Classes', 'Counting', 'Hierarchy', 'Reductions', 'Closure'):
+            self.assertIn(f'support/InclusionSupport/{name}.lean', order)
 
     def test_missing_dependency_and_missing_root_fail_closed(self):
         for missing in ('lean/InclusionBench/RealSyntax.lean', 'quantum/InclusionQuantum.lean'):

@@ -180,6 +180,8 @@ def record_proof_review(benchmark: Benchmark, manifest: Path, review: dict) -> d
             for key, expected in verification_bindings(benchmark, report.get('claims', [])).items():
                 if report.get(key) != expected:
                     raise InvalidEvidence('Proof report has stale or mismatched trusted input: ' + key)
+            from .literature import require_approved_dependencies
+            require_approved_dependencies(benchmark, report)
             reported = {Atom.read(c) for c in report.get('claims', [])}
             if not ordinary <= reported:
                 raise InvalidEvidence('Proof report does not verify every accepted ordinary claim')

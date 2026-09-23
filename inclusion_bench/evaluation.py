@@ -262,6 +262,12 @@ def evaluate_run(benchmark: Benchmark, manifest: Path) -> dict:
             raise InvalidEvidence('Accepted review includes a claim not made by this model attempt')
         if exact.get('artifact_hashes') != [a['sha256'] for a in attempt.get('artifacts', [])] or not exact.get('verification_record'):
             raise InvalidEvidence('Accepted review must match the exact sealed artifact set and verification record')
+        proof_report = exact.get('proof_verification') or {}
+        if 'literature_dependencies' in proof_report or any(
+                any(isinstance(name, str) and name.startswith('Literature.') for name in target.get('axioms', []))
+                for target in proof_report.get('targets', [])):
+            from .literature import require_approved_dependencies
+            require_approved_dependencies(benchmark, proof_report)
         independence = validate_independence_review(benchmark, exact, verified)
         accepted.extend(verified)
         for claim in verified:

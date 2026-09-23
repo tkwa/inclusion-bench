@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "support-ffk1994",
+      "title": "Gap-Definable Counting Classes",
+      "url": "https://cse.sc.edu/~fenner/papers/gaps.pdf",
+      "publication_date": "1994-02",
+      "notes": "Fenner, Fortnow and Kurtz, Journal of Computer and System Sciences 48(1), 116-148. Locators below refer to the author manuscript's printed page numbers; pages 5-8 were visually inspected because PDF text extraction is corrupted."
+    }
+  ],
+  "theorems": [
+    {
+      "id": "counting-sharp-add",
+      "name": "InclusionBench.Support.Literature.sharpP_add",
+      "module": "InclusionSupport.Counting",
+      "statement": "∀ {f g : InclusionBench.Word → Nat}, InclusionBench.Counting.SharpP f → InclusionBench.Counting.SharpP g → InclusionBench.Counting.SharpP (fun word => f word + g word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, printed p.7: paragraph preceding Closure Property 1 states properties 1,3,4,5 also hold for #P; Closure Property 3 and the addition construction in Corollary 3.6. Proofs on p.8.",
+      "model_alignment": "Disjoint nondeterministic branch choice adds accepting path counts. Each source machine has fixed finite control and a polynomial bound on every branch. The benchmark retains duplicate transitions and counts a halted accepting branch once, so the construction preserves counts rather than counting distinct configurations. Converting fixed finite branching into binary choices rejects unused branch codes; tape-model simulations and sequential setup have polynomial overhead. This imports that standard concrete-model bridge, not a new class containment.",
+      "kind": "axiom"
+    },
+    {
+      "id": "counting-sharp-multiply",
+      "name": "InclusionBench.Support.Literature.sharpP_mul",
+      "module": "InclusionSupport.Counting",
+      "statement": "∀ {f g : InclusionBench.Word → Nat}, InclusionBench.Counting.SharpP f → InclusionBench.Counting.SharpP g → InclusionBench.Counting.SharpP (fun word => f word * g word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, printed p.7: #P closure paragraph, Closure Property 4 and Corollary 3.6; sequential-path product construction on p.8.",
+      "model_alignment": "An accepting computation chooses an accepting path of each of the two machines, giving the product of path multiplicities. Both machines halt on all branches in polynomial time; sequential composition has polynomial overhead on the benchmark's finite-control tape model. Only two factors are asserted here, with arbitrary fixed powers subsequently derived in Lean. No exponentially long product is asserted.",
+      "kind": "axiom"
+    },
+    {
+      "id": "counting-sharp-preprocess",
+      "name": "InclusionBench.Support.Literature.sharpP_precompose",
+      "module": "InclusionSupport.Counting",
+      "statement": "∀ {f : InclusionBench.Word → Nat} {preprocess : InclusionBench.Word → InclusionBench.Word}, InclusionBench.Counting.SharpP f → InclusionBench.RealSyntax.PolynomialTimeComputable preprocess → InclusionBench.Counting.SharpP (fun word => f (preprocess word))",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, printed p.7, Closure Property 1 and the preceding #P closure paragraph; proof of Closure Property 1 on p.8.",
+      "model_alignment": "Preprocessing uses one total deterministic transducer with an explicit polynomial clock and write-only output. Its output length is bounded by its runtime (already proved in the core). Simulating the #P machine on that output therefore preserves a polynomial bound and introduces no extra nondeterministic multiplicity. This is right composition with an FP input transformation, not unrestricted postprocessing of a #P output.",
+      "kind": "axiom"
+    },
+    {
+      "id": "counting-fp-to-gap",
+      "name": "InclusionBench.Support.Literature.gapP_of_fp",
+      "module": "InclusionSupport.Counting",
+      "statement": "∀ {f : InclusionBench.Word → Int}, InclusionBench.Transducers.FP f → InclusionBench.Counting.GapP f",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5 on pp.6-7 (GapP = #P - #P) and Closure Property 1 on p.7 (FP contained in GapP), proved on p.8.",
+      "model_alignment": "The benchmark FP transducer produces a signed binary integer in polynomial time, so output bit length is polynomial even when its numeric magnitude is exponential. Positive and negative parts can be represented as #P counts by guessing a binary integer and comparing it to the computed magnitude; their difference yields the signed value. Leading zeros and signed zero do not alter the decoded integer. This imports ordinary total FP, not an arbitrary integer-valued function.",
+      "kind": "axiom"
+    },
+    {
+      "id": "counting-gap-binary-sum",
+      "name": "InclusionBench.Support.Literature.gapP_sum_bits",
+      "module": "InclusionSupport.Counting",
+      "statement": "∀ {f : InclusionBench.Word → Int}, InclusionBench.Counting.GapP f → ∀ length : List Nat, InclusionBench.Counting.GapP (fun word => ((InclusionBench.Randomized.coinStrings (InclusionBench.Counting.polynomialValue length word.length)).map (fun bits => f (InclusionBench.ProofSystems.encodeTriple word bits []))).sum)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, printed p.7, Closure Property 3 (sum over polynomial-length binary strings); proof on p.8.",
+      "model_alignment": "The same GapP function receives every input/index pair through encodeTriple, whose injectivity and linear length overhead are proved in ProofSystems. coinStrings enumerates each binary index of the specified polynomial length once. Exact-length summation is the usual restricted form of the at-most-polynomial-length statement, obtained by rejecting other lengths. The empty length has one empty index. This does not permit a nonuniform collection of unrelated GapP functions.",
+      "kind": "axiom"
+    },
+    {
+      "id": "counting-gap-polynomial-product",
+      "name": "InclusionBench.Support.Literature.gapP_product_range",
+      "module": "InclusionSupport.Counting",
+      "statement": "∀ {f : InclusionBench.Word → Int}, InclusionBench.Counting.GapP f → ∀ bound : List Nat, InclusionBench.Counting.GapP (fun word => ((List.range (InclusionBench.Counting.polynomialValue bound word.length)).map (fun index => f (InclusionBench.ProofSystems.encodeTriple word (InclusionBench.Transducers.unary index) []))).foldr (· * ·) 1)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, printed p.7, Closure Property 4 (polynomially many factors); sequential-path/parity proof on p.8.",
+      "model_alignment": "The number of factors is a fixed finite polynomial in input length, and one GapP machine handles the encoded input and unary index. Unary indices and encodeTriple have polynomial overhead because the index itself is polynomially bounded. List.range uses 0 <= index < bound rather than the paper's inclusive endpoint; the extra endpoint is replaced by the neutral factor one. An empty range has product one. No product over all polynomial-length bitstrings, and hence no exponential number of factors, is imported.",
+      "kind": "axiom"
+    }
+  ]
+}

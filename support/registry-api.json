@@ -1,0 +1,1396 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "support-ab2007",
+      "title": "Computational Complexity: A Modern Approach (author-hosted draft)",
+      "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+      "publication_date": "2007-01-08",
+      "notes": "Sanjeev Arora and Boaz Barak. Locators use the numbered pages and theorem numbers in the January 2007 author draft, not the later book edition."
+    },
+    {
+      "id": "support-ffk1994",
+      "title": "Gap-Definable Counting Classes",
+      "url": "https://cse.sc.edu/~fenner/papers/gaps.pdf",
+      "publication_date": "1994-02",
+      "notes": "Fenner, Fortnow and Kurtz, Journal of Computer and System Sciences 48(1), 116-148. Locators below refer to the author manuscript's printed page numbers; pages 5-8 were visually inspected because PDF text extraction is corrupted."
+    },
+    {
+      "id": "support-burgisser2006",
+      "title": "On Defining Integers in the Counting Hierarchy and Proving Arithmetic Circuit Lower Bounds",
+      "url": "https://eccc.weizmann.ac.il/report/2006/113/download/",
+      "publication_date": "2006",
+      "notes": "Peter Bürgisser, ECCC TR06-113. Source for the existing fixed finite-level counting-hierarchy convention, not a new trusted axiom."
+    }
+  ],
+  "theorems": [
+    {
+      "name": "InclusionBench.Support.sharpP_congr",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-sharpP_congr",
+      "statement": "∀ {f g : InclusionBench.Word → Nat},\n  InclusionBench.Counting.SharpP f →\n    (∀ (word : InclusionBench.Word), f word = g word) → InclusionBench.Counting.SharpP g",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_congr",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_congr",
+      "statement": "∀ {f g : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP f → (∀ (word : InclusionBench.Word), f word = g word) → InclusionBench.Counting.GapP g",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.sharpP_add",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-sharpP_add",
+      "statement": "∀ {f g : InclusionBench.Word → Nat},\n  InclusionBench.Counting.SharpP f →\n    InclusionBench.Counting.SharpP g → InclusionBench.Counting.SharpP fun word => f word + g word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.sharpP_mul",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-sharpP_mul",
+      "statement": "∀ {f g : InclusionBench.Word → Nat},\n  InclusionBench.Counting.SharpP f →\n    InclusionBench.Counting.SharpP g → InclusionBench.Counting.SharpP fun word => f word * g word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.sharpP_nat",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-sharpP_nat",
+      "statement": "∀ (value : Nat), InclusionBench.Counting.SharpP fun _ => value",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_of_sharpP",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_of_sharpP",
+      "statement": "∀ {f : InclusionBench.Word → Nat}, InclusionBench.Counting.SharpP f → InclusionBench.Counting.GapP fun word => ↑(f word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_zero",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_zero",
+      "statement": "InclusionBench.Counting.GapP fun _ => 0",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_one",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_one",
+      "statement": "InclusionBench.Counting.GapP fun _ => 1",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_neg",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_neg",
+      "statement": "∀ {f : InclusionBench.Word → Int}, InclusionBench.Counting.GapP f → InclusionBench.Counting.GapP fun word => -f word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_nat",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_nat",
+      "statement": "∀ (value : Nat), InclusionBench.Counting.GapP fun _ => ↑value",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_int",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_int",
+      "statement": "∀ (value : Int), InclusionBench.Counting.GapP fun _ => value",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_add",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_add",
+      "statement": "∀ {f g : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP f →\n    InclusionBench.Counting.GapP g → InclusionBench.Counting.GapP fun word => f word + g word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_sub",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_sub",
+      "statement": "∀ {f g : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP f →\n    InclusionBench.Counting.GapP g → InclusionBench.Counting.GapP fun word => f word - g word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_mul",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_mul",
+      "statement": "∀ {f g : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP f →\n    InclusionBench.Counting.GapP g → InclusionBench.Counting.GapP fun word => f word * g word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_pow",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_pow",
+      "statement": "∀ {f : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP f → ∀ (power : Nat), InclusionBench.Counting.GapP fun word => f word ^ power",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.sharpP_precompose",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-sharpP_precompose",
+      "statement": "∀ {f : InclusionBench.Word → Nat} {preprocess : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Counting.SharpP f →\n    InclusionBench.RealSyntax.PolynomialTimeComputable preprocess →\n      InclusionBench.Counting.SharpP fun word => f (preprocess word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_precompose",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_precompose",
+      "statement": "∀ {f : InclusionBench.Word → Int} {preprocess : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Counting.GapP f →\n    InclusionBench.RealSyntax.PolynomialTimeComputable preprocess →\n      InclusionBench.Counting.GapP fun word => f (preprocess word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_of_fp",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_of_fp",
+      "statement": "∀ {f : InclusionBench.Word → Int}, InclusionBench.Transducers.FP f → InclusionBench.Counting.GapP f",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_sum_bits",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_sum_bits",
+      "statement": "∀ {f : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP f →\n    ∀ (length : List Nat),\n      InclusionBench.Counting.GapP fun word =>\n        (List.map (fun bits => f (InclusionBench.ProofSystems.encodeTriple word bits []))\n            (InclusionBench.Randomized.coinStrings\n              (InclusionBench.Counting.polynomialValue length (List.length word)))).sum",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.gapP_product_range",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-gapP_product_range",
+      "statement": "∀ {f : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP f →\n    ∀ (bound : List Nat),\n      InclusionBench.Counting.GapP fun word =>\n        List.foldr (fun x1 x2 => x1 * x2) 1\n          (List.map\n            (fun index => f (InclusionBench.ProofSystems.encodeTriple word (InclusionBench.Transducers.unary index) []))\n            (List.range (InclusionBench.Counting.polynomialValue bound (List.length word))))",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.spp_iff_characteristic",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-spp_iff_characteristic",
+      "statement": "∀ (language : InclusionBench.Language),\n  InclusionBench.Counting.SPP language ↔ InclusionBench.Counting.GapP (InclusionBench.Support.characteristic language)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.spp_complement",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-spp_complement",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.Counting.SPP language → InclusionBench.Counting.SPP (InclusionBench.complementLanguage language)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.spp_intersection",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-spp_intersection",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Counting.SPP first →\n    InclusionBench.Counting.SPP second → InclusionBench.Counting.SPP fun word => first word ∧ second word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.spp_union",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-spp_union",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Counting.SPP first →\n    InclusionBench.Counting.SPP second → InclusionBench.Counting.SPP fun word => first word ∨ second word",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.spp_precompose",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-spp_precompose",
+      "statement": "∀ {language : InclusionBench.Language} {preprocess : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Counting.SPP language →\n    InclusionBench.RealSyntax.PolynomialTimeComputable preprocess →\n      InclusionBench.Counting.SPP fun word => language (preprocess word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.pp_of_gap",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-pp_of_gap",
+      "statement": "∀ {language : InclusionBench.Language} {gap : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP gap →\n    (∀ (word : InclusionBench.Word), language word ↔ 0 < gap word) → InclusionBench.Counting.PP language",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.ceqp_of_gap",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-ceqp_of_gap",
+      "statement": "∀ {language : InclusionBench.Language} {gap : InclusionBench.Word → Int},\n  InclusionBench.Counting.GapP gap →\n    (∀ (word : InclusionBench.Word), language word ↔ gap word = 0) → InclusionBench.Counting.CeqP language",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.pp_complement",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-pp_complement",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.Counting.PP language → InclusionBench.Counting.PP (InclusionBench.complementLanguage language)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.pp_precompose",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-pp_precompose",
+      "statement": "∀ {language : InclusionBench.Language} {preprocess : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Counting.PP language →\n    InclusionBench.RealSyntax.PolynomialTimeComputable preprocess →\n      InclusionBench.Counting.PP fun word => language (preprocess word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.ceqp_precompose",
+      "module": "InclusionSupport.Counting",
+      "kind": "theorem",
+      "id": "api-ceqp_precompose",
+      "statement": "∀ {language : InclusionBench.Language} {preprocess : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Counting.CeqP language →\n    InclusionBench.RealSyntax.PolynomialTimeComputable preprocess →\n      InclusionBench.Counting.CeqP fun word => language (preprocess word)",
+      "source_ids": [
+        "support-ffk1994"
+      ],
+      "locator": "Section 3, Proposition 3.5, closure properties 1–4 and Corollary 3.6, author manuscript printed pp.6–8; the public theorem is derived in InclusionSupport.Counting.",
+      "model_alignment": "Kernel-proved wrapper or algebraic consequence of the exact existing Counting definitions and the explicitly registered counting primitives. In particular, GapP is a difference of accepting-path counts; all arithmetic is integer arithmetic, SPP uses its 0/1 characteristic function, and preprocessing is total polynomial-time input preprocessing. The signature below is generated from the Lean declaration and independently checked against it."
+    },
+    {
+      "name": "InclusionBench.Support.pOracle_mono",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-pOracle_mono",
+      "statement": "∀ {small large : InclusionBench.ComplexityClass},\n  InclusionBench.Includes small large →\n    InclusionBench.Includes (InclusionBench.Oracles.POracle small) (InclusionBench.Oracles.POracle large)",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.npOracle_mono",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-npOracle_mono",
+      "statement": "∀ {small large : InclusionBench.ComplexityClass},\n  InclusionBench.Includes small large →\n    InclusionBench.Includes (InclusionBench.Oracles.NPOracle small) (InclusionBench.Oracles.NPOracle large)",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ppOracle_mono",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ppOracle_mono",
+      "statement": "∀ {small large : InclusionBench.ComplexityClass},\n  InclusionBench.Includes small large →\n    InclusionBench.Includes (InclusionBench.CountingHierarchy.PPOracle small)\n      (InclusionBench.CountingHierarchy.PPOracle large)",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.pOracle_iff",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-pOracle_iff",
+      "statement": "∀ {oracleClass : InclusionBench.ComplexityClass} {language : InclusionBench.Language},\n  InclusionBench.Oracles.POracle oracleClass language ↔\n    ∃ oracle, oracleClass oracle ∧ InclusionBench.Oracles.deterministicPolynomialWith oracle language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.npOracle_iff",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-npOracle_iff",
+      "statement": "∀ {oracleClass : InclusionBench.ComplexityClass} {language : InclusionBench.Language},\n  InclusionBench.Oracles.NPOracle oracleClass language ↔\n    ∃ oracle, oracleClass oracle ∧ InclusionBench.Oracles.nondeterministicPolynomialWith oracle language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ppOracle_iff",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ppOracle_iff",
+      "statement": "∀ {oracleClass : InclusionBench.ComplexityClass} {language : InclusionBench.Language},\n  InclusionBench.CountingHierarchy.PPOracle oracleClass language ↔\n    ∃ oracle, oracleClass oracle ∧ InclusionBench.CountingHierarchy.PPWith oracle language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.pOracle_intro",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-pOracle_intro",
+      "statement": "∀ {oracleClass : InclusionBench.ComplexityClass} {oracle language : InclusionBench.Language},\n  oracleClass oracle →\n    InclusionBench.Oracles.deterministicPolynomialWith oracle language →\n      InclusionBench.Oracles.POracle oracleClass language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.npOracle_intro",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-npOracle_intro",
+      "statement": "∀ {oracleClass : InclusionBench.ComplexityClass} {oracle language : InclusionBench.Language},\n  oracleClass oracle →\n    InclusionBench.Oracles.nondeterministicPolynomialWith oracle language →\n      InclusionBench.Oracles.NPOracle oracleClass language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ppOracle_intro",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ppOracle_intro",
+      "statement": "∀ {oracleClass : InclusionBench.ComplexityClass} {oracle language : InclusionBench.Language},\n  oracleClass oracle →\n    InclusionBench.CountingHierarchy.PPWith oracle language →\n      InclusionBench.CountingHierarchy.PPOracle oracleClass language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ch_iff_level",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ch_iff_level",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.CountingHierarchy.CH language ↔ ∃ level, InclusionBench.CountingHierarchy.countingLevel level language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ch_intro",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ch_intro",
+      "statement": "∀ {language : InclusionBench.Language} (level : Nat),\n  InclusionBench.CountingHierarchy.countingLevel level language → InclusionBench.CountingHierarchy.CH language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ph_iff_level",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ph_iff_level",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.Oracles.PH language ↔ ∃ level, InclusionBench.Oracles.sigmaLevel level language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ph_intro",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ph_intro",
+      "statement": "∀ {language : InclusionBench.Language} (level : Nat),\n  InclusionBench.Oracles.sigmaLevel level language → InclusionBench.Oracles.PH language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ch_of_pp",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ch_of_pp",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.Counting.PP language → InclusionBench.CountingHierarchy.CH language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ch_of_p",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ch_of_p",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.Machines.polynomialTime language → InclusionBench.CountingHierarchy.CH language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ch_of_fixed_pp_oracle",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ch_of_fixed_pp_oracle",
+      "statement": "∀ {oracle language : InclusionBench.Language} (level : Nat),\n  InclusionBench.CountingHierarchy.countingLevel (level + 1) oracle →\n    InclusionBench.CountingHierarchy.PPWith oracle language → InclusionBench.CountingHierarchy.CH language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.pSharpP_iff",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-pSharpP_iff",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.CountingHierarchy.PSharpP language ↔\n    ∃ oracle, InclusionBench.Counting.PP oracle ∧ InclusionBench.Oracles.deterministicPolynomialWith oracle language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.pSharpP_intro",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-pSharpP_intro",
+      "statement": "∀ {oracle language : InclusionBench.Language},\n  InclusionBench.Counting.PP oracle →\n    InclusionBench.Oracles.deterministicPolynomialWith oracle language →\n      InclusionBench.CountingHierarchy.PSharpP language",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ch_in_of_ppOracle_closed",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ch_in_of_ppOracle_closed",
+      "statement": "∀ {target : InclusionBench.ComplexityClass},\n  InclusionBench.Includes InclusionBench.Machines.polynomialTime target →\n    InclusionBench.Includes InclusionBench.Counting.PP target →\n      InclusionBench.Includes (InclusionBench.CountingHierarchy.PPOracle target) target →\n        InclusionBench.Includes InclusionBench.CountingHierarchy.CH target",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ph_in_of_npOracle_closed",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-ph_in_of_npOracle_closed",
+      "statement": "∀ {target : InclusionBench.ComplexityClass},\n  InclusionBench.Includes InclusionBench.Machines.polynomialTime target →\n    InclusionBench.Includes InclusionBench.Machines.nondeterministicPolynomialTime target →\n      InclusionBench.Includes (InclusionBench.Oracles.NPOracle target) target →\n        InclusionBench.Includes InclusionBench.Oracles.PH target",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.class_in_ch_of_level",
+      "module": "InclusionSupport.Hierarchy",
+      "kind": "theorem",
+      "id": "api-class_in_ch_of_level",
+      "statement": "∀ {source : InclusionBench.ComplexityClass} (level : Nat),\n  InclusionBench.Includes source (InclusionBench.CountingHierarchy.countingLevel level) →\n    InclusionBench.Includes source InclusionBench.CountingHierarchy.CH",
+      "source_ids": [
+        "support-ab2007",
+        "support-burgisser2006"
+      ],
+      "locator": "Arora–Barak Section 3.5 (oracle machines), Section 5.2 Definition 5.4 and Section 5.5 (fixed finite polynomial hierarchy); Bürgisser Definition 2.3 and equation (3), printed pp.4–5 (counting hierarchy). Exact wrappers follow lean/InclusionBench/Oracles.lean and CountingHierarchy.lean.",
+      "model_alignment": "Kernel-proved directly from the frozen oracle/hierarchy definitions; this entry introduces no axiom. A hierarchy level is one fixed natural number for the whole language, not a function of input length. One fixed oracle language is used throughout each computation. Generic induction wrappers require their P/NP/PP base cases and oracle-closure hypothesis explicitly; they do not infer relativization. PSharpP retains the core P^PP convention. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.p_iff_predicate",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-p_iff_predicate",
+      "statement": "∀ (language : InclusionBench.Language),\n  InclusionBench.Machines.polynomialTime language ↔ InclusionBench.Support.PolynomialPredicate language",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.p_of_predicate",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-p_of_predicate",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate language → InclusionBench.Machines.polynomialTime language",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.p_of_decider",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-p_of_decider",
+      "statement": "∀ {language : InclusionBench.Language} (decider : InclusionBench.ProofSystems.Verifier),\n  (∀ (input : InclusionBench.Word), decider.result input = Bool.true ↔ language input) →\n    InclusionBench.Machines.polynomialTime language",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polytime_id",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-polytime_id",
+      "statement": "InclusionBench.RealSyntax.PolynomialTimeComputable fun word => word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polytime_comp",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-polytime_comp",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.RealSyntax.PolynomialTimeComputable first →\n    InclusionBench.RealSyntax.PolynomialTimeComputable second →\n      InclusionBench.RealSyntax.PolynomialTimeComputable fun word => second (first word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.class_member_congr",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-class_member_congr",
+      "statement": "∀ {family : InclusionBench.ComplexityClass} {first second : InclusionBench.Language},\n  (∀ (word : InclusionBench.Word), first word ↔ second word) → family first → family second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.reduction_intro",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-reduction_intro",
+      "statement": "∀ {source target : InclusionBench.Language} {function : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.RealSyntax.PolynomialTimeComputable function →\n    (∀ (word : InclusionBench.Word), source word ↔ target (function word)) →\n      InclusionBench.RealSyntax.PolynomialManyOne source target",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.reduction_iff",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-reduction_iff",
+      "statement": "∀ {source target : InclusionBench.Language},\n  InclusionBench.RealSyntax.PolynomialManyOne source target ↔\n    ∃ function,\n      InclusionBench.RealSyntax.PolynomialTimeComputable function ∧\n        ∀ (word : InclusionBench.Word), source word ↔ target (function word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.reduction_refl",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-reduction_refl",
+      "statement": "∀ (language : InclusionBench.Language), InclusionBench.RealSyntax.PolynomialManyOne language language",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.reduction_trans",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-reduction_trans",
+      "statement": "∀ {first second third : InclusionBench.Language},\n  InclusionBench.RealSyntax.PolynomialManyOne first second →\n    InclusionBench.RealSyntax.PolynomialManyOne second third → InclusionBench.RealSyntax.PolynomialManyOne first third",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.reduction_complement",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-reduction_complement",
+      "statement": "∀ {source target : InclusionBench.Language},\n  InclusionBench.RealSyntax.PolynomialManyOne source target →\n    InclusionBench.RealSyntax.PolynomialManyOne (InclusionBench.complementLanguage source)\n      (InclusionBench.complementLanguage target)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.reduction_preimage",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-reduction_preimage",
+      "statement": "∀ (target : InclusionBench.Language) {function : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.RealSyntax.PolynomialTimeComputable function →\n    InclusionBench.RealSyntax.PolynomialManyOne (fun word => target (function word)) target",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.reduction_congr",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-reduction_congr",
+      "statement": "∀ {source target otherSource otherTarget : InclusionBench.Language},\n  InclusionBench.RealSyntax.PolynomialManyOne source target →\n    (∀ (word : InclusionBench.Word), otherSource word ↔ source word) →\n      (∀ (word : InclusionBench.Word), target word ↔ otherTarget word) →\n        InclusionBench.RealSyntax.PolynomialManyOne otherSource otherTarget",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.includes_of_hard_problem",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-includes_of_hard_problem",
+      "statement": "∀ {source target : InclusionBench.ComplexityClass} {problem : InclusionBench.Language},\n  InclusionBench.Support.PolynomialHard source problem →\n    InclusionBench.Support.ClosedUnderPolyReductions target → target problem → InclusionBench.Includes source target",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.includes_iff_complete_problem",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-includes_iff_complete_problem",
+      "statement": "∀ {source target : InclusionBench.ComplexityClass} {problem : InclusionBench.Language},\n  InclusionBench.Support.PolynomialComplete source problem →\n    InclusionBench.Support.ClosedUnderPolyReductions target → (InclusionBench.Includes source target ↔ target problem)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.hard_of_reduction",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-hard_of_reduction",
+      "statement": "∀ {family : InclusionBench.ComplexityClass} {first second : InclusionBench.Language},\n  InclusionBench.Support.PolynomialHard family first →\n    InclusionBench.RealSyntax.PolynomialManyOne first second → InclusionBench.Support.PolynomialHard family second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.p_closed_under_reductions",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-p_closed_under_reductions",
+      "statement": "InclusionBench.Support.ClosedUnderPolyReductions InclusionBench.Machines.polynomialTime",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.spp_closed_under_reductions",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-spp_closed_under_reductions",
+      "statement": "InclusionBench.Support.ClosedUnderPolyReductions InclusionBench.Counting.SPP",
+      "source_ids": [
+        "support-ab2007",
+        "support-ffk1994"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.pp_closed_under_reductions",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-pp_closed_under_reductions",
+      "statement": "InclusionBench.Support.ClosedUnderPolyReductions InclusionBench.Counting.PP",
+      "source_ids": [
+        "support-ab2007",
+        "support-ffk1994"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.ceqp_closed_under_reductions",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-ceqp_closed_under_reductions",
+      "statement": "InclusionBench.Support.ClosedUnderPolyReductions InclusionBench.Counting.CeqP",
+      "source_ids": [
+        "support-ab2007",
+        "support-ffk1994"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.np_iff_verifier",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-np_iff_verifier",
+      "statement": "∀ (language : InclusionBench.Language),\n  InclusionBench.Machines.nondeterministicPolynomialTime language ↔\n    ∃ verifier : InclusionBench.ProofSystems.Verifier, ∃ witnessLength : List Nat,\n      ∀ (input : InclusionBench.Word),\n        language input ↔\n          ∃ witness,\n            List.length witness = InclusionBench.Counting.polynomialValue witnessLength (List.length input) ∧\n              verifier.acceptsTriple input [] witness = Bool.true",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.np_of_verifier",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-np_of_verifier",
+      "statement": "∀ {language : InclusionBench.Language} (verifier : InclusionBench.ProofSystems.Verifier) (witnessLength : List Nat),\n  (∀ (input : InclusionBench.Word),\n      language input ↔\n        ∃ witness,\n          List.length witness = InclusionBench.Counting.polynomialValue witnessLength (List.length input) ∧\n            verifier.acceptsTriple input [] witness = Bool.true) →\n    InclusionBench.Machines.nondeterministicPolynomialTime language",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.np_of_relation",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-np_of_relation",
+      "statement": "∀ {language : InclusionBench.Language} {relation : InclusionBench.Word → InclusionBench.Word → Prop},\n  InclusionBench.Support.PolynomialRelation relation →\n    ∀ (witnessLength : List Nat),\n      (∀ (input : InclusionBench.Word),\n          language input ↔\n            ∃ witness,\n              List.length witness = InclusionBench.Counting.polynomialValue witnessLength (List.length input) ∧\n                relation input witness) →\n        InclusionBench.Machines.nondeterministicPolynomialTime language",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_congr",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_congr",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word → Prop},\n  InclusionBench.Support.PolynomialRelation first →\n    (∀ (input witness : InclusionBench.Word), first input witness ↔ second input witness) →\n      InclusionBench.Support.PolynomialRelation second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.complementVerifier_result",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-complementVerifier_result",
+      "statement": "∀ (verifier : InclusionBench.ProofSystems.Verifier) (word : InclusionBench.Word),\n  (InclusionBench.Support.complementVerifier verifier).result word = !verifier.result word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_not",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_not",
+      "statement": "∀ {predicate : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate predicate →\n    InclusionBench.Support.PolynomialPredicate (InclusionBench.complementLanguage predicate)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_not",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_not",
+      "statement": "∀ {relation : InclusionBench.Word → InclusionBench.Word → Prop},\n  InclusionBench.Support.PolynomialRelation relation →\n    InclusionBench.Support.PolynomialRelation fun input witness => ¬relation input witness",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.p_complement",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-p_complement",
+      "statement": "∀ {language : InclusionBench.Language},\n  InclusionBench.Machines.polynomialTime language →\n    InclusionBench.Machines.polynomialTime (InclusionBench.complementLanguage language)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.coNP_of_forall",
+      "module": "InclusionSupport.Reductions",
+      "kind": "theorem",
+      "id": "api-coNP_of_forall",
+      "statement": "∀ {language : InclusionBench.Language} {relation : InclusionBench.Word → InclusionBench.Word → Prop},\n  InclusionBench.Support.PolynomialRelation relation →\n    ∀ (witnessLength : List Nat),\n      (∀ (input : InclusionBench.Word),\n          language input ↔\n            ∀ (witness : InclusionBench.Word),\n              List.length witness = InclusionBench.Counting.polynomialValue witnessLength (List.length input) →\n                relation input witness) →\n        InclusionBench.coClass InclusionBench.Machines.nondeterministicPolynomialTime language",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5 Definitions 1.19–1.20, printed p.27; Section 2.1 Definition 2.1 and Theorem 2.6, printed pp.40–43; Section 2.2 Definition 2.7 and Theorem 2.8, printed pp.43–44; Section 2.5 definitions of coNP. Counting-class reduction wrappers additionally use FFK Section 3 closure under input preprocessing.",
+      "model_alignment": "Kernel-proved composition, transport, completeness or verifier wrapper over the registered model bridges and frozen definitions. Reductions remain total polynomial-time word functions. NP certificates have one exact polynomial length with padding handled by the cited verifier bridge; the same verifier works for every input. Negating its final answer preserves its machine clock and totality, so the coNP universal-certificate interface adds no axiom. Generic class-closure hypotheses remain explicit. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.firstWord_pair",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-firstWord_pair",
+      "statement": "∀ (first second : InclusionBench.Word),\n  InclusionBench.Support.firstWord (InclusionBench.Support.pairWords first second) = first",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.secondWord_pair",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-secondWord_pair",
+      "statement": "∀ (first second : InclusionBench.Word),\n  InclusionBench.Support.secondWord (InclusionBench.Support.pairWords first second) = second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polytime_const",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polytime_const",
+      "statement": "∀ (value : InclusionBench.Word), InclusionBench.RealSyntax.PolynomialTimeComputable fun _ => value",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polytime_pair",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polytime_pair",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.RealSyntax.PolynomialTimeComputable first →\n    InclusionBench.RealSyntax.PolynomialTimeComputable second →\n      InclusionBench.RealSyntax.PolynomialTimeComputable fun word =>\n        InclusionBench.Support.pairWords (first word) (second word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polytime_first",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polytime_first",
+      "statement": "InclusionBench.RealSyntax.PolynomialTimeComputable InclusionBench.Support.firstWord",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polytime_second",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polytime_second",
+      "statement": "InclusionBench.RealSyntax.PolynomialTimeComputable InclusionBench.Support.secondWord",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_congr",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_congr",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate first →\n    (∀ (word : InclusionBench.Word), first word ↔ second word) → InclusionBench.Support.PolynomialPredicate second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_and",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_and",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate first →\n    InclusionBench.Support.PolynomialPredicate second →\n      InclusionBench.Support.PolynomialPredicate fun word => first word ∧ second word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_or",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_or",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate first →\n    InclusionBench.Support.PolynomialPredicate second →\n      InclusionBench.Support.PolynomialPredicate fun word => first word ∨ second word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_precompose",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_precompose",
+      "statement": "∀ {predicate : InclusionBench.Language} {function : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Support.PolynomialPredicate predicate →\n    InclusionBench.RealSyntax.PolynomialTimeComputable function →\n      InclusionBench.Support.PolynomialPredicate fun word => predicate (function word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_iff_predicate",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_iff_predicate",
+      "statement": "∀ (relation : InclusionBench.Word → InclusionBench.Word → Prop),\n  InclusionBench.Support.PolynomialRelation relation ↔\n    ∃ predicate,\n      InclusionBench.Support.PolynomialPredicate predicate ∧\n        ∀ (first second : InclusionBench.Word),\n          predicate (InclusionBench.Support.pairWords first second) ↔ relation first second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_relation",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_relation",
+      "statement": "∀ {relation : InclusionBench.Word → InclusionBench.Word → Prop}\n  {first second : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Support.PolynomialRelation relation →\n    InclusionBench.RealSyntax.PolynomialTimeComputable first →\n      InclusionBench.RealSyntax.PolynomialTimeComputable second →\n        InclusionBench.Support.PolynomialPredicate fun word => relation (first word) (second word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_and",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_and",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word → Prop},\n  InclusionBench.Support.PolynomialRelation first →\n    InclusionBench.Support.PolynomialRelation second →\n      InclusionBench.Support.PolynomialRelation fun input witness => first input witness ∧ second input witness",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_or",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_or",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word → Prop},\n  InclusionBench.Support.PolynomialRelation first →\n    InclusionBench.Support.PolynomialRelation second →\n      InclusionBench.Support.PolynomialRelation fun input witness => first input witness ∨ second input witness",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_precompose",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_precompose",
+      "statement": "∀ {relation : InclusionBench.Word → InclusionBench.Word → Prop}\n  {first second : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Support.PolynomialRelation relation →\n    InclusionBench.RealSyntax.PolynomialTimeComputable first →\n      InclusionBench.RealSyntax.PolynomialTimeComputable second →\n        InclusionBench.Support.PolynomialRelation fun input witness => relation (first input) (second witness)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_left",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_left",
+      "statement": "∀ {predicate : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate predicate →\n    InclusionBench.Support.PolynomialRelation fun input _ => predicate input",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_right",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_right",
+      "statement": "∀ {predicate : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate predicate →\n    InclusionBench.Support.PolynomialRelation fun _ witness => predicate witness",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialRelation_eq",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialRelation_eq",
+      "statement": "InclusionBench.Support.PolynomialRelation fun first second => first = second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_eq",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_eq",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.RealSyntax.PolynomialTimeComputable first →\n    InclusionBench.RealSyntax.PolynomialTimeComputable second →\n      InclusionBench.Support.PolynomialPredicate fun word => first word = second word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_true",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_true",
+      "statement": "InclusionBench.Support.PolynomialPredicate fun _ => True",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_false",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_false",
+      "statement": "InclusionBench.Support.PolynomialPredicate fun _ => False",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialIndexedPredicate_not",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialIndexedPredicate_not",
+      "statement": "∀ {predicate : InclusionBench.Word → Nat → Prop},\n  InclusionBench.Support.PolynomialIndexedPredicate predicate →\n    InclusionBench.Support.PolynomialIndexedPredicate fun word index => ¬predicate word index",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialIndexedPredicate_and",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialIndexedPredicate_and",
+      "statement": "∀ {first second : InclusionBench.Word → Nat → Prop},\n  InclusionBench.Support.PolynomialIndexedPredicate first →\n    InclusionBench.Support.PolynomialIndexedPredicate second →\n      InclusionBench.Support.PolynomialIndexedPredicate fun word index => first word index ∧ second word index",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialIndexedPredicate_or",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialIndexedPredicate_or",
+      "statement": "∀ {first second : InclusionBench.Word → Nat → Prop},\n  InclusionBench.Support.PolynomialIndexedPredicate first →\n    InclusionBench.Support.PolynomialIndexedPredicate second →\n      InclusionBench.Support.PolynomialIndexedPredicate fun word index => first word index ∨ second word index",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_forall_range",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_forall_range",
+      "statement": "∀ {predicate : InclusionBench.Word → Nat → Prop},\n  InclusionBench.Support.PolynomialIndexedPredicate predicate →\n    ∀ (bound : List Nat),\n      InclusionBench.Support.PolynomialPredicate fun word =>\n        ∀ (index : Nat), index < InclusionBench.Counting.polynomialValue bound (List.length word) → predicate word index",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.polynomialPredicate_exists_range",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-polynomialPredicate_exists_range",
+      "statement": "∀ {predicate : InclusionBench.Word → Nat → Prop},\n  InclusionBench.Support.PolynomialIndexedPredicate predicate →\n    ∀ (bound : List Nat),\n      InclusionBench.Support.PolynomialPredicate fun word =>\n        ∃ index, index < InclusionBench.Counting.polynomialValue bound (List.length word) ∧ predicate word index",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.p_intersection",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-p_intersection",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Machines.polynomialTime first →\n    InclusionBench.Machines.polynomialTime second →\n      InclusionBench.Machines.polynomialTime fun word => first word ∧ second word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.p_union",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-p_union",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Machines.polynomialTime first →\n    InclusionBench.Machines.polynomialTime second →\n      InclusionBench.Machines.polynomialTime fun word => first word ∨ second word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.np_precompose",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-np_precompose",
+      "statement": "∀ {language : InclusionBench.Language} {preprocess : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Machines.nondeterministicPolynomialTime language →\n    InclusionBench.RealSyntax.PolynomialTimeComputable preprocess →\n      InclusionBench.Machines.nondeterministicPolynomialTime fun word => language (preprocess word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.np_closed_under_reductions",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-np_closed_under_reductions",
+      "statement": "InclusionBench.Support.ClosedUnderPolyReductions InclusionBench.Machines.nondeterministicPolynomialTime",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.coClass_closed_under_reductions",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-coClass_closed_under_reductions",
+      "statement": "∀ {family : InclusionBench.ComplexityClass},\n  InclusionBench.Support.ClosedUnderPolyReductions family →\n    InclusionBench.Support.ClosedUnderPolyReductions (InclusionBench.coClass family)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    },
+    {
+      "name": "InclusionBench.Support.coNP_closed_under_reductions",
+      "module": "InclusionSupport.Closure",
+      "kind": "theorem",
+      "id": "api-coNP_closed_under_reductions",
+      "statement": "InclusionBench.Support.ClosedUnderPolyReductions\n  (InclusionBench.coClass InclusionBench.Machines.nondeterministicPolynomialTime)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2 (deterministic input/output computations), Section 1.5 Definition 1.20, printed p.27; Section 2.1 Theorem 2.6 and Section 2.2 Theorem 2.8, printed pp.42–44. The elementary model bridges are separately listed in registry-closure.json.",
+      "model_alignment": "Kernel-proved public combinator using the separately registered elementary computation primitives and the exact total Verifier/transducer definitions. Pair encoding has linear size; malformed words have defined total behavior. Numeric iteration is charged in unary and bounded by a fixed polynomial NUMBER of indices, never all polynomial-length words. Complement-class reduction closure requires closure of the original class. The declaration signature is generated and independently elaborated."
+    }
+  ]
+}

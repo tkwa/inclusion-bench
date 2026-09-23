@@ -4,11 +4,14 @@ from pathlib import Path
 import tempfile
 import unittest
 import subprocess
+import shutil
 from unittest.mock import patch
 
 from inclusion_bench.benchmark import Benchmark
 from inclusion_bench.engine import InvalidEvidence
 from inclusion_bench.proofcheck import baseline_name, trusted_baseline, validate_claims, verify_proof
+from inclusion_bench.literature import CHECKS, record_literature_review, require_approved_dependencies
+from inclusion_bench.proofcheck import semantic_inputs
 
 
 class ProofcheckTests(unittest.TestCase):
@@ -91,7 +94,7 @@ class IsolatedProofcheckTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "proof.lean"
             path.write_text(source)
-            report = verify_proof(self.benchmark, path, [claim or self.claim], timeout_seconds=180, **self.runtime)
+            report = verify_proof(self.benchmark, path, [claim or self.claim], **self.runtime)
             self.assertEqual(report["status"], status, report.get("reason", "") + report.get("log", ""))
             self.assertEqual(report["official_points"], 0)
             return report
@@ -100,6 +103,8 @@ class IsolatedProofcheckTests(unittest.TestCase):
         report = self.check_source("open InclusionBench\ntheorem submitted : Includes (Quantum.completeInterpretation .P) (Quantum.completeInterpretation .P) := includes_refl _", "verified")
         self.assertLessEqual(set(report["targets"][0]["axioms"]), {"propext", "Classical.choice", "Quot.sound"})
         self.assertEqual(report["runtime"]["cpu_limit"], 1)
+        self.assertEqual(report["runtime"]["pids_limit"], 64)
+        self.assertFalse(report["runtime"]["async_elaboration"])
 
     def test_positive_cited_baseline(self):
         fact = next(f for f in self.benchmark.knowledge["facts"] if f["relation"] == "inclusion")
@@ -109,6 +114,140 @@ class IsolatedProofcheckTests(unittest.TestCase):
         source = f"open InclusionBench\ntheorem submitted : Includes (Quantum.completeInterpretation .{fact['left']}) (Quantum.completeInterpretation .{fact['right']}) := {name}"
         report = self.check_source(source, "verified", claim)
         self.assertIn(name, report["targets"][0]["axioms"])
+
+    def test_curated_reduction_support_with_familiar_class_aliases(self):
+        source = """open InclusionBench InclusionBench.Support
+theorem submitted : Includes Classes.P Classes.P := by
+  intro language member
+  exact p_closed_under_reductions (reduction_refl language) member
+"""
+        report = self.check_source(source, "verified")
+        self.assertEqual(report.get("literature_dependencies"), [])
+        self.assertTrue({"InclusionBench.Support.Literature.polytime_identity",
+                         "InclusionBench.Support.Literature.p_precompose"} <=
+                        set(report["targets"][0]["axioms"]), report)
+        cited = {entry["name"]: entry for entry in report["support_axioms"]}
+        for name in ("InclusionBench.Support.Literature.polytime_identity",
+                     "InclusionBench.Support.Literature.p_precompose"):
+            self.assertTrue(cited[name]["sources"])
+            self.assertTrue(all(source["locator"] and source["publication_date"]
+                                for source in cited[name]["sources"]))
+
+    def test_curated_gap_algebra_replays_for_pp_alias(self):
+        source = """open InclusionBench InclusionBench.Support
+theorem submitted : Includes Classes.PP Classes.PP := by
+  intro language member
+  obtain ⟨gap, computable, correct⟩ := member
+  apply pp_of_gap (gapP_add computable gapP_zero)
+  intro word
+  simpa only [Int.add_zero] using correct word
+"""
+        report = self.check_source(source, "verified", {**self.claim, "left": "PP", "right": "PP"})
+        self.assertEqual(report.get("literature_dependencies"), [])
+        self.assertIn("InclusionBench.Support.Literature.sharpP_add", report["targets"][0]["axioms"])
+
+    def test_all_familiar_class_aliases_match_frozen_targets(self):
+        names = self.benchmark.context_ids
+        self.assertEqual(len(names), 61)
+        claims = [{"relation": "inclusion", "left": name, "right": name,
+                   "theorem": "alias_" + name} for name in names]
+        source = "open InclusionBench InclusionBench.Support\n" + "\n".join(
+            f"theorem alias_{name} : Includes Classes.{name} Classes.{name} := includes_refl _"
+            for name in names)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "aliases.lean"
+            path.write_text(source)
+            report = verify_proof(self.benchmark, path, claims, timeout_seconds=180, **self.runtime)
+        self.assertEqual(report["status"], "verified", report.get("reason", "") + report.get("log", ""))
+        self.assertEqual(len(report["targets"]), 61)
+        self.assertEqual(report["official_points"], 0)
+
+    def test_target_closure_excludes_unused_unsafe_and_unjustified_declarations(self):
+        source = """open InclusionBench InclusionBench.Support
+unsafe def unusedTactic : IO Unit := pure ()
+axiom unusedUnjustified : False
+axiom Literature.unused : False
+theorem submitted : Includes Classes.P Classes.P := includes_refl _
+"""
+        report = self.check_source(source, "verified")
+        self.assertEqual(report["declaration_count"], 1)
+        self.assertEqual(report["literature_dependencies"], [])
+
+    def test_literature_dependency_requires_exact_review_and_definition_context(self):
+        # Every registry mutation is confined to this temporary benchmark.
+        # The assertions are reflexive test fixtures, never benchmark results.
+        with tempfile.TemporaryDirectory(prefix="isolated-literature-review-") as directory:
+            root = Path(directory)
+            shutil.copytree(self.benchmark.root / "data", root / "data")
+            shutil.copytree(self.benchmark.root / "scripts/proofcheck", root / "scripts/proofcheck")
+            shutil.copytree(self.benchmark.root / "support", root / "support")
+            for relative in semantic_inputs(self.benchmark)[0]:
+                target = root / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(self.benchmark.root / relative, target)
+            (root / "support/literature-reviews.json").write_text("[]\n")
+            benchmark = Benchmark(root)
+            path = root / "proof.lean"
+            request = {
+                "name": "Literature.identity",
+                "statement": "TEST-ONLY metadata summary; the auditor must print the actual Lean type.",
+                "rationale": "Synthetic reflexivity fixture for the literature review mechanism.",
+                "sources": [{"title": "Computational Complexity: A Modern Approach",
+                             "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+                             "locator": "Chapter 1: complexity classes as sets of languages; reflexivity of inclusion.",
+                             "publication_date": "2009"}],
+            }
+
+            def run_source(conjunction=False):
+                target = "Includes Classes.P Classes.P" + (" ∧ True" if conjunction else "")
+                proof = "Literature.identity.1" if conjunction else "Literature.identity"
+                path.write_text("open InclusionBench InclusionBench.Support\n"
+                                f"def Submission.LocalTarget : Prop := {target}\n"
+                                "axiom Literature.identity : Submission.LocalTarget\n"
+                                f"theorem submitted : Includes Classes.P Classes.P := {proof}\n")
+                return verify_proof(benchmark, path, [self.claim], literature_requests=[request],
+                                    timeout_seconds=180, **self.runtime)
+
+            pending = run_source()
+            self.assertEqual(pending["status"], "needs_literature_review",
+                             pending.get("reason", "") + pending.get("log", ""))
+            self.assertEqual(pending["kernel_status"], "verified")
+            self.assertEqual(pending["official_points"], 0)
+            self.assertEqual(len(pending["literature_dependencies"]), 1)
+            dependency = pending["literature_dependencies"][0]
+            self.assertEqual(dependency["statement"], "Submission.LocalTarget")
+            self.assertNotEqual(dependency["statement"], request["statement"])
+            self.assertEqual(dependency["declaration"]["kind"], "axiom")
+            self.assertNotIn("value", dependency["declaration"])
+            self.assertEqual([item["kind"] for item in dependency["context"]], ["definition"])
+            self.assertIn("Literature.identity", pending["targets"][0]["axioms"])
+            with self.assertRaises(InvalidEvidence):
+                require_approved_dependencies(benchmark, pending)
+
+            review = {"schema_version": 1, "reviewer": "TEST-ONLY maintainer fixture",
+                      "rationale": "Synthetic review of an elementary reflexive test statement.",
+                      "status": "accepted", "checks": {check: True for check in CHECKS},
+                      "dependency": dependency}
+            record_literature_review(benchmark, review)
+            approved = run_source()
+            self.assertEqual(approved["status"], "verified", approved.get("reason", "") + approved.get("log", ""))
+            self.assertEqual(approved["literature_reviews"][0]["status"], "accepted")
+            self.assertEqual(require_approved_dependencies(benchmark, approved)[0]["status"], "accepted")
+            self.assertEqual(approved["official_points"], 0)
+
+            changed = run_source(conjunction=True)
+            self.assertEqual(changed["status"], "needs_literature_review",
+                             changed.get("reason", "") + changed.get("log", ""))
+            changed_dependency = changed["literature_dependencies"][0]
+            self.assertEqual(changed_dependency["declaration"], dependency["declaration"])
+            self.assertNotEqual(changed_dependency["context"], dependency["context"])
+            self.assertNotEqual(changed_dependency["dependency_sha256"], dependency["dependency_sha256"])
+            self.assertEqual(changed["literature_reviews"][0]["status"], "pending")
+
+            record_literature_review(benchmark, {**review, "status": "rejected",
+                                                "rationale": "TEST-ONLY revocation fixture."})
+            with self.assertRaises(InvalidEvidence):
+                require_approved_dependencies(benchmark, approved)
 
     def test_all_new_context_targets_replay_in_the_isolated_kernel(self):
         names = ('BPL', 'UL', 'PL', 'BQL', 'ExistsR', 'PSharpP', 'CH',

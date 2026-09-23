@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "support-ab2007",
+      "title": "Computational Complexity: A Modern Approach (author-hosted draft)",
+      "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+      "publication_date": "2007-01-08",
+      "notes": "Sanjeev Arora and Boaz Barak. Locators use the numbered pages and theorem numbers in the January 2007 author draft, not the later book edition."
+    }
+  ],
+  "theorems": [
+    {
+      "name": "InclusionBench.Support.Literature.polytime_constant",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-polytime-constant",
+      "statement": "∀ (value : InclusionBench.Word), InclusionBench.RealSyntax.PolynomialTimeComputable fun _ => value",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2, finite-control input/output Turing machines; Section 1.5, Definitions 1.19–1.20, printed p.27.",
+      "model_alignment": "The output word is fixed before the machine is chosen. A finite control writes that fixed word and halts; its length contributes a constant to the coefficient-list runtime. This is a standard elementary computation in the cited model, not a claim that arbitrary input-dependent output is constant-time."
+    },
+    {
+      "name": "InclusionBench.Support.Literature.polytime_pair",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-polytime-pair",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.RealSyntax.PolynomialTimeComputable first →\n    InclusionBench.RealSyntax.PolynomialTimeComputable second →\n      InclusionBench.RealSyntax.PolynomialTimeComputable fun word =>\n        InclusionBench.Support.pairWords (first word) (second word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2, input/output machine conventions; Section 2.2, Theorem 2.8(1) proof, printed p.44 (polynomial growth under sequential computation and composition).",
+      "model_alignment": "Run both total polynomial-time transducers on the same input, store their outputs, and write encodeTriple first [] second. The core proves this encoding has length 2*(|first|+|second|)+3. Each output is polynomially long. The two simulations and the linear encoding cost have a polynomial bound on the fixed one-work-tape model. This elementary tuple-computation corollary does not posit arbitrary polynomially bounded functions as computable."
+    },
+    {
+      "name": "InclusionBench.Support.Literature.polytime_first",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-polytime-first",
+      "statement": "InclusionBench.RealSyntax.PolynomialTimeComputable InclusionBench.Support.firstWord",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2, finite-control scanning and output conventions; Section 1.5, Definitions 1.19–1.20, printed p.27.",
+      "model_alignment": "Use the concrete total firstWord definition: parse the fixed self-delimiting triple format, output the first field if all three fields parse and no suffix remains, and output the empty word on malformed inputs. The encoding marks each data bit and terminates each field, so a deterministic scan with temporary work-tape storage takes polynomial time; output length never exceeds input length. This is the elementary parser-model bridge, not a general parsing axiom."
+    },
+    {
+      "name": "InclusionBench.Support.Literature.polytime_second",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-polytime-second",
+      "statement": "InclusionBench.RealSyntax.PolynomialTimeComputable InclusionBench.Support.secondWord",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2, finite-control scanning and output conventions; Section 1.5, Definitions 1.19–1.20, printed p.27.",
+      "model_alignment": "Use the concrete total secondWord definition: parse the same triple and return its third field, the second component of pairWords; malformed inputs return the empty word. All scans, temporary storage and output are bounded polynomially by the encoded input length. The kernel proves secondWord(pairWords x y)=y from the core decoder theorem."
+    },
+    {
+      "name": "InclusionBench.Support.Literature.polynomialPredicate_and",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-polynomialPredicate-and",
+      "statement": "∀ {first second : InclusionBench.Language},\n  InclusionBench.Support.PolynomialPredicate first →\n    InclusionBench.Support.PolynomialPredicate second →\n      InclusionBench.Support.PolynomialPredicate fun word => first word ∧ second word",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.5, Definition 1.20 (P), printed p.27; Section 2.2, Theorem 2.8 proof, printed p.44, polynomial bounds under composition.",
+      "model_alignment": "This elementary Boolean closure runs the two total deterministic deciders on the same input and accepts exactly when both accept. Both machines halt on every binary word, including malformed encodings. Simulating finitely many fixed tape machines and adding their polynomial runtimes remains polynomial; the result is packaged as the existing total Verifier structure. No nondeterministic or oracle conjunction is asserted."
+    },
+    {
+      "name": "InclusionBench.Support.Literature.polynomialRelation_eq",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-polynomialRelation-eq",
+      "statement": "InclusionBench.Support.PolynomialRelation fun first second => first = second",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2, the deterministic tape-machine model, and Section 1.5, Definition 1.20, printed p.27.",
+      "model_alignment": "Parse encodeTriple first [] second and compare the first and third binary fields. The core encoding is injective and linear-size. Sequential scanning or a polynomial-overhead one-tape comparison yields a total polynomial-time verifier; malformed triples may be rejected. This imports the elementary equality-testing algorithm for finite words, not equality of arbitrary functions or semantic objects."
+    },
+    {
+      "name": "InclusionBench.Support.Literature.polynomialPredicate_forall_range",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-polynomialPredicate-forall-range",
+      "statement": "∀ {predicate : InclusionBench.Word → Nat → Prop},\n  InclusionBench.Support.PolynomialIndexedPredicate predicate →\n    ∀ (bound : List Nat),\n      InclusionBench.Support.PolynomialPredicate fun word =>\n        ∀ (index : Nat), index < InclusionBench.Counting.polynomialValue bound (List.length word) → predicate word index",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 1.2.3, Example 1.12, printed p.22 (simulation of loops and elementary operations); Section 1.5, Definition 1.20, printed p.27; Section 2.2, Theorem 2.8 proof, printed p.44 (composition of polynomial bounds).",
+      "model_alignment": "The premise supplies one uniform verifier for predicate input index.length, so index size is charged in unary. For the fixed nonnegative-coefficient polynomial q, compute q(|input|), loop over i=0,…,q(|input|)-1, and run that verifier on input paired with a word of length i. There are q(n) iterations, each verifier input has length O(n+q(n)) and each runtime is bounded by one fixed polynomial in that size. Their product and finite-tape simulation overhead are polynomial. This is elementary bounded iteration from the cited model; it does not enumerate the exponentially many words of length q(n), allow an input-dependent polynomial degree, or treat large binary integers as unit-cost."
+    },
+    {
+      "name": "InclusionBench.Support.Literature.np_precompose",
+      "module": "InclusionSupport.Closure",
+      "kind": "axiom",
+      "id": "closure-np-precompose",
+      "statement": "∀ {language : InclusionBench.Language} {preprocess : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Machines.nondeterministicPolynomialTime language →\n    InclusionBench.RealSyntax.PolynomialTimeComputable preprocess →\n      InclusionBench.Machines.nondeterministicPolynomialTime fun word => language (preprocess word)",
+      "source_ids": [
+        "support-ab2007"
+      ],
+      "locator": "Section 2.1, Theorem 2.6 and its proof, printed pp.42–43; Section 2.2, Definition 2.7 and Theorem 2.8, printed pp.43–44.",
+      "model_alignment": "First deterministically compute the total polynomial-length transformed input; then run the fixed nondeterministic target decider. Every target branch has a polynomial runtime in that transformed length, so composing bounds gives a polynomial bound on every branch in the original input length. Deterministic preprocessing introduces no accepting alternatives. The repository’s finite branching lists can be simulated with finite overhead. This standard many-one closure concerns NP; it makes no assertion for classes such as L, NC or E where arbitrary polynomial preprocessing would be unsound."
+    }
+  ]
+}

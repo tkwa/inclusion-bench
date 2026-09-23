@@ -27,6 +27,10 @@ def baseline_name(identifier: str) -> str:
     return "InclusionBench.TrustedBaseline.b_" + stem + "_" + sha256(identifier.encode())[:12]
 
 
+def known_name(identifier: str) -> str:
+    return "InclusionBench.Known." + re.sub(r"[^A-Za-z0-9_]", "_", identifier)
+
+
 def proposition(atom: Atom) -> str:
     if atom.relation == "independence":
         raise InvalidEvidence("Independence uses the expert metatheorem review lane")
@@ -59,7 +63,9 @@ def trusted_baseline(benchmark, claims: list[dict]) -> tuple[str, list[dict], li
     This is the intentional trust boundary authorized by the existing-proof
     waiver. Nothing from the submitted source becomes a baseline assumption.
     """
-    lines = ["import InclusionQuantum", "", "namespace InclusionBench", "",
+    from .literature import trusted_axiom_names
+    has_support = (benchmark.root / "support/InclusionSupport.lean").is_file()
+    lines = ["import InclusionSupport" if has_support else "import InclusionQuantum", "", "namespace InclusionBench", "",
              f"-- Dataset SHA-256: {benchmark.digest}",
              "-- Existing literature is explicitly trusted; submitted results are not."]
     entries = []
@@ -67,7 +73,9 @@ def trusted_baseline(benchmark, claims: list[dict]) -> tuple[str, list[dict], li
     def add(identifier, statement, sources):
         name = baseline_name(identifier)
         lines.append(f"axiom {name.removeprefix('InclusionBench.')} : {statement}")
-        entries.append({"name": name, "id": identifier, "statement": statement,
+        alias = known_name(identifier)
+        lines.append(f"theorem {alias.removeprefix('InclusionBench.')} : {statement} := {name}")
+        entries.append({"name": name, "alias": alias, "id": identifier, "statement": statement,
                         "source_ids": list(sources),
                         "sources_sha256": canonical_hash([benchmark.sources[s] for s in sources])})
 
@@ -81,7 +89,9 @@ def trusted_baseline(benchmark, claims: list[dict]) -> tuple[str, list[dict], li
         add(f"complement:{a}:{b}",
             f"Quantum.completeInterpretation .{b} = coClass (Quantum.completeInterpretation .{a})",
             item["source_ids"])
-    allowed = STANDARD_AXIOMS + [e["name"] for e in entries]
+    if len({e["alias"] for e in entries}) != len(entries):
+        raise InvalidEvidence("Friendly baseline theorem names collide")
+    allowed = STANDARD_AXIOMS + [e["name"] for e in entries] + trusted_axiom_names(benchmark)
     lines += ["", "def TrustedBaseline.allowedAxiomNames : List String := [",
               ",\n".join("  " + json.dumps(name) for name in allowed), "]"]
     targets = []
@@ -91,6 +101,24 @@ def trusted_baseline(benchmark, claims: list[dict]) -> tuple[str, list[dict], li
         targets.append({"theorem": raw["theorem"], "expected": expected})
     lines += ["", "end InclusionBench", ""]
     return "\n".join(lines), entries, targets
+
+
+def semantic_inputs(benchmark):
+    """Version support separately from the frozen mathematical taskset."""
+    trusted_hashes, semantic_sources = {}, {}
+    for subdir in ("lean", "quantum", "support"):
+        for p in sorted((benchmark.root / subdir).rglob("*.lean")):
+            if ".lake" not in p.parts:
+                relative = str(p.relative_to(benchmark.root))
+                trusted_hashes[relative] = sha256(p.read_bytes())
+                semantic_sources[relative] = p.read_text()
+    lock = benchmark.root / "quantum/lake-manifest.json"
+    trusted_hashes[str(lock.relative_to(benchmark.root))] = sha256(lock.read_bytes())
+    # Metadata changes invalidate literature decisions, but mutable decisions
+    # must not invalidate themselves. The runner only needs Lean and the lock.
+    registries = {str(p.relative_to(benchmark.root)): sha256(p.read_bytes())
+                  for p in sorted((benchmark.root / "support").glob("registry-*.json"))}
+    return trusted_hashes, semantic_sources, canonical_hash({**trusted_hashes, **registries})
 
 
 def trusted_verification_inputs(benchmark, claims):
@@ -107,20 +135,13 @@ def trusted_verification_inputs(benchmark, claims):
     if not {"ProofCodec.lean", "ProofExport.lean", "ProofAudit.lean"} <= files.keys():
         raise InvalidEvidence("Trusted proof-checker sources are missing")
     runner = (support / "remote_runner.py").read_text()
-    trusted_hashes = {}
-    semantic_sources = {}
-    for subdir in ("lean", "quantum"):
-        for p in sorted((benchmark.root / subdir).rglob("*.lean")):
-            if ".lake" not in p.parts:
-                trusted_hashes[str(p.relative_to(benchmark.root))] = sha256(p.read_bytes())
-                semantic_sources[str(p.relative_to(benchmark.root))] = p.read_text()
-    lock = benchmark.root / "quantum" / "lake-manifest.json"
-    trusted_hashes[str(lock.relative_to(benchmark.root))] = sha256(lock.read_bytes())
+    trusted_hashes, semantic_sources, semantics = semantic_inputs(benchmark)
     bindings = {
         "baseline_sha256": sha256(baseline.encode()),
         "checker_sha256": canonical_hash({**files, "remote_runner.py": runner,
-                                           "proofcheck.py": Path(__file__).read_text()}),
-        "semantics_sha256": canonical_hash(trusted_hashes),
+                                           "proofcheck.py": Path(__file__).read_text(),
+                                           "literature.py": Path(__file__).with_name("literature.py").read_text()}),
+        "semantics_sha256": semantics,
     }
     return {"claims": claims, "baseline": baseline, "entries": entries,
             "targets": targets, "files": files, "runner": runner,
@@ -138,13 +159,15 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
                  remote_root="/home/tkwa/code/inclusion-quantum-build",
                  timeout_seconds=120,
                  image="nvidia/cuda:12.4.1-devel-ubuntu22.04",
-                 toolchain_path=None) -> dict:
-    """Return verified/rejected/unavailable; never award benchmark points.
+                 toolchain_path=None, literature_requests=None) -> dict:
+    """Return verification or pending literature review; never award points.
 
     `host=None` runs the same Docker driver on the local Linux host. The source
     is a Lean body under fixed trusted imports; arbitrary new imports are not
     part of the proof format. The submitted file's exact bytes are hash-bound.
     """
+    from .literature import validate_requests, bind_dependencies, dependency_decisions, curated_catalog
+    requests = validate_requests(benchmark, literature_requests)
     claims = validate_claims(benchmark, claims)
     if not isinstance(image, str) or not image.strip() or image.startswith("-"):
         raise InvalidEvidence("Provide an installed Docker image name or digest")
@@ -167,8 +190,9 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
     files["TrustedBaseline.lean"] = baseline
     # These comments are not security checks. The kernel replays the exported
     # declarations in a clean environment, with no candidate module imported.
-    files["Candidate.lean"] = "import ProofExport\nimport TrustedBaseline\n\n" + body + "\n\n#proofcheck_export\n"
+    files["Candidate.lean"] = "import ProofExport\nimport TrustedBaseline\n\n" + body + "\n\n#proofcheck_export_targets " + json.dumps([c["theorem"] for c in claims]) + "\n"
     files["targets.json"] = json.dumps(targets)
+    files["literature.json"] = json.dumps({"requests": requests})
     packet = {"files": files, "trusted_hashes": trusted["trusted_hashes"], "semantic_sources": trusted["semantic_sources"],
               "remote_root": str(remote_root), "timeout_seconds": timeout_seconds,
               "image": image, "toolchain_path": str(toolchain_path) if toolchain_path is not None else None}
@@ -178,17 +202,37 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
     report = {"schema_version": 1, "dataset_sha256": benchmark.digest,
               "proof_sha256": sha256(source), "claims": claims,
               **trusted["bindings"], "baseline_axioms": entries,
-              "method": "lean4-data-only-fresh-kernel-replay", "official_points": 0}
+              "method": "lean4-data-only-fresh-kernel-replay", "official_points": 0,
+              "literature_requests": requests,
+              "support_axioms": [entry for entry in curated_catalog(benchmark) if entry.get("kind") == "axiom"]}
     try:
         # Only the trusted remote runner writes this pipe; candidate stdout is
         # captured and size-limited inside its Docker container.
         completed = subprocess.run(command, input=json.dumps(packet), text=True,
                                    capture_output=True, timeout=3 * timeout_seconds + 120)
         response = json.loads(completed.stdout)
-        if response.get("status") not in {"verified", "rejected", "unavailable"}:
+        if not isinstance(response, dict) or response.get("status") not in {"verified", "needs_literature_review", "rejected", "unavailable"}:
             raise ValueError("Invalid verifier response")
+        if completed.returncode and response["status"] in {"verified", "needs_literature_review"}:
+            raise ValueError("Verifier failed while reporting success")
+        if response["status"] in {"verified", "needs_literature_review"}:
+            dependencies = bind_dependencies(benchmark, response.get("literature_dependencies", []),
+                                             requests, **trusted["bindings"])
+            if bool(dependencies) != (response["status"] == "needs_literature_review"):
+                raise InvalidEvidence("Auditor status does not match its literature dependencies")
+            if dependencies and response.get("kernel_status") != "verified":
+                raise InvalidEvidence("Literature dependencies lack successful kernel verification")
+            decisions = dependency_decisions(benchmark, dependencies, trusted["bindings"]["semantics_sha256"])
+            response["literature_dependencies"] = dependencies
+            response["literature_reviews"] = decisions
+            if dependencies:
+                response["status"] = "verified" if all(d["status"] == "accepted" for d in decisions) else "needs_literature_review"
+        # Immutable input bindings cannot be replaced by diagnostic output.
+        for key in report:
+            if key in response and response[key] != report[key]:
+                raise InvalidEvidence("Verifier attempted to replace input binding: " + key)
         report.update(response)
-    except (OSError, subprocess.TimeoutExpired, ValueError) as error:
+    except (OSError, subprocess.TimeoutExpired, ValueError, InvalidEvidence) as error:
         report.update(status="unavailable", reason=f"Verifier did not return valid evidence: {error}")
     if report_path is not None:
         Path(report_path).write_text(json.dumps(report, indent=2) + "\n")

@@ -16,8 +16,8 @@ import time
 import uuid
 
 MODULE_NAME = r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*"
-SOURCE_PATH = re.compile(r"(?:lean|quantum)/(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean")
-FIRST_PARTY = {"InclusionBench": "lean", "InclusionQuantum": "quantum"}
+SOURCE_PATH = re.compile(r"(?:lean|quantum|support)/(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean")
+FIRST_PARTY = {"InclusionBench": "lean", "InclusionQuantum": "quantum", "InclusionSupport": "support"}
 
 
 def header_imports(source):
@@ -116,6 +116,8 @@ def semantic_build_order(sources, trusted_hashes):
 
     for root in FIRST_PARTY:
         if root not in modules:
+            if root == "InclusionSupport" and not any(name.startswith(root + ".") for name in modules):
+                continue  # Older packets have no support library.
             raise RuntimeError("Missing trusted root module: " + root)
         visit(root)
     required = list(order)
@@ -190,7 +192,7 @@ def main(packet):
         raise RuntimeError("Expected pinned Lean 4.19.0")
     package_root = root / "quantum/.lake/packages"
     packages = sorted(p / ".lake/build/lib/lean" for p in package_root.iterdir() if (p / ".lake/build/lib/lean").exists())
-    lean_path = ["/config", "/config/lean", "/config/quantum"] + ["/packages/" + str(p.relative_to(package_root)) for p in packages] + ["/toolchain/lib/lean"]
+    lean_path = ["/config", "/config/lean", "/config/quantum", "/config/support"] + ["/packages/" + str(p.relative_to(package_root)) for p in packages] + ["/toolchain/lib/lean"]
     # The object manifest identifies the exact trusted Mathlib dependencies.
     # Repository semantics are rebuilt below from source on every invocation.
     object_hash = hashlib.sha256()
@@ -220,13 +222,16 @@ def main(packet):
         env = ["-e", "LEAN_PATH=" + ":".join(lean_path), "-e", "LEAN_NUM_THREADS=1", "-e", "HOME=/tmp", "-e", "PATH=/toolchain/bin:/usr/bin:/bin"]
         common = ["docker", "run", "--rm", "--network=none", "--read-only", "--cap-drop=ALL",
                   "--security-opt=no-new-privileges", "--memory=8g", "--memory-swap=8g", "--cpus=1",
-                  "--pids-limit=32", "--user", f"{os.getuid()}:{os.getgid()}",
+                  "--pids-limit=64", "--user", f"{os.getuid()}:{os.getgid()}",
                   "--tmpfs", "/tmp:rw,nosuid,nodev,size=128m", "--tmpfs", "/work:rw,nosuid,nodev,size=256m",
                   "--mount", f"type=bind,src={toolchain},dst=/toolchain,readonly",
                   "--mount", f"type=bind,src={package_root},dst=/packages,readonly", *env,
                   "--entrypoint", "/bin/sh"]
 
-        def run(script, writable=False):
+        stage_wall_seconds = {}
+
+        def run(stage, script, writable=False):
+            started = time.monotonic()
             name = "inclusion-proofcheck-" + uuid.uuid4().hex
             binding = f"type=bind,src={config},dst=/config" + ("" if writable else ",readonly")
             command = [*common, "--name", name, "--mount", binding, image, "-c", script]
@@ -237,19 +242,31 @@ def main(packet):
                 # output overflowed; an orphaned candidate cannot keep running.
                 subprocess.run(["docker", "rm", "-f", name], stdout=subprocess.DEVNULL,
                                stderr=subprocess.DEVNULL, timeout=20)
+                stage_wall_seconds[stage] = round(time.monotonic() - started, 3)
 
         # Paths have been restricted to ASCII module components above. Their
         # dependency order is derived only from hash-checked trusted sources.
-        compile_steps = [f"lean -j1 -o /config/{path[:-5]}.olean /config/{path}" for path in build_order]
-        compile_steps += [f"lean -j1 -o /config/{m}.olean /config/{m}.lean" for m in ("ProofCodec", "ProofExport", "TrustedBaseline")]
-        code, output, error = run("set -eu\ncd /config\n" + "\n".join(compile_steps), writable=True)
+        # Async elaboration can start many blocked runtime threads even with
+        # -j1, exhausting a bounded process budget on long dependency chains.
+        # This sandbox has one CPU, so elaborate sequentially in every phase.
+        lean_command = "lean -j1 -DElab.async=false"
+
+        def compile_step(path):
+            return (f"{lean_command} -o /config/{path[:-5]}.olean /config/{path} || "
+                    f"{{ code=$?; echo 'Trusted compilation failed: {path}' >&2; exit $code; }}")
+
+        compile_steps = [compile_step(path) for path in build_order]
+        compile_steps += [compile_step(f"{m}.lean") for m in ("ProofCodec", "ProofExport", "TrustedBaseline")]
+        code, output, error = run("trusted_build", "set -eu\ncd /config\n" + "\n".join(compile_steps), writable=True)
         if code:
-            return {"status": "unavailable", "reason": "Trusted verifier build failed", "log": (output + error)[-16000:]}
+            return {"status": "unavailable", "reason": "Trusted verifier build failed", "log": (output + error)[-16000:],
+                    "stage_wall_seconds": stage_wall_seconds}
         # No host directory is writable during candidate execution. Its only
         # output is a bounded JSON value, never an olean or native library.
-        code, output, error = run("cd /work\nlean -j1 /config/Candidate.lean >/work/compile.log 2>&1\nresult=$?\nif [ $result -ne 0 ]; then cat /work/compile.log >&2; exit $result; fi\ncat /work/proof-export.json")
+        code, output, error = run("candidate", f"cd /work\n{lean_command} /config/Candidate.lean >/work/compile.log 2>&1\nresult=$?\nif [ $result -ne 0 ]; then cat /work/compile.log >&2; exit $result; fi\ncat /work/proof-export.json")
         if code:
-            return {"status": "rejected", "reason": "Candidate elaboration/export failed", "log": error[-16000:]}
+            return {"status": "rejected", "reason": "Candidate elaboration/export failed", "log": error[-16000:],
+                    "stage_wall_seconds": stage_wall_seconds}
         if len(output.encode()) > 32 * 1024 * 1024:
             return {"status": "rejected", "reason": "Proof export exceeds 32 MiB"}
         # Parsing on the host accepts JSON only. No pickle/eval/import/module
@@ -257,19 +274,23 @@ def main(packet):
         json.loads(output)
         export_sha256 = hashlib.sha256(output.encode()).hexdigest()
         (config / "proof-export.json").write_text(output)
-        code, output, error = run("cd /config\nlean -j1 --run /config/ProofAudit.lean /config/proof-export.json /config/targets.json")
+        code, output, error = run("kernel_replay", f"cd /config\n{lean_command} --run /config/ProofAudit.lean /config/proof-export.json /config/targets.json /config/literature.json")
         try:
             report = json.loads(output)
         except ValueError:
             return {"status": "unavailable", "reason": "Trusted kernel replay failed to start", "log": (output + error)[-16000:]}
-        if code and report.get("status") == "verified":
+        if not isinstance(report, dict) or report.get("status") not in {"verified", "needs_literature_review", "rejected", "unavailable"}:
+            return {"status": "unavailable", "reason": "Trusted kernel replay returned an invalid status"}
+        if code and report.get("status") in {"verified", "needs_literature_review"}:
             raise RuntimeError("Kernel replay process failed after reporting success")
         report["proof_export_sha256"] = export_sha256
         report["runtime"] = {"lean": lean_version, "image_id": image, "image_requested": image_name,
                              "toolchain_objects_sha256": toolchain_hash.hexdigest(),
                              "mathlib_objects_sha256": object_hash.hexdigest(),
                              "cpu_limit": 1, "memory_bytes": 8 * 1024**3,
+                             "pids_limit": 64, "async_elaboration": False,
                              "network": "none", "candidate_host_writes": False,
+                             "stage_wall_seconds": stage_wall_seconds,
                              "wall_seconds_per_stage": timeout}
         return report
 

@@ -32,14 +32,25 @@ No stronger unproved assumption is permitted. Independence uses a separate exper
 review; the ordinary Lean proof checker does not automatically verify it. Record exact
 claims, a human-readable proof in proof_markdown, and any Lean source in lean_sources.
 Existing cited theorems may be used with precise references; expose every assumption.
+Formalize the new argument. Use the standard mathematical results and textbook
+abstractions in submission_support without rebuilding their published proofs.
+For a missing published dependency, declare axiom Literature.your_name : EXACT_TYPE
+in your Lean body and include a matching literature_requests entry with its name,
+statement, sources (title, URL, theorem/page locator, publication_date), and rationale
+for its application to these exact models. A maintainer reviews the source, actual
+Lean type, and model alignment; the published proof need not be re-formalized.
+Use an empty literature_requests list when no additional dependency is needed.
 Never claim that your proof has been verified. For unsolved, claims must be empty; explain
 the limitation in notes. Lean filenames must be simple names such as Result.lean.
 The formalizations field supplies the canonical Lean sources and TrustedBaseline.lean.
 For Lean, emit one source body without import commands; the verifier prepends imports
 of ProofExport and TrustedBaseline. Name the theorem for claim 1 Submission.result_1,
 claim 2 Submission.result_2, and so on. Prove the exact target over
-InclusionBench.Quantum.completeInterpretation. New ordinary definitions and theorems
-are supported; new inductive, structure, or recursor declarations are not yet supported.
+InclusionBench.Quantum.completeInterpretation; the short names in
+InclusionBench.Support.Classes are definitionally identical targets. Use ordinary
+definitions and theorems over imported types. New inductive types and structures
+are not supported by the current exporter. Literature declarations
+must name existing pre-cutoff results; a new claim cannot be assumed as its own proof.
 No tools or external retrieval are available in this attempt. Return only the requested JSON.
 """
 
@@ -136,15 +147,23 @@ def output_schema(request):
             'left': identifier, 'right': identifier}, 'required': ['relation', 'left', 'right'], 'additionalProperties': False}
     source = {'type': 'object', 'properties': {'filename': {'type': 'string'}, 'content': {'type': 'string'}},
               'required': ['filename', 'content'], 'additionalProperties': False}
+    citation = {'type': 'object', 'properties': {key: {'type': 'string'} for key in
+                ('title', 'url', 'locator', 'publication_date')},
+                'required': ['title', 'url', 'locator', 'publication_date'], 'additionalProperties': False}
+    dependency = {'type': 'object', 'properties': {
+        'name': {'type': 'string'}, 'statement': {'type': 'string'},
+        'sources': {'type': 'array', 'items': citation}, 'rationale': {'type': 'string'}},
+        'required': ['name', 'statement', 'sources', 'rationale'], 'additionalProperties': False}
     return {'type': 'object', 'properties': {'status': {'type': 'string', 'enum': ['unsolved', 'proof_candidate']},
             'claims': {'type': 'array', 'items': atom}, 'proof_markdown': {'type': 'string'},
-            'lean_sources': {'type': 'array', 'items': source}, 'notes': {'type': 'string'}},
-            'required': ['status', 'claims', 'proof_markdown', 'lean_sources', 'notes'], 'additionalProperties': False}
+            'lean_sources': {'type': 'array', 'items': source},
+            'literature_requests': {'type': 'array', 'items': dependency}, 'notes': {'type': 'string'}},
+            'required': ['status', 'claims', 'proof_markdown', 'lean_sources', 'literature_requests', 'notes'], 'additionalProperties': False}
 
 
 def payloads(request, provider, config):
     # Only benchmark material enters the model prompt. Credentials, budgets and local paths do not.
-    material = {k: request[k] for k in ('task', 'classes', 'knowledge', 'formalization_bundle', 'formalizations', 'dataset_sha256') if k in request}
+    material = {k: request[k] for k in ('task', 'classes', 'knowledge', 'formalization_bundle', 'formalizations', 'submission_support', 'dataset_sha256') if k in request}
     prompt = json.dumps(material, ensure_ascii=False, sort_keys=True)
     schema = output_schema(request)
     options = config['options']
@@ -252,8 +271,8 @@ def response_text(response, provider):
 
 def validate_proof(proof, request):
     required = {'status', 'claims', 'proof_markdown', 'lean_sources', 'notes'}
-    if not isinstance(proof, dict) or set(proof) != required:
-        raise AdapterError('Model output must contain exactly status, claims, proof_markdown, lean_sources, notes')
+    if not isinstance(proof, dict) or not required <= set(proof) or set(proof) - required - {'literature_requests'}:
+        raise AdapterError('Model output needs status, claims, proof_markdown, lean_sources, notes, and optional literature_requests')
     if proof['status'] not in {'unsolved', 'proof_candidate'} or not isinstance(proof['claims'], list) or not isinstance(proof['lean_sources'], list):
         raise AdapterError('Invalid model proof status or list fields')
     if not all(isinstance(proof[k], str) for k in ('proof_markdown', 'notes')):
@@ -272,6 +291,31 @@ def validate_proof(proof, request):
         if not isinstance(filename, str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]*\.lean', filename) or filename in filenames:
             raise AdapterError('Lean filenames must be distinct simple .lean filenames')
         filenames.add(filename)
+    # The standalone adapter validates the wire shape. The runner applies the
+    # canonical literature validator with the real benchmark cutoff before sealing.
+    literature = proof.get('literature_requests', [])
+    if not isinstance(literature, list) or len(literature) > 128 or len(json.dumps(literature, ensure_ascii=False).encode()) > 1024 * 1024:
+        raise AdapterError('literature_requests must be a list of at most 128 dependencies and 1 MiB')
+    names = set()
+    for dependency in literature:
+        if not isinstance(dependency, dict) or set(dependency) != {'name', 'statement', 'sources', 'rationale'}:
+            raise AdapterError('Literature dependencies need name, statement, sources, and rationale')
+        name = dependency['name']
+        if not isinstance(name, str) or len(name) > 240 or not re.fullmatch(r'Literature\.[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*', name) or name in names:
+            raise AdapterError('Literature names must be distinct qualified names under Literature')
+        names.add(name)
+        if any(not isinstance(dependency[key], str) or not dependency[key].strip() or len(dependency[key]) > 20000 for key in ('statement', 'rationale')):
+            raise AdapterError('Literature statement and rationale must be nonempty text')
+        citations = dependency['sources']
+        if not isinstance(citations, list) or not 1 <= len(citations) <= 16:
+            raise AdapterError('A literature dependency needs between 1 and 16 cited sources')
+        for citation in citations:
+            fields = {'title', 'url', 'locator', 'publication_date'}
+            if not isinstance(citation, dict) or set(citation) != fields or any(
+                    not isinstance(citation[key], str) or not citation[key].strip() or len(citation[key]) > 4000 for key in fields):
+                raise AdapterError('Literature sources need title, URL, theorem/page locator, and publication date')
+    if literature and (proof['status'] != 'proof_candidate' or not proof['lean_sources']):
+        raise AdapterError('Literature dependencies require a proof candidate with Lean declarations')
     if proof['status'] == 'unsolved' and proof['claims']:
         raise AdapterError('An unsolved answer cannot assert claims')
     if proof['status'] == 'proof_candidate' and (not proof['claims'] or not
@@ -349,11 +393,19 @@ def run(request, provider, directory=None, env=None, dry_run=False):
             for source in proof['lean_sources']:
                 archive.text('lean/' + source['filename'], source['content'])
             if proof['lean_sources']:
-                archive.json('claims-map.json', {'claims': [{**claim, 'theorem': f'Submission.result_{i}'}
-                    for i, claim in enumerate(proof['claims'], 1) if claim['relation'] != 'independence']})
+                mapped = {'claims': [{**claim, 'theorem': f'Submission.result_{i}'}
+                    for i, claim in enumerate(proof['claims'], 1) if claim['relation'] != 'independence']}
+                archive.json('claims-map.json', mapped)
+                if len(proof['lean_sources']) == 1:
+                    # The archived directory can be checked directly with
+                    # check-submission; preserve original named sources as well.
+                    archive.text('proof.lean', proof['lean_sources'][0]['content'])
+                    archive.json('claims.json', mapped)
+                archive.json('literature.json', {'requests': proof.get('literature_requests', [])})
             if proof['notes']:
                 archive.text('notes.txt', proof['notes'])
-            result.update(status=proof['status'], claims=proof['claims'])
+            result.update(status=proof['status'], claims=proof['claims'],
+                          literature_requests=proof.get('literature_requests', []))
     except (AdapterError, ValueError, TypeError, KeyError, OSError, http.client.HTTPException) as exc:
         result.update(status='budget_exhausted' if isinstance(exc, (TimeoutError, socket.timeout)) else 'error',
                       claims=[], error=scrub(str(exc), archive.secrets))

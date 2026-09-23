@@ -37,7 +37,9 @@ jobs:
       - name: Check shared proof codec with pinned Lean
         run: python3 -m unittest tests.test_proofcodec -v
       - name: Check Lean library and actual scorer traces
-        run: python3 scripts/check_lean.py
+        run: |
+          python3 scripts/check_lean.py
+          python3 scripts/check_support.py
       - name: Validate website script
         run: node --check web/app.js
       - name: Upload leaderboard
@@ -48,7 +50,7 @@ jobs:
 
   verify-quantum:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     env:
       LEAN_NUM_THREADS: "1"
       OMP_NUM_THREADS: "1"

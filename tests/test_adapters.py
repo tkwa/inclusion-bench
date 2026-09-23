@@ -131,6 +131,52 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(self.requests[0][0], '/v1/messages/count_tokens')
         self.assert_preserved(result)
 
+    def test_support_reaches_prompt_and_literature_is_archived_for_direct_checking(self):
+        support = {'theorems': [{'name': 'InclusionBench.Support.fixture', 'statement': 'True'}],
+                   'lean_sources': {'support/InclusionSupport.lean': '-- trusted fixture only'}}
+        self.request['submission_support'] = support
+        self.request['private_runtime'] = {'host': 'private-verifier-host'}
+        proof = answer('proof_candidate')
+        dependency = {'name': 'Literature.fixture', 'statement': 'A fixture proposition',
+                      'sources': [{'title': 'Fixture mock-secret-key', 'url': 'https://example.com/paper',
+                                   'locator': 'Theorem 1', 'publication_date': '1994'}],
+                      'rationale': 'Infrastructure metadata only; no mathematical claim.'}
+        proof['literature_requests'] = [dependency]
+        self.replies = [(200, {'input_tokens': 100}, 0), (200, openai_response(proof), 0)]
+        result = self.invoke()
+        self.assertEqual(result['status'], 'proof_candidate')
+        payload = self.requests[1][1]
+        material = json.loads(payload['input'][0]['content'])
+        self.assertEqual(material['submission_support'], support)
+        self.assertNotIn('private-verifier-host', json.dumps(payload))
+        self.assertIn('literature_requests', payload['text']['format']['schema']['required'])
+        files = {Path(path).name: self.directory / path for path in result['artifacts']}
+        literature = json.loads(files['literature.json'].read_text())
+        self.assertEqual(literature['requests'], result['literature_requests'])
+        self.assertEqual(literature['requests'][0]['sources'][0]['title'], 'Fixture [REDACTED]')
+        self.assertEqual(files['proof.lean'].read_text(), files['Result.lean'].read_text())
+        self.assertEqual(json.loads(files['claims.json'].read_text()), json.loads(files['claims-map.json'].read_text()))
+        self.assert_preserved(result)
+
+    def test_legacy_answer_without_literature_still_gets_an_empty_request_file(self):
+        self.replies = [(200, {'input_tokens': 100}, 0), (200, openai_response(answer('proof_candidate')), 0)]
+        result = self.invoke()
+        self.assertEqual(result['status'], 'proof_candidate')
+        self.assertEqual(result['literature_requests'], [])
+        path = next(self.directory / name for name in result['artifacts'] if name.endswith('/literature.json'))
+        self.assertEqual(json.loads(path.read_text()), {'requests': []})
+
+    def test_malformed_literature_wire_data_is_rejected(self):
+        dependency = {'name': 'Literature.fixture', 'statement': 'True',
+                      'sources': [{'title': 'Fixture', 'url': 'https://example.com/paper',
+                                   'locator': 'Theorem 1', 'publication_date': '1994'}],
+                      'rationale': 'Fixture only'}
+        for requests in ({}, [dependency, dependency], [{**dependency, 'name': 'TrustedBaseline.fake'}],
+                         [{**dependency, 'sources': []}], [{**dependency, 'rationale': ''}]):
+            proof = {**answer('proof_candidate'), 'literature_requests': requests}
+            with self.subTest(requests=requests), self.assertRaises(adapter.AdapterError):
+                adapter.validate_proof(proof, self.request)
+
     def test_count_blocks_generation_when_input_exhausts_budget(self):
         self.replies = [(200, {'input_tokens': 801}, 0)]
         result = self.invoke()

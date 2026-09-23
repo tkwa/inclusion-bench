@@ -1,4 +1,4 @@
-"""Run wire-codec regressions locally without Docker or benchmark dependencies."""
+"""Run codec and fresh-auditor regressions without Docker or benchmark dependencies."""
 
 import os
 from pathlib import Path
@@ -19,19 +19,26 @@ class ProofCodecTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="proofcodec-tests-") as temporary:
             folder = Path(temporary)
             for source in (ROOT / "scripts" / "proofcheck" / "ProofCodec.lean",
-                           ROOT / "tests" / "lean" / "ProofCodecTests.lean"):
+                           ROOT / "scripts" / "proofcheck" / "ProofExport.lean",
+                           ROOT / "scripts" / "proofcheck" / "ProofAudit.lean",
+                           ROOT / "tests" / "lean" / "TrustedBaseline.lean",
+                           ROOT / "tests" / "lean" / "ProofCodecTests.lean",
+                           ROOT / "tests" / "lean" / "ProofAuditTests.lean"):
                 shutil.copyfile(source, folder / source.name)
             environment = os.environ.copy()
             environment["LEAN_PATH"] = str(folder)
-            commands = [
-                [lean, "-j1", "-o", str(folder / "ProofCodec.olean"), str(folder / "ProofCodec.lean")],
-                [lean, "-j1", "--run", str(folder / "ProofCodecTests.lean"), "80", "80"],
-            ]
+            commands = [[lean, "-j1", "-o", str(folder / f"{name}.olean"), str(folder / f"{name}.lean")]
+                        for name in ("ProofCodec", "ProofExport", "TrustedBaseline", "ProofAudit")]
+            commands.append([lean, "-j1", "--run", str(folder / "ProofCodecTests.lean"), "80", "80"])
             for command in commands:
                 result = subprocess.run(command, cwd=folder, env=environment,
                                         capture_output=True, text=True, timeout=90)
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertIn("ProofCodec tests passed", result.stdout)
+            result = subprocess.run([lean, "-j1", str(folder / "ProofAuditTests.lean")],
+                                    cwd=folder, env=environment, capture_output=True, text=True, timeout=90)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("ProofAudit tests passed", result.stdout)
 
 
 if __name__ == "__main__":

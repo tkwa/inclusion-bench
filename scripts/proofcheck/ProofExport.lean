@@ -7,7 +7,7 @@ partial def visitDeclaration (env : Environment) (name : Name)
     (seen : NameSet) (result : Array Json) : Except String (NameSet × Array Json) := do
   if seen.contains name || (env.getModuleIdxFor? name).isSome then return (seen, result)
   let info ← requireSome (env.find? name) s!"Unknown declaration: {name}"
-  let encoded ← encodeDeclaration info
+  let encoded ← encodeExportDeclaration info
   let mut seen := seen.insert name
   let mut result := result
   for dependency in info.type.getUsedConstants ++
@@ -17,21 +17,32 @@ partial def visitDeclaration (env : Environment) (name : Name)
     result := next.2
   return (seen, result.push encoded)
 
+def exportDeclarationRoots (env : Environment) (roots : Array Name) : Except String Json := do
+  let mut seen : NameSet := {}
+  let mut result : Array Json := #[]
+  for name in roots do
+    let next ← visitDeclaration env name seen result
+    seen := next.1
+    result := next.2
+  return Json.mkObj [("schema_version", toJson (3 : Nat)), ("declarations", .arr result)]
+
+def writeExport (roots : Array Name) : CommandElabM Unit := do
+  match exportDeclarationRoots (← getEnv) roots with
+  | .error message => throwError message
+  | .ok payload => liftIO <| IO.FS.writeFile "/work/proof-export.json" payload.compress
+
 syntax "#proofcheck_export" : command
+syntax "#proofcheck_export_targets" "[" str,* "]" : command
 
 elab_rules : command
   | `(#proofcheck_export) => do
       let env ← getEnv
-      let mut seen : NameSet := {}
-      let mut result : Array Json := #[]
+      let mut roots := #[]
       for (name, _) in env.constants do
         if (env.getModuleIdxFor? name).isNone then
-          match visitDeclaration env name seen result with
-          | .error message => throwError message
-          | .ok next =>
-              seen := next.1
-              result := next.2
-      let payload := Json.mkObj [("schema_version", toJson (2 : Nat)), ("declarations", .arr result)]
-      liftIO <| IO.FS.writeFile "/work/proof-export.json" payload.compress
+          roots := roots.push name
+      writeExport roots
+  | `(#proofcheck_export_targets [$names:str,*]) =>
+      writeExport (names.getElems.map fun name => name.getString.toName)
 
 end InclusionProofcheck

@@ -20,6 +20,31 @@ def now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def submission_support(benchmark: Benchmark) -> dict:
+    """Snapshot agent-facing mathematical support separately from frozen tasks."""
+    from .literature import theorem_catalog
+    sources = {str(path.relative_to(benchmark.root)): path.read_text()
+               for path in sorted((benchmark.root / 'support').rglob('*.lean'))
+               if '.lake' not in path.parts}
+    # A paper can justify many declarations. Send each citation once rather
+    # than repeating the full bibliography in every theorem record.
+    citations, theorems = {}, []
+    for entry in theorem_catalog(benchmark):
+        refs = []
+        for citation in entry.get('sources', []):
+            key = canonical_hash(citation)
+            citations[key] = citation
+            refs.append(key)
+        theorems.append({k: v for k, v in entry.items() if k != 'sources'} | {'source_refs': refs})
+    return {'cutoff': benchmark.policy['cutoff'], 'theorems': theorems, 'sources': citations,
+            'lean_sources': sources,
+            'instructions': 'Formalize the novel argument using standard textbook abstractions and the supplied trusted results. '
+                'For an additional published result, declare its exact Lean type as an axiom named Literature.your_name '
+                'and supply literature_requests with the matching name, statement, source title/URL/theorem or page/publication date, '
+                'and the reason its conventions match these models. A maintainer reviews the existing result and model alignment; '
+                'its published proof does not need to be formalized again. A new benchmark claim must be proved.'}
+
+
 def write_json(path: Path, value) -> None:
     temporary = path.with_name(path.name + '.tmp')
     temporary.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
@@ -122,7 +147,8 @@ def normalize_config(benchmark: Benchmark, config: dict, model_override: str | N
         adapter_sources.append(benchmark.root / 'evaluation/adapters/provider.py')
     config['adapter_source_sha256'] = {str(p): sha256_file(p) for p in adapter_sources}
     config['harness_source_sha256'] = {name: sha256_file(Path(__file__).parent / name)
-                                     for name in ('runner.py', 'evaluation.py', 'proofcheck.py')}
+                                     for name in ('runner.py', 'evaluation.py', 'proofcheck.py', 'literature.py', 'submissions.py')}
+    config['submission_support_sha256'] = canonical_hash(submission_support(benchmark))
     budget = config.setdefault('budget', {})
     defaults = {'wall_time_seconds': 3600, 'per_task_wall_time_seconds': 600, 'max_total_tokens': 100000,
                 'max_output_tokens_per_task': 8192, 'max_cpu_cores': 1, 'memory_limit_mib': 4096}
@@ -183,6 +209,10 @@ def _validate_response(benchmark: Benchmark, response: dict, attempt_dir: Path, 
         raise InvalidEvidence('Only a proof candidate may assert claims')
     for c in claims:
         benchmark.baseline.validate_atom(Atom.read(c))
+    from .literature import validate_requests
+    literature = validate_requests(benchmark, response.get('literature_requests', []))
+    if literature and response['status'] != 'proof_candidate':
+        raise InvalidEvidence('Only a proof candidate may request literature dependencies')
     sealed = []
     for relative in artifacts:
         path = artifact_path(attempt_dir, relative)
@@ -207,6 +237,7 @@ def _validate_response(benchmark: Benchmark, response: dict, attempt_dir: Path, 
         charge = max(charge, remaining)
     overrun = charge > remaining
     return {'status': 'error' if overrun else response['status'], 'claims': [] if overrun else claims, 'artifacts': sealed,
+            'literature_requests': [] if overrun else literature,
             'usage': usage, 'usage_complete': bool(complete), 'budget_charge_tokens': charge,
             'request_made': bool(response.get('request_made', not fixture)),
             'provider_model': response.get('provider_model') or response.get('model_returned'),
@@ -225,6 +256,9 @@ def run_config(benchmark: Benchmark, raw_config: dict, output: Path, *, model_ov
     baseline_source, _, _ = trusted_baseline(benchmark, [])
     formalizations = {p: (benchmark.root / p).read_text() for p in suite['formalization_bundle']['files'] if p.endswith('.lean')}
     formalizations['TrustedBaseline.lean'] = baseline_source
+    support = submission_support(benchmark)
+    if canonical_hash(support) != config['submission_support_sha256']:
+        raise InvalidEvidence('Submission support changed while preparing the run')
     if resume:
         run = read_json(manifest)
         if run.get('configuration_sha256') != canonical_hash(config) or run.get('taskset_sha256') != suite['taskset_sha256']:
@@ -289,11 +323,13 @@ def run_config(benchmark: Benchmark, raw_config: dict, output: Path, *, model_ov
         request = {'schema_version': 2, 'task': by_id[task_id], 'classes': benchmark.catalog,
                    'knowledge': benchmark.knowledge, 'dataset_sha256': benchmark.digest,
                    'formalizations': formalizations, 'formalization_bundle': suite['formalization_bundle'],
+                   'submission_support': support,
                    'model': config['model'], 'configuration': config.get('configuration', {}),
                    'limits': {'max_output_tokens': min(config['budget']['max_output_tokens_per_task'], remaining),
                               'max_total_tokens_remaining': remaining}, 'time_remaining_seconds': seconds,
                    'response_schema': {'status': 'unsolved|proof_candidate|error|budget_exhausted',
-                                       'claims': 'relation/left/right objects', 'artifacts': 'relative paths within this attempt directory'}}
+                                       'claims': 'relation/left/right objects', 'artifacts': 'relative paths within this attempt directory',
+                                       'literature_requests': 'optional cited dependencies matching Literature.* declarations in the proof'}}
         write_json(attempt_dir / 'request.json', request)
         attempt = {'attempt_id': f'attempt-{number:04d}', 'task_id': task_id, 'started_at': now(),
                    'request_path': str(relative_dir / 'request.json'), 'prompt_sha256': canonical_hash(request)}
