@@ -32,7 +32,10 @@ def execute_adapter(adapter: list[str], request_file: Path, response_file: Path,
         if memory_limit_mib and sys.platform.startswith('linux'):
             cap = memory_limit_mib * 1024 * 1024
             resource.setrlimit(resource.RLIMIT_AS, (cap, cap))
-        resource.setrlimit(resource.RLIMIT_FSIZE, (64 * 1024 * 1024, 64 * 1024 * 1024))
+        # A 16 MiB project can exceed 64 MiB once source JSON is nested inside
+        # the provider transcript. Keep archive files bounded with headroom
+        # for the 128 MiB HTTP body plus its request; pipe limits stay separate.
+        resource.setrlimit(resource.RLIMIT_FSIZE, (256 * 1024 * 1024, 256 * 1024 * 1024))
     with request_file.open('rb') as stdin, response_file.open('wb') as stdout, error_file.open('wb') as stderr:
         process = subprocess.Popen(adapter, stdin=stdin, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                    cwd=directory, start_new_session=True, preexec_fn=child_limits,
@@ -263,6 +266,10 @@ def evaluate_run(benchmark: Benchmark, manifest: Path) -> dict:
         if exact.get('artifact_hashes') != [a['sha256'] for a in attempt.get('artifacts', [])] or not exact.get('verification_record'):
             raise InvalidEvidence('Accepted review must match the exact sealed artifact set and verification record')
         proof_report = exact.get('proof_verification') or {}
+        source_evidence = {}
+        if any(c['relation'] != 'independence' for c in verified) and (proof_report or attempt.get('submission_manifest') is not None):
+            from .proofevidence import validate_proof_evidence
+            source_evidence = validate_proof_evidence(benchmark, proof_report, attempt, manifest.parent)
         if 'literature_dependencies' in proof_report or any(
                 any(isinstance(name, str) and name.startswith('Literature.') for name in target.get('axioms', []))
                 for target in proof_report.get('targets', [])):
@@ -278,7 +285,8 @@ def evaluate_run(benchmark: Benchmark, manifest: Path) -> dict:
                 condition = {'independence_review': {k: v for k, v in independence.items()
                                                      if k != 'claim_certificates'} | {'claim_certificate': certificate}}
             provenance.setdefault(Atom.read(claim).key, []).append({'attempt_id': attempt['attempt_id'],
-                'artifact_hashes': exact['artifact_hashes'], 'verification_record': exact['verification_record'], **condition})
+                'artifact_hashes': exact['artifact_hashes'], 'verification_record': exact['verification_record'],
+                **({'proof_source': source_evidence} if source_evidence else {}), **condition})
         verified_attempts.append(attempt['attempt_id'])
     accepted = [a.json() for a in dict.fromkeys(Atom.read(c) for c in accepted)]
     consequences = benchmark.score({'claims': accepted})
@@ -415,8 +423,20 @@ def run_adapter(benchmark: Benchmark, adapter: list[str], model: str, model_vers
                         raise InvalidEvidence('Unsolved attempts cannot assert claims')
                     for claim in response.get('claims', []):
                         benchmark.baseline.validate_atom(Atom.read(claim))
-                    attempt.update(status=response['status'], claims=response.get('claims', []))
-                    attempt['artifacts'] = [{'path': p, 'sha256':sha256_file(artifact_path(output,p))} for p in response.get('artifacts', [])]
+                    from .literature import validate_requests
+                    literature = validate_requests(benchmark, response.get('literature_requests', []))
+                    if literature and response['status'] != 'proof_candidate':
+                        raise InvalidEvidence('Only a proof candidate may request literature dependencies')
+                    candidate = {**attempt, 'status': response['status'], 'claims': response.get('claims', []),
+                                 'literature_requests': literature,
+                                 'artifacts': [{'path': str(artifact_path(output, p).relative_to(output)),
+                                                'sha256': sha256_file(artifact_path(output, p))}
+                                               for p in response.get('artifacts', [])]}
+                    if response.get('submission_manifest') is not None:
+                        from .proofevidence import validate_submission_artifacts
+                        candidate['submission_manifest'] = response['submission_manifest']
+                        candidate['submission_manifest'] = validate_submission_artifacts(benchmark, candidate, output)
+                    attempt.update(candidate)
             except subprocess.TimeoutExpired:
                 attempt['status'] = 'budget_exhausted'
             except (ValueError, OSError, InvalidEvidence, TypeError, KeyError, AttributeError) as exc:

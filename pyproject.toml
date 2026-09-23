@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "inclusion-bench"
-version = "0.4.2"
+version = "0.4.3"
 description = "An AI mathematics benchmark of open complexity-class inclusion problems"
 requires-python = ">=3.11"
 license = {text = "MIT"}
@@ -19,6 +19,9 @@ packages = ["inclusion_bench"]
 [tool.setuptools.data-files]
 "share/inclusion-bench/data" = ["data/*.json"]
 "share/inclusion-bench/configs" = ["configs/*.json"]
+"share/inclusion-bench/schemas" = ["schemas/*.json"]
+"share/inclusion-bench/examples/submissions/multifile" = ["examples/submissions/multifile/*.json", "examples/submissions/multifile/*.lean"]
+"share/inclusion-bench/examples/submissions/multifile/Lemmas" = ["examples/submissions/multifile/Lemmas/*.lean"]
 "share/inclusion-bench/research" = ["research/*.json", "research/*.md"]
 "share/inclusion-bench/research/v0.4.0" = ["research/v0.4.0/*.json", "research/v0.4.0/*.md", "research/v0.4.0/*.py"]
 "share/inclusion-bench/evaluation" = ["evaluation/tasks.json", "evaluation/unsolved_adapter.py"]

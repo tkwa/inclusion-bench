@@ -35,7 +35,7 @@ jobs:
           tar --use-compress-program=unzstd -xf "$RUNNER_TEMP/lean.tar.zst" -C "$RUNNER_TEMP"
           echo "LEAN_BIN=$RUNNER_TEMP/lean-4.19.0-linux/bin/lean" >> "$GITHUB_ENV"
       - name: Check shared proof codec with pinned Lean
-        run: python3 -m unittest tests.test_proofcodec -v
+        run: python3 -m unittest tests.test_proofcodec tests.test_proofbundle -v
       - name: Check Lean library and actual scorer traces
         run: |
           python3 scripts/check_lean.py
@@ -86,6 +86,9 @@ jobs:
       - name: Check isolated proof admission and adversarial submissions
         run: |
           docker pull ubuntu:22.04
+          python3 scripts/proofcheck/setup_linux.py --skip-pull \
+            --toolchain-path "$(dirname "$(dirname "$LEAN_BIN")")" \
+            --mathlib-module Mathlib.NumberTheory.Primorial
           python3 - <<'PY'
           import json
           import os

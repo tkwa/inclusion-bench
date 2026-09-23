@@ -6,7 +6,9 @@ Existing published proofs may be trusted under the benchmark's existing-proof wa
 
 ## Submit a proof
 
-Write a UTF-8 Lean file containing declarations under the verifier's fixed imports. This infrastructure example is already known and earns zero points:
+Use `submission-init` and `check-submission` for an ordinary multi-file Lean project; the [agent guide](AGENT_SUBMISSIONS.md) describes its manifest and imports. `verify_proof` also accepts the project directory wherever a proof path appears below.
+
+Legacy single-file submissions remain supported as UTF-8 Lean bodies under the verifier's fixed imports. This infrastructure example is already known and earns zero points:
 
 ```lean
 open InclusionBench
@@ -52,12 +54,12 @@ To inspect the available trusted facts and their exact declaration names, call `
 
 ## What the verifier checks
 
-1. It hashes the proof bytes, dataset, semantic sources, checker sources, and generated baseline. It checks the remote Mathlib lock file and records manifests of the actual Mathlib objects, Lean executable/objects/shared libraries, and Docker image ID. These fingerprints identify the trusted installation; they do not independently attest to its provenance.
-2. A trusted build reconstructs the repository's core and quantum libraries from the submitted verifier package's **trusted repository sources**, then compiles the generated baseline and export helper. Candidate source is not executed during this stage.
-3. A separate container elaborates the candidate and exports declaration types and proof terms as bounded JSON. Shared names, universe levels, and subexpressions are stored once per declaration and referenced by index. The candidate cannot write host files or change the trusted imports. Its compiled objects are discarded.
+1. It hashes the proof bytes, dataset, semantic sources, checker sources, and generated baseline. A project report's `proof_project` records its entrypoint and the paths and hashes of every listed source plus the exact manifest; `proof_sha256` binds that entire map. It checks the remote Mathlib lock file and records manifests of the actual Mathlib objects, Lean executable/objects/shared libraries, and Docker image ID. These fingerprints identify the trusted installation; they do not independently attest to its provenance.
+2. A trusted build reconstructs the repository's core, quantum, and support libraries from the verifier package's **trusted repository sources**, then compiles the generated baseline and export helper. For a project, it also prepares imports from the pinned libraries named in the source dependency graph. Candidate source is not executed during this stage.
+3. A separate container builds the candidate modules in dependency order and exports declaration types and proof terms as bounded JSON, including dependencies in other candidate modules. Shared names, universe levels, and subexpressions are stored once per declaration and referenced by index. The candidate cannot write host files or change the trusted imports. Its compiled objects stay in temporary container storage and are discarded.
 4. A fresh container reads only the JSON. The trusted decoder constructs Lean names, universes, expressions, and declarations, then calls the synchronous kernel declaration checker with checking enabled. It imports no candidate module and executes no candidate initializer or native library.
 5. For each requested theorem, the kernel checks its use at a server-generated exact target type. Changing notation, reporting a different claim, or printing a successful diagnostic cannot change that target.
-6. The verifier collects actual axiom dependencies of every reconstructed declaration. The allowlist contains only `propext`, `Classical.choice`, `Quot.sound`, and the generated cited baseline axioms. `sorryAx`, new axioms, and native-compiler trust axioms are rejected.
+6. The verifier collects actual axiom dependencies of every reconstructed declaration. The allowlist contains `propext`, `Classical.choice`, `Quot.sound`, the generated cited baseline, and the registered support premises. Additional declared literature dependencies produce pending evidence until their exact statements and defining contexts have approved reviews. `sorryAx`, undeclared axioms, and native-compiler trust axioms are rejected.
 
 This design follows Lean's distinction between elaborating untrusted source and validating its proof objects. Lean's [proof-validation documentation](https://lean-lang.org/doc/reference/latest/ValidatingProofs/) explains why an untrusted `.olean` file and an ordinary successful compiler invocation are insufficient. The current checker reuses Lean 4.19's kernel; it is not an independently implemented kernel.
 
@@ -76,6 +78,15 @@ python3 scripts/proofcheck/setup_linux.py \
 ```
 
 Setup pulls the small public Ubuntu image, downloads the official [Lean 4.19.0 release](https://github.com/leanprover/lean4/releases/tag/v4.19.0) when needed, checks out each dependency at the committed lock's exact revision, and fetches only the four required Mathlib modules and their transitive imports. It preserves the dependency lock and refuses to overwrite a checkout at a different revision. It records the release archive hash and checks the GitHub asset digest when one is provided.
+
+To provision other Mathlib imports used by a project, repeat `--mathlib-module` with their qualified names when running setup. For example:
+
+```sh
+python3 scripts/proofcheck/setup_linux.py --skip-pull \
+  --mathlib-module Mathlib.Data.Int.Basic
+```
+
+This extends the same pinned cache; it does not change the lock or accept a new package version. `--check-only` accepts the same module options. Proof verification never downloads a missing module or runs a submitted build script.
 
 Provisioning runs in a trusted container limited to one CPU and 8 GiB, including cache extraction. This setup container has network access and writable installation directories because its job is to install trusted dependencies. It installs no host packages. Proof-checking containers always disable network access and candidate host writes.
 
@@ -99,15 +110,15 @@ Verification requires the chosen image to be installed already; it never pulls a
 
 ## Current proof-format limits
 
-Software v0.4.2 exports proof format version 3 and accepts legacy versions 1 and 2. [The agent guide](AGENT_SUBMISSIONS.md) describes textbook interfaces, scaffolding, and cited dependencies. Version 3 adds explicitly requested literature declarations; these cannot produce verified evidence until their exact statements and contexts have an accepted maintainer review. Only the dependency closure of the requested theorem targets is exported. Each declaration has tables of names, universe levels, and expressions, shared by its type and value. Repeated subexpressions use integer references into those tables. References within a table must point backward, so the decoder rejects cycles, forward references, and out-of-range indices. The JSON stays a tree of objects and arrays; the indices preserve sharing when Lean reconstructs the proof. The decoder also accepts legacy version 1 tree exports.
+Software v0.4.3 exports proof format version 3 and accepts legacy versions 1 and 2. [The agent guide](AGENT_SUBMISSIONS.md) describes textbook interfaces, multi-file scaffolding, integer arrays, and cited dependencies. Version 3 adds explicitly requested literature declarations; these cannot produce verified evidence until their exact statements and contexts have an accepted maintainer review. Only the dependency closure of the requested theorem targets is exported. Each declaration has tables of names, universe levels, and expressions, shared by its type and value. Repeated subexpressions use integer references into those tables. References within a table must point backward, so the decoder rejects cycles, forward references, and out-of-range indices. The JSON stays a tree of objects and arrays; the indices preserve sharing when Lean reconstructs the proof. The decoder also accepts legacy version 1 tree exports.
 
 All formats accept ordinary theorem declarations, safe definitions, and opaque declarations with bodies, using types already present in the trusted imports. Every reconstructed declaration still passes the Lean kernel, exact target check, and axiom allowlist described above. Sharing changes only the serialization and reconstruction of proof objects.
 
-Newly declared inductive types, structures, constructors, recursors, unsafe declarations, and partial definitions remain unsupported. Such a proof requires extending and reviewing the data-only codec before it can be admitted. This limitation is a verifier-format limitation, not evidence that the mathematics is false. Imported trusted libraries remain available through the fixed `ProofExport` and `TrustedBaseline` imports; arbitrary additional imports are outside the submission format.
+Newly declared inductive types, structures, constructors, recursors, unsafe declarations, and partial definitions remain unsupported. Such a proof requires extending and reviewing the data-only codec before it can be admitted. This limitation is a verifier-format limitation, not evidence that the mathematics is false. Projects can import their declared modules and installed pinned libraries; the fresh auditor imports only the trusted libraries. Types already supplied by those libraries, including the integer-matrix type, are available.
 
-Proof source is limited to 2 MiB, exported JSON to 32 MiB, and reconstructed declarations to 100,000. Reports have status `verified`, `needs_literature_review`, `rejected`, or `unavailable`. The literature-review status records a kernel-checked argument conditional on dependencies that have not all been approved. Only `verified` is positive proof evidence. A report always contains `official_points: 0`: the verifier itself cannot award points or certify that a statement was open at the cutoff.
+Projects are limited to 128 Lean source files and 16 MiB including the manifest; the manifest is capped at 64 KiB. Legacy single-file bodies retain the 2 MiB limit. Exported JSON is limited to 32 MiB and reconstructed declarations to 100,000. Reports have status `verified`, `needs_literature_review`, `rejected`, or `unavailable`. The literature-review status records a kernel-checked argument conditional on dependencies that have not all been approved. Only `verified` is positive proof evidence. A report always contains `official_points: 0`: the verifier itself cannot award points or certify that a statement was open at the cutoff.
 
-The Lean kernel, its runtime, the trusted repository sources, pinned dependency objects, Docker/Linux isolation, and the reviewer's verifier installation form the trust boundary. Do not accept a model-authored report or a report copied without rerunning the verifier. A maintainer binds the resulting report to the exact artifact hash in `data/ai_reviews.json`; run integrity is recorded separately in `data/ai_run_reviews.json`.
+The Lean kernel, its runtime, the trusted repository sources, pinned dependency objects, Docker/Linux isolation, and the reviewer's verifier installation form the trust boundary. Do not accept a model-authored report or a report copied without rerunning the verifier. A maintainer binds the resulting report to sealed artifacts in `data/ai_reviews.json`: for a project, the exact manifest, every source, and any claim or citation metadata must be retained together. Both review and scoring recheck those bindings. Run integrity is recorded separately in `data/ai_run_reviews.json`.
 
 ## Independence review
 

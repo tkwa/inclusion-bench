@@ -248,6 +248,62 @@ class AdapterTests(unittest.TestCase):
         self.assertFalse((self.directory / 'escape.lean').exists())
         self.assertEqual(result['budget_charge_tokens'], 140)
 
+    def test_multifile_modules_are_archived_as_one_checkable_project(self):
+        proof = answer('proof_candidate')
+        proof['lean_entrypoint'] = 'Main'
+        proof['lean_sources'] = [
+            {'filename': 'Main.lean', 'content': 'import Lemmas.Arithmetic\n-- fixture only\n'},
+            {'filename': 'Lemmas/Arithmetic.lean', 'content': 'import TrustedBaseline\ntheorem helper : True := True.intro\n'},
+        ]
+        self.replies = [(200, {'input_tokens': 100}, 0), (200, openai_response(proof), 0)]
+        result = self.invoke()
+        self.assertEqual(result['status'], 'proof_candidate', result.get('error'))
+        manifest_path = self.directory / result['submission_manifest']
+        project = manifest_path.parent
+        self.assertEqual(json.loads(manifest_path.read_text()), {
+            'schema_version': 1, 'entrypoint': 'Main',
+            'files': ['Main.lean', 'Lemmas/Arithmetic.lean']})
+        for source in proof['lean_sources']:
+            path = project / source['filename']
+            self.assertEqual(path.read_text(), source['content'])
+            self.assertIn(path.relative_to(self.directory).as_posix(), result['artifacts'])
+        for name in ('submission.json', 'claims.json', 'literature.json'):
+            self.assertIn((project / name).relative_to(self.directory).as_posix(), result['artifacts'])
+        self.assertEqual(json.loads((project / 'claims.json').read_text())['claims'][0]['theorem'], 'Submission.result_1')
+        self.assertFalse((project / 'proof.lean').exists())
+        self.assertIn('lean_entrypoint', self.requests[1][1]['text']['format']['schema']['required'])
+
+    def test_multifile_wire_validation_rejects_ambiguous_or_unsafe_projects(self):
+        valid = {'filename': 'Main.lean', 'content': 'import TrustedBaseline\n'}
+        cases = [
+            ([valid, {'filename': 'Helper.lean', 'content': ''}], None),
+            ([valid], 'Missing'),
+            ([valid], '../Main'),
+            ([valid, {'filename': 'main.lean', 'content': ''}], 'Main'),
+            ([valid, {'filename': 'Lemmas/A.lean', 'content': ''}, {'filename': 'lemmas/B.lean', 'content': ''}], 'Main'),
+            ([valid, {'filename': 'ProofAudit.lean', 'content': ''}], 'Main'),
+            ([valid, {'filename': 'Mathlib/Fake.lean', 'content': ''}], 'Main'),
+            ([valid, {'filename': 'A/../../Escape.lean', 'content': ''}], 'Main'),
+            ([valid, {'filename': 'A\\Helper.lean', 'content': ''}], 'Main'),
+        ]
+        for sources, entrypoint in cases:
+            with self.subTest(sources=[s['filename'] for s in sources], entrypoint=entrypoint):
+                proof = {**answer('proof_candidate'), 'lean_sources': sources, 'lean_entrypoint': entrypoint}
+                with self.assertRaises(adapter.AdapterError):
+                    adapter.validate_proof(proof, self.request)
+
+    def test_project_limit_is_aggregate_and_legacy_limit_is_preserved(self):
+        from unittest.mock import patch
+        proof = {**answer('proof_candidate'), 'lean_entrypoint': 'Main',
+                 'lean_sources': [{'filename': 'Main.lean', 'content': '12345'},
+                                  {'filename': 'Helper.lean', 'content': '67890'}]}
+        with patch.object(adapter, 'MAX_PROJECT_BYTES', 9), self.assertRaisesRegex(adapter.AdapterError, '16 MiB'):
+            adapter.validate_proof(proof, self.request)
+        proof.pop('lean_entrypoint')
+        proof['lean_sources'] = proof['lean_sources'][:1]
+        with patch.object(adapter, 'MAX_LEGACY_BYTES', 4), self.assertRaisesRegex(adapter.AdapterError, '2 MiB'):
+            adapter.validate_proof(proof, self.request)
+
     def test_dry_run_without_credentials_never_contacts_provider(self):
         self.env.pop('OPENAI_API_KEY')
         result = adapter.run(self.request, 'openai', self.directory, self.env, dry_run=True)
@@ -284,13 +340,14 @@ class AdapterTests(unittest.TestCase):
 
     def test_oversized_provider_response_is_bounded_and_charge_unknown(self):
         self.replies = [(200, {'input_tokens': 100}, 0), (200, b'x' * 513, 0)]
-        previous = adapter.MAX_BYTES
+        previous = adapter.MAX_RESPONSE_BYTES
         try:
-            adapter.MAX_BYTES = 512
+            adapter.MAX_RESPONSE_BYTES = 512
             result = self.invoke()
         finally:
-            adapter.MAX_BYTES = previous
+            adapter.MAX_RESPONSE_BYTES = previous
         self.assertEqual(result['status'], 'error')
+        self.assertIn('Provider response exceeded', result['error'])
         self.assertEqual(result['budget_charge_tokens'], 800)
         self.assertFalse(result['usage_complete'])
         body = next(self.directory / p for p in result['artifacts'] if p.endswith('/generation-response.json'))

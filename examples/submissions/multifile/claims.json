@@ -1,0 +1,3 @@
+{
+  "claims": [{"relation": "inclusion", "left": "P", "right": "P", "theorem": "Submission.result_1"}]
+}

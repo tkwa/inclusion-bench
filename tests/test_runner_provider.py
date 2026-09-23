@@ -203,6 +203,71 @@ class RunnerProviderTests(unittest.TestCase):
         with self.assertRaisesRegex(InvalidEvidence, 'cutoff'):
             _validate_response(self.benchmark, response, self.root, self.root, 100, 'openai')
 
+    def test_multifile_provider_project_survives_runner_and_submission_check(self):
+        proof = {'status': 'proof_candidate',
+                 'claims': [{'relation': 'inclusion', 'left': 'NP', 'right': 'P'}],
+                 'proof_markdown': 'Infrastructure fixture only; no proof is claimed.',
+                 'lean_entrypoint': 'Main',
+                 'lean_sources': [
+                     {'filename': 'Main.lean', 'content': 'import Lemmas.Basic\n-- fixture\n'},
+                     {'filename': 'Lemmas/Basic.lean', 'content': 'import TrustedBaseline\ntheorem fixture_helper : True := True.intro\n'},
+                 ], 'literature_requests': [], 'notes': 'Fixture only.'}
+        response = unsolved_response()
+        response['output'][0]['content'][0]['text'] = json.dumps(proof)
+        self.replies = [(200, {'input_tokens': 100}), (200, response)]
+        manifest, run, attempt = self.run_provider()
+        self.assertEqual(attempt['status'], 'proof_candidate', attempt.get('error'))
+        self.assert_evidence_preserved(manifest, run, attempt)
+        project_manifest = manifest.parent / attempt['submission_manifest']
+        project = project_manifest.parent
+        from inclusion_bench.proofbundle import load_proof_bundle
+        bundle = load_proof_bundle(project)
+        self.assertEqual(bundle.entrypoint, 'Main')
+        sealed = {item['path']: item['sha256'] for item in attempt['artifacts']}
+        for relative, digest in bundle.metadata['files'].items():
+            self.assertEqual(sealed[str((project / relative).relative_to(manifest.parent))], digest)
+        self.assertNotIn(bundle.proof_sha256, sealed.values())
+        from inclusion_bench.submissions import check_submission
+        with patch('inclusion_bench.submissions.verify_proof', return_value={'status': 'rejected'}) as verify:
+            check_submission(self.benchmark, project)
+        self.assertEqual(verify.call_args.args[1], project)
+        self.assertEqual(verify.call_args.args[2][0]['theorem'], 'Submission.result_1')
+
+        # The adapter may not drop an imported helper or project metadata from
+        # its artifact list, even when those files are still present on disk.
+        attempt_dir = (manifest.parent / attempt['request_path']).parent
+        raw_response = read_json(attempt_dir / 'response.json')
+        for suffix in ('Lemmas/Basic.lean', 'submission.json', 'claims.json', 'literature.json'):
+            partial = {**raw_response, 'artifacts': [name for name in raw_response['artifacts'] if not name.endswith('/' + suffix)]}
+            with self.subTest(suffix=suffix), self.assertRaisesRegex(InvalidEvidence, 'sealed artifact'):
+                _validate_response(self.benchmark, partial, attempt_dir, manifest.parent, 175, 'openai')
+
+        changed = read_json(project / 'claims.json')
+        changed['claims'][0]['left'] = 'P'
+        (project / 'claims.json').write_text(json.dumps(changed))
+        with self.assertRaisesRegex(InvalidEvidence, 'match the submitted ordinary claims'):
+            _validate_response(self.benchmark, raw_response, attempt_dir, manifest.parent, 175, 'openai')
+
+    def test_unsolved_multifile_work_is_preserved_without_becoming_a_candidate(self):
+        response = unsolved_response()
+        answer = json.loads(response['output'][0]['content'][0]['text'])
+        answer.update(lean_entrypoint='Main', lean_sources=[
+            {'filename': 'Main.lean', 'content': 'import Lemmas.Partial\n'},
+            {'filename': 'Lemmas/Partial.lean', 'content': 'import TrustedBaseline\n-- Unfinished argument.\n'},
+        ])
+        response['output'][0]['content'][0]['text'] = json.dumps(answer)
+        self.replies = [(200, {'input_tokens': 100}), (200, response)]
+        manifest, run, attempt = self.run_provider()
+        self.assertEqual(attempt['status'], 'unsolved', attempt.get('error'))
+        self.assertEqual(attempt['claims'], [])
+        self.assertNotIn('submission_manifest', attempt)
+        self.assertEqual(attempt['budget_charge_tokens'], 140)
+        self.assertEqual(run['usage']['charged_tokens'], 140)
+        artifacts = self.assert_evidence_preserved(manifest, run, attempt)
+        self.assertEqual(read_json(artifacts['submission.json'])['files'],
+                         ['Main.lean', 'Lemmas/Partial.lean'])
+        self.assertEqual(artifacts['Partial.lean'].read_text(), answer['lean_sources'][1]['content'])
+
     def test_token_count_exhaustion_stops_without_a_generation_charge(self):
         self.replies = [(200, {'input_tokens': 176})]
         manifest, run, attempt = self.run_provider(another_task=True)

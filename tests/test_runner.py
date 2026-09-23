@@ -54,6 +54,30 @@ class RunnerTests(unittest.TestCase):
             'usage': {'total_tokens': 12}, 'budget_charge_tokens': 12, 'usage_complete': True, 'request_made': True}) + '))']
         return run_config(self.b, config, self.root / 'candidate-run')
 
+    def test_large_project_transcript_can_be_archived_without_losing_usage(self):
+        # Nested provider JSON for a valid 16 MiB Lean project can exceed
+        # the old 64 MiB per-file cap. A sparse fixture exercises that boundary
+        # without allocating a large HTTP response or contacting a provider.
+        config = copy.deepcopy(self.config)
+        config['adapter'] = [sys.executable, '-c', '\n'.join([
+            'import json',
+            'with open("transcript.json", "wb") as handle:',
+            '    handle.seek(65 * 1024 * 1024 - 1)',
+            '    handle.write(b"\\n")',
+            'print(json.dumps({"status":"unsolved","claims":[],"artifacts":["transcript.json"],'
+            '"usage":{"total_tokens":12},"usage_complete":True,"request_made":True,"budget_charge_tokens":12}))',
+        ])]
+        manifest = run_config(self.b, config, self.root / 'large-transcript-run')
+        run = read_json(manifest)
+        attempt = run['attempts'][0]
+        self.assertEqual(attempt['status'], 'unsolved', attempt.get('error'))
+        self.assertEqual(attempt['budget_charge_tokens'], 12)
+        artifact = attempt['artifacts'][0]
+        transcript = manifest.parent / artifact['path']
+        self.assertEqual(transcript.stat().st_size, 65 * 1024 * 1024)
+        self.assertEqual(sha256_file(transcript), artifact['sha256'])
+        validate_run(self.b, run, manifest.parent)
+
     def test_independence_premises_are_bound_and_preserved_in_public_results(self):
         manifest = self.candidate('independence')
         run = read_json(manifest)

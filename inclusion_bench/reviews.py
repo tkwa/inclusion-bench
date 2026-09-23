@@ -185,9 +185,8 @@ def record_proof_review(benchmark: Benchmark, manifest: Path, review: dict) -> d
             reported = {Atom.read(c) for c in report.get('claims', [])}
             if not ordinary <= reported:
                 raise InvalidEvidence('Proof report does not verify every accepted ordinary claim')
-            source_hash = report.get('proof_sha256') or report.get('source_sha256')
-            if source_hash not in {a['sha256'] for a in attempt.get('artifacts', [])}:
-                raise InvalidEvidence('Verified source is not one of this attempt\'s sealed artifacts')
+            from .proofevidence import validate_proof_evidence
+            validate_proof_evidence(benchmark, report, attempt, manifest.parent)
             report = {**report, 'report_sha256': sha256_file(report_path)}
     record = {**review, 'dataset_sha256': benchmark.digest, 'verified_claims': verified,
               'artifact_hashes': [a['sha256'] for a in attempt.get('artifacts', [])],

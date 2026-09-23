@@ -22,13 +22,13 @@ def init_submission(benchmark, directory, claims):
         for i, claim in enumerate(claims, 1)
     ])
     directory = Path(directory)
-    filenames = ("proof.lean", "claims.json", "literature.json", "AGENTS.md")
+    filenames = ("Main.lean", "submission.json", "claims.json", "literature.json", "AGENTS.md", "proof.lean")
     if directory.exists() and not directory.is_dir():
         raise InvalidEvidence("Submission destination must be a directory")
     existing = [name for name in filenames if (directory / name).exists() or (directory / name).is_symlink()]
     if existing:
         raise InvalidEvidence("Submission files already exist; preserving them: " + ", ".join(existing))
-    proof = ["-- The verifier supplies the trusted imports.", "open InclusionBench InclusionBench.Support", "open InclusionBench.Support.Classes", "", "namespace Submission", ""]
+    proof = ["import TrustedBaseline", "", "open InclusionBench InclusionBench.Support", "open InclusionBench.Support.Classes", "", "namespace Submission", ""]
     for i, claim in enumerate(mapped, 1):
         proof += [f"-- {claim['relation']}: {claim['left']} to {claim['right']}",
                   f"theorem result_{i} : {'Includes' if claim['relation'] == 'inclusion' else 'NonIncludes'} {claim['left']} {claim['right']} := by",
@@ -36,10 +36,17 @@ def init_submission(benchmark, directory, claims):
     proof += ["end Submission", ""]
     guide = """# Working on this submission
 
-Edit `proof.lean`. Its theorem statements and `claims.json` already describe the
+Edit `Main.lean`. Its theorem statements and `claims.json` already describe the
 exact benchmark targets. Replace each `sorry` with a proof; a placeholder cannot
 pass verification. Keep the generated theorem names, or update `claims.json` if
-you rename them. The verifier supplies imports, so this file is a Lean body.
+you rename them. These are normal Lean modules. Add helper files such as
+`Lemmas/Basic.lean`, list them in `submission.json`, and use `import Lemmas.Basic`.
+The manifest's `entrypoint` is the module that imports your proof. Import
+`TrustedBaseline` to use the benchmark definitions, standard support library,
+and known results. Imports of the pinned standard and Mathlib libraries are
+also supported. Keep build scripts and compiled objects out of the submission.
+The verifier builds the declared modules in isolation and checks their combined
+proof. A project may contain up to 128 Lean files and 16 MiB of source in total.
 
 Use existing textbook and paper results. You do not need to formalize their
 original proofs. Search the available declarations with:
@@ -50,7 +57,7 @@ python3 -m inclusion_bench theorems --search "your topic" --json
 ```
 
 Formalize your new argument. If it needs a published result that is missing from
-the catalog, declare `axiom Literature.my_dependency : TYPE` in `proof.lean`,
+the catalog, declare `axiom Literature.my_dependency : TYPE` in a Lean module,
 before `namespace Submission`, replacing `TYPE` with its exact Lean proposition.
 Use that declaration in your proof and add its citation to `literature.json`:
 
@@ -106,7 +113,8 @@ check after approval. `verified` means the proof passed verification;
 run-integrity and historical review still determine benchmark admission and points.
 """
     contents = {
-        "proof.lean": "\n".join(proof),
+        "Main.lean": "\n".join(proof),
+        "submission.json": json.dumps({"schema_version": 1, "entrypoint": "Main", "files": ["Main.lean"]}, indent=2) + "\n",
         "claims.json": json.dumps({"claims": mapped}, indent=2) + "\n",
         "literature.json": json.dumps({"requests": []}, indent=2) + "\n",
         "AGENTS.md": guide,
@@ -181,5 +189,6 @@ def check_submission(benchmark, directory, *, runtime_path=None, report_path=Non
         raise InvalidEvidence("literature.json must contain a requests array")
     runtime = submission_runtime(benchmark, directory, runtime_path, runtime_overrides)
     report = Path(report_path) if report_path is not None else directory / "proof-report.json"
-    return verify_proof(benchmark, directory / "proof.lean", claims,
+    proof = directory if (directory / "submission.json").exists() or (directory / "submission.json").is_symlink() else directory / "proof.lean"
+    return verify_proof(benchmark, proof, claims,
                         literature_requests=literature["requests"], report_path=report, **runtime)

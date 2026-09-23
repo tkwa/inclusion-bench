@@ -1,0 +1,918 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "support-shoup2008",
+      "title": "A Computational Introduction to Number Theory and Algebra (Version 2.1)",
+      "url": "https://www.shoup.net/ntb/ntb-v2_1.pdf",
+      "publication_date": "2008-01-21",
+      "notes": "Victor Shoup. The version history on PDF page 3 dates Version 2.1 to January 21, 2008. Locators refer to this version’s printed pages. Sections 3.2–3.3 explicitly charge for long-integer digits and reject unit-cost unbounded arithmetic."
+    },
+    {
+      "id": "support-ab2007",
+      "title": "Computational Complexity: A Modern Approach (author-hosted draft)",
+      "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+      "publication_date": "2007-01-08",
+      "notes": "Sanjeev Arora and Boaz Barak. Locators use the numbered pages and theorem numbers in the January 2007 author draft, not the later book edition."
+    }
+  ],
+  "theorems": [
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.naturalBits_value",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-naturalBits_value",
+      "statement": "∀ (value : Nat), InclusionBench.Transducers.binaryMagnitude (InclusionBench.Support.naturalBits value) = value",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.naturalBits_magnitude_bound",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-naturalBits_magnitude_bound",
+      "statement": "∀ (value : Nat), value < 2 ^ List.length (InclusionBench.Support.naturalBits value)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.decodeInt_encodeInt",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-decodeInt_encodeInt",
+      "statement": "∀ (value : Int), InclusionBench.Transducers.decodeInteger (InclusionBench.Support.encodeInt value) = value",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integer_magnitude_bound",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integer_magnitude_bound",
+      "statement": "∀ (value : Int), value.natAbs < 2 ^ InclusionBench.Support.integerBitSize value",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.encodeIntArray_length",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-encodeIntArray_length",
+      "statement": "∀ (values : List Int),\n  List.length (InclusionBench.Support.encodeIntArray values) = InclusionBench.Support.integerArrayBitSize values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_length_le_size",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_length_le_size",
+      "statement": "∀ (values : List Int), values.length ≤ InclusionBench.Support.integerArrayBitSize values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_entry_le_size",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_entry_le_size",
+      "statement": "∀ {values : List Int} {value : Int},\n  value ∈ values → InclusionBench.Support.integerBitSize value ≤ InclusionBench.Support.integerArrayBitSize values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_size_le",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_size_le",
+      "statement": "∀ (values : List Int) (bits : Nat),\n  (∀ (value : Int), value ∈ values → InclusionBench.Support.integerBitSize value ≤ bits) →\n    InclusionBench.Support.integerArrayBitSize values ≤ values.length * (2 * bits + 1)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.encodeIntArray_injective",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-encodeIntArray_injective",
+      "statement": "∀ {first second : List Int},\n  InclusionBench.Support.encodeIntArray first = InclusionBench.Support.encodeIntArray second → first = second",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integer_normalize",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integer_normalize",
+      "statement": "InclusionBench.RealSyntax.PolynomialTimeComputable fun encoded =>\n  InclusionBench.Support.encodeInt (InclusionBench.Transducers.decodeInteger encoded)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.3, printed pp.54–55 (sign and normalized magnitude representation); Exercise 3.17, p.60 (signed arithmetic and leading-zero removal); §3.3.5, pp.61–62 (binary conversion). Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, finite-tape model simulations.",
+      "model_alignment": "The concrete decodeInteger accepts a sign bit and binary magnitude, leading zeros, signed zero and empty words. A deterministic scan strips leading zeros, makes zero positive, and returns the exact encodeInt format; the core decode/encode equality is kernel-proved. Our zero encoding is one positive sign bit with empty magnitude, differing from Shoup’s stored zero by constant overhead. The time is polynomial in input bit length on the fixed tape model, and the output never has super-polynomial length."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integer_add",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integer_add",
+      "statement": "InclusionBench.Support.PolynomialIntegerBinary fun x1 x2 => x1 + x2",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.3.1, pp.55–56; Exercise 3.17, p.60; Theorem 3.3(i), p.61. Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, polynomial overhead of finite-tape simulation.",
+      "model_alignment": "Parse the fixed pairWords encoding into two signed binary integers; malformed pairs use firstWord/secondWord’s total empty-word defaults. Apply signed schoolbook addition. Its bit cost is linear in the two magnitude lengths before tape-simulation overhead; the result has at most one extra magnitude bit beyond the maximum input length. One machine handles every pair. This is ordinary total FP, not unit-cost addition of unbounded integers."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integer_mul",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integer_mul",
+      "statement": "InclusionBench.Support.PolynomialIntegerBinary fun x1 x2 => x1 * x2",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.3.3, p.56; Exercise 3.17, p.60; Theorem 3.3(ii), p.61. Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, polynomial overhead of finite-tape simulation.",
+      "model_alignment": "The same total pair parser supplies two signed binary inputs. Schoolbook multiplication uses a quadratic number of bit operations and produces at most the sum of their magnitude lengths, with one sign bit. Fixed finite-control tape simulation has polynomial overhead. This premise supplies one multiplication, not an input-dependent sequence of exponentially growing multiplications."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integer_neg",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integer_neg",
+      "statement": "InclusionBench.Support.PolynomialIntegerMap Neg.neg",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.3, pp.54–55 (separate sign bit); Exercise 3.17, p.60; §3.3.5, pp.61–62 (signed representation and normalization).",
+      "model_alignment": "Negate the decoded integer by changing its sign and normalizing zero; scan or copy its existing magnitude bits. This takes polynomial time in the supplied word length and preserves magnitude size. All words, including empty encodings and negative zero, have the existing core decodeInteger meaning."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_tabulate",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_tabulate",
+      "statement": "∀ {count : InclusionBench.Word → Nat} {entry : InclusionBench.Word → Nat → Int},\n  InclusionBench.Support.PolynomialNatural count →\n    InclusionBench.Support.PolynomialIntegerEntry entry →\n      ∀ (bound : List Nat),\n        (∀ (input : InclusionBench.Word),\n            count input ≤ InclusionBench.Counting.polynomialValue bound (List.length input)) →\n          InclusionBench.Support.PolynomialIntegerArray fun input => List.map (entry input) (List.range (count input))",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.2, pp.52–54 (uniform finite programs, bounded counters and arrays), §3.3, pp.54–55 (finite vectors of digits); Arora–Barak Theorem 2.8(1) proof, p.44 (composition of polynomial bounds). Elementary bounded-iteration consequence of those models.",
+      "model_alignment": "The count is computed by one total FP algorithm in binary. The additional explicit hypothesis bounds its NUMERIC value by one coefficient-list polynomial q(|input|); a polynomial bit-size bound on the count would be insufficient. The same uniform entry machine receives every paired input and signed binary index. For i<q(n), that input has length O(n+log(q(n)+1)); each output and runtime are polynomially bounded. Execute q(n) calls sequentially and emit all framed canonical entries. One fixed composed machine works on all original inputs, with no per-input/per-length advice. The entry computation must be uniform even outside the materialized range."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_access",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_access",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialIntegerEntry fun input index => (values input).getD index 0",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.2, pp.52–54 (bounded arrays and indices), §3.3, pp.54–55 (digit-vector representation); Exercise 3.18, p.60 (comparison). Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (tape simulation). Elementary encoded-array access algorithm.",
+      "model_alignment": "Decode the original input and signed binary index from the fixed total pair parser. Compute the complete encoded array, whose length is polynomial in the original input length. Compare the index against the number of entries; return zero outside the range. A huge binary index is compared as a bit string, never used as the length of a linear-time loop or a new allocation. Within range, scan at most the already materialized array. Negative decoded indices map to zero as stated in PolynomialIntegerEntry. The resulting FP machine is uniform over all original inputs and indices."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_length",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_length",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialNatural fun input => (values input).length",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.2, pp.52–54 (arrays and bounded counters), §3.3, pp.54–55 (digit encodings); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-tape simulation). Elementary encoded-array scan.",
+      "model_alignment": "Run the single whole-array transducer and count its self-delimiting fields using a binary counter. Each entry consumes at least one bit, so the count is bounded by the polynomial output length; counting and writing its signed positive binary representation have polynomial cost. The premise yields PolynomialNatural, which by itself denotes binary FP computation, not an unqualified numeric size bound."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_update",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_update",
+      "statement": "∀ {values : InclusionBench.Word → List Int} {index : InclusionBench.Word → Nat} {value : InclusionBench.Word → Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialNatural index →\n      InclusionBench.Transducers.FP value →\n        InclusionBench.Support.PolynomialIntegerArray fun input => (values input).set (index input) (value input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.2, pp.52–54 (array reads/writes and bounded indices), §3.3, pp.54–55 (signed digit representation); Arora–Barak Theorem 2.8(1), p.44 (composition). Elementary finite-array replacement algorithm.",
+      "model_alignment": "Compute the array, the binary index, and the replacement integer with their three fixed algorithms. Compare the index to the existing array length before scanning. List.set preserves length: out-of-range updates return the original array and do not allocate up to the index. Replacement bit length is polynomial because it is an FP output. Copy the original framed entries, substituting one canonical integer if the index is valid. Running time and output size remain polynomial in the original input length, including for numerically enormous out-of-range indices."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_append",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_append",
+      "statement": "∀ {first second : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Support.PolynomialIntegerArray fun input => first input ++ second input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.2, pp.52–54 (finite arrays and uniform programs), §3.3, pp.54–55 (digit-vector encoding); Arora–Barak Theorem 2.8(1), p.44 (sequential polynomial computation). Elementary list concatenation.",
+      "model_alignment": "Compute both full arrays using their fixed uniform machines, then concatenate their self-delimiting encodings. The resulting length and number of entries are the sums of two polynomial bounds. Empty arrays contribute no fields. This does not assume that an arbitrary function with polynomially many entries is computable."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_map",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_map",
+      "statement": "∀ {values : InclusionBench.Word → List Int} {operation : Int → Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialIntegerMap operation →\n      InclusionBench.Support.PolynomialIntegerArray fun input => List.map operation (values input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.2, pp.52–54 (bounded iteration and memory), §3.3, pp.54–55 (signed digit vectors); Arora–Barak Theorem 2.8(1), p.44 (composition of polynomial bounds). Elementary uniform map algorithm.",
+      "model_alignment": "The array has polynomially many entries, each with polynomial bit size, as kernel-derived from its output contract. PolynomialIntegerMap supplies ONE FP machine for the operation on arbitrary signed binary inputs. Run it on each entry and normalize/frame the output. Its fixed polynomial runtime also bounds each output bit length, so the full mapped output is polynomial. A bare Int→Int function, per-value computability proofs, or a unit-cost arithmetic operation do not meet this premise."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_zipWith",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_zipWith",
+      "statement": "∀ {first second : InclusionBench.Word → List Int} {operation : Int → Int → Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Support.PolynomialIntegerBinary operation →\n        InclusionBench.Support.PolynomialIntegerArray fun input => List.zipWith operation (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup §3.2, pp.52–54 (bounded arrays and iteration), §3.3, pp.54–55 (signed digit vectors); Arora–Barak Theorem 2.8(1), p.44 (composition). Elementary uniform binary map algorithm.",
+      "model_alignment": "Run the two complete-array algorithms, pair corresponding signed binary entries and apply the one uniform PolynomialIntegerBinary FP machine. The pair encoding has linear overhead and every operation output has polynomial bit length. List.zipWith returns the common prefix of length min(first.length,second.length); it neither pads nor silently establishes equal dimensions. The loop length and complete output size are polynomial. Dot products below are proved from this primitive specialized to signed multiplication and the sum primitive."
+    },
+    {
+      "kind": "axiom",
+      "name": "InclusionBench.Support.Literature.integerArray_sum",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-premise-integerArray_sum",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values → InclusionBench.Transducers.FP fun input => (values input).sum",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Shoup Theorem 3.3(i), pp.61–62 (signed addition in bit time), and §3.2, pp.52–54 (bounded loops); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-tape simulation). Elementary repeated-addition consequence.",
+      "model_alignment": "Compute the complete array and add its entries with the signed bit algorithm. If the array contains m entries of at most B signed bits, every partial sum needs O(B+log(m+1)+1) bits; both m and B are polynomially bounded by the actual output contract. Thus m additions and the finite-tape simulation have polynomial total cost. The empty array sums to zero. No closure under arbitrary iterated integer operations or repeated squaring is asserted."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_iff_integer_encoding",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_iff_integer_encoding",
+      "statement": "∀ (value : InclusionBench.Word → Int),\n  InclusionBench.Transducers.FP value ↔\n    InclusionBench.RealSyntax.PolynomialTimeComputable fun input => InclusionBench.Support.encodeInt (value input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_congr",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_congr",
+      "statement": "∀ {first second : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP first →\n    (∀ (input : InclusionBench.Word), first input = second input) → InclusionBench.Transducers.FP second",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_precompose",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_precompose",
+      "statement": "∀ {value : InclusionBench.Word → Int} {function : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Transducers.FP value →\n    InclusionBench.RealSyntax.PolynomialTimeComputable function →\n      InclusionBench.Transducers.FP fun input => value (function input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_const",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_const",
+      "statement": "∀ (value : Int), InclusionBench.Transducers.FP fun _ => value",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integer_bit_bound",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integer_bit_bound",
+      "statement": "∀ {value : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP value →\n    ∃ bound,\n      ∀ (input : InclusionBench.Word),\n        InclusionBench.Support.integerBitSize (value input) ≤\n          InclusionBench.Counting.polynomialValue bound (List.length input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integer_map",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integer_map",
+      "statement": "∀ {operation : Int → Int} {value : InclusionBench.Word → Int},\n  InclusionBench.Support.PolynomialIntegerMap operation →\n    InclusionBench.Transducers.FP value → InclusionBench.Transducers.FP fun input => operation (value input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integer_binary",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integer_binary",
+      "statement": "∀ {operation : Int → Int → Int} {first second : InclusionBench.Word → Int},\n  InclusionBench.Support.PolynomialIntegerBinary operation →\n    InclusionBench.Transducers.FP first →\n      InclusionBench.Transducers.FP second →\n        InclusionBench.Transducers.FP fun input => operation (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_add",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_add",
+      "statement": "∀ {first second : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP first →\n    InclusionBench.Transducers.FP second → InclusionBench.Transducers.FP fun input => first input + second input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_mul",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_mul",
+      "statement": "∀ {first second : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP first →\n    InclusionBench.Transducers.FP second → InclusionBench.Transducers.FP fun input => first input * second input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_neg",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_neg",
+      "statement": "∀ {value : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP value → InclusionBench.Transducers.FP fun input => -value input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_sub",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_sub",
+      "statement": "∀ {first second : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP first →\n    InclusionBench.Transducers.FP second → InclusionBench.Transducers.FP fun input => first input - second input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialPredicate_integer_eq",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialPredicate_integer_eq",
+      "statement": "∀ {first second : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP first →\n    InclusionBench.Transducers.FP second →\n      InclusionBench.Support.PolynomialPredicate fun input => first input = second input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_congr",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_congr",
+      "statement": "∀ {first second : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    (∀ (input : InclusionBench.Word), first input = second input) → InclusionBench.Support.PolynomialIntegerArray second",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_bounds",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_bounds",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    ∃ bound, InclusionBench.Support.IntegerArrayBounds values bound bound",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_output_bound",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_output_bound",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    ∃ bound,\n      ∀ (input : InclusionBench.Word),\n        InclusionBench.Support.integerArrayBitSize (values input) ≤\n          InclusionBench.Counting.polynomialValue bound (List.length input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialPredicate_integerArray_eq",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialPredicate_integerArray_eq",
+      "statement": "∀ {first second : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Support.PolynomialPredicate fun input => first input = second input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_precompose",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_precompose",
+      "statement": "∀ {values : InclusionBench.Word → List Int} {function : InclusionBench.Word → InclusionBench.Word},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.RealSyntax.PolynomialTimeComputable function →\n      InclusionBench.Support.PolynomialIntegerArray fun input => values (function input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_const",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_const",
+      "statement": "∀ (values : List Int), InclusionBench.Support.PolynomialIntegerArray fun _ => values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_tabulate",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_tabulate",
+      "statement": "∀ {count : InclusionBench.Word → Nat} {entry : InclusionBench.Word → Nat → Int},\n  InclusionBench.Support.PolynomialNatural count →\n    InclusionBench.Support.PolynomialIntegerEntry entry →\n      ∀ (bound : List Nat),\n        (∀ (input : InclusionBench.Word),\n            count input ≤ InclusionBench.Counting.polynomialValue bound (List.length input)) →\n          InclusionBench.Support.PolynomialIntegerArray fun input => List.map (entry input) (List.range (count input))",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_access",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_access",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialIntegerEntry fun input index => (values input).getD index 0",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_length",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_length",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialNatural fun input => (values input).length",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_tabulate_get",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_tabulate_get",
+      "statement": "∀ (values : List Int), List.map (fun index => values.getD index 0) (List.range values.length) = values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_of_access",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_of_access",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  (InclusionBench.Support.PolynomialNatural fun input => (values input).length) →\n    (InclusionBench.Support.PolynomialIntegerEntry fun input index => (values input).getD index 0) →\n      ∀ (bound : List Nat),\n        (∀ (input : InclusionBench.Word),\n            (values input).length ≤ InclusionBench.Counting.polynomialValue bound (List.length input)) →\n          InclusionBench.Support.PolynomialIntegerArray values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_iff_access",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_iff_access",
+      "statement": "∀ (values : InclusionBench.Word → List Int),\n  InclusionBench.Support.PolynomialIntegerArray values ↔\n    (InclusionBench.Support.PolynomialNatural fun input => (values input).length) ∧\n      (InclusionBench.Support.PolynomialIntegerEntry fun input index => (values input).getD index 0) ∧\n        ∃ bound,\n          ∀ (input : InclusionBench.Word),\n            (values input).length ≤ InclusionBench.Counting.polynomialValue bound (List.length input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integerEntry",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integerEntry",
+      "statement": "∀ {entry : InclusionBench.Word → Nat → Int} {index : InclusionBench.Word → Nat},\n  InclusionBench.Support.PolynomialIntegerEntry entry →\n    InclusionBench.Support.PolynomialNatural index →\n      InclusionBench.Transducers.FP fun input => entry input (index input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integerArray_get",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integerArray_get",
+      "statement": "∀ {values : InclusionBench.Word → List Int} {index : InclusionBench.Word → Nat},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialNatural index →\n      InclusionBench.Transducers.FP fun input => (values input).getD (index input) 0",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerEntry_input",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerEntry_input",
+      "statement": "∀ {value : InclusionBench.Word → Int},\n  InclusionBench.Transducers.FP value → InclusionBench.Support.PolynomialIntegerEntry fun input _ => value input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerEntry_add",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerEntry_add",
+      "statement": "∀ {first second : InclusionBench.Word → Nat → Int},\n  InclusionBench.Support.PolynomialIntegerEntry first →\n    InclusionBench.Support.PolynomialIntegerEntry second →\n      InclusionBench.Support.PolynomialIntegerEntry fun input index => first input index + second input index",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerEntry_mul",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerEntry_mul",
+      "statement": "∀ {first second : InclusionBench.Word → Nat → Int},\n  InclusionBench.Support.PolynomialIntegerEntry first →\n    InclusionBench.Support.PolynomialIntegerEntry second →\n      InclusionBench.Support.PolynomialIntegerEntry fun input index => first input index * second input index",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_replicate",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_replicate",
+      "statement": "∀ {count : InclusionBench.Word → Nat} {value : InclusionBench.Word → Int},\n  InclusionBench.Support.PolynomialNatural count →\n    InclusionBench.Transducers.FP value →\n      ∀ (bound : List Nat),\n        (∀ (input : InclusionBench.Word),\n            count input ≤ InclusionBench.Counting.polynomialValue bound (List.length input)) →\n          InclusionBench.Support.PolynomialIntegerArray fun input => List.replicate (count input) (value input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_scale",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_scale",
+      "statement": "∀ {values : InclusionBench.Word → List Int} {scalar : InclusionBench.Word → Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Transducers.FP scalar →\n      InclusionBench.Support.PolynomialIntegerArray fun input =>\n        List.map (fun value => scalar input * value) (values input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_update",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_update",
+      "statement": "∀ {values : InclusionBench.Word → List Int} {index : InclusionBench.Word → Nat} {value : InclusionBench.Word → Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialNatural index →\n      InclusionBench.Transducers.FP value →\n        InclusionBench.Support.PolynomialIntegerArray fun input => (values input).set (index input) (value input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_append",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_append",
+      "statement": "∀ {first second : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Support.PolynomialIntegerArray fun input => first input ++ second input",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_map",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_map",
+      "statement": "∀ {values : InclusionBench.Word → List Int} {operation : Int → Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialIntegerMap operation →\n      InclusionBench.Support.PolynomialIntegerArray fun input => List.map operation (values input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_zipWith",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_zipWith",
+      "statement": "∀ {first second : InclusionBench.Word → List Int} {operation : Int → Int → Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Support.PolynomialIntegerBinary operation →\n        InclusionBench.Support.PolynomialIntegerArray fun input => List.zipWith operation (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_neg",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_neg",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialIntegerArray fun input => List.map Neg.neg (values input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_add",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_add",
+      "statement": "∀ {first second : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Support.PolynomialIntegerArray fun input =>\n        List.zipWith (fun x1 x2 => x1 + x2) (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerArray_mul",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerArray_mul",
+      "statement": "∀ {first second : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Support.PolynomialIntegerArray fun input =>\n        List.zipWith (fun x1 x2 => x1 * x2) (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integerArray_sum",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integerArray_sum",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values → InclusionBench.Transducers.FP fun input => (values input).sum",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integerArray_dot",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integerArray_dot",
+      "statement": "∀ {first second : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray first →\n    InclusionBench.Support.PolynomialIntegerArray second →\n      InclusionBench.Transducers.FP fun input => InclusionBench.Support.integerDot (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_sum_append",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_sum_append",
+      "statement": "∀ (first second : List Int), (first ++ second).sum = first.sum + second.sum",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerDot_comm",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerDot_comm",
+      "statement": "∀ (first second : List Int),\n  InclusionBench.Support.integerDot first second = InclusionBench.Support.integerDot second first",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_update_length",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_update_length",
+      "statement": "∀ (values : List Int) (index : Nat) (value : Int), (values.set index value).length = values.length",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_update_outside",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_update_outside",
+      "statement": "∀ (values : List Int) (index : Nat) (value : Int), values.length ≤ index → values.set index value = values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.integerArray_read_update",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-integerArray_read_update",
+      "statement": "∀ (values : List Int) (index : Nat) (value : Int), index < values.length → (values.set index value).getD index 0 = value",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "Pure kernel-proved encoding, size, list or integer identity; no computational or literature premise is introduced. The sign bit is counted in integerBitSize, zero uses one positive sign bit, array fields cost 2*integerBitSize+1, and out-of-range reads/updates and truncated dot products retain their explicit definitions. The exact declaration type is independently elaborated."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerMatrix_tabulate",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerMatrix_tabulate",
+      "statement": "∀ {rows columns : InclusionBench.Word → Nat} {entry : InclusionBench.Word → Nat → Nat → Int},\n  InclusionBench.Support.PolynomialNatural rows →\n    InclusionBench.Support.PolynomialNatural columns →\n      (InclusionBench.Support.PolynomialIntegerEntry fun input index =>\n          entry input (index / columns input) (index % columns input)) →\n        ∀ (rowBound columnBound cellBound : List Nat),\n          (∀ (input : InclusionBench.Word),\n              rows input ≤ InclusionBench.Counting.polynomialValue rowBound (List.length input) ∧\n                columns input ≤ InclusionBench.Counting.polynomialValue columnBound (List.length input)) →\n            (∀ (input : InclusionBench.Word),\n                rows input * columns input ≤ InclusionBench.Counting.polynomialValue cellBound (List.length input)) →\n              InclusionBench.Support.PolynomialIntegerMatrix fun input =>\n                InclusionBench.Support.tabulateIntegerMatrix (rows input) (columns input) (entry input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerMatrix_entries",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-polynomialIntegerMatrix_entries",
+      "statement": "∀ {matrix : InclusionBench.Word → InclusionBench.Support.IntegerMatrix},\n  InclusionBench.Support.PolynomialIntegerMatrix matrix →\n    InclusionBench.Support.PolynomialIntegerArray fun input => (matrix input).entries",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_integerMatrix_sum",
+      "module": "InclusionSupport.IntegerArrays",
+      "id": "array-api-fp_integerMatrix_sum",
+      "statement": "∀ {matrix : InclusionBench.Word → InclusionBench.Support.IntegerMatrix},\n  InclusionBench.Support.PolynomialIntegerMatrix matrix →\n    InclusionBench.Transducers.FP fun input => (matrix input).entries.sum",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.IntegerArrays from the exact definitions and the registered elementary bridges. Mathematical conventions: Shoup §§3.2–3.3, printed pp.52–62; Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21, and Theorem 2.8(1), printed p.44.",
+      "model_alignment": "This declaration adds no trusted premise. Its exact type is generated from the Lean environment and checked independently. All computation interfaces use one total fixed transducer over all inputs. Whole-array output bounds both entry count and signed-binary bit sizes; materialization from access requires an explicit polynomial numeric count bound. Generic arithmetic operations must satisfy their uniform binary-FP interfaces. Out-of-range reads return zero, updates preserve length, and zip/dot use the common prefix. Matrices have a kernel-checked row-major shape and explicit polynomial bounds on both dimension counts, including zero-dimension cases."
+    }
+  ]
+}

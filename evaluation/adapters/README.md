@@ -56,13 +56,16 @@ The provider enforces the generation limit. Both providers include reasoning tok
 
 ## Results and evidence
 
-The model returns structured JSON containing `status`, exact `claims`, `proof_markdown`, `lean_sources`, and `notes`. The adapter validates that structure, checks catalog IDs and source filenames, and writes natural-language proofs and Lean source to files. It does not execute model-written code or verify the mathematics. A candidate remains subject to the benchmark's proof review. The JSON formats follow [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs) and [Anthropic Structured Outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs).
+The model returns structured JSON containing `status`, exact `claims`, `proof_markdown`, `lean_sources`, `lean_entrypoint`, `literature_requests`, and `notes`. Each source has a `filename` and `content`; paths such as `Lemmas/Arithmetic.lean` correspond to ordinary Lean modules. Set `lean_entrypoint` to the module importing the complete proof, such as `Main`, or to `null` when no Lean project is supplied. The adapter validates the structure and writes a project containing the sources, `submission.json`, `claims.json`, and `literature.json`. A legacy response with one source body and no entrypoint remains supported. Multiple files require an entrypoint.
+
+The adapter does not execute model-written code or verify the mathematics. A candidate remains subject to the benchmark's proof review. The JSON formats follow [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs) and [Anthropic Structured Outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs).
 
 The adapter emits one JSON object on standard output:
 
 - `status`: `unsolved`, `proof_candidate`, `error`, or `budget_exhausted`.
 - `claims`: exact relation objects; empty for errors and exhausted attempts.
 - `artifacts`: paths relative to the attempt's working directory.
+- `submission_manifest`: for a Lean project, the relative path to its `submission.json`. The manifest, every named module, and the claim and literature files are all included in `artifacts`. The archived project can be passed directly to `check-submission`.
 - `usage`: normalized `input_tokens`, `output_tokens`, `total_tokens`, reasoning detail, and the original provider usage object when available.
 - `usage_complete`: whether input and output usage are known.
 - `request_made`: whether a generation request was attempted; a counting request alone leaves this false.
@@ -71,7 +74,7 @@ The adapter emits one JSON object on standard output:
 
 Unknown usage is `null`, never zero. A timeout cannot guarantee cancellation of generation already running at the provider. Charging the remaining allowance conservatively tells the harness to stop the run instead of spending again. Counting-only failures have zero model-generation charge. HTTP failures, malformed outputs, refusals, and truncated responses retain available artifacts and usage; there are no automatic retries.
 
-Each invocation creates a unique artifact directory containing the harness request, planned request, counting and generation exchanges, returned model text, usage, and adapter result. Successful responses also include a combined transcript; proof candidates include `proof.md` and any `.lean` files. Authorization headers are never logged, known credential strings are redacted from saved content, response bodies are capped at 8 MB, and redirects are not followed. The runner hashes these artifacts when sealing the attempt.
+Each invocation creates a unique artifact directory containing the harness request, planned request, counting and generation exchanges, returned model text, usage, and adapter result. Successful responses also include a combined transcript; proof candidates include `proof.md` and any `.lean` files. Authorization headers are never logged, known credential strings are redacted from saved content, response bodies are capped at 128 MiB to accommodate escaped project source, and redirects are not followed. The harness request cap remains 8 MB. Individual archived files are capped at 256 MiB to accommodate the combined transcript; adapter response and diagnostic pipes retain their separate 8 MB and 1 MB caps. The runner hashes all artifacts when sealing the attempt; project review binds the exact manifest and every source under one sealed project directory.
 
 ## Local verification
 

@@ -13,6 +13,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -23,6 +24,16 @@ import uuid
 VERSION = "4.19.0"
 MODULES = ["Mathlib.Data.Complex.Basic", "Mathlib.Data.Real.Sqrt",
            "Mathlib.Data.Fintype.Pi", "Mathlib.Algebra.BigOperators.Group.Finset.Basic"]
+
+
+def requested_modules(extra=()):
+    """Extend the pinned cache explicitly, without reading candidate programs."""
+    if not isinstance(extra, (list, tuple)) or any(
+            not isinstance(module, str) or len(module) > 240 or
+            not re.fullmatch(r"Mathlib(?:\.[A-Za-z_][A-Za-z0-9_]*)+", module)
+            for module in extra):
+        raise RuntimeError("Extra cache modules must be qualified Mathlib module names")
+    return list(dict.fromkeys([*MODULES, *extra]))
 
 
 def run(command, **kwargs):
@@ -41,8 +52,9 @@ def locked_packages(root):
     return [p for p in manifest["packages"] if p["type"] == "git"]
 
 
-def check(root, toolchain):
-    info = {"lean": version(toolchain), "dependencies": {}}
+def check(root, toolchain, modules=None):
+    modules = requested_modules(modules or [])
+    info = {"lean": version(toolchain), "dependencies": {}, "mathlib_modules": modules}
     for package in locked_packages(root):
         path = root / "quantum/.lake/packages" / package["name"]
         revision = subprocess.check_output(["git", "-C", str(path), "rev-parse", "HEAD"], text=True).strip()
@@ -52,7 +64,7 @@ def check(root, toolchain):
         run(["git", "-C", str(path), "diff", "--cached", "--quiet"])
         info["dependencies"][package["name"]] = revision
     cache = root / "quantum/.lake/packages/mathlib/.lake/build/lib/lean"
-    for module in MODULES:
+    for module in modules:
         if not (cache / (module.replace(".", "/") + ".olean")).is_file():
             raise RuntimeError("Missing requested Mathlib cache module: " + module)
     return info
@@ -61,6 +73,7 @@ def check(root, toolchain):
 def provision(request):
     # The outer Docker cgroup bounds aggregate memory and CPU. Affinity also
     # prevents cache extraction from seeing every CPU on the host.
+    modules = requested_modules(request.get("mathlib_modules", []))
     os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
     os.setgid(request["gid"])
     os.setuid(request["uid"])
@@ -110,10 +123,10 @@ def provision(request):
         if actual != package["rev"]:
             raise RuntimeError("Existing dependency differs from lock; use a fresh checkout: " + package["name"])
     # Respect the committed lock; `lake update` would re-resolve dependencies.
-    run(["lake", "exe", "cache", "get", *MODULES], cwd=quantum)
+    run(["lake", "exe", "cache", "get", *modules], cwd=quantum)
     if (quantum / "lake-manifest.json").read_bytes() != lock_before:
         raise RuntimeError("Setup unexpectedly changed the dependency lock")
-    info = check(root, toolchain)
+    info = check(root, toolchain, modules)
     (root / ".tools/proofcheck-provision.json").write_text(json.dumps(info, indent=2) + "\n")
 
 
@@ -124,17 +137,20 @@ def main():
     parser.add_argument("--image", default="ubuntu:22.04")
     parser.add_argument("--check-only", action="store_true", help="Inspect existing installation without downloading or changing it")
     parser.add_argument("--skip-pull", action="store_true", help="Require the selected image to be installed already")
+    parser.add_argument("--mathlib-module", action="append", default=[],
+                        help="Also install/check this pinned Mathlib module and its dependencies; repeat for more modules")
     parser.add_argument("--inside", type=Path, help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.inside:
         provision(json.loads(args.inside.read_text()))
         return
+    modules = requested_modules(args.mathlib_module)
     if platform.system() != "Linux":
         raise RuntimeError("Run setup on the Linux verifier host, locally or over SSH")
     root = (args.repo or Path(__file__).resolve().parents[2]).expanduser().resolve(strict=True)
     toolchain = (args.toolchain_path or root / ".tools/lean-4.19.0").expanduser().resolve()
     if args.check_only:
-        print(json.dumps(check(root, toolchain), indent=2))
+        print(json.dumps(check(root, toolchain, modules), indent=2))
         return
     if not shutil.which("docker"):
         raise RuntimeError("Install Docker Engine and allow your user to run it before setup")
@@ -148,7 +164,8 @@ def main():
         setup = Path(directory)
         setup.chmod(0o755)
         shutil.copyfile(__file__, setup / "setup_linux.py")
-        (setup / "request.json").write_text(json.dumps({"uid": os.getuid(), "gid": os.getgid()}))
+        (setup / "request.json").write_text(json.dumps({"uid": os.getuid(), "gid": os.getgid(),
+                                                      "mathlib_modules": modules}))
         name = "inclusion-provision-" + uuid.uuid4().hex
         # Network and writable mounts are confined to this trusted dependency
         # installer. The candidate proof verifier always disables both.

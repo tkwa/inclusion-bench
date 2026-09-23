@@ -121,7 +121,7 @@
     $("footer-name").textContent = name;
     document.title = `${name} — AI complexity-theory benchmark`;
     $("cutoff").textContent = date(d.cutoff);
-    $("version").textContent = "v0.4.2";
+    $("version").textContent = "v0.4.3";
     $("class-count").textContent = number(d.class_count ?? d.classes.length);
     $("pair-count").textContent = number(d.ordered_pairs ?? d.classes.length ** 2);
     const counts = d.counts || {};
@@ -144,7 +144,7 @@
         document.createTextNode(" Start a model run on the audited questions. New proofs and run integrity are reviewed before publication; historical decisions remain revisable."));
     }
     if (d.release_status === "provisional") {
-      $("version").textContent = "Provisional v0.4.2";
+      $("version").textContent = "Provisional v0.4.3";
       document.querySelector(".hero .tag-dark").textContent = "Provisional roster";
       document.querySelector(".draft-banner>.tag").textContent = "Under review";
       document.querySelector(".draft-banner p").replaceChildren(

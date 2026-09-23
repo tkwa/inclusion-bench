@@ -17,6 +17,15 @@ import uuid
 
 
 MAX_BYTES = 8_000_000
+MAX_RESPONSE_BYTES = 128 * 1024 * 1024
+MAX_PROJECT_BYTES = 16 * 1024 * 1024
+MAX_LEGACY_BYTES = 2 * 1024 * 1024
+MODULE_NAME = r'[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*'
+SOURCE_PATH = r'(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean'
+RESERVED_MODULES = {'init', 'std', 'lean', 'mathlib', 'batteries', 'aesop', 'qq',
+                    'inclusionbench', 'inclusionquantum', 'inclusionsupport',
+                    'trustedbaseline', 'proofcodec', 'proofexport', 'proofaudit',
+                    'auditimports', 'candidate'}
 PROVIDERS = {
     'openai': ('OPENAI_API_KEY', 'https://api.openai.com/v1', '/responses', '/responses/input_tokens'),
     'anthropic': ('ANTHROPIC_API_KEY', 'https://api.anthropic.com/v1', '/messages', '/messages/count_tokens'),
@@ -41,10 +50,16 @@ for its application to these exact models. A maintainer reviews the source, actu
 Lean type, and model alignment; the published proof need not be re-formalized.
 Use an empty literature_requests list when no additional dependency is needed.
 Never claim that your proof has been verified. For unsolved, claims must be empty; explain
-the limitation in notes. Lean filenames must be simple names such as Result.lean.
+the limitation in notes. Put normal Lean modules in lean_sources, using relative
+paths such as Main.lean or Lemmas/Arithmetic.lean. Set lean_entrypoint to the module
+that imports the complete argument, such as Main. Import helpers normally with
+`import Lemmas.Arithmetic`; import TrustedBaseline for benchmark definitions,
+support, and known results. Pinned Lean/Std/Mathlib imports are also available.
+Each named module is compiled in isolation as part of the same project. You may
+use up to 128 files totaling 16 MiB of Lean source. Do not emit build scripts or
+compiled objects. Use lean_entrypoint: null when no Lean proof is supplied.
 The formalizations field supplies the canonical Lean sources and TrustedBaseline.lean.
-For Lean, emit one source body without import commands; the verifier prepends imports
-of ProofExport and TrustedBaseline. Name the theorem for claim 1 Submission.result_1,
+Name the theorem for claim 1 Submission.result_1,
 claim 2 Submission.result_2, and so on. Prove the exact target over
 InclusionBench.Quantum.completeInterpretation; the short names in
 InclusionBench.Support.Classes are definitionally identical targets. Use ordinary
@@ -157,8 +172,9 @@ def output_schema(request):
     return {'type': 'object', 'properties': {'status': {'type': 'string', 'enum': ['unsolved', 'proof_candidate']},
             'claims': {'type': 'array', 'items': atom}, 'proof_markdown': {'type': 'string'},
             'lean_sources': {'type': 'array', 'items': source},
+            'lean_entrypoint': {'type': ['string', 'null']},
             'literature_requests': {'type': 'array', 'items': dependency}, 'notes': {'type': 'string'}},
-            'required': ['status', 'claims', 'proof_markdown', 'lean_sources', 'literature_requests', 'notes'], 'additionalProperties': False}
+            'required': ['status', 'claims', 'proof_markdown', 'lean_sources', 'lean_entrypoint', 'literature_requests', 'notes'], 'additionalProperties': False}
 
 
 def payloads(request, provider, config):
@@ -223,13 +239,13 @@ def post_json(base, suffix, payload, provider, api_key, deadline, archive, label
                 raise TimeoutError('Attempt deadline reached')
             if connection.sock is not None:
                 connection.sock.settimeout(remaining)
-            chunk = response.read1(min(65536, MAX_BYTES + 1 - size))
+            chunk = response.read1(min(65536, MAX_RESPONSE_BYTES + 1 - size))
             if not chunk:
                 break
             chunks.append(chunk)
             size += len(chunk)
-            if size > MAX_BYTES:
-                raise AdapterError('Provider response exceeded 8 MB')
+            if size > MAX_RESPONSE_BYTES:
+                raise AdapterError('Provider response exceeded 128 MiB')
         raw = b''.join(chunks).decode('utf-8', errors='replace')
         if response.status < 200 or response.status >= 300:
             raise AdapterError(f'Provider HTTP {response.status}; response retained in artifacts')
@@ -271,8 +287,8 @@ def response_text(response, provider):
 
 def validate_proof(proof, request):
     required = {'status', 'claims', 'proof_markdown', 'lean_sources', 'notes'}
-    if not isinstance(proof, dict) or not required <= set(proof) or set(proof) - required - {'literature_requests'}:
-        raise AdapterError('Model output needs status, claims, proof_markdown, lean_sources, notes, and optional literature_requests')
+    if not isinstance(proof, dict) or not required <= set(proof) or set(proof) - required - {'literature_requests', 'lean_entrypoint'}:
+        raise AdapterError('Model output needs status, claims, proof_markdown, lean_sources, notes, and optional lean_entrypoint/literature_requests')
     if proof['status'] not in {'unsolved', 'proof_candidate'} or not isinstance(proof['claims'], list) or not isinstance(proof['lean_sources'], list):
         raise AdapterError('Invalid model proof status or list fields')
     if not all(isinstance(proof[k], str) for k in ('proof_markdown', 'notes')):
@@ -283,14 +299,42 @@ def validate_proof(proof, request):
             raise AdapterError('Invalid exact claim')
         if not all(isinstance(claim[k], str) and (allowed is None or claim[k] in allowed) for k in ('left', 'right')):
             raise AdapterError('Unknown class in claim')
+    if len(proof['lean_sources']) > 128:
+        raise AdapterError('A Lean project may contain at most 128 source files')
     filenames = set()
+    module_components = {}
+    total_bytes = 0
     for source in proof['lean_sources']:
         if not isinstance(source, dict) or set(source) != {'filename', 'content'} or not isinstance(source['content'], str):
             raise AdapterError('Invalid Lean source object')
         filename = source['filename']
-        if not isinstance(filename, str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]*\.lean', filename) or filename in filenames:
-            raise AdapterError('Lean filenames must be distinct simple .lean filenames')
-        filenames.add(filename)
+        if not isinstance(filename, str) or len(filename) > 240 or not re.fullmatch(SOURCE_PATH, filename) or filename.casefold() in filenames:
+            raise AdapterError('Lean filenames must be distinct relative .lean module paths without case collisions')
+        if filename[:-5].split('/')[0].casefold() in RESERVED_MODULES:
+            raise AdapterError('A Lean module cannot shadow a trusted library or verifier module')
+        parts = filename[:-5].split('/')
+        for length in range(1, len(parts) + 1):
+            component = '/'.join(parts[:length])
+            previous = module_components.setdefault(component.casefold(), component)
+            if previous != component:
+                raise AdapterError('Lean module paths must not have case-colliding components')
+        filenames.add(filename.casefold())
+        total_bytes += len(source['content'].encode('utf-8'))
+    entrypoint = proof.get('lean_entrypoint')
+    if entrypoint is not None:
+        if not isinstance(entrypoint, str) or len(entrypoint) > 240 or not re.fullmatch(MODULE_NAME, entrypoint):
+            raise AdapterError('lean_entrypoint must be a qualified Lean module name or null')
+        if entrypoint.replace('.', '/') + '.lean' not in {s['filename'] for s in proof['lean_sources']}:
+            raise AdapterError('lean_entrypoint must identify one of the supplied source files')
+        manifest = {'schema_version': 1, 'entrypoint': entrypoint,
+                    'files': [source['filename'] for source in proof['lean_sources']]}
+        manifest_bytes = len((json.dumps(manifest, indent=2, ensure_ascii=False) + '\n').encode('utf-8'))
+        if total_bytes + manifest_bytes > MAX_PROJECT_BYTES:
+            raise AdapterError('Lean project source exceeds 16 MiB')
+    elif len(proof['lean_sources']) > 1:
+        raise AdapterError('Multiple Lean files require lean_entrypoint')
+    elif total_bytes > MAX_LEGACY_BYTES:
+        raise AdapterError('Legacy Lean source exceeds 2 MiB; use a project entrypoint for larger submissions')
     # The standalone adapter validates the wire shape. The runner applies the
     # canonical literature validator with the real benchmark cutoff before sealing.
     literature = proof.get('literature_requests', [])
@@ -390,18 +434,27 @@ def run(request, provider, directory=None, env=None, dry_run=False):
             archive.json('model-proof.json', proof)
             if proof['proof_markdown']:
                 archive.text('proof.md', proof['proof_markdown'])
+            project = proof.get('lean_entrypoint') is not None
             for source in proof['lean_sources']:
-                archive.text('lean/' + source['filename'], source['content'])
+                archive.text(('submission/' if project else 'lean/') + source['filename'], source['content'])
             if proof['lean_sources']:
                 mapped = {'claims': [{**claim, 'theorem': f'Submission.result_{i}'}
                     for i, claim in enumerate(proof['claims'], 1) if claim['relation'] != 'independence']}
                 archive.json('claims-map.json', mapped)
-                if len(proof['lean_sources']) == 1:
+                if project:
+                    manifest_path = archive.json('submission/submission.json', {
+                        'schema_version': 1, 'entrypoint': proof['lean_entrypoint'],
+                        'files': [source['filename'] for source in proof['lean_sources']]})
+                    if proof['status'] == 'proof_candidate':
+                        result['submission_manifest'] = manifest_path
+                    archive.json('submission/claims.json', mapped)
+                    archive.json('submission/literature.json', {'requests': proof.get('literature_requests', [])})
+                else:
                     # The archived directory can be checked directly with
                     # check-submission; preserve original named sources as well.
                     archive.text('proof.lean', proof['lean_sources'][0]['content'])
                     archive.json('claims.json', mapped)
-                archive.json('literature.json', {'requests': proof.get('literature_requests', [])})
+                    archive.json('literature.json', {'requests': proof.get('literature_requests', [])})
             if proof['notes']:
                 archive.text('notes.txt', proof['notes'])
             result.update(status=proof['status'], claims=proof['claims'],

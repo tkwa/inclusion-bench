@@ -18,58 +18,89 @@ import uuid
 MODULE_NAME = r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*"
 SOURCE_PATH = re.compile(r"(?:lean|quantum|support)/(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean")
 FIRST_PARTY = {"InclusionBench": "lean", "InclusionQuantum": "quantum", "InclusionSupport": "support"}
+PROJECT_PATH = re.compile(r"(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.lean")
+APPROVED_IMPORT_ROOTS = {"Init", "Std", "Lean", "Mathlib", "Batteries", "Aesop", "Qq",
+                         "InclusionBench", "InclusionQuantum", "InclusionSupport", "TrustedBaseline"}
+RESERVED_MODULE_ROOTS = APPROVED_IMPORT_ROOTS | {"ProofCodec", "ProofExport", "ProofAudit", "Candidate", "AuditImports"}
 
 
 def header_imports(source):
-    """Read the deliberately restricted import headers of trusted sources.
+    """Read ordinary ASCII import headers, including nested Lean comments."""
+    position, imports, saw_prelude = 0, [], False
 
-    Comments may nest. Only ASCII module names on the import line are
-    accepted; this is not a parser for candidate Lean programs. Unsupported
-    trusted header syntax fails closed instead of silently losing an edge.
-    """
-    position = 0
-    imports = []
-    while position < len(source):
-        if source[position].isspace():
-            position += 1
-            continue
-        if source.startswith("--", position):
-            end = source.find("\n", position)
-            position = len(source) if end < 0 else end + 1
-            continue
-        if source.startswith("/-", position):
-            depth = 1
-            position += 2
-            while depth and position < len(source):
-                if source.startswith("/-", position):
-                    depth += 1
-                    position += 2
-                elif source.startswith("-/", position):
-                    depth -= 1
-                    position += 2
-                else:
-                    position += 1
-            if depth:
-                raise RuntimeError("Unterminated trusted Lean header comment")
-            continue
-        match = re.match(r"(import|prelude)\b([^\n]*)", source[position:])
+    def skip():
+        nonlocal position
+        while position < len(source):
+            if source[position].isspace():
+                position += 1
+            elif source.startswith("--", position):
+                end = source.find("\n", position)
+                position = len(source) if end < 0 else end + 1
+            elif source.startswith("/-", position):
+                depth = 1
+                position += 2
+                while depth and position < len(source):
+                    if source.startswith("/-", position):
+                        depth += 1
+                        position += 2
+                    elif source.startswith("-/", position):
+                        depth -= 1
+                        position += 2
+                    else:
+                        position += 1
+                if depth:
+                    raise RuntimeError("Unterminated Lean import-header comment")
+            else:
+                break
+
+    while True:
+        skip()
+        match = re.match(r"(import|prelude)\b", source[position:])
         if not match:
-            break
-        directive, rest = match.groups()
-        rest = rest.split("--", 1)[0].strip()
+            return imports
+        directive = match.group()
+        position += match.end()
+        if directive == "import":
+            skip()  # Lean permits comments/newlines before the module name.
+        rest_parts = []
+        while position < len(source) and source[position] != "\n":
+            if source.startswith("--", position):
+                end = source.find("\n", position)
+                position = len(source) if end < 0 else end
+                break
+            if source.startswith("/-", position):
+                start, depth = position, 1
+                position += 2
+                while depth and position < len(source):
+                    if source.startswith("/-", position):
+                        depth += 1
+                        position += 2
+                    elif source.startswith("-/", position):
+                        depth -= 1
+                        position += 2
+                    else:
+                        position += 1
+                if depth:
+                    raise RuntimeError("Unterminated Lean import-header comment")
+                rest_parts.append(" ")
+                if "\n" in source[start:position]:
+                    break
+            else:
+                rest_parts.append(source[position])
+                position += 1
+        rest = "".join(rest_parts).strip()
         if directive == "prelude":
-            if rest or imports:
-                raise RuntimeError("Unsupported trusted Lean prelude header")
+            if rest or saw_prelude or imports:
+                raise RuntimeError("Unsupported Lean prelude header")
+            saw_prelude = True
         else:
             names = rest.split()
             if not names or any(not re.fullmatch(MODULE_NAME, name) for name in names):
-                raise RuntimeError("Unsupported trusted Lean import header")
+                raise RuntimeError("Use ordinary ASCII module names in Lean import headers")
             imports.extend(names)
-        position += match.end()
-    return imports
 
 
-def semantic_build_order(sources, trusted_hashes):
+def semantic_build_order(sources, trusted_hashes, extra_roots=()):
     """Validate the supplied first-party graph and order the root imports.
 
     Every path is a trusted packet source, never a path or import extracted
@@ -120,11 +151,94 @@ def semantic_build_order(sources, trusted_hashes):
                 continue  # Older packets have no support library.
             raise RuntimeError("Missing trusted root module: " + root)
         visit(root)
+    for root in extra_roots:
+        if root.split(".", 1)[0] in FIRST_PARTY:
+            if root not in modules:
+                raise RuntimeError("Missing trusted first-party import: " + root)
+            visit(root)
     required = list(order)
     # Also reject a malformed orphan graph, without compiling unused examples.
     for module in sorted(modules):
         visit(module)
     return required
+
+
+def candidate_plan(project):
+    """Validate paths before any snapshot is written outside the sandbox.
+
+    Only text sources are carried on the host. Compiled candidate artifacts
+    are created later inside the candidate container's private tmpfs.
+    """
+    if project is None:
+        return {}, [], []
+    sources = project["sources"]
+    if not isinstance(sources, dict) or not 1 <= len(sources) <= 128:
+        raise RuntimeError("Invalid candidate source count")
+    manifest_text = project["manifest"]
+    if not isinstance(manifest_text, str) or len(manifest_text.encode()) > 64 * 1024:
+        raise RuntimeError("Invalid candidate manifest size")
+    manifest = json.loads(manifest_text)
+    if (not isinstance(manifest, dict) or set(manifest) != {"schema_version", "entrypoint", "files"}
+            or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 1
+            or not isinstance(manifest["files"], list) or len(manifest["files"]) != len(sources)
+            or set(manifest["files"]) != set(sources) or manifest["entrypoint"] != project["entrypoint"]):
+        raise RuntimeError("Candidate manifest does not match its source snapshot")
+    modules, paths_seen = {}, {}
+    for path, source in sources.items():
+        if (not isinstance(path, str) or len(path) > 240 or not PROJECT_PATH.fullmatch(path)
+                or not isinstance(source, str)):
+            raise RuntimeError("Unsafe candidate source path or contents")
+        module = path[:-5].replace("/", ".")
+        if module.split(".", 1)[0].casefold() in {name.casefold() for name in RESERVED_MODULE_ROOTS}:
+            raise RuntimeError("Candidate shadows a trusted module")
+        parts = module.split(".")
+        for length in range(1, len(parts) + 1):
+            prefix = ".".join(parts[:length])
+            if prefix.casefold() in paths_seen and paths_seen[prefix.casefold()] != prefix:
+                raise RuntimeError("Case-colliding candidate modules")
+            paths_seen[prefix.casefold()] = prefix
+        modules[module] = path
+    if len(manifest_text.encode()) + sum(len(source.encode()) for source in sources.values()) > 16 * 1024 * 1024:
+        raise RuntimeError("Candidate project exceeds 16 MiB")
+    hashes = {path: hashlib.sha256(source.encode()).hexdigest() for path, source in sources.items()}
+    hashes["submission.json"] = hashlib.sha256(manifest_text.encode()).hexdigest()
+    expected = {"kind": "project", "schema_version": 1, "entrypoint": project["entrypoint"], "files": hashes}
+    if project["metadata"] != expected:
+        raise RuntimeError("Candidate source hashes do not match metadata")
+    dependencies, external = {}, {}
+    for module, path in modules.items():
+        dependencies[module], external[module] = [], []
+        for imported in header_imports(sources[path]):
+            if imported in modules:
+                dependencies[module].append(imported)
+            elif imported.split(".", 1)[0] in APPROVED_IMPORT_ROOTS:
+                external[module].append(imported)
+            else:
+                raise RuntimeError("Unlisted or unapproved candidate import: " + imported)
+    order, visited, active = [], set(), set()
+
+    def visit(module):
+        if module not in modules:
+            raise RuntimeError("Candidate entrypoint is missing")
+        if module in active:
+            raise RuntimeError("Cyclic candidate imports")
+        if module in visited:
+            return
+        active.add(module)
+        for dependency in sorted(set(dependencies[module])):
+            visit(dependency)
+        active.remove(module)
+        visited.add(module)
+        order.append(module)
+
+    visit(project["entrypoint"])
+    required = list(order)
+    imports = sorted({name for module in required for name in external[module]})
+    for module in sorted(modules):
+        visit(module)
+    if required != project["module_order"] or imports != project["external_imports"]:
+        raise RuntimeError("Candidate import plan differs from its sources")
+    return sources, required, imports
 
 
 def digest(path):
@@ -169,7 +283,8 @@ def capture(command, timeout, limit=40 * 1024 * 1024):
 
 
 def main(packet):
-    build_order = semantic_build_order(packet["semantic_sources"], packet["trusted_hashes"])
+    candidate_sources, candidate_order, candidate_imports = candidate_plan(packet.get("candidate_project"))
+    build_order = semantic_build_order(packet["semantic_sources"], packet["trusted_hashes"], candidate_imports)
     if not shutil.which("docker"):
         return {"status": "unavailable", "reason": "Docker is required; there is no unsandboxed fallback"}
     root = Path(packet["remote_root"]).expanduser().resolve(strict=True)
@@ -219,6 +334,10 @@ def main(packet):
                 path = config / relative
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text(packet["semantic_sources"][relative])
+        for relative, source in candidate_sources.items():
+            path = config / "candidate_sources" / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(source)
         env = ["-e", "LEAN_PATH=" + ":".join(lean_path), "-e", "LEAN_NUM_THREADS=1", "-e", "HOME=/tmp", "-e", "PATH=/toolchain/bin:/usr/bin:/bin"]
         common = ["docker", "run", "--rm", "--network=none", "--read-only", "--cap-drop=ALL",
                   "--security-opt=no-new-privileges", "--memory=8g", "--memory-swap=8g", "--cpus=1",
@@ -257,13 +376,25 @@ def main(packet):
 
         compile_steps = [compile_step(path) for path in build_order]
         compile_steps += [compile_step(f"{m}.lean") for m in ("ProofCodec", "ProofExport", "TrustedBaseline")]
+        if candidate_sources:
+            compile_steps.append(compile_step("AuditImports.lean"))
         code, output, error = run("trusted_build", "set -eu\ncd /config\n" + "\n".join(compile_steps), writable=True)
         if code:
             return {"status": "unavailable", "reason": "Trusted verifier build failed", "log": (output + error)[-16000:],
                     "stage_wall_seconds": stage_wall_seconds}
         # No host directory is writable during candidate execution. Its only
         # output is a bounded JSON value, never an olean or native library.
-        code, output, error = run("candidate", f"cd /work\n{lean_command} /config/Candidate.lean >/work/compile.log 2>&1\nresult=$?\nif [ $result -ne 0 ]; then cat /work/compile.log >&2; exit $result; fi\ncat /work/proof-export.json")
+        candidate_steps = ["cd /work"]
+        if candidate_sources:
+            candidate_steps += ["mkdir -p /work/modules", "cp -R /config/candidate_sources/. /work/modules/",
+                                'export LEAN_PATH="/work/modules:$LEAN_PATH"', "cd /work/modules"]
+            for module in candidate_order:
+                path = module.replace(".", "/")
+                candidate_steps.append(f"{lean_command} -o {path}.olean {path}.lean || exit $?")
+        candidate_steps.append(f"{lean_command} /config/Candidate.lean")
+        candidate_script = "\n".join(candidate_steps)
+        code, output, error = run("candidate", "(\n" + candidate_script +
+            "\n) >/work/compile.log 2>&1\nresult=$?\nif [ $result -ne 0 ]; then cat /work/compile.log >&2; exit $result; fi\ncat /work/proof-export.json")
         if code:
             return {"status": "rejected", "reason": "Candidate elaboration/export failed", "log": error[-16000:],
                     "stage_wall_seconds": stage_wall_seconds}
@@ -274,7 +405,8 @@ def main(packet):
         json.loads(output)
         export_sha256 = hashlib.sha256(output.encode()).hexdigest()
         (config / "proof-export.json").write_text(output)
-        code, output, error = run("kernel_replay", f"cd /config\n{lean_command} --run /config/ProofAudit.lean /config/proof-export.json /config/targets.json /config/literature.json")
+        project_flag = " --project-imports" if candidate_sources else ""
+        code, output, error = run("kernel_replay", f"cd /config\n{lean_command} --run /config/ProofAudit.lean /config/proof-export.json /config/targets.json /config/literature.json{project_flag}")
         try:
             report = json.loads(output)
         except ValueError:

@@ -54,7 +54,7 @@ def readLiteratureRequests (path? : Option System.FilePath) : IO NameSet := do
   return names
 
 def runAudit (payloadPath targetsPath : System.FilePath)
-    (literaturePath? : Option System.FilePath := none) : IO Json := do
+    (literaturePath? : Option System.FilePath := none) (projectImports : Bool := false) : IO Json := do
   let payload ← parseOrFail (Json.parse (← IO.FS.readFile payloadPath))
   let targets ← parseOrFail (Json.parse (← IO.FS.readFile targetsPath))
   let requestedLiterature ← readLiteratureRequests literaturePath?
@@ -62,7 +62,9 @@ def runAudit (payloadPath targetsPath : System.FilePath)
   if version != 1 && version != 2 && version != 3 then auditFailure "Unknown proof export version"
   let declarations ← parseOrFail ((← parseOrFail (payload.getObjVal? "declarations")).getArr?)
   if declarations.size > 100000 then auditFailure "Too many declarations"
-  let mut env ← importModules #[{module := `TrustedBaseline}, {module := `ProofExport}] {}
+  let imports := #[{module := `TrustedBaseline}, {module := `ProofExport}] ++
+    (if projectImports then #[{module := `AuditImports}] else #[])
+  let mut env ← importModules imports {}
   let allowed := InclusionBench.TrustedBaseline.allowedAxiomNames
   let mut newNames : Array Name := #[]
   let mut literatureNames : NameSet := {}
@@ -137,6 +139,7 @@ def main (arguments : List String) : IO UInt32 := do
     let result ← match arguments with
       | [payload, targets] => runAudit payload targets
       | [payload, targets, literature] => runAudit payload targets (some literature)
+      | [payload, targets, literature, "--project-imports"] => runAudit payload targets (some literature) true
       | _ => auditFailure "Expected payload and target paths, and optionally a literature manifest"
     IO.println result.compress
     return (0 : UInt32)

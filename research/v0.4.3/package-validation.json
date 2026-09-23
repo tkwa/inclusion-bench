@@ -1,0 +1,53 @@
+{
+  "version": "0.4.3",
+  "dataset_sha256": "e929704944eba030d541cf2a12a6aa012cb7a0f10c003ca308a1dda65cd85ef5",
+  "catalog_entries": 744,
+  "support_entries": 220,
+  "support_axioms": 31,
+  "support_helpers": 189,
+  "support_lean_files": 8,
+  "support_json_files": 7,
+  "support_manifest_sha256": "60a9e39d0320f07184accc869b5cbc290a614019e5cbb22de86b1b2cd7df219f",
+  "checker_manifest_sha256": "8b0c53faa51fadd393c45ae20fccaca1e0501e14c64f4c0e8f7d32a09e8ace37",
+  "python_manifest_sha256": "211d1839d55503cf07575a04d3919e61a06d0618b322628a1e56255203fd0687",
+  "packaged_resource_count": 204,
+  "packaged_resource_manifest_sha256": "a62ffa4591ee236ecb0c5f607f84eae11caa96f7aa712675b8782c7aa57062cd",
+  "packaged_resources_byte_exact": true,
+  "python_modules_byte_exact": true,
+  "proof_project_modules_installed": true,
+  "short_class_search_passed": true,
+  "array_catalog_search_passed": true,
+  "shipped_project": {
+    "entrypoint": "Main",
+    "module_order": [
+      "Lemmas.Reflexivity",
+      "Main"
+    ],
+    "files": [
+      "Lemmas/Reflexivity.lean",
+      "Main.lean",
+      "submission.json"
+    ],
+    "proof_sha256": "1dfed86a8ccd379d23fab5042d3ba0e4bca91c54e0df041679ba0d62d613eb08"
+  },
+  "installed_data_root": "sys.prefix/share/inclusion-bench",
+  "schema_version": 1,
+  "status": "passed",
+  "validated_at_utc": "2026-09-23T23:31:37.638602+00:00",
+  "wheel_filename": "inclusion_bench-0.4.3-py3-none-any.whl",
+  "wheel_sha256": "a91c739fb8c56ac30ab6c23a8272026a22164095951c819e3e0624a933cdfc56",
+  "scaffold_files": [
+    "AGENTS.md",
+    "Main.lean",
+    "claims.json",
+    "literature.json",
+    "submission.json"
+  ],
+  "scaffold_claim": "inclusion P NP -> Submission.result_1",
+  "scaffold_project_loaded": true,
+  "catalog_cli_search_passed": true,
+  "runtime_python": "3.12.6",
+  "build_backend": "setuptools 84.0.0 (cached, offline)",
+  "installation": "fresh venv via uv --no-index",
+  "scope": "Offline package build and installation, exact packaged source/schema/example integrity, array and succinct-array catalogs, project scaffolding, and installed multi-file proof-bundle loading. No Docker or remote verification was run."
+}

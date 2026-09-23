@@ -2,5 +2,7 @@ import InclusionSupport.Counting
 import InclusionSupport.Hierarchy
 import InclusionSupport.Reductions
 import InclusionSupport.Closure
+import InclusionSupport.IntegerArrays
+import InclusionSupport.SuccinctIntegerArrays
 import InclusionQuantum
 import InclusionSupport.Classes

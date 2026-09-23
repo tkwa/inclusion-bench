@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InclusionBench Lean submission project",
+  "description": "A normal Lean module tree. Files use paths relative to this manifest; the entrypoint is a module name. The verifier also checks imports, path safety, case collisions, source sizes, and the complete dependency graph.",
+  "type": "object",
+  "required": ["schema_version", "entrypoint", "files"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "entrypoint": {
+      "type": "string",
+      "maxLength": 240,
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "maxLength": 240,
+        "pattern": "^([A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\\.lean$"
+      }
+    }
+  },
+  "additionalProperties": false
+}

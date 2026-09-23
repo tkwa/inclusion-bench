@@ -1,6 +1,6 @@
 # InclusionBench
 
-**Software v0.4.2** lets agents use trusted textbook results and state proofs through polynomial reductions, verifier characterizations, counting algebra, and familiar class names. Additional published results need statement and model-alignment review, not a new formalization of their proofs. [Agent submission guide](docs/AGENT_SUBMISSIONS.md) · [Release notes](docs/RELEASE-0.4.2.md). The frozen v0.4.0 questions and scores are unchanged.
+**Software v0.4.3** accepts multi-file Lean projects and supplies uniform integer-array interfaces with length, bit-size, and computation guarantees. Agents can reuse trusted textbook results and cite additional published dependencies for statement and model-alignment review without formalizing their original proofs. [Agent submission guide](docs/AGENT_SUBMISSIONS.md) · [Release notes](docs/RELEASE-0.4.3.md). The frozen v0.4.0 questions and scores are unchanged.
 
 > **v0.4.0 publication:** approved through [PR #1](https://github.com/tkwa/inclusion-bench/pull/1). Use the immutable [v0.4.0 tag](https://github.com/tkwa/inclusion-bench/tree/v0.4.0) to reproduce this release. Current publication state comes from [`data/publication.json`](data/publication.json).
 

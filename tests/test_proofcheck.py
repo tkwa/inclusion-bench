@@ -115,6 +115,81 @@ class IsolatedProofcheckTests(unittest.TestCase):
         report = self.check_source(source, "verified", claim)
         self.assertIn(name, report["targets"][0]["axioms"])
 
+    def test_shipped_multifile_project(self):
+        project = self.benchmark.root / "examples/submissions/multifile"
+        claims = json.loads((project / "claims.json").read_text())["claims"]
+        report = verify_proof(self.benchmark, project, claims, **self.runtime)
+        self.assertEqual(report["status"], "verified", report.get("reason", "") + report.get("log", ""))
+        self.assertEqual(report["proof_project"]["entrypoint"], "Main")
+        self.assertEqual(set(report["proof_project"]["files"]),
+                         {"submission.json", "Main.lean", "Lemmas/Reflexivity.lean"})
+        self.assertEqual(report["declaration_count"], 2)
+        self.assertFalse(report["runtime"]["candidate_host_writes"])
+
+    def test_project_imported_target_with_extra_mathlib_dependency(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "Lemmas").mkdir()
+            (root / "submission.json").write_text(json.dumps({"schema_version": 1, "entrypoint": "Main",
+                "files": ["Main.lean", "Lemmas/External.lean"]}))
+            (root / "Main.lean").write_text("import Lemmas.External\n")
+            (root / "Lemmas/External.lean").write_text("""import TrustedBaseline
+import Mathlib.NumberTheory.Primorial
+open InclusionBench InclusionBench.Support
+unsafe def unusedTool : IO Unit := pure ()
+axiom unusedFabrication : False
+theorem Submission.imported : Includes Classes.P Classes.P :=
+  And.right (And.intro (primorial_pos 2) (includes_refl _))
+""")
+            report = verify_proof(self.benchmark, root, [{**self.claim, "theorem": "Submission.imported"}], **self.runtime)
+        self.assertEqual(report["status"], "verified", report.get("reason", "") + report.get("log", ""))
+        self.assertEqual(report["declaration_count"], 1)
+        self.assertEqual(report["literature_dependencies"], [])
+
+    def test_project_literature_dependency_from_imported_module(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "submission.json").write_text(json.dumps({"schema_version": 1, "entrypoint": "Main",
+                "files": ["Main.lean", "Assumptions.lean"]}))
+            (root / "Assumptions.lean").write_text("""import TrustedBaseline
+open InclusionBench InclusionBench.Support
+def Submission.LocalStatement : Prop := Includes Classes.P Classes.P
+axiom Literature.project_fact : Submission.LocalStatement
+""")
+            (root / "Main.lean").write_text("""import Assumptions
+open InclusionBench InclusionBench.Support
+theorem submitted : Includes Classes.P Classes.P := Literature.project_fact
+""")
+            rejected = verify_proof(self.benchmark, root, [self.claim], **self.runtime)
+            self.assertEqual(rejected["status"], "rejected", rejected)
+            request = {"name": "Literature.project_fact", "statement": "Test-only reflexive inclusion.",
+                       "rationale": "Exercise literature type context across local modules.",
+                       "sources": [{"title": "Computational Complexity: A Modern Approach",
+                                    "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+                                    "locator": "Chapter 1, complexity classes and reflexivity of inclusion.",
+                                    "publication_date": "2009"}]}
+            pending = verify_proof(self.benchmark, root, [self.claim], literature_requests=[request], **self.runtime)
+        self.assertEqual(pending["status"], "needs_literature_review", pending.get("reason", "") + pending.get("log", ""))
+        dependency = pending["literature_dependencies"][0]
+        self.assertEqual(dependency["statement"], "Submission.LocalStatement")
+        self.assertEqual([item["kind"] for item in dependency["context"]], ["definition"])
+        self.assertEqual(pending["official_points"], 0)
+
+    def test_integer_array_support_survives_fresh_replay(self):
+        fixture = self.benchmark.root / "tests/lean/SupportArrayReplayTests.lean"
+        source = "\n".join(fixture.read_text().splitlines()[1:])
+        source = source.replace("Machines.polynomialTime", "Classes.P")
+        report = self.check_source(source, "verified")
+        expected = {"InclusionBench.Support.Literature.integer_mul",
+                    "InclusionBench.Support.Literature.integerArray_zipWith",
+                    "InclusionBench.Support.Literature.integerArray_sum"}
+        self.assertTrue(expected <= set(report["targets"][0]["axioms"]), report)
+        cited = {item["name"]: item for item in report["support_axioms"]}
+        for name in expected:
+            self.assertTrue(cited[name]["sources"])
+            self.assertTrue(cited[name]["model_alignment"])
+        self.assertEqual(report["literature_dependencies"], [])
+
     def test_curated_reduction_support_with_familiar_class_aliases(self):
         source = """open InclusionBench InclusionBench.Support
 theorem submitted : Includes Classes.P Classes.P := by

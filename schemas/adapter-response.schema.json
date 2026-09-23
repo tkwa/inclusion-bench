@@ -29,6 +29,10 @@
         "$ref": "#/$defs/relativePath"
       }
     },
+    "submission_manifest": {
+      "$ref": "#/$defs/relativePath",
+      "description": "Optional path to a Lean project's submission.json within this attempt. Its manifest, every named source, claims.json, and literature.json must all appear in artifacts. The runner validates and seals the complete project."
+    },
     "provider": {
       "type": "string"
     },

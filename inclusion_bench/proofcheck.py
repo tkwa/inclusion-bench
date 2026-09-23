@@ -13,9 +13,9 @@ from pathlib import Path
 
 from .benchmark import canonical_hash
 from .engine import Atom, InvalidEvidence
+from .proofbundle import MAX_SOURCE_BYTES, load_proof_bundle
 
 STANDARD_AXIOMS = ["propext", "Classical.choice", "Quot.sound"]
-MAX_SOURCE_BYTES = 2 * 1024 * 1024
 
 
 def sha256(value: bytes) -> str:
@@ -140,6 +140,7 @@ def trusted_verification_inputs(benchmark, claims):
         "baseline_sha256": sha256(baseline.encode()),
         "checker_sha256": canonical_hash({**files, "remote_runner.py": runner,
                                            "proofcheck.py": Path(__file__).read_text(),
+                                           "proofbundle.py": Path(__file__).with_name("proofbundle.py").read_text(),
                                            "literature.py": Path(__file__).with_name("literature.py").read_text()}),
         "semantics_sha256": semantics,
     }
@@ -162,9 +163,9 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
                  toolchain_path=None, literature_requests=None) -> dict:
     """Return verification or pending literature review; never award points.
 
-    `host=None` runs the same Docker driver on the local Linux host. The source
-    is a Lean body under fixed trusted imports; arbitrary new imports are not
-    part of the proof format. The submitted file's exact bytes are hash-bound.
+    `host=None` runs the same Docker driver on the local Linux host. A file is
+    a legacy Lean body. A directory is a bounded submission.json project with
+    ordinary modules. Only its immutable source snapshot enters the sandbox.
     """
     from .literature import validate_requests, bind_dependencies, dependency_decisions, curated_catalog
     requests = validate_requests(benchmark, literature_requests)
@@ -173,38 +174,47 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
         raise InvalidEvidence("Provide an installed Docker image name or digest")
     if not isinstance(timeout_seconds, int) or not 5 <= timeout_seconds <= 3600:
         raise InvalidEvidence("Proof timeout must be between 5 and 3,600 seconds")
-    path = Path(proof_path)
-    if path.stat().st_size > MAX_SOURCE_BYTES:
-        raise InvalidEvidence("Proof source exceeds the 2 MiB limit")
-    with path.open("rb") as handle:
-        source = handle.read(MAX_SOURCE_BYTES + 1)
-    if len(source) > MAX_SOURCE_BYTES:
-        raise InvalidEvidence("Proof source exceeds the 2 MiB limit")
-    try:
-        body = source.decode("utf-8")
-    except UnicodeError as error:
-        raise InvalidEvidence("Proof source must be UTF-8") from error
+    bundle = load_proof_bundle(proof_path)
     trusted = trusted_verification_inputs(benchmark, claims)
     baseline, entries, targets = (trusted[key] for key in ("baseline", "entries", "targets"))
     files = dict(trusted["files"])
     files["TrustedBaseline.lean"] = baseline
     # These comments are not security checks. The kernel replays the exported
     # declarations in a clean environment, with no candidate module imported.
-    files["Candidate.lean"] = "import ProofExport\nimport TrustedBaseline\n\n" + body + "\n\n#proofcheck_export_targets " + json.dumps([c["theorem"] for c in claims]) + "\n"
+    names = json.dumps([c["theorem"] for c in claims])
+    if bundle.metadata is None:
+        body = next(iter(bundle.sources.values()))
+        files["Candidate.lean"] = "import ProofExport\nimport TrustedBaseline\n\n" + body + "\n\n#proofcheck_export_targets " + names + "\n"
+    else:
+        files["AuditImports.lean"] = "import TrustedBaseline\n" + "".join(
+            "import " + module + "\n" for module in bundle.external_imports)
+        # Load trusted library initializers into the auditor process as well
+        # as importing their declarations into its separate fresh environment.
+        files["ProofAudit.lean"] = "import AuditImports\n" + files["ProofAudit.lean"]
+        files["Candidate.lean"] = ("import ProofExport\nimport AuditImports\nimport " + bundle.entrypoint +
+            "\n\n#proofcheck_export_project " + json.dumps(bundle.module_order) + " " + names + "\n")
     files["targets.json"] = json.dumps(targets)
     files["literature.json"] = json.dumps({"requests": requests})
     packet = {"files": files, "trusted_hashes": trusted["trusted_hashes"], "semantic_sources": trusted["semantic_sources"],
               "remote_root": str(remote_root), "timeout_seconds": timeout_seconds,
               "image": image, "toolchain_path": str(toolchain_path) if toolchain_path is not None else None}
+    if bundle.metadata is not None:
+        packet["candidate_project"] = {"sources": bundle.sources, "entrypoint": bundle.entrypoint,
+                                       "manifest": bundle.files["submission.json"].decode("utf-8"),
+                                       "module_order": bundle.module_order,
+                                       "external_imports": bundle.external_imports,
+                                       "metadata": bundle.metadata}
     runner = trusted["runner"]
     command = (["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=15", host,
                 "python3 -c " + shlex.quote(runner)] if host else ["python3", "-c", runner])
     report = {"schema_version": 1, "dataset_sha256": benchmark.digest,
-              "proof_sha256": sha256(source), "claims": claims,
+              "proof_sha256": bundle.proof_sha256, "claims": claims,
               **trusted["bindings"], "baseline_axioms": entries,
               "method": "lean4-data-only-fresh-kernel-replay", "official_points": 0,
               "literature_requests": requests,
               "support_axioms": [entry for entry in curated_catalog(benchmark) if entry.get("kind") == "axiom"]}
+    if bundle.metadata is not None:
+        report["proof_project"] = bundle.metadata
     try:
         # Only the trusted remote runner writes this pipe; candidate stdout is
         # captured and size-limited inside its Docker container.

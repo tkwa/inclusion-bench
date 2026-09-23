@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "support-shoup2008",
+      "title": "A Computational Introduction to Number Theory and Algebra (Version 2.1)",
+      "url": "https://www.shoup.net/ntb/ntb-v2_1.pdf",
+      "publication_date": "2008-01-21",
+      "notes": "Victor Shoup. The version history on PDF page 3 dates Version 2.1 to January 21, 2008. Locators refer to this version’s printed pages. Sections 3.2–3.3 explicitly charge for long-integer digits and reject unit-cost unbounded arithmetic."
+    },
+    {
+      "id": "support-ab2007",
+      "title": "Computational Complexity: A Modern Approach (author-hosted draft)",
+      "url": "https://theory.cs.princeton.edu/complexity/book.pdf",
+      "publication_date": "2007-01-08",
+      "notes": "Sanjeev Arora and Boaz Barak. Locators use the numbered pages and theorem numbers in the January 2007 author draft, not the later book edition."
+    }
+  ],
+  "theorems": [
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_intro",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_intro",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  (InclusionBench.Support.PolynomialNatural fun input => (array input).length) →\n    (InclusionBench.Support.PolynomialIntegerEntry fun input index => (array input).entry index) →\n      InclusionBench.Support.PolynomialSuccinctIntegerArray array",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_length",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_length",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    InclusionBench.Support.PolynomialNatural fun input => (array input).length",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_entry",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_entry",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    InclusionBench.Support.PolynomialIntegerEntry fun input index => (array input).entry index",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_length_bits",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_length_bits",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    ∃ bound,\n      ∀ (input : InclusionBench.Word),\n        InclusionBench.Support.integerBitSize ↑(array input).length ≤\n          InclusionBench.Counting.polynomialValue bound (List.length input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. The entry bound charges exactly 2*(input.length + integerBitSize(index:Int))+3 bits for the fixed pair encoding, including its sign bit. The length bound controls its binary representation only; exponentially large cardinalities remain possible."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerEntry_bit_bound",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialIntegerEntry_bit_bound",
+      "statement": "∀ {entry : InclusionBench.Word → Nat → Int},\n  InclusionBench.Support.PolynomialIntegerEntry entry →\n    ∃ bound,\n      ∀ (input : InclusionBench.Word) (index : Nat),\n        InclusionBench.Support.integerBitSize (entry input index) ≤\n          InclusionBench.Counting.polynomialValue bound\n            (2 * (List.length input + InclusionBench.Support.integerBitSize ↑index) + 3)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. The entry bound charges exactly 2*(input.length + integerBitSize(index:Int))+3 bits for the fixed pair encoding, including its sign bit. The length bound controls its binary representation only; exponentially large cardinalities remain possible."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_entry_bits",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_entry_bits",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    ∃ bound,\n      ∀ (input : InclusionBench.Word) (index : Nat),\n        InclusionBench.Support.integerBitSize ((array input).entry index) ≤\n          InclusionBench.Counting.polynomialValue bound\n            (2 * (List.length input + InclusionBench.Support.integerBitSize ↑index) + 3)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. The entry bound charges exactly 2*(input.length + integerBitSize(index:Int))+3 bits for the fixed pair encoding, including its sign bit. The length bound controls its binary representation only; exponentially large cardinalities remain possible."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.succinctIntegerArrayRead_inside",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-succinctIntegerArrayRead_inside",
+      "statement": "∀ (array : InclusionBench.Support.SuccinctIntegerArray) (index : Nat),\n  index < array.length → InclusionBench.Support.succinctIntegerArrayRead array index = array.entry index",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.succinctIntegerArrayRead_outside",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-succinctIntegerArrayRead_outside",
+      "statement": "∀ (array : InclusionBench.Support.SuccinctIntegerArray) (index : Nat),\n  array.length ≤ index → InclusionBench.Support.succinctIntegerArrayRead array index = 0",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.fp_succinctIntegerArray_read",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-fp_succinctIntegerArray_read",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray} {index : InclusionBench.Word → Nat},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    InclusionBench.Support.PolynomialNatural index →\n      (∀ (input : InclusionBench.Word), index input < (array input).length) →\n        InclusionBench.Transducers.FP fun input =>\n          InclusionBench.Support.succinctIntegerArrayRead (array input) (index input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. The index must itself be uniformly binary-computable, and the explicit inside premise proves each requested index is below the represented length. The pure read operation returns zero outside the range, but this computational wrapper only claims the in-range case."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialIntegerEntry_map",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialIntegerEntry_map",
+      "statement": "∀ {entry : InclusionBench.Word → Nat → Int} {operation : Int → Int},\n  InclusionBench.Support.PolynomialIntegerEntry entry →\n    InclusionBench.Support.PolynomialIntegerMap operation →\n      InclusionBench.Support.PolynomialIntegerEntry fun input index => operation (entry input index)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Generic operations require the existing signed-binary FP operation contract; a bare arithmetic function is insufficient. Binary finite-array combinators require equal represented lengths. The conclusion concerns individual entries, not evaluating every entry or an input-dependent chain of growing multiplications."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_map",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_map",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray} {operation : Int → Int},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    InclusionBench.Support.PolynomialIntegerMap operation →\n      InclusionBench.Support.PolynomialSuccinctIntegerArray fun input =>\n        InclusionBench.Support.succinctIntegerArrayMap operation (array input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Generic operations require the existing signed-binary FP operation contract; a bare arithmetic function is insufficient. Binary finite-array combinators require equal represented lengths. The conclusion concerns individual entries, not evaluating every entry or an input-dependent chain of growing multiplications."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_zip",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_zip",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray} {operation : Int → Int → Int},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray first →\n    InclusionBench.Support.PolynomialSuccinctIntegerArray second →\n      (∀ (input : InclusionBench.Word), (first input).length = (second input).length) →\n        InclusionBench.Support.PolynomialIntegerBinary operation →\n          InclusionBench.Support.PolynomialSuccinctIntegerArray fun input =>\n            InclusionBench.Support.succinctIntegerArrayZip operation (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Generic operations require the existing signed-binary FP operation contract; a bare arithmetic function is insufficient. Binary finite-array combinators require equal represented lengths. The conclusion concerns individual entries, not evaluating every entry or an input-dependent chain of growing multiplications."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_add",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_add",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray first →\n    InclusionBench.Support.PolynomialSuccinctIntegerArray second →\n      (∀ (input : InclusionBench.Word), (first input).length = (second input).length) →\n        InclusionBench.Support.PolynomialSuccinctIntegerArray fun input =>\n          InclusionBench.Support.succinctIntegerArrayZip (fun x1 x2 => x1 + x2) (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Generic operations require the existing signed-binary FP operation contract; a bare arithmetic function is insufficient. Binary finite-array combinators require equal represented lengths. The conclusion concerns individual entries, not evaluating every entry or an input-dependent chain of growing multiplications."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_mul",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_mul",
+      "statement": "∀ {first second : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray first →\n    InclusionBench.Support.PolynomialSuccinctIntegerArray second →\n      (∀ (input : InclusionBench.Word), (first input).length = (second input).length) →\n        InclusionBench.Support.PolynomialSuccinctIntegerArray fun input =>\n          InclusionBench.Support.succinctIntegerArrayZip (fun x1 x2 => x1 * x2) (first input) (second input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Generic operations require the existing signed-binary FP operation contract; a bare arithmetic function is insufficient. Binary finite-array combinators require equal represented lengths. The conclusion concerns individual entries, not evaluating every entry or an input-dependent chain of growing multiplications."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_neg",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_neg",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    InclusionBench.Support.PolynomialSuccinctIntegerArray fun input =>\n      InclusionBench.Support.succinctIntegerArrayMap Neg.neg (array input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Generic operations require the existing signed-binary FP operation contract; a bare arithmetic function is insufficient. Binary finite-array combinators require equal represented lengths. The conclusion concerns individual entries, not evaluating every entry or an input-dependent chain of growing multiplications."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_materialize",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_materialize",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    ∀ (bound : List Nat),\n      (∀ (input : InclusionBench.Word),\n          (array input).length ≤ InclusionBench.Counting.polynomialValue bound (List.length input)) →\n        InclusionBench.Support.PolynomialIntegerArray fun input =>\n          InclusionBench.Support.materializeSuccinctIntegerArray (array input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Materialization enumerates List.range(length) and requires an explicit polynomial bound on the NUMERIC count. For a uniformly accessible family, the materialize_iff theorem proves this bound is necessary as well as sufficient; bit-length bounds alone do not permit exponential output."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_of_array",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_of_array",
+      "statement": "∀ {values : InclusionBench.Word → List Int},\n  InclusionBench.Support.PolynomialIntegerArray values →\n    InclusionBench.Support.PolynomialSuccinctIntegerArray fun input =>\n      InclusionBench.Support.succinctIntegerArrayOfList (values input)",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.materializeSuccinctIntegerArray_length",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-materializeSuccinctIntegerArray_length",
+      "statement": "∀ (array : InclusionBench.Support.SuccinctIntegerArray),\n  (InclusionBench.Support.materializeSuccinctIntegerArray array).length = array.length",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Materialization enumerates List.range(length) and requires an explicit polynomial bound on the NUMERIC count. For a uniformly accessible family, the materialize_iff theorem proves this bound is necessary as well as sufficient; bit-length bounds alone do not permit exponential output."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.materializeSuccinctIntegerArray_of_list",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-materializeSuccinctIntegerArray_of_list",
+      "statement": "∀ (values : List Int),\n  InclusionBench.Support.materializeSuccinctIntegerArray (InclusionBench.Support.succinctIntegerArrayOfList values) =\n    values",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Materialization enumerates List.range(length) and requires an explicit polynomial bound on the NUMERIC count. For a uniformly accessible family, the materialize_iff theorem proves this bound is necessary as well as sufficient; bit-length bounds alone do not permit exponential output."
+    },
+    {
+      "kind": "theorem",
+      "name": "InclusionBench.Support.polynomialSuccinctIntegerArray_materialize_iff",
+      "module": "InclusionSupport.SuccinctIntegerArrays",
+      "id": "succinct-array-api-polynomialSuccinctIntegerArray_materialize_iff",
+      "statement": "∀ {array : InclusionBench.Word → InclusionBench.Support.SuccinctIntegerArray},\n  InclusionBench.Support.PolynomialSuccinctIntegerArray array →\n    ((InclusionBench.Support.PolynomialIntegerArray fun input =>\n        InclusionBench.Support.materializeSuccinctIntegerArray (array input)) ↔\n      ∃ bound,\n        ∀ (input : InclusionBench.Word),\n          (array input).length ≤ InclusionBench.Counting.polynomialValue bound (List.length input))",
+      "source_ids": [
+        "support-shoup2008",
+        "support-ab2007"
+      ],
+      "locator": "Kernel-proved in InclusionSupport.SuccinctIntegerArrays from the exact definitions and previously registered bridges. Background: Shoup §§3.2–3.3, printed pp.52–62 (bit cost and signed representation); Arora–Barak §1.2.2, Claims 1.8–1.9, printed pp.19–21 (finite-alphabet/tape simulations), and Theorem 2.8(1), printed p.44 (polynomial composition). No new literature premise is imported.",
+      "model_alignment": "Kernel-proved wrapper over the existing IntegerArrays and Closure library; this module introduces no axiom. A single binary-length machine and a single entry machine work uniformly for every original input and binary index. PolynomialSuccinctIntegerArray does not assert polynomial numeric length, full-array output, or efficient sums over the represented range. Materialization enumerates List.range(length) and requires an explicit polynomial bound on the NUMERIC count. For a uniformly accessible family, the materialize_iff theorem proves this bound is necessary as well as sufficient; bit-length bounds alone do not permit exponential output."
+    }
+  ]
+}

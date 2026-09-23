@@ -44,7 +44,10 @@ class SubmissionTests(unittest.TestCase):
         claims = json.loads((self.directory / "claims.json").read_text())["claims"]
         self.assertEqual(claims, [{**claim, "theorem": f"Submission.result_{i}"}
                                   for i, claim in enumerate(self.claims, 1)])
-        body = (self.directory / "proof.lean").read_text()
+        body = (self.directory / "Main.lean").read_text()
+        self.assertTrue(body.startswith("import TrustedBaseline\n"))
+        self.assertEqual(json.loads((self.directory / "submission.json").read_text()),
+                         {"schema_version": 1, "entrypoint": "Main", "files": ["Main.lean"]})
         self.assertIn("theorem result_1 : Includes NP P := by", body)
         self.assertIn("theorem result_2 : NonIncludes PSPACE P := by", body)
         self.assertEqual(body.count("  sorry"), 2)
@@ -123,11 +126,19 @@ class SubmissionTests(unittest.TestCase):
             result = check_submission(self.benchmark, self.directory)
         self.assertEqual(result, response)
         args, kwargs = verify.call_args
-        self.assertEqual(args[1], self.directory / "proof.lean")
+        self.assertEqual(args[1], self.directory)
         self.assertEqual(args[2][0]["theorem"], "Submission.result_1")
         self.assertEqual(kwargs["literature_requests"], [request])
         self.assertEqual(kwargs["report_path"], self.directory / "proof-report.json")
         self.assertIsNone(kwargs["host"])
+
+    def test_legacy_single_body_remains_checkable(self):
+        self.initialize()
+        (self.directory / "submission.json").unlink()
+        (self.directory / "Main.lean").rename(self.directory / "proof.lean")
+        with patch("inclusion_bench.submissions.verify_proof", return_value={"status": "verified"}) as verify:
+            check_submission(self.benchmark, self.directory)
+        self.assertEqual(verify.call_args.args[1], self.directory / "proof.lean")
 
     def test_malformed_literature_does_not_reach_verifier(self):
         self.initialize()

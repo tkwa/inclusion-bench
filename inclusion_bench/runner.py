@@ -42,7 +42,10 @@ def submission_support(benchmark: Benchmark) -> dict:
                 'For an additional published result, declare its exact Lean type as an axiom named Literature.your_name '
                 'and supply literature_requests with the matching name, statement, source title/URL/theorem or page/publication date, '
                 'and the reason its conventions match these models. A maintainer reviews the existing result and model alignment; '
-                'its published proof does not need to be formalized again. A new benchmark claim must be proved.'}
+                'its published proof does not need to be formalized again. A new benchmark claim must be proved. '
+                'Lean submissions may use a normal module tree: return named lean_sources plus lean_entrypoint. '
+                'Import TrustedBaseline for the supplied definitions and results, and import local helper modules normally. '
+                'The project manifest and every named source must be retained as sealed artifacts.'}
 
 
 def write_json(path: Path, value) -> None:
@@ -147,7 +150,7 @@ def normalize_config(benchmark: Benchmark, config: dict, model_override: str | N
         adapter_sources.append(benchmark.root / 'evaluation/adapters/provider.py')
     config['adapter_source_sha256'] = {str(p): sha256_file(p) for p in adapter_sources}
     config['harness_source_sha256'] = {name: sha256_file(Path(__file__).parent / name)
-                                     for name in ('runner.py', 'evaluation.py', 'proofcheck.py', 'literature.py', 'submissions.py')}
+                                     for name in ('runner.py', 'evaluation.py', 'proofcheck.py', 'proofbundle.py', 'proofevidence.py', 'literature.py', 'submissions.py')}
     config['submission_support_sha256'] = canonical_hash(submission_support(benchmark))
     budget = config.setdefault('budget', {})
     defaults = {'wall_time_seconds': 3600, 'per_task_wall_time_seconds': 600, 'max_total_tokens': 100000,
@@ -217,6 +220,18 @@ def _validate_response(benchmark: Benchmark, response: dict, attempt_dir: Path, 
     for relative in artifacts:
         path = artifact_path(attempt_dir, relative)
         sealed.append({'path': str(path.relative_to(run_dir)), 'sha256': sha256_file(path)})
+    submission_manifest = None
+    if response.get('submission_manifest') is not None:
+        from .proofevidence import validate_submission_artifacts
+        relative = response['submission_manifest']
+        # Validate the original relative name before normalizing it into the
+        # run. The shared helper checks the complete co-located artifact set.
+        artifact_path(attempt_dir, relative)
+        submission_manifest = str(attempt_dir.relative_to(run_dir) / relative)
+        submission_manifest = validate_submission_artifacts(benchmark, {
+            'status': response['status'], 'claims': claims, 'artifacts': sealed,
+            'literature_requests': literature, 'submission_manifest': submission_manifest,
+        }, run_dir)
     usage = response.get('usage', {})
     if not isinstance(usage, dict):
         raise InvalidEvidence('Usage must be a JSON object')
@@ -238,6 +253,7 @@ def _validate_response(benchmark: Benchmark, response: dict, attempt_dir: Path, 
     overrun = charge > remaining
     return {'status': 'error' if overrun else response['status'], 'claims': [] if overrun else claims, 'artifacts': sealed,
             'literature_requests': [] if overrun else literature,
+            **({'submission_manifest': submission_manifest} if submission_manifest is not None and not overrun else {}),
             'usage': usage, 'usage_complete': bool(complete), 'budget_charge_tokens': charge,
             'request_made': bool(response.get('request_made', not fixture)),
             'provider_model': response.get('provider_model') or response.get('model_returned'),
@@ -329,7 +345,8 @@ def run_config(benchmark: Benchmark, raw_config: dict, output: Path, *, model_ov
                               'max_total_tokens_remaining': remaining}, 'time_remaining_seconds': seconds,
                    'response_schema': {'status': 'unsolved|proof_candidate|error|budget_exhausted',
                                        'claims': 'relation/left/right objects', 'artifacts': 'relative paths within this attempt directory',
-                                       'literature_requests': 'optional cited dependencies matching Literature.* declarations in the proof'}}
+                                       'literature_requests': 'optional cited dependencies matching Literature.* declarations in the proof',
+                                       'submission_manifest': 'optional relative path to submission.json; seal its named Lean files, claims.json, and literature.json together'}}
         write_json(attempt_dir / 'request.json', request)
         attempt = {'attempt_id': f'attempt-{number:04d}', 'task_id': task_id, 'started_at': now(),
                    'request_path': str(relative_dir / 'request.json'), 'prompt_sha256': canonical_hash(request)}
