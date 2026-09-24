@@ -406,7 +406,7 @@ def main(packet):
         export_sha256 = hashlib.sha256(output.encode()).hexdigest()
         (config / "proof-export.json").write_text(output)
         project_flag = " --project-imports" if candidate_sources else ""
-        code, output, error = run("kernel_replay", f"cd /config\n{lean_command} --run /config/ProofAudit.lean /config/proof-export.json /config/targets.json /config/literature.json{project_flag}")
+        code, output, error = run("kernel_replay", f"cd /config\n{lean_command} --run /config/ProofAudit.lean -- /config/proof-export.json /config/targets.json /config/literature.json{project_flag}")
         try:
             report = json.loads(output)
         except ValueError:

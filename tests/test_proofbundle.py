@@ -192,6 +192,16 @@ class ProjectExportLeanTests(unittest.TestCase):
                                     capture_output=True, text=True, timeout=90)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertIn("Project export tests passed", result.stdout)
+            # Exercise Lean's actual CLI argument boundary as well as runAudit.
+            # The final fixture leaves an export requiring the extra imports.
+            auditor = folder / "ProofAudit.lean"
+            auditor.write_text("import AuditImports\n" + auditor.read_text())
+            result = subprocess.run([lean, "-j1", "-DElab.async=false", "--run", "ProofAudit.lean", "--",
+                                     "project-payload.json", "project-targets.json", "project-literature.json",
+                                     "--project-imports"], cwd=folder, env=env,
+                                    capture_output=True, text=True, timeout=90)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(json.loads(result.stdout)["status"], "verified")
 
 
 if __name__ == "__main__":
