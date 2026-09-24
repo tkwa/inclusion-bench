@@ -57,7 +57,7 @@ class ProofcheckTests(unittest.TestCase):
             source = Path(directory) / "proof.lean"
             report_path = Path(directory) / "report.json"
             source.write_text("theorem submitted : True := True.intro")
-            with patch("inclusion_bench.proofcheck.subprocess.run", side_effect=OSError("offline")):
+            with patch("inclusion_bench.proofcheck._run_verifier", side_effect=OSError("offline")):
                 report = verify_proof(self.benchmark, source, [self.claim], report_path=report_path)
             self.assertEqual(report["status"], "unavailable")
             self.assertEqual(report["official_points"], 0)
@@ -68,7 +68,7 @@ class ProofcheckTests(unittest.TestCase):
             source = Path(directory) / "proof.lean"
             source.write_text("theorem submitted : True := True.intro")
             response = subprocess.CompletedProcess([], 0, '{"status":"rejected"}', "")
-            with patch("inclusion_bench.proofcheck.subprocess.run", return_value=response) as call:
+            with patch("inclusion_bench.proofcheck._run_verifier", return_value=response) as call:
                 verify_proof(self.benchmark, source, [self.claim], host=None,
                              remote_root="/public/repository", image="ubuntu:22.04",
                              toolchain_path="/public/lean-4.19.0")

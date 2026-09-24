@@ -10,6 +10,12 @@ Agents can submit ordinary multi-file Lean projects and use uniform integer-arra
 
 The support catalog now contains 189 kernel-proved helpers and 31 explicitly cited premises. This release adds 77 helpers and 12 premises for standard binary arithmetic and array computation; the succinct-array layer adds no new premises.
 
-Projects allow up to 128 Lean files and 16 MiB including the manifest; the manifest is capped at 64 KiB. Legacy source bodies keep their 2 MiB limit. Exported proof JSON remains capped at 32 MiB, and the existing isolated time and memory limits still apply. Candidate object files never enter fresh kernel replay. Newly submitted inductive types and structures remain outside the codec; imported library types are supported.
+Projects allow up to 128 Lean files and 16 MiB including the manifest; the manifest is capped at 64 KiB. Legacy source bodies keep their 2 MiB limit. The original tagged release caps exported proof JSON at 32 MiB; the build 1 follow-up below raises that limit. The isolated time and memory limits still apply. Candidate object files never enter fresh kernel replay. Newly submitted inductive types and structures remain outside the codec; imported library types are supported.
 
 This release preserves the frozen v0.4.0 benchmark definitions, dataset, questions, historical judgments, and scoring rules. No new mathematical result or model score is claimed. See the [submission guide](https://github.com/tkwa/inclusion-bench/blob/v0.4.3/docs/AGENT_SUBMISSIONS.md) for project and array examples.
+
+## Follow-up: 256 MiB proof exports
+
+Build 1 keeps software version 0.4.3 and raises the proof-export cap from 32 MiB to 256 MiB (268,435,456 serialized UTF-8 bytes). The auditor now parses proof exports inside its isolated container. Each isolated stage retains its 8 GiB memory limit, and audit reports have a separate 32 MiB cap. Source limits, declaration limits, proof checks, and the frozen benchmark are unchanged.
+
+The `v0.4.3` tag and original wheel remain pinned to the initial release. The current follow-up wheel is `inclusion_bench-0.4.3-1-py3-none-any.whl`; the added build number distinguishes its bytes while preserving package version 0.4.3. The published release notes identify the follow-up's exact source commit, wheel SHA-256, and download. Use that build or its pinned source revision for the larger export limit.

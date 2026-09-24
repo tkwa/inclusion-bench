@@ -34,7 +34,10 @@ def exportDeclarationRoots (env : Environment) (roots : Array Name)
 def writeExport (roots : Array Name) (candidateModules : NameSet := {}) : CommandElabM Unit := do
   match exportDeclarationRoots (← getEnv) roots candidateModules with
   | .error message => throwError message
-  | .ok payload => liftIO <| IO.FS.writeFile "/work/proof-export.json" payload.compress
+  | .ok payload =>
+      match boundedJsonSize payload maxProofExportBytes with
+      | .error _ => throwError "Proof export exceeds 256 MiB"
+      | .ok _ => liftIO <| IO.FS.writeFile "/work/proof-export.json" payload.compress
 
 syntax "#proofcheck_export" : command
 syntax "#proofcheck_export_targets" "[" str,* "]" : command

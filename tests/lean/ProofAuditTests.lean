@@ -30,7 +30,7 @@ def encode (infos : List ConstantInfo) : IO (Array Json) := do
   return (← unwrap (infos.mapM encodeExportDeclaration)).toArray
 
 def runCase (declarations : Array Json) (request? : Option Json := none)
-    (version : Nat := 3) : IO Json := do
+    (version : Nat := 3) (reportLimit : Nat := maxAuditReportBytes) : IO Json := do
   IO.FS.writeFile "audit-payload.json" <| (Json.mkObj [
     ("schema_version", nat version), ("declarations", .arr declarations)]).compress
   IO.FS.writeFile "audit-targets.json" <| (array [Json.mkObj [
@@ -38,9 +38,9 @@ def runCase (declarations : Array Json) (request? : Option Json := none)
     ("expected", tag "InclusionBench.TrustedBaseline.expected_0")]]).compress
   if let some request := request? then
     IO.FS.writeFile "audit-literature.json" request.compress
-    runAudit "audit-payload.json" "audit-targets.json" (some "audit-literature.json")
+    runAudit "audit-payload.json" "audit-targets.json" (some "audit-literature.json") false reportLimit
   else
-    runAudit "audit-payload.json" "audit-targets.json"
+    runAudit "audit-payload.json" "audit-targets.json" none false reportLimit
 
 def rejected (action : IO Json) (expected : String) : IO Unit := do
   let error? ← try
@@ -61,6 +61,15 @@ def checkConditional (report : Json) : IO Unit := do
     "Conditional report did not record successful kernel replay"
 
 def run : IO Unit := do
+  -- A byte overflow wins over malformed JSON, before parsing or importing.
+  IO.FS.writeFile "audit-bounded.json" "not-json-over-budget"
+  rejected (readBoundedJson "audit-bounded.json" 3 "Test input") "Test input byte limit exceeded"
+  let small := (Json.str "λ😀\n").compress
+  IO.FS.writeFile "audit-bounded.json" small
+  let parsed ← readBoundedJson "audit-bounded.json" small.utf8ByteSize "Test input"
+  check (parsed.compress == small) "Bounded JSON read changed its input"
+  rejected (readBoundedJson "audit-bounded.json" (small.utf8ByteSize - 1) "Test input") "byte limit exceeded"
+
   let trueType := mkConst ``True
   let normal ← encode [theoremInfo trueType (mkConst ``True.intro)]
   let normalReport ← runCase normal
@@ -86,6 +95,21 @@ def run : IO Unit := do
     "Literature context omitted a definition or changed dependency order"
   check (!(← unwrap (record.getObjValAs? String "statement")).isEmpty)
     "The actual reconstructed statement was not printed"
+
+  let recordSize := record.compress.utf8ByteSize
+  let charged ← chargeAuditRecord record 0 (recordSize + 1)
+  check (charged == recordSize + 1) "Audit record budget omitted encoded bytes or comma"
+  rejected (do
+    let _ ← chargeAuditRecord record charged (2 * recordSize + 1)
+    pure Json.null) "Audit report exceeds byte limit"
+  -- A repeated context must be budgeted again, never dropped or truncated.
+  let other : ConstantInfo := .axiomInfo {
+    name := `Literature.other, levelParams := [], type := mkConst `Submission.predicate, isUnsafe := false}
+  let repeated ← encode [base, predicate, assumption, other, theoremInfo trueType (mkConst ``True.intro)]
+  let repeatedManifest := Json.mkObj [("requests", array [
+    Json.mkObj [("name", tag "Literature.fact")], Json.mkObj [("name", tag "Literature.other")]])]
+  rejected (runCase repeated (some repeatedManifest) 3 (512 + recordSize + 1))
+    "exact provenance was not truncated"
 
   rejected (runCase conditional) "Unrequested literature axiom"
   rejected (runCase conditional (some (manifest "Literature.other"))) "Unrequested literature axiom"

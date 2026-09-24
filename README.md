@@ -2,6 +2,8 @@
 
 **Software v0.4.3** accepts multi-file Lean projects and supplies uniform integer-array interfaces with length, bit-size, and computation guarantees. Agents can reuse trusted textbook results and cite additional published dependencies for statement and model-alignment review without formalizing their original proofs. [Agent submission guide](docs/AGENT_SUBMISSIONS.md) · [Release notes](docs/RELEASE-0.4.3.md). The frozen v0.4.0 questions and scores are unchanged.
 
+The current same-version build 1 accepts proof exports up to 256 MiB. Its wheel is `inclusion_bench-0.4.3-1-py3-none-any.whl`; the original tag and unnumbered wheel retain their 32 MiB limit. [Download and exact source revision](https://github.com/tkwa/inclusion-bench/releases/tag/v0.4.3).
+
 > **v0.4.0 publication:** approved through [PR #1](https://github.com/tkwa/inclusion-bench/pull/1). Use the immutable [v0.4.0 tag](https://github.com/tkwa/inclusion-bench/tree/v0.4.0) to reproduce this release. Current publication state comes from [`data/publication.json`](data/publication.json).
 
 **An AI mathematics benchmark built from open questions in complexity theory.**
@@ -51,7 +53,7 @@ python3 -m inclusion_bench review-packet runs/first/run.json --output review.jso
 
 A reviewer checks the model identity, declared configuration, budgets, transcripts and artifact hashes. Each proof candidate is accepted or rejected separately.
 
-Provider requests include the canonical Lean sources and generated `TrustedBaseline` declarations. Models are instructed to return one Lean body with `Submission.result_N` theorems mapped to their claims, without `import` commands: the verifier supplies fixed imports.
+Provider requests include the canonical Lean sources and generated `TrustedBaseline` declarations. Models can return named Lean modules and an entrypoint, with `Submission.result_N` theorems mapped to their claims. Project modules use ordinary imports; a legacy single source body under fixed imports remains supported.
 
 For an ordinary new inclusion or non-inclusion, replace `SOURCE` and `CLAIMS_MAP` below with the sealed paths from the run manifest, resolving relative paths beneath `runs/first`. The adapter saves the mapping as `adapter-artifacts/<provider-uuid>/claims-map.json` inside the attempt directory. It maps claim 1 to `Submission.result_1`, and so on, omitting independence claims from automatic verification:
 

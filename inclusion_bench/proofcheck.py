@@ -6,9 +6,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
+import selectors
 import shlex
 import subprocess
+import tempfile
+import time
 from pathlib import Path
 
 from .benchmark import canonical_hash
@@ -16,6 +20,65 @@ from .engine import Atom, InvalidEvidence
 from .proofbundle import MAX_SOURCE_BYTES, load_proof_bundle
 
 STANDARD_AXIOMS = ["propext", "Classical.choice", "Quot.sound"]
+MAX_VERIFIER_RESPONSE_BYTES = 40 * 1024 * 1024
+MAX_VERIFIER_DIAGNOSTIC_BYTES = 1024 * 1024
+VERIFIER_SHUTDOWN_GRACE_SECONDS = 25
+
+
+def _run_verifier(command, *, input: str, timeout: float):
+    """Bound the trusted driver response before parsing it on the caller.
+
+    A file-backed request avoids blocking pipe writes while the driver emits
+    diagnostics. Neither a noisy SSH connection nor a large citation report
+    can cause unbounded output buffering here.
+    """
+    with tempfile.TemporaryFile() as request:
+        request.write(input.encode("utf-8"))
+        request.seek(0)
+        with subprocess.Popen(command, stdin=request, stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE) as process:
+            deadline = time.monotonic() + timeout
+            chunks = {process.stdout: bytearray(), process.stderr: bytearray()}
+            limits = {process.stdout: MAX_VERIFIER_RESPONSE_BYTES,
+                      process.stderr: MAX_VERIFIER_DIAGNOSTIC_BYTES}
+            with selectors.DefaultSelector() as selector:
+                for pipe in chunks:
+                    os.set_blocking(pipe.fileno(), False)
+                    selector.register(pipe, selectors.EVENT_READ)
+                try:
+                    while selector.get_map():
+                        remaining = deadline - time.monotonic()
+                        if remaining <= 0:
+                            raise ValueError("Verifier response timed out")
+                        for key, _ in selector.select(min(remaining, 0.1)):
+                            pipe = key.fileobj
+                            data = os.read(pipe.fileno(), 65536)
+                            if not data:
+                                selector.unregister(pipe)
+                            else:
+                                if len(chunks[pipe]) + len(data) > limits[pipe]:
+                                    channel = "response" if pipe is process.stdout else "diagnostics"
+                                    raise ValueError(f"Verifier {channel} exceeded its byte limit")
+                                chunks[pipe].extend(data)
+                    try:
+                        code = process.wait(timeout=max(0, deadline - time.monotonic()))
+                    except subprocess.TimeoutExpired:
+                        raise ValueError("Verifier response timed out") from None
+                except BaseException:
+                    # A local driver handles SIGTERM by removing its active
+                    # container (up to 20 seconds). Force-kill only if that
+                    # cleanup stalls. A disconnected remote driver retains
+                    # its independent stage deadlines and container cleanup.
+                    process.terminate()
+                    try:
+                        process.wait(timeout=VERIFIER_SHUTDOWN_GRACE_SECONDS)
+                    except subprocess.TimeoutExpired:
+                        process.kill()
+                        process.wait()
+                    raise
+            return subprocess.CompletedProcess(command, code,
+                chunks[process.stdout].decode("utf-8"),
+                chunks[process.stderr].decode("utf-8", "replace"))
 
 
 def sha256(value: bytes) -> str:
@@ -216,10 +279,10 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
     if bundle.metadata is not None:
         report["proof_project"] = bundle.metadata
     try:
-        # Only the trusted remote runner writes this pipe; candidate stdout is
-        # captured and size-limited inside its Docker container.
-        completed = subprocess.run(command, input=json.dumps(packet), text=True,
-                                   capture_output=True, timeout=3 * timeout_seconds + 120)
+        # Only the trusted driver writes this pipe. The proof export stays in
+        # its bounded file and is parsed only by the isolated Lean auditor.
+        completed = _run_verifier(command, input=json.dumps(packet),
+                                  timeout=3 * timeout_seconds + 120)
         response = json.loads(completed.stdout)
         if not isinstance(response, dict) or response.get("status") not in {"verified", "needs_literature_review", "rejected", "unavailable"}:
             raise ValueError("Invalid verifier response")
@@ -242,7 +305,7 @@ def verify_proof(benchmark, proof_path, claims, *, report_path=None,
             if key in response and response[key] != report[key]:
                 raise InvalidEvidence("Verifier attempted to replace input binding: " + key)
         report.update(response)
-    except (OSError, subprocess.TimeoutExpired, ValueError, InvalidEvidence) as error:
+    except (OSError, subprocess.TimeoutExpired, ValueError, RecursionError, InvalidEvidence) as error:
         report.update(status="unavailable", reason=f"Verifier did not return valid evidence: {error}")
     if report_path is not None:
         Path(report_path).write_text(json.dumps(report, indent=2) + "\n")

@@ -244,4 +244,8 @@ The append-only decisions are stored in `support/literature-reviews.json`. These
 
 This release improves the mathematical interface and reuse of established results. It does not make Lean accept informal arguments. A new algorithm still needs a precise correctness and complexity argument, but its standard computational and mathematical dependencies can be reused rather than rebuilt.
 
-New submitted structures and inductive declarations remain unsupported by the proof codec; use imported library types and ordinary definitions and theorems. Only declarations needed by the requested targets are exported, including helpers in other submitted modules. This retains every assumption used by the proof. Exported proof JSON remains limited to 32 MiB. The runtime's time, memory, and temporary-storage limits still apply to the whole project; increase the explicit timeout for a larger argument when needed.
+New submitted structures and inductive declarations remain unsupported by the proof codec; use imported library types and ordinary definitions and theorems. Only declarations needed by the requested targets are exported, including helpers in other submitted modules. This retains every assumption used by the proof.
+
+Exported proof JSON is limited to 256 MiB (268,435,456 serialized UTF-8 bytes). The isolated auditor parses that export under its 8 GiB memory limit; the other isolated stages retain the same memory limit. Audit reports have a separate 32 MiB cap. The runtime's time and temporary-storage limits still apply to the whole project; increase the explicit timeout for a larger argument when needed.
+
+The original `v0.4.3` tag and unnumbered wheel use the earlier 32 MiB export limit. The same-version follow-up is supplied as build 1, `inclusion_bench-0.4.3-1-py3-none-any.whl`; its exact source revision and download are identified in the [release notes](https://github.com/tkwa/inclusion-bench/releases/tag/v0.4.3).

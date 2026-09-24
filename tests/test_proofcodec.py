@@ -1,5 +1,6 @@
 """Run codec and fresh-auditor regressions without Docker or benchmark dependencies."""
 
+import json
 import os
 from pathlib import Path
 import shutil
@@ -39,6 +40,18 @@ class ProofCodecTests(unittest.TestCase):
                                     cwd=folder, env=environment, capture_output=True, text=True, timeout=90)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertIn("ProofAudit tests passed", result.stdout)
+            # Sparse invalid input proves the real 256 MiB check runs before
+            # reading or parsing; this allocates no large payload in memory.
+            oversized = folder / "oversized.json"
+            with oversized.open("wb") as handle:
+                handle.truncate(256 * 1024 * 1024 + 1)
+            result = subprocess.run([lean, "-j1", "--run", str(folder / "ProofAudit.lean"),
+                                     str(oversized), str(folder / "missing-targets.json")],
+                                    cwd=folder, env=environment, capture_output=True, text=True, timeout=30)
+            self.assertNotEqual(result.returncode, 0)
+            report = json.loads(result.stdout)
+            self.assertEqual(report["status"], "rejected")
+            self.assertIn("Proof export byte limit exceeded", report["reason"])
 
 
 if __name__ == "__main__":

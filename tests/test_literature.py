@@ -207,7 +207,7 @@ class LiteratureVerifierBridgeTests(unittest.TestCase):
             source = Path(directory) / "proof.lean"
             source.write_text("-- TEST-ONLY bridge fixture, no compiler is invoked.\n")
             completed = subprocess.CompletedProcess([], returncode, json.dumps(response), "")
-            with patch("inclusion_bench.proofcheck.subprocess.run", return_value=completed) as call, \
+            with patch("inclusion_bench.proofcheck._run_verifier", return_value=completed) as call, \
                     patch("inclusion_bench.literature.literature_reviews", return_value=reviews or []):
                 report = verify_proof(self.benchmark, source, [self.claim], literature_requests=[request()])
             return report, json.loads(call.call_args.kwargs["input"])

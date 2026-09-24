@@ -157,7 +157,7 @@ class ProofBundleTests(unittest.TestCase):
         benchmark = Benchmark()
         claim = {"relation": "inclusion", "left": "P", "right": "P", "theorem": "submitted"}
         response = subprocess.CompletedProcess([], 0, '{"status":"rejected"}', "")
-        with patch("inclusion_bench.proofcheck.subprocess.run", return_value=response) as call:
+        with patch("inclusion_bench.proofcheck._run_verifier", return_value=response) as call:
             report = verify_proof(benchmark, self.root, [claim], host=None)
         packet = json.loads(call.call_args.kwargs["input"])
         self.assertEqual(report["proof_project"], bundle.metadata)

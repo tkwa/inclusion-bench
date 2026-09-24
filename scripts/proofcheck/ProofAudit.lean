@@ -8,6 +8,25 @@ def auditFailure (message : String) : IO α := throw (IO.userError message)
 def parseOrFail (value : Except String α) : IO α :=
   match value with | .ok value => pure value | .error error => auditFailure error
 
+/-- The host supplies a read-only regular file. Check its size before reading
+or parsing; recheck the bytes read as well for standalone audit callers. -/
+def readBoundedJson (path : System.FilePath) (limit : Nat) (label : String) : IO Json := do
+  let metadata ← path.metadata
+  unless metadata.type == .file do auditFailure s!"{label} must be a regular file"
+  if metadata.byteSize.toNat > limit then auditFailure s!"{label} byte limit exceeded"
+  let text ← IO.FS.readFile path
+  if text.utf8ByteSize > limit then auditFailure s!"{label} byte limit exceeded"
+  parseOrFail (Json.parse text)
+
+/-- Reserve wire space before accumulating another exact provenance/target
+record. Never silently truncate literature contexts to fit the report. -/
+def chargeAuditRecord (record : Json) (used limit : Nat) : IO Nat := do
+  let size ← match boundedJsonSize record (limit - used) with
+    | .ok size => pure size
+    | .error _ => auditFailure "Audit report exceeds byte limit; exact provenance was not truncated"
+  if used + size + 1 > limit then auditFailure "Audit report exceeds byte limit"
+  return used + size + 1
+
 def addChecked (env : Environment) (declaration : Declaration) : IO Environment :=
   match env.addDeclCore 1000000000 declaration none true with
   | .ok next => pure next
@@ -54,8 +73,9 @@ def readLiteratureRequests (path? : Option System.FilePath) : IO NameSet := do
   return names
 
 def runAudit (payloadPath targetsPath : System.FilePath)
-    (literaturePath? : Option System.FilePath := none) (projectImports : Bool := false) : IO Json := do
-  let payload ← parseOrFail (Json.parse (← IO.FS.readFile payloadPath))
+    (literaturePath? : Option System.FilePath := none) (projectImports : Bool := false)
+    (reportLimit : Nat := maxAuditReportBytes) : IO Json := do
+  let payload ← readBoundedJson payloadPath maxProofExportBytes "Proof export"
   let targets ← parseOrFail (Json.parse (← IO.FS.readFile targetsPath))
   let requestedLiterature ← readLiteratureRequests literaturePath?
   let version ← parseOrFail (payload.getObjValAs? Nat "schema_version")
@@ -70,6 +90,8 @@ def runAudit (payloadPath targetsPath : System.FilePath)
   let mut literatureNames : NameSet := {}
   let mut literatureDependencies : Array Json := #[]
   let mut reconstructedPayloads : NameMap Json := {}
+  -- Covers fixed object keys, status, declaration count and the final newline.
+  let mut reportBytes := 512
   for json in declarations do
     let declaration ← parseOrFail (
       if version == 1 then decodeDeclaration json
@@ -94,9 +116,11 @@ def runAudit (payloadPath targetsPath : System.FilePath)
       -- Preserve precisely the data that was reconstructed and kernel-checked.
       -- The caller binds this declaration and the separate citation request
       -- together for review; neither the name nor a citation grants approval.
-      literatureDependencies := literatureDependencies.push (Json.mkObj [
+      let record := Json.mkObj [
         ("name", toJson value.name.toString), ("declaration", json),
-        ("context", .arr context), ("statement", toJson statement.pretty)])
+        ("context", .arr context), ("statement", toJson statement.pretty)]
+      reportBytes ← chargeAuditRecord record reportBytes reportLimit
+      literatureDependencies := literatureDependencies.push record
     for name in declaration.getNames do
       reconstructedPayloads := reconstructedPayloads.insert name json
   -- Audit every reconstructed declaration, including unused helpers.
@@ -124,15 +148,20 @@ def runAudit (payloadPath targetsPath : System.FilePath)
       value := mkConst name }
     env ← addChecked env assertion
     let axioms := (actualAxioms env name).map (fun n => toJson n.toString)
-    records := records.push (Json.mkObj [("theorem", toJson nameText),
-      ("expected", toJson expectedText), ("axioms", .arr axioms)])
+    let record := Json.mkObj [("theorem", toJson nameText),
+      ("expected", toJson expectedText), ("axioms", .arr axioms)]
+    reportBytes ← chargeAuditRecord record reportBytes reportLimit
+    records := records.push record
   -- Even unused literature entries in a hand-crafted payload require review.
   -- Ordinary exports contain only the target closure, including dependencies
   -- in the types of requested literature axioms.
   let status := if literatureDependencies.isEmpty then "verified" else "needs_literature_review"
-  return Json.mkObj [("status", toJson status), ("kernel_status", toJson "verified"),
+  let result := Json.mkObj [("status", toJson status), ("kernel_status", toJson "verified"),
     ("literature_dependencies", .arr literatureDependencies),
     ("declaration_count", toJson declarations.size), ("targets", .arr records)]
+  match boundedJsonSize result (reportLimit - 1) with
+  | .error _ => auditFailure "Audit report exceeds byte limit"
+  | .ok _ => return result
 
 def main (arguments : List String) : IO UInt32 := do
   try

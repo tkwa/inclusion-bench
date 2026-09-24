@@ -312,6 +312,25 @@ def testTargetClosure : IO Unit := do
   check (exportDeclarationRoots env #[`missingTarget] |> failed)
     "Exported a missing target"
 
+def testJsonByteBudget : IO Unit := do
+  let controls := String.mk ((List.range 32).map Char.ofNat)
+  let unicode := "quotes \" backslash \\ slash / λ 中 😀"
+  let mut examples := #[Json.null, Json.bool true, Json.bool false, Json.str "",
+    Json.str controls, Json.str unicode, Json.arr #[], Json.mkObj [],
+    Json.mkObj [(controls, Json.str unicode), ("nested", Json.arr #[Json.null, Json.arr #[nat 42]])]]
+  for number in ["0", "-1", "123456789012345678901234567890", "1.25", "-1.2e-20", "3e40", "0.000000001"] do
+    examples := examples.push (← unwrap (Json.parse number))
+  for value in examples do
+    let actual := value.compress.utf8ByteSize
+    check ((← unwrap (boundedJsonSize value actual)) == actual) "Compact JSON byte count mismatch"
+    check (boundedJsonSize value (actual - 1) |> failed) "JSON byte budget accepted an over-limit value"
+    check ((← unwrap (boundedJsonSize value (actual + 1))) == actual) "Larger JSON budget changed the count"
+  -- Shared objects are counted each time they occur on the wire.
+  let shared := Json.mkObj [("unicode", Json.str unicode)]
+  let doubled := Json.arr #[shared, shared]
+  check ((← unwrap (boundedJsonSize doubled 1000)) == doubled.compress.utf8ByteSize)
+    "JSON byte budget incorrectly deduplicated shared report data"
+
 end ProofCodecTests
 
 def main (arguments : List String) : IO Unit := do
@@ -326,4 +345,5 @@ def main (arguments : List String) : IO Unit := do
   ProofCodecTests.testInvalidShapes
   ProofCodecTests.testLiteratureCodec
   ProofCodecTests.testTargetClosure
+  ProofCodecTests.testJsonByteBudget
   IO.println "ProofCodec tests passed"

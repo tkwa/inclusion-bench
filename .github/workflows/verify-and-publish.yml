@@ -102,7 +102,7 @@ jobs:
           with open(os.environ['GITHUB_ENV'], 'a') as environment:
               environment.write(f'INCLUSION_PROOFCHECK_CONFIG={runtime}\n')
           PY
-          INCLUSION_PROOFCHECK_INTEGRATION=1 INCLUSION_PROOFCHECK_CONFIG="$RUNNER_TEMP/proofcheck-runtime.json" python3 -m unittest discover -s tests -p test_proofcheck.py -v
+          INCLUSION_PROOFCHECK_INTEGRATION=1 INCLUSION_PROOFCHECK_CONFIG="$RUNNER_TEMP/proofcheck-runtime.json" python3 -m unittest tests.test_proofcheck tests.test_proofcheck_large -v
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

@@ -9,6 +9,46 @@ def array (xs : List Json) : Json := Json.arr xs.toArray
 def tag (value : String) : Json := Json.str value
 def nat (value : Nat) : Json := toJson value
 
+def maxProofExportBytes : Nat := 256 * 1024 * 1024
+def maxAuditReportBytes : Nat := 32 * 1024 * 1024
+
+/-- Count compact JSON bytes without allocating the serialized document. Abort
+as soon as the budget is exhausted, including repeated shared JSON values.
+The string cases match the pinned Lean 4.19 JSON serializer. -/
+partial def boundedJsonSize (json : Json) (limit : Nat) : Except String Nat := do
+  let checked (size : Nat) : Except String Nat :=
+    if size ≤ limit then .ok size else .error "JSON byte limit exceeded"
+  let stringSize (value : String) : Except String Nat := do
+    let mut size ← checked (value.utf8ByteSize + 2)
+    let mut cursor := value.iter
+    while cursor.hasNext do
+      let c := cursor.curr
+      let extra := if c == '\n' || c == '\r' || c == '"' || c == '\\' then 1
+        else if c.toNat < 32 then 5 else 0
+      size ← checked (size + extra)
+      cursor := cursor.next
+    return size
+  match json with
+  | .null => checked 4
+  | .bool value => checked (if value then 4 else 5)
+  | .num value => checked value.toString.utf8ByteSize
+  | .str value => stringSize value
+  | .arr values =>
+      let mut size ← checked (2 + values.size - 1)
+      -- Empty arrays still have both delimiters.
+      if values.isEmpty then return ← checked 2
+      for value in values do
+        size := size + (← boundedJsonSize value (limit - size))
+      return size
+  | .obj fields =>
+      let values := fields.toArray
+      let mut size ← checked (2 + values.size - 1)
+      if values.isEmpty then return ← checked 2
+      for ⟨key, value⟩ in values do
+        size ← checked (size + (← stringSize key) + 1)
+        size := size + (← boundedJsonSize value (limit - size))
+      return size
+
 def encodeName : Name → Json
   | .anonymous => array [tag "a"]
   | .str parent value => array [tag "s", encodeName parent, tag value]

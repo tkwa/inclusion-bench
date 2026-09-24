@@ -6,10 +6,12 @@ trusted copy distributed with InclusionBench. No Docker image is pulled.
 import hashlib
 import json
 import os
+from collections import namedtuple
 from pathlib import Path
 import re
 import selectors
 import shutil
+import signal
 import subprocess
 import tempfile
 import time
@@ -22,6 +24,16 @@ PROJECT_PATH = re.compile(r"(?:[A-Za-z_][A-Za-z0-9_]*/)*[A-Za-z_][A-Za-z0-9_]*\.
 APPROVED_IMPORT_ROOTS = {"Init", "Std", "Lean", "Mathlib", "Batteries", "Aesop", "Qq",
                          "InclusionBench", "InclusionQuantum", "InclusionSupport", "TrustedBaseline"}
 RESERVED_MODULE_ROOTS = APPROVED_IMPORT_ROOTS | {"ProofCodec", "ProofExport", "ProofAudit", "Candidate", "AuditImports"}
+PROOF_EXPORT_LIMIT_BYTES = 256 * 1024 * 1024
+DIAGNOSTIC_LIMIT_BYTES = 8 * 1024 * 1024
+AUDIT_REPORT_LIMIT_BYTES = 32 * 1024 * 1024
+RESPONSE_LIMIT_BYTES = 40 * 1024 * 1024
+WORK_TMPFS_BYTES = 1024 * 1024 * 1024
+CaptureResult = namedtuple("CaptureResult", "returncode stdout stderr stdout_bytes stdout_sha256")
+
+
+class CaptureLimitError(RuntimeError):
+    """The bounded subprocess exceeded its time or output allowance."""
 
 
 def header_imports(source):
@@ -245,41 +257,96 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def capture(command, timeout, limit=40 * 1024 * 1024):
-    """Bound both pipes while the process runs, including hostile diagnostics."""
-    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+def capture(command, timeout, *, stdout_limit=DIAGNOSTIC_LIMIT_BYTES,
+            stderr_limit=DIAGNOSTIC_LIMIT_BYTES, stdout_path=None):
+    """Bound each pipe, optionally streaming exact stdout bytes into a file.
+
+    Streamed output never enters a host-sized bytearray or JSON parser. The
+    returned hash covers its original bytes, including invalid UTF-8, so only
+    the limited fresh auditor decides whether an export is valid JSON.
+    """
+    process, output_file = None, None
     selector = selectors.DefaultSelector()
-    for pipe in (process.stdout, process.stderr):
-        os.set_blocking(pipe.fileno(), False)
-        selector.register(pipe, selectors.EVENT_READ)
-    chunks = {process.stdout: bytearray(), process.stderr: bytearray()}
-    deadline = time.monotonic() + timeout
-    error = None
+    hasher = hashlib.sha256()
+    output_path = Path(stdout_path) if stdout_path is not None else None
     try:
+        if output_path is not None:
+            output_file = output_path.open("xb")
+        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                   start_new_session=True)
+        counts = {process.stdout: 0, process.stderr: 0}
+        limits = {process.stdout: stdout_limit, process.stderr: stderr_limit}
+        chunks = {process.stdout: bytearray(), process.stderr: bytearray()}
+        for pipe in counts:
+            os.set_blocking(pipe.fileno(), False)
+            selector.register(pipe, selectors.EVENT_READ)
+        deadline = time.monotonic() + timeout
         while selector.get_map():
-            if time.monotonic() > deadline:
-                raise RuntimeError("Verifier wall-time limit exceeded")
+            if time.monotonic() >= deadline:
+                raise CaptureLimitError("Verifier wall-time limit exceeded")
             for key, _ in selector.select(timeout=0.1):
                 data = os.read(key.fileobj.fileno(), 65536)
                 if not data:
                     selector.unregister(key.fileobj)
                 else:
-                    chunks[key.fileobj].extend(data)
-                    if sum(map(len, chunks.values())) > limit:
-                        raise RuntimeError("Verifier output limit exceeded")
-        code = process.wait(timeout=max(1, deadline - time.monotonic()))
-    except BaseException as exception:
-        error = exception
-        process.kill()
-        process.wait()
-        code = -1
+                    counts[key.fileobj] += len(data)
+                    if counts[key.fileobj] > limits[key.fileobj]:
+                        channel = "stdout" if key.fileobj is process.stdout else "stderr"
+                        raise CaptureLimitError(f"Verifier {channel} exceeds {limits[key.fileobj]} bytes")
+                    if key.fileobj is process.stdout:
+                        hasher.update(data)
+                    if key.fileobj is process.stdout and output_file is not None:
+                        output_file.write(data)
+                    else:
+                        chunks[key.fileobj].extend(data)
+        try:
+            code = process.wait(timeout=max(0.001, deadline - time.monotonic()))
+        except subprocess.TimeoutExpired as error:
+            raise CaptureLimitError("Verifier wall-time limit exceeded") from error
+        return CaptureResult(code, chunks[process.stdout].decode("utf-8", "replace"),
+                             chunks[process.stderr].decode("utf-8", "replace"),
+                             counts[process.stdout], hasher.hexdigest())
+    except BaseException:
+        if process is not None:
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            process.wait()
+        if output_file is not None:
+            output_file.close()
+            output_path.unlink(missing_ok=True)
+        raise
     finally:
         selector.close()
-        process.stdout.close()
-        process.stderr.close()
-    if error:
-        raise error
-    return code, chunks[process.stdout].decode("utf-8", "replace"), chunks[process.stderr].decode("utf-8", "replace")
+        if output_file is not None:
+            output_file.close()
+        if process is not None:
+            process.stdout.close()
+            process.stderr.close()
+
+
+def capture_container(command, name, timeout, **capture_options):
+    """Remove the container even when the client times out or its pipes overflow."""
+    try:
+        return capture(command, timeout, **capture_options)
+    finally:
+        subprocess.run(["docker", "rm", "-f", name], stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL, timeout=20)
+
+
+def serialize_response(result):
+    """Bound the exact UTF-8 wire response, including its terminating newline."""
+    output = json.dumps(result, ensure_ascii=False, separators=(",", ":"))
+    if len(output.encode("utf-8")) + 1 > RESPONSE_LIMIT_BYTES:
+        output = json.dumps({"status": "rejected", "reason": "Verifier report exceeds 40 MiB"},
+                            separators=(",", ":"))
+    return output
+
+
+def cancel_driver(signum, _frame):
+    """Let capture and container finally blocks run on local caller cancellation."""
+    raise SystemExit(128 + signum)
 
 
 def main(packet):
@@ -342,25 +409,21 @@ def main(packet):
         common = ["docker", "run", "--rm", "--network=none", "--read-only", "--cap-drop=ALL",
                   "--security-opt=no-new-privileges", "--memory=8g", "--memory-swap=8g", "--cpus=1",
                   "--pids-limit=64", "--user", f"{os.getuid()}:{os.getgid()}",
-                  "--tmpfs", "/tmp:rw,nosuid,nodev,size=128m", "--tmpfs", "/work:rw,nosuid,nodev,size=256m",
+                  "--tmpfs", "/tmp:rw,nosuid,nodev,size=128m", "--tmpfs", f"/work:rw,nosuid,nodev,size={WORK_TMPFS_BYTES}",
                   "--mount", f"type=bind,src={toolchain},dst=/toolchain,readonly",
                   "--mount", f"type=bind,src={package_root},dst=/packages,readonly", *env,
                   "--entrypoint", "/bin/sh"]
 
         stage_wall_seconds = {}
 
-        def run(stage, script, writable=False):
+        def run(stage, script, writable=False, **capture_options):
             started = time.monotonic()
             name = "inclusion-proofcheck-" + uuid.uuid4().hex
             binding = f"type=bind,src={config},dst=/config" + ("" if writable else ",readonly")
             command = [*common, "--name", name, "--mount", binding, image, "-c", script]
             try:
-                return capture(command, timeout)
+                return capture_container(command, name, timeout, **capture_options)
             finally:
-                # Also kills the container if the Docker client timed out or
-                # output overflowed; an orphaned candidate cannot keep running.
-                subprocess.run(["docker", "rm", "-f", name], stdout=subprocess.DEVNULL,
-                               stderr=subprocess.DEVNULL, timeout=20)
                 stage_wall_seconds[stage] = round(time.monotonic() - started, 3)
 
         # Paths have been restricted to ASCII module components above. Their
@@ -378,9 +441,9 @@ def main(packet):
         compile_steps += [compile_step(f"{m}.lean") for m in ("ProofCodec", "ProofExport", "TrustedBaseline")]
         if candidate_sources:
             compile_steps.append(compile_step("AuditImports.lean"))
-        code, output, error = run("trusted_build", "set -eu\ncd /config\n" + "\n".join(compile_steps), writable=True)
-        if code:
-            return {"status": "unavailable", "reason": "Trusted verifier build failed", "log": (output + error)[-16000:],
+        build = run("trusted_build", "set -eu\ncd /config\n" + "\n".join(compile_steps), writable=True)
+        if build.returncode:
+            return {"status": "unavailable", "reason": "Trusted verifier build failed", "log": (build.stdout + build.stderr)[-16000:],
                     "stage_wall_seconds": stage_wall_seconds}
         # No host directory is writable during candidate execution. Its only
         # output is a bounded JSON value, never an olean or native library.
@@ -393,27 +456,33 @@ def main(packet):
                 candidate_steps.append(f"{lean_command} -o {path}.olean {path}.lean || exit $?")
         candidate_steps.append(f"{lean_command} /config/Candidate.lean")
         candidate_script = "\n".join(candidate_steps)
-        code, output, error = run("candidate", "(\n" + candidate_script +
-            "\n) >/work/compile.log 2>&1\nresult=$?\nif [ $result -ne 0 ]; then cat /work/compile.log >&2; exit $result; fi\ncat /work/proof-export.json")
-        if code:
-            return {"status": "rejected", "reason": "Candidate elaboration/export failed", "log": error[-16000:],
-                    "stage_wall_seconds": stage_wall_seconds}
-        if len(output.encode()) > 32 * 1024 * 1024:
-            return {"status": "rejected", "reason": "Proof export exceeds 32 MiB"}
-        # Parsing on the host accepts JSON only. No pickle/eval/import/module
-        # execution is performed on candidate-controlled output.
-        json.loads(output)
-        export_sha256 = hashlib.sha256(output.encode()).hexdigest()
-        (config / "proof-export.json").write_text(output)
-        project_flag = " --project-imports" if candidate_sources else ""
-        code, output, error = run("kernel_replay", f"cd /config\n{lean_command} --run /config/ProofAudit.lean -- /config/proof-export.json /config/targets.json /config/literature.json{project_flag}")
+        export_path = config / "proof-export.json"
         try:
-            report = json.loads(output)
+            candidate = run("candidate", "(\n" + candidate_script +
+                "\n) >/work/compile.log 2>&1\nresult=$?\nif [ $result -ne 0 ]; then cat /work/compile.log >&2; exit $result; fi\ncat /work/proof-export.json",
+                stdout_path=export_path, stdout_limit=PROOF_EXPORT_LIMIT_BYTES)
+        except CaptureLimitError as error:
+            return {"status": "rejected", "reason": "Candidate export failed: " + str(error),
+                    "stage_wall_seconds": stage_wall_seconds}
+        if candidate.returncode:
+            return {"status": "rejected", "reason": "Candidate elaboration/export failed", "log": candidate.stderr[-16000:],
+                    "stage_wall_seconds": stage_wall_seconds}
+        # Only the fresh, memory-limited auditor parses the candidate JSON.
+        export_sha256 = candidate.stdout_sha256
+        project_flag = " --project-imports" if candidate_sources else ""
+        try:
+            replay = run("kernel_replay", f"cd /config\n{lean_command} --run /config/ProofAudit.lean -- /config/proof-export.json /config/targets.json /config/literature.json{project_flag}",
+                         stdout_limit=AUDIT_REPORT_LIMIT_BYTES)
+        except CaptureLimitError as error:
+            return {"status": "rejected", "reason": "Kernel replay failed: " + str(error),
+                    "stage_wall_seconds": stage_wall_seconds}
+        try:
+            report = json.loads(replay.stdout)
         except ValueError:
-            return {"status": "unavailable", "reason": "Trusted kernel replay failed to start", "log": (output + error)[-16000:]}
+            return {"status": "unavailable", "reason": "Trusted kernel replay failed to start", "log": (replay.stdout + replay.stderr)[-16000:]}
         if not isinstance(report, dict) or report.get("status") not in {"verified", "needs_literature_review", "rejected", "unavailable"}:
             return {"status": "unavailable", "reason": "Trusted kernel replay returned an invalid status"}
-        if code and report.get("status") in {"verified", "needs_literature_review"}:
+        if replay.returncode and report.get("status") in {"verified", "needs_literature_review"}:
             raise RuntimeError("Kernel replay process failed after reporting success")
         report["proof_export_sha256"] = export_sha256
         report["runtime"] = {"lean": lean_version, "image_id": image, "image_requested": image_name,
@@ -421,6 +490,12 @@ def main(packet):
                              "mathlib_objects_sha256": object_hash.hexdigest(),
                              "cpu_limit": 1, "memory_bytes": 8 * 1024**3,
                              "pids_limit": 64, "async_elaboration": False,
+                             "proof_export_limit_bytes": PROOF_EXPORT_LIMIT_BYTES,
+                             "proof_export_bytes": candidate.stdout_bytes,
+                             "work_tmpfs_bytes": WORK_TMPFS_BYTES,
+                             "diagnostic_limit_bytes": DIAGNOSTIC_LIMIT_BYTES,
+                             "audit_report_limit_bytes": AUDIT_REPORT_LIMIT_BYTES,
+                             "response_limit_bytes": RESPONSE_LIMIT_BYTES,
                              "network": "none", "candidate_host_writes": False,
                              "stage_wall_seconds": stage_wall_seconds,
                              "wall_seconds_per_stage": timeout}
@@ -428,9 +503,11 @@ def main(packet):
 
 
 if __name__ == "__main__":
+    signal.signal(signal.SIGTERM, cancel_driver)
+    signal.signal(signal.SIGHUP, cancel_driver)
     try:
         request = json.load(__import__("sys").stdin)
         result = main(request)
     except Exception as error:
         result = {"status": "unavailable", "reason": str(error)}
-    print(json.dumps(result))
+    print(serialize_response(result))

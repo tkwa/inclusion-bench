@@ -156,6 +156,7 @@
     }
     if (d.repository_ref && /^[A-Za-z0-9._/-]+$/.test(d.repository_ref)) {
       for (const link of document.querySelectorAll('a[href^="https://github.com/tkwa/inclusion-bench/blob/main/"]')) {
+        if (link.href.endsWith("/docs/AGENT_SUBMISSIONS.md")) continue;
         link.href = link.href.replace("/blob/main/", `/blob/${d.repository_ref}/`);
       }
     }
